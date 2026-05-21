@@ -1,842 +1,1180 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How an eSIM business actually works</title>
+<title>Peanut eSIM — Business Model Overview / ビジネスモデル概要</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@500;600&family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0A0E1A;
-    --bg-2: #0F1422;
-    --surface: #151B2E;
-    --surface-2: #1C2440;
-    --text: #F2EEE3;
-    --text-dim: #8B92A8;
-    --text-faint: #4D556B;
-    --cyan: #5EEAD4;
-    --coral: #F4A261;
-    --violet: #A78BFA;
-    --rose: #F472B6;
-    --line: rgba(242, 238, 227, 0.08);
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-2: #5EAEA3;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning-soft: #FFF8EE;
+    --warning: #C97E22;
+    --rose: #C97070;
+    --violet: #7A6CB8;
+    --violet-soft: #EFEDF7;
+    --gold: #C9A227;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Noto Sans JP', 'Inter', -apple-system, sans-serif;
     font-weight: 400;
-    line-height: 1.55;
-    overflow-x: hidden;
-    background-image:
-      radial-gradient(800px circle at 80% 10%, rgba(94, 234, 212, 0.08), transparent 50%),
-      radial-gradient(900px circle at 10% 70%, rgba(244, 162, 97, 0.06), transparent 50%),
-      radial-gradient(700px circle at 90% 90%, rgba(167, 139, 250, 0.06), transparent 50%);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "palt";
   }
+  [data-lang="en"] body { font-family: 'Inter', -apple-system, sans-serif; }
 
-  .serif { font-family: 'Instrument Serif', serif; font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
-  .mono { font-family: 'JetBrains Mono', monospace; }
+  .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
 
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 92vh;
-    padding: 80px 6vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+  /* LANG TOGGLE */
+  .lang-switch {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 250, 247, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+    padding: 14px 24px;
+    display: flex; justify-content: center; gap: 8px;
   }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    right: -200px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 800px;
-    height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(94, 234, 212, 0.18) 0%, transparent 60%);
-    filter: blur(30px);
-    pointer-events: none;
-  }
-
-  .signal-rings {
-    position: absolute;
-    right: 8vw;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 480px;
-    height: 480px;
-    pointer-events: none;
-  }
-  .signal-rings .ring {
-    position: absolute;
-    inset: 0;
-    border: 1.5px solid var(--cyan);
-    border-radius: 50%;
-    opacity: 0;
-    animation: pulse 4s ease-out infinite;
-  }
-  .signal-rings .ring:nth-child(2) { animation-delay: 1s; }
-  .signal-rings .ring:nth-child(3) { animation-delay: 2s; }
-  .signal-rings .ring:nth-child(4) { animation-delay: 3s; }
-  .signal-rings .core {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 18px; height: 18px;
-    background: var(--cyan);
-    border-radius: 50%;
-    box-shadow: 0 0 40px var(--cyan);
-  }
-  @keyframes pulse {
-    0% { opacity: 0.7; transform: scale(0.1); }
-    100% { opacity: 0; transform: scale(1); }
-  }
-
-  .kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 32px;
+  .lang-btn {
+    padding: 8px 18px;
+    background: transparent;
+    color: var(--text-2);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 13px;
     font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.02em;
   }
-  .kicker::before {
-    content: '';
-    width: 32px;
-    height: 1px;
-    background: var(--cyan);
-  }
-
-  .hero h1 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    font-size: clamp(48px, 7.5vw, 110px);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
-    max-width: 14ch;
-    margin-bottom: 32px;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--cyan);
+  .lang-btn:hover { color: var(--text); border-color: var(--accent); }
+  .lang-btn.active {
+    background: var(--accent);
+    color: #FFFFFF;
+    border-color: var(--accent);
   }
 
+  /* LANG VISIBILITY */
+  .lang { display: none; }
+  [data-lang="en"] .lang.en,
+  [data-lang="jp"] .lang.jp { display: revert; }
+  [data-lang="en"] span.lang.en,
+  [data-lang="jp"] span.lang.jp { display: inline; }
+
+  /* HERO */
+  .hero {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 56px;
+    text-align: center;
+  }
+  .doc-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    margin-bottom: 22px;
+  }
+  [data-lang="en"] h1 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; line-height: 1.05; }
+  h1 em { color: var(--accent); font-style: normal; }
   .hero .lead {
-    font-size: clamp(17px, 1.4vw, 22px);
-    color: var(--text-dim);
-    max-width: 56ch;
-    line-height: 1.5;
+    font-size: 16px;
+    color: var(--text-2);
+    line-height: 1.85;
+    max-width: 58ch;
+    margin: 0 auto;
+  }
+  .hero-illustration {
+    margin: 40px auto 0;
+    max-width: 320px;
   }
 
-  .hero .meta {
-    margin-top: 64px;
+  .meta {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-soft);
     display: flex;
-    gap: 48px;
+    gap: 28px;
     flex-wrap: wrap;
     font-size: 13px;
-    color: var(--text-faint);
-    letter-spacing: 0.04em;
+    color: var(--text-3);
+    justify-content: center;
   }
-  .hero .meta span strong {
+  .meta span strong {
     display: block;
     color: var(--text);
     font-weight: 500;
-    font-size: 14px;
-    margin-top: 4px;
-    letter-spacing: 0;
+    margin-top: 2px;
   }
 
-  /* ─── SECTION SHELL ─── */
   section {
-    padding: 120px 6vw;
-    position: relative;
+    padding: 56px 0;
+    border-bottom: 1px solid var(--line-soft);
   }
+  section:last-of-type { border-bottom: none; padding-bottom: 100px; }
 
-  .section-num {
+  .sec-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: var(--text-faint);
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    margin-bottom: 10px;
   }
-
-  section > h2 {
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 1.05;
-    letter-spacing: -0.015em;
-    max-width: 22ch;
-    margin-bottom: 24px;
+  h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: clamp(24px, 4vw, 32px);
+    line-height: 1.45;
+    margin-bottom: 16px;
+    letter-spacing: 0.005em;
   }
-  section > h2 em { color: var(--cyan); font-style: italic; }
-
-  section > .intro {
-    font-size: 18px;
-    color: var(--text-dim);
-    max-width: 60ch;
-    margin-bottom: 64px;
+  [data-lang="en"] h2 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; line-height: 1.1; }
+  h2 em { color: var(--accent); font-style: normal; }
+  .sec-intro {
+    color: var(--text-2);
+    font-size: 15.5px;
+    margin-bottom: 32px;
+    line-height: 1.85;
   }
+  .sec-intro strong { color: var(--text); font-weight: 500; }
 
-  /* ─── SUPPLY CHAIN ─── */
-  .chain {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 1100px;
+  /* TIER FLOW */
+  .tier-flow { position: relative; padding: 0; }
+  .tier-flow::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    bottom: 30px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent), var(--accent), var(--peanut), var(--line));
   }
   .tier {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 100px 28px 28px 100px;
-    padding: 28px 40px 28px 40px;
-    display: grid;
-    grid-template-columns: 80px 1fr 2fr;
-    align-items: center;
-    gap: 32px;
+    border-radius: 14px;
+    padding: 22px 26px 22px 78px;
+    margin-bottom: 14px;
     position: relative;
-    transition: all 0.4s ease;
   }
-  .tier:hover { transform: translateX(8px); border-color: rgba(94, 234, 212, 0.3); }
-  .tier-marker {
-    width: 64px; height: 64px;
+  .tier-num {
+    position: absolute;
+    left: 18px; top: 22px;
+    width: 36px; height: 36px;
     border-radius: 50%;
-    background: var(--bg-2);
+    background: var(--surface);
+    color: var(--text-2);
+    border: 2px solid var(--line);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 26px;
-    color: var(--text-dim);
-    border: 1px solid var(--line);
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 16px;
+    z-index: 1;
+  }
+  .tier-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+    text-transform: uppercase;
   }
   .tier h3 {
-    font-size: 22px;
+    font-size: 17px;
     font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-  .tier h3 .label {
-    display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-faint);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-  .tier p {
-    color: var(--text-dim);
-    font-size: 15px;
+    margin-bottom: 10px;
     line-height: 1.5;
   }
-  .tier.you {
-    background: linear-gradient(90deg, rgba(94, 234, 212, 0.14), rgba(94, 234, 212, 0.04));
-    border-color: rgba(94, 234, 212, 0.45);
+  .tier p {
+    color: var(--text-2);
+    font-size: 14.5px;
+    line-height: 1.85;
   }
-  .tier.you .tier-marker {
-    background: var(--cyan);
-    color: var(--bg);
-    border-color: var(--cyan);
-    box-shadow: 0 0 40px rgba(94, 234, 212, 0.4);
+  .tier.you { background: var(--accent-soft); border-color: var(--accent); }
+  .tier.you .tier-num {
+    background: var(--accent);
+    color: #FFFFFF;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(45, 140, 126, 0.15);
   }
-  .tier.you h3 .label { color: var(--cyan); }
-  .arrow {
-    align-self: center;
-    margin-left: 100px;
-    color: var(--text-faint);
-    font-size: 20px;
-    line-height: 0;
-  }
+  .tier.you .tier-label { color: var(--accent); font-weight: 600; }
 
-  /* ─── API NODES ─── */
+  .flow-arrows {
+    display: flex; justify-content: space-around;
+    padding: 16px 24px;
+    margin-bottom: 22px;
+    background: var(--line-soft);
+    border-radius: 12px;
+    font-size: 12.5px;
+    color: var(--text-2);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .flow-arrows div { display: flex; align-items: center; gap: 8px; }
+
+  /* API CARDS */
   .api-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    max-width: 1200px;
+    gap: 14px;
   }
-  .api-node {
+  .api-card {
     background: var(--surface);
     border: 1px solid var(--line);
-    padding: 40px 32px;
+    border-radius: 14px;
+    padding: 24px;
     position: relative;
-    transition: all 0.4s ease;
     overflow: hidden;
   }
-  .api-node:nth-child(1) { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-  .api-node:nth-child(2) { border-radius: 40% 60% 70% 30% / 40% 50% 50% 60%; }
-  .api-node:nth-child(3) { border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%; }
-  .api-node:nth-child(4) { border-radius: 50% 50% 40% 60% / 50% 60% 40% 50%; }
-  .api-node:hover {
-    border-color: rgba(94, 234, 212, 0.4);
-    transform: translateY(-6px);
-  }
-  .api-node .blob {
+  .api-card::before {
+    content: '';
     position: absolute;
-    top: -40px; right: -40px;
-    width: 140px; height: 140px;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
     border-radius: 50%;
-    opacity: 0.18;
-    filter: blur(40px);
+    opacity: 0.08;
+    transform: translate(30%, -30%);
   }
-  .api-node:nth-child(1) .blob { background: var(--cyan); }
-  .api-node:nth-child(2) .blob { background: var(--coral); }
-  .api-node:nth-child(3) .blob { background: var(--violet); }
-  .api-node:nth-child(4) .blob { background: var(--rose); }
-
-  .api-node .endpoint {
+  .api-card:nth-child(1)::before { background: var(--accent); }
+  .api-card:nth-child(2)::before { background: var(--peanut); }
+  .api-card:nth-child(3)::before { background: var(--violet); }
+  .api-card:nth-child(4)::before { background: var(--gold); }
+  .api-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+    font-size: 22px;
+  }
+  .api-card:nth-child(1) .api-icon { background: var(--accent-soft); }
+  .api-card:nth-child(2) .api-icon { background: var(--peanut-soft); }
+  .api-card:nth-child(3) .api-icon { background: var(--violet-soft); }
+  .api-card:nth-child(4) .api-icon { background: rgba(201, 162, 39, 0.1); }
+  .api-card .endpoint {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--line-soft);
+    border-radius: 6px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: var(--text-faint);
-    margin-bottom: 20px;
-    letter-spacing: 0.05em;
+    color: var(--text-3);
+    margin-bottom: 14px;
   }
-  .api-node h3 {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 32px;
-    margin-bottom: 16px;
-    font-weight: 400;
+  .api-card h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 19px;
+    margin-bottom: 10px;
+    line-height: 1.5;
   }
-  .api-node p {
-    color: var(--text-dim);
-    font-size: 15px;
-    line-height: 1.6;
-  }
-  .api-node .quote {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px dashed var(--line);
+  [data-lang="en"] .api-card h3 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 24px; }
+  .api-card p {
+    color: var(--text-2);
     font-size: 14px;
-    color: var(--text-faint);
-    font-style: italic;
+    line-height: 1.8;
+  }
+  .api-card .quote {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+    color: var(--text-3);
   }
 
-  /* ─── WATERFALL / MONEY ─── */
-  .money-section {
-    background: linear-gradient(180deg, transparent, rgba(244, 162, 97, 0.04), transparent);
-  }
-  .waterfall {
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .bar {
-    display: grid;
-    grid-template-columns: 200px 1fr 120px;
-    align-items: center;
-    gap: 32px;
-    padding: 22px 32px;
-    border-radius: 60px;
+  /* MONEY WATERFALL */
+  .money-visual {
     background: var(--surface);
     border: 1px solid var(--line);
-    transition: all 0.3s ease;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
   }
-  .bar:hover { transform: translateX(8px); }
-  .bar .amount {
+  .money-total {
+    text-align: center;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .money-total .num {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 24px;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .money-total .lbl {
+    font-size: 13px;
+    color: var(--text-3);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+  .stack-bar {
+    display: flex;
+    height: 56px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+  .stack-seg {
+    display: flex; align-items: center; justify-content: center;
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    position: relative;
+  }
+  .stack-seg.apple { flex: 30; background: linear-gradient(135deg, #E08585, var(--rose)); }
+  .stack-seg.stripe { flex: 3; background: linear-gradient(135deg, #E8A56F, var(--peanut)); min-width: 4px; }
+  .stack-seg.wholesale { flex: 33.3; background: linear-gradient(135deg, #9989C9, var(--violet)); }
+  .stack-seg.margin { flex: 33.7; background: linear-gradient(135deg, var(--accent-2), var(--accent)); }
+  .stack-seg .pct { opacity: 0.85; margin-left: 6px; }
+  .stack-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--bg);
+    font-size: 13.5px;
+  }
+  .legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .legend-item .label { color: var(--text-2); flex: 1; line-height: 1.4; }
+  .legend-item .amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .legend-item.margin { background: var(--accent-soft); }
+  .legend-item.margin .amount { color: var(--accent); }
+
+  .note {
+    margin-top: 22px;
+    padding: 18px 22px;
+    background: var(--warning-soft);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.85;
+  }
+  .note strong { color: var(--warning); font-weight: 600; }
+
+  /* INSTALL */
+  .install-diagram {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 36px 24px 22px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .install-svg-wrap {
+    max-width: 460px;
+    margin: 0 auto 16px;
+  }
+  .install-svg { width: 100%; height: auto; }
+  .install-server-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--violet);
+    letter-spacing: 0.08em;
     font-weight: 600;
   }
-  .bar .label {
-    color: var(--text-dim);
-    font-size: 15px;
-  }
-  .bar .visual {
-    height: 8px;
-    background: var(--line);
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-  }
-  .bar .visual::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%;
-    border-radius: 4px;
-    background: currentColor;
-  }
-  .bar.full { background: linear-gradient(90deg, rgba(94, 234, 212, 0.18), transparent); border-color: rgba(94, 234, 212, 0.3); }
-  .bar.full .amount { color: var(--cyan); }
-  .bar.full .visual { color: var(--cyan); }
-  .bar.full .visual::after { width: 100%; }
 
-  .bar.apple .amount { color: #FF6B6B; }
-  .bar.apple .visual { color: #FF6B6B; }
-  .bar.apple .visual::after { width: 30%; }
-
-  .bar.stripe .amount { color: var(--coral); }
-  .bar.stripe .visual { color: var(--coral); }
-  .bar.stripe .visual::after { width: 3%; }
-
-  .bar.wholesale .amount { color: var(--violet); }
-  .bar.wholesale .visual { color: var(--violet); }
-  .bar.wholesale .visual::after { width: 33%; }
-
-  .bar.result {
-    background: linear-gradient(90deg, rgba(94, 234, 212, 0.18), rgba(94, 234, 212, 0.04));
-    border-color: rgba(94, 234, 212, 0.5);
-    margin-top: 16px;
-  }
-  .bar.result .amount { color: var(--cyan); font-size: 28px; }
-  .bar.result .visual { color: var(--cyan); }
-  .bar.result .visual::after { width: 34%; }
-
-  .money-note {
-    margin-top: 40px;
-    padding: 28px;
-    background: rgba(244, 162, 97, 0.08);
-    border-left: 3px solid var(--coral);
-    border-radius: 12px;
-    max-width: 900px;
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.6;
-  }
-  .money-note strong { color: var(--coral); }
-
-  /* ─── INSTALL FLOW ─── */
-  .install-flow {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 64px;
-    align-items: center;
-    max-width: 1200px;
-  }
-  .smdp {
-    position: relative;
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .server-orb {
-    width: 220px; height: 220px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, var(--violet), #4C2D8F);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 24px;
-    box-shadow: 0 0 80px rgba(167, 139, 250, 0.4);
-    position: relative;
-    z-index: 2;
-  }
-  .server-orb::before, .server-orb::after {
-    content: '';
-    position: absolute;
-    border: 1px solid rgba(167, 139, 250, 0.3);
-    border-radius: 50%;
-    animation: pulseSlow 5s ease-out infinite;
-  }
-  .server-orb::before { inset: -40px; }
-  .server-orb::after { inset: -80px; animation-delay: 2.5s; }
-  @keyframes pulseSlow {
-    0% { opacity: 0.6; transform: scale(0.9); }
-    100% { opacity: 0; transform: scale(1.4); }
-  }
-  .server-orb .icon { font-size: 40px; margin-bottom: 12px; }
-  .server-orb h3 {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 22px;
-    margin-bottom: 6px;
-  }
-  .server-orb p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: rgba(255,255,255,0.7);
-    letter-spacing: 0.05em;
-  }
-  .methods {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
   .method {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 24px;
-    align-items: start;
-    padding: 24px 28px;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 20px 60px 20px 60px;
-    transition: all 0.3s ease;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    align-items: start;
   }
-  .method:hover { transform: translateX(8px); border-color: rgba(167, 139, 250, 0.4); }
   .method .badge {
-    width: 56px; height: 56px;
+    width: 32px; height: 32px;
     border-radius: 50%;
-    background: var(--bg-2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 26px;
+    background: var(--violet-soft);
     color: var(--violet);
-    border: 1px solid rgba(167, 139, 250, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 14px;
   }
   .method h4 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 6px;
-    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    line-height: 1.5;
   }
   .method p {
-    color: var(--text-dim);
-    font-size: 14.5px;
-    line-height: 1.55;
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.8;
   }
   .method .tag {
     display: inline-block;
-    margin-top: 8px;
+    margin-top: 10px;
     padding: 3px 10px;
-    background: rgba(94, 234, 212, 0.12);
-    color: var(--cyan);
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+  .method .tag.locked {
+    background: var(--peanut-soft);
+    color: var(--peanut);
+  }
+
+  /* MARKET QUADRANT */
+  .market-quad {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 36px 36px 28px;
+    margin-bottom: 20px;
+  }
+  .quad-canvas {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 380px;
+    margin: 0 auto;
+    background:
+      linear-gradient(to right, transparent calc(50% - 1px), var(--line-soft) calc(50% - 1px), var(--line-soft) calc(50% + 1px), transparent calc(50% + 1px)),
+      linear-gradient(to bottom, transparent calc(50% - 1px), var(--line-soft) calc(50% - 1px), var(--line-soft) calc(50% + 1px), transparent calc(50% + 1px));
+  }
+  .quad-axis {
+    position: absolute;
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.05em;
-    border-radius: 100px;
-    text-transform: uppercase;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    white-space: nowrap;
   }
-  .method .tag.locked { background: rgba(255, 107, 107, 0.12); color: #FF6B6B; }
+  .quad-axis.top { top: -22px; left: 50%; transform: translateX(-50%); }
+  .quad-axis.bottom { bottom: -22px; left: 50%; transform: translateX(-50%); }
+  .quad-axis.left { left: -8px; top: 50%; transform: translate(-100%, -50%); }
+  .quad-axis.right { right: -8px; top: 50%; transform: translate(100%, -50%); }
+  .quad-point {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .quad-point .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--text-3);
+    margin: 0 auto 4px;
+    border: 2px solid var(--surface);
+    box-shadow: 0 0 0 1px var(--text-3);
+  }
+  .quad-point .name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-2);
+    white-space: nowrap;
+  }
+  .quad-point.you .dot { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); width: 16px; height: 16px; }
+  .quad-point.you .name { color: var(--accent); font-weight: 700; }
 
-  /* ─── MARKET ─── */
-  .market {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    max-width: 1200px;
-  }
   .competitor {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 24px;
-    padding: 32px 28px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
   }
-  .competitor:hover { transform: translateY(-6px); border-color: rgba(94, 234, 212, 0.3); }
   .competitor .rank {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-faint);
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
+    font-size: 10.5px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
   }
   .competitor h3 {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 32px;
-    margin-bottom: 12px;
-    font-weight: 400;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 19px;
+    margin-bottom: 10px;
   }
+  [data-lang="en"] .competitor h3 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 24px; }
   .competitor p {
-    color: var(--text-dim);
-    font-size: 14.5px;
-    line-height: 1.55;
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.8;
   }
-  .competitor .stat {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px dashed var(--line);
-    display: flex;
-    justify-content: space-between;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-faint);
-    letter-spacing: 0.05em;
-  }
-  .competitor.you {
-    background: linear-gradient(135deg, rgba(94, 234, 212, 0.16), rgba(94, 234, 212, 0.03));
-    border-color: rgba(94, 234, 212, 0.5);
-    box-shadow: 0 0 40px rgba(94, 234, 212, 0.15);
-  }
-  .competitor.you h3 { color: var(--cyan); }
-  .competitor.you .stat { color: var(--cyan); }
+  .competitor.you { background: var(--accent-soft); border-color: var(--accent); }
+  .competitor.you h3 { color: var(--accent); }
+  .competitor.you .rank { color: var(--accent); font-weight: 600; }
 
-  /* ─── FOOTER ─── */
-  footer {
-    padding: 100px 6vw 80px;
-    background: var(--bg-2);
-    border-top: 1px solid var(--line);
-    text-align: center;
+  /* DECISIONS */
+  .decision-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 14px;
+    position: relative;
+    border-left: 4px solid var(--accent);
   }
-  footer .wrap {
-    max-width: 720px;
-    margin: 0 auto;
+  .decision-card .dec-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 600;
   }
-  footer h2 {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: clamp(28px, 4vw, 48px);
-    margin-bottom: 24px;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-  }
-  footer p {
-    color: var(--text-dim);
+  .decision-card h3 {
     font-size: 17px;
-    line-height: 1.6;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.5;
   }
-  footer .sig {
-    margin-top: 48px;
+  .decision-card p {
+    color: var(--text-2);
+    font-size: 14.5px;
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+  .dec-impact {
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .dec-impact strong { color: var(--accent); }
+  .dec-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--warning);
+    letter-spacing: 0.08em;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* QUESTIONNAIRE */
+  .q-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px 14px 0 0;
+    border-bottom: none;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .q-bar .label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: var(--text-faint);
+    color: var(--text-3);
     letter-spacing: 0.1em;
   }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    background: var(--accent);
+    color: #FFF;
+    border: none;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .copy-btn:hover { background: #25776B; }
+  .copy-btn.copied { background: var(--peanut); }
+  .copy-btn .check { display: none; }
+  .copy-btn.copied .check { display: inline; }
+  .copy-btn.copied .text-default { display: none; }
+  .questionnaire {
+    background: #F5F4EF;
+    border: 1px solid var(--line);
+    border-radius: 0 0 14px 14px;
+    padding: 28px 32px;
+    font-size: 14px;
+    line-height: 1.95;
+    white-space: pre-wrap;
+    color: var(--text);
+  }
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    .signal-rings { display: none; }
-    .install-flow { grid-template-columns: 1fr; gap: 48px; }
-    .tier { grid-template-columns: 60px 1fr; }
-    .tier p { grid-column: 1 / -1; padding-top: 8px; }
-    .bar { grid-template-columns: 1fr 100px; gap: 16px; }
-    .bar .visual { display: none; }
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .hero { padding: 52px 0 36px; margin-bottom: 48px; }
+    .container { padding: 0 20px; }
+    .tier { padding: 20px 22px 20px 70px; }
+    .tier-num { width: 32px; height: 32px; font-size: 14px; left: 16px; }
+    .tier-flow::before { left: 27px; }
+    .stack-legend { grid-template-columns: 1fr; }
+    .stack-seg { font-size: 10px; }
+    .stack-seg.stripe span { display: none; }
+    .market-quad { padding: 32px 28px 24px; }
   }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="signal-rings">
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="core"></div>
-  </div>
-  <span class="kicker">eSIM UAE — Business Model</span>
-  <h1>How an <em>eSIM business</em><br>actually works.</h1>
-  <p class="lead">From the cell tower to your customer's pocket — the supply chain, the API, the money, and the magic. One page. One pass-through.</p>
-  <div class="meta">
-    <span>Prepared for<strong>Akito × Balraj</strong></span>
-    <span>Market<strong>UAE → Global travelers</strong></span>
-    <span>Date<strong>May 2026</strong></span>
-  </div>
-</header>
+<!-- LANG SWITCH -->
+<div class="lang-switch">
+  <button class="lang-btn active" data-lang="en">EN</button>
+  <button class="lang-btn" data-lang="jp">日本語</button>
+</div>
 
-<!-- ─── 1. SUPPLY CHAIN ─── -->
-<section id="chain">
-  <div class="section-num">01 — THE FOOD CHAIN</div>
-  <h2>Four <em>tiers</em>. You sit on the third.</h2>
-  <p class="intro">eSIM connectivity travels through four hands before reaching the user's phone. Knowing who owns what makes everything downstream make sense.</p>
+<div class="container">
 
-  <div class="chain">
-    <div class="tier">
-      <div class="tier-marker">i</div>
-      <h3><span class="label">Tier 1 · Infrastructure</span>Mobile Network Operators</h3>
-      <p>They own the actual towers and spectrum. Vodafone, AT&T, Etisalat, NTT Docomo, KDDI, T-Mobile, Orange. They sell data wholesale, mostly in bulk to roaming partners. They do not talk to consumers like you directly.</p>
-    </div>
-    <div class="tier">
-      <div class="tier-marker">ii</div>
-      <h3><span class="label">Tier 2 · Aggregator</span>eSIM aggregators</h3>
-      <p>The middleman layer. They've stitched together wholesale roaming deals with hundreds of MNOs and run the technical plumbing (SM-DP+ servers, billing, eSIM profiles). They expose all of that to you as a single API. Names: 1GLOBAL, eSIM Go, Telna, Truphone, MobileX — and Akito's Thailand contact.</p>
-    </div>
-    <div class="tier you">
-      <div class="tier-marker">★</div>
-      <h3><span class="label">Tier 3 · Reseller / Brand · YOU</span>Brand-facing app</h3>
-      <p>You wrap an aggregator's API in a polished, branded experience. You own the customer relationship, the marketing, the support, the price. The aggregator is invisible to your user. Airalo, Holafly, Nomad sit here — and so will you.</p>
-    </div>
-    <div class="tier">
-      <div class="tier-marker">iv</div>
-      <h3><span class="label">Tier 4 · Customer</span>The traveler</h3>
-      <p>Opens your app, picks a country, pays. Installs the eSIM in seconds. Flies somewhere. Stays connected. Never knew there were three companies behind the experience — and that's exactly the point.</p>
-    </div>
-  </div>
-</section>
+  <!-- HERO -->
+  <header class="hero">
+    <span class="doc-tag">PEANUT ESIM · BUSINESS MODEL</span>
+    <h1 class="lang en">How an <em>eSIM business</em><br>actually works.</h1>
+    <h1 class="lang jp">eSIMビジネスは、<br>実際どう動いているのか。</h1>
+    <p class="lead lang en">From the cell tower to your customer's pocket — the supply chain, the API, the money, the install magic, and the open decisions. One page, both languages.</p>
+    <p class="lead lang jp">電波塔から、お客様の手元のスマホまで — サプライチェーン、API、お金の流れ、インストールの仕組み、そして未決事項。1ページに、両言語で。</p>
 
-<!-- ─── 2. API ─── -->
-<section id="api">
-  <div class="section-num">02 — THE API SURFACE</div>
-  <h2>The whole API is <em>genuinely just four things</em>.</h2>
-  <p class="intro">When people say "we'll plug into an eSIM API", this is what they actually mean. Four endpoints. That's the entire game.</p>
+    <div class="hero-illustration">
+      <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <circle cx="160" cy="80" r="36" stroke="#2D8C7E" stroke-width="1.5"/>
+        <ellipse cx="160" cy="80" rx="36" ry="14" stroke="#2D8C7E" stroke-width="1" stroke-dasharray="3 3"/>
+        <ellipse cx="160" cy="80" rx="14" ry="36" stroke="#2D8C7E" stroke-width="1" stroke-dasharray="3 3"/>
+        <circle cx="160" cy="80" r="6" fill="#2D8C7E"/>
+        <path d="M 90 80 Q 75 50 90 20" stroke="#B47A48" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M 105 80 Q 95 60 105 40" stroke="#B47A48" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <path d="M 230 80 Q 245 50 230 20" stroke="#B47A48" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M 215 80 Q 225 60 215 40" stroke="#B47A48" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="60" cy="40" r="3" fill="#B47A48"/>
+        <circle cx="260" cy="40" r="3" fill="#B47A48"/>
+        <circle cx="40" cy="100" r="2.5" fill="#2D8C7E" opacity="0.5"/>
+        <circle cx="280" cy="100" r="2.5" fill="#2D8C7E" opacity="0.5"/>
+      </svg>
+    </div>
 
-  <div class="api-grid">
-    <div class="api-node">
-      <div class="blob"></div>
-      <div class="endpoint">GET /packages</div>
-      <h3>Catalog</h3>
-      <p>Every country, every plan, every wholesale price. You pull this on a schedule and present it in your app — usually with your own markup on top.</p>
-      <div class="quote">"Here's what's for sale today."</div>
+    <div class="meta">
+      <span class="lang en">Founders<strong>Akito × Balraj</strong></span>
+      <span class="lang jp">共同創業者<strong>Akito × Balraj</strong></span>
+      <span class="lang en">Market<strong>UAE → Global travelers</strong></span>
+      <span class="lang jp">市場<strong>UAE → 世界の旅行者</strong></span>
+      <span class="lang en">Date<strong>May 2026</strong></span>
+      <span class="lang jp">作成日<strong>2026年5月</strong></span>
     </div>
-    <div class="api-node">
-      <div class="blob"></div>
-      <div class="endpoint">POST /orders</div>
-      <h3>Order</h3>
-      <p>The one transactional call. You pay the aggregator wholesale, they reserve an eSIM profile for your user. This is the call that costs you money each time it fires.</p>
-      <div class="quote">"Charge me. Give me an eSIM."</div>
-    </div>
-    <div class="api-node">
-      <div class="blob"></div>
-      <div class="endpoint">GET /esim/install</div>
-      <h3>Install method</h3>
-      <p>A QR code, an LPA activation string, or a universal link. Your app shows this to the user right after checkout. This is the moment of truth — make it feel effortless.</p>
-      <div class="quote">"Here's how to put me on your phone."</div>
-    </div>
-    <div class="api-node">
-      <div class="blob"></div>
-      <div class="endpoint">GET /esim/usage</div>
-      <h3>Usage</h3>
-      <p>How much data has this eSIM consumed. Your app polls this to show users a live "2.4 GB of 5 GB used" bar — table-stakes UX in this category.</p>
-      <div class="quote">"How much have they burned?"</div>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- ─── 3. MONEY ─── -->
-<section id="money" class="money-section">
-  <div class="section-num">03 — THE MONEY FLOW</div>
-  <h2>Where every dollar of a <em>$15 plan</em> actually goes.</h2>
-  <p class="intro">Worked example: customer buys a $15 / 5 GB Europe plan inside your iOS app. Here's what's left on your side of the table.</p>
+  <!-- 1. SUPPLY CHAIN -->
+  <section>
+    <div class="sec-label">
+      <span class="lang en">01 / THE FOOD CHAIN</span>
+      <span class="lang jp">01 / 業界の階層構造</span>
+    </div>
+    <h2 class="lang en">Four <em>tiers</em>. We sit on the third.</h2>
+    <h2 class="lang jp">4つの階層。私たちは<em>3層目</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">eSIM connectivity travels through <strong>four hands</strong> before reaching the user's phone. Knowing who owns what makes everything downstream make sense.</span>
+      <span class="lang jp">eSIMは、お客様のスマホに届くまでに <strong>4つの会社の手</strong> を経由します。誰が何を所有しているかを理解すれば、その先の話がすべてつながります。</span>
+    </p>
 
-  <div class="waterfall">
-    <div class="bar full">
-      <span class="amount">+$15.00</span>
-      <div class="visual"></div>
-      <span class="label">Customer pays you (retail)</span>
-    </div>
-    <div class="bar apple">
-      <span class="amount">−$4.50</span>
-      <div class="visual"></div>
-      <span class="label">Apple's 30% cut (in-app purchase)</span>
-    </div>
-    <div class="bar stripe">
-      <span class="amount">−$0.45</span>
-      <div class="visual"></div>
-      <span class="label">Stripe / payment processor ~3%</span>
-    </div>
-    <div class="bar wholesale">
-      <span class="amount">−$5.00</span>
-      <div class="visual"></div>
-      <span class="label">Aggregator wholesale cost</span>
-    </div>
-    <div class="bar result">
-      <span class="amount">$5.05</span>
-      <div class="visual"></div>
-      <span class="label">Your gross margin (~34%)</span>
-    </div>
-  </div>
-
-  <div class="money-note">
-    <strong>The Apple-tax escape hatch.</strong> Route checkout to a web page instead of using in-app purchase and that $4.50 stays yours — margin jumps from $5.05 to $9.55 on the same sale. Apple has been cracking down on this since the Epic ruling; some operators still do it, but it's a moving target. Airalo just eats the 30% to avoid the fight. Decision worth a separate conversation.
-  </div>
-</section>
-
-<!-- ─── 4. INSTALL ─── -->
-<section id="install">
-  <div class="section-num">04 — THE MAGIC</div>
-  <h2>How an eSIM <em>actually lands</em> on a phone.</h2>
-  <p class="intro">Strip away the marketing and an eSIM is just a small file. It's downloaded from a special server the aggregator runs, called an SM-DP+. The user reaches that server in one of three ways.</p>
-
-  <div class="install-flow">
-    <div class="smdp">
-      <div class="server-orb">
-        <div class="icon">🛰</div>
-        <h3>SM-DP+</h3>
-        <p>SUBSCRIPTION MANAGER<br>DATA PREPARATION</p>
+    <div class="flow-arrows">
+      <div>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 16V4M10 4L5 9M10 4L15 9" stroke="#2D8C7E" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="lang en"><strong>Money:</strong> customer → us → aggregator → MNO</span>
+        <span class="lang jp"><strong>お金:</strong> お客様 → 私たち → アグリゲーター → MNO</span>
+      </div>
+      <div>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4V16M10 16L5 11M10 16L15 11" stroke="#B47A48" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="lang en"><strong>Data:</strong> MNO → aggregator → us → customer</span>
+        <span class="lang jp"><strong>データ:</strong> MNO → アグリゲーター → 私たち → お客様</span>
       </div>
     </div>
-    <div class="methods">
-      <div class="method">
-        <div class="badge">A</div>
-        <div>
-          <h4>Scan a QR code</h4>
-          <p>The old reliable. The QR encodes the SM-DP+ address + activation token. User opens their camera, taps "add eSIM", done. Works on every eSIM-capable phone since 2018.</p>
-          <span class="tag">UNIVERSAL · FRICTION: 4 TAPS</span>
+
+    <div class="tier-flow">
+      <div class="tier">
+        <div class="tier-num">1</div>
+        <div class="tier-label"><span class="lang en">TIER 1 · INFRASTRUCTURE</span><span class="lang jp">TIER 1 ・ インフラ</span></div>
+        <h3><span class="lang en">Mobile Network Operators (MNOs)</span><span class="lang jp">移動体通信事業者（MNO）</span></h3>
+        <p>
+          <span class="lang en">They own the actual towers and spectrum. Vodafone, AT&amp;T, Etisalat, NTT Docomo, KDDI, T-Mobile, Orange. They sell data wholesale, mostly in bulk to roaming partners. They do not talk to consumers like us directly.</span>
+          <span class="lang jp">電波塔と周波数帯を実際に所有している事業者。Vodafone、AT&amp;T、Etisalat、NTTドコモ、KDDI、T-Mobile、Orange など。データはローミング契約相手に卸売りで提供しており、私たちのような事業者と直接やり取りすることはありません。</span>
+        </p>
+      </div>
+
+      <div class="tier">
+        <div class="tier-num">2</div>
+        <div class="tier-label"><span class="lang en">TIER 2 · AGGREGATOR</span><span class="lang jp">TIER 2 ・ アグリゲーター</span></div>
+        <h3><span class="lang en">eSIM aggregators</span><span class="lang jp">eSIMアグリゲーター</span></h3>
+        <p>
+          <span class="lang en">The middleman layer. They've stitched together wholesale roaming deals with hundreds of MNOs and run the technical plumbing (SM-DP+ servers, billing, eSIM profiles). They expose all of that as a single API. Names: 1GLOBAL, eSIM Go, Telna, Truphone, MobileX — and <strong>Samurai Wifi</strong> (Akito's contact) sits at or just below this tier.</span>
+          <span class="lang jp">中間層の事業者。世界中の数百社のMNOと卸売りローミング契約をまとめて結び、技術基盤（SM-DP+サーバー、課金、eSIMプロファイル発行）も自社で運用。それらを単一のAPIとして提供します。代表例: 1GLOBAL、eSIM Go、Telna、Truphone、MobileX — そしてAkitoが紹介してくれた <strong>Samurai Wifi</strong> もこの層、あるいはそのすぐ下に位置します。</span>
+        </p>
+      </div>
+
+      <div class="tier you">
+        <div class="tier-num">3</div>
+        <div class="tier-label"><span class="lang en">TIER 3 · BRAND · US</span><span class="lang jp">TIER 3 ・ ブランド ・ 私たち</span></div>
+        <h3><span class="lang en">Brand-facing app (Peanut eSIM)</span><span class="lang jp">ブランドアプリ事業者（Peanut eSIM）</span></h3>
+        <p>
+          <span class="lang en">We wrap the aggregator's API in a branded experience. We own the customer relationship, marketing, support, and price. The aggregator is invisible to our user. Airalo, Holafly, Nomad sit here — and so will we.</span>
+          <span class="lang jp">アグリゲーターのAPIを、自社ブランドの体験で包み込んで提供する層。お客様との関係、マーケティング、サポート、価格設定をすべて自分たちで持ちます。エンドユーザーからアグリゲーターは見えません。Airalo、Holafly、Nomad と同じ位置で勝負します。</span>
+        </p>
+      </div>
+
+      <div class="tier">
+        <div class="tier-num">4</div>
+        <div class="tier-label"><span class="lang en">TIER 4 · CUSTOMER</span><span class="lang jp">TIER 4 ・ お客様</span></div>
+        <h3><span class="lang en">The traveler</span><span class="lang jp">旅行者</span></h3>
+        <p>
+          <span class="lang en">Opens the app, picks a country, pays. Installs the eSIM in seconds. Flies somewhere. Stays connected. Never knew there were three companies behind the experience — and that's exactly the point.</span>
+          <span class="lang jp">アプリを開いて、行き先の国を選んで決済。数秒でeSIMをインストール。海外に飛んで、通信を切らさない。裏側で3社が動いていることなど意識すらしない — それが理想です。</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. API -->
+  <section>
+    <div class="sec-label"><span class="lang en">02 / THE API SURFACE</span><span class="lang jp">02 / APIの全体像</span></div>
+    <h2 class="lang en">The whole API is <em>just four things</em>.</h2>
+    <h2 class="lang jp">APIの機能は、<em>本当にこの4つだけ</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">"Plugging into an eSIM API" sounds technical. It isn't. <strong>Four endpoints</strong>. That's the entire game.</span>
+      <span class="lang jp">「eSIMのAPIに接続する」と言ったとき、実際にやっているのはこれだけ。エンドポイントは <strong>4つ</strong>。それで全部です。</span>
+    </p>
+
+    <div class="api-grid">
+      <div class="api-card">
+        <div class="api-icon">📚</div>
+        <span class="endpoint">GET /packages</span>
+        <h3><span class="lang en">Catalog</span><span class="lang jp">カタログ取得</span></h3>
+        <p><span class="lang en">Every country, every plan, every wholesale price. We pull this on a schedule and present it in the app with our markup on top.</span><span class="lang jp">対応国・プラン・卸価格の一覧を取得。定期的に取得して、アプリ上に商品として表示します。自社マージンを上乗せして販売。</span></p>
+        <div class="quote"><span class="lang en">"Here's what's for sale today."</span><span class="lang jp">「今日売れる商品はこれです」</span></div>
+      </div>
+      <div class="api-card">
+        <div class="api-icon">🛒</div>
+        <span class="endpoint">POST /orders</span>
+        <h3><span class="lang en">Order</span><span class="lang jp">注文（決済）</span></h3>
+        <p><span class="lang en">The one transactional call. We pay the aggregator wholesale, they reserve an eSIM for our user. Each call costs us money.</span><span class="lang jp">唯一の決済が発生する呼び出し。アグリゲーターに卸価格を支払い、お客様用のeSIMプロファイルを確保。1回呼ぶたびにコスト発生。</span></p>
+        <div class="quote"><span class="lang en">"Charge me. Give me an eSIM."</span><span class="lang jp">「課金して、eSIMを1つください」</span></div>
+      </div>
+      <div class="api-card">
+        <div class="api-icon">📲</div>
+        <span class="endpoint">GET /esim/install</span>
+        <h3><span class="lang en">Install method</span><span class="lang jp">インストール情報</span></h3>
+        <p><span class="lang en">A QR code, LPA string, or universal link. Shown immediately after checkout. The moment of truth — make it effortless.</span><span class="lang jp">QRコード、LPA文字列、ユニバーサルリンクのいずれか。決済完了直後にアプリ上で表示。お客様にとっての勝負どころ。</span></p>
+        <div class="quote"><span class="lang en">"Here's how to put me on your phone."</span><span class="lang jp">「スマホへの入れ方はこちら」</span></div>
+      </div>
+      <div class="api-card">
+        <div class="api-icon">📊</div>
+        <span class="endpoint">GET /esim/usage</span>
+        <h3><span class="lang en">Usage</span><span class="lang jp">利用状況</span></h3>
+        <p><span class="lang en">How much data has been consumed. Polled to show users "2.4 GB of 5 GB used" — table-stakes UX.</span><span class="lang jp">そのeSIMがこれまでに消費したデータ量を取得。アプリで「5GB中2.4GB使用済」のように表示します。標準UX。</span></p>
+        <div class="quote"><span class="lang en">"How much have they burned?"</span><span class="lang jp">「どれくらい使いましたか？」</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MONEY -->
+  <section>
+    <div class="sec-label"><span class="lang en">03 / THE MONEY FLOW</span><span class="lang jp">03 / お金の流れ</span></div>
+    <h2 class="lang en">Every <em>$15 plan</em>, broken into pieces.</h2>
+    <h2 class="lang jp"><em>$15のプラン</em>を売ったときの内訳。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Worked example: customer buys a <strong>$15 / 5 GB Europe plan</strong> inside the iOS app. Here's where every dollar actually goes.</span>
+      <span class="lang jp">具体例: お客様がiOSアプリ内で「<strong>$15 / 5GBヨーロッパプラン</strong>」を購入した場合、各社にいくら流れ、最終的に手元にいくら残るか。</span>
+    </p>
+
+    <div class="money-visual">
+      <div class="money-total">
+        <div class="num">$15.00</div>
+        <div class="lbl"><span class="lang en">CUSTOMER PAYS RETAIL</span><span class="lang jp">お客様の支払額（小売）</span></div>
+      </div>
+
+      <div class="stack-bar">
+        <div class="stack-seg apple">$4.50</div>
+        <div class="stack-seg stripe">$0.45</div>
+        <div class="stack-seg wholesale">$5.00</div>
+        <div class="stack-seg margin">$5.05</div>
+      </div>
+
+      <div class="stack-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#C97070"></div>
+          <div class="label"><span class="lang en">Apple's 30% (in-app purchase)</span><span class="lang jp">Apple手数料 30%（IAP）</span></div>
+          <div class="amount">−$4.50</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#B47A48"></div>
+          <div class="label"><span class="lang en">Stripe / payment fees ~3%</span><span class="lang jp">Stripe / 決済手数料 約3%</span></div>
+          <div class="amount">−$0.45</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#7A6CB8"></div>
+          <div class="label"><span class="lang en">Aggregator wholesale cost</span><span class="lang jp">アグリゲーター卸価格</span></div>
+          <div class="amount">−$5.00</div>
+        </div>
+        <div class="legend-item margin">
+          <div class="legend-dot" style="background:#2D8C7E"></div>
+          <div class="label"><span class="lang en"><strong>Our gross margin (~34%)</strong></span><span class="lang jp"><strong>粗利益（約34%）</strong></span></div>
+          <div class="amount">$5.05</div>
         </div>
       </div>
-      <div class="method">
-        <div class="badge">B</div>
-        <div>
-          <h4>Tap a universal link</h4>
-          <p>iOS 17.4+ and modern Android. User taps a link inside your app (or in an email) and the eSIM installs in <em>one tap</em>. This is the killer modern UX.</p>
-          <span class="tag">PREMIUM · FRICTION: 1 TAP</span>
-        </div>
+    </div>
+
+    <div class="note">
+      <strong><span class="lang en">The Apple-tax escape hatch.</span><span class="lang jp">Apple手数料の回避策。</span></strong>
+      <span class="lang en"> Route checkout to a web page instead of using in-app purchase and that $4.50 stays in our pocket — margin nearly doubles, $5.05 → $9.55. Apple has been cracking down. Airalo eats the 30%. We have a real decision to make here (see Section 06).</span>
+      <span class="lang jp">アプリ内課金ではなくWeb決済に誘導すると、$4.50を自社に残せます。利益が $5.05 → $9.55 にジャンプ。ただしAppleはこの手法を厳しく取り締まっており、Airaloは戦いを避けて30%を受け入れています。重要な判断ポイント（セクション06参照）。</span>
+    </div>
+  </section>
+
+  <!-- 4. INSTALL -->
+  <section>
+    <div class="sec-label"><span class="lang en">04 / THE MAGIC</span><span class="lang jp">04 / 仕組みの核心</span></div>
+    <h2 class="lang en">How an eSIM <em>actually lands</em> on a phone.</h2>
+    <h2 class="lang jp">eSIMは、<em>どうやって実際にスマホに入るのか</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Strip away the marketing and an eSIM is just <strong>a tiny file</strong>. Downloaded from a special server the aggregator runs — called SM-DP+. The user reaches that server in one of three ways.</span>
+      <span class="lang jp">マーケティング用語を取り除けば、eSIMは <strong>小さなファイル1個</strong>。アグリゲーターが運用する専用サーバー「SM-DP+」からダウンロードされます。お客様がそのサーバーにたどり着く方法は、以下の <strong>3通り</strong> のいずれか。</span>
+    </p>
+
+    <div class="install-diagram">
+      <div class="install-svg-wrap">
+        <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" class="install-svg">
+          <circle cx="240" cy="140" r="52" fill="#EFEDF7" stroke="#7A6CB8" stroke-width="1.5"/>
+          <circle cx="240" cy="140" r="34" fill="#7A6CB8"/>
+          <text x="240" y="138" text-anchor="middle" fill="#FFFFFF" font-family="Inter" font-size="13" font-weight="600">SM-DP+</text>
+          <text x="240" y="152" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8" opacity="0.85">SERVER</text>
+          <path d="M 196 110 Q 130 80 70 60" stroke="#2D8C7E" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="70" cy="60" r="24" fill="#EBF5F2" stroke="#2D8C7E" stroke-width="1.5"/>
+          <text x="70" y="68" text-anchor="middle" font-size="20">📱</text>
+          <text x="70" y="104" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#2D8C7E">A · QR</text>
+          <path d="M 240 88 Q 240 50 240 28" stroke="#2D8C7E" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="240" cy="28" r="24" fill="#EBF5F2" stroke="#2D8C7E" stroke-width="1.5"/>
+          <text x="240" y="36" text-anchor="middle" font-size="20">🔗</text>
+          <text x="240" y="72" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#2D8C7E">B · Link</text>
+          <path d="M 284 110 Q 350 80 410 60" stroke="#B47A48" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 4"/>
+          <circle cx="410" cy="60" r="24" fill="#FAF1E8" stroke="#B47A48" stroke-width="1.5"/>
+          <text x="410" y="68" text-anchor="middle" font-size="20">📲</text>
+          <text x="410" y="104" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#B47A48">C · In-app</text>
+          <rect x="200" y="226" width="80" height="56" rx="9" fill="#FFFFFF" stroke="#1A1F2E" stroke-width="1.5"/>
+          <circle cx="240" cy="254" r="3" fill="#2D8C7E"/>
+          <text x="240" y="298" text-anchor="middle" font-family="Inter" font-size="11" fill="#4A5366" class="lang en">User's phone</text>
+          <text x="240" y="298" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#4A5366" class="lang jp">お客様のスマホ</text>
+          <path d="M 240 192 L 240 226" stroke="#1A1F2E" stroke-width="1.5" stroke-dasharray="3 3"/>
+        </svg>
       </div>
-      <div class="method">
-        <div class="badge">C</div>
-        <div>
-          <h4>In-app install (carrier entitlement)</h4>
-          <p>The eSIM installs without the user ever leaving your app. Requires Apple's <span class="mono" style="color:var(--violet)">com.apple.CommCenter.fine-grained</span> entitlement — granted only to approved carriers. Airalo has it. You won't on day one. Apply later, once you have scale.</p>
-          <span class="tag locked">REQUIRES APPLE APPROVAL</span>
-        </div>
+      <div class="install-server-label">
+        <span class="lang en">SUBSCRIPTION MANAGER · DATA PREPARATION SERVER</span>
+        <span class="lang jp">SM-DP+ サーバー（アグリゲーターが運用）</span>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ─── 5. MARKET ─── -->
-<section id="market">
-  <div class="section-num">05 — THE COMPETITION</div>
-  <h2>The reseller layer is <em>crowded</em>. Most are mediocre.</h2>
-  <p class="intro">Why this matters: nobody wins by competing on price with Airalo. You win by owning a specific audience that doesn't trust generic brands — and that's where Emirates crew distribution becomes a real moat.</p>
+    <div class="method">
+      <div class="badge">A</div>
+      <div>
+        <h4><span class="lang en">Scan a QR code</span><span class="lang jp">QRコードを読み取る</span></h4>
+        <p><span class="lang en">The old reliable. QR encodes the SM-DP+ address + activation token. User opens their camera, taps "add eSIM", done. Works on every eSIM-capable phone since 2018.</span><span class="lang jp">昔ながらの確実な方式。QRにSM-DP+のアドレスとアクティベーション・トークンが埋め込まれています。カメラを起動して「eSIMを追加」をタップするだけ。2018年以降のeSIM対応スマホ全てで使えます。</span></p>
+        <span class="tag"><span class="lang en">UNIVERSAL · 4 TAPS</span><span class="lang jp">汎用 ・ 約4タップ</span></span>
+      </div>
+    </div>
+    <div class="method">
+      <div class="badge">B</div>
+      <div>
+        <h4><span class="lang en">Tap a universal link</span><span class="lang jp">ユニバーサルリンクをタップ</span></h4>
+        <p><span class="lang en">iOS 17.4+ and modern Android. User taps a link inside the app (or in an email) and the eSIM installs in <em>one tap</em>. Killer modern UX.</span><span class="lang jp">iOS 17.4以降と最新Android。アプリ内（またはメール内）のリンクをタップするだけで、eSIMが<em>ワンタップ</em>でインストール。最新の体験設計の決定版。</span></p>
+        <span class="tag"><span class="lang en">PREMIUM · 1 TAP</span><span class="lang jp">プレミアム ・ 1タップ</span></span>
+      </div>
+    </div>
+    <div class="method">
+      <div class="badge">C</div>
+      <div>
+        <h4><span class="lang en">In-app install (carrier entitlement)</span><span class="lang jp">アプリ内インストール（キャリア権限）</span></h4>
+        <p><span class="lang en">eSIM installs without the user ever leaving the app. Requires Apple's <code>com.apple.CommCenter.fine-grained</code> entitlement — granted only to approved carriers. Airalo has it. We won't on day one. Apply once we have scale.</span><span class="lang jp">お客様がアプリから一切外に出ずにeSIMがインストールされます。Appleの <code>com.apple.CommCenter.fine-grained</code> 権限が必要で、承認されたキャリアにのみ付与されます。Airaloは取得済み。Peanut eSIM は初日には取得できず、一定の規模に達してから申請する形になります。</span></p>
+        <span class="tag locked"><span class="lang en">REQUIRES APPLE APPROVAL</span><span class="lang jp">Appleの承認が必要</span></span>
+      </div>
+    </div>
+  </section>
 
-  <div class="market">
+  <!-- 5. MARKET -->
+  <section>
+    <div class="sec-label"><span class="lang en">05 / THE COMPETITION</span><span class="lang jp">05 / 競合状況</span></div>
+    <h2 class="lang en">The reseller layer is crowded. <em>Most are mediocre</em>.</h2>
+    <h2 class="lang jp">リセラー層は混雑しているが、<em>大半は平凡</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Why this matters: <strong>nobody wins by competing on price with Airalo</strong>. We win by owning a specific audience that doesn't trust generic brands — and that's where the Emirates crew network becomes a real moat.</span>
+      <span class="lang jp">ここが重要な理由: <strong>Airaloと価格競争しても勝てません</strong>。勝ち筋は、ジェネリックなブランドを信頼しない特定の顧客層を押さえること — エミレーツ航空乗務員ネットワークが、Peanut eSIM にとって真の参入障壁になります。</span>
+    </p>
+
+    <div class="market-quad">
+      <div class="quad-canvas">
+        <div class="quad-axis top"><span class="lang en">PREMIUM</span><span class="lang jp">プレミアム</span></div>
+        <div class="quad-axis bottom"><span class="lang en">GENERIC</span><span class="lang jp">汎用</span></div>
+        <div class="quad-axis left"><span class="lang en">CHEAP</span><span class="lang jp">安価</span></div>
+        <div class="quad-axis right"><span class="lang en">EXPENSIVE</span><span class="lang jp">高価</span></div>
+        <div class="quad-point" style="left: 25%; top: 78%;"><div class="dot"></div><div class="name">Airalo</div></div>
+        <div class="quad-point" style="left: 35%; top: 62%;"><div class="dot"></div><div class="name">Saily</div></div>
+        <div class="quad-point" style="left: 78%; top: 28%;"><div class="dot"></div><div class="name">Holafly</div></div>
+        <div class="quad-point" style="left: 58%; top: 20%;"><div class="dot"></div><div class="name">Nomad</div></div>
+        <div class="quad-point you" style="left: 42%; top: 34%;"><div class="dot"></div><div class="name">Peanut eSIM</div></div>
+      </div>
+    </div>
+
     <div class="competitor">
-      <div class="rank">— MARKET LEADER —</div>
+      <div class="rank"><span class="lang en">MARKET LEADER</span><span class="lang jp">市場リーダー</span></div>
       <h3>Airalo</h3>
-      <p>18M+ users. Carrier entitlement on iOS. Cheap, broad coverage, very bland brand. The default Google result.</p>
-      <div class="stat"><span>USERS</span><span>18M+</span></div>
+      <p><span class="lang en">18M+ users. Carrier entitlement on iOS. Cheap, broad coverage, very bland brand. The default Google result.</span><span class="lang jp">1,800万人以上のユーザー。iOSのキャリア権限取得済み。安価、広いカバレッジ、しかしブランドは没個性。Google検索でまず出てくる存在。</span></p>
     </div>
     <div class="competitor">
-      <div class="rank">— PREMIUM —</div>
+      <div class="rank"><span class="lang en">PREMIUM</span><span class="lang jp">プレミアム</span></div>
       <h3>Holafly</h3>
-      <p>Unlimited plans, slick site, expensive. Strong on Spanish/LatAm markets, weaker UX on the app.</p>
-      <div class="stat"><span>POSITIONING</span><span>UNLIMITED</span></div>
+      <p><span class="lang en">Unlimited plans, slick site, expensive. Strong on Spanish/LatAm markets, weaker UX on the app.</span><span class="lang jp">無制限プラン中心、洗練されたサイト、価格は高め。スペイン・中南米市場に強いが、アプリのUXは弱い。</span></p>
     </div>
     <div class="competitor">
-      <div class="rank">— DESIGNER-LED —</div>
+      <div class="rank"><span class="lang en">DESIGNER-LED</span><span class="lang jp">デザイン重視</span></div>
       <h3>Nomad</h3>
-      <p>Beautiful brand, loved by tech crowd. Small footprint, premium feel. Closest aesthetic reference for you.</p>
-      <div class="stat"><span>VIBE</span><span>TASTEFUL</span></div>
+      <p><span class="lang en">Beautiful brand, loved by tech crowd. Small footprint, premium feel. Closest aesthetic reference for us.</span><span class="lang jp">美しいブランドで、テック層に愛されている。規模は小さいがプレミアム感あり。Peanut eSIM が最も参考にすべき美意識。</span></p>
     </div>
     <div class="competitor">
-      <div class="rank">— FUNDED CHALLENGER —</div>
+      <div class="rank"><span class="lang en">FUNDED CHALLENGER</span><span class="lang jp">資金力あるチャレンジャー</span></div>
       <h3>Saily</h3>
-      <p>By NordVPN. New, deep marketing pockets, leans on the NordVPN brand for trust. Aggressive on price.</p>
-      <div class="stat"><span>BACKED BY</span><span>NORDVPN</span></div>
+      <p><span class="lang en">By NordVPN. New, deep marketing pockets, leans on the NordVPN brand for trust. Aggressive on price.</span><span class="lang jp">NordVPN傘下。新興だがマーケティング予算潤沢、NordVPNブランドへの信頼を借りている。価格攻勢が激しい。</span></p>
     </div>
     <div class="competitor you">
-      <div class="rank">— YOU —</div>
-      <h3>Your brand</h3>
-      <p>UAE-native, Emirates-crew seeded, GCC-traveler tailored. Local trust + community + airline-grade taste. Not trying to beat Airalo on price — beating them on belonging.</p>
-      <div class="stat"><span>EDGE</span><span>DISTRIBUTION</span></div>
+      <div class="rank"><span class="lang en">US</span><span class="lang jp">私たち</span></div>
+      <h3>Peanut eSIM</h3>
+      <p><span class="lang en">UAE-native, Emirates-crew seeded, GCC-traveler tailored. Local trust + community + airline-grade taste. Not beating Airalo on price — beating them on belonging.</span><span class="lang jp">UAE発、エミレーツ乗務員から初期顧客を獲得、GCC圏の旅行者向けに最適化。地元の信頼 + コミュニティ + 航空業界水準の美意識。Airaloに価格で挑むのではなく、「居場所」で勝つ。</span></p>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap">
-    <h2>That's the whole picture.</h2>
-    <p>Four tiers. Four endpoints. One waterfall. Three install methods. One crowded but beatable market. The next real decision is <em>which aggregator</em> you actually build on — Akito's Thailand contact, or a Western API like 1GLOBAL or eSIM Go. We'll talk about that next.</p>
-    <div class="sig">— PREPARED FOR HIKITO &amp; BALRAJ · ESIM UAE · 2026 —</div>
-  </div>
-</footer>
+  <!-- 6. OPEN DECISIONS -->
+  <section>
+    <div class="sec-label"><span class="lang en">06 / OPEN DECISIONS</span><span class="lang jp">06 / 議論すべき判断ポイント</span></div>
+    <h2 class="lang en">The big calls <em>we still need to make</em>.</h2>
+    <h2 class="lang jp"><em>まだ決まっていない</em>戦略上の判断。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Three strategic decisions for Akito &amp; Balraj to align on before launch. None are urgent today; all of them shape the product.</span>
+      <span class="lang jp">ローンチ前に Akito と Balraj で合意すべき戦略判断が3つあります。緊急ではないが、プロダクト全体を方向づける重要な判断。</span>
+    </p>
+
+    <div class="decision-card">
+      <div class="dec-meta"><span class="lang en">DECISION · APPLE 30% CUT</span><span class="lang jp">判断 ・ Apple 30% 手数料</span></div>
+      <h3><span class="lang en">In-app purchase vs web checkout</span><span class="lang jp">アプリ内課金（IAP） vs Web決済</span></h3>
+      <p><span class="lang en">Selling inside the iOS app means Apple takes 30% (15% on subs after year 1). Routing customers to web checkout keeps that money — but Apple has been cracking down on apps that funnel users away. Airalo eats the 30%. Smaller players gamble on web.</span><span class="lang jp">iOSアプリ内で販売するとAppleが30%を取ります（サブスクの場合、1年目以降は15%）。Web決済に誘導すれば手元に残せますが、Appleはこの手法を取り締まっています。Airaloは30%を受け入れています。小規模事業者の中にはWeb決済で勝負している例もあります。</span></p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Impact:</span><span class="lang jp">インパクト:</span></strong>
+        <span class="lang en"> ~$4.50 per $15 sale. Margin roughly doubles ($5.05 → $9.55) if we route to web.</span>
+        <span class="lang jp">$15あたり約$4.50。Web経由なら粗利益が約2倍（$5.05 → $9.55）に。</span>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN TOGETHER</span><span class="lang jp">ステータス ・ 共同で要決定</span></div>
+    </div>
+
+    <div class="decision-card">
+      <div class="dec-meta"><span class="lang en">DECISION · CARRIER ENTITLEMENT</span><span class="lang jp">判断 ・ キャリア権限の申請時期</span></div>
+      <h3><span class="lang en">When to apply for in-app eSIM install</span><span class="lang jp">アプリ内eSIMインストール権限の申請</span></h3>
+      <p><span class="lang en">Apple's special permission that lets eSIMs install without leaving the app (1 tap instead of 4). Airalo has it. We won't on day 1. Question is when — at 1K users, 10K, 50K? Needs polished app, real reviews, published privacy policy, and ideally a warm Apple/carrier contact.</span><span class="lang jp">eSIMをアプリ外に出ずにインストールできるApple特別権限（4タップ→1タップ）。Airaloは取得済み。Peanut eSIMは初日には取得できません。いつ申請するか — 1K, 10K, 50Kユーザー時点？洗練されたアプリ、レビュー、プライバシーポリシー、できればApple／キャリアとの関係が必要。</span></p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Impact:</span><span class="lang jp">インパクト:</span></strong>
+        <span class="lang en"> Massive conversion lift on install flow. Worth applying at ~10K users.</span>
+        <span class="lang jp">インストール完了率が大幅向上。約10Kユーザー時点での申請が現実的。</span>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · DEFERRED UNTIL SCALE</span><span class="lang jp">ステータス ・ スケール後に再検討</span></div>
+    </div>
+
+    <div class="decision-card">
+      <div class="dec-meta"><span class="lang en">DECISION · AGGREGATOR STRATEGY</span><span class="lang jp">判断 ・ アグリゲーター戦略</span></div>
+      <h3><span class="lang en">Samurai Wifi exclusive, or multi-source?</span><span class="lang jp">Samurai Wifi 単独 vs 複数アグリゲーター</span></h3>
+      <p><span class="lang en">Single-aggregator means simpler tech and tighter relationship. Multi-aggregator gives margin flexibility and a fallback if anyone goes down. Most early-stage eSIM brands start single and switch to multi at scale.</span><span class="lang jp">単独アグリゲーターなら技術がシンプルで関係も深まる。複数アグリゲーターならマージン柔軟性と冗長性が得られる。多くの初期段階eSIMブランドは単独で始め、スケール後に複数化。</span></p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Impact:</span><span class="lang jp">インパクト:</span></strong>
+        <span class="lang en"> Defines launch complexity. Start single, plan for multi later.</span>
+        <span class="lang jp">ローンチ時の複雑性を決定。初期は単独、後で複数化が定石。</span>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · LEANING SINGLE FOR LAUNCH</span><span class="lang jp">ステータス ・ ローンチ時は単独で傾倒</span></div>
+    </div>
+  </section>
+
+  <!-- 7. SAMURAI QUESTIONNAIRE -->
+  <section>
+    <div class="sec-label"><span class="lang en">07 / PARTNER DILIGENCE</span><span class="lang jp">07 / パートナー確認</span></div>
+    <h2 class="lang en">Questionnaire <em>for Samurai Wifi</em>.</h2>
+    <h2 class="lang jp"><em>Samurai Wifi</em> 向け 確認質問リスト。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Akito forwards this directly to the Samurai Wifi team. Standard partner-onboarding questions. Once we have answers, we finalize the partnership decision.</span>
+      <span class="lang jp">Akito から Samurai Wifi へ直接転送する用の質問リスト。標準的なパートナー確認事項です。回答が揃い次第、提携を正式に進めるか判断します。</span>
+    </p>
+
+    <div class="lang en">
+      <div class="q-bar">
+        <span class="label">QUESTIONNAIRE · ENGLISH · COPY &amp; FORWARD</span>
+        <button class="copy-btn" onclick="copyQ('q-en', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      </div>
+      <div class="questionnaire" id="q-en">Dear Samurai Wifi team,
+
+Thank you again for sharing the wholesale price list. Before we move forward with the partnership on the Peanut eSIM side, we'd appreciate if you could answer a few standard partner-onboarding questions so we can plan our launch accordingly.
+
+1. INVENTORY SOURCING
+Do you source your eSIM inventory directly from mobile network operators (MNOs) under your own roaming agreements, or do you purchase wholesale from an upstream eSIM aggregator? If via an upstream provider, could you share their name?
+
+2. INFRASTRUCTURE
+Do you operate your own SM-DP+ provisioning servers, or do you use a third-party platform?
+
+3. API DOCUMENTATION
+Could you share a link to your developer / API documentation, sample requests, and details on the sandbox environment available for integration?
+
+4. COVERAGE MAP
+Could you share the full list of countries you support, along with the local carrier(s) used in each country, network type (4G / 5G), and any known coverage limitations?
+
+5. SLA / UPTIME
+What service-level agreement do you offer to reseller partners (uptime guarantee, support response times, escalation contacts)? Do you publish a status page with historical uptime data?
+
+6. CONTRACT TERMS
+Could you share a sample reseller / master services agreement that covers minimum commitments, exclusivity terms, termination notice, refund handling for faulty eSIMs, data ownership, and price-change policy?
+
+7. REFERENCES
+Could you share 2–3 existing reseller partners we could contact for reference?
+
+8. SCALE &amp; OPERATIONS
+Roughly how long have you been operating the eSIM business, and approximately how many reseller partners are you currently working with?
+
+9. FAULTY ESIM POLICY
+If an eSIM fails to activate or experiences connection issues for one of our customers, what is the refund / replacement / support process on your side?
+
+10. PRICING &amp; CHANGES
+Under what conditions and with how much advance notice can wholesale settlement prices change during an active partnership? Are top-up / recharge orders priced separately?
+
+Happy to set up a call if any of these are easier to discuss live. Looking forward to your response.
+
+Best regards,
+Akito</div>
+    </div>
+
+    <div class="lang jp">
+      <div class="q-bar">
+        <span class="label">確認質問リスト ・ 日本語 ・ コピーして転送</span>
+        <button class="copy-btn" onclick="copyQ('q-jp', this)"><span class="text-default">📋 コピー</span><span class="check">✓ コピー済</span></button>
+      </div>
+      <div class="questionnaire" id="q-jp">Samurai Wifi ご担当者様
+
+お世話になっております。
+先日は卸価格リストをお送りいただき、誠にありがとうございました。
+Peanut eSIM 側で正式にパートナーシップを進めるにあたり、ローンチ計画を立てる目的で、以下のパートナー確認事項についてご回答いただけますと幸いです。
+
+1. 在庫の仕入先について
+御社では eSIM 在庫を、モバイルキャリア（MNO）とのローミング契約に基づき直接保有されておりますでしょうか。それとも、上流の eSIM アグリゲーターから卸でご購入されておりますでしょうか。後者の場合、上流の事業者名をご教示いただけますでしょうか。
+
+2. インフラについて
+SM-DP+ プロビジョニングサーバーは御社で運用されておりますでしょうか。それとも、第三者のプラットフォームをご利用でしょうか。
+
+3. API ドキュメントについて
+開発者向け / API ドキュメントのリンク、サンプルリクエスト、および統合用サンドボックス環境の有無についてご共有いただけますでしょうか。
+
+4. カバレッジ（対応国一覧）について
+対応国の全リスト、各国で利用している現地キャリア名、ネットワーク種別（4G / 5G）、および既知のカバレッジ上の制限事項をご共有いただけますでしょうか。
+
+5. SLA / 稼働実績について
+リセラーパートナー向けの SLA（稼働率保証、サポート応答時間、エスカレーション窓口）の内容をご教示ください。また、過去の稼働実績を公開しているステータスページがございましたら、URL をご共有いただけますでしょうか。
+
+6. 契約条件について
+最低取引額、独占契約条項、解約予告期間、不良 eSIM の返金処理、データ所有権、価格変更条項などを含む、リセラー契約 / MSA のサンプルをご共有いただけますでしょうか。
+
+7. リファレンス（既存パートナー）について
+リファレンスとしてお話しできる既存のリセラーパートナーを 2〜3 社ご紹介いただけますでしょうか。
+
+8. 事業規模・運営期間について
+eSIM 事業を開始されてからの期間と、現在お取引中のリセラーパートナー数（おおよそで構いません）をご教示ください。
+
+9. 不良 eSIM 対応について
+弊社のお客様側で eSIM のアクティベーション失敗や接続不良が発生した場合、御社側での返金・交換・サポートの対応プロセスについてご教示ください。
+
+10. 価格変更ポリシーについて
+パートナーシップ期間中、卸価格（Settlement Price）が変更される条件と、その際の事前通知期間についてご教示ください。また、トップアップ / リチャージ商品は別価格体系となっておりますでしょうか。
+
+オンラインでの打ち合わせの方がお話しやすい項目がございましたら、お気軽にお申し付けください。
+ご回答お待ちしております。
+
+何卒よろしくお願いいたします。
+Akito</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const savedLang = localStorage.getItem('peanut-lang') || 'en';
+  document.documentElement.setAttribute('data-lang', savedLang);
+  document.documentElement.setAttribute('lang', savedLang === 'jp' ? 'ja' : 'en');
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === savedLang);
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      document.documentElement.setAttribute('data-lang', lang);
+      document.documentElement.setAttribute('lang', lang === 'jp' ? 'ja' : 'en');
+      localStorage.setItem('peanut-lang', lang);
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    });
+  });
+
+  function copyQ(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    });
+  }
+</script>
 
 </body>
 </html>
