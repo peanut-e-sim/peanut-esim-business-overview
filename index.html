@@ -1446,6 +1446,63 @@
     line-height: 1.65;
   }
 
+  /* Customs analogy box + TL;DR */
+  .dlc-analogy {
+    background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin: 18px 0;
+  }
+  .dlc-analogy h4 {
+    margin-top: 0 !important;
+    color: var(--accent);
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .dlc-analogy p {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.85;
+    margin-bottom: 12px;
+  }
+  .dlc-analogy ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 12px 0;
+  }
+  .dlc-analogy li {
+    padding: 4px 0 4px 22px;
+    position: relative;
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .dlc-analogy li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .dlc-tldr {
+    background: var(--bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 22px 26px;
+    margin: 14px 0 8px;
+  }
+  .dlc-tldr p {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--text);
+  }
+  [data-lang="en"] .dlc-tldr p { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 19px; line-height: 1.65; }
+  .dlc-form-table th.yes-col { color: var(--accent) !important; }
+  .dlc-form-table th.no-col { color: var(--text-3) !important; }
+
   /* FAQ */
   .faq-item {
     background: var(--surface);
@@ -3292,9 +3349,85 @@ Mercury（米国法人銀行口座）
     </table>
   </section>
 
-  <!-- 6. COMMON QUESTIONS -->
+  <!-- 6. FORM 5472 EXPLAINED -->
   <section>
-    <div class="sec-label"><span class="lang en">06 / COMMON QUESTIONS</span><span class="lang jp">06 / よくある質問</span></div>
+    <div class="sec-label"><span class="lang en">06 / FORM 5472 EXPLAINED</span><span class="lang jp">06 / Form 5472 の正体</span></div>
+    <h2 class="lang en">It's a <em>customs declaration</em>, not a tax return.</h2>
+    <h2 class="lang jp">これは<em>税関申告書</em>であって、税務申告ではない。</h2>
+    <p class="sec-intro">
+      <span class="lang en">The single most confusing thing about Delaware LLCs is: "wait — I have to file a tax form every year?" Yes and no. It's filed through the tax-filing system, but it's not actually a tax return. Here's exactly what's going on.</span>
+      <span class="lang jp">デラウェアLLCで最も誤解されるポイント:「毎年税務申告が必要なの？」答えは Yes でもあり No でもある。税務申告システムを通じて提出するが、実態は税務申告ではない。中身を説明します。</span>
+    </p>
+
+    <div class="dlc-analogy">
+      <h4><span class="lang en">The customs-form analogy</span><span class="lang jp">税関申告書のアナロジー</span></h4>
+      <p>
+        <span class="lang en">When you land in any country, you fill out a customs form. Even if you have <strong>nothing to declare</strong> and owe <strong>zero duty</strong>, you still have to write your name, flight number, and tick "Nothing to declare." You're not being taxed — you're being <strong>counted and tracked</strong>.</span>
+        <span class="lang jp">どこかの国に到着したとき、税関申告書を書きます。<strong>申告するものがなく</strong>、<strong>関税ゼロ</strong>でも、名前と便名を書いて「申告なし」にチェックし、職員に渡します。これは課税ではなく、<strong>記録と把握</strong>のための手続き。</span>
+      </p>
+      <p>
+        <span class="lang en"><strong>Form 5472 is exactly the same.</strong> The US government wants a record that:</span>
+        <span class="lang jp"><strong>Form 5472 はこれと全く同じ。</strong>米国政府が記録したいのは以下の3点:</span>
+      </p>
+      <ul>
+        <li><span class="lang en">A US entity exists (your LLC)</span><span class="lang jp">米国法人が存在する事実（あなたのLLC）</span></li>
+        <li><span class="lang en">It's owned by a foreigner (you)</span><span class="lang jp">所有者が外国人であること（あなた）</span></li>
+        <li><span class="lang en">Here's how much money moved between you and the entity this year</span><span class="lang jp">年間でオーナーと法人の間に動いた金額</span></li>
+      </ul>
+      <p>
+        <span class="lang en">No tax. Just a "here we are" piece of paper.</span>
+        <span class="lang jp">税金ゼロ。「ここに存在しています」という1枚の書類だけ。</span>
+      </p>
+    </div>
+
+    <h4 style="font-size: 15px; font-weight: 700; margin-top: 28px; margin-bottom: 12px; color: var(--text);"><span class="lang en">Why is it called "Form 1120" if it's not a tax return?</span><span class="lang jp">税務申告ではないのに、なぜ「Form 1120」と呼ばれるのか？</span></h4>
+    <p style="color: var(--text-2); font-size: 14.5px; line-height: 1.85; margin-bottom: 12px;">
+      <span class="lang en">The US IRS only has one filing system — the corporate tax return (Form 1120). When they needed foreign-owned LLCs to disclose ownership info, they said: <em>"File the regular corporate tax return, but leave most of it blank. Attach Form 5472 with the disclosure info."</em></span>
+      <span class="lang jp">米国IRSは法人税申告のシステムを1つしか持っていない（Form 1120）。外国人所有のLLCに所有情報を開示させる必要が出てきたとき、IRS はこう決めた:<em>「通常の法人税申告書を提出してください。ただし大部分は空欄でOK。開示情報を記載した Form 5472 を添付してください」</em></span>
+    </p>
+    <p style="color: var(--text-2); font-size: 14.5px; line-height: 1.85; margin-bottom: 18px;">
+      <span class="lang en">That's why it's called "1120 <strong>pro-forma</strong>" — pro-forma means "placeholder / skeleton." The 1120 itself has nothing on it because there's no US tax to pay. It's just the envelope that delivers Form 5472.</span>
+      <span class="lang jp">だから「1120 <strong>pro-forma</strong>」と呼ばれる — pro-forma は「形式的・骨組みだけ」の意味。1120 自体には何も記載しない（米国税金がゼロのため）。Form 5472 を届けるための「封筒」にすぎない。</span>
+    </p>
+
+    <h4 style="font-size: 15px; font-weight: 700; margin-top: 24px; margin-bottom: 12px; color: var(--text);"><span class="lang en">What goes on the form vs. what doesn't</span><span class="lang jp">フォームに記載する情報・記載しない情報</span></h4>
+    <table class="phase-overview-table dlc-form-table">
+      <thead>
+        <tr>
+          <th class="yes-col"><span class="lang en">✅ GOES ON FORM 5472</span><span class="lang jp">✅ Form 5472 に記載</span></th>
+          <th class="no-col"><span class="lang en">❌ DOES NOT GO ON FORM</span><span class="lang jp">❌ フォームには記載しない</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="lang en">You wired $5K from Dubai to fund the LLC's startup costs</span><span class="lang jp">ドバイから $5K をLLCの初期費用として送金</span></td>
+          <td><span class="lang en">Customer paid $15 for an eSIM plan</span><span class="lang jp">顧客が eSIM プランに $15 を支払い</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">LLC wired $10K to your UAE personal bank as a distribution</span><span class="lang jp">LLC があなたの UAE 個人口座に $10K を配当として送金</span></td>
+          <td><span class="lang en">Stripe took $0.45 in fees</span><span class="lang jp">Stripe が $0.45 の手数料を徴収</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">You lent the LLC $20K, or the LLC lent you $20K</span><span class="lang jp">あなたが LLC に $20K 貸付、または逆方向</span></td>
+          <td><span class="lang en">LLC paid Samurai $5K wholesale</span><span class="lang jp">LLC が Samurai に $5K の卸価格を支払い</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">LLC bought your laptop from you for $1K</span><span class="lang jp">LLC があなたのラップトップを $1K で購入</span></td>
+          <td><span class="lang en">LLC paid AWS / Vercel / hosting</span><span class="lang jp">LLC が AWS / Vercel / ホスティングに支払い</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 style="font-size: 15px; font-weight: 700; margin-top: 24px; margin-bottom: 10px; color: var(--text);"><span class="lang en">TL;DR — in plain words</span><span class="lang jp">要約（平易な言葉で）</span></h4>
+    <div class="dlc-tldr">
+      <p class="lang en">"No tax owed. It's a once-a-year formality. We file a form that says: <strong>'this LLC exists, it's owned by Balraj, and here's the money that moved between Balraj and the LLC this year.'</strong> That's it — no revenue reporting, no expense reporting. Just owner ↔ LLC transfers."</p>
+      <p class="lang jp">「税金ゼロ。年1回の形式的な手続き。<strong>『この LLC は存在する、オーナーは Balraj、今年 Balraj と LLC の間で動いた金額はこれだけ』</strong>という書類を提出するだけ。売上の報告も経費の報告もしない。オーナー ↔ LLC 間の資金移動の報告のみ」</p>
+    </div>
+  </section>
+
+  <!-- 7. COMMON QUESTIONS -->
+  <section>
+    <div class="sec-label"><span class="lang en">07 / COMMON QUESTIONS</span><span class="lang jp">07 / よくある質問</span></div>
     <h2 class="lang en">Things people <em>get confused</em> about.</h2>
     <h2 class="lang jp"><em>混乱しがち</em>なポイント。</h2>
 
@@ -3330,9 +3463,9 @@ Mercury（米国法人銀行口座）
 
   </section>
 
-  <!-- 7. SETUP OPTIONS -->
+  <!-- 8. SETUP OPTIONS -->
   <section>
-    <div class="sec-label"><span class="lang en">07 / SETUP OPTIONS</span><span class="lang jp">07 / 設立の選択肢</span></div>
+    <div class="sec-label"><span class="lang en">08 / SETUP OPTIONS</span><span class="lang jp">08 / 設立の選択肢</span></div>
     <h2 class="lang en">How to <em>actually file</em> it.</h2>
     <h2 class="lang jp">実際の<em>申請方法</em>。</h2>
     <p class="sec-intro">
