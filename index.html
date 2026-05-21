@@ -1087,6 +1087,753 @@
     color: var(--text);
   }
 
+  /* ─── DOCUMENTS TAB ─── */
+  .doc-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    transition: all 0.2s ease;
+  }
+  .doc-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  }
+  .doc-card .doc-icon {
+    width: 48px; height: 56px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .doc-card .doc-icon::after {
+    content: 'XLSX';
+    position: absolute;
+    bottom: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+  }
+  .doc-card .doc-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .doc-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .doc-card p {
+    color: var(--text-2);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .doc-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--accent);
+    color: #FFFFFF !important;
+    border: none;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .doc-download:hover { background: #25776B; }
+
+  /* ─── TASK CONTEXT BLOCK (Akito a01) ─── */
+  .task-context {
+    background: linear-gradient(180deg, var(--warning-soft), var(--surface) 80%);
+    border: 1px solid rgba(201, 126, 34, 0.25);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin: 18px 0 8px;
+  }
+  .ctx-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--warning);
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .task-context > p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .ctx-points {
+    list-style: none;
+    padding-left: 0;
+    margin: 14px 0;
+    counter-reset: ctx;
+  }
+  .ctx-points li {
+    counter-increment: ctx;
+    padding: 12px 14px 12px 38px;
+    margin-bottom: 10px;
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+  .ctx-points li::before {
+    content: counter(ctx);
+    position: absolute;
+    left: 12px; top: 13px;
+    width: 18px; height: 18px;
+    background: var(--warning);
+    color: #FFFFFF;
+    border-radius: 50%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ctx-points li strong {
+    display: block;
+    color: var(--text);
+    margin-bottom: 4px;
+    font-size: 14.5px;
+  }
+  .ctx-not-dealbreaker {
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.75;
+  }
+  .ctx-not-dealbreaker strong { color: var(--accent); display: block; margin-bottom: 8px; }
+  .ctx-not-dealbreaker ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 6px;
+  }
+  .ctx-not-dealbreaker li {
+    padding: 3px 0 3px 18px;
+    position: relative;
+    line-height: 1.65;
+  }
+  .ctx-not-dealbreaker li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ─── DELAWARE LLC TAB ─── */
+  .dlc-mental-model {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 36px 24px;
+    margin: 16px 0 20px;
+    text-align: center;
+  }
+  .dlc-layer {
+    display: inline-block;
+    padding: 16px 28px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0 auto;
+  }
+  .dlc-layer.you {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 2px solid var(--accent);
+  }
+  .dlc-layer.llc {
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    border: 2px solid var(--peanut);
+    font-family: 'Shippori Mincho', serif;
+    font-size: 18px;
+  }
+  [data-lang="en"] .dlc-layer.llc { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 500; font-size: 20px; }
+  .dlc-layer.assets {
+    background: var(--bg);
+    color: var(--text);
+    border: 2px dashed var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    max-width: 480px;
+  }
+  .dlc-layer.assets span {
+    padding: 4px 10px;
+    background: var(--surface);
+    border-radius: 100px;
+    border: 1px solid var(--line);
+  }
+  .dlc-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-3);
+    letter-spacing: 0.05em;
+    margin: 10px 0;
+  }
+  .dlc-arrow strong { color: var(--accent); }
+
+  .reason-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .reason-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 22px 20px;
+  }
+  .reason-card .ricon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .reason-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .reason-card p {
+    color: var(--text-2);
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  /* Tax flow */
+  .tax-flow {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px 24px;
+    margin: 18px 0 20px;
+  }
+  .tax-step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 18px;
+    background: var(--bg);
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .tax-step .step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text-2);
+    border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .tax-step .step-body { font-size: 14px; color: var(--text); line-height: 1.55; }
+  .tax-step.llc { background: var(--peanut-soft); }
+  .tax-step.llc .step-num { background: var(--peanut); color: #FFF; border-color: var(--peanut); }
+  .tax-step.final { background: var(--accent-soft); border: 1px solid var(--accent); }
+  .tax-step.final .step-num { background: var(--accent); color: #FFF; border-color: var(--accent); }
+  .tax-step.final .step-body { color: var(--accent); font-weight: 700; font-size: 16px; }
+  .tax-arrow {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    padding: 4px 0;
+    letter-spacing: 0.05em;
+  }
+  .tax-arrow.no-tax {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    border-radius: 6px;
+    margin: 4px 40px;
+    padding: 6px 10px;
+  }
+
+  /* Timeline */
+  .timeline-vertical {
+    position: relative;
+    margin: 24px 0 20px;
+    padding-left: 36px;
+  }
+  .timeline-vertical::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 16px;
+    bottom: 16px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent), var(--peanut), var(--line));
+    border-radius: 1px;
+  }
+  .tl-item {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -28px; top: 22px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--accent);
+  }
+  .tl-item.done::before { background: var(--accent); }
+  .tl-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .tl-item h4 {
+    font-size: 14.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .tl-item p {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+
+  /* FAQ */
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 10px;
+  }
+  .faq-item .faq-q {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .faq-item .faq-q::before {
+    content: 'Q';
+    width: 22px; height: 22px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Shippori Mincho', serif;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .faq-item .faq-a {
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.8;
+    padding-left: 32px;
+  }
+  .faq-item .faq-a strong { color: var(--text); }
+
+  /* ─── ROADMAP TAB ─── */
+  .phase-overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    margin-bottom: 20px;
+  }
+  .phase-overview-table th, .phase-overview-table td {
+    padding: 12px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 13.5px;
+    vertical-align: middle;
+  }
+  .phase-overview-table th {
+    background: var(--bg-2, var(--bg));
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+  .phase-overview-table tr:last-child td { border-bottom: none; }
+  .phase-overview-table .current {
+    background: var(--accent-soft);
+    font-weight: 600;
+  }
+  .phase-overview-table .phase-no {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--accent);
+    width: 60px;
+  }
+  .phase-overview-table .phase-name {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .phase-overview-table .phase-stat {
+    width: 200px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+  }
+
+  .phase-detail-section {
+    border-bottom: none;
+    padding: 36px 0 24px;
+  }
+  .phase-detail-header {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--line);
+  }
+  .phase-detail-num {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: var(--line-soft);
+    color: var(--text-2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 24px;
+  }
+  [data-lang="en"] .phase-detail-num { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 28px; }
+  .phase-detail-header.p0 .phase-detail-num { background: var(--accent-soft); color: var(--accent); }
+  .phase-detail-header.p1 .phase-detail-num { background: var(--peanut-soft); color: var(--peanut); }
+  .phase-detail-header.p2 .phase-detail-num,
+  .phase-detail-header.p3 .phase-detail-num,
+  .phase-detail-header.p4 .phase-detail-num,
+  .phase-detail-header.p5 .phase-detail-num,
+  .phase-detail-header.p6 .phase-detail-num,
+  .phase-detail-header.p7 .phase-detail-num { background: var(--line-soft); color: var(--text-3); }
+  .phase-detail-header h2 {
+    margin-bottom: 4px;
+    font-size: clamp(20px, 3vw, 26px);
+    line-height: 1.3;
+  }
+  .phase-status-pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .phase-status-pill.done { background: var(--accent-soft); color: var(--accent); }
+  .phase-status-pill.progress { background: var(--warning-soft); color: var(--warning); }
+  .phase-status-pill.starting { background: var(--peanut-soft); color: var(--peanut); }
+  .phase-status-pill.upcoming { background: var(--line-soft); color: var(--text-3); }
+
+  .roadmap-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-bottom: 14px;
+  }
+  .roadmap-item .ri-head {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .ri-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .ri-status.done { background: var(--accent-soft); color: var(--accent); }
+  .ri-status.waiting { background: var(--warning-soft); color: var(--warning); }
+  .ri-status.todo { background: var(--line-soft); color: var(--text-2); }
+  .ri-status.skipped { background: rgba(0,0,0,0.04); color: var(--text-3); }
+  .ri-status.starting { background: var(--peanut-soft); color: var(--peanut); }
+  .roadmap-item h3 {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .roadmap-item .ri-desc {
+    color: var(--text-2);
+    font-size: 14.5px;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .roadmap-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    color: var(--text);
+    letter-spacing: 0.005em;
+  }
+  .roadmap-item h4:first-of-type { margin-top: 14px; }
+
+  /* Verdict box — the headline finding */
+  .verdict-box {
+    background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin: 18px 0 22px;
+    position: relative;
+  }
+  .verdict-box::before {
+    content: '★ VERDICT';
+    position: absolute;
+    top: -10px;
+    left: 22px;
+    background: var(--accent);
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 100px;
+  }
+  .verdict-box h5 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  [data-lang="en"] .verdict-box h5 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 26px; }
+  .verdict-box h5 strong { color: var(--accent); }
+  .verdict-box p {
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  /* Sub-tables inside roadmap items */
+  .roadmap-item .mini-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 18px;
+    background: var(--bg);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line-soft);
+    font-size: 13.5px;
+  }
+  .roadmap-item .mini-table th,
+  .roadmap-item .mini-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .roadmap-item .mini-table th {
+    background: var(--line-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    font-weight: 600;
+  }
+  .roadmap-item .mini-table tr:last-child td { border-bottom: none; }
+  .roadmap-item .mini-table td:first-child { font-weight: 600; color: var(--text); }
+  .roadmap-item .mini-table .pick {
+    background: var(--accent-soft);
+  }
+  .roadmap-item .mini-table .pick td:first-child { color: var(--accent); }
+  .roadmap-item .mini-table .check { color: var(--accent); font-weight: 700; }
+  .roadmap-item .mini-table .cross { color: var(--rose); font-weight: 700; }
+
+  /* Money-flow diagram */
+  .money-flow {
+    background: var(--bg);
+    border: 1px dashed var(--accent);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 12px 0 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: var(--text);
+    white-space: pre-line;
+  }
+  .money-flow .flow-arrow { color: var(--accent); font-weight: 700; }
+  .money-flow strong { color: var(--accent); }
+
+  /* Inline callout/caveat */
+  .ri-callout {
+    background: var(--warning-soft);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0 4px;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.75;
+  }
+  .ri-callout strong { color: var(--warning); }
+
+  /* Upcoming phase chips */
+  .upcoming-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .upcoming-chip {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .upcoming-chip .uc-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--line-soft);
+    color: var(--text-3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .upcoming-chip .uc-name {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* ─── INTERVIEW SCRIPT (Akito tab) ─── */
+  .interview-script {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+  }
+  .q-block {
+    margin-bottom: 22px;
+    padding: 18px 20px;
+    background: var(--bg);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+  .q-block .q-num {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: var(--accent-soft);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .q-block label {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.55;
+  }
+  .q-block textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--surface);
+    resize: vertical;
+    min-height: 70px;
+    transition: border-color 0.2s ease;
+  }
+  [data-lang="jp"] .q-block textarea { font-family: 'Noto Sans JP', sans-serif; }
+  .q-block textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(45, 140, 126, 0.1);
+  }
+  .q-block textarea::placeholder { color: var(--text-3); font-style: italic; }
+  .q-saved {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .q-saved.shown { opacity: 0.7; }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 700px) {
     .topbar-inner { padding: 10px 16px 0; }
@@ -1134,12 +1881,25 @@
         <span class="count" id="openCount">3</span>
       </button>
       <button class="tab-btn" data-tab="balraj">
-        <span class="lang">Balraj</span>
+        <span>Balraj</span>
         <span class="count" id="balrajCount">0</span>
       </button>
       <button class="tab-btn" data-tab="akito">
-        <span class="lang">Akito</span>
+        <span>Akito</span>
         <span class="count" id="akitoCount">0</span>
+      </button>
+      <button class="tab-btn" data-tab="roadmap">
+        <span class="lang en">Roadmap</span>
+        <span class="lang jp">ロードマップ</span>
+      </button>
+      <button class="tab-btn" data-tab="delaware">
+        <span class="lang en">Delaware LLC</span>
+        <span class="lang jp">デラウェアLLC</span>
+      </button>
+      <button class="tab-btn" data-tab="docs">
+        <span class="lang en">Documents</span>
+        <span class="lang jp">資料</span>
+        <span class="count" id="docsCount">1</span>
       </button>
     </nav>
     <div class="progress-wrap" id="progressWrap">
@@ -1891,6 +2651,53 @@
         <span class="lang jp">10項目の標準的なパートナー確認質問。下記から優先言語でコピーして転送。Samurai の回答内容で、提携を進めるか Tier-2 のアグリゲーターと比較するかを判断。</span>
       </p>
 
+      <!-- Context: why we're asking — for Akito's understanding -->
+      <div class="task-context">
+        <div class="ctx-label">
+          <span class="lang en">CONTEXT · WHY WE'RE ASKING</span>
+          <span class="lang jp">背景 ・ なぜ我々がこの質問をするのか</span>
+        </div>
+        <p>
+          <span class="lang en">After going through the wholesale price list Samurai sent (9,091 SKUs), two things stood out that we want to clarify before signing anything:</span>
+          <span class="lang jp">Samurai から送られてきた卸価格リスト（9,091 SKU）を精査したところ、契約前に確認しておきたい点が2つ出てきました。</span>
+        </p>
+        <ol class="ctx-points">
+          <li>
+            <strong>
+              <span class="lang en">Margin is exactly 40% flat across all 9,091 products.</span>
+              <span class="lang jp">マージンが全 9,091 SKU で ぴったり 40% に固定されている。</span>
+            </strong>
+            <span class="lang en">A real Tier-1/Tier-2 aggregator with direct MNO roaming agreements would have variable margins by carrier and region (50% in some places, 30% in others) because cost of capacity differs per MNO. A perfectly uniform 40% across thousands of products looks like a flat markup that Samurai has layered on top of inventory they bought from someone above them.</span>
+            <span class="lang jp">本来、MNOとの直接ローミング契約を持つ Tier-1 / Tier-2 のアグリゲーターであれば、地域・キャリアによって仕入れコストが異なるため、マージンも変動するのが普通（50%だったり、30%だったり）。9,000以上の商品で完全に均一な40%というのは、誰か上流から仕入れた在庫に Samurai が一律のマージンを乗せている、という見え方になる。</span>
+          </li>
+          <li>
+            <strong>
+              <span class="lang en">Pricing is in Chinese Yuan (CNY), not Thai Baht.</span>
+              <span class="lang jp">価格表の通貨が、タイバーツではなく中国元（CNY）。</span>
+            </strong>
+            <span class="lang en">If Samurai sourced eSIM data directly from their own roaming agreements as a Thai company, we'd expect pricing in THB or USD. CNY pricing strongly suggests the actual data source is a Chinese aggregator (likely eSIM Access or a similar Chinese player), and Samurai is reselling that to us.</span>
+            <span class="lang jp">タイの企業として自社のローミング契約から直接 eSIM データを調達しているのであれば、価格は THB か USD で表記されるのが自然。CNY 表記ということは、実際の調達元は中国系のアグリゲーター（eSIM Access あたり）で、Samurai はそれを我々に転売している、という構図に見える。</span>
+          </li>
+        </ol>
+        <p>
+          <span class="lang en"><strong>What this means:</strong> if our reading is right, Samurai is a Tier-3 sub-reseller (not a Tier-2 aggregator). That puts Peanut eSIM in Tier-4 — four layers from the source — and our margin gets squeezed by an extra layer that wouldn't exist if we went direct to the Tier-2 provider above Samurai.</span>
+          <span class="lang jp"><strong>この読みが正しいとすると:</strong> Samurai は Tier-2 のアグリゲーターではなく、Tier-3 のサブリセラー、ということになります。すると Peanut eSIM は Tier-4 のポジションで、本来必要のない中間層が1つ挟まる分、マージンが圧迫される。</span>
+        </p>
+        <div class="ctx-not-dealbreaker">
+          <strong><span class="lang en">Important — this is NOT a dealbreaker:</span><span class="lang jp">重要 ・ これはディールブレイカーではない:</span></strong>
+          <ul>
+            <li><span class="lang en">Akito's existing relationship with Samurai is real value (huge asset)</span><span class="lang jp">Akito と Samurai の既存の関係性は大きな資産</span></li>
+            <li><span class="lang en">Smooth onboarding for us</span><span class="lang jp">スムーズなオンボーディング</span></li>
+            <li><span class="lang en">A large catalog (9k+ SKUs covers basically everywhere we'd want to launch)</span><span class="lang jp">9,000以上のSKUで、ローンチしたい全地域をほぼカバー</span></li>
+            <li><span class="lang en">Possibly better support than a big anonymous Tier-2 aggregator</span><span class="lang jp">顔の見えない Tier-2 の大手より、サポートが手厚い可能性</span></li>
+          </ul>
+        </div>
+        <p>
+          <span class="lang en"><strong>That's why we're asking these specific questions.</strong> If Samurai answers "we source directly from MNOs" — we move forward confidently. If they answer "we buy from X aggregator" — we know who's above them, can compare X's direct rates to Samurai's, and decide whether the relationship is worth the margin gap.</span>
+          <span class="lang jp"><strong>だから具体的にこの質問をしている。</strong>Samurai が「MNOから直接調達している」と答えれば、自信を持って進められる。「X というアグリゲーターから仕入れている」と答えれば、上流が分かるので、X 直接のレートと比較して、Samurai との関係性にマージン差を払う価値があるか判断できる。</span>
+        </p>
+      </div>
+
       <div class="task-action" style="display: block;">
         <!-- EN questionnaire -->
         <div class="q-bar" style="margin-top: 8px;">
@@ -2016,6 +2823,610 @@ Akito</div>
 </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- ─── TAB: ROADMAP ─── -->
+<!-- ============================================================ -->
+<div class="tab-content" data-tab-content="roadmap">
+<div class="container">
+
+  <header class="hero">
+    <span class="doc-tag">PEANUT ESIM · ROADMAP</span>
+    <h1 class="lang en">The journey from <em>idea</em> to <em>launch</em>.</h1>
+    <h1 class="lang jp"><em>アイデア</em>から<em>ローンチ</em>までの全行程。</h1>
+    <p class="lead lang en">8 phases. Live dashboard — updated as we work through each item. Phase 0 partially closed; Phase 1 starting.</p>
+    <p class="lead lang jp">全8フェーズ。各項目を進めるたびに更新されるライブダッシュボード。フェーズ0は一部完了、フェーズ1開始中。</p>
+  </header>
+
+  <!-- Overview Table -->
+  <section>
+    <div class="sec-label"><span class="lang en">AT A GLANCE</span><span class="lang jp">一覧</span></div>
+    <h2 class="lang en">All <em>8 phases</em>, status snapshot.</h2>
+    <h2 class="lang jp">全<em>8フェーズ</em>のステータス。</h2>
+
+    <table class="phase-overview-table">
+      <thead>
+        <tr><th>#</th><th><span class="lang en">PHASE</span><span class="lang jp">フェーズ</span></th><th><span class="lang en">STATUS</span><span class="lang jp">状況</span></th></tr>
+      </thead>
+      <tbody>
+        <tr class="current"><td class="phase-no">0</td><td class="phase-name"><span class="lang en">Research &amp; Validation</span><span class="lang jp">リサーチ＆検証</span></td><td class="phase-stat">🟡 <span class="lang en">In progress (3/5)</span><span class="lang jp">進行中（3/5）</span></td></tr>
+        <tr class="current"><td class="phase-no">1</td><td class="phase-name"><span class="lang en">Legal &amp; Corporate</span><span class="lang jp">法務・法人設立</span></td><td class="phase-stat">▶ <span class="lang en">Starting now</span><span class="lang jp">開始中</span></td></tr>
+        <tr><td class="phase-no">2</td><td class="phase-name"><span class="lang en">Brand &amp; Product Design</span><span class="lang jp">ブランド・プロダクトデザイン</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
+        <tr><td class="phase-no">3</td><td class="phase-name"><span class="lang en">Tech Build</span><span class="lang jp">技術開発</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
+        <tr><td class="phase-no">4</td><td class="phase-name"><span class="lang en">Beta &amp; Pre-launch</span><span class="lang jp">ベータ・ローンチ準備</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
+        <tr><td class="phase-no">5</td><td class="phase-name"><span class="lang en">Soft Launch</span><span class="lang jp">ソフトローンチ</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
+        <tr><td class="phase-no">6</td><td class="phase-name"><span class="lang en">Public Launch &amp; Growth</span><span class="lang jp">本格ローンチ・成長</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
+        <tr><td class="phase-no">7</td><td class="phase-name"><span class="lang en">Scale &amp; Strategic</span><span class="lang jp">スケール・戦略</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Phase 0 Detail -->
+  <section class="phase-detail-section">
+    <div class="phase-detail-header p0">
+      <div class="phase-detail-num">0</div>
+      <div>
+        <span class="phase-status-pill progress"><span class="lang en">IN PROGRESS · 3 / 5 CLOSED</span><span class="lang jp">進行中 ・ 5項目中3項目完了</span></span>
+        <h2><span class="lang en">Phase 0 — Research &amp; Validation</span><span class="lang jp">フェーズ0 — リサーチ＆検証</span></h2>
+      </div>
+    </div>
+
+    <!-- Item 1 — THE BIG ONE (Regulatory verdict + Tax math) -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status done"><span class="lang en">CLOSED · 2026-05-21</span><span class="lang jp">完了 ・ 2026-05-21</span></span>
+        <h3><span class="lang en">Item 1 — UAE Regulatory</span><span class="lang jp">Item 1 — UAE 規制関連</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">Question we asked Google Deep Research: does selling foreign-network travel eSIMs from a UAE-incorporated entity trigger TDRA telecom licensing? Multi-page legal report came back.</span>
+        <span class="lang jp">Google Deep Research に質問:UAE 法人として、海外ネットワーク利用のトラベル eSIM を販売する場合、TDRA の通信ライセンスが必要か？多ページの法的レポートが返答として戻ってきた。</span>
+      </p>
+
+      <div class="verdict-box">
+        <h5><span class="lang en">Incorporate <strong>Delaware LLC (offshore)</strong> — not in UAE.</span><span class="lang jp"><strong>デラウェアLLC（オフショア）</strong>で設立 — UAE ではない。</span></h5>
+        <p><span class="lang en">Full deep-dive on the structure is on the dedicated <strong>Delaware LLC</strong> tab.</span><span class="lang jp">構造の詳細は専用の <strong>Delaware LLC</strong> タブを参照。</span></p>
+      </div>
+
+      <h4><span class="lang en">Why — the four killers</span><span class="lang jp">理由 — 4つの決定打</span></h4>
+      <table class="mini-table">
+        <thead><tr><th><span class="lang en">Killer</span><span class="lang jp">問題</span></th><th><span class="lang en">What it means</span><span class="lang jp">意味</span></th></tr></thead>
+        <tbody>
+          <tr><td><span class="lang en">Stripe UAE blocks SIM merchants</span><span class="lang jp">Stripe UAE が SIM 加盟店を拒否</span></td><td><span class="lang en">SIM cards / prepaid phone services explicitly on Stripe UAE's Restricted Businesses List. Account suspension + MATCH list = permanent.</span><span class="lang jp">SIM カード／プリペイド携帯サービスは Stripe UAE の制限業種リストに明記。アカウント停止＋MATCH リスト登録は半永久的。</span></td></tr>
+          <tr><td><span class="lang en">TDRA classifies as "telecom reseller"</span><span class="lang jp">TDRA が「通信リセラー」として分類</span></td><td><span class="lang en">Activity code 6190.06 → requires Class License (AED 15–25K + 1–3 month review). Free zones don't exempt — federal law overrides.</span><span class="lang jp">活動コード 6190.06 → クラスライセンスが必要（AED 15-25K + 1〜3ヶ月の審査）。フリーゾーンも適用除外にならない — 連邦法が優先。</span></td></tr>
+          <tr><td><span class="lang en">Article 72 criminal liability</span><span class="lang jp">第72条の刑事責任</span></td><td><span class="lang en">AED 50K–1M fines for operating without license. Real risk if we try the "Web Portal" workaround.</span><span class="lang jp">ライセンスなし営業に対する罰金 AED 50K-1M。「Web Portal」迂回戦略を試みた場合の実リスク。</span></td></tr>
+          <tr><td><span class="lang en">Every competitor does this</span><span class="lang jp">競合全社が同じ構造</span></td><td><span class="lang en">Airalo (SG + Delaware), Holafly (Ireland), Saily (Delaware), Nomad (California). Zero independent UAE-incorporated travel-eSIM brands exist.</span><span class="lang jp">Airalo（シンガポール＋デラウェア）、Holafly（アイルランド）、Saily（デラウェア）、Nomad（カリフォルニア）。UAE 設立の独立系トラベル eSIM ブランドはゼロ。</span></td></tr>
+        </tbody>
+      </table>
+
+      <h4><span class="lang en">Where the money lands (tax + banking)</span><span class="lang jp">資金の流れ（税金＋銀行）</span></h4>
+      <table class="mini-table">
+        <thead><tr><th><span class="lang en">Tax</span><span class="lang jp">税</span></th><th><span class="lang en">UAE company (post-June 2023)</span><span class="lang jp">UAE 法人（2023年6月以降）</span></th><th class="pick"><span class="lang en">Delaware LLC (offshore)</span><span class="lang jp">デラウェア LLC（オフショア）</span></th></tr></thead>
+        <tbody>
+          <tr><td><span class="lang en">Corporate tax</span><span class="lang jp">法人税</span></td><td><span class="lang en">9% above AED 375K (free zones can be 0% IF qualifying)</span><span class="lang jp">AED 375K 超で 9%（フリーゾーンは条件満たせば 0%）</span></td><td class="pick"><strong class="check">0%</strong> <span class="lang en">— disregarded entity</span><span class="lang jp">— Disregarded Entity</span></td></tr>
+          <tr><td><span class="lang en">VAT</span><span class="lang jp">VAT</span></td><td><span class="lang en">5% (zero-rated for foreign-consumed eSIMs)</span><span class="lang jp">5%（海外消費 eSIM は 0%課税）</span></td><td class="pick"><strong class="check"><span class="lang en">None — offshore</span><span class="lang jp">なし — オフショア</span></strong></td></tr>
+          <tr><td><span class="lang en">Personal income tax</span><span class="lang jp">個人所得税</span></td><td>0% (UAE)</td><td class="pick">0% (UAE)</td></tr>
+          <tr><td><span class="lang en">Net effective</span><span class="lang jp">実効税率</span></td><td>0% (if perfectly qualifying)</td><td class="pick"><strong>0%</strong> <span class="lang en">— simply by structure</span><span class="lang jp">— 構造上自動的に</span></td></tr>
+        </tbody>
+      </table>
+
+      <h4><span class="lang en">Money flow</span><span class="lang jp">資金の流れ</span></h4>
+      <div class="money-flow"><span class="lang en">Customer pays (Stripe US or Apple/Google in-app)
+        <span class="flow-arrow">↓</span>
+Stripe US / Apple Connect / Google Play
+        <span class="flow-arrow">↓</span>
+Mercury (US business bank account)
+        <span class="flow-arrow">↓</span>
+<strong>You decide:</strong> Mercury debit card · Wire to UAE personal · Direct vendor payments</span><span class="lang jp">お客様が支払い（Stripe US または Apple/Google アプリ内）
+        <span class="flow-arrow">↓</span>
+Stripe US / Apple Connect / Google Play
+        <span class="flow-arrow">↓</span>
+Mercury（米国法人銀行口座）
+        <span class="flow-arrow">↓</span>
+<strong>あなたが選択:</strong> Mercury デビットカード ・ UAE 個人口座への送金 ・ 取引先への直接支払い</span></div>
+
+      <h4><span class="lang en">Jurisdiction alternatives considered</span><span class="lang jp">検討した代替法域</span></h4>
+      <table class="mini-table">
+        <thead><tr><th><span class="lang en">Option</span><span class="lang jp">選択肢</span></th><th><span class="lang en">Tax (effective)</span><span class="lang jp">実効税率</span></th><th><span class="lang en">Stripe</span><span class="lang jp">Stripe</span></th></tr></thead>
+        <tbody>
+          <tr class="pick"><td><strong>Delaware LLC ⭐</strong></td><td><strong>0%</strong></td><td class="check">✅ Stripe US</td></tr>
+          <tr><td>Singapore Pte Ltd</td><td>17% (startup exemptions yr 1-3)</td><td class="check">✅ Stripe SG</td></tr>
+          <tr><td>Estonia OÜ</td><td>0% retained / 20% on payout</td><td class="check">✅ Stripe EU</td></tr>
+          <tr><td>UK Ltd</td><td>19–25%</td><td class="check">✅ Stripe UK</td></tr>
+          <tr><td>UAE Free Zone</td><td>0% IF qualifying</td><td class="cross">❌ blocks SIM</td></tr>
+        </tbody>
+      </table>
+
+      <div class="ri-callout">
+        <strong><span class="lang en">One caveat:</span><span class="lang jp">注意点:</span></strong>
+        <span class="lang en"> If UAE Corporate Tax authorities decide the LLC has a "permanent establishment" in UAE, they could try to tax it at 9%. Mitigations: Mercury as primary operational account (not UAE bank), US registered agent, US payment processor. Same pattern Airalo and Nomad use without issue.</span>
+        <span class="lang jp">UAE 法人税当局が、LLC が UAE 内に「恒久的施設」を持つと判断した場合、9% で課税しようとする可能性。対策:Mercury を主要運用口座（UAE 銀行ではなく）、米国登録代理人、米国決済代行。Airalo・Nomad が問題なく使うパターン。</span>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">WAITING · samurai's response</span><span class="lang jp">待機中 ・ Samurai の回答待ち</span></span>
+        <h3><span class="lang en">Item 2 — Aggregator Diligence (Samurai Wifi)</span><span class="lang jp">Item 2 — アグリゲーター精査（Samurai Wifi）</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">9,091-SKU price list received. Two flags: <strong>40% flat margin on every product</strong> + <strong>pricing in CNY not THB</strong> = suggests Samurai is a Tier-3 sub-reseller. 10-question diligence questionnaire built (see Akito tab) — waiting for Samurai's response.</span>
+        <span class="lang jp">9,091 SKU の価格表受領。気になる2点:<strong>全商品で 40% 固定マージン</strong>＋<strong>価格が THB ではなく CNY</strong>＝ Samurai が Tier-3 サブリセラーの可能性。10項目の確認質問リスト作成済み（Akito タブ参照）— Samurai の回答待ち。</span>
+      </p>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status done"><span class="lang en">CLOSED · 2026-05-21</span><span class="lang jp">完了 ・ 2026-05-21</span></span>
+        <h3><span class="lang en">Item 3 — Competitive Pricing Benchmark</span><span class="lang jp">Item 3 — 競合価格ベンチマーク</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">22 destinations × 4 competitors × 2 plan profiles = 176 data points. Spreadsheet ready (see Documents tab). Headline findings: Airalo cheapest on Standard 5GB/7d; Nomad cheapest on Heavy 10GB/30d; Holafly is unlimited-only ($27 flat). Margin opportunities: Thailand, Spain/France, China.</span>
+        <span class="lang jp">22 都市 × 4 競合 × 2 プラン = 176 データポイント。スプレッドシート完成（Documents タブ参照）。主な発見:Airalo が標準 5GB/7日プランで最安、Nomad が大容量 10GB/30日プランで最安、Holafly は無制限のみ（$27 固定）。マージン機会:タイ、スペイン／フランス、中国。</span>
+      </p>
+    </div>
+
+    <!-- Item 4 — skipped -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status skipped"><span class="lang en">SKIPPED (for now)</span><span class="lang jp">保留中</span></span>
+        <h3><span class="lang en">Item 4 — Emirates Crew Interviews</span><span class="lang jp">Item 4 — エミレーツ航空乗務員インタビュー</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">12-question interview script drafted (in pocket if we decide to do this later). Parked to keep momentum.</span>
+        <span class="lang jp">12項目のインタビュースクリプト作成済み（後で実施判断時に使用可能）。勢いを保つため保留。</span>
+      </p>
+    </div>
+
+    <!-- Item 5 — skipped -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status skipped"><span class="lang en">SKIPPED (for now)</span><span class="lang jp">保留中</span></span>
+        <h3><span class="lang en">Item 5 — Founder Agreement (you + Akito)</span><span class="lang jp">Item 5 — 共同創業者合意書（あなた + Akito）</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">Critical before incorporation if multi-member LLC. Tactical workaround: start as single-member LLC (Balraj solo), formalize equity with Akito after the founder agreement is properly negotiated. Avoids blocking on this.</span>
+        <span class="lang jp">マルチメンバー LLC の場合、設立前に必須。戦術的回避策:Balraj 単独のシングルメンバー LLC として開始、Akito との持分は合意書交渉後に正式化。これにより本項目がボトルネックにならない。</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Phase 1 Detail -->
+  <section class="phase-detail-section">
+    <div class="phase-detail-header p1">
+      <div class="phase-detail-num">1</div>
+      <div>
+        <span class="phase-status-pill starting"><span class="lang en">STARTING NOW</span><span class="lang jp">開始中</span></span>
+        <h2><span class="lang en">Phase 1 — Legal &amp; Corporate</span><span class="lang jp">フェーズ1 — 法務・法人設立</span></h2>
+      </div>
+    </div>
+
+    <p class="ri-desc">
+      <span class="lang en">Now that the regulatory verdict (Delaware LLC offshore) is locked, here are the 11 sub-items that get Peanut eSIM legally constituted. See <strong>Delaware LLC</strong> tab for the structural deep dive.</span>
+      <span class="lang jp">規制方針（オフショアのデラウェア LLC）が確定したので、Peanut eSIM を法的に成立させる 11 項目を以下に記載。構造の詳細は <strong>Delaware LLC</strong> タブ参照。</span>
+    </p>
+
+    <table class="phase-overview-table">
+      <thead><tr><th>#</th><th><span class="lang en">SUB-ITEM</span><span class="lang jp">項目</span></th><th><span class="lang en">STATUS</span><span class="lang jp">状況</span></th><th><span class="lang en">COST</span><span class="lang jp">費用</span></th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><span class="lang en">Incorporate Delaware LLC (Stripe Atlas)</span><span class="lang jp">デラウェア LLC 設立（Stripe Atlas）</span></td><td>🔴 <span class="lang en">To do</span><span class="lang jp">未着手</span></td><td>$500–$1K</td></tr>
+        <tr><td>2</td><td><span class="lang en">Trademark "Peanut eSIM" (USPTO + Madrid)</span><span class="lang jp">商標登録「Peanut eSIM」（USPTO + マドリッド）</span></td><td>🔴 <span class="lang en">To do</span><span class="lang jp">未着手</span></td><td>$1.5–$3K</td></tr>
+        <tr><td>3</td><td><span class="lang en">Domains + social handles</span><span class="lang jp">ドメイン + SNS アカウント</span></td><td>🔴 <span class="lang en">To do — today</span><span class="lang jp">未着手 — 本日</span></td><td>$50–$150</td></tr>
+        <tr><td>4</td><td><span class="lang en">Terms / Privacy / Refund policy</span><span class="lang jp">利用規約 / プライバシー / 返金ポリシー</span></td><td>🔴 <span class="lang en">To do</span><span class="lang jp">未着手</span></td><td>$500–$2K</td></tr>
+        <tr><td>5</td><td><span class="lang en">Data protection compliance (PDPL + GDPR)</span><span class="lang jp">データ保護準拠（PDPL + GDPR）</span></td><td>🔴 <span class="lang en">To do</span><span class="lang jp">未着手</span></td><td><span class="lang en">bundled</span><span class="lang jp">#4 に含む</span></td></tr>
+        <tr><td>6</td><td><span class="lang en">Mercury US business bank (auto via Atlas)</span><span class="lang jp">Mercury 米国法人銀行口座（Atlas 経由）</span></td><td>🔴 <span class="lang en">After #1</span><span class="lang jp">#1 後</span></td><td>$0</td></tr>
+        <tr><td>7</td><td><span class="lang en">Stripe US merchant account</span><span class="lang jp">Stripe US 加盟店アカウント</span></td><td>🔴 <span class="lang en">After #1</span><span class="lang jp">#1 後</span></td><td>$0</td></tr>
+        <tr><td>8</td><td><span class="lang en">Apple Developer account</span><span class="lang jp">Apple Developer アカウント</span></td><td>🔴 <span class="lang en">After #1</span><span class="lang jp">#1 後</span></td><td>$99/yr</td></tr>
+        <tr><td>9</td><td><span class="lang en">Google Play Console</span><span class="lang jp">Google Play Console</span></td><td>🔴 <span class="lang en">After #1</span><span class="lang jp">#1 後</span></td><td>$25</td></tr>
+        <tr><td>10</td><td><span class="lang en">Aggregator MSA (Samurai or alt)</span><span class="lang jp">アグリゲーター MSA（Samurai または代替）</span></td><td>🟡 <span class="lang en">Blocked on Phase 0 Item 2</span><span class="lang jp">フェーズ0 Item 2 に依存</span></td><td>TBD</td></tr>
+        <tr><td>11</td><td><span class="lang en">Business insurance (E&amp;O + cyber)</span><span class="lang jp">事業保険（E&amp;O + サイバー）</span></td><td>⏸ <span class="lang en">Defer post-launch</span><span class="lang jp">ローンチ後に保留</span></td><td>$1–3K/yr</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Phases 2-7 -->
+  <section class="phase-detail-section">
+    <div class="sec-label"><span class="lang en">PHASES 2 — 7 · UPCOMING</span><span class="lang jp">フェーズ 2 — 7 ・ 今後</span></div>
+    <h2 class="lang en">The rest of <em>the journey</em>.</h2>
+    <h2 class="lang jp"><em>残りの道のり</em>。</h2>
+    <div class="upcoming-grid">
+      <div class="upcoming-chip"><div class="uc-num">2</div><div class="uc-name"><span class="lang en">Brand &amp; Product Design</span><span class="lang jp">ブランド・プロダクトデザイン</span></div></div>
+      <div class="upcoming-chip"><div class="uc-num">3</div><div class="uc-name"><span class="lang en">Tech Build (iOS · Android · Web)</span><span class="lang jp">技術開発（iOS・Android・Web）</span></div></div>
+      <div class="upcoming-chip"><div class="uc-num">4</div><div class="uc-name"><span class="lang en">Beta &amp; Pre-launch</span><span class="lang jp">ベータ・ローンチ準備</span></div></div>
+      <div class="upcoming-chip"><div class="uc-num">5</div><div class="uc-name"><span class="lang en">Soft Launch</span><span class="lang jp">ソフトローンチ</span></div></div>
+      <div class="upcoming-chip"><div class="uc-num">6</div><div class="uc-name"><span class="lang en">Public Launch &amp; Growth</span><span class="lang jp">本格ローンチ・成長</span></div></div>
+      <div class="upcoming-chip"><div class="uc-num">7</div><div class="uc-name"><span class="lang en">Scale &amp; Strategic</span><span class="lang jp">スケール・戦略</span></div></div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ─── TAB: DELAWARE LLC (DEEP DIVE) ─── -->
+<!-- ============================================================ -->
+<div class="tab-content" data-tab-content="delaware">
+<div class="container">
+
+  <header class="hero">
+    <span class="doc-tag">PEANUT ESIM · DELAWARE LLC DEEP DIVE</span>
+    <h1 class="lang en">Understanding the <em>Delaware LLC</em>.</h1>
+    <h1 class="lang jp"><em>デラウェアLLC</em>の構造を理解する。</h1>
+    <p class="lead lang en">Why it exists, how it's structured, how it makes us effectively tax-free, what we owe each year, and how to actually file it. Built so you and Akito both understand the entire structure before we incorporate.</p>
+    <p class="lead lang jp">なぜ存在するのか、どう構成されているか、どうやって実質的に非課税になるのか、毎年何を払うのか、実際の設立手続き — Balraj と Akito の両方が、設立前に全体構造を理解できるようまとめた解説。</p>
+  </header>
+
+  <!-- 1. MENTAL MODEL -->
+  <section>
+    <div class="sec-label"><span class="lang en">01 / MENTAL MODEL</span><span class="lang jp">01 / 全体イメージ</span></div>
+    <h2 class="lang en">A <em>legal wrapper</em> around your business.</h2>
+    <h2 class="lang jp">事業を包む<em>「法的なラッパー」</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">The LLC is a separate legal entity. You own 100% of it, but legally it's not you — it signs contracts, holds bank accounts, holds Stripe, owns the customer relationships. If something goes wrong, the LLC takes the hit, not your personal assets.</span>
+      <span class="lang jp">LLC は、あなたとは別の独立した法人格を持つ「法人」です。あなたが 100% を保有しますが、法的にはあなた個人ではない — LLC が契約を結び、銀行口座を保有し、Stripe を保有し、顧客との関係を所有する。トラブルが起きても、LLC が責任を負い、あなたの個人資産は守られる。</span>
+    </p>
+
+    <div class="dlc-mental-model">
+      <div class="dlc-layer you">
+        <span class="lang en">You — Balraj (UAE resident)</span>
+        <span class="lang jp">あなた — Balraj（UAE 居住者）</span>
+      </div>
+      <div class="dlc-arrow"><strong><span class="lang en">owns 100%</span><span class="lang jp">100% を保有</span></strong></div>
+      <div class="dlc-layer llc">Peanut eSIM LLC (Delaware)</div>
+      <div class="dlc-arrow"><span class="lang en">owns</span><span class="lang jp">が所有</span></div>
+      <div class="dlc-layer assets">
+        <span><span class="lang en">Mercury bank account</span><span class="lang jp">Mercury 銀行口座</span></span>
+        <span>Stripe US</span>
+        <span><span class="lang en">Contracts</span><span class="lang jp">契約</span></span>
+        <span>IP</span>
+        <span><span class="lang en">Customer data</span><span class="lang jp">顧客データ</span></span>
+        <span><span class="lang en">Vendor relationships</span><span class="lang jp">取引先関係</span></span>
+      </div>
+    </div>
+
+    <p class="sec-intro" style="margin-top: 16px;">
+      <span class="lang en">Three layers: <strong>You at the top</strong> (UAE resident, 0% personal income tax), <strong>the LLC in the middle</strong> (Delaware corporate entity), and <strong>the business assets at the bottom</strong>. The LLC sits between you and the operations like a shield.</span>
+      <span class="lang jp">3つの層: <strong>最上層にあなた</strong>（UAE 居住者、個人所得税 0%）、<strong>中央に LLC</strong>（デラウェア法人）、<strong>最下層に事業資産</strong>。LLC がシールドとなり、あなたと事業オペレーションを隔てている。</span>
+    </p>
+  </section>
+
+  <!-- 2. WHY DELAWARE -->
+  <section>
+    <div class="sec-label"><span class="lang en">02 / WHY DELAWARE</span><span class="lang jp">02 / なぜデラウェア州なのか</span></div>
+    <h2 class="lang en">Five reasons it's <em>the standard</em>.</h2>
+    <h2 class="lang jp">5つの理由で<em>業界標準</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Over 60% of Fortune 500 companies and nearly all US startups incorporate in Delaware. It's the most predictable, investor-friendly, and tax-efficient state for a non-resident-owned LLC.</span>
+      <span class="lang jp">フォーチュン500企業の60%以上、米国スタートアップの大多数がデラウェア州で設立されている。米国非居住者所有 LLC にとって、最も予測可能・投資家フレンドリー・税効率が高い州。</span>
+    </p>
+
+    <div class="reason-grid">
+      <div class="reason-card">
+        <div class="ricon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M5 8h14M7 8v10a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4><span class="lang en">Specialized business court</span><span class="lang jp">専門ビジネス裁判所</span></h4>
+        <p><span class="lang en">The Court of Chancery handles only business disputes, with judges (not juries) trained in corporate law. Predictable, fast resolution — investors love this.</span><span class="lang jp">Court of Chancery は商事紛争のみを扱う専門裁判所。陪審員ではなく企業法専門の裁判官が判断。予測可能・迅速な解決 — 投資家が好む理由。</span></p>
+      </div>
+
+      <div class="reason-card">
+        <div class="ricon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" stroke-linecap="round"/></svg>
+        </div>
+        <h4><span class="lang en">Investor familiarity</span><span class="lang jp">投資家の理解度</span></h4>
+        <p><span class="lang en">VCs and angels know Delaware law cold. If we ever raise capital, "Delaware LLC" or "Delaware C-Corp" is the default expectation — no friction.</span><span class="lang jp">VC・エンジェル投資家はデラウェア州法を熟知。資金調達する場合、「デラウェア LLC」「デラウェア C-Corp」が標準前提 — 摩擦ゼロ。</span></p>
+      </div>
+
+      <div class="reason-card">
+        <div class="ricon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24" stroke-linecap="round"/></svg>
+        </div>
+        <h4><span class="lang en">Member privacy</span><span class="lang jp">メンバーのプライバシー</span></h4>
+        <p><span class="lang en">Members (owners) don't appear in public records. Delaware doesn't publish member names — only the registered agent's address. Your name stays out of public databases.</span><span class="lang jp">メンバー（オーナー）は公的記録に表示されない。デラウェアは登録代理人の住所のみ公開し、メンバー名は非公開。あなたの名前は公的データベースに残らない。</span></p>
+      </div>
+
+      <div class="reason-card">
+        <div class="ricon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l9-4 9 4-9 4-9-4zM3 11l9 4 9-4M3 15l9 4 9-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h4><span class="lang en">No state tax on non-DE operations</span><span class="lang jp">デラウェア外事業は州税ゼロ</span></h4>
+        <p><span class="lang en">If your business doesn't physically operate in Delaware (no office, no employees there), Delaware charges 0% state income tax. We operate from UAE → no state tax.</span><span class="lang jp">事業がデラウェア州内で物理的に運営されていなければ（オフィスなし、従業員なし）、州所得税 0%。我々は UAE から運営 → 州税ゼロ。</span></p>
+      </div>
+
+      <div class="reason-card">
+        <div class="ricon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="12" y1="1" x2="12" y2="23" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round"/></svg>
+        </div>
+        <h4><span class="lang en">Lowest annual fee</span><span class="lang jp">年間費用が最安</span></h4>
+        <p><span class="lang en">$300 flat franchise tax per year for LLCs. Wyoming and Nevada are cheaper but lack the legal-system depth + investor signal. Worth the ~$300 premium.</span><span class="lang jp">LLC のフランチャイズ税は年 $300 固定。Wyoming や Nevada はもう少し安いが、法制度の深さ・投資家への信号で劣る。約 $300 のプレミアムを払う価値あり。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. THE TAX MAGIC -->
+  <section>
+    <div class="sec-label"><span class="lang en">03 / THE TAX MAGIC</span><span class="lang jp">03 / 課税構造の核心</span></div>
+    <h2 class="lang en">The <em>"disregarded entity"</em> sleight of hand.</h2>
+    <h2 class="lang jp"><em>「Disregarded Entity」</em>という仕掛け。</h2>
+    <p class="sec-intro">
+      <span class="lang en">This is the single most important concept to understand. A single-member LLC owned by a non-US person is treated by the IRS as a <strong>"disregarded entity"</strong> — meaning the LLC files an informational form, but pays zero US federal income tax. Income passes through to you, the owner. Because you're a UAE tax resident, UAE tax law applies — and UAE has 0% personal income tax. <strong>Net effective tax: 0%.</strong></span>
+      <span class="lang jp">これが最も重要な概念。米国非居住者が所有するシングルメンバー LLC は、IRS（米国内国歳入庁）から <strong>「Disregarded Entity（無視される実体）」</strong> として扱われる — LLC は情報報告フォームを提出するが、米国連邦所得税は <strong>ゼロ</strong>。所得はオーナー（あなた）にパススルー。あなたは UAE 居住者なので UAE 税法が適用される — UAE の個人所得税は 0%。<strong>実効税率:0%。</strong></span>
+    </p>
+
+    <div class="tax-flow">
+      <div class="tax-step">
+        <span class="step-num">1</span>
+        <div class="step-body"><span class="lang en">Customer pays $15 retail (via Stripe US or Apple/Google in-app)</span><span class="lang jp">顧客が小売価格 $15 を支払う（Stripe US または Apple/Google アプリ内課金経由）</span></div>
+      </div>
+      <div class="tax-arrow">↓</div>
+      <div class="tax-step llc">
+        <span class="step-num">2</span>
+        <div class="step-body"><span class="lang en">Money enters Peanut eSIM LLC's Mercury bank account (US-based)</span><span class="lang jp">資金が Peanut eSIM LLC の Mercury 銀行口座（米国所在）に着金</span></div>
+      </div>
+      <div class="tax-arrow no-tax">↓ <span class="lang en">US federal corporate tax: 0% (disregarded entity)</span><span class="lang jp">米国連邦法人税:0%（Disregarded Entity）</span></div>
+      <div class="tax-arrow no-tax">↓ <span class="lang en">Delaware state income tax: 0% (no DE operations)</span><span class="lang jp">デラウェア州所得税:0%（州内事業なし）</span></div>
+      <div class="tax-step">
+        <span class="step-num">3</span>
+        <div class="step-body"><span class="lang en">You access the money via Mercury debit card / wire to UAE personal bank / direct vendor payments</span><span class="lang jp">あなたが Mercury デビットカード / UAE 個人銀行口座への送金 / 取引先への直接支払いで資金にアクセス</span></div>
+      </div>
+      <div class="tax-arrow no-tax">↓ <span class="lang en">UAE personal income tax: 0%</span><span class="lang jp">UAE 個人所得税:0%</span></div>
+      <div class="tax-step final">
+        <span class="step-num">★</span>
+        <div class="step-body"><span class="lang en">Net effective tax: 0%</span><span class="lang jp">実効税率:0%</span></div>
+      </div>
+    </div>
+
+    <div class="ri-callout">
+      <strong><span class="lang en">One important caveat:</span><span class="lang jp">重要な注意点:</span></strong>
+      <span class="lang en"> If UAE Corporate Tax authorities determine the LLC has a "permanent establishment" in UAE (because management happens from your UAE laptop), they could try to tax it at 9%. Mitigations: use Mercury as primary operational account (not UAE bank), keep good records that the entity is US-based, use US registered agent. Same pattern Airalo and Nomad use without issue.</span>
+      <span class="lang jp">UAE 法人税当局が、LLC が UAE 内に「恒久的施設（Permanent Establishment）」を持つと判断した場合（管理が UAE のラップトップから行われていることを理由に）、9% で課税しようとする可能性がある。対策:Mercury を主要運用口座として使用（UAE 銀行ではなく）、米国法人である記録を残す、米国登録代理人を使用。Airalo や Nomad が問題なく使っているのと同じパターン。</span>
+    </div>
+  </section>
+
+  <!-- 4. SETUP TIMELINE -->
+  <section>
+    <div class="sec-label"><span class="lang en">04 / SETUP TIMELINE</span><span class="lang jp">04 / 設立スケジュール</span></div>
+    <h2 class="lang en">From sign-up to <em>live business</em> — 14 to 21 days.</h2>
+    <h2 class="lang jp">申し込みから<em>稼働開始</em>まで — 14〜21日。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Using <strong>Stripe Atlas</strong> ($500 flat) — the fastest, most reliable path for non-US founders.</span>
+      <span class="lang jp">非米国居住者にとって最速・最確実な経路、<strong>Stripe Atlas</strong>（$500 一括）を使用。</span>
+    </p>
+
+    <div class="timeline-vertical">
+      <div class="tl-item">
+        <div class="tl-day"><span class="lang en">DAY 0</span><span class="lang jp">DAY 0</span></div>
+        <h4><span class="lang en">Sign up with Stripe Atlas</span><span class="lang jp">Stripe Atlas に登録</span></h4>
+        <p><span class="lang en">Enter LLC name (e.g., "Peanut eSIM LLC"), founders' details, ownership %, registered agent included.</span><span class="lang jp">LLC 名（例:「Peanut eSIM LLC」）、創業者情報、持分%、登録代理人情報を入力。</span></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day"><span class="lang en">DAY 1 – 3</span><span class="lang jp">DAY 1 – 3</span></div>
+        <h4><span class="lang en">Certificate of Formation filed with Delaware</span><span class="lang jp">デラウェア州に「設立証明書」提出</span></h4>
+        <p><span class="lang en">Atlas files automatically. Name reservation + $90 state filing fee (included in the $500). You're legally a Delaware company at this step.</span><span class="lang jp">Atlas が自動提出。名称予約 + 州への申請料 $90（$500 に含まれる）。この時点でデラウェア法人として法的に成立。</span></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day"><span class="lang en">DAY 5 – 10</span><span class="lang jp">DAY 5 – 10</span></div>
+        <h4><span class="lang en">EIN (Employer Identification Number) issued</span><span class="lang jp">EIN（雇用主識別番号）発行</span></h4>
+        <p><span class="lang en">Atlas applies to IRS on your behalf. EIN is the tax ID needed for everything downstream (bank, Stripe, contracts).</span><span class="lang jp">Atlas が IRS に代理申請。EIN は税務 ID で、銀行口座・Stripe・契約など、その後のすべてに必要。</span></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day"><span class="lang en">DAY 7 – 12</span><span class="lang jp">DAY 7 – 12</span></div>
+        <h4><span class="lang en">Operating Agreement + corporate docs delivered</span><span class="lang jp">Operating Agreement + 法人書類受領</span></h4>
+        <p><span class="lang en">Operating Agreement = the LLC's "constitution" — who owns what, how decisions are made, exit clauses. Atlas provides a clean template you can customize.</span><span class="lang jp">Operating Agreement は LLC の「定款」 — 持分構成、意思決定ルール、退出条項。Atlas がクリーンなテンプレートを提供。</span></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day"><span class="lang en">DAY 10 – 14</span><span class="lang jp">DAY 10 – 14</span></div>
+        <h4><span class="lang en">Mercury US bank account opens</span><span class="lang jp">Mercury 米国銀行口座開設</span></h4>
+        <p><span class="lang en">Atlas integrates with Mercury — minimal paperwork, opens within days. No physical US visit needed. Free banking, USD-denominated.</span><span class="lang jp">Atlas は Mercury と統合済み — 書類最小限、数日で開設。米国訪問不要。手数料無料、USD 建て。</span></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day"><span class="lang en">DAY 12 – 21</span><span class="lang jp">DAY 12 – 21</span></div>
+        <h4><span class="lang en">Stripe US merchant account activated</span><span class="lang jp">Stripe US 加盟店アカウント有効化</span></h4>
+        <p><span class="lang en">Atlas pre-activates Stripe US. You complete underwriting: declare business model (eSIM reseller, MCC 4814), expected volumes. Activates within days.</span><span class="lang jp">Atlas が Stripe US を事前有効化済み。アンダーライティング完了:事業内容（eSIM リセラー、MCC 4814）、予想取引量を申告。数日で稼働開始。</span></p>
+      </div>
+      <div class="tl-item done">
+        <div class="tl-day"><span class="lang en">DAY 21+</span><span class="lang jp">DAY 21+</span></div>
+        <h4><span class="lang en">Ready to take revenue</span><span class="lang jp">売上受付準備完了</span></h4>
+        <p><span class="lang en">Peanut eSIM LLC is fully operational. You can sign contracts (e.g., with Samurai), publish the app, accept payments globally.</span><span class="lang jp">Peanut eSIM LLC が完全稼働。契約締結（例:Samurai と）、アプリ公開、世界中からの決済受付が可能に。</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ANNUAL OBLIGATIONS -->
+  <section>
+    <div class="sec-label"><span class="lang en">05 / ANNUAL OBLIGATIONS</span><span class="lang jp">05 / 年次義務</span></div>
+    <h2 class="lang en">What you owe <em>every year</em>.</h2>
+    <h2 class="lang jp"><em>毎年</em>必要な作業と費用。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Minimal. Total cost ~$300–$500/year + a few hours of paperwork. Stripe Atlas handles most of it for $500/year ongoing if you want fully managed.</span>
+      <span class="lang jp">最小限。年間 $300〜$500 + 数時間の事務作業。Stripe Atlas に年 $500 で完全代行依頼も可能。</span>
+    </p>
+
+    <table class="phase-overview-table">
+      <thead>
+        <tr>
+          <th><span class="lang en">OBLIGATION</span><span class="lang jp">義務</span></th>
+          <th><span class="lang en">WHEN</span><span class="lang jp">時期</span></th>
+          <th><span class="lang en">COST</span><span class="lang jp">費用</span></th>
+          <th><span class="lang en">DETAIL</span><span class="lang jp">詳細</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="lang en">Delaware Franchise Tax</span><span class="lang jp">デラウェア州フランチャイズ税</span></td>
+          <td><span class="lang en">June 1 each year</span><span class="lang jp">毎年 6/1</span></td>
+          <td>$300</td>
+          <td><span class="lang en">Flat. Not based on revenue.</span><span class="lang jp">固定額。売上に関係なし。</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">Form 5472 + 1120 pro-forma</span><span class="lang jp">Form 5472 + 1120 pro-forma</span></td>
+          <td><span class="lang en">April 15 each year</span><span class="lang jp">毎年 4/15</span></td>
+          <td>$0</td>
+          <td><span class="lang en">Informational filing for foreign-owned single-member LLC. No tax owed.</span><span class="lang jp">米国非居住者所有シングルメンバー LLC の情報報告書。納税義務なし。</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">Registered Agent fee</span><span class="lang jp">登録代理人費用</span></td>
+          <td><span class="lang en">Annual</span><span class="lang jp">年次</span></td>
+          <td>$50 – $150</td>
+          <td><span class="lang en">Included in Atlas year 1. Pay separately year 2+ unless you renew with Atlas.</span><span class="lang jp">初年度は Atlas に含まれる。2年目以降は別途、または Atlas で更新。</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">Delaware Annual Report</span><span class="lang jp">デラウェア年次報告書</span></td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="lang en"><strong>Not required for LLCs.</strong> Only Delaware corporations file this.</span><span class="lang jp"><strong>LLC は提出不要。</strong>デラウェア法人（C-Corp）のみ提出義務あり。</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">US federal income tax</span><span class="lang jp">米国連邦所得税</span></td>
+          <td>—</td>
+          <td>$0</td>
+          <td><span class="lang en">Zero. Disregarded entity owned by non-US person.</span><span class="lang jp">ゼロ。米国非居住者所有の Disregarded Entity のため。</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">UAE personal income tax</span><span class="lang jp">UAE 個人所得税</span></td>
+          <td>—</td>
+          <td>$0</td>
+          <td><span class="lang en">UAE has no personal income tax.</span><span class="lang jp">UAE には個人所得税がない。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6. COMMON QUESTIONS -->
+  <section>
+    <div class="sec-label"><span class="lang en">06 / COMMON QUESTIONS</span><span class="lang jp">06 / よくある質問</span></div>
+    <h2 class="lang en">Things people <em>get confused</em> about.</h2>
+    <h2 class="lang jp"><em>混乱しがち</em>なポイント。</h2>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="lang en">Do I need to live in or visit the US?</span><span class="lang jp">米国に住んだり、訪問する必要はある？</span></div>
+      <div class="faq-a"><span class="lang en"><strong>No.</strong> You never have to set foot in the US. Stripe Atlas handles everything remotely. Mercury bank opens entirely online. Stripe US can be operated from anywhere.</span><span class="lang jp"><strong>不要。</strong>一度も米国に行く必要はない。Stripe Atlas が遠隔ですべて処理。Mercury 銀行口座も完全オンライン開設。Stripe US は世界中どこからでも運用可能。</span></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="lang en">Do I owe US income tax on the LLC's revenue?</span><span class="lang jp">LLC の売上に対して米国所得税を払う必要は？</span></div>
+      <div class="faq-a"><span class="lang en"><strong>No.</strong> As long as you're a non-US person and the LLC has no "Effectively Connected Income" to a US trade or business (i.e., no US employees, no US office, no US-source business activity), no US federal tax. You file Form 5472 + 1120 pro-forma as informational only.</span><span class="lang jp"><strong>不要。</strong>あなたが米国非居住者で、LLC が米国事業に「実質的に関連する所得（Effectively Connected Income）」を持たない限り（米国従業員なし、米国オフィスなし、米国源泉事業活動なし）、米国連邦税はゼロ。Form 5472 + 1120 pro-forma を情報報告のみ提出。</span></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="lang en">What if I sell to US customers — does that trigger US tax?</span><span class="lang jp">米国の顧客に販売した場合、米国課税が発生する？</span></div>
+      <div class="faq-a"><span class="lang en"><strong>No.</strong> Selling digital goods to US consumers from your laptop in Dubai is not "Effectively Connected Income." US tax only triggers if you have substantial US operations (employees, office, physical inventory in US). Pure digital cross-border sales = no US tax.</span><span class="lang jp"><strong>発生しない。</strong>Dubai のラップトップから米国消費者にデジタル商品を販売することは「Effectively Connected Income」に該当しない。米国課税は実質的な米国事業（従業員・オフィス・米国内在庫）がある場合のみ発生。純粋なデジタル越境販売は米国課税ゼロ。</span></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="lang en">Can I add Akito as a co-owner later?</span><span class="lang jp">Akito を後から共同オーナーに追加できる？</span></div>
+      <div class="faq-a"><span class="lang en"><strong>Yes.</strong> Convert single-member LLC to multi-member by amending the Operating Agreement and issuing membership units. ~$300 in Delaware fees + lawyer review. Tax structure shifts from "disregarded entity" to "partnership" (Form 1065 + K-1s) — slightly more paperwork but still 0% US tax for foreign members.</span><span class="lang jp"><strong>可能。</strong>Operating Agreement を改訂しメンバーシップ・ユニットを発行することで、シングルメンバーからマルチメンバーへ変換可能。デラウェアの費用 ~$300 + 弁護士レビュー。税構造は「Disregarded Entity」から「パートナーシップ」（Form 1065 + K-1）へ移行 — 事務作業はやや増えるが、米国非居住者メンバーは引き続き米国税ゼロ。</span></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="lang en">What about UAE Corporate Tax (the new 9%)?</span><span class="lang jp">UAE の法人税（新設の 9%）はどうなる？</span></div>
+      <div class="faq-a"><span class="lang en">UAE Corporate Tax applies to <strong>UAE-incorporated entities</strong> with taxable income above AED 375K. Our LLC is incorporated in <strong>Delaware</strong>, so it's a foreign entity. UAE Corporate Tax doesn't apply unless UAE deems the LLC has a "permanent establishment" in UAE (which we mitigate via US bank, US registered agent, US payment processor). Same exact pattern Airalo and Nomad use without issue.</span><span class="lang jp">UAE 法人税は <strong>UAE 設立法人</strong> で課税所得が AED 375K を超える場合に適用される。我々の LLC は <strong>デラウェア州</strong> で設立されるため、外国法人。UAE が LLC を UAE 内の「恒久的施設」とみなさない限り、UAE 法人税は適用されない（米国銀行、米国登録代理人、米国決済代行を使うことで対策）。Airalo や Nomad が問題なく使っているのと同じパターン。</span></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="lang en">What's the difference between LLC and C-Corp?</span><span class="lang jp">LLC と C-Corp の違いは？</span></div>
+      <div class="faq-a"><span class="lang en"><strong>LLC:</strong> simpler, more flexible, pass-through taxation by default (best for our case). <strong>C-Corp:</strong> taxed at 21% federal corporate tax, but preferred by US VCs raising priced rounds. We start with LLC and convert to C-Corp later only if we raise venture funding.</span><span class="lang jp"><strong>LLC:</strong>シンプル、柔軟、デフォルトでパススルー課税（我々の用途に最適）。<strong>C-Corp:</strong>連邦法人税 21% が発生するが、プライストラウンドを行う米国 VC が好む形態。まず LLC で開始し、VC 資金調達時のみ後で C-Corp に変換する流れ。</span></div>
+    </div>
+
+  </section>
+
+  <!-- 7. SETUP OPTIONS -->
+  <section>
+    <div class="sec-label"><span class="lang en">07 / SETUP OPTIONS</span><span class="lang jp">07 / 設立の選択肢</span></div>
+    <h2 class="lang en">How to <em>actually file</em> it.</h2>
+    <h2 class="lang jp">実際の<em>申請方法</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Three viable paths. For our case, <strong>Stripe Atlas wins on every dimension</strong>.</span>
+      <span class="lang jp">3つの選択肢。我々のケースでは<strong>あらゆる点で Stripe Atlas が最適</strong>。</span>
+    </p>
+
+    <table class="phase-overview-table">
+      <thead>
+        <tr>
+          <th><span class="lang en">METHOD</span><span class="lang jp">方法</span></th>
+          <th><span class="lang en">COST</span><span class="lang jp">費用</span></th>
+          <th><span class="lang en">TIMELINE</span><span class="lang jp">期間</span></th>
+          <th><span class="lang en">PROS / CONS</span><span class="lang jp">長所 / 短所</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="current">
+          <td><strong>Stripe Atlas ⭐</strong></td>
+          <td>$500 flat</td>
+          <td>2–3 weeks</td>
+          <td><span class="lang en">All-in-one (LLC + EIN + Mercury + Stripe + templates + $5K Stripe credit). Designed for non-US founders. Best fit for us.</span><span class="lang jp">オールインワン（LLC + EIN + Mercury + Stripe + テンプレート + $5K Stripe クレジット）。非米国居住者向け設計。最適。</span></td>
+        </tr>
+        <tr>
+          <td>Firstbase</td>
+          <td>$399</td>
+          <td>2–3 weeks</td>
+          <td><span class="lang en">Similar to Atlas, slightly cheaper. Bank options narrower. Smaller community.</span><span class="lang jp">Atlas と類似、やや安価。銀行選択肢が狭い。コミュニティ規模が小さい。</span></td>
+        </tr>
+        <tr>
+          <td>Clerky</td>
+          <td>$799+</td>
+          <td>2–4 weeks</td>
+          <td><span class="lang en">Lawyer-favored, more legal customization. Overkill for solo bootstrap. Better for VC-backed C-Corps.</span><span class="lang jp">弁護士向け、法的カスタマイズ性が高い。個人開発には過剰。VC バック C-Corp 向け。</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">DIY (file direct)</span><span class="lang jp">自分で申請</span></td>
+          <td>~$150</td>
+          <td>4–8 weeks</td>
+          <td><span class="lang en">Cheapest, slowest. You handle EIN application + Mercury opening + Stripe underwriting separately. High learning curve for non-US founders.</span><span class="lang jp">最安、最遅。EIN 申請 + Mercury 開設 + Stripe アンダーライティングを個別対応。非米国居住者には学習コスト高い。</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">Delaware lawyer</span><span class="lang jp">デラウェア弁護士経由</span></td>
+          <td>$2,000 – $5,000</td>
+          <td>2–4 weeks</td>
+          <td><span class="lang en">White-glove. Worth it only if complex multi-party founder structure. Overkill for now.</span><span class="lang jp">フルサービス。複数創業者の複雑な構造の場合のみ価値あり。現時点では過剰。</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ri-callout" style="background: var(--accent-soft); border-left-color: var(--accent);">
+      <strong style="color: var(--accent);"><span class="lang en">Recommendation:</span><span class="lang jp">推奨:</span></strong>
+      <span class="lang en"> Use <strong>Stripe Atlas</strong>. It's the path of least resistance and integrates directly with the payment processor we need anyway.</span>
+      <span class="lang jp"><strong>Stripe Atlas</strong> を使用。最も摩擦が少なく、どのみち必要となる決済代行と直接統合される。</span>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ─── TAB: DOCUMENTS ─── -->
+<!-- ============================================================ -->
+<div class="tab-content" data-tab-content="docs">
+<div class="container">
+  <header class="hero">
+    <span class="doc-tag">PEANUT ESIM · DOCUMENTS</span>
+    <h1 class="lang en">Files we've <em>built</em> so far.</h1>
+    <h1 class="lang jp">これまでに<em>作成した</em>資料一覧。</h1>
+    <p class="lead lang en">Spreadsheets, reports, and reference files. Click to download — added to the repo so they're versioned.</p>
+    <p class="lead lang jp">スプレッドシート、レポート、参照ファイル一覧。クリックでダウンロード可能。リポジトリにバージョン管理されている。</p>
+  </header>
+
+  <section style="border-bottom: none;">
+    <div class="sec-label"><span class="lang en">1 FILE</span><span class="lang jp">1 ファイル</span></div>
+
+    <div class="doc-card">
+      <div class="doc-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linejoin="round"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">XLSX · 5 SHEETS · BUILT 2026-05-21</span><span class="lang jp">XLSX · 5 シート · 作成日 2026-05-21</span></div>
+        <h3><span class="lang en">Competitor Pricing Benchmark</span><span class="lang jp">競合価格ベンチマーク</span></h3>
+        <p><span class="lang en">22 destinations × 4 competitors (Airalo, Holafly, Nomad, Saily) × 2 plan profiles (Standard 5GB/7d, Heavy 10GB/30d). 176 data points + margin opportunity analysis.</span><span class="lang jp">22 都市 × 4 競合（Airalo・Holafly・Nomad・Saily）× 2 プラン（標準 5GB/7日、大容量 10GB/30日）。176 データポイント + マージン機会分析。</span></p>
+      </div>
+      <a href="docs/Competitor_Pricing_Benchmark.xlsx" download class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Download</span><span class="lang jp">ダウンロード</span>
+      </a>
+    </div>
+  </section>
+</div>
+</div>
+
 <script>
   // ─── Language toggle ───
   const LANG_KEY = 'peanut-lang';
@@ -2052,7 +3463,7 @@ Akito</div>
 
   // Restore tab from hash or storage
   const hashTab = window.location.hash.replace('#', '');
-  const validTabs = ['overview', 'open', 'balraj', 'akito'];
+  const validTabs = ['overview', 'open', 'balraj', 'akito', 'roadmap', 'delaware', 'docs'];
   const initialTab = validTabs.includes(hashTab) ? hashTab : (localStorage.getItem('peanut-tab') || 'overview');
   switchTab(initialTab);
 
