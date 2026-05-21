@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Peanut eSIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Shippori+Mincho:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --warning: #C97E22;
+    --warning-soft: #FFF8EE;
+    --warning-border: #F0D9A8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 250, 247, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .brand-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .back-link {
+    font-size: 13px;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    transition: 0.2s ease;
+  }
+  .back-link:hover { color: var(--accent); border-color: var(--accent); }
+  .meta-row {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    flex-wrap: wrap;
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row .dot-small {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-3);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 32px 96px;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    color: var(--text-2);
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 48px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .doc-meta strong { color: var(--text); font-weight: 600; }
+  .doc-meta-item { display: flex; gap: 6px; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.25;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    color: var(--text);
+    scroll-margin-top: 80px;
+  }
+  h2 .num {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 18px;
+    display: inline-block;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text);
+    margin-top: 28px;
+    margin-bottom: 8px;
+  }
+
+  p { margin-bottom: 14px; color: var(--text-2); }
+  p strong, li strong { color: var(--text); font-weight: 600; }
+
+  ul, ol {
+    margin: 12px 0 18px 22px;
+    color: var(--text-2);
+  }
+  li { margin-bottom: 8px; }
+
+  a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(45,140,126,0.3); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .lawyer-flag {
+    background: var(--warning-soft);
+    border: 1px solid var(--warning-border);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 13.5px;
+    color: #6E4A1C;
+    line-height: 1.65;
+  }
+  .lawyer-flag::before {
+    content: "LAWYER REVIEW";
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--warning);
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 32px 0 48px;
+  }
+  .toc-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+  .toc ol {
+    columns: 2;
+    column-gap: 32px;
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13.5px;
+  }
+  .toc ol li { margin-bottom: 5px; break-inside: avoid; }
+  .toc a { color: var(--text-2); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  hr.section-rule {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 64px 0 0;
+  }
+
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-3);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 40px; }
+    h2 { font-size: 26px; }
+    .toc ol { columns: 1; }
+    .container { padding: 40px 22px 64px; }
+  }
+
+  @media print {
+    .topbar, .back-link { display: none; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    h1, h2, h3 { color: #000; }
+    .lawyer-flag { border: 1px solid #999; background: #f6f6f6; color: #333; }
+    .container { padding: 0; max-width: 100%; }
+    a { color: #000; text-decoration: underline; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand-pill" href="/"><span class="dot"></span>Peanut eSIM</a>
+    <div class="meta-row">
+      <span>Last updated: <strong style="color:var(--text-2)">2026-05-21</strong></span>
+      <span class="dot-small"></span>
+      <span>Jurisdiction: Delaware, USA</span>
+    </div>
+    <a class="back-link" href="/">&larr; Back to site</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <h1>Terms of Service</h1>
+  <p class="subtitle">The agreement between you and Peanut eSIM LLC governing your use of our travel eSIM service, mobile applications, and website.</p>
+
+  <div class="doc-meta">
+    <div class="doc-meta-item"><strong>Entity:</strong> Peanut eSIM LLC ([LEGAL ENTITY] LLC)</div>
+    <div class="doc-meta-item"><strong>State of formation:</strong> Delaware, USA</div>
+    <div class="doc-meta-item"><strong>Effective date:</strong> 2026-05-21</div>
+    <div class="doc-meta-item"><strong>Version:</strong> 1.0 (draft)</div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#s1">Acceptance &amp; Eligibility</a></li>
+      <li><a href="#s2">Service Description</a></li>
+      <li><a href="#s3">Account, Suspension &amp; Termination</a></li>
+      <li><a href="#s4">Prohibited Uses</a></li>
+      <li><a href="#s5">Pricing, Payment &amp; Taxes</a></li>
+      <li><a href="#s6">eSIM Activation &amp; Expiry</a></li>
+      <li><a href="#s7">Coverage &amp; Availability</a></li>
+      <li><a href="#s8">Customer Support</a></li>
+      <li><a href="#s9">Intellectual Property</a></li>
+      <li><a href="#s10">Limitation of Liability</a></li>
+      <li><a href="#s11">Indemnification</a></li>
+      <li><a href="#s12">Governing Law &amp; Arbitration</a></li>
+      <li><a href="#s13">Changes to Terms</a></li>
+      <li><a href="#s14">Severability &amp; Entire Agreement</a></li>
+      <li><a href="#s15">Contact</a></li>
+    </ol>
+  </div>
+
+  <h2 id="s1"><span class="num">1.</span>Acceptance and Eligibility</h2>
+
+  <h3>1.1 Binding Agreement</h3>
+  <p>These Terms of Service ("<strong>Terms</strong>") form a binding legal agreement between you ("<strong>you</strong>", "<strong>Customer</strong>", "<strong>User</strong>") and <strong>Peanut eSIM LLC</strong>, a limited liability company organized under the laws of the State of Delaware, United States of America, with mailing address [to be inserted] ("<strong>Peanut eSIM</strong>", "<strong>we</strong>", "<strong>us</strong>", "<strong>our</strong>"). By creating an account, downloading our mobile application, purchasing an eSIM plan, or otherwise using our services (collectively, the "<strong>Service</strong>"), you confirm that you have read, understood, and agree to be bound by these Terms and our <a href="./privacy-policy.html">Privacy Policy</a> and <a href="./refund-policy.html">Refund Policy</a>, each of which is incorporated by reference.</p>
+
+  <h3>1.2 Age &amp; Capacity</h3>
+  <p>You must be at least <strong>eighteen (18) years of age</strong> and have the legal capacity to enter into a binding contract in your jurisdiction of residence to use the Service. By accepting these Terms, you represent and warrant that you meet this age requirement. We do not knowingly provide the Service to minors. If we learn that a User is under 18, we will close the account and refund any unused, non-activated eSIM plans in accordance with our Refund Policy.</p>
+
+  <h3>1.3 Account Authority</h3>
+  <p>If you are accepting these Terms on behalf of a company, employer, or other legal entity (for example, when purchasing eSIMs in bulk for an airline crew, tour group, or corporate travel program), you represent that you have authority to bind that entity to these Terms, and the term "you" refers to that entity.</p>
+
+
+  <h2 id="s2"><span class="num">2.</span>Service Description</h2>
+
+  <h3>2.1 What We Provide</h3>
+  <p>Peanut eSIM is a digital reseller of prepaid mobile data plans delivered as an <strong>embedded SIM ("eSIM") profile</strong> for use on compatible smartphones, tablets, and other connected devices while traveling internationally. We do not own or operate any mobile network. We obtain wholesale data capacity from a licensed eSIM aggregator (currently Samurai Wifi and its upstream Mobile Network Operators ("<strong>MNOs</strong>")) and resell that capacity to end users in convenient prepaid bundles via our mobile application, website, and supported in-app billing channels.</p>
+
+  <h3>2.2 What an eSIM Plan Is</h3>
+  <p>An eSIM plan ("<strong>Plan</strong>") is a digital good. It is delivered as a QR code or activation link that, when installed on a compatible device, provisions a temporary mobile data profile valid for a specific geography (country or regional bundle), data quota (e.g., 1 GB, 5 GB, unlimited capped), and validity period (e.g., 7 days, 30 days). A Plan typically does not include voice minutes, SMS, or a local phone number unless explicitly stated at the point of sale.</p>
+
+  <h3>2.3 No Telecommunications Carrier Status</h3>
+  <p>Peanut eSIM is a <strong>data reseller and value-added service provider</strong>, not a licensed telecommunications carrier in any jurisdiction. We do not provide emergency calling services. Where local law (including UAE Telecommunications and Digital Government Regulatory Authority ("TDRA") rules) prohibits a non-licensed entity from offering certain telecommunications services to local residents, this Service is offered solely as a travel data service for use outside the User's country of permanent residence, except as expressly permitted by local law.</p>
+
+
+  <h2 id="s3"><span class="num">3.</span>Account, Suspension &amp; Termination</h2>
+
+  <h3>3.1 Account Creation</h3>
+  <p>To purchase a Plan you must create an account by providing a valid email address and, optionally, a name and mobile phone number. You are responsible for keeping your account credentials confidential and for all activity that occurs under your account. You agree to provide accurate and current information and to update it when it changes.</p>
+
+  <h3>3.2 One Account per User</h3>
+  <p>You may not create multiple accounts to abuse promotional credits, referral bonuses, or first-purchase discounts. We may merge or close duplicate accounts at our discretion.</p>
+
+  <h3>3.3 Suspension &amp; Termination</h3>
+  <p>We may suspend, restrict, or terminate your account at any time, with or without notice, if we reasonably believe you have: (a) breached these Terms; (b) used the Service for fraud, money laundering, sanctions evasion, or any illegal purpose; (c) caused a chargeback or payment dispute we determine to be without merit after a reasonable investigation; (d) violated the prohibited uses in Section 4; or (e) created a risk of legal liability for us, our suppliers, or other users. Where lawful, we will provide written notice of suspension with a reasonable opportunity to cure.</p>
+
+  <h3>3.4 Voluntary Closure</h3>
+  <p>You may close your account at any time by emailing <a href="mailto:support@[domain]">support@[domain]</a>. Closure does not entitle you to a refund of activated Plans. See the <a href="./refund-policy.html">Refund Policy</a> for pre-activation and faulty-eSIM refund rules.</p>
+
+  <h3>3.5 Effect of Termination</h3>
+  <p>Upon termination, your right to use the Service ends immediately. Sections that by their nature should survive termination (including but not limited to Sections 5, 9, 10, 11, 12, and 14) will survive.</p>
+
+
+  <h2 id="s4"><span class="num">4.</span>Prohibited Uses</h2>
+
+  <p>You agree <strong>not</strong> to use the Service to:</p>
+  <ul>
+    <li>Violate any applicable law, regulation, or third-party right;</li>
+    <li>Operate or resell <strong>VoIP services in the United Arab Emirates</strong> in a manner that bypasses or markets a bypass of UAE TDRA-licensed voice services, or to advertise our Plans in the UAE as a method to circumvent local restrictions on Voice-over-IP applications. The Service is sold strictly as international mobile data for travelers, and any incidental use of VoIP applications by individual end users is the User's responsibility under local law;</li>
+    <li>Engage in fraud, money laundering, identity theft, or evasion of international sanctions (including U.S. OFAC, UK HMT, EU, and UN sanctions regimes);</li>
+    <li>Resell, sublicense, or rebundle our Plans to third parties without a separate written reseller agreement;</li>
+    <li>Use the Service for tethering or data-share schemes in a manner that violates the fair-use policy posted at the point of sale;</li>
+    <li>Send unsolicited bulk communications (spam) or operate "bot farms", machine-to-machine arbitrage, or denial-of-service attacks;</li>
+    <li>Reverse engineer, decompile, scrape, or attempt to extract source code from our application or APIs, except to the extent expressly permitted by applicable law;</li>
+    <li>Use any automated means to access the Service in a way that imposes an unreasonable load on our infrastructure.</li>
+  </ul>
+
+  <p>We may, in our sole reasonable discretion, throttle, block, or terminate any Plan or account that we determine is being used in violation of this Section 4.</p>
+
+
+  <h2 id="s5"><span class="num">5.</span>Pricing, Payment, Currency &amp; Taxes</h2>
+
+  <h3>5.1 Pricing</h3>
+  <p>All Plan prices are displayed at the point of sale in our app and website. Prices are quoted in <strong>United States Dollars (USD)</strong> by default, with localized currency display available in certain markets. The price shown at the time you confirm your order is the price you will pay, except in the case of an obvious pricing error, in which case we may cancel the order and issue a full refund.</p>
+
+  <h3>5.2 Payment Methods</h3>
+  <p>We accept payment via (a) <strong>Stripe</strong> (credit/debit card, Apple Pay, Google Pay, and select local methods); (b) <strong>Apple In-App Purchase</strong> when you buy through the iOS application; and (c) <strong>Google Play Billing</strong> when you buy through the Android application. The applicable platform's terms (Apple Media Services Terms, Google Play Terms) govern the payment leg of in-app purchases.</p>
+
+  <h3>5.3 Currency Conversion</h3>
+  <p>If your payment method is denominated in a currency other than the currency of the price displayed, your card issuer or platform billing provider will perform the currency conversion at their prevailing rate, and may apply foreign-transaction or cross-border fees. Peanut eSIM is not responsible for those fees.</p>
+
+  <h3>5.4 Taxes &amp; Duties</h3>
+  <p>Prices displayed are <strong>exclusive of any value-added tax (VAT), goods and services tax (GST), sales tax, withholding tax, customs duty, or similar levy</strong> imposed by your country of residence or country of consumption, unless the displayed price expressly states "VAT included". Where we are legally required to collect such taxes (for example, UAE VAT at 5% on digital services supplied to UAE residents under the UAE Federal Decree-Law No. 8 of 2017 and its implementing regulations), the applicable tax will be itemized at checkout. In all other cases, <strong>you are solely responsible</strong> for declaring and paying any tax owed in your jurisdiction.</p>
+
+  <h3>5.5 Receipts &amp; Invoices</h3>
+  <p>An electronic receipt will be sent to the email address on file. UAE-resident customers may request a Tax Registration Number ("TRN")-compliant tax invoice for VAT purposes by contacting support within 90 days of purchase.</p>
+
+
+  <h2 id="s6"><span class="num">6.</span>eSIM Activation, Expiry &amp; Non-Refundability</h2>
+
+  <h3>6.1 Delivery</h3>
+  <p>Plans are delivered electronically via in-app QR code, "Universal Link" install (iOS 17.4+ and Android 13+), or activation code. Delivery typically completes within five (5) minutes of payment confirmation. If delivery has not completed within thirty (30) minutes, contact support.</p>
+
+  <h3>6.2 Compatibility</h3>
+  <p>You are responsible for confirming that your device is eSIM-compatible and is <strong>not carrier-locked</strong> to a local network. A non-exhaustive compatibility list is maintained in our app and at our website. We are not liable for losses arising from a User's device incompatibility where compatibility tools were made available before purchase.</p>
+
+  <h3>6.3 Activation = Consumption</h3>
+  <p>An eSIM Plan is considered <strong>activated</strong> when the eSIM profile is installed on your device and first connects (or attempts to connect) to a partner mobile network. Once activated, the Plan is treated as a consumed digital good and is <strong>non-refundable</strong>, except where required by mandatory consumer law or as set out in our <a href="./refund-policy.html">Refund Policy</a> (including faulty-eSIM cases under Section 3 of that policy).</p>
+
+  <h3>6.4 Expiry</h3>
+  <p>Plans expire at the end of their stated validity period (calculated from first connection to a partner network, unless otherwise stated at point of sale), or when the data quota is fully consumed, whichever occurs first. Unused data does not roll over and is not refundable.</p>
+
+  <h3>6.5 Top-Ups</h3>
+  <p>Where supported, you may purchase a top-up before expiry to extend data quota or validity. Top-ups follow the same activation, expiry, and refund rules as the underlying Plan.</p>
+
+
+  <h2 id="s7"><span class="num">7.</span>Coverage &amp; Service Availability</h2>
+
+  <h3>7.1 Dependence on Third-Party Networks</h3>
+  <p>The Service is delivered over mobile networks operated by third-party MNOs in the country of use. We do not control the coverage, throughput, latency, or up-time of those networks. <strong>Coverage may be unavailable, intermittent, or degraded</strong> in rural areas, indoors, underground, in mountainous terrain, at sea, on aircraft, in areas affected by natural disaster or civil unrest, or in locations where the local MNO has not deployed compatible technology (LTE / 5G NR bands required by your device).</p>
+
+  <h3>7.2 Best-Effort Basis</h3>
+  <p>The Service is provided on a <strong>"best-effort"</strong> basis and we do not guarantee any specific speed, throughput, latency, jitter, or uninterrupted availability. Marketing materials referring to "high speed", "5G", or "unlimited" describe the upstream MNO's nominal capability and not a contractual service-level guarantee.</p>
+
+  <h3>7.3 Fair Use on "Unlimited" Plans</h3>
+  <p>Plans marketed as "unlimited" are subject to a fair-use policy: after a daily high-speed quota is reached (stated at the point of sale), speeds may be throttled to a lower tier for the remainder of that 24-hour period. This is industry standard and is not a defect.</p>
+
+  <h3>7.4 Listed but Limited Destinations</h3>
+  <p>A destination listed as supported indicates that we have a wholesale agreement covering that country; it does not guarantee coverage in every cell, village, or building. Section 6 of the <a href="./refund-policy.html">Refund Policy</a> describes refund eligibility for coverage complaints.</p>
+
+
+  <h2 id="s8"><span class="num">8.</span>Customer Support</h2>
+
+  <p>Our customer-support team responds to written enquiries at <a href="mailto:support@[domain]">support@[domain]</a> and through the in-app support widget. We target a first-response time of <strong>under 12 hours</strong> for activation-blocking issues and <strong>under 48 hours</strong> for general enquiries, on a best-effort basis. Support is provided in English (primary) with Japanese and Arabic supported during business hours (Asia/Dubai). These response times are targets, not contractual guarantees, and may be longer during peak travel seasons or in the event of supplier outages.</p>
+
+
+  <h2 id="s9"><span class="num">9.</span>Intellectual Property</h2>
+
+  <h3>9.1 Our IP</h3>
+  <p>The Service, including all software, mobile applications, website content, "Peanut eSIM" name and logo, the peanut character design, any associated marks, the visual design system, and the underlying APIs and documentation (collectively, the "<strong>IP</strong>"), is owned by Peanut eSIM LLC or its licensors and is protected by United States and international copyright, trademark, and trade-secret laws. No license is granted other than the limited, non-exclusive, non-transferable right to install and use our mobile application on a device you own or control, solely for personal, non-commercial use of the Service.</p>
+
+  <h3>9.2 Feedback</h3>
+  <p>If you submit feedback, suggestions, bug reports, or feature requests, you grant us a perpetual, worldwide, royalty-free license to use that feedback without restriction or attribution.</p>
+
+  <h3>9.3 Third-Party Marks</h3>
+  <p>Names of countries, airlines, partner MNOs, and other third-party trademarks are used for identification only and remain the property of their respective owners.</p>
+
+
+  <h2 id="s10"><span class="num">10.</span>Disclaimers &amp; Limitation of Liability</h2>
+
+  <h3>10.1 Disclaimer of Warranties</h3>
+  <p>To the maximum extent permitted by applicable law, the Service is provided <strong>"AS IS" and "AS AVAILABLE"</strong>, without warranties of any kind, whether express, implied, statutory, or otherwise, including without limitation warranties of merchantability, fitness for a particular purpose, non-infringement, accuracy, uninterrupted operation, or freedom from harmful components. We do not warrant that the Service will meet your requirements or that errors will be corrected.</p>
+
+  <h3>10.2 Cap on Direct Damages</h3>
+  <p>To the maximum extent permitted by applicable law, our aggregate liability to you arising out of or relating to a Plan, the Service, or these Terms, whether in contract, tort (including negligence), strict liability, statute, or otherwise, is capped at <strong>the amount you actually paid us for the specific affected Plan in the three (3) months immediately preceding the event giving rise to the claim</strong>.</p>
+
+  <h3>10.3 Exclusion of Indirect Damages</h3>
+  <p>In no event will we, our affiliates, officers, directors, employees, agents, suppliers, or licensors be liable for any <strong>indirect, incidental, special, consequential, exemplary, or punitive damages</strong>, including without limitation loss of profits, revenue, goodwill, data, missed flights, missed connections, alternative roaming costs, vacation disruption, business interruption, or substitute goods or services, even if we have been advised of the possibility of such damages.</p>
+
+  <h3>10.4 Carve-outs</h3>
+  <p>Nothing in these Terms limits liability that cannot be limited by law (such as liability for gross negligence, willful misconduct, fraud, or, in jurisdictions where required, death or personal injury caused by negligence).</p>
+
+  <div class="lawyer-flag">
+    The aggregate cap, exclusion of consequential damages, and survivability language must be reviewed against Delaware law, UAE Consumer Protection Law (Federal Law No. 15 of 2020), and the consumer-rights regimes of any EU member state where we materially market. UAE and EU consumer protection regimes may render certain exclusions void as against natural persons; ensure the carve-out at 10.4 is sufficient.
+  </div>
+
+
+  <h2 id="s11"><span class="num">11.</span>Indemnification</h2>
+
+  <p>You agree to <strong>indemnify, defend, and hold harmless</strong> Peanut eSIM LLC, its affiliates, officers, directors, employees, agents, contractors, and licensors from and against any and all claims, demands, losses, liabilities, damages, costs, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) your use of the Service in violation of these Terms; (b) your violation of any applicable law or regulation, including telecommunications, export, or sanctions law; (c) your violation of any third-party right, including any intellectual property or privacy right; or (d) any content, information, or data you submit to the Service. We reserve the right, at our own expense, to assume the exclusive defense and control of any matter otherwise subject to indemnification by you, in which event you will fully cooperate in asserting any available defenses.</p>
+
+  <div class="lawyer-flag">
+    Indemnification clauses are sometimes unenforceable against consumers in certain civil-law jurisdictions (notably some EU member states and the UAE). Confirm whether to soften the scope when the counterparty is a natural-person consumer rather than a business user.
+  </div>
+
+
+  <h2 id="s12"><span class="num">12.</span>Governing Law, Arbitration &amp; Class-Action Waiver</h2>
+
+  <h3>12.1 Governing Law</h3>
+  <p>These Terms and any non-contractual obligations arising out of or in connection with them are governed by the laws of the <strong>State of Delaware, United States of America</strong>, without regard to its conflict-of-laws rules. Application of the United Nations Convention on Contracts for the International Sale of Goods is expressly excluded.</p>
+
+  <h3>12.2 Binding Arbitration</h3>
+  <p>Any dispute, claim, or controversy arising out of or relating to these Terms, the Service, or your relationship with Peanut eSIM LLC, including the existence, validity, interpretation, performance, breach, or termination thereof, will be <strong>finally resolved by binding arbitration administered by the American Arbitration Association ("AAA")</strong> under its Consumer Arbitration Rules (or, if you are using the Service for business purposes, its Commercial Arbitration Rules), as applicable. The seat of arbitration will be <strong>Wilmington, Delaware</strong>. The arbitration will be conducted in <strong>English</strong> by a single arbitrator. The arbitrator's award will be final and binding and may be entered as a judgment in any court of competent jurisdiction.</p>
+
+  <h3>12.3 Class-Action Waiver</h3>
+  <p>To the maximum extent permitted by applicable law, <strong>you and Peanut eSIM each waive any right to bring or participate in any class action, collective action, mass action, or representative proceeding</strong>, and the arbitrator may not consolidate more than one person's claims and may not otherwise preside over any form of representative proceeding. If this class-action waiver is found unenforceable, then the entirety of Section 12.2 (Binding Arbitration) will be null and void, but the rest of these Terms will remain in effect.</p>
+
+  <h3>12.4 Small Claims &amp; Injunctive Relief</h3>
+  <p>Notwithstanding the foregoing, either party may bring an individual action in small-claims court for disputes within that court's jurisdiction, and either party may seek injunctive or equitable relief in any court of competent jurisdiction to protect its intellectual property or confidential information.</p>
+
+  <h3>12.5 30-Day Opt-Out</h3>
+  <p>You may opt out of the arbitration agreement in this Section 12 by emailing <a href="mailto:legal@[domain]">legal@[domain]</a> within thirty (30) days of first accepting these Terms, with the subject line "Arbitration Opt-Out" and your account email in the body. Opting out does not affect any other provision of these Terms.</p>
+
+  <div class="lawyer-flag">
+    Arbitration + class-action waiver provisions are heavily scrutinized in California, Quebec, several EU member states, and to a lesser extent the UAE. Confirm enforceability in target markets; consider region-specific carve-outs (e.g., EU consumers retain right to sue in their home court under Brussels Ia Regulation Article 18).
+  </div>
+
+
+  <h2 id="s13"><span class="num">13.</span>Changes to These Terms</h2>
+
+  <p>We may revise these Terms from time to time. When we make a <strong>material</strong> change, we will notify you by (a) email to the address on file, (b) an in-app notice, and (c) updating the "Last updated" date at the top of this document, at least <strong>fourteen (14) days</strong> before the change takes effect. Continued use of the Service after the effective date constitutes acceptance of the revised Terms. If you do not agree, you must stop using the Service and may close your account; non-activated Plans purchased before the change remain refundable under the existing Refund Policy.</p>
+
+
+  <h2 id="s14"><span class="num">14.</span>Severability, Assignment &amp; Entire Agreement</h2>
+
+  <h3>14.1 Severability</h3>
+  <p>If any provision of these Terms is held unenforceable by a court or arbitrator of competent jurisdiction, that provision will be reformed to the minimum extent necessary to make it enforceable, or, if reformation is not possible, severed; the remaining provisions will continue in full force and effect.</p>
+
+  <h3>14.2 No Waiver</h3>
+  <p>Our failure to enforce any right or provision of these Terms is not a waiver of that right or provision.</p>
+
+  <h3>14.3 Assignment</h3>
+  <p>You may not assign or transfer these Terms or any of your rights or obligations under them, by operation of law or otherwise, without our prior written consent. We may assign these Terms freely, including in connection with a merger, acquisition, reorganization, or sale of substantially all of our assets.</p>
+
+  <h3>14.4 Entire Agreement</h3>
+  <p>These Terms, together with the <a href="./privacy-policy.html">Privacy Policy</a>, the <a href="./refund-policy.html">Refund Policy</a>, and any plan-specific terms presented at the point of sale, constitute the <strong>entire agreement</strong> between you and Peanut eSIM LLC concerning the Service and supersede all prior or contemporaneous agreements, communications, and proposals, whether oral or written.</p>
+
+  <h3>14.5 Notices</h3>
+  <p>Notices to you may be sent by email to the address on file or by in-app message. Notices to us must be sent to <a href="mailto:legal@[domain]">legal@[domain]</a> with a copy by post to the address in Section 15.</p>
+
+
+  <h2 id="s15"><span class="num">15.</span>Contact</h2>
+
+  <p>
+    <strong>Peanut eSIM LLC</strong><br>
+    [Registered Agent address — Delaware]<br>
+    Email (general): <a href="mailto:support@[domain]">support@[domain]</a><br>
+    Email (legal): <a href="mailto:legal@[domain]">legal@[domain]</a><br>
+    Email (privacy / data protection): <a href="mailto:privacy@[domain]">privacy@[domain]</a>
+  </p>
+
+  <hr class="section-rule">
+
+  <footer class="footer">
+    &copy; 2026 Peanut eSIM LLC. All rights reserved. This document is a working draft pending legal review and does not constitute legal advice.
+  </footer>
+
+</main>
+
+</body>
+</html>

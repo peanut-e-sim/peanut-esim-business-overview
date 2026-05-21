@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Peanut eSIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Shippori+Mincho:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --warning: #C97E22;
+    --warning-soft: #FFF8EE;
+    --warning-border: #F0D9A8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 250, 247, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .brand-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .back-link {
+    font-size: 13px;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    transition: 0.2s ease;
+  }
+  .back-link:hover { color: var(--accent); border-color: var(--accent); }
+  .meta-row {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    flex-wrap: wrap;
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row .dot-small {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-3);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 32px 96px;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    color: var(--text-2);
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 48px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .doc-meta strong { color: var(--text); font-weight: 600; }
+  .doc-meta-item { display: flex; gap: 6px; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.25;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    color: var(--text);
+    scroll-margin-top: 80px;
+  }
+  h2 .num {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 18px;
+    display: inline-block;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text);
+    margin-top: 28px;
+    margin-bottom: 8px;
+  }
+
+  p { margin-bottom: 14px; color: var(--text-2); }
+  p strong, li strong { color: var(--text); font-weight: 600; }
+
+  ul, ol {
+    margin: 12px 0 18px 22px;
+    color: var(--text-2);
+  }
+  li { margin-bottom: 8px; }
+
+  a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(45,140,126,0.3); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .lawyer-flag {
+    background: var(--warning-soft);
+    border: 1px solid var(--warning-border);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 13.5px;
+    color: #6E4A1C;
+    line-height: 1.65;
+  }
+  .lawyer-flag::before {
+    content: "LAWYER REVIEW";
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--warning);
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 32px 0 48px;
+  }
+  .toc-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+  .toc ol {
+    columns: 2;
+    column-gap: 32px;
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13.5px;
+  }
+  .toc ol li { margin-bottom: 5px; break-inside: avoid; }
+  .toc a { color: var(--text-2); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 22px;
+    font-size: 13.5px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  table.data-table th, table.data-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text-2);
+    vertical-align: top;
+  }
+  table.data-table th {
+    background: var(--accent-soft);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  table.data-table tr:last-child td { border-bottom: 0; }
+
+  hr.section-rule {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 64px 0 0;
+  }
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-3);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 40px; }
+    h2 { font-size: 26px; }
+    .toc ol { columns: 1; }
+    .container { padding: 40px 22px 64px; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 8px 10px; }
+  }
+
+  @media print {
+    .topbar, .back-link { display: none; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    h1, h2, h3 { color: #000; }
+    .lawyer-flag { border: 1px solid #999; background: #f6f6f6; color: #333; }
+    .container { padding: 0; max-width: 100%; }
+    a { color: #000; text-decoration: underline; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand-pill" href="/"><span class="dot"></span>Peanut eSIM</a>
+    <div class="meta-row">
+      <span>Last updated: <strong style="color:var(--text-2)">2026-05-21</strong></span>
+      <span class="dot-small"></span>
+      <span>Jurisdiction: Delaware, USA</span>
+    </div>
+    <a class="back-link" href="/">&larr; Back to site</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <h1>Privacy Policy</h1>
+  <p class="subtitle">How Peanut eSIM LLC collects, uses, shares, retains, and protects your personal data — and the rights you can exercise under GDPR, UAE PDPL, and other applicable laws.</p>
+
+  <div class="doc-meta">
+    <div class="doc-meta-item"><strong>Controller:</strong> Peanut eSIM LLC ([LEGAL ENTITY] LLC)</div>
+    <div class="doc-meta-item"><strong>State of formation:</strong> Delaware, USA</div>
+    <div class="doc-meta-item"><strong>Effective date:</strong> 2026-05-21</div>
+    <div class="doc-meta-item"><strong>Version:</strong> 1.0 (draft)</div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#s1">Who We Are</a></li>
+      <li><a href="#s2">What Data We Collect</a></li>
+      <li><a href="#s3">How We Use Data</a></li>
+      <li><a href="#s4">Who We Share Data With</a></li>
+      <li><a href="#s5">International Transfers</a></li>
+      <li><a href="#s6">Retention</a></li>
+      <li><a href="#s7">GDPR Rights (EU/EEA/UK)</a></li>
+      <li><a href="#s8">UAE PDPL Rights</a></li>
+      <li><a href="#s9">Cookies &amp; Tracking</a></li>
+      <li><a href="#s10">Children</a></li>
+      <li><a href="#s11">Security</a></li>
+      <li><a href="#s12">Data Breach Notification</a></li>
+      <li><a href="#s13">Changes to This Policy</a></li>
+      <li><a href="#s14">Contact &amp; DPO</a></li>
+      <li><a href="#s15">Effective Date</a></li>
+    </ol>
+  </div>
+
+
+  <h2 id="s1"><span class="num">1.</span>Who We Are</h2>
+
+  <p><strong>Peanut eSIM LLC</strong> ("<strong>Peanut eSIM</strong>", "<strong>we</strong>", "<strong>us</strong>", "<strong>our</strong>") is a limited liability company organized under the laws of the State of Delaware, United States of America, with mailing address [to be inserted]. We operate a global travel-eSIM resale service through our mobile applications, website, and supported in-app billing channels.</p>
+
+  <p>For the purposes of (a) the EU/EEA General Data Protection Regulation 2016/679 ("<strong>GDPR</strong>"), (b) the UK GDPR and Data Protection Act 2018, (c) the UAE Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data ("<strong>UAE PDPL</strong>") and its Executive Regulation, and (d) other applicable data-protection laws (collectively, "<strong>Data Protection Law</strong>"), Peanut eSIM LLC acts as the <strong>data controller</strong> of personal data we process about you, except where we expressly act as a processor on behalf of a business customer (for example, an airline placing a bulk crew order).</p>
+
+
+  <h2 id="s2"><span class="num">2.</span>What Data We Collect</h2>
+
+  <p>We collect the following categories of personal data:</p>
+
+  <h3>2.1 Account &amp; Profile Data</h3>
+  <ul>
+    <li><strong>Required:</strong> email address, password hash (we never store passwords in plaintext), country of residence.</li>
+    <li><strong>Optional:</strong> first and last name, mobile phone number, preferred language, profile photo, occupation tag (e.g., "airline crew").</li>
+  </ul>
+
+  <h3>2.2 Payment Data</h3>
+  <p>We do <strong>not</strong> store full primary account numbers (PANs), card CVVs, or full bank account numbers. Payment is processed by:</p>
+  <ul>
+    <li><strong>Stripe, Inc.</strong> for direct web/app card payments (Stripe stores the card; we receive a tokenized reference and the last four digits, card brand, expiry, country of issuance, and a risk score);</li>
+    <li><strong>Apple Inc.</strong> via Apple In-App Purchase (we receive only an opaque transaction identifier and receipt);</li>
+    <li><strong>Google LLC</strong> via Google Play Billing (we receive only a purchase token and order ID).</li>
+  </ul>
+
+  <h3>2.3 Device &amp; Technical Data</h3>
+  <ul>
+    <li>Device identifier (Apple IDFV / Android Advertising ID where you have granted permission; otherwise a randomly generated app-instance ID);</li>
+    <li>Device model, operating system and version, app version, screen language and locale;</li>
+    <li>eSIM compatibility information (EID — eSIM Identifier — only when you initiate installation, and only to provision the profile);</li>
+    <li>IP address (truncated for analytics, retained in full only for fraud-prevention logs).</li>
+  </ul>
+
+  <h3>2.4 Usage Data</h3>
+  <ul>
+    <li>Plans purchased: SKU, destination country/region, data quota, validity period, price, currency, purchase timestamp;</li>
+    <li>Country of consumption (the country code reported by the partner MNO during your session);</li>
+    <li>Aggregate data consumption (we receive total MB used; <strong>we do not see the URLs you visit, DNS queries, the content of your communications, or the names of the apps you use</strong>);</li>
+    <li>Support interactions (subject line, body, attachments, timestamps).</li>
+  </ul>
+
+  <h3>2.5 Marketing &amp; Communications Data</h3>
+  <ul>
+    <li>Newsletter opt-in status (separate, explicit opt-in — never bundled with the account creation tick-box);</li>
+    <li>Email open/click events from marketing emails (only when you have opted in);</li>
+    <li>Referral codes you have used or shared.</li>
+  </ul>
+
+  <h3>2.6 Inferred &amp; Aggregated Data</h3>
+  <p>We may generate aggregated, de-identified, or statistical data from the above categories (e.g., "average UAE-resident customer purchases 2.4 plans per year"). De-identified data is not personal data and is not subject to this policy.</p>
+
+
+  <h2 id="s3"><span class="num">3.</span>How We Use Your Data &amp; Legal Bases</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Purpose</th><th>Data used</th><th>GDPR legal basis</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Provisioning eSIMs &amp; delivering the Service you ordered</td><td>Account, payment token, device, usage</td><td>Performance of contract — Art. 6(1)(b)</td></tr>
+      <tr><td>Fraud prevention, chargeback dispute, AML/sanctions screening</td><td>Account, payment metadata, device, IP</td><td>Legitimate interest — Art. 6(1)(f); legal obligation — Art. 6(1)(c)</td></tr>
+      <tr><td>Customer support</td><td>Account, support ticket content, usage</td><td>Performance of contract — Art. 6(1)(b); legitimate interest — Art. 6(1)(f)</td></tr>
+      <tr><td>Service improvement &amp; product analytics</td><td>Device, usage (aggregated where possible)</td><td>Legitimate interest — Art. 6(1)(f)</td></tr>
+      <tr><td>Marketing emails &amp; in-app promotional notifications</td><td>Account, marketing events</td><td>Consent — Art. 6(1)(a); opt-in required</td></tr>
+      <tr><td>Tax accounting, regulatory reporting, retention of records</td><td>Account, payment, usage</td><td>Legal obligation — Art. 6(1)(c)</td></tr>
+      <tr><td>Establishing, exercising or defending legal claims</td><td>Any of the above as needed</td><td>Legitimate interest — Art. 6(1)(f); legal claims — Art. 9(2)(f)</td></tr>
+    </tbody>
+  </table>
+
+  <p>We do <strong>not</strong> sell your personal data, and we do <strong>not</strong> engage in profiling that produces legal or similarly significant effects on you within the meaning of GDPR Article 22.</p>
+
+
+  <h2 id="s4"><span class="num">4.</span>Who We Share Data With</h2>
+
+  <p>We share personal data only with the categories of recipients listed below, and only to the extent necessary for the stated purpose. We require all recipients to sign a written data-processing agreement that mirrors GDPR Article 28 and UAE PDPL Article 26 obligations, and to apply security measures at least as strict as ours.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Recipient</th><th>Role</th><th>Data shared</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Samurai Wifi</strong> (eSIM aggregator)</td><td>Sub-processor — eSIM provisioning</td><td>EID, ICCID, plan SKU, destination, validity window</td></tr>
+      <tr><td><strong>Stripe, Inc.</strong> (USA)</td><td>Independent controller — payment processing</td><td>Tokenized card metadata, amount, currency, IP, billing country</td></tr>
+      <tr><td><strong>Apple Inc.</strong> &amp; <strong>Google LLC</strong></td><td>Independent controllers — in-app billing</td><td>Transaction receipt, purchase token, product ID</td></tr>
+      <tr><td><strong>Vercel Inc.</strong> / <strong>Amazon Web Services</strong></td><td>Sub-processor — application hosting &amp; storage</td><td>All data at rest (encrypted)</td></tr>
+      <tr><td><strong>PostHog Inc.</strong> / <strong>Mixpanel Inc.</strong></td><td>Sub-processor — product analytics</td><td>Pseudonymized device + usage events; IP truncated</td></tr>
+      <tr><td><strong>Intercom Inc.</strong> / <strong>Zendesk Inc.</strong></td><td>Sub-processor — customer support tooling</td><td>Account email, ticket content</td></tr>
+      <tr><td><strong>Cloudflare Inc.</strong></td><td>Sub-processor — CDN, WAF, bot mitigation</td><td>IP, request metadata</td></tr>
+      <tr><td>Auditors, tax advisors, lawyers, professional advisors</td><td>Independent controllers, bound by professional confidentiality</td><td>Only as required for the specific engagement</td></tr>
+      <tr><td>Regulators, courts, law enforcement</td><td>Disclosure under legal obligation</td><td>Only what is legally required</td></tr>
+      <tr><td>Acquirer in a corporate transaction</td><td>Independent controller after closing</td><td>All categories, subject to confidentiality</td></tr>
+    </tbody>
+  </table>
+
+  <p>An up-to-date sub-processor list is maintained at <a href="/sub-processors">/sub-processors</a> (URL placeholder); material additions will be announced at least fourteen (14) days in advance where feasible.</p>
+
+
+  <h2 id="s5"><span class="num">5.</span>International Data Transfers</h2>
+
+  <p>Because we are a Delaware-incorporated company serving a global customer base, your personal data will be transferred to, stored in, and processed in countries other than the country in which you provided it. Recipient countries currently include:</p>
+  <ul>
+    <li><strong>United States</strong> (corporate headquarters; Stripe; Vercel; AWS US regions; PostHog; Intercom);</li>
+    <li><strong>Japan</strong> (Samurai Wifi headquarters and operations; co-founder support);</li>
+    <li><strong>United Arab Emirates</strong> (primary customer-support hub for the Gulf region);</li>
+    <li><strong>Ireland &amp; Germany</strong> (AWS EU regions; sub-processor EU support);</li>
+    <li><strong>Singapore</strong> (AWS APAC region for low-latency MENA / Asia routing);</li>
+    <li><strong>India</strong> (selected contracted support agents).</li>
+  </ul>
+
+  <p>For transfers of personal data <strong>out of the EEA / UK</strong>, we rely on (a) <strong>Standard Contractual Clauses</strong> issued by the European Commission (Module 1 — controller-to-controller — and Module 2 — controller-to-processor — as applicable), as updated by Commission Implementing Decision (EU) 2021/914, together with the UK Addendum issued by the ICO; and (b) where required, supplementary technical measures including in-transit and at-rest encryption.</p>
+
+  <p>For transfers <strong>out of the UAE</strong>, we rely on the cross-border transfer mechanisms permitted under UAE PDPL Articles 22 and 23, including transfer to jurisdictions with adequate protection as designated by the UAE Data Office, or under written contractual safeguards equivalent to PDPL standards.</p>
+
+
+  <h2 id="s6"><span class="num">6.</span>How Long We Keep Your Data (Retention)</h2>
+
+  <table class="data-table">
+    <thead><tr><th>Category</th><th>Retention period</th><th>Reason</th></tr></thead>
+    <tbody>
+      <tr><td>Account profile</td><td><strong>Until account closure + 7 years</strong></td><td>U.S. and UAE tax record-keeping (UAE Federal Tax Authority requires VAT records for 5 years; we extend to 7 to align with U.S. and Delaware statute-of-limitations practice)</td></tr>
+      <tr><td>Transaction &amp; invoice records</td><td><strong>7 years</strong> from purchase</td><td>Tax &amp; accounting law</td></tr>
+      <tr><td>Usage / consumption logs</td><td><strong>3 years</strong> from the end of the relevant Plan</td><td>Fraud investigation, dispute resolution</td></tr>
+      <tr><td>Marketing preferences &amp; email engagement</td><td>Until you withdraw consent + 12 months audit window</td><td>To honor opt-outs &amp; demonstrate consent</td></tr>
+      <tr><td>Support tickets</td><td><strong>3 years</strong> from ticket closure</td><td>Service-quality review</td></tr>
+      <tr><td>Server &amp; security logs</td><td>Up to <strong>13 months</strong></td><td>Security, debugging, GDPR Recital 49</td></tr>
+      <tr><td>Backups</td><td>Rolling 35-day window</td><td>Disaster recovery</td></tr>
+    </tbody>
+  </table>
+
+  <p>When the retention period ends, we delete or irreversibly anonymize the data, unless we are required to keep it longer for the establishment, exercise, or defense of legal claims.</p>
+
+
+  <h2 id="s7"><span class="num">7.</span>Your Rights — GDPR (EU / EEA / UK)</h2>
+
+  <p>If you are a resident of the European Economic Area, the United Kingdom, or Switzerland, you have the following rights under GDPR (and the equivalent provisions of UK GDPR and Swiss FADP):</p>
+
+  <ul>
+    <li><strong>Right of access (Art. 15)</strong> — to confirm whether we process your data and obtain a copy;</li>
+    <li><strong>Right to rectification (Art. 16)</strong> — to correct inaccurate or incomplete data;</li>
+    <li><strong>Right to erasure / "right to be forgotten" (Art. 17)</strong> — subject to legal-retention obligations;</li>
+    <li><strong>Right to restriction of processing (Art. 18)</strong>;</li>
+    <li><strong>Right to data portability (Art. 20)</strong> — to receive your data in a structured, commonly used, machine-readable format and have it transmitted to another controller;</li>
+    <li><strong>Right to object (Art. 21)</strong> — including an absolute right to object to direct marketing;</li>
+    <li><strong>Rights related to automated decision-making (Art. 22)</strong> — although we do not currently engage in qualifying automated decision-making;</li>
+    <li><strong>Right to withdraw consent (Art. 7(3))</strong> at any time, without affecting the lawfulness of pre-withdrawal processing;</li>
+    <li><strong>Right to lodge a complaint</strong> with the data-protection supervisory authority of your habitual residence, place of work, or place of the alleged infringement (Art. 77).</li>
+  </ul>
+
+  <p>To exercise these rights, email <a href="mailto:privacy@[domain]">privacy@[domain]</a>. We will respond within <strong>one month</strong> of receipt, with a possible two-month extension for complex requests (Art. 12(3)). We may need to verify your identity before fulfilling a request.</p>
+
+
+  <h2 id="s8"><span class="num">8.</span>Your Rights — UAE PDPL</h2>
+
+  <p>If you are located in the United Arab Emirates (excluding the DIFC and ADGM free zones, which have their own data-protection regimes), the <strong>UAE Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data</strong> ("UAE PDPL") and its Executive Regulation grant you broadly equivalent rights, including:</p>
+  <ul>
+    <li>Right to <strong>access</strong> the personal data we hold about you (Art. 13);</li>
+    <li>Right to <strong>request correction</strong> of inaccurate data (Art. 14);</li>
+    <li>Right to <strong>request deletion</strong> of data, subject to applicable retention requirements (Art. 15);</li>
+    <li>Right to <strong>restrict</strong> or <strong>object to</strong> processing (Art. 16);</li>
+    <li>Right to <strong>request transfer</strong> of your data in a structured format (Art. 17);</li>
+    <li>Right to <strong>withdraw consent</strong> to processing that relies on consent (Art. 6);</li>
+    <li>Right to file a <strong>complaint with the UAE Data Office</strong> if you believe your rights have been violated (Art. 22 of the Executive Regulation).</li>
+  </ul>
+  <p>Customers in the <strong>DIFC</strong> may exercise equivalent rights under the DIFC Data Protection Law 2020. Customers in the <strong>ADGM</strong> may rely on the ADGM Data Protection Regulations 2021. To exercise any of the above, contact <a href="mailto:privacy@[domain]">privacy@[domain]</a>; we will respond within <strong>thirty (30) days</strong>.</p>
+
+  <div class="lawyer-flag">
+    Confirm whether to appoint a UAE-resident representative (recommended for non-resident controllers under PDPL Executive Regulation), and whether DIFC/ADGM-specific addenda are needed for residents of those free zones (their data-protection statutes are separate from the federal PDPL).
+  </div>
+
+
+  <h2 id="s9"><span class="num">9.</span>Cookies &amp; Similar Tracking Technologies</h2>
+
+  <p>Our website and mobile apps use cookies, local storage, and SDKs ("<strong>cookies</strong>") in the following categories:</p>
+  <table class="data-table">
+    <thead><tr><th>Category</th><th>Examples</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Strictly necessary</strong></td><td>Session, CSRF token, language preference, Cloudflare bot challenge</td><td>No consent required (ePrivacy Art. 5(3) strictly-necessary exemption)</td></tr>
+      <tr><td><strong>Analytics</strong></td><td>PostHog/Mixpanel anonymous event ID, page-view metrics</td><td>Opt-in consent in EU/UK; opt-out in U.S./other regions</td></tr>
+      <tr><td><strong>Marketing</strong></td><td>Email open beacon, ad campaign attribution token</td><td>Opt-in consent</td></tr>
+    </tbody>
+  </table>
+  <p>You can manage your cookie preferences at any time via the "Cookie Settings" link in the website footer, the in-app Privacy preferences screen, or by configuring your browser to block cookies (note that this may affect functionality). Mobile-platform tracking choices are also governed by Apple's App Tracking Transparency framework and Android's per-app permissions.</p>
+
+
+  <h2 id="s10"><span class="num">10.</span>Children</h2>
+
+  <p>The Service is intended for users aged <strong>eighteen (18)</strong> and older. We do not knowingly collect personal data from minors. If we become aware that we have collected personal data from a person under the age of majority in their jurisdiction, we will delete it promptly. Parents or legal guardians who believe their child's data has been collected may contact <a href="mailto:privacy@[domain]">privacy@[domain]</a> and we will (a) confirm receipt within 72 hours, (b) verify the relationship, and (c) delete the data within 30 days unless required by law to retain it.</p>
+
+
+  <h2 id="s11"><span class="num">11.</span>How We Secure Your Data</h2>
+
+  <p>We apply a defense-in-depth security program that includes, at a high level: encryption of personal data <strong>in transit</strong> using TLS 1.2+; encryption <strong>at rest</strong> for primary databases and backups using industry-standard symmetric ciphers; <strong>role-based access controls</strong> with the principle of least privilege; mandatory <strong>multi-factor authentication</strong> for all staff accessing production systems; <strong>centralized audit logging</strong>; <strong>independent vulnerability testing</strong> at least annually; and an <strong>employee privacy &amp; security training program</strong>. We deliberately do not publish granular technical detail in this Policy in order to limit the risk of providing a roadmap to attackers.</p>
+
+  <p>However, no system is completely secure. You play an important role in protecting your account: choose a strong unique password, enable two-factor authentication where offered, and notify us immediately at <a href="mailto:security@[domain]">security@[domain]</a> if you suspect unauthorized access.</p>
+
+
+  <h2 id="s12"><span class="num">12.</span>Data Breach Notification</h2>
+
+  <p>In the event of a personal data breach that is likely to result in a risk to the rights and freedoms of natural persons, we will:</p>
+  <ol>
+    <li><strong>Notify the competent supervisory authority</strong> (the lead EU supervisory authority for affected EEA residents, the ICO for UK residents, the UAE Data Office for affected UAE residents, and other relevant regulators) <strong>without undue delay, and where feasible within seventy-two (72) hours</strong> of becoming aware of the breach, per GDPR Art. 33 and UAE PDPL Executive Regulation;</li>
+    <li><strong>Communicate the breach directly to affected data subjects</strong> without undue delay, where the breach is likely to result in a <strong>high risk</strong> to their rights and freedoms, per GDPR Art. 34;</li>
+    <li>Document the facts, effects, and remedial action taken in a written incident record retained for at least three years.</li>
+  </ol>
+  <p>Notifications will include, at minimum: the nature of the breach, the categories and approximate number of data subjects affected, the likely consequences, and the measures taken or proposed to address it and to mitigate its possible adverse effects.</p>
+
+  <div class="lawyer-flag">
+    The 72-hour clock and the high-risk threshold for individual notice are subject to specific procedural rules in each jurisdiction. The UAE PDPL Executive Regulation may impose shorter or different reporting requirements than GDPR; California (CCPA / CPRA) and Apple's developer agreement have their own breach-notice rules. Confirm the breach-response playbook with counsel before launch.
+  </div>
+
+
+  <h2 id="s13"><span class="num">13.</span>Changes to This Policy</h2>
+
+  <p>We may update this Privacy Policy from time to time. When we make a <strong>material</strong> change, we will notify registered users by email and post an in-app banner at least <strong>fourteen (14) days</strong> before the change takes effect. The "Last updated" date at the top of this document will always reflect the most recent revision. Prior versions are archived and available on request.</p>
+
+
+  <h2 id="s14"><span class="num">14.</span>Contact &amp; Data Protection Officer</h2>
+  <p>
+    <strong>Data Controller:</strong> Peanut eSIM LLC<br>
+    [Registered Agent address — Delaware]<br><br>
+    <strong>Privacy enquiries / data-subject requests:</strong> <a href="mailto:privacy@[domain]">privacy@[domain]</a><br>
+    <strong>Security incidents:</strong> <a href="mailto:security@[domain]">security@[domain]</a><br>
+    <strong>Data Protection Officer (DPO):</strong> [to be appointed where required by GDPR Art. 37 / UAE PDPL Art. 10]<br>
+    <strong>EU Representative under GDPR Art. 27:</strong> [to be appointed if required after EU market-share assessment]<br>
+    <strong>UK Representative under UK GDPR Art. 27:</strong> [to be appointed if required after UK market-share assessment]
+  </p>
+
+
+  <h2 id="s15"><span class="num">15.</span>Effective Date</h2>
+  <p>This Privacy Policy is effective as of <strong>2026-05-21</strong>. The previous version (if any) is archived and available upon request to <a href="mailto:privacy@[domain]">privacy@[domain]</a>.</p>
+
+  <hr class="section-rule">
+
+  <footer class="footer">
+    &copy; 2026 Peanut eSIM LLC. All rights reserved. This document is a working draft pending legal review and does not constitute legal advice.
+  </footer>
+
+</main>
+
+</body>
+</html>

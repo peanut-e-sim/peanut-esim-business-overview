@@ -1781,6 +1781,46 @@
   .money-flow .flow-arrow { color: var(--accent); font-weight: 700; }
   .money-flow strong { color: var(--accent); }
 
+  /* Bullets inside roadmap items */
+  .roadmap-item ul.ri-bullets {
+    list-style: none;
+    padding-left: 0;
+    margin: 6px 0 14px;
+  }
+  .roadmap-item ul.ri-bullets li {
+    padding: 5px 0 5px 22px;
+    position: relative;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+  .roadmap-item ul.ri-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .roadmap-item ul.ri-bullets strong { color: var(--text); font-weight: 600; }
+  .roadmap-item ul.ri-bullets li.decided::before { background: var(--accent); }
+  .roadmap-item ul.ri-bullets li.pending::before { background: var(--warning); }
+  .roadmap-item .meta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 8px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    border-top: 1px dashed var(--line);
+    margin-top: 12px;
+  }
+  .roadmap-item .meta-row strong { color: var(--text); font-weight: 600; margin-left: 4px; }
+
   /* Inline callout/caveat */
   .ri-callout {
     background: var(--warning-soft);
@@ -3169,6 +3209,208 @@ Mercury（米国法人銀行口座）
         <tr><td>11</td><td><span class="lang en">Business insurance (E&amp;O + cyber)</span><span class="lang jp">事業保険（E&amp;O + サイバー）</span></td><td>⏸ <span class="lang en">Defer post-launch</span><span class="lang jp">ローンチ後に保留</span></td><td>$1–3K/yr</td></tr>
       </tbody>
     </table>
+
+    <!-- Phase 1 — Item Details -->
+    <h3 style="font-family: 'Shippori Mincho', serif; font-weight: 600; font-size: 22px; margin: 36px 0 18px; color: var(--text);"><span class="lang en">Item details &amp; what we've discussed</span><span class="lang jp">各項目の詳細・これまでの議論</span></h3>
+
+    <!-- ITEM 1 — Incorporate Delaware LLC -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">BLOCKED · NAME</span><span class="lang jp">ブロック中 ・ 名称未定</span></span>
+        <h3><span class="lang en">Item 1 — Incorporate Delaware LLC</span><span class="lang jp">Item 1 — デラウェア LLC 設立</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">File the LLC via Stripe Atlas ($500 flat, 2–3 weeks). Atlas auto-bundles LLC + EIN + Mercury bank + Stripe US merchant account.</span><span class="lang jp">Stripe Atlas（$500、2〜3週間）で LLC 設立を申請。LLC + EIN + Mercury 銀行 + Stripe US 加盟店を一括で取得。</span></p>
+      <h4><span class="lang en">What we discussed</span><span class="lang jp">議論したこと</span></h4>
+      <ul class="ri-bullets">
+        <li class="decided"><strong><span class="lang en">Single-member LLC at start</span><span class="lang jp">最初はシングルメンバーで開始</span></strong> <span class="lang en">— Balraj as sole owner. Convert to multi-member later (~$300) once founder agreement with Akito is signed. Avoids blocking on the founder-agreement negotiation.</span><span class="lang jp">— Balraj 単独オーナー。Akito との共同創業者合意書 締結後にマルチメンバーへ変換（約$300）。合意書交渉が ボトルネックにならないようにするため。</span></li>
+        <li class="decided"><strong><span class="lang en">Stripe Atlas chosen</span><span class="lang jp">Stripe Atlas を採用</span></strong> <span class="lang en">over Clerky ($800+), Firstbase ($399), DIY ($150) — best fit for non-US founders.</span><span class="lang jp">Clerky（$800〜）、Firstbase（$399）、DIY（$150）を比較検討した上で。米国非居住者向けに最適。</span></li>
+      </ul>
+      <h4><span class="lang en">Open sub-decisions</span><span class="lang jp">未決の派生事項</span></h4>
+      <ul class="ri-bullets">
+        <li class="pending"><span class="lang en">Legal entity name → <strong>Open Discussion · Decision 00</strong></span><span class="lang jp">法人正式名称 → <strong>未決事項 ・ 判断 00</strong></span></li>
+      </ul>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$500</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>2–3 weeks</strong></span></div>
+    </div>
+
+    <!-- ITEM 2 — Trademark -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">BLOCKED · YES/NO + NAME</span><span class="lang jp">ブロック中 ・ Y/N＋名称未定</span></span>
+        <h3><span class="lang en">Item 2 — Trademark "Peanut eSIM"</span><span class="lang jp">Item 2 — 商標出願「Peanut eSIM」</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Legal protection of the brand name in specific business categories. Without it, anyone could register "Peanut eSIM" and force us to rebrand.</span><span class="lang jp">特定の事業カテゴリーにおけるブランド名の法的保護。出願しなければ、他社が「Peanut eSIM」を登録し、我々のリブランドを強要できる状態。</span></p>
+      <h4><span class="lang en">What we discussed — 3 scope options</span><span class="lang jp">議論したこと — 3つの範囲オプション</span></h4>
+      <table class="mini-table">
+        <thead><tr><th><span class="lang en">Scope</span><span class="lang jp">範囲</span></th><th><span class="lang en">Coverage</span><span class="lang jp">対応国</span></th><th><span class="lang en">Cost</span><span class="lang jp">費用</span></th></tr></thead>
+        <tbody>
+          <tr><td><span class="lang en">USPTO only</span><span class="lang jp">USPTO のみ</span></td><td><span class="lang en">US only</span><span class="lang jp">米国のみ</span></td><td>~$1.2K</td></tr>
+          <tr class="pick"><td><strong><span class="lang en">USPTO + Madrid Protocol ⭐</span><span class="lang jp">USPTO + マドリッド条約 ⭐</span></strong></td><td>US + UAE + EU + UK + JP + SG</td><td>$2.5–3.5K</td></tr>
+          <tr><td><span class="lang en">Country-by-country</span><span class="lang jp">国別出願</span></td><td><span class="lang en">Max control per market</span><span class="lang jp">国ごとの完全制御</span></td><td>$1–2K <span class="lang en">per country</span><span class="lang jp">国あたり</span></td></tr>
+        </tbody>
+      </table>
+      <h4><span class="lang en">Open sub-decisions</span><span class="lang jp">未決の派生事項</span></h4>
+      <ul class="ri-bullets">
+        <li class="pending"><span class="lang en">File trademark yes/no + scope → <strong>Open Discussion · Decision 00B</strong></span><span class="lang jp">商標出願 Y/N ＋範囲 → <strong>未決事項 ・ 判断 00B</strong></span></li>
+        <li class="pending"><span class="lang en">Practical sequencing: file AFTER LLC (LLC owns the mark) OR in personal name then assign (~$100)</span><span class="lang jp">実務上の順序:LLC 設立後（LLC が商標保有者）または個人名出願→譲渡（約$100）</span></li>
+      </ul>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$1.2K – $3.5K</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>8–12 months grant</strong></span></div>
+    </div>
+
+    <!-- ITEM 3 — Domains + handles -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">BLOCKED · NAME</span><span class="lang jp">ブロック中 ・ 名称未定</span></span>
+        <h3><span class="lang en">Item 3 — Domains + social handles</span><span class="lang jp">Item 3 — ドメイン + SNSアカウント</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Lock peanutesim.com / .app / .ae + Instagram / X / TikTok / LinkedIn / YouTube handles. ~$100 total, ~30 min. We can move on this the SAME DAY the name is decided.</span><span class="lang jp">peanutesim.com / .app / .ae + Instagram / X / TikTok / LinkedIn / YouTube のアカウントを確保。約$100、30分。名称決定 当日に着手可能。</span></p>
+      <h4><span class="lang en">What we discussed</span><span class="lang jp">議論したこと</span></h4>
+      <ul class="ri-bullets">
+        <li><span class="lang en">Need availability check across domains + social platforms before purchase</span><span class="lang jp">購入前にドメイン・SNS全プラットフォームで利用可能性確認が必要</span></li>
+        <li><span class="lang en">Lock backup variants (e.g., getpeanutesim.com) to prevent squatters</span><span class="lang jp">バックアップ名（例:getpeanutesim.com）も確保し、転売屋を防ぐ</span></li>
+      </ul>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>~$100</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>30 min</strong></span></div>
+    </div>
+
+    <!-- ITEM 4 — Terms / Privacy / Refund -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status done"><span class="lang en">DRAFTED · LAWYER REVIEW PENDING</span><span class="lang jp">起草済 ・ 弁護士レビュー待</span></span>
+        <h3><span class="lang en">Item 4 — Terms of Service / Privacy / Refund Policy</span><span class="lang jp">Item 4 — 利用規約 / プライバシー / 返金ポリシー</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Three legal documents required for app stores + legal protection. Working drafts now exist in the repo (see Documents tab).</span><span class="lang jp">App Store 公開と法的保護のため必要な3文書。動作するドラフトがリポジトリに存在（Documents タブ参照）。</span></p>
+      <h4><span class="lang en">What we discussed</span><span class="lang jp">議論したこと</span></h4>
+      <ul class="ri-bullets">
+        <li class="decided"><strong><span class="lang en">Governing law: Delaware + AAA arbitration</span><span class="lang jp">準拠法:デラウェア + AAA 仲裁</span></strong> <span class="lang en">— see Decision 00C</span><span class="lang jp">— 判断 00C 参照</span></li>
+        <li class="decided"><strong><span class="lang en">30-day pre-activation refund window</span><span class="lang jp">未アクティベーション時は 30 日返金可</span></strong> <span class="lang en">— matches Airalo/Holafly</span><span class="lang jp">— Airalo / Holafly と同水準</span></li>
+        <li class="decided"><strong><span class="lang en">14-day faulty-eSIM report window</span><span class="lang jp">不良 eSIM 報告は 14 日以内</span></strong></li>
+        <li class="decided"><strong><span class="lang en">Liability cap = price paid in trailing 3 months</span><span class="lang jp">責任上限 = 直近 3 ヶ月支払額</span></strong></li>
+        <li class="decided"><strong><span class="lang en">7-year account data retention</span><span class="lang jp">アカウントデータ 7 年保存</span></strong> <span class="lang en">— aligns with US + UAE FTA 5-year VAT minimum</span><span class="lang jp">— US + UAE FTA の 5 年 VAT 最低保持基準と整合</span></li>
+        <li><span class="lang en">8 lawyer-review flags placed across the 3 docs for high-risk clauses (liability cap, arbitration enforceability, indemnification, UAE rep, 72hr breach, fraud profiling)</span><span class="lang jp">3 文書合計 8 箇所に弁護士レビュー要箇所をマーク（責任上限、仲裁有効性、補償、UAE 代理人、72 時間侵害通知、不正監視）</span></li>
+      </ul>
+      <h4><span class="lang en">Deliverables (in repo)</span><span class="lang jp">成果物（リポジトリ内）</span></h4>
+      <ul class="ri-bullets">
+        <li><a href="docs/terms-of-service.html" target="_blank" style="color: var(--accent); text-decoration: underline;"><span class="lang en">→ terms-of-service.html (3,424 words)</span><span class="lang jp">→ terms-of-service.html（3,424語）</span></a></li>
+        <li><a href="docs/privacy-policy.html" target="_blank" style="color: var(--accent); text-decoration: underline;"><span class="lang en">→ privacy-policy.html (2,603 words)</span><span class="lang jp">→ privacy-policy.html（2,603語）</span></a></li>
+        <li><a href="docs/refund-policy.html" target="_blank" style="color: var(--accent); text-decoration: underline;"><span class="lang en">→ refund-policy.html (2,198 words)</span><span class="lang jp">→ refund-policy.html（2,198語）</span></a></li>
+      </ul>
+      <div class="meta-row"><span><span class="lang en">LAWYER COST</span><span class="lang jp">弁護士費用</span><strong>$500 – $2K</strong></span><span><span class="lang en">REPLACE [LEGAL ENTITY] LLC AFTER ITEM 1</span><span class="lang jp">Item 1 後に [LEGAL ENTITY] LLC を置換</span></span></div>
+    </div>
+
+    <!-- ITEM 5 — Data protection -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status starting"><span class="lang en">PARTIAL · DPA TEMPLATE IN PROGRESS</span><span class="lang jp">一部完了 ・ DPAテンプレ作成中</span></span>
+        <h3><span class="lang en">Item 5 — Data protection compliance (PDPL + GDPR)</span><span class="lang jp">Item 5 — データ保護準拠（PDPL + GDPR）</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Operational compliance backing up the Privacy Policy promises — vendor DPAs, breach process, data-deletion flows.</span><span class="lang jp">プライバシーポリシーの約束を実装する運用面の準拠 — ベンダー DPA、侵害対応プロセス、データ削除フロー。</span></p>
+      <h4><span class="lang en">What we discussed</span><span class="lang jp">議論したこと</span></h4>
+      <ul class="ri-bullets">
+        <li><span class="lang en">Comply with GDPR (stricter) → auto-covers UAE PDPL</span><span class="lang jp">GDPR（より厳格）に準拠 → UAE PDPL も自動的にカバー</span></li>
+        <li><span class="lang en">Vendor DPAs needed: Samurai, Stripe, Apple, Google, Mercury, hosting, analytics</span><span class="lang jp">DPA 必要なベンダー:Samurai、Stripe、Apple、Google、Mercury、ホスティング、解析ツール</span></li>
+        <li><span class="lang en">DPO probably NOT required for us (low-scale processing)</span><span class="lang jp">DPO 任命はおそらく不要（処理規模が小さい）</span></li>
+        <li><span class="lang en">Data deletion + export flows → built during Phase 3 (Tech Build)</span><span class="lang jp">データ削除・エクスポートフロー → フェーズ 3（技術開発）で実装</span></li>
+        <li><span class="lang en">72-hour breach notification process (GDPR + UAE PDPL)</span><span class="lang jp">72 時間以内の侵害通知プロセス（GDPR + UAE PDPL）</span></li>
+      </ul>
+      <h4><span class="lang en">Deliverables (when DPA agent completes)</span><span class="lang jp">成果物（DPA エージェント完了時）</span></h4>
+      <ul class="ri-bullets">
+        <li><span class="lang en">→ vendor-dpa-template.html (in progress)</span><span class="lang jp">→ vendor-dpa-template.html（作成中）</span></li>
+        <li><span class="lang en">→ vendor-dpa-checklist.html (in progress)</span><span class="lang jp">→ vendor-dpa-checklist.html（作成中）</span></li>
+      </ul>
+    </div>
+
+    <!-- ITEM 6 — Mercury (with the 3 bank options) -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status done"><span class="lang en">DECIDED · MERCURY (auto via Atlas)</span><span class="lang jp">決定 ・ Mercury（Atlas経由自動開設）</span></span>
+        <h3><span class="lang en">Item 6 — Mercury US business bank account</span><span class="lang jp">Item 6 — Mercury 米国法人銀行口座</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">US business bank account for the LLC. Where Stripe deposits land, where vendors get paid from, where you wire to yourself. Auto-opens when Stripe Atlas files the LLC.</span><span class="lang jp">LLC の米国法人銀行口座。Stripe からの入金、ベンダー支払い、自分宛て送金がここを通る。Stripe Atlas の LLC 設立時に自動開設。</span></p>
+      <h4><span class="lang en">What we discussed — 3 banking options compared</span><span class="lang jp">議論したこと — 3つの銀行オプション比較</span></h4>
+      <table class="mini-table">
+        <thead><tr><th><span class="lang en">Option</span><span class="lang jp">選択肢</span></th><th><span class="lang en">Pros</span><span class="lang jp">長所</span></th><th><span class="lang en">Cons</span><span class="lang jp">短所</span></th></tr></thead>
+        <tbody>
+          <tr class="pick">
+            <td><strong>Mercury ⭐</strong></td>
+            <td><span class="lang en">$0 setup/monthly · Free wires · Built into Stripe Atlas (one-click) · Best UX for non-US founders · Treasury at ~4% on idle cash</span><span class="lang jp">設定/月額無料 ・ 送金無料 ・ Stripe Atlas に統合済（ワンクリック） ・ 米国非居住者向け最高 UX ・ 余剰資金 約 4% 運用</span></td>
+            <td><span class="lang en">~5% rejection rate (rare for clean digital services)</span><span class="lang jp">約 5% の審査落ち（クリーンなデジタル事業では稀）</span></td>
+          </tr>
+          <tr>
+            <td>Brex</td>
+            <td><span class="lang en">Similar to Mercury · Strong reporting · Built-in expense management</span><span class="lang jp">Mercury と類似 ・ レポート機能強 ・ 経費管理内蔵</span></td>
+            <td><span class="lang en">Stricter on early-stage approvals · Sometimes requires revenue proof</span><span class="lang jp">初期段階での審査が厳格 ・ 売上証明を求められる場合あり</span></td>
+          </tr>
+          <tr>
+            <td>Relay / Wise Business</td>
+            <td><span class="lang en">Free · Multi-currency (Wise) — useful for international ops · Solid backup if Mercury rejects</span><span class="lang jp">無料 ・ マルチ通貨対応（Wise） — 海外運用に便利 ・ Mercury 拒否時のバックアップ</span></td>
+            <td><span class="lang en">Lower brand recognition · Less Stripe-ecosystem integration</span><span class="lang jp">ブランド認知度が低い ・ Stripe エコシステム統合が弱い</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="ri-bullets">
+        <li class="decided"><strong><span class="lang en">Decision: Mercury</span><span class="lang jp">決定:Mercury</span></strong> <span class="lang en">— same pattern Airalo, Saily, and most Atlas-formed LLCs use. Brex/Relay/Wise are backups if Mercury denies us.</span><span class="lang jp">— Airalo、Saily、Atlas で設立された LLC の大多数と同じパターン。Brex/Relay/Wise は Mercury 拒否時のバックアップ。</span></li>
+      </ul>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong><span class="lang en">Auto with Item 1</span><span class="lang jp">Item 1 と同時に自動</span></strong></span></div>
+    </div>
+
+    <!-- ITEM 7 — Stripe US -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status done"><span class="lang en">DECIDED · STRIPE US (auto via Atlas)</span><span class="lang jp">決定 ・ Stripe US（Atlas経由自動開設）</span></span>
+        <h3><span class="lang en">Item 7 — Stripe US merchant account</span><span class="lang jp">Item 7 — Stripe US 加盟店アカウント</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Payment processor that pulls money from customers' cards. Mercury is where money lives; Stripe is what gets it there. Without it, no revenue.</span><span class="lang jp">顧客のカードから決済金を引き出す決済代行。Mercury が資金の保管先で、Stripe がそこへ届ける役割。これ無しでは売上ゼロ。</span></p>
+      <h4><span class="lang en">What we discussed</span><span class="lang jp">議論したこと</span></h4>
+      <ul class="ri-bullets">
+        <li class="decided"><strong><span class="lang en">Stripe US over Stripe UAE / Telr / Network International</span><span class="lang jp">Stripe US を採用（Stripe UAE / Telr / Network International ではなく）</span></strong> <span class="lang en">— Phase 0 Item 1 research confirmed: UAE processors explicitly block SIM merchants. This is the entire reason we're going Delaware LLC.</span><span class="lang jp">— フェーズ 0 Item 1 の調査結果:UAE 決済代行は SIM 加盟店を明示的に拒否。デラウェア LLC を選んだ最大の理由。</span></li>
+        <li class="decided"><strong>MCC 4814 (Telecommunications)</strong> <span class="lang en">— declare transparently to Stripe at underwriting</span><span class="lang jp">— アンダーライティング時に透明性持って申告</span></li>
+        <li><span class="lang en">$5,000 in Stripe credit included via Stripe Atlas</span><span class="lang jp">Stripe Atlas 経由で $5,000 の Stripe クレジット付与</span></li>
+        <li class="pending"><strong><span class="lang en">In-app purchase vs web checkout</span><span class="lang jp">アプリ内課金 vs Web 決済</span></strong> <span class="lang en">→ Open Discussion · Decision 01</span><span class="lang jp">→ 未決事項 ・ 判断 01</span></li>
+      </ul>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>2.9% + $0.30 per transaction</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong><span class="lang en">Auto with Item 1</span><span class="lang jp">Item 1 と同時に自動</span></strong></span></div>
+    </div>
+
+    <!-- ITEMS 8-11 — short cards -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">BLOCKED · ITEM 1</span><span class="lang jp">ブロック中 ・ Item 1 待</span></span>
+        <h3><span class="lang en">Item 8 — Apple Developer account</span><span class="lang jp">Item 8 — Apple Developer アカウント</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Required to publish the iOS app. Register under LLC name. Need a D-U-N-S number (free, 1–2 weeks).</span><span class="lang jp">iOS アプリ公開に必要。LLC 名義で登録。D-U-N-S 番号が必要（無料、1〜2 週間）。</span></p>
+      <ul class="ri-bullets">
+        <li><span class="lang en">Apple "carrier entitlement" (in-app eSIM install) is a SEPARATE later application — see <strong>Open Discussion · Decision 02</strong></span><span class="lang jp">Apple「キャリア権限」（アプリ内 eSIM インストール）は別途後で申請 → <strong>未決事項 ・ 判断 02</strong></span></li>
+      </ul>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$99/year</strong></span></div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">BLOCKED · ITEM 1</span><span class="lang jp">ブロック中 ・ Item 1 待</span></span>
+        <h3><span class="lang en">Item 9 — Google Play Console</span><span class="lang jp">Item 9 — Google Play Console</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Required to publish the Android app. Register under LLC name. Simpler than Apple Dev — no D-U-N-S required.</span><span class="lang jp">Android アプリ公開に必要。LLC 名義で登録。Apple Developer より簡単 — D-U-N-S 不要。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$25 one-time</strong></span></div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">BLOCKED · PHASE 0 ITEM 2</span><span class="lang jp">ブロック中 ・ Phase 0 Item 2 待</span></span>
+        <h3><span class="lang en">Item 10 — Aggregator MSA (Samurai or alt)</span><span class="lang jp">Item 10 — アグリゲーター MSA（Samurai または代替）</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Master Services Agreement with our wholesale eSIM aggregator. Cannot be signed until we have Samurai's responses to the diligence questionnaire (Phase 0 Item 2).</span><span class="lang jp">卸 eSIM アグリゲーターとのマスター契約。Samurai がパートナー確認質問リスト（Phase 0 Item 2）に回答してから締結可能。</span></p>
+      <ul class="ri-bullets">
+        <li><span class="lang en">Vendor DPA template being drafted (Item 5 background agent) to attach to the MSA</span><span class="lang jp">MSA に添付する ベンダー DPA テンプレートを作成中（Item 5 のバックグラウンドエージェント）</span></li>
+        <li class="pending"><span class="lang en">Samurai exclusive vs multi-aggregator → <strong>Open Discussion · Decision 03</strong></span><span class="lang jp">Samurai 独占 vs 複数アグリゲーター → <strong>未決事項 ・ 判断 03</strong></span></li>
+      </ul>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status skipped"><span class="lang en">DEFERRED · POST-LAUNCH</span><span class="lang jp">保留 ・ ローンチ後</span></span>
+        <h3><span class="lang en">Item 11 — Business insurance (E&amp;O + cyber)</span><span class="lang jp">Item 11 — 事業保険（E&amp;O + サイバー）</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Errors &amp; Omissions + cyber-liability coverage. Defer until we have actual customers and revenue — there's nothing to insure pre-launch.</span><span class="lang jp">E&amp;O（業務過誤）+ サイバー責任保険。実際の顧客と売上が発生してから取得 — ローンチ前は保険対象がない。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$1–3K/year</strong></span></div>
+    </div>
   </section>
 
   <!-- Phases 2-7 -->

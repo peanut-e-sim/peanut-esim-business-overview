@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refund Policy — Peanut eSIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Shippori+Mincho:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --warning: #C97E22;
+    --warning-soft: #FFF8EE;
+    --warning-border: #F0D9A8;
+    --rose: #C97070;
+    --rose-soft: #FBEDED;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 250, 247, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .brand-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .back-link {
+    font-size: 13px;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    transition: 0.2s ease;
+  }
+  .back-link:hover { color: var(--accent); border-color: var(--accent); }
+  .meta-row {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    flex-wrap: wrap;
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row .dot-small {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-3);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 32px 96px;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    color: var(--text-2);
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 32px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .doc-meta strong { color: var(--text); font-weight: 600; }
+  .doc-meta-item { display: flex; gap: 6px; }
+
+  .summary-card {
+    background: var(--accent-soft);
+    border: 1px solid #C5DED8;
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin: 20px 0 40px;
+  }
+  .summary-card-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-card p {
+    color: var(--text);
+    margin-bottom: 8px;
+    font-size: 14.5px;
+  }
+  .summary-card p:last-child { margin-bottom: 0; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.25;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    color: var(--text);
+    scroll-margin-top: 80px;
+  }
+  h2 .num {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 18px;
+    display: inline-block;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text);
+    margin-top: 28px;
+    margin-bottom: 8px;
+  }
+
+  p { margin-bottom: 14px; color: var(--text-2); }
+  p strong, li strong { color: var(--text); font-weight: 600; }
+
+  ul, ol {
+    margin: 12px 0 18px 22px;
+    color: var(--text-2);
+  }
+  li { margin-bottom: 8px; }
+
+  a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(45,140,126,0.3); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .lawyer-flag {
+    background: var(--warning-soft);
+    border: 1px solid var(--warning-border);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 13.5px;
+    color: #6E4A1C;
+    line-height: 1.65;
+  }
+  .lawyer-flag::before {
+    content: "LAWYER REVIEW";
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--warning);
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 32px 0 48px;
+  }
+  .toc-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+  .toc ol {
+    columns: 2;
+    column-gap: 32px;
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13.5px;
+  }
+  .toc ol li { margin-bottom: 5px; break-inside: avoid; }
+  .toc a { color: var(--text-2); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 22px;
+    font-size: 13.5px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  table.data-table th, table.data-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text-2);
+    vertical-align: top;
+  }
+  table.data-table th {
+    background: var(--accent-soft);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  table.data-table tr:last-child td { border-bottom: 0; }
+
+  .yes { color: var(--accent); font-weight: 600; }
+  .no { color: var(--rose); font-weight: 600; }
+
+  hr.section-rule {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 64px 0 0;
+  }
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-3);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 40px; }
+    h2 { font-size: 26px; }
+    .toc ol { columns: 1; }
+    .container { padding: 40px 22px 64px; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 8px 10px; }
+  }
+
+  @media print {
+    .topbar, .back-link { display: none; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    h1, h2, h3 { color: #000; }
+    .lawyer-flag { border: 1px solid #999; background: #f6f6f6; color: #333; }
+    .summary-card { border: 1px solid #999; background: #f6f6f6; }
+    .container { padding: 0; max-width: 100%; }
+    a { color: #000; text-decoration: underline; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand-pill" href="/"><span class="dot"></span>Peanut eSIM</a>
+    <div class="meta-row">
+      <span>Last updated: <strong style="color:var(--text-2)">2026-05-21</strong></span>
+      <span class="dot-small"></span>
+      <span>Jurisdiction: Delaware, USA</span>
+    </div>
+    <a class="back-link" href="/">&larr; Back to site</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <h1>Refund Policy</h1>
+  <p class="subtitle">Clear rules for when an eSIM data plan is refundable, when it is not, and how to request a refund — supplementing our <a href="./terms-of-service.html">Terms of Service</a>.</p>
+
+  <div class="doc-meta">
+    <div class="doc-meta-item"><strong>Entity:</strong> Peanut eSIM LLC ([LEGAL ENTITY] LLC)</div>
+    <div class="doc-meta-item"><strong>State of formation:</strong> Delaware, USA</div>
+    <div class="doc-meta-item"><strong>Effective date:</strong> 2026-05-21</div>
+    <div class="doc-meta-item"><strong>Version:</strong> 1.0 (draft)</div>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-card-title">Quick summary</div>
+    <p><strong>Not yet installed?</strong> Full refund within 30 days &mdash; just ask.</p>
+    <p><strong>Already activated?</strong> Non-refundable as a rule, because the data plan is a consumed digital good.</p>
+    <p><strong>Genuinely faulty eSIM?</strong> Full refund or free replacement &mdash; contact support within 14 days.</p>
+    <p><strong>Wrong destination by mistake?</strong> Free swap within 24 hours, as long as you have not installed the eSIM.</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#s1">General rule</a></li>
+      <li><a href="#s2">Pre-activation refunds</a></li>
+      <li><a href="#s3">Faulty eSIMs</a></li>
+      <li><a href="#s4">Wrong destination by mistake</a></li>
+      <li><a href="#s5">Partial-use scenarios</a></li>
+      <li><a href="#s6">Coverage complaints</a></li>
+      <li><a href="#s7">Fraud &amp; chargebacks</a></li>
+      <li><a href="#s8">How to request a refund</a></li>
+      <li><a href="#s9">Processing time</a></li>
+      <li><a href="#s10">Apple &amp; Google Play purchases</a></li>
+      <li><a href="#s11">Currency &amp; conversion</a></li>
+      <li><a href="#s12">Updates to this policy</a></li>
+    </ol>
+  </div>
+
+
+  <h2 id="s1"><span class="num">1.</span>The General Rule</h2>
+
+  <p>An eSIM data plan ("<strong>Plan</strong>") is a <strong>consumed digital good</strong>. Once you have <strong>activated</strong> the Plan &mdash; meaning the eSIM profile has been installed on your device and the device has registered (or attempted to register) on a partner mobile network &mdash; the Plan is treated as delivered and consumed, and is <strong>non-refundable</strong>, except in the specific cases set out in Sections 3 (Faulty eSIM) and where required by mandatory local consumer law.</p>
+
+  <p>This is industry standard for prepaid eSIM products (see public refund policies of Airalo, Holafly, Saily, and Nomad) and reflects the technical reality that, once a profile has been provisioned to a specific device EID, it cannot be reclaimed, re-sold, or returned to inventory.</p>
+
+  <p>If you are an <strong>EU/EEA or UK consumer</strong>, please note that under Article 16(m) of the EU Consumer Rights Directive 2011/83/EU (as transposed locally) and the equivalent UK Consumer Contracts Regulations 2013, the 14-day right of withdrawal for digital content does <strong>not apply</strong> once supply of the digital content has begun with your prior express consent and acknowledgment that you thereby lose the right of withdrawal. At checkout you confirm both. <strong>Before installation</strong>, the 14-day right of withdrawal is honored in full and is in fact extended to 30 days under Section 2 of this Policy.</p>
+
+
+  <h2 id="s2"><span class="num">2.</span>Pre-Activation Refunds (30-Day Window)</h2>
+
+  <p>If you have <strong>not yet installed or activated</strong> the eSIM profile, you may request a full refund <strong>within thirty (30) days</strong> of the original purchase date. We extend the EU-mandated 14 days because the eSIM has not been provisioned to any network and we can void the profile at no cost to us.</p>
+
+  <h3>2.1 What counts as "not yet activated"</h3>
+  <ul>
+    <li>You have <strong>not</strong> scanned the QR code or tapped the universal-install link;</li>
+    <li>The eSIM profile is <strong>not</strong> present on your device's Settings &gt; Cellular / Mobile Network list;</li>
+    <li>The eSIM has <strong>not</strong> attempted to register on any partner MNO.</li>
+  </ul>
+  <p>Our system records the activation attempt in real time. If the audit log shows an attempted registration, the Plan is no longer eligible for a pre-activation refund (Section 3 may still apply if the attempt failed for technical reasons not caused by you).</p>
+
+  <h3>2.2 How to claim</h3>
+  <p>Email <a href="mailto:support@[domain]">support@[domain]</a> from the account email address with your order number and a brief reason. We will verify the activation status in the audit log and process the refund per Section 9 below.</p>
+
+
+  <h2 id="s3"><span class="num">3.</span>Faulty eSIM (Technical Failure Not Caused By You)</h2>
+
+  <p>If an eSIM Plan fails to provision, fails to register on the destination network, or delivers a fraction of its advertised quota or validity due to a <strong>technical fault</strong> attributable to us or our upstream aggregator (Samurai Wifi) or its MNO partners, you are entitled to <strong>either a full refund or a free replacement Plan</strong> of equivalent value, at your option.</p>
+
+  <h3>3.1 What qualifies</h3>
+  <ul>
+    <li>QR code fails to install on a confirmed-compatible device;</li>
+    <li>Profile installs but cannot register on any partner network in the destination country, despite a network being available (verified by signal-strength logs and partner-MNO diagnostics);</li>
+    <li>Data session opens but the advertised quota is exhausted in a manner inconsistent with normal usage (suggesting a metering fault upstream);</li>
+    <li>Validity period is shortened by an upstream provisioning error.</li>
+  </ul>
+
+  <h3>3.2 What does not qualify</h3>
+  <ul>
+    <li>Device is carrier-locked or not eSIM-compatible (see Terms of Service Section 6.2);</li>
+    <li>You disabled the line, deleted the profile, or factory-reset your device after activation;</li>
+    <li>You exceeded the daily fair-use throttle on an "unlimited" plan and experienced slower speeds;</li>
+    <li>You traveled to a country outside the Plan's coverage list (a regional Plan does not work in non-listed countries);</li>
+    <li>You consumed the quota through normal use (Section 5);</li>
+    <li>Coverage gaps in remote / underground / indoor / aircraft locations (Section 6).</li>
+  </ul>
+
+  <h3>3.3 How to claim</h3>
+  <p>Contact <a href="mailto:support@[domain]">support@[domain]</a> <strong>within fourteen (14) days</strong> of the attempted activation or earliest manifestation of the fault. Please include:</p>
+  <ul>
+    <li>Order number and eSIM ID (or ICCID, shown in the app);</li>
+    <li>Device model and OS version;</li>
+    <li>Destination country and date(s) of attempted use;</li>
+    <li>A screenshot of Settings &gt; Cellular / Mobile, showing the line status;</li>
+    <li>If possible, a screenshot of any error message and a brief description of what you tried.</li>
+  </ul>
+  <p>Our support team will run diagnostic checks against the upstream provisioning logs and respond within <strong>48 hours</strong> with one of three outcomes: (a) confirmed fault &rarr; refund or free replacement; (b) recoverable issue &rarr; step-by-step fix; (c) not a qualifying fault &rarr; explanation with reasoning.</p>
+
+  <div class="lawyer-flag">
+    The 14-day report window for faulty-eSIM claims is shorter than the statutory "reasonable period" recognized in some jurisdictions (UAE Consumer Protection Law Article 12; EU Sale of Goods Directive 2019/771 Art. 10 &mdash; up to two years for non-conformity claims; UK Consumer Rights Act 2015 s.42). Confirm whether the 14-day window is enforceable as a contractual limit or only as a service target, and consider distinguishing between the report deadline and the actual statutory remedy period.
+  </div>
+
+
+  <h2 id="s4"><span class="num">4.</span>Wrong Destination Purchased By Mistake (24-Hour Swap Window)</h2>
+
+  <p>If you buy a Plan for the wrong country or region by accident (for example, you intended Spain but selected Portugal), you may request a <strong>free swap</strong> to the correct destination, <strong>within twenty-four (24) hours of purchase</strong> and <strong>provided the eSIM has not been installed on your device</strong>. If the corrected Plan has a higher price, you pay the difference; if lower, the difference is refunded to your original payment method.</p>
+
+  <p>After the 24-hour window or once the eSIM is installed, mistaken-destination requests are treated as regular refund requests and are subject to Section 1 (i.e., generally not refundable if activated).</p>
+
+
+  <h2 id="s5"><span class="num">5.</span>Partial-Use Scenarios</h2>
+
+  <p>Once a Plan is activated, the following rules apply:</p>
+  <table class="data-table">
+    <thead><tr><th>Scenario</th><th>Refundable?</th></tr></thead>
+    <tbody>
+      <tr><td>Data already consumed (any amount)</td><td><span class="no">No</span></td></tr>
+      <tr><td>Unused data remaining at end of validity period</td><td><span class="no">No</span> &mdash; consistent with industry practice</td></tr>
+      <tr><td>Unused data after early trip cancellation (e.g., flight cancelled)</td><td><span class="no">No</span> &mdash; the Plan was provisioned and reserved on the upstream network</td></tr>
+      <tr><td>Travel-insurance "trip cancellation" credit</td><td>Pursue via your insurer; we will provide a usage statement on request</td></tr>
+    </tbody>
+  </table>
+  <p>If you cancel your trip <strong>before</strong> installing the eSIM, Section 2 applies and you are entitled to a full refund within 30 days of purchase.</p>
+
+
+  <h2 id="s6"><span class="num">6.</span>Coverage Complaints</h2>
+
+  <p>The Service is delivered over third-party mobile networks (see Terms of Service Section 7). A destination listed as supported on our app indicates that we have a wholesale arrangement covering that country &mdash; it does <strong>not</strong> guarantee coverage in every cell, building, basement, mountain valley, or rural cluster.</p>
+
+  <p>Refunds for coverage complaints will be considered when:</p>
+  <ul>
+    <li>An <strong>entire country</strong> listed as supported was unreachable for the full duration of the Plan, with corroborating diagnostic logs from our upstream aggregator showing a sustained outage; <strong>or</strong></li>
+    <li>The destination's coverage list was materially misrepresented at the point of sale.</li>
+  </ul>
+
+  <p>Refunds for coverage complaints will <strong>not</strong> be considered when:</p>
+  <ul>
+    <li>You experienced coverage gaps in localized areas (rural, indoor, underground, aboard ship/aircraft);</li>
+    <li>The host MNO performed scheduled maintenance announced via the in-app status page;</li>
+    <li>Your device was on an incompatible band (e.g., a U.S.-only model lacking the destination's LTE band 28);</li>
+    <li>You reported the complaint after the Plan expired, where contemporaneous diagnostics are no longer available.</li>
+  </ul>
+
+
+  <h2 id="s7"><span class="num">7.</span>Fraud, Chargebacks &amp; Abuse</h2>
+
+  <p>If a customer initiates a <strong>payment-network chargeback</strong> (e.g., Visa "consumer dispute", Mastercard "service not provided") for a Plan that was successfully activated and used, we will dispute the chargeback with documentary evidence including:</p>
+  <ul>
+    <li>Order confirmation and IP address of purchase;</li>
+    <li>Account email and verified-device fingerprint;</li>
+    <li>Provisioning log showing eSIM install on a specific device EID;</li>
+    <li>Network registration and data-consumption record from the upstream MNO;</li>
+    <li>Copies of any support correspondence.</li>
+  </ul>
+
+  <p>Customers who file <strong>repeat chargebacks without first contacting support</strong>, or who are found to have engaged in coordinated chargeback fraud, will have all linked accounts permanently banned from the Service, and may be referred to credit-card brand fraud-warning databases (Ethoca, Verifi) and, where appropriate, law-enforcement authorities.</p>
+
+  <p>If you have a legitimate complaint, <strong>contact support first</strong> &mdash; we resolve the overwhelming majority of issues without a chargeback being necessary.</p>
+
+  <div class="lawyer-flag">
+    The fraud / chargeback section uses a deliberately firm tone for deterrent effect, but the practical thresholds for what constitutes "abuse" need legal review to avoid GDPR Art. 22-style profiling concerns and to align with UAE Consumer Protection Law Article 7. Coordinate the ban-list and Ethoca-reporting mechanics with the payments lead and confirm the lawful-basis disclosure in the Privacy Policy.
+  </div>
+
+
+  <h2 id="s8"><span class="num">8.</span>How to Request a Refund</h2>
+
+  <ol>
+    <li>Email <a href="mailto:support@[domain]">support@[domain]</a> from the email address registered to the order, <strong>within 14 days</strong> of the issue arising (or within 30 days of purchase for pre-activation refunds under Section 2);</li>
+    <li>Subject line: "Refund request &mdash; [order number]";</li>
+    <li>In the body, include: the order number, the destination and Plan, what went wrong, what outcome you would like (refund or replacement), and any screenshots / diagnostics requested in Section 3;</li>
+    <li>We will acknowledge receipt within one business day and respond with a decision within 48 hours for straightforward cases, or up to 7 business days for cases requiring upstream-aggregator diagnostics;</li>
+    <li>If you disagree with the outcome, you may escalate to <a href="mailto:disputes@[domain]">disputes@[domain]</a>, which is reviewed by our operations lead.</li>
+  </ol>
+
+  <div class="lawyer-flag">
+    The 14-day dispute window and "escalation to operations lead" path is an internal customer-service standard. Confirm that calling it a formal dispute escalation procedure does not inadvertently waive arbitration under the Terms of Service Section 12, and clarify whether arbitration-opt-out language is needed here.
+  </div>
+
+
+  <h2 id="s9"><span class="num">9.</span>Refund Processing Time</h2>
+
+  <p>Approved refunds are returned to the <strong>original payment method</strong>. Typical processing times:</p>
+  <table class="data-table">
+    <thead><tr><th>Payment method</th><th>Processing time</th></tr></thead>
+    <tbody>
+      <tr><td>Stripe (credit / debit card)</td><td>5&ndash;10 business days back to the issuing bank</td></tr>
+      <tr><td>Apple Pay / Google Pay (via Stripe)</td><td>5&ndash;10 business days back to the underlying card</td></tr>
+      <tr><td>Apple In-App Purchase</td><td>Apple processes the refund; typically 24&ndash;48 hours, but Apple has discretion</td></tr>
+      <tr><td>Google Play Billing</td><td>Google processes the refund; typically up to 4 business days</td></tr>
+      <tr><td>Local methods (where supported)</td><td>5&ndash;15 business days, depending on the local processor</td></tr>
+    </tbody>
+  </table>
+
+  <p>If you do not see the refund credited to your statement within these windows, please contact support with your order number and a redacted statement screenshot showing the original charge.</p>
+
+
+  <h2 id="s10"><span class="num">10.</span>Apple App Store &amp; Google Play Purchases</h2>
+
+  <p>Purchases made through <strong>Apple In-App Purchase</strong> or <strong>Google Play Billing</strong> are governed by the platform's own refund rules, which apply <strong>in addition to</strong> this Policy:</p>
+  <ul>
+    <li><strong>Apple:</strong> Refunds for IAP purchases are handled by Apple via <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. Apple decides eligibility under its own policy. We do not have the ability to issue refunds for Apple IAP charges directly; we will, however, provide a usage statement to support your Apple refund request and we will honor a free replacement Plan if Apple declines a refund for a qualifying faulty-eSIM case under Section 3.</li>
+    <li><strong>Google:</strong> Refunds for Google Play purchases are handled via the Google Play Store &gt; Order History. Google's standard 48-hour automatic-refund window applies. After 48 hours, the refund request is routed to us via the Play Console.</li>
+  </ul>
+  <p>If the platform's refund policy entitles you to a more favorable outcome than this Policy, the platform policy prevails for that specific purchase.</p>
+
+
+  <h2 id="s11"><span class="num">11.</span>Currency &amp; Conversion</h2>
+
+  <p>Refunds are issued in the <strong>original payment currency</strong> and to the original payment instrument. If your card was charged in USD and your bank performed a foreign-exchange conversion at purchase, the refund will arrive in USD; any FX difference between the rate at purchase and the rate at refund is a function of your card issuer's policy and is not within our control or reimbursable by us.</p>
+
+
+  <h2 id="s12"><span class="num">12.</span>Updates to This Policy</h2>
+
+  <p>We may update this Refund Policy from time to time. Material changes will be announced by email and in-app notice at least <strong>fourteen (14) days</strong> before they take effect. Plans purchased before the effective date of a change will remain governed by the Refund Policy in force at the time of purchase, unless the new policy is more favorable to you, in which case the new policy applies.</p>
+
+
+  <h2><span class="num">13.</span>Contact</h2>
+  <p>
+    <strong>Peanut eSIM LLC</strong><br>
+    [Registered Agent address &mdash; Delaware]<br>
+    Refund requests: <a href="mailto:support@[domain]">support@[domain]</a><br>
+    Escalations / disputes: <a href="mailto:disputes@[domain]">disputes@[domain]</a><br>
+    Legal: <a href="mailto:legal@[domain]">legal@[domain]</a>
+  </p>
+
+  <hr class="section-rule">
+
+  <footer class="footer">
+    &copy; 2026 Peanut eSIM LLC. All rights reserved. This document is a working draft pending legal review and does not constitute legal advice. Read together with our <a href="./terms-of-service.html">Terms of Service</a> and <a href="./privacy-policy.html">Privacy Policy</a>.
+  </footer>
+
+</main>
+
+</body>
+</html>
