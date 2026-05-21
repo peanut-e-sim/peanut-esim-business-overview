@@ -73,6 +73,92 @@
     border-color: var(--accent);
   }
 
+  /* PROGRESS BAR */
+  .progress-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 18px 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: var(--line-soft);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 2px;
+  }
+  .progress-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  /* SECTION HEAD WITH CHECKBOX */
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .sec-head .sec-label { margin-bottom: 0; }
+  .section-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 13px 5px 11px;
+    background: transparent;
+    color: var(--text-3);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  .section-check:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .section-check svg {
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .section-check.checked {
+    background: var(--accent);
+    color: #FFFFFF;
+    border-color: var(--accent);
+  }
+  .section-check.checked svg path {
+    stroke: #FFFFFF;
+  }
+  section.section-read {
+    background: linear-gradient(180deg, rgba(45, 140, 126, 0.025), transparent 30%);
+    border-left: 2px solid var(--accent);
+    padding-left: 22px;
+    margin-left: -24px;
+    padding-right: 24px;
+    border-radius: 0 8px 8px 0;
+  }
+  section.section-read > h2 { opacity: 0.85; }
+  section.section-read > .sec-intro { opacity: 0.85; }
+
   /* LANG VISIBILITY */
   .lang { display: none; }
   [data-lang="en"] .lang.en,
@@ -280,10 +366,11 @@
     margin-bottom: 14px;
     font-size: 22px;
   }
-  .api-card:nth-child(1) .api-icon { background: var(--accent-soft); }
-  .api-card:nth-child(2) .api-icon { background: var(--peanut-soft); }
-  .api-card:nth-child(3) .api-icon { background: var(--violet-soft); }
-  .api-card:nth-child(4) .api-icon { background: rgba(201, 162, 39, 0.1); }
+  .api-card:nth-child(1) .api-icon { background: var(--accent-soft); color: var(--accent); }
+  .api-card:nth-child(2) .api-icon { background: var(--peanut-soft); color: var(--peanut); }
+  .api-card:nth-child(3) .api-icon { background: var(--violet-soft); color: var(--violet); }
+  .api-card:nth-child(4) .api-icon { background: rgba(201, 162, 39, 0.1); color: var(--gold); }
+  .api-icon svg { display: block; }
   .api-card .endpoint {
     display: inline-block;
     padding: 3px 10px;
@@ -346,7 +433,7 @@
     height: 56px;
     border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     box-shadow: inset 0 0 0 1px var(--line);
   }
   .stack-seg {
@@ -356,12 +443,30 @@
     font-size: 12.5px;
     font-weight: 600;
     position: relative;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .stack-seg.apple { flex: 30; background: linear-gradient(135deg, #E08585, var(--rose)); }
-  .stack-seg.stripe { flex: 3; background: linear-gradient(135deg, #E8A56F, var(--peanut)); min-width: 4px; }
+  .stack-seg.stripe {
+    flex: 3;
+    background: linear-gradient(135deg, #E8A56F, var(--peanut));
+    min-width: 24px;
+    font-size: 0;
+  }
   .stack-seg.wholesale { flex: 33.3; background: linear-gradient(135deg, #9989C9, var(--violet)); }
   .stack-seg.margin { flex: 33.7; background: linear-gradient(135deg, var(--accent-2), var(--accent)); }
-  .stack-seg .pct { opacity: 0.85; margin-left: 6px; }
+  .stack-axis {
+    display: flex;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    margin-bottom: 14px;
+  }
+  .stack-axis div { display: flex; align-items: center; }
+  .stack-axis .ax-l { flex: 30; }
+  .stack-axis .ax-s { flex: 3; min-width: 24px; justify-content: center; }
+  .stack-axis .ax-w { flex: 33.3; justify-content: center; }
+  .stack-axis .ax-m { flex: 33.7; justify-content: center; }
   .stack-legend {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -606,6 +711,177 @@
     font-weight: 600;
   }
 
+  /* APPLE TAX ESCAPE */
+  .path-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 26px 22px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .path-card.recommended {
+    border: 2px solid var(--accent);
+    background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+    box-shadow: 0 6px 24px rgba(45, 140, 126, 0.08);
+  }
+  .path-card.recommended::before {
+    content: '★ RECOMMENDED';
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--accent);
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+  .path-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 16px;
+  }
+  .path-letter {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--line-soft);
+    color: var(--text-2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  [data-lang="en"] .path-letter { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 22px; }
+  .path-card.recommended .path-letter {
+    background: var(--accent);
+    color: #FFFFFF;
+  }
+  .path-name {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .path-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .status-bad { color: var(--rose); }
+  .status-warn { color: var(--warning); }
+  .status-good { color: var(--accent); }
+
+  .path-flow {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    flex-wrap: wrap;
+  }
+  .path-input, .path-loss, .path-output {
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .path-input { background: var(--line-soft); color: var(--text); }
+  .path-loss { background: rgba(201, 112, 112, 0.12); color: var(--rose); }
+  .path-output { background: var(--accent-soft); color: var(--accent); }
+  .path-arrow { color: var(--text-3); font-size: 14px; }
+
+  .margin-track {
+    position: relative;
+    height: 10px;
+    background: var(--line-soft);
+    border-radius: 5px;
+    margin: 18px 0 8px;
+    overflow: hidden;
+  }
+  .margin-fill { height: 100%; border-radius: 5px; }
+  .margin-fill.bad { background: linear-gradient(90deg, #E08585, var(--rose)); }
+  .margin-fill.warn { background: linear-gradient(90deg, var(--warning), #E8A56F); }
+  .margin-fill.good { background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
+  .margin-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    margin-bottom: 14px;
+  }
+  .margin-meta .pct {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .path-card .desc {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.8;
+  }
+
+  .recommendation {
+    margin-top: 32px;
+    background: linear-gradient(135deg, var(--accent-soft), #FFFFFF);
+    border: 1px solid var(--accent);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .rec-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    background: var(--accent);
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  .recommendation h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 14px;
+    line-height: 1.45;
+  }
+  [data-lang="en"] .recommendation h3 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 28px; }
+  .recommendation p {
+    color: var(--text-2);
+    font-size: 14.5px;
+    line-height: 1.85;
+    margin-bottom: 12px;
+  }
+  .recommendation p strong { color: var(--text); font-weight: 600; }
+  .rec-bullets {
+    margin-top: 16px; padding-top: 16px;
+    border-top: 1px dashed rgba(45, 140, 126, 0.3);
+    list-style: none; padding-left: 0;
+  }
+  .rec-bullets li {
+    padding: 6px 0 6px 24px;
+    position: relative;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+  .rec-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 14px;
+    width: 12px; height: 7px;
+    border-left: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+  }
+
   /* QUESTIONNAIRE */
   .q-bar {
     display: flex;
@@ -678,6 +954,17 @@
   <button class="lang-btn" data-lang="jp">日本語</button>
 </div>
 
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+  <span class="progress-text">
+    <span class="lang en"><span id="progressCount">0</span> of 8 read</span>
+    <span class="lang jp"><span id="progressCountJp">0</span> / 8 既読</span>
+  </span>
+</div>
+
 <div class="container">
 
   <!-- HERO -->
@@ -716,7 +1003,7 @@
   </header>
 
   <!-- 1. SUPPLY CHAIN -->
-  <section>
+  <section data-section-id="01">
     <div class="sec-label">
       <span class="lang en">01 / THE FOOD CHAIN</span>
       <span class="lang jp">01 / 業界の階層構造</span>
@@ -785,7 +1072,7 @@
   </section>
 
   <!-- 2. API -->
-  <section>
+  <section data-section-id="02">
     <div class="sec-label"><span class="lang en">02 / THE API SURFACE</span><span class="lang jp">02 / APIの全体像</span></div>
     <h2 class="lang en">The whole API is <em>just four things</em>.</h2>
     <h2 class="lang jp">APIの機能は、<em>本当にこの4つだけ</em>。</h2>
@@ -796,28 +1083,54 @@
 
     <div class="api-grid">
       <div class="api-card">
-        <div class="api-icon">📚</div>
+        <div class="api-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="8" y1="9" x2="16" y2="9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="8" y1="13" x2="16" y2="13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="8" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
         <span class="endpoint">GET /packages</span>
         <h3><span class="lang en">Catalog</span><span class="lang jp">カタログ取得</span></h3>
         <p><span class="lang en">Every country, every plan, every wholesale price. We pull this on a schedule and present it in the app with our markup on top.</span><span class="lang jp">対応国・プラン・卸価格の一覧を取得。定期的に取得して、アプリ上に商品として表示します。自社マージンを上乗せして販売。</span></p>
         <div class="quote"><span class="lang en">"Here's what's for sale today."</span><span class="lang jp">「今日売れる商品はこれです」</span></div>
       </div>
       <div class="api-card">
-        <div class="api-icon">🛒</div>
+        <div class="api-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 5h2.5l2 11h10.5l2-8H7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9.5" cy="20" r="1.6" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="16.5" cy="20" r="1.6" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+        </div>
         <span class="endpoint">POST /orders</span>
         <h3><span class="lang en">Order</span><span class="lang jp">注文（決済）</span></h3>
         <p><span class="lang en">The one transactional call. We pay the aggregator wholesale, they reserve an eSIM for our user. Each call costs us money.</span><span class="lang jp">唯一の決済が発生する呼び出し。アグリゲーターに卸価格を支払い、お客様用のeSIMプロファイルを確保。1回呼ぶたびにコスト発生。</span></p>
         <div class="quote"><span class="lang en">"Charge me. Give me an eSIM."</span><span class="lang jp">「課金して、eSIMを1つください」</span></div>
       </div>
       <div class="api-card">
-        <div class="api-icon">📲</div>
+        <div class="api-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="7" y="3" width="10" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="11" y1="6.5" x2="13" y2="6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M12 11v5m0 0l-2.2-2.2M12 16l2.2-2.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <span class="endpoint">GET /esim/install</span>
         <h3><span class="lang en">Install method</span><span class="lang jp">インストール情報</span></h3>
         <p><span class="lang en">A QR code, LPA string, or universal link. Shown immediately after checkout. The moment of truth — make it effortless.</span><span class="lang jp">QRコード、LPA文字列、ユニバーサルリンクのいずれか。決済完了直後にアプリ上で表示。お客様にとっての勝負どころ。</span></p>
         <div class="quote"><span class="lang en">"Here's how to put me on your phone."</span><span class="lang jp">「スマホへの入れ方はこちら」</span></div>
       </div>
       <div class="api-card">
-        <div class="api-icon">📊</div>
+        <div class="api-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 16a8 8 0 0116 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="4" y1="16" x2="20" y2="16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M12 16l3.5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1.6" fill="currentColor"/>
+          </svg>
+        </div>
         <span class="endpoint">GET /esim/usage</span>
         <h3><span class="lang en">Usage</span><span class="lang jp">利用状況</span></h3>
         <p><span class="lang en">How much data has been consumed. Polled to show users "2.4 GB of 5 GB used" — table-stakes UX.</span><span class="lang jp">そのeSIMがこれまでに消費したデータ量を取得。アプリで「5GB中2.4GB使用済」のように表示します。標準UX。</span></p>
@@ -827,7 +1140,7 @@
   </section>
 
   <!-- 3. MONEY -->
-  <section>
+  <section data-section-id="03">
     <div class="sec-label"><span class="lang en">03 / THE MONEY FLOW</span><span class="lang jp">03 / お金の流れ</span></div>
     <h2 class="lang en">Every <em>$15 plan</em>, broken into pieces.</h2>
     <h2 class="lang jp"><em>$15のプラン</em>を売ったときの内訳。</h2>
@@ -843,9 +1156,9 @@
       </div>
 
       <div class="stack-bar">
-        <div class="stack-seg apple">$4.50</div>
-        <div class="stack-seg stripe">$0.45</div>
-        <div class="stack-seg wholesale">$5.00</div>
+        <div class="stack-seg apple">−$4.50</div>
+        <div class="stack-seg stripe"></div>
+        <div class="stack-seg wholesale">−$5.00</div>
         <div class="stack-seg margin">$5.05</div>
       </div>
 
@@ -875,13 +1188,13 @@
 
     <div class="note">
       <strong><span class="lang en">The Apple-tax escape hatch.</span><span class="lang jp">Apple手数料の回避策。</span></strong>
-      <span class="lang en"> Route checkout to a web page instead of using in-app purchase and that $4.50 stays in our pocket — margin nearly doubles, $5.05 → $9.55. Apple has been cracking down. Airalo eats the 30%. We have a real decision to make here (see Section 06).</span>
-      <span class="lang jp">アプリ内課金ではなくWeb決済に誘導すると、$4.50を自社に残せます。利益が $5.05 → $9.55 にジャンプ。ただしAppleはこの手法を厳しく取り締まっており、Airaloは戦いを避けて30%を受け入れています。重要な判断ポイント（セクション06参照）。</span>
+      <span class="lang en"> Route checkout to a web page instead of using in-app purchase and that $4.50 stays in our pocket — margin nearly doubles, $5.05 → $9.55. Apple has been cracking down. Airalo eats the 30%. <strong>Full strategy + recommendation in Section 07 ↓</strong></span>
+      <span class="lang jp">アプリ内課金ではなくWeb決済に誘導すると、$4.50を自社に残せます。利益が $5.05 → $9.55 にジャンプ。ただしAppleはこの手法を厳しく取り締まっており、Airaloは戦いを避けて30%を受け入れています。<strong>3つのルートと推奨はセクション07で詳述↓</strong></span>
     </div>
   </section>
 
   <!-- 4. INSTALL -->
-  <section>
+  <section data-section-id="04">
     <div class="sec-label"><span class="lang en">04 / THE MAGIC</span><span class="lang jp">04 / 仕組みの核心</span></div>
     <h2 class="lang en">How an eSIM <em>actually lands</em> on a phone.</h2>
     <h2 class="lang jp">eSIMは、<em>どうやって実際にスマホに入るのか</em>。</h2>
@@ -892,28 +1205,109 @@
 
     <div class="install-diagram">
       <div class="install-svg-wrap">
-        <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" class="install-svg">
-          <circle cx="240" cy="140" r="52" fill="#EFEDF7" stroke="#7A6CB8" stroke-width="1.5"/>
-          <circle cx="240" cy="140" r="34" fill="#7A6CB8"/>
-          <text x="240" y="138" text-anchor="middle" fill="#FFFFFF" font-family="Inter" font-size="13" font-weight="600">SM-DP+</text>
-          <text x="240" y="152" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono" font-size="8" opacity="0.85">SERVER</text>
-          <path d="M 196 110 Q 130 80 70 60" stroke="#2D8C7E" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <circle cx="70" cy="60" r="24" fill="#EBF5F2" stroke="#2D8C7E" stroke-width="1.5"/>
-          <text x="70" y="68" text-anchor="middle" font-size="20">📱</text>
-          <text x="70" y="104" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#2D8C7E">A · QR</text>
-          <path d="M 240 88 Q 240 50 240 28" stroke="#2D8C7E" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <circle cx="240" cy="28" r="24" fill="#EBF5F2" stroke="#2D8C7E" stroke-width="1.5"/>
-          <text x="240" y="36" text-anchor="middle" font-size="20">🔗</text>
-          <text x="240" y="72" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#2D8C7E">B · Link</text>
-          <path d="M 284 110 Q 350 80 410 60" stroke="#B47A48" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 4"/>
-          <circle cx="410" cy="60" r="24" fill="#FAF1E8" stroke="#B47A48" stroke-width="1.5"/>
-          <text x="410" y="68" text-anchor="middle" font-size="20">📲</text>
-          <text x="410" y="104" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#B47A48">C · In-app</text>
-          <rect x="200" y="226" width="80" height="56" rx="9" fill="#FFFFFF" stroke="#1A1F2E" stroke-width="1.5"/>
-          <circle cx="240" cy="254" r="3" fill="#2D8C7E"/>
-          <text x="240" y="298" text-anchor="middle" font-family="Inter" font-size="11" fill="#4A5366" class="lang en">User's phone</text>
-          <text x="240" y="298" text-anchor="middle" font-family="Noto Sans JP" font-size="11" fill="#4A5366" class="lang jp">お客様のスマホ</text>
-          <path d="M 240 192 L 240 226" stroke="#1A1F2E" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" class="install-svg">
+          <!-- Connection lines first (drawn below nodes) -->
+          <path d="M 218 160 Q 165 130 110 110" stroke="#2D8C7E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M 260 130 Q 260 100 260 78" stroke="#2D8C7E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M 302 160 Q 355 130 410 110" stroke="#B47A48" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-dasharray="5 4"/>
+          <path d="M 260 200 L 260 280" stroke="#1A1F2E" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.4"/>
+
+          <!-- ── CENTRAL SM-DP+ SERVER ── -->
+          <g transform="translate(260, 165)">
+            <circle r="50" fill="#EFEDF7" opacity="0.6"/>
+            <!-- Server rack shape -->
+            <rect x="-32" y="-28" width="64" height="56" rx="6" fill="#7A6CB8"/>
+            <!-- Rack lines -->
+            <rect x="-24" y="-19" width="48" height="6" rx="1" fill="#FFFFFF" opacity="0.18"/>
+            <rect x="-24" y="-10" width="48" height="6" rx="1" fill="#FFFFFF" opacity="0.18"/>
+            <rect x="-24" y="-1" width="48" height="6" rx="1" fill="#FFFFFF" opacity="0.18"/>
+            <rect x="-24" y="8" width="48" height="6" rx="1" fill="#FFFFFF" opacity="0.18"/>
+            <!-- Indicator dots -->
+            <circle cx="-19" cy="-16" r="1.5" fill="#5EEAD4"/>
+            <circle cx="-13" cy="-16" r="1.5" fill="#FFFFFF" opacity="0.5"/>
+            <circle cx="-19" cy="-7" r="1.5" fill="#5EEAD4"/>
+            <circle cx="-13" cy="-7" r="1.5" fill="#FFFFFF" opacity="0.5"/>
+            <circle cx="-19" cy="2" r="1.5" fill="#5EEAD4"/>
+            <circle cx="-13" cy="2" r="1.5" fill="#FFFFFF" opacity="0.5"/>
+            <circle cx="-19" cy="11" r="1.5" fill="#5EEAD4"/>
+            <circle cx="-13" cy="11" r="1.5" fill="#FFFFFF" opacity="0.5"/>
+          </g>
+          <text x="260" y="232" text-anchor="middle" fill="#7A6CB8" font-family="Inter, sans-serif" font-size="13" font-weight="700">SM-DP+</text>
+          <text x="260" y="247" text-anchor="middle" fill="#7A6CB8" font-family="JetBrains Mono, monospace" font-size="9" opacity="0.7" letter-spacing="1">SERVER</text>
+
+          <!-- ── A · QR CODE NODE ── -->
+          <g transform="translate(110, 110)">
+            <circle r="30" fill="#EBF5F2" stroke="#2D8C7E" stroke-width="1.5"/>
+            <!-- Real QR-finder pattern -->
+            <g transform="translate(-13, -13)">
+              <!-- Top-left finder -->
+              <rect x="0" y="0" width="9" height="9" stroke="#2D8C7E" stroke-width="1.5" fill="none"/>
+              <rect x="2" y="2" width="5" height="5" fill="#2D8C7E"/>
+              <!-- Top-right finder -->
+              <rect x="17" y="0" width="9" height="9" stroke="#2D8C7E" stroke-width="1.5" fill="none"/>
+              <rect x="19" y="2" width="5" height="5" fill="#2D8C7E"/>
+              <!-- Bottom-left finder -->
+              <rect x="0" y="17" width="9" height="9" stroke="#2D8C7E" stroke-width="1.5" fill="none"/>
+              <rect x="2" y="19" width="5" height="5" fill="#2D8C7E"/>
+              <!-- Random dots for QR look -->
+              <rect x="12" y="3" width="2" height="2" fill="#2D8C7E"/>
+              <rect x="11" y="11" width="2" height="2" fill="#2D8C7E"/>
+              <rect x="14" y="13" width="2" height="2" fill="#2D8C7E"/>
+              <rect x="12" y="22" width="2" height="2" fill="#2D8C7E"/>
+              <rect x="20" y="14" width="2" height="2" fill="#2D8C7E"/>
+              <rect x="14" y="20" width="2" height="2" fill="#2D8C7E"/>
+              <rect x="22" y="20" width="2" height="2" fill="#2D8C7E"/>
+              <rect x="17" y="17" width="2" height="2" fill="#2D8C7E"/>
+            </g>
+          </g>
+          <text x="110" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#2D8C7E">A · QR Code</text>
+
+          <!-- ── B · UNIVERSAL LINK NODE ── -->
+          <g transform="translate(260, 50)">
+            <circle r="30" fill="#EBF5F2" stroke="#2D8C7E" stroke-width="1.5"/>
+            <!-- Chain link icon -->
+            <g stroke="#2D8C7E" stroke-width="2.5" fill="none" stroke-linecap="round">
+              <path d="M -10 0 a 6 6 0 0 1 6 -6 l 4 0"/>
+              <path d="M 10 0 a 6 6 0 0 1 -6 6 l -4 0"/>
+              <line x1="-3" y1="0" x2="3" y2="0"/>
+            </g>
+          </g>
+          <text x="260" y="100" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#2D8C7E">B · Universal Link</text>
+
+          <!-- ── C · IN-APP NODE ── -->
+          <g transform="translate(410, 110)">
+            <circle r="30" fill="#FAF1E8" stroke="#B47A48" stroke-width="1.5"/>
+            <!-- Phone-app icon: phone outline with download arrow -->
+            <rect x="-8" y="-14" width="16" height="24" rx="2.5" stroke="#B47A48" stroke-width="1.8" fill="none"/>
+            <line x1="-4" y1="-11" x2="4" y2="-11" stroke="#B47A48" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="0" cy="7" r="1.2" fill="#B47A48"/>
+            <!-- Download arrow in screen -->
+            <path d="M 0 -7 v 7 m -3 -3 l 3 3 l 3 -3" stroke="#B47A48" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <text x="410" y="160" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#B47A48">C · In-app install</text>
+
+          <!-- ── USER PHONE AT BOTTOM ── -->
+          <g transform="translate(260, 330)">
+            <!-- Phone body -->
+            <rect x="-26" y="-44" width="52" height="84" rx="9" fill="#FFFFFF" stroke="#1A1F2E" stroke-width="1.8"/>
+            <!-- Notch -->
+            <rect x="-10" y="-44" width="20" height="4" rx="2" fill="#1A1F2E"/>
+            <!-- Screen area -->
+            <rect x="-22" y="-37" width="44" height="68" rx="3" fill="#FAFAF7" opacity="0.6"/>
+            <!-- Signal/status indicator on screen -->
+            <g transform="translate(0, -5)">
+              <rect x="-10" y="0" width="3" height="6" rx="0.5" fill="#2D8C7E" opacity="0.4"/>
+              <rect x="-5" y="-3" width="3" height="9" rx="0.5" fill="#2D8C7E" opacity="0.7"/>
+              <rect x="0" y="-6" width="3" height="12" rx="0.5" fill="#2D8C7E"/>
+              <rect x="5" y="-9" width="3" height="15" rx="0.5" fill="#2D8C7E"/>
+            </g>
+            <!-- "eSIM" label inside screen -->
+            <text x="0" y="22" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#2D8C7E" opacity="0.7" letter-spacing="1">eSIM ACTIVE</text>
+            <!-- Home indicator -->
+            <rect x="-10" y="33" width="20" height="2" rx="1" fill="#1A1F2E" opacity="0.25"/>
+          </g>
+          <text x="260" y="392" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#4A5366" class="lang en">User's phone</text>
+          <text x="260" y="392" text-anchor="middle" font-family="Noto Sans JP, sans-serif" font-size="11" fill="#4A5366" class="lang jp">お客様のスマホ</text>
         </svg>
       </div>
       <div class="install-server-label">
@@ -949,7 +1343,7 @@
   </section>
 
   <!-- 5. MARKET -->
-  <section>
+  <section data-section-id="05">
     <div class="sec-label"><span class="lang en">05 / THE COMPETITION</span><span class="lang jp">05 / 競合状況</span></div>
     <h2 class="lang en">The reseller layer is crowded. <em>Most are mediocre</em>.</h2>
     <h2 class="lang jp">リセラー層は混雑しているが、<em>大半は平凡</em>。</h2>
@@ -1000,7 +1394,7 @@
   </section>
 
   <!-- 6. OPEN DECISIONS -->
-  <section>
+  <section data-section-id="06">
     <div class="sec-label"><span class="lang en">06 / OPEN DECISIONS</span><span class="lang jp">06 / 議論すべき判断ポイント</span></div>
     <h2 class="lang en">The big calls <em>we still need to make</em>.</h2>
     <h2 class="lang jp"><em>まだ決まっていない</em>戦略上の判断。</h2>
@@ -1046,9 +1440,138 @@
     </div>
   </section>
 
-  <!-- 7. SAMURAI QUESTIONNAIRE -->
-  <section>
-    <div class="sec-label"><span class="lang en">07 / PARTNER DILIGENCE</span><span class="lang jp">07 / パートナー確認</span></div>
+  <!-- 7. APPLE TAX ESCAPE -->
+  <section data-section-id="07">
+    <div class="sec-label"><span class="lang en">07 / APPLE TAX ESCAPE</span><span class="lang jp">07 / Apple 30%手数料の回避戦略</span></div>
+    <h2 class="lang en">How we <em>beat the 30%</em>.</h2>
+    <h2 class="lang jp"><em>30%</em>を回避する3つのルート。</h2>
+    <p class="sec-intro">
+      <span class="lang en">There are three real paths around Apple's 30% cut. Two are obvious, one is clearly the right answer for Peanut eSIM. Here's each path visualized — then my recommendation.</span>
+      <span class="lang jp">Appleの30%手数料を回避するルートは現実的に3つあります。2つは明白、もう1つが Peanut eSIM にとっての最適解。各ルートを視覚化したうえで、最終的な推奨を示します。</span>
+    </p>
+
+    <!-- Path A -->
+    <div class="path-card">
+      <div class="path-header">
+        <div class="path-letter">A</div>
+        <div>
+          <div class="path-name"><span class="lang en">IAP-only (default — Airalo's choice)</span><span class="lang jp">アプリ内課金（IAP）のみ — Airalo方式</span></div>
+          <div class="path-status status-bad"><span class="lang en">SAFE · EXPENSIVE</span><span class="lang jp">安全だが高コスト</span></div>
+        </div>
+      </div>
+      <div class="path-flow">
+        <span class="path-input">$15.00</span>
+        <span class="path-arrow">→</span>
+        <span class="path-loss"><span class="lang en">Apple −$4.50</span><span class="lang jp">Apple −$4.50</span></span>
+        <span class="path-arrow">→</span>
+        <span class="path-output">$5.05</span>
+      </div>
+      <div class="margin-track">
+        <div class="margin-fill bad" style="width: 34%"></div>
+      </div>
+      <div class="margin-meta">
+        <span><span class="lang en">Margin retained</span><span class="lang jp">残る粗利益</span></span>
+        <span class="pct">34%</span>
+      </div>
+      <p class="desc">
+        <span class="lang en">All purchases happen inside the iOS app. Apple takes 30% (15% on subs after year 1). Smoothest UX, zero Apple risk — but the most expensive option. $4.50 lost on every $15 sale. This is the path Airalo chose because they value frictionless conversion over margin.</span>
+        <span class="lang jp">すべての購入がiOSアプリ内で完結。Appleが30%を徴収（サブスクは1年目以降15%）。UXは最もスムーズで、Appleからの拒絶リスクもゼロ。ただし、1回$15売上ごとに$4.50を失う最高コスト構造。Airaloはマージンよりもコンバージョンの摩擦のなさを優先し、この道を選択。</span>
+      </p>
+    </div>
+
+    <!-- Path B -->
+    <div class="path-card">
+      <div class="path-header">
+        <div class="path-letter">B</div>
+        <div>
+          <div class="path-name"><span class="lang en">Web-only checkout</span><span class="lang jp">Web決済のみ</span></div>
+          <div class="path-status status-warn"><span class="lang en">BIG MARGIN · BIG RISK</span><span class="lang jp">高マージン・高リスク</span></div>
+        </div>
+      </div>
+      <div class="path-flow">
+        <span class="path-input">$15.00</span>
+        <span class="path-arrow">→</span>
+        <span class="path-loss"><span class="lang en">Apple −$0.00</span><span class="lang jp">Apple −$0.00</span></span>
+        <span class="path-arrow">→</span>
+        <span class="path-output">$9.55</span>
+      </div>
+      <div class="margin-track">
+        <div class="margin-fill warn" style="width: 64%"></div>
+      </div>
+      <div class="margin-meta">
+        <span><span class="lang en">Margin retained</span><span class="lang jp">残る粗利益</span></span>
+        <span class="pct">64%</span>
+      </div>
+      <p class="desc">
+        <span class="lang en">All purchases happen on the web (peanutesim.com). The iOS app is a free download used only for eSIM management and activation. Apple takes nothing. Margin doubles. But Apple's review team has been rejecting apps it considers "thin wrappers" that steer users off-platform. Some small players still risk this; bigger ones won't.</span>
+        <span class="lang jp">すべての購入はWeb上（peanutesim.com）で完結。iOSアプリは無料ダウンロード可能で、eSIMの管理・アクティベーションのみに使用。Appleの取り分はゼロ、マージンは2倍に。ただし、Appleの審査チームは、ユーザーをアプリ外に誘導する「薄いラッパー」アプリを次々と却下しています。小規模事業者はリスクを取って実施していますが、大手は回避傾向。</span>
+      </p>
+    </div>
+
+    <!-- Path C (recommended) -->
+    <div class="path-card recommended">
+      <div class="path-header">
+        <div class="path-letter">C</div>
+        <div>
+          <div class="path-name"><span class="lang en">Hybrid (the Netflix model)</span><span class="lang jp">ハイブリッド（Netflix方式）</span></div>
+          <div class="path-status status-good"><span class="lang en">BEST OF BOTH WORLDS</span><span class="lang jp">両方の長所を取る</span></div>
+        </div>
+      </div>
+      <div class="path-flow">
+        <span class="path-input"><span class="lang en">1st sale on web</span><span class="lang jp">初回購入はWeb</span></span>
+        <span class="path-arrow">+</span>
+        <span class="path-input"><span class="lang en">Top-ups in-app</span><span class="lang jp">追加購入はアプリ内</span></span>
+        <span class="path-arrow">→</span>
+        <span class="path-output"><span class="lang en">~$7.50 avg</span><span class="lang jp">平均 約$7.50</span></span>
+      </div>
+      <div class="margin-track">
+        <div class="margin-fill good" style="width: 50%"></div>
+      </div>
+      <div class="margin-meta">
+        <span><span class="lang en">Blended margin</span><span class="lang jp">ブレンド粗利益</span></span>
+        <span class="pct">~50%</span>
+      </div>
+      <p class="desc">
+        <span class="lang en">First purchase happens on the marketing website during signup — we keep 100%. After signup, the iOS app is installed for activation, eSIM management, top-ups, and support. Top-ups inside the app go through IAP (Apple takes 30% of those smaller, less frequent transactions). Apple has zero claim against the app itself because no first purchase happens inside it. This is exactly how Netflix, Spotify, and Amazon Kindle handle their iOS apps — they're "reader apps" that don't sell anything directly.</span>
+        <span class="lang jp">初回購入はマーケティングサイトのサインアップ時に行われ、Appleの取り分はゼロ（100%が手元に残る）。サインアップ後にiOSアプリをインストールし、eSIMのアクティベーション、管理、追加購入、サポートに使用。アプリ内での追加購入はIAP経由（その小規模・低頻度な取引のみAppleが30%を徴収）。アプリ自体は何も販売していないため、Apple側からは異議を唱えようがありません。Netflix、Spotify、Amazon Kindle のiOSアプリと同じ方式 — 「リーダーアプリ」として直接何も販売しない構造です。</span>
+      </p>
+    </div>
+
+    <!-- Recommendation -->
+    <div class="recommendation">
+      <div class="rec-badge"><span class="lang en">★ MY RECOMMENDATION</span><span class="lang jp">★ 推奨</span></div>
+      <h3>
+        <span class="lang en">Go with Path C — the Hybrid model.</span>
+        <span class="lang jp">ルートCのハイブリッドモデルで進めるべき。</span>
+      </h3>
+      <p>
+        <span class="lang en">The Netflix model is well-precedented, low Apple risk, and gives us roughly <strong>50% blended margin</strong> — nearly double Path A's 34%. Path B is too risky for a launch: if Apple rejects the app at submission, we lose months. Path C lets us have both — better margin AND a healthy App Store presence.</span>
+        <span class="lang jp">Netflix方式は十分に前例があり、Appleからの拒絶リスクも低く、ブレンドで<strong>約50%のマージン</strong>を確保できます — ルートAの34%のほぼ2倍。ルートBはローンチ時のリスクが大きすぎる（審査拒否されれば数ヶ月のロス）。ルートCならば、マージンとApp Store上の健全な存在感を両立できます。</span>
+      </p>
+      <ul class="rec-bullets">
+        <li>
+          <span class="lang en"><strong>Marketing site does the heavy lifting</strong> — full sales funnel: country picker, plan selection, signup + payment + eSIM provisioning. This is where our brand story lives anyway.</span>
+          <span class="lang jp"><strong>マーケティングサイトを主戦場にする</strong> — 国選択、プラン選択、サインアップ＋決済＋eSIM発行の完全な購入導線。元々ブランドストーリーを展開する場所でもあります。</span>
+        </li>
+        <li>
+          <span class="lang en"><strong>iOS app is a "control center"</strong> — log in, view active eSIMs, install / activate, see usage, contact support. No "Buy" button in v1.</span>
+          <span class="lang jp"><strong>iOSアプリは「コントロールセンター」</strong> — ログイン、アクティブなeSIM一覧、インストール／アクティベーション、利用状況、サポート連絡。v1には「購入」ボタンを置かない。</span>
+        </li>
+        <li>
+          <span class="lang en"><strong>Top-ups via IAP added later</strong> (optional v2 feature) — when users are abroad and run low, convenience &gt; margin, so the 30% Apple tax on those smaller transactions is acceptable.</span>
+          <span class="lang jp"><strong>追加購入のIAPは後付け（v2のオプション機能）</strong> — 海外でデータ残量が減ったときは、マージンよりも利便性が優先されるため、その小規模取引の30%手数料は許容範囲。</span>
+        </li>
+        <li>
+          <span class="lang en"><strong>Email marketing closes the loop</strong> — when an eSIM is about to expire or run out, we email "Top up on web for 30% off" — pulling them back to the higher-margin web checkout. Best of both worlds.</span>
+          <span class="lang jp"><strong>メールマーケティングでループを閉じる</strong> — eSIMの期限切れやデータ枯渇が近づいたら「Web経由で30%オフ追加購入」とメール送信 — 高マージンのWeb決済へ呼び戻す設計。両方の長所を取る。</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 8. SAMURAI QUESTIONNAIRE -->
+  <section data-section-id="08">
+    <div class="sec-label"><span class="lang en">08 / PARTNER DILIGENCE</span><span class="lang jp">08 / パートナー確認</span></div>
     <h2 class="lang en">Questionnaire <em>for Samurai Wifi</em>.</h2>
     <h2 class="lang jp"><em>Samurai Wifi</em> 向け 確認質問リスト。</h2>
     <p class="sec-intro">
@@ -1153,6 +1676,7 @@ Akito</div>
 </div>
 
 <script>
+  // ─── Language toggle ───
   const savedLang = localStorage.getItem('peanut-lang') || 'en';
   document.documentElement.setAttribute('data-lang', savedLang);
   document.documentElement.setAttribute('lang', savedLang === 'jp' ? 'ja' : 'en');
@@ -1167,6 +1691,7 @@ Akito</div>
     });
   });
 
+  // ─── Copy questionnaire ───
   function copyQ(id, btn) {
     const text = document.getElementById(id).innerText;
     navigator.clipboard.writeText(text).then(() => {
@@ -1174,6 +1699,100 @@ Akito</div>
       setTimeout(() => btn.classList.remove('copied'), 2000);
     });
   }
+
+  // ─── Per-section read state ───
+  const STORAGE_KEY = 'peanut-read';
+  function getReadSet() {
+    try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')); }
+    catch (e) { return new Set(); }
+  }
+  function saveReadSet(set) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
+  }
+  function updateProgress() {
+    const set = getReadSet();
+    const sections = document.querySelectorAll('section[data-section-id]');
+    const total = sections.length;
+    let count = 0;
+    sections.forEach(s => { if (set.has(s.dataset.sectionId)) count++; });
+    const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+    const fill = document.getElementById('progressFill');
+    if (fill) fill.style.width = pct + '%';
+    const en = document.getElementById('progressCount');
+    const jp = document.getElementById('progressCountJp');
+    if (en) en.textContent = count;
+    if (jp) jp.textContent = count;
+  }
+  function setCheckText(btn, isRead) {
+    const enLabel = btn.querySelector('.check-text-en');
+    const jpLabel = btn.querySelector('.check-text-jp');
+    if (enLabel) enLabel.textContent = isRead ? 'Read' : 'Mark as read';
+    if (jpLabel) jpLabel.textContent = isRead ? '既読' : '既読にする';
+  }
+  function toggleRead(section, btn) {
+    const id = section.dataset.sectionId;
+    const set = getReadSet();
+    const willBeRead = !set.has(id);
+    if (willBeRead) { set.add(id); } else { set.delete(id); }
+    section.classList.toggle('section-read', willBeRead);
+    btn.classList.toggle('checked', willBeRead);
+    setCheckText(btn, willBeRead);
+    saveReadSet(set);
+    updateProgress();
+  }
+
+  // ─── Inject "mark as read" button into each section ───
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const readSet = getReadSet();
+  document.querySelectorAll('section[data-section-id]').forEach(section => {
+    const label = section.querySelector('.sec-label');
+    if (!label || section.querySelector('.section-check')) return;
+
+    const id = section.dataset.sectionId;
+    const isRead = readSet.has(id);
+
+    const head = document.createElement('div');
+    head.className = 'sec-head';
+
+    const btn = document.createElement('button');
+    btn.className = 'section-check' + (isRead ? ' checked' : '');
+    btn.setAttribute('aria-label', 'Mark section as read');
+    btn.type = 'button';
+
+    const svg = document.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('width', '12');
+    svg.setAttribute('height', '12');
+    svg.setAttribute('viewBox', '0 0 12 12');
+    svg.setAttribute('fill', 'none');
+    const path = document.createElementNS(SVG_NS, 'path');
+    path.setAttribute('d', 'M2.5 6 L5 8.5 L9.5 3.5');
+    path.setAttribute('stroke', 'currentColor');
+    path.setAttribute('stroke-width', '2');
+    path.setAttribute('stroke-linecap', 'round');
+    path.setAttribute('stroke-linejoin', 'round');
+    svg.appendChild(path);
+    btn.appendChild(svg);
+
+    const enLabel = document.createElement('span');
+    enLabel.className = 'lang en check-text-en';
+    enLabel.textContent = isRead ? 'Read' : 'Mark as read';
+    btn.appendChild(enLabel);
+
+    const jpLabel = document.createElement('span');
+    jpLabel.className = 'lang jp check-text-jp';
+    jpLabel.textContent = isRead ? '既読' : '既読にする';
+    btn.appendChild(jpLabel);
+
+    btn.addEventListener('click', () => toggleRead(section, btn));
+
+    if (isRead) section.classList.add('section-read');
+
+    label.parentNode.insertBefore(head, label);
+    head.appendChild(label);
+    head.appendChild(btn);
+  });
+
+  updateProgress();
 </script>
 
 </body>
