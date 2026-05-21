@@ -2689,7 +2689,7 @@
   </header>
 
   <section style="border-bottom: none;">
-    <div class="sec-label"><span class="lang en">OPEN · 7 ITEMS</span><span class="lang jp">未決 ・ 7件</span></div>
+    <div class="sec-label"><span class="lang en">OPEN · 8 ITEMS</span><span class="lang jp">未決 ・ 8件</span></div>
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 00 · LEGAL ENTITY NAME</span><span class="lang jp">判断 00 ・ 法人正式名称</span></div>
@@ -2849,6 +2849,31 @@
         <span class="lang jp">ローンチ時の複雑性を決定。初期は単独、後で複数化が定石。</span>
       </div>
       <div class="dec-status"><span class="lang en">STATUS · WAITING FOR SAMURAI RESPONSES</span><span class="lang jp">ステータス ・ Samurai の回答待ち</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 04 · UAE-CUSTOMER COMPLIANCE RISK</span><span class="lang jp">判断 04 ・ UAE 顧客販売リスク</span></div>
+      <h3>
+        <span class="lang en">Which aggregators can legally sell eSIMs to customers physically in the UAE?</span>
+        <span class="lang jp">UAE 国内にいる顧客に合法的に eSIM を販売できるアグリゲーターはどれか？</span>
+      </h3>
+      <p>
+        <span class="lang en">New pattern discovered during the 8-provider parallel diligence: <strong>2 of 8 providers (eSIM Go, BNESIM) explicitly block UAE-based purchases.</strong> eSIM Go has a clause excluding UAE customers (du-related), and BNESIM shows a popup to UAE visitors: <em>"Due to local regulations, new eSIM purchases are not available while you are in the United Arab Emirates."</em> This means TDRA's grip on the UAE telecom market is being enforced upstream at the aggregator level — not just at the brand layer. Critical because <strong>most of Peanut eSIM's seed users (Emirates crew) buy <em>before</em> they leave Dubai.</strong></span>
+        <span class="lang jp">8 社並行精査の中で判明した新パターン:<strong>8 社中 2 社（eSIM Go, BNESIM）が UAE 国内からの購入を明示的にブロック。</strong>eSIM Go は UAE 顧客除外条項（du 関連）あり。BNESIM は UAE 訪問者にポップアップ表示：<em>「現地規制により、UAE 滞在中の新規 eSIM 購入はご利用いただけません。」</em>これは TDRA の UAE 通信市場規制が、ブランド層だけでなくアグリゲーター上流にまで波及している証左。重要な理由:<strong>Peanut eSIM のシード顧客（エミレーツ航空乗務員）の大半は、ドバイ出発<em>前</em>に購入する想定</strong>のため。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Required diligence question — add to every aggregator conversation:</span><span class="lang jp">全アグリゲーターとの会話に追加すべき必須確認事項:</span></strong>
+        <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">?</span><span class="lang en">Can your eSIMs be purchased by customers whose <strong>billing address or device IP is in the UAE</strong>?</span><span class="lang jp">課金住所または端末 IP が <strong>UAE 国内の顧客</strong> でも貴社の eSIM を購入可能か？</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">?</span><span class="lang en">Are there any country-specific exclusion clauses in your standard MSA or rate sheet?</span><span class="lang jp">標準 MSA または価格表に、国別の除外条項は存在するか？</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">?</span><span class="lang en">If yes — which countries, and what triggers the block (IP, billing address, declared residence)?</span><span class="lang jp">該当する場合：どの国で、どのトリガー（IP・課金住所・申告居住地）でブロックが発動するか？</span></li>
+        </ul>
+        <p style="margin-top: 14px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Why this matters strategically:</strong> a Delaware LLC structure makes us the merchant of record, but the upstream provider still controls whose connections succeed. If a provider blocks UAE buyers and we route our checkout through them, our Dubai-based seed users can't actually buy from us. The fix is provider selection, not corporate structure.</span>
+          <span class="lang jp"><strong>戦略的に重要な理由:</strong>デラウェア LLC 構造で当社が販売主体になっても、接続成立は上流プロバイダーが制御。プロバイダーが UAE 顧客をブロックすれば、ドバイ拠点のシード顧客は実質購入不可。解決策は法人構造ではなく、プロバイダー選定。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · DILIGENCE REQUIRED ON ALL 6 ACTIVE PROVIDERS</span><span class="lang jp">ステータス ・ アクティブ 6 社全てに確認必要</span></div>
     </div>
 
     <div class="sec-label" style="margin-top: 48px; color: var(--accent);"><span class="lang en">✓ RESOLVED · 1 ITEM</span><span class="lang jp">✓ 解決済 ・ 1件</span></div>
@@ -3384,13 +3409,79 @@ Mercury（米国法人銀行口座）
     <!-- Item 2 -->
     <div class="roadmap-item">
       <div class="ri-head">
-        <span class="ri-status waiting"><span class="lang en">WAITING · samurai's response</span><span class="lang jp">待機中 ・ Samurai の回答待ち</span></span>
-        <h3><span class="lang en">Item 2 — Aggregator Diligence (Samurai Wifi)</span><span class="lang jp">Item 2 — アグリゲーター精査（Samurai Wifi）</span></h3>
+        <span class="ri-status waiting"><span class="lang en">IN PROGRESS · 8 providers in pipeline</span><span class="lang jp">進行中 ・ プロバイダー候補 8社</span></span>
+        <h3><span class="lang en">Item 2 — Aggregator Diligence (Provider Pipeline)</span><span class="lang jp">Item 2 — アグリゲーター精査（プロバイダー候補一覧）</span></h3>
       </div>
       <p class="ri-desc">
-        <span class="lang en">9,091-SKU price list received. Two flags: <strong>40% flat margin on every product</strong> + <strong>pricing in CNY not THB</strong> = suggests Samurai is a Tier-3 sub-reseller. 10-question diligence questionnaire built (see Akito tab) — waiting for Samurai's response.</span>
-        <span class="lang jp">9,091 SKU の価格表受領。気になる2点:<strong>全商品で 40% 固定マージン</strong>＋<strong>価格が THB ではなく CNY</strong>＝ Samurai が Tier-3 サブリセラーの可能性。10項目の確認質問リスト作成済み（Akito タブ参照）— Samurai の回答待ち。</span>
+        <span class="lang en">Originally just Samurai Wifi. Expanded into a multi-provider benchmark after the price-list analysis raised flags. Goal: parallel diligence on 8 candidates so we have 3+ real quotes to compare and use as leverage. <strong>Samurai's 9,091-SKU list still anchors the comparison</strong> (flat 40% margin + CNY pricing = likely Tier-3 sub-reseller). <strong>Important new pattern emerged today:</strong> 2 of the 8 providers (eSIM Go, BNESIM) explicitly block UAE end-user purchases — that's a real regulatory signal we need every candidate to answer (see Open Discussion · Decision 04).</span>
+        <span class="lang jp">当初は Samurai Wifi のみ対象。価格表分析で疑問点が出たため、複数プロバイダーのベンチマークに拡大。目的:並行して 8 社を精査し、3 社以上のリアルな見積もりで比較・交渉材料を確保。<strong>Samurai の 9,091 SKU 価格表は引き続き比較の基準</strong>（40% 固定マージン + CNY 表記 = Tier-3 サブリセラーの可能性）。<strong>本日判明した重要パターン:</strong> 8 社中 2 社（eSIM Go, BNESIM）が UAE 国内ユーザーへの販売を明示的にブロック — 規制シグナルとして全候補に確認必要（Open Discussion · 判断 04 参照）。</span>
       </p>
+
+      <table class="mini-table" style="margin-top: 14px;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th><span class="lang en">Provider</span><span class="lang jp">プロバイダー</span></th>
+            <th><span class="lang en">Status</span><span class="lang jp">状況</span></th>
+            <th><span class="lang en">Note</span><span class="lang jp">備考</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Samurai Wifi</strong></td>
+            <td>🟡 <span class="lang en">Open · waiting on Akito → Samurai</span><span class="lang jp">未回答 ・ Akito → Samurai 待ち</span></td>
+            <td><span class="lang en">9,091 SKUs received. 10-question diligence sent.</span><span class="lang jp">9,091 SKU 受領。確認質問 10 件送付済。</span></td>
+          </tr>
+          <tr class="pick">
+            <td>2</td>
+            <td><strong>eSIM Access</strong> <span class="lang en">(Redtea Mobile, China)</span><span class="lang jp">（Redtea Mobile・中国）</span></td>
+            <td>✅ <span class="lang en">Account live, prices in hand</span><span class="lang jp">アカウント開設済、価格データ取得済</span></td>
+            <td><span class="lang en">2,808 SKUs in USD. Suspected upstream behind Samurai.</span><span class="lang jp">USD 表記 2,808 SKU。Samurai の上流と推定。</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>eSIM Go</strong> <span class="lang en">(UK)</span><span class="lang jp">（英国）</span></td>
+            <td><span class="cross">❌</span> <span class="lang en">Ruled out · UAE-sale exclusion</span><span class="lang jp">除外 ・ UAE 販売制限</span></td>
+            <td><span class="lang en">Account live but rate sheet excludes UAE customers (du clause).</span><span class="lang jp">アカウント開設済だが、価格表が UAE 顧客を除外（du 条項）。</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>Telna Connect Flex</strong> <span class="lang en">(USA)</span><span class="lang jp">（米国）</span></td>
+            <td>🟡 <span class="lang en">Account live · sample data only</span><span class="lang jp">アカウント開設済 ・ サンプルのみ</span></td>
+            <td><span class="lang en">Multi-IMSI. Only 10 sample SKUs visible. Need to push for full catalog.</span><span class="lang jp">マルチ IMSI 技術。サンプル 10 SKU のみ閲覧可。フルカタログ要請が必要。</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><strong>1GLOBAL</strong> <span class="lang en">(merged with Truphone)</span><span class="lang jp">（Truphone と統合）</span></td>
+            <td>🟡 <span class="lang en">Form submitted · 2–7 day response</span><span class="lang jp">問い合わせ送信済 ・ 回答 2-7 日</span></td>
+            <td><span class="lang en">Partnership form submitted today via Exceed business email.</span><span class="lang jp">本日 Exceed 法人メールでパートナー申請送信。</span></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><strong>Airalo Partners</strong> <span class="lang en">(Singapore — market leader)</span><span class="lang jp">（シンガポール ・ 業界最大手）</span></td>
+            <td>🟡 <span class="lang en">API partner application sent · 48hr verification</span><span class="lang jp">API パートナー申請済 ・ 48時間以内に認証</span></td>
+            <td><span class="lang en">"Telecom - eSIM store" track. Will give us the benchmark net-pricing curve.</span><span class="lang jp">「Telecom - eSIM store」カテゴリで申請。ベンチマーク用の純価格カーブを取得予定。</span></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><strong>Nomad eSIM</strong> <span class="lang en">(LotusFlare-backed)</span><span class="lang jp">（LotusFlare 出資）</span></td>
+            <td>🟡 <span class="lang en">Distribution partner form sent</span><span class="lang jp">ディストリビューション パートナー申請済</span></td>
+            <td><span class="lang en">Sales follow-up pending. Strong on heavy-data plans per Phase 0 Item 3.</span><span class="lang jp">セールスフォローアップ待ち。大容量プランで強い（Phase 0 Item 3）。</span></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><strong>BNESIM</strong> <span class="lang en">(Hong Kong)</span><span class="lang jp">（香港）</span></td>
+            <td><span class="cross">⚠️</span> <span class="lang en">Manual intake · also blocks UAE buyers</span><span class="lang jp">手動申請のみ ・ UAE 顧客販売不可</span></td>
+            <td><span class="lang en">Email / Calendly only. Same UAE block as eSIM Go — likely deal-breaker.</span><span class="lang jp">メール / Calendly のみ。eSIM Go と同じ UAE ブロックあり — 採用見送りの可能性大。</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="verdict-box" style="margin-top: 14px;">
+        <strong><span class="lang en">Next milestone</span><span class="lang jp">次のマイルストーン</span></strong>
+        <p><span class="lang en">When 3+ providers come back with real net pricing, we can finally compare Samurai's CNY-flat-margin offer against actual wholesale rates and decide: stay with Samurai (Akito's relationship) or move to a direct provider. Decision 03 unblocks.</span><span class="lang jp">3 社以上から実際の純価格が出揃った時点で、Samurai の CNY 固定マージンと比較し、Samurai 継続（Akito の関係優先）か直接プロバイダーへの切替を判断可能に。Decision 03 のブロック解除。</span></p>
+      </div>
     </div>
 
     <!-- Item 3 -->
