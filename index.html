@@ -1087,6 +1087,111 @@
     color: var(--text);
   }
 
+  /* ─── COST TAB ─── */
+  .cost-category {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .cost-category-header {
+    padding: 18px 24px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cost-category-header h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text);
+  }
+  [data-lang="en"] .cost-category-header h3 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 22px; }
+  .cost-category-total {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .cost-category-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .cost-category-table tr {
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .cost-category-table tr:last-child { border-bottom: none; }
+  .cost-category-table tr:hover { background: var(--bg); }
+  .cost-category-table td {
+    padding: 12px 24px;
+    font-size: 14px;
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .cost-category-table .cost-item {
+    width: 36%;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .cost-category-table .cost-detail {
+    color: var(--text-2);
+    font-size: 13px;
+  }
+  .cost-category-table .cost-amount {
+    width: 25%;
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .cost-category-table .cost-amount.pick { color: var(--accent); }
+  .cost-category-table .cost-amount.tbd { color: var(--text-3); font-weight: 500; }
+  .cost-category-table .cost-amount.free { color: var(--accent); }
+  .cost-category-table .cost-amount.deferred { color: var(--text-3); }
+
+  .cost-summary {
+    background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+    border: 2px solid var(--accent);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-top: 24px;
+  }
+  .cost-summary h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  [data-lang="en"] .cost-summary h3 { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 24px; }
+  .cost-summary-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(45, 140, 126, 0.25);
+    align-items: baseline;
+    gap: 16px;
+  }
+  .cost-summary-row:last-of-type { border-bottom: none; padding-top: 14px; margin-top: 4px; border-top: 1px solid var(--accent); }
+  .cost-summary-row .label {
+    font-size: 14.5px;
+    color: var(--text);
+  }
+  .cost-summary-row .amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .cost-summary-row:last-of-type .label { font-weight: 700; font-size: 16px; }
+  .cost-summary-row:last-of-type .amount { color: var(--accent); font-size: 22px; }
+
   /* ─── DOCUMENTS TAB ─── */
   .doc-card {
     background: var(--surface);
@@ -1996,7 +2101,11 @@
       <button class="tab-btn" data-tab="docs">
         <span class="lang en">Documents</span>
         <span class="lang jp">資料</span>
-        <span class="count" id="docsCount">1</span>
+        <span class="count" id="docsCount">6</span>
+      </button>
+      <button class="tab-btn" data-tab="cost">
+        <span class="lang en">Cost</span>
+        <span class="lang jp">コスト</span>
       </button>
     </nav>
     <div class="progress-wrap" id="progressWrap">
@@ -3311,10 +3420,10 @@ Mercury（米国法人銀行口座）
         <li><span class="lang en">Data deletion + export flows → built during Phase 3 (Tech Build)</span><span class="lang jp">データ削除・エクスポートフロー → フェーズ 3（技術開発）で実装</span></li>
         <li><span class="lang en">72-hour breach notification process (GDPR + UAE PDPL)</span><span class="lang jp">72 時間以内の侵害通知プロセス（GDPR + UAE PDPL）</span></li>
       </ul>
-      <h4><span class="lang en">Deliverables (when DPA agent completes)</span><span class="lang jp">成果物（DPA エージェント完了時）</span></h4>
+      <h4><span class="lang en">Deliverables (in repo)</span><span class="lang jp">成果物（リポジトリ内）</span></h4>
       <ul class="ri-bullets">
-        <li><span class="lang en">→ vendor-dpa-template.html (in progress)</span><span class="lang jp">→ vendor-dpa-template.html（作成中）</span></li>
-        <li><span class="lang en">→ vendor-dpa-checklist.html (in progress)</span><span class="lang jp">→ vendor-dpa-checklist.html（作成中）</span></li>
+        <li><a href="docs/vendor-dpa-template.html" target="_blank" style="color: var(--accent); text-decoration: underline;"><span class="lang en">→ vendor-dpa-template.html (5,090 words · GDPR Art. 28 + UAE PDPL · 15 sections + 3 annexes)</span><span class="lang jp">→ vendor-dpa-template.html（5,090語 · GDPR 第28条 + UAE PDPL 準拠 · 15 セクション + 3 附属書）</span></a></li>
+        <li><a href="docs/vendor-dpa-checklist.html" target="_blank" style="color: var(--accent); text-decoration: underline;"><span class="lang en">→ vendor-dpa-checklist.html (17 vendors enumerated across 8 categories)</span><span class="lang jp">→ vendor-dpa-checklist.html（8 カテゴリー、17 ベンダー網羅）</span></a></li>
       </ul>
     </div>
 
@@ -3867,28 +3976,282 @@ Mercury（米国法人銀行口座）
     <span class="doc-tag">PEANUT ESIM · DOCUMENTS</span>
     <h1 class="lang en">Files we've <em>built</em> so far.</h1>
     <h1 class="lang jp">これまでに<em>作成した</em>資料一覧。</h1>
-    <p class="lead lang en">Spreadsheets, reports, and reference files. Click to download — added to the repo so they're versioned.</p>
-    <p class="lead lang jp">スプレッドシート、レポート、参照ファイル一覧。クリックでダウンロード可能。リポジトリにバージョン管理されている。</p>
+    <p class="lead lang en">Spreadsheets, drafts, and reference files. Click to open or download — all live in the repo so they're versioned.</p>
+    <p class="lead lang jp">スプレッドシート、ドラフト、参照ファイル一覧。クリックで開いて確認・ダウンロード可能。リポジトリにバージョン管理されている。</p>
   </header>
 
   <section style="border-bottom: none;">
-    <div class="sec-label"><span class="lang en">1 FILE</span><span class="lang jp">1 ファイル</span></div>
+    <div class="sec-label"><span class="lang en">DATA &amp; RESEARCH · 1 FILE</span><span class="lang jp">データ・調査 ・ 1 ファイル</span></div>
 
     <div class="doc-card">
       <div class="doc-icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linejoin="round"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
       <div>
-        <div class="doc-meta"><span class="lang en">XLSX · 5 SHEETS · BUILT 2026-05-21</span><span class="lang jp">XLSX · 5 シート · 作成日 2026-05-21</span></div>
+        <div class="doc-meta"><span class="lang en">XLSX · 5 SHEETS · 2026-05-21</span><span class="lang jp">XLSX · 5 シート · 2026-05-21</span></div>
         <h3><span class="lang en">Competitor Pricing Benchmark</span><span class="lang jp">競合価格ベンチマーク</span></h3>
-        <p><span class="lang en">22 destinations × 4 competitors (Airalo, Holafly, Nomad, Saily) × 2 plan profiles (Standard 5GB/7d, Heavy 10GB/30d). 176 data points + margin opportunity analysis.</span><span class="lang jp">22 都市 × 4 競合（Airalo・Holafly・Nomad・Saily）× 2 プラン（標準 5GB/7日、大容量 10GB/30日）。176 データポイント + マージン機会分析。</span></p>
+        <p><span class="lang en">22 destinations × 4 competitors × 2 plan profiles = 176 data points + margin opportunity analysis.</span><span class="lang jp">22 都市 × 4 競合 × 2 プラン = 176 データポイント + マージン機会分析。</span></p>
       </div>
       <a href="docs/Competitor_Pricing_Benchmark.xlsx" download class="doc-download">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="lang en">Download</span><span class="lang jp">ダウンロード</span>
+        <span class="lang en">Download</span><span class="lang jp">DL</span>
+      </a>
+    </div>
+
+    <div class="sec-label" style="margin-top: 40px;"><span class="lang en">LEGAL DRAFTS · 5 FILES (pre-lawyer review)</span><span class="lang jp">法的ドラフト ・ 5 ファイル（弁護士レビュー前）</span></div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: var(--peanut-soft); color: var(--peanut);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linejoin="round"/><path d="M14 2v6h6M9 12h6M9 16h6M9 8h1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · 3,424 WORDS · 3 LAWYER FLAGS</span><span class="lang jp">HTML · 3,424 語 · 弁護士確認3箇所</span></div>
+        <h3><span class="lang en">Terms of Service</span><span class="lang jp">利用規約</span></h3>
+        <p><span class="lang en">15 numbered sections — service description, eligibility, eSIM-specific clauses, liability cap, Delaware governing law, AAA arbitration with 30-day opt-out.</span><span class="lang jp">15 セクション — サービス内容、利用資格、eSIM 固有条項、責任上限、デラウェア準拠法、30日オプトアウト付き AAA 仲裁。</span></p>
+      </div>
+      <a href="docs/terms-of-service.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: var(--violet-soft); color: var(--violet);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · 2,603 WORDS · 2 LAWYER FLAGS</span><span class="lang jp">HTML · 2,603 語 · 弁護士確認2箇所</span></div>
+        <h3><span class="lang en">Privacy Policy</span><span class="lang jp">プライバシーポリシー</span></h3>
+        <p><span class="lang en">GDPR + UAE PDPL compliant. Data collection, retention, sharing with Samurai/Stripe/Apple/Google, data-subject rights, 72-hr breach notification.</span><span class="lang jp">GDPR + UAE PDPL 準拠。データ収集、保持、Samurai/Stripe/Apple/Google との共有、データ主体権利、72 時間侵害通知。</span></p>
+      </div>
+      <a href="docs/privacy-policy.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: rgba(201, 112, 112, 0.12); color: var(--rose);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 9-9M3 4v5h5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · 2,198 WORDS · 3 LAWYER FLAGS</span><span class="lang jp">HTML · 2,198 語 · 弁護士確認3箇所</span></div>
+        <h3><span class="lang en">Refund Policy</span><span class="lang jp">返金ポリシー</span></h3>
+        <p><span class="lang en">eSIM-specific: 30-day pre-activation refund, 14-day faulty-eSIM report window, 24-hr swap window. Liability cap = trailing 3 months paid.</span><span class="lang jp">eSIM 固有:未アクティベーション 30 日返金、不良 eSIM 14 日報告、24 時間プラン交換可。責任上限 = 直近 3 ヶ月支払額。</span></p>
+      </div>
+      <a href="docs/refund-policy.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: var(--accent-soft); color: var(--accent);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linejoin="round"/><path d="M14 2v6h6M9 13l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · 5,090 WORDS · 4 LAWYER FLAGS</span><span class="lang jp">HTML · 5,090 語 · 弁護士確認4箇所</span></div>
+        <h3><span class="lang en">Vendor DPA Template</span><span class="lang jp">ベンダー DPA テンプレート</span></h3>
+        <p><span class="lang en">Data Processing Agreement template for attaching to vendor contracts (primary use: Samurai MSA). GDPR Art. 28 + UAE PDPL aligned. 15 numbered sections + 3 fillable annexes + signature blocks.</span><span class="lang jp">ベンダー契約に添付する Data Processing Agreement テンプレート（主用途:Samurai MSA）。GDPR 第 28 条 + UAE PDPL 準拠。15 セクション + 記入可能 3 附属書 + 署名欄。</span></p>
+      </div>
+      <a href="docs/vendor-dpa-template.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: rgba(201, 162, 39, 0.12); color: var(--gold);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · 2,110 WORDS · 17 VENDORS · 1 FLAG</span><span class="lang jp">HTML · 2,110 語 · 17 ベンダー · 確認1箇所</span></div>
+        <h3><span class="lang en">Vendor DPA Checklist</span><span class="lang jp">ベンダー DPA チェックリスト</span></h3>
+        <p><span class="lang en">All 17 vendors Peanut eSIM uses, grouped by 8 categories. Per-vendor: DPA URL (if public), data they process, transfer mechanism, status pill.</span><span class="lang jp">Peanut eSIM が使用する全 17 ベンダーを 8 カテゴリーに整理。ベンダーごとに:DPA URL（公開時）、処理データ、転送メカニズム、ステータス表示。</span></p>
+      </div>
+      <a href="docs/vendor-dpa-checklist.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
       </a>
     </div>
   </section>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ─── TAB: COST ─── -->
+<!-- ============================================================ -->
+<div class="tab-content" data-tab-content="cost">
+<div class="container">
+
+  <header class="hero">
+    <span class="doc-tag">PEANUT ESIM · COST</span>
+    <h1 class="lang en">What this <em>actually costs</em>.</h1>
+    <h1 class="lang jp"><em>本当にかかる</em>コストの全体像。</h1>
+    <p class="lead lang en">Every cost discussed across all phases — one-time setup, annual recurring, per-transaction, and deferred. Updated as items get decided.</p>
+    <p class="lead lang jp">全フェーズで議論したコストを一元管理 — 一括設立費、年間継続費、取引手数料、後回し費用。各項目の決定に応じて更新。</p>
+  </header>
+
+  <!-- One-time setup costs -->
+  <section style="border-bottom: none; padding-bottom: 0;">
+    <div class="sec-label"><span class="lang en">PHASE 0 + PHASE 1 · ONE-TIME SETUP</span><span class="lang jp">フェーズ 0 + フェーズ 1 ・ 初期費用</span></div>
+    <h2 class="lang en">One-time setup costs</h2>
+    <h2 class="lang jp">一回限りの設立費用</h2>
+
+    <div class="cost-category">
+      <div class="cost-category-header">
+        <h3><span class="lang en">Phase 0 — Research &amp; Validation</span><span class="lang jp">フェーズ 0 — リサーチ＆検証</span></h3>
+        <span class="cost-category-total">$0</span>
+      </div>
+      <table class="cost-category-table">
+        <tr><td class="cost-item">Item 1 — UAE Regulatory research</td><td class="cost-detail"><span class="lang en">Google Deep Research (free)</span><span class="lang jp">Google Deep Research（無料）</span></td><td class="cost-amount free">$0</td></tr>
+        <tr><td class="cost-item">Item 2 — Samurai diligence</td><td class="cost-detail"><span class="lang en">Akito's relationship + questionnaire</span><span class="lang jp">Akito の人脈 + 確認質問</span></td><td class="cost-amount free">$0</td></tr>
+        <tr><td class="cost-item">Item 3 — Pricing benchmark</td><td class="cost-detail"><span class="lang en">Research agent ran the scrape</span><span class="lang jp">調査エージェントが収集</span></td><td class="cost-amount free">$0</td></tr>
+        <tr><td class="cost-item">Items 4 + 5</td><td class="cost-detail"><span class="lang en">Skipped / parked</span><span class="lang jp">保留中</span></td><td class="cost-amount deferred">—</td></tr>
+      </table>
+    </div>
+
+    <div class="cost-category">
+      <div class="cost-category-header">
+        <h3><span class="lang en">Phase 1 — Legal &amp; Corporate</span><span class="lang jp">フェーズ 1 — 法務・法人設立</span></h3>
+        <span class="cost-category-total">$2,649 – $8,124</span>
+      </div>
+      <table class="cost-category-table">
+        <tr><td class="cost-item">Item 1 — Stripe Atlas (LLC + EIN + Mercury + Stripe US bundle)</td><td class="cost-detail"><span class="lang en">2–3 weeks, all-in-one</span><span class="lang jp">2〜3 週間、一括設立</span></td><td class="cost-amount pick">$500</td></tr>
+        <tr><td class="cost-item">Item 2 — Trademark (option A: USPTO only)</td><td class="cost-detail"><span class="lang en">US only protection</span><span class="lang jp">米国のみ保護</span></td><td class="cost-amount">~$1,200</td></tr>
+        <tr><td class="cost-item">Item 2 — Trademark (option B: USPTO + Madrid ⭐)</td><td class="cost-detail"><span class="lang en">US + UAE + EU + UK + JP + SG</span><span class="lang jp">US + UAE + EU + 英 + 日 + SG</span></td><td class="cost-amount pick">$2,500 – $3,500</td></tr>
+        <tr><td class="cost-item">Item 2 — Trademark (option C: country-by-country)</td><td class="cost-detail"><span class="lang en">Per country</span><span class="lang jp">国別</span></td><td class="cost-amount">$1K–$2K each</td></tr>
+        <tr><td class="cost-item">Item 3 — Domains + social handles</td><td class="cost-detail">.com + .app + .ae + backups + IG/X/TikTok/LI/YT</td><td class="cost-amount">~$100</td></tr>
+        <tr><td class="cost-item">Item 4 — Lawyer review of ToS/Privacy/Refund</td><td class="cost-detail"><span class="lang en">Drafts already in repo</span><span class="lang jp">ドラフト リポジトリ済</span></td><td class="cost-amount">$500 – $2,000</td></tr>
+        <tr><td class="cost-item">Item 5 — Lawyer review of DPA template</td><td class="cost-detail"><span class="lang en">Often bundled with Item 4</span><span class="lang jp">Item 4 と一括が一般的</span></td><td class="cost-amount">$0 – $500</td></tr>
+        <tr><td class="cost-item">Item 6 — Mercury bank</td><td class="cost-detail"><span class="lang en">Auto with Atlas</span><span class="lang jp">Atlas で自動</span></td><td class="cost-amount free">$0</td></tr>
+        <tr><td class="cost-item">Item 7 — Stripe US account</td><td class="cost-detail"><span class="lang en">Auto with Atlas · $5K credit included</span><span class="lang jp">Atlas で自動 · $5K クレジット付与</span></td><td class="cost-amount free">$0</td></tr>
+        <tr><td class="cost-item">Item 8 — Apple Developer (first year)</td><td class="cost-detail"><span class="lang en">$99/year, paid annually</span><span class="lang jp">年 $99</span></td><td class="cost-amount">$99</td></tr>
+        <tr><td class="cost-item">Item 9 — Google Play Console</td><td class="cost-detail"><span class="lang en">One-time, lifetime</span><span class="lang jp">一回限り、終身</span></td><td class="cost-amount">$25</td></tr>
+        <tr><td class="cost-item">Item 10 — Aggregator deposit (if required)</td><td class="cost-detail"><span class="lang en">TBD on Samurai response</span><span class="lang jp">Samurai 回答待ち</span></td><td class="cost-amount tbd">$0 – $10K</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Annual recurring -->
+  <section style="border-bottom: none; padding-bottom: 0;">
+    <div class="sec-label"><span class="lang en">ANNUAL RECURRING</span><span class="lang jp">年間継続費用</span></div>
+    <h2 class="lang en">What you owe <em>every year</em></h2>
+    <h2 class="lang jp">毎年発生する費用</h2>
+
+    <div class="cost-category">
+      <div class="cost-category-header">
+        <h3><span class="lang en">Legal &amp; corporate maintenance</span><span class="lang jp">法務・法人維持</span></h3>
+        <span class="cost-category-total">~$550–$900/yr</span>
+      </div>
+      <table class="cost-category-table">
+        <tr><td class="cost-item">Delaware franchise tax</td><td class="cost-detail"><span class="lang en">Due June 1 each year</span><span class="lang jp">毎年 6/1 期限</span></td><td class="cost-amount">$300</td></tr>
+        <tr><td class="cost-item">Apple Developer (annual)</td><td class="cost-detail"><span class="lang en">Required to keep iOS app published</span><span class="lang jp">iOS アプリ公開維持に必須</span></td><td class="cost-amount">$99</td></tr>
+        <tr><td class="cost-item">Registered Agent (Delaware)</td><td class="cost-detail"><span class="lang en">Year 1 included in Atlas</span><span class="lang jp">初年度は Atlas に含む</span></td><td class="cost-amount">$50 – $150</td></tr>
+        <tr><td class="cost-item">Form 5472 + 1120 pro-forma filing</td><td class="cost-detail"><span class="lang en">DIY: $0 · Service: $300–$500</span><span class="lang jp">自分で:$0 · 代行:$300–$500</span></td><td class="cost-amount">$0 – $500</td></tr>
+        <tr><td class="cost-item">Domain renewals</td><td class="cost-detail"><span class="lang en">~$100 across all TLDs</span><span class="lang jp">全 TLD 合計</span></td><td class="cost-amount">~$100</td></tr>
+      </table>
+    </div>
+
+    <div class="cost-category">
+      <div class="cost-category-header">
+        <h3><span class="lang en">Tech stack (small scale at launch)</span><span class="lang jp">技術スタック（ローンチ小規模）</span></h3>
+        <span class="cost-category-total">~$1.5K–$5K/yr</span>
+      </div>
+      <table class="cost-category-table">
+        <tr><td class="cost-item">Hosting (Vercel / AWS)</td><td class="cost-detail"><span class="lang en">$50–$200/mo at launch</span><span class="lang jp">ローンチ時 月$50–$200</span></td><td class="cost-amount">$600 – $2,400</td></tr>
+        <tr><td class="cost-item">Customer support tool (Crisp / Intercom)</td><td class="cost-detail"><span class="lang en">$50–$200/mo</span><span class="lang jp">月$50–$200</span></td><td class="cost-amount">$600 – $2,400</td></tr>
+        <tr><td class="cost-item">Email service (Postmark / Resend)</td><td class="cost-detail"><span class="lang en">$10–$50/mo</span><span class="lang jp">月$10–$50</span></td><td class="cost-amount">$120 – $600</td></tr>
+        <tr><td class="cost-item">Analytics (PostHog / Mixpanel)</td><td class="cost-detail"><span class="lang en">$0–$100/mo</span><span class="lang jp">月$0–$100</span></td><td class="cost-amount">$0 – $1,200</td></tr>
+        <tr><td class="cost-item">Error tracking (Sentry)</td><td class="cost-detail"><span class="lang en">Free tier OK for launch</span><span class="lang jp">ローンチ時は無料枠で十分</span></td><td class="cost-amount free">$0</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Per-transaction -->
+  <section style="border-bottom: none; padding-bottom: 0;">
+    <div class="sec-label"><span class="lang en">PER-TRANSACTION (VARIABLE)</span><span class="lang jp">取引あたり（変動）</span></div>
+    <h2 class="lang en">Variable per-sale costs</h2>
+    <h2 class="lang jp">売上あたりの変動費</h2>
+
+    <div class="cost-category">
+      <div class="cost-category-header">
+        <h3><span class="lang en">Per sale of a $15 plan (example)</span><span class="lang jp">$15 プラン売上時の例</span></h3>
+        <span class="cost-category-total">~$9.95</span>
+      </div>
+      <table class="cost-category-table">
+        <tr><td class="cost-item">Apple 30% (if IAP route)</td><td class="cost-detail"><span class="lang en">15% on subs year 2+ · See Decision 01</span><span class="lang jp">サブスク 2 年目以降 15% · 判断 01 参照</span></td><td class="cost-amount">$4.50</td></tr>
+        <tr><td class="cost-item">Stripe processing</td><td class="cost-detail"><span class="lang en">2.9% + $0.30 per transaction</span><span class="lang jp">取引あたり 2.9% + $0.30</span></td><td class="cost-amount">$0.45</td></tr>
+        <tr><td class="cost-item">Aggregator wholesale (Samurai estimate)</td><td class="cost-detail"><span class="lang en">~40% of retail at flat margin</span><span class="lang jp">小売価格の約 40%（フラットマージン）</span></td><td class="cost-amount">$5.00</td></tr>
+        <tr><td class="cost-item"><strong style="color: var(--accent);"><span class="lang en">Our gross margin</span><span class="lang jp">粗利益</span></strong></td><td class="cost-detail"><span class="lang en">~34% net (or ~50% if Hybrid IAP-skip route)</span><span class="lang jp">約 34%（ハイブリッド IAP 回避なら約 50%）</span></td><td class="cost-amount pick">$5.05</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Deferred / Post-launch -->
+  <section style="border-bottom: none; padding-bottom: 0;">
+    <div class="sec-label"><span class="lang en">DEFERRED · POST-LAUNCH</span><span class="lang jp">後回し ・ ローンチ後</span></div>
+    <h2 class="lang en">Deferred costs</h2>
+    <h2 class="lang jp">後回し費用</h2>
+
+    <div class="cost-category">
+      <div class="cost-category-header">
+        <h3><span class="lang en">Defer until we have customers / revenue</span><span class="lang jp">顧客・売上が出てから判断</span></h3>
+        <span class="cost-category-total">~$1K–$3K/yr (when triggered)</span>
+      </div>
+      <table class="cost-category-table">
+        <tr><td class="cost-item">Item 11 — Business insurance (E&amp;O + cyber)</td><td class="cost-detail"><span class="lang en">Buy at ~100 paying customers</span><span class="lang jp">有料顧客 100 名前後で取得</span></td><td class="cost-amount deferred">$1K – $3K/yr</td></tr>
+        <tr><td class="cost-item">Apple Carrier Entitlement application</td><td class="cost-detail"><span class="lang en">Apply at ~10K users · Free to apply</span><span class="lang jp">10K ユーザー時点で申請 · 申請無料</span></td><td class="cost-amount free">$0</td></tr>
+        <tr><td class="cost-item">Multi-aggregator integration</td><td class="cost-detail"><span class="lang en">Once Samurai partnership is proven</span><span class="lang jp">Samurai 提携が確立してから</span></td><td class="cost-amount tbd">TBD</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Phases 2-7 estimates -->
+  <section style="border-bottom: none; padding-bottom: 0;">
+    <div class="sec-label"><span class="lang en">PHASE 2 — 7 · LAUNCH ESTIMATES</span><span class="lang jp">フェーズ 2 — 7 ・ ローンチ予算見積</span></div>
+    <h2 class="lang en">What it costs to actually launch</h2>
+    <h2 class="lang jp">ローンチに必要な実費</h2>
+
+    <div class="cost-category">
+      <div class="cost-category-header">
+        <h3><span class="lang en">Phases 2 — 5 to reach soft launch</span><span class="lang jp">フェーズ 2 — 5 ソフトローンチまで</span></h3>
+        <span class="cost-category-total">~$36K – $95K (outsourced) · or DIY</span>
+      </div>
+      <table class="cost-category-table">
+        <tr><td class="cost-item">Phase 2 — Brand &amp; Product Design</td><td class="cost-detail"><span class="lang en">Logo, UI, marketing site, App Store assets</span><span class="lang jp">ロゴ、UI、マーケサイト、App Store 素材</span></td><td class="cost-amount">$3K – $8K</td></tr>
+        <tr><td class="cost-item">Phase 3 — Tech Build (outsourced)</td><td class="cost-detail"><span class="lang en">iOS + Android + Web + Backend</span><span class="lang jp">iOS + Android + Web + バックエンド</span></td><td class="cost-amount">$30K – $80K</td></tr>
+        <tr><td class="cost-item">Phase 3 — Tech Build (in-house)</td><td class="cost-detail"><span class="lang en">DIY with my help</span><span class="lang jp">セルフビルド（私の支援あり）</span></td><td class="cost-amount pick">~$2K – $5K</td></tr>
+        <tr><td class="cost-item">Phase 4 — Beta &amp; Pre-launch</td><td class="cost-detail"><span class="lang en">Crew incentives, TestFlight</span><span class="lang jp">乗務員インセンティブ、TestFlight</span></td><td class="cost-amount">$200 – $500</td></tr>
+        <tr><td class="cost-item">Phase 5 — Soft Launch marketing</td><td class="cost-detail"><span class="lang en">Small paid ad tests + crew referrals</span><span class="lang jp">小規模有料広告テスト + 乗務員紹介</span></td><td class="cost-amount">$500 – $1,500</td></tr>
+        <tr><td class="cost-item">Phase 6 — Public Launch marketing</td><td class="cost-detail"><span class="lang en">Per month, ongoing</span><span class="lang jp">月額、継続</span></td><td class="cost-amount">$2K – $10K/mo</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Grand summary -->
+  <section>
+    <div class="cost-summary">
+      <h3><span class="lang en">Total launch budget estimate</span><span class="lang jp">ローンチまでの総予算 (見積)</span></h3>
+      <div class="cost-summary-row">
+        <span class="label"><span class="lang en">Phase 0 + Phase 1 (one-time setup)</span><span class="lang jp">フェーズ 0 + 1（初期費用）</span></span>
+        <span class="amount">$2.6K – $8K</span>
+      </div>
+      <div class="cost-summary-row">
+        <span class="label"><span class="lang en">Phases 2 – 5 (DIY tech build)</span><span class="lang jp">フェーズ 2 – 5（セルフビルド）</span></span>
+        <span class="amount">~$6K – $15K</span>
+      </div>
+      <div class="cost-summary-row">
+        <span class="label"><span class="lang en">Phases 2 – 5 (outsourced tech build)</span><span class="lang jp">フェーズ 2 – 5（外注ビルド）</span></span>
+        <span class="amount">~$36K – $95K</span>
+      </div>
+      <div class="cost-summary-row">
+        <span class="label"><strong><span class="lang en">→ Realistic bootstrap budget to soft launch</span><span class="lang jp">→ ブートストラップ式の現実的ローンチ予算</span></strong></span>
+        <span class="amount">$10K – $20K</span>
+      </div>
+    </div>
+  </section>
+
 </div>
 </div>
 
@@ -3928,7 +4291,7 @@ Mercury（米国法人銀行口座）
 
   // Restore tab from hash or storage
   const hashTab = window.location.hash.replace('#', '');
-  const validTabs = ['overview', 'open', 'balraj', 'akito', 'roadmap', 'delaware', 'docs'];
+  const validTabs = ['overview', 'open', 'balraj', 'akito', 'roadmap', 'delaware', 'docs', 'cost'];
   const initialTab = validTabs.includes(hashTab) ? hashTab : (localStorage.getItem('peanut-tab') || 'overview');
   switchTab(initialTab);
 

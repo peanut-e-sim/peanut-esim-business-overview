@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Data Processing Agreement (Template) — Peanut eSIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --warning: #C97E22;
+    --warning-soft: #FFF8EE;
+    --warning-border: #F0D9A8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 250, 247, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .brand-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .back-link {
+    font-size: 13px;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    transition: 0.2s ease;
+  }
+  .back-link:hover { color: var(--accent); border-color: var(--accent); }
+  .meta-row {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    flex-wrap: wrap;
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row .dot-small {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-3);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 32px 96px;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    color: var(--text-2);
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin: 24px 0 40px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .doc-meta strong { color: var(--text); font-weight: 600; }
+  .doc-meta-item { display: flex; gap: 6px; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.25;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    color: var(--text);
+    scroll-margin-top: 80px;
+  }
+  h2 .num {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 18px;
+    display: inline-block;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--text);
+    margin-top: 28px;
+    margin-bottom: 8px;
+  }
+  h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+    margin-top: 20px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  p { margin-bottom: 14px; color: var(--text-2); }
+  p strong, li strong { color: var(--text); font-weight: 600; }
+
+  ul, ol {
+    margin: 12px 0 18px 22px;
+    color: var(--text-2);
+  }
+  li { margin-bottom: 8px; }
+
+  a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(45,140,126,0.3); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .lawyer-flag {
+    background: var(--warning-soft);
+    border: 1px solid var(--warning-border);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 13.5px;
+    color: #6E4A1C;
+    line-height: 1.65;
+  }
+  .lawyer-flag::before {
+    content: "LAWYER REVIEW";
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--warning);
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 32px 0 48px;
+  }
+  .toc-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+  .toc ol {
+    columns: 2;
+    column-gap: 32px;
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13.5px;
+  }
+  .toc ol li { margin-bottom: 5px; break-inside: avoid; }
+  .toc a { color: var(--text-2); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  .clause-ref {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: 1px;
+    letter-spacing: 0.3px;
+  }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 22px;
+    font-size: 13.5px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  table.data-table th, table.data-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text-2);
+    vertical-align: top;
+  }
+  table.data-table th {
+    background: var(--accent-soft);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  table.data-table tr:last-child td { border-bottom: 0; }
+
+  .annex {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px 28px 12px;
+    margin: 28px 0 0;
+  }
+  .annex-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .annex h2 {
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+  .fillable {
+    display: inline-block;
+    min-width: 220px;
+    padding: 2px 8px;
+    background: #FFFDF5;
+    border-bottom: 1px dashed #C9B07A;
+    color: #6E4A1C;
+    font-style: italic;
+    font-size: 13.5px;
+  }
+
+  .signature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .sig-block {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .sig-block h4 {
+    margin-top: 0;
+    color: var(--accent);
+  }
+  .sig-line {
+    border-bottom: 1px solid var(--text);
+    height: 30px;
+    margin: 16px 0 6px;
+  }
+  .sig-cap {
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 14px;
+  }
+
+  hr.section-rule {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 64px 0 0;
+  }
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-3);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 40px; }
+    h2 { font-size: 26px; }
+    .toc ol { columns: 1; }
+    .container { padding: 40px 22px 64px; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 8px 10px; }
+    .signature-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    .topbar, .back-link { display: none; }
+    body { background: #fff; color: #000; font-size: 10.5pt; line-height: 1.55; }
+    h1, h2, h3, h4 { color: #000; page-break-after: avoid; }
+    h2 { page-break-before: auto; }
+    .lawyer-flag { border: 1px solid #999; background: #f6f6f6; color: #333; page-break-inside: avoid; }
+    .annex { page-break-inside: avoid; border: 1px solid #999; }
+    .container { padding: 0; max-width: 100%; }
+    a { color: #000; text-decoration: underline; }
+    .toc { page-break-after: always; }
+    .clause-ref { background: #eee; color: #000; }
+    table.data-table { page-break-inside: avoid; }
+    .signature-grid { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand-pill" href="/"><span class="dot"></span>Peanut eSIM</a>
+    <div class="meta-row">
+      <span>Template version: <strong style="color:var(--text-2)">1.0</strong></span>
+      <span class="dot-small"></span>
+      <span>GDPR Art. 28 + UAE PDPL aligned</span>
+    </div>
+    <a class="back-link" href="/">&larr; Back to site</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <h1>Data Processing Agreement</h1>
+  <p class="subtitle">Standard vendor DPA template — to be attached to the master services agreement (MSA) between Peanut eSIM LLC (Controller) and any third-party Processor that handles personal data on its behalf, including Samurai Wifi Inc.</p>
+
+  <div class="doc-meta">
+    <div class="doc-meta-item"><strong>Controller:</strong> Peanut eSIM LLC (Delaware, USA)</div>
+    <div class="doc-meta-item"><strong>Document type:</strong> Reusable DPA template</div>
+    <div class="doc-meta-item"><strong>Effective date:</strong> on signature of Annex I</div>
+    <div class="doc-meta-item"><strong>Version:</strong> 1.0 (draft — for legal review)</div>
+  </div>
+
+  <div class="lawyer-flag">
+    This template is a working draft prepared by management. It must be reviewed by qualified counsel (Delaware corporate + EU data-protection competence) before being attached to any signed agreement. Sections flagged below contain commercial allocations that require explicit business sign-off.
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#s1">Definitions</a></li>
+      <li><a href="#s2">Scope and purpose</a></li>
+      <li><a href="#s3">Categories of data &amp; data subjects</a></li>
+      <li><a href="#s4">Processor obligations</a></li>
+      <li><a href="#s5">Sub-processor management</a></li>
+      <li><a href="#s6">International transfers</a></li>
+      <li><a href="#s7">Data subject rights</a></li>
+      <li><a href="#s8">Breach notification</a></li>
+      <li><a href="#s9">Audit rights</a></li>
+      <li><a href="#s10">Confidentiality</a></li>
+      <li><a href="#s11">Term &amp; termination</a></li>
+      <li><a href="#s12">Return &amp; deletion of data</a></li>
+      <li><a href="#s13">Liability &amp; indemnification</a></li>
+      <li><a href="#s14">Governing law &amp; arbitration</a></li>
+      <li><a href="#s15">General provisions</a></li>
+      <li><a href="#annex-i">Annex I — Description of processing</a></li>
+      <li><a href="#annex-ii">Annex II — Technical &amp; organisational measures</a></li>
+      <li><a href="#annex-iii">Annex III — Approved sub-processors</a></li>
+      <li><a href="#signatures">Signature blocks</a></li>
+    </ol>
+  </div>
+
+  <p>This Data Processing Agreement (the &ldquo;<strong>DPA</strong>&rdquo;) supplements and forms an integral part of the master services agreement, statement of work, order form, or other written contract (the &ldquo;<strong>Principal Agreement</strong>&rdquo;) entered into between <strong>Peanut eSIM LLC</strong>, a limited liability company organised under the laws of the State of Delaware, United States of America (the &ldquo;<strong>Controller</strong>&rdquo;), and the counter-party identified on the signature page below (the &ldquo;<strong>Processor</strong>&rdquo;). The Controller and the Processor are each a &ldquo;<strong>Party</strong>&rdquo; and together the &ldquo;<strong>Parties</strong>&rdquo;.</p>
+
+  <p>In the event of any conflict or inconsistency between this DPA and the Principal Agreement, the terms of this DPA shall prevail in respect of the Processing of Personal Data. To the extent that the EU Standard Contractual Clauses adopted by Commission Implementing Decision (EU) 2021/914 (the &ldquo;<strong>SCCs</strong>&rdquo;) apply pursuant to Section 6 and Annex I, the SCCs shall prevail over any conflicting term in this DPA.</p>
+
+
+  <h2 id="s1"><span class="num">1.</span>Definitions</h2>
+
+  <p>Capitalised terms used but not defined in this DPA have the meaning given to them in the Principal Agreement or in the GDPR. For the purposes of this DPA:</p>
+
+  <ul>
+    <li><strong>&ldquo;Controller&rdquo;</strong> means Peanut eSIM LLC, the natural or legal person which, alone or jointly with others, determines the purposes and means of the Processing of Personal Data (GDPR Art. 4(7)).</li>
+    <li><strong>&ldquo;Processor&rdquo;</strong> means the counter-party signing this DPA, which Processes Personal Data on behalf of the Controller (GDPR Art. 4(8)).</li>
+    <li><strong>&ldquo;Sub-processor&rdquo;</strong> means any third party engaged by the Processor (or by another Sub-processor in turn) to Process Personal Data on behalf of the Controller in connection with the Principal Agreement.</li>
+    <li><strong>&ldquo;Personal Data&rdquo;</strong> means any information relating to an identified or identifiable natural person (&ldquo;Data Subject&rdquo;) that is Processed by the Processor on behalf of the Controller pursuant to the Principal Agreement, as further described in Annex I (GDPR Art. 4(1)).</li>
+    <li><strong>&ldquo;Data Subject&rdquo;</strong> means the identified or identifiable natural person to whom Personal Data relates, including end-users (travellers) of Peanut eSIM, business customers, employees of business customers, and the Controller&rsquo;s own personnel where applicable.</li>
+    <li><strong>&ldquo;Processing&rdquo;</strong> means any operation or set of operations performed on Personal Data, whether or not by automated means (GDPR Art. 4(2)).</li>
+    <li><strong>&ldquo;Personal Data Breach&rdquo;</strong> or &ldquo;<strong>Breach</strong>&rdquo; means a breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to, Personal Data (GDPR Art. 4(12)).</li>
+    <li><strong>&ldquo;GDPR&rdquo;</strong> means Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, together with the UK GDPR as retained by the European Union (Withdrawal) Act 2018.</li>
+    <li><strong>&ldquo;UAE PDPL&rdquo;</strong> means the United Arab Emirates Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data, together with its Executive Regulation and any binding guidance issued by the UAE Data Office.</li>
+    <li><strong>&ldquo;SCCs&rdquo;</strong> means the EU Standard Contractual Clauses set out in the Annex to Commission Implementing Decision (EU) 2021/914 of 4 June 2021, including the Module Two (Controller-to-Processor) clauses and, where applicable, the UK International Data Transfer Addendum issued by the UK Information Commissioner&rsquo;s Office.</li>
+    <li><strong>&ldquo;Data Protection Law&rdquo;</strong> means, collectively, the GDPR, the UAE PDPL, the California Consumer Privacy Act / California Privacy Rights Act (CCPA/CPRA), and any other data-protection or privacy law applicable to the Processing of Personal Data under the Principal Agreement.</li>
+    <li><strong>&ldquo;Supervisory Authority&rdquo;</strong> means any independent public authority responsible for monitoring the application of Data Protection Law, including data-protection authorities in the EU/EEA, the UK ICO, and the UAE Data Office.</li>
+  </ul>
+
+
+  <h2 id="s2"><span class="num">2.</span>Scope and Purpose</h2>
+
+  <p>This DPA applies to all Processing of Personal Data performed by the Processor on behalf of the Controller under the Principal Agreement. The subject matter, duration, nature, and purpose of the Processing, the types of Personal Data and the categories of Data Subjects are set out in <strong>Annex I</strong> (GDPR Art. 28(3)).</p>
+
+  <p>The Processor shall Process Personal Data only for the documented purposes described in Annex I and the Principal Agreement, and shall not Process Personal Data for its own purposes, for the purposes of any third party, or for any purpose incompatible with the Controller&rsquo;s documented instructions, including any marketing, advertising, profiling, model-training, or commercial use of Personal Data.</p>
+
+
+  <h2 id="s3"><span class="num">3.</span>Categories of Personal Data and Data Subjects</h2>
+
+  <p>The categories of Personal Data, special categories of Personal Data (if any), categories of Data Subjects, and the nature and purpose of the Processing are described in Annex I, which the Parties shall complete and execute together with this DPA. The Processor shall not Process special categories of Personal Data within the meaning of GDPR Art. 9 unless this DPA has been amended in writing to authorise such Processing and the Controller has documented its lawful basis under GDPR Art. 9(2).</p>
+
+
+  <h2 id="s4"><span class="num">4.</span>Processor Obligations</h2>
+
+  <h3>4.1 Documented instructions <span class="clause-ref">GDPR Art. 28(3)(a)</span></h3>
+  <p>The Processor shall Process Personal Data only on documented instructions from the Controller, including with regard to transfers of Personal Data to a third country or an international organisation, unless required to do so by Union, Member State, or other applicable law. In such a case, the Processor shall inform the Controller of that legal requirement before Processing, unless that law prohibits such information on important grounds of public interest.</p>
+  <p>The Principal Agreement, this DPA, Annex I, and any further written instructions reasonably issued by the Controller from time to time constitute the documented instructions. If the Processor considers an instruction to infringe Data Protection Law, it shall notify the Controller without undue delay.</p>
+
+  <h3>4.2 Confidentiality of personnel <span class="clause-ref">GDPR Art. 28(3)(b)</span></h3>
+  <p>The Processor shall ensure that persons authorised to Process the Personal Data have committed themselves to confidentiality or are under an appropriate statutory obligation of confidentiality, and that access to Personal Data is restricted to personnel who need access for the performance of the Principal Agreement on a need-to-know basis.</p>
+
+  <h3>4.3 Security of Processing <span class="clause-ref">GDPR Art. 28(3)(c) &amp; Art. 32</span></h3>
+  <p>The Processor shall implement and maintain appropriate technical and organisational measures to ensure a level of security appropriate to the risk, as further specified in <strong>Annex II</strong>. The Processor shall regularly test, assess, and evaluate the effectiveness of those measures and shall update Annex II promptly when material changes occur. Reductions in the security measures described in Annex II during the term of this DPA require the prior written consent of the Controller.</p>
+
+  <h3>4.4 Assistance with data-subject rights <span class="clause-ref">GDPR Art. 28(3)(e)</span></h3>
+  <p>Taking into account the nature of the Processing, the Processor shall assist the Controller by appropriate technical and organisational measures, insofar as this is possible, for the fulfilment of the Controller&rsquo;s obligation to respond to requests from Data Subjects exercising their rights under Chapter III of the GDPR (Articles 12 to 23) and the equivalent rights under the UAE PDPL and other Data Protection Law. The Processor shall not respond directly to any Data Subject unless instructed to do so in writing by the Controller, and shall forward any such request to the Controller within five (5) business days of receipt.</p>
+
+  <h3>4.5 Assistance with controller obligations <span class="clause-ref">GDPR Art. 28(3)(f)</span></h3>
+  <p>The Processor shall assist the Controller in ensuring compliance with the obligations pursuant to GDPR Articles 32 to 36 (security, breach notification, data protection impact assessments, prior consultation with Supervisory Authorities) taking into account the nature of Processing and the information available to the Processor.</p>
+
+  <h3>4.6 Records of Processing <span class="clause-ref">GDPR Art. 30(2)</span></h3>
+  <p>The Processor shall maintain records of all categories of Processing activities carried out on behalf of the Controller and shall make those records available to the Controller and to any Supervisory Authority on request.</p>
+
+
+  <h2 id="s5"><span class="num">5.</span>Sub-processor Management <span class="clause-ref">GDPR Art. 28(2), Art. 28(4)</span></h2>
+
+  <p>The Processor shall not engage any Sub-processor to carry out specific Processing activities on behalf of the Controller without the Controller&rsquo;s prior specific or general written authorisation. The Sub-processors listed in <strong>Annex III</strong> are hereby authorised by the Controller as at the effective date of this DPA.</p>
+
+  <p>The Processor shall:</p>
+  <ul>
+    <li>Provide the Controller with at least thirty (30) days&rsquo; prior written notice of any intended addition or replacement of a Sub-processor, including the identity, location, and Processing activities of the proposed Sub-processor;</li>
+    <li>Permit the Controller to object to such addition or replacement on reasonable grounds related to data protection within that thirty-day period. If the Controller objects, the Parties shall work together in good faith to find a workable resolution; if no resolution can be found, the Controller may terminate the Principal Agreement and this DPA without penalty;</li>
+    <li>Maintain an up-to-date list of Sub-processors (consistent with Annex III) and make it available to the Controller on request;</li>
+    <li>Impose on each Sub-processor, by way of a written contract, data-protection obligations no less protective than those set out in this DPA, in particular providing sufficient guarantees to implement appropriate technical and organisational measures (GDPR Art. 28(4));</li>
+    <li>Remain fully liable to the Controller for the performance of each Sub-processor&rsquo;s obligations under that contract.</li>
+  </ul>
+
+
+  <h2 id="s6"><span class="num">6.</span>International Transfers <span class="clause-ref">GDPR Chapter V</span></h2>
+
+  <div class="lawyer-flag">
+    International transfer mechanism is a high-risk clause. Counsel must confirm (i) which transfer routes actually occur for this vendor, (ii) whether Module Two SCCs (Controller-to-Processor) or Module Three (Processor-to-Processor) apply, (iii) whether a UK IDTA or Swiss addendum is also needed, and (iv) whether a transfer impact assessment (TIA) is required given the Processor&rsquo;s jurisdiction of incorporation. For Samurai Wifi (Japan), counsel must confirm reliance on the EU&ndash;Japan adequacy decision (Commission Implementing Decision (EU) 2019/419).
+  </div>
+
+  <p>Where the Processing of Personal Data subject to the GDPR by the Processor or any Sub-processor involves a transfer of Personal Data from the European Economic Area, the United Kingdom, or Switzerland to a country that is not the subject of a valid adequacy decision under GDPR Art. 45 (or the UK/Swiss equivalent), the Parties hereby incorporate the SCCs into this DPA by reference, with the following selections:</p>
+  <ul>
+    <li><strong>Module</strong>: Module Two (Controller-to-Processor); Module Three shall additionally apply between the Processor and any non-adequate Sub-processor;</li>
+    <li><strong>Clause 7</strong> (Docking clause): applies;</li>
+    <li><strong>Clause 9</strong> (Sub-processors): Option 2 &mdash; general written authorisation, with a thirty (30)-day prior notice period as specified in Section 5;</li>
+    <li><strong>Clause 11</strong> (Redress): the optional independent dispute resolution body is <strong>not</strong> included;</li>
+    <li><strong>Clause 17</strong> (Governing law): the law of the Republic of Ireland;</li>
+    <li><strong>Clause 18</strong> (Choice of forum and jurisdiction): the courts of the Republic of Ireland;</li>
+    <li><strong>Annex I, II, III of the SCCs</strong>: shall be deemed populated by Annex I, II, and III of this DPA.</li>
+  </ul>
+
+  <p>For transfers from the United Kingdom, the Parties shall be bound by the UK International Data Transfer Addendum issued by the UK ICO, with the SCCs above as the &ldquo;Approved EU SCCs&rdquo;. For transfers from Switzerland, references to the GDPR in the SCCs shall be interpreted as references to the Swiss Federal Act on Data Protection.</p>
+
+  <p>The Processor warrants that it has performed and documented a transfer impact assessment that supports the lawfulness of any onward transfer, and shall provide a copy of that assessment to the Controller on request.</p>
+
+
+  <h2 id="s7"><span class="num">7.</span>Data Subject Rights Assistance <span class="clause-ref">GDPR Art. 12, 15&ndash;22</span></h2>
+
+  <p>The Controller is responsible for responding to Data Subject requests within the time limits set by Data Protection Law &mdash; in particular, the one-month period under GDPR Art. 12(3), which may be extended by two further months where necessary, taking into account the complexity and number of the requests.</p>
+
+  <p>The Processor shall, at no additional charge to the Controller:</p>
+  <ul>
+    <li>Forward to the Controller, within five (5) business days, any request received directly from a Data Subject relating to the Personal Data Processed under the Principal Agreement;</li>
+    <li>Provide the Controller, within ten (10) business days of a written request, with the Personal Data of a specified Data Subject in a structured, commonly used, machine-readable format (GDPR Art. 20) sufficient to satisfy a portability or access request;</li>
+    <li>Promptly rectify, erase, or restrict Processing of Personal Data on the Controller&rsquo;s documented instruction;</li>
+    <li>Implement reasonable technical means by which the Controller can fulfil its obligations directly (for example, self-service tools, APIs, or admin consoles) where commercially practicable.</li>
+  </ul>
+
+
+  <h2 id="s8"><span class="num">8.</span>Personal Data Breach Notification <span class="clause-ref">GDPR Art. 33</span></h2>
+
+  <p>The Processor shall notify the Controller of any Personal Data Breach affecting Personal Data Processed under the Principal Agreement <strong>without undue delay and in any event within twenty-four (24) hours</strong> of the Processor becoming aware of the Breach. The notification shall be sent to <a href="mailto:security@peanutesim.com">security@peanutesim.com</a> and, where designated, to the Controller&rsquo;s Data Protection Officer.</p>
+
+  <p>The notification shall, to the extent reasonably available at the time, include:</p>
+  <ul>
+    <li>A description of the nature of the Breach, including the categories and approximate number of Data Subjects and records concerned;</li>
+    <li>The name and contact details of the Processor&rsquo;s data-protection contact or other point from which more information can be obtained;</li>
+    <li>The likely consequences of the Breach;</li>
+    <li>The measures taken or proposed to be taken to address the Breach and to mitigate its possible adverse effects.</li>
+  </ul>
+
+  <p>Where it is not possible to provide all the information at the same time, the information may be provided in phases without further undue delay. The 24-hour notification window is designed to allow the Controller to satisfy its own 72-hour regulator notification obligation under GDPR Art. 33(1). The Processor shall not notify any Supervisory Authority or Data Subject of a Breach on the Controller&rsquo;s behalf without the Controller&rsquo;s prior written approval.</p>
+
+  <p>The Processor shall document all Personal Data Breaches in accordance with GDPR Art. 33(5), including the facts relating to the Breach, its effects, and the remedial action taken, and shall make such documentation available to the Controller and any Supervisory Authority on request.</p>
+
+
+  <h2 id="s9"><span class="num">9.</span>Audit Rights <span class="clause-ref">GDPR Art. 28(3)(h)</span></h2>
+
+  <p>The Processor shall make available to the Controller all information necessary to demonstrate compliance with the obligations laid down in GDPR Art. 28 and this DPA, and shall allow for and contribute to audits, including inspections, conducted by the Controller or by another auditor mandated by the Controller.</p>
+
+  <p>Subject to the safeguards below, the Controller may conduct an on-site audit no more than <strong>once per calendar year</strong>, on no less than thirty (30) days&rsquo; prior written notice, during the Processor&rsquo;s normal business hours and in a manner that does not unreasonably disrupt the Processor&rsquo;s operations. Additional audits may be conducted (i) following a Personal Data Breach, (ii) at the request of a Supervisory Authority, or (iii) where the Controller has a reasonable, documented suspicion of non-compliance with this DPA.</p>
+
+  <p>In lieu of an on-site audit, the Controller agrees to accept, where current and on point, recent third-party audit reports and certifications (for example, SOC 2 Type II, ISO/IEC 27001, ISO/IEC 27701, or PCI DSS) which adequately cover the Processing under the Principal Agreement. The Processor shall make a copy of the most recent such report available to the Controller under appropriate confidentiality undertakings within fifteen (15) business days of request.</p>
+
+  <p>Any auditor mandated by the Controller shall be subject to a binding obligation of confidentiality at least as protective as that in Section 10, and shall not be a direct competitor of the Processor.</p>
+
+
+  <h2 id="s10"><span class="num">10.</span>Confidentiality</h2>
+
+  <p>The Processor shall treat all Personal Data and all information disclosed by the Controller in connection with this DPA as confidential information. The Processor shall not disclose such information to any third party except (i) to its personnel and Sub-processors on a need-to-know basis and under binding obligations of confidentiality, or (ii) where required by law, in which case the Processor shall (where lawful) give the Controller prior notice and a reasonable opportunity to challenge the disclosure.</p>
+
+  <p>Obligations of confidentiality under this Section 10 survive the termination of this DPA and the Principal Agreement for so long as the relevant Personal Data or information remains confidential.</p>
+
+
+  <h2 id="s11"><span class="num">11.</span>Term and Termination</h2>
+
+  <p>This DPA shall enter into force on the effective date of the Principal Agreement and shall continue for as long as the Processor Processes Personal Data on behalf of the Controller under the Principal Agreement. This DPA shall terminate automatically upon the expiry or termination of the Principal Agreement, subject to the obligations that expressly or by their nature survive termination (including Sections 10, 12, 13, and 14).</p>
+
+  <p>Without prejudice to any other rights, the Controller may terminate the Principal Agreement and this DPA on written notice with immediate effect if (i) the Processor commits a material breach of this DPA which it fails to cure within thirty (30) days of written notice, (ii) the Processor commits a non-curable material breach of this DPA, or (iii) a Supervisory Authority or competent court determines that the Processing constitutes a breach of Data Protection Law.</p>
+
+
+  <h2 id="s12"><span class="num">12.</span>Return and Deletion of Personal Data <span class="clause-ref">GDPR Art. 28(3)(g)</span></h2>
+
+  <p>Upon termination or expiry of the Principal Agreement, or earlier on the Controller&rsquo;s written request, the Processor shall, at the Controller&rsquo;s choice:</p>
+  <ul>
+    <li>Return all Personal Data Processed on behalf of the Controller in a structured, commonly used, machine-readable format within thirty (30) days; and</li>
+    <li>Delete all existing copies of Personal Data Processed on behalf of the Controller (including any copies held by Sub-processors) within thirty (30) days of return or, if no return is requested, within thirty (30) days of termination,</li>
+  </ul>
+  <p>unless Union, Member State, or other applicable law requires storage of the Personal Data, in which case the Processor shall inform the Controller of that requirement and shall continue to protect the Personal Data in accordance with this DPA.</p>
+
+  <p>The Processor shall, within ten (10) business days of completion, certify in writing to the Controller (signed by an authorised officer of the Processor) that all Personal Data has been returned and/or deleted in accordance with this Section 12. Back-up media containing Personal Data shall be overwritten or destroyed on the next routine back-up cycle and in any event within ninety (90) days of the deletion date.</p>
+
+
+  <h2 id="s13"><span class="num">13.</span>Liability and Indemnification</h2>
+
+  <div class="lawyer-flag">
+    Liability cap and indemnity scope are commercial decisions. The current draft mirrors GDPR Art. 82 (joint and several liability between Controller and Processor where both are responsible for the damage) and proposes that the liability cap in the Principal Agreement does <em>not</em> apply to (a) Processor breach of confidentiality, (b) Processor breach of Section 6 (international transfers), (c) Processor gross negligence or wilful misconduct, or (d) Processor indemnification obligations under this Section 13. This carve-out is bespoke and must be negotiated with each vendor &mdash; many will resist an uncapped position. Counsel and CFO sign-off required before sending to counter-party.
+  </div>
+
+  <p>Each Party&rsquo;s liability arising out of or in connection with this DPA shall be subject to the exclusions and limitations of liability set out in the Principal Agreement, save that the Processor shall indemnify and hold the Controller harmless from and against any administrative fine, regulatory penalty, claim, demand, action, award, or third-party loss (including reasonable legal fees) arising from or related to: (i) the Processor&rsquo;s breach of this DPA; (ii) the Processor&rsquo;s breach of Data Protection Law in respect of the Processing under the Principal Agreement; or (iii) any act or omission of a Sub-processor that would have been a breach of this DPA if committed by the Processor.</p>
+
+  <p>The Controller shall indemnify the Processor against claims arising solely from the Processor&rsquo;s compliance with the Controller&rsquo;s documented instructions, except where the Processor knew or ought reasonably to have known that the instruction infringed Data Protection Law and failed to notify the Controller.</p>
+
+  <p>Nothing in this DPA limits or excludes either Party&rsquo;s liability for (a) death or personal injury caused by negligence, (b) fraud or fraudulent misrepresentation, (c) breaches of GDPR Art. 82, or (d) any liability that cannot be limited or excluded under applicable law.</p>
+
+
+  <h2 id="s14"><span class="num">14.</span>Governing Law and Dispute Resolution</h2>
+
+  <div class="lawyer-flag">
+    Governing law and forum are commercial allocations. Delaware + AAA arbitration is the default for Peanut eSIM contracts. For vendors with strong existing positions (Stripe, AWS, Cloudflare) we will accept their forum if they require it. For Samurai Wifi and other Tier-2 vendors we will push for Delaware + AAA. Some EU vendors may insist on EU forum &mdash; in that case, Ireland or Luxembourg is acceptable. Final selection must be approved by counsel.
+  </div>
+
+  <p>This DPA shall be governed by and construed in accordance with the laws of the State of Delaware, United States of America, without regard to its conflict-of-laws principles, save that the SCCs incorporated under Section 6 shall be governed by the law specified in Section 6 in respect of matters arising under those SCCs.</p>
+
+  <p>Any dispute, controversy, or claim arising out of or relating to this DPA, including the breach, termination, or validity thereof, shall be finally resolved by binding arbitration administered by the American Arbitration Association (&ldquo;<strong>AAA</strong>&rdquo;) under its Commercial Arbitration Rules then in effect. The arbitration shall be conducted by one (1) arbitrator in Wilmington, Delaware, in the English language. Judgment on the award may be entered in any court of competent jurisdiction.</p>
+
+  <p>Notwithstanding the foregoing, either Party may seek emergency injunctive or other equitable relief from a court of competent jurisdiction in order to protect its intellectual property rights, confidential information, or compliance obligations under Data Protection Law, pending the constitution of the arbitral tribunal. Nothing in this Section 14 limits the right of a Data Subject to bring proceedings under GDPR Art. 79 or 82 or under the SCCs.</p>
+
+
+  <h2 id="s15"><span class="num">15.</span>General Provisions</h2>
+
+  <h3>15.1 Entire agreement</h3>
+  <p>This DPA, together with the Principal Agreement, the SCCs (where incorporated under Section 6), and Annexes I, II, and III, constitutes the entire agreement between the Parties in respect of the subject matter and supersedes any prior data-processing terms.</p>
+
+  <h3>15.2 Amendments</h3>
+  <p>No amendment to this DPA is effective unless made in writing and signed by an authorised representative of each Party, save that the Controller may unilaterally update Annex II (Technical &amp; organisational measures) to reflect changes mandated by Data Protection Law or supervisory guidance, provided that such updates do not materially increase the Processor&rsquo;s obligations without good-faith negotiation.</p>
+
+  <h3>15.3 Severability</h3>
+  <p>If any provision of this DPA is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect, and the Parties shall negotiate in good faith to replace the invalid provision with a valid one that achieves the original commercial intent to the extent permitted by law.</p>
+
+  <h3>15.4 No third-party beneficiaries</h3>
+  <p>Except as expressly provided in Section 6 in respect of Data Subjects under the SCCs, this DPA does not confer any rights on any person other than the Parties.</p>
+
+  <h3>15.5 Notices</h3>
+  <p>All notices required under this DPA shall be in writing and shall be sent to the address set out in the Principal Agreement, with a copy to <a href="mailto:legal@peanutesim.com">legal@peanutesim.com</a> for the Controller. Notices of Personal Data Breach shall additionally be sent to <a href="mailto:security@peanutesim.com">security@peanutesim.com</a>.</p>
+
+  <hr class="section-rule">
+
+
+  <div class="annex" id="annex-i">
+    <div class="annex-label">Annex I</div>
+    <h2>Description of the Processing</h2>
+
+    <h4>A. List of Parties</h4>
+    <p><strong>Data exporter / Controller:</strong> Peanut eSIM LLC, [registered address], United States of America. Contact person: <span class="fillable">[DPO name and email]</span>. Activities relevant to the data transferred: operation of the Peanut eSIM travel-eSIM service, including marketing, sales, customer support, fraud prevention, and tax compliance.</p>
+    <p><strong>Data importer / Processor:</strong> <span class="fillable">[Legal name of Processor]</span>, <span class="fillable">[registered address]</span>. Contact person: <span class="fillable">[name, role, email]</span>. Activities relevant to the data transferred: <span class="fillable">[brief description &mdash; e.g., &ldquo;provision of eSIM aggregation services, including profile generation and connectivity in Japan, Korea, and Taiwan&rdquo;]</span>.</p>
+
+    <h4>B. Categories of Data Subjects</h4>
+    <ul>
+      <li><span class="fillable">[e.g., end-users (travellers) of the Peanut eSIM service]</span></li>
+      <li><span class="fillable">[e.g., business customers and their authorised users]</span></li>
+      <li><span class="fillable">[e.g., support contacts of the Controller]</span></li>
+    </ul>
+
+    <h4>C. Categories of Personal Data</h4>
+    <ul>
+      <li><span class="fillable">[e.g., email address, hashed account identifier]</span></li>
+      <li><span class="fillable">[e.g., eSIM Identifier (EID), ICCID, device model]</span></li>
+      <li><span class="fillable">[e.g., country of consumption, MNO session metadata, aggregate MB used]</span></li>
+      <li><span class="fillable">[e.g., IP address (truncated for analytics)]</span></li>
+    </ul>
+
+    <h4>D. Special Categories of Personal Data</h4>
+    <p><span class="fillable">[None / specify and document Art. 9(2) basis]</span></p>
+
+    <h4>E. Frequency of Transfer</h4>
+    <p><span class="fillable">[Continuous &mdash; in real time as customers activate eSIMs] / [Periodic &mdash; specify cadence]</span></p>
+
+    <h4>F. Nature of the Processing</h4>
+    <p><span class="fillable">[e.g., storage, transmission, lookup, profile generation, fraud-scoring, customer-support handling]</span></p>
+
+    <h4>G. Purpose of the Processing</h4>
+    <p><span class="fillable">[e.g., provisioning of mobile connectivity, fulfilment of the Controller&rsquo;s contract with end-users, fraud and abuse prevention]</span></p>
+
+    <h4>H. Retention Period</h4>
+    <p><span class="fillable">[e.g., 24 months from end of the customer&rsquo;s plan validity, then deletion in accordance with Section 12]</span></p>
+
+    <h4>I. Sub-processors</h4>
+    <p>Sub-processors used to perform the Processing on behalf of the Controller are listed in Annex III.</p>
+
+    <h4>J. Competent Supervisory Authority (SCCs Clause 13)</h4>
+    <p><span class="fillable">[e.g., the Irish Data Protection Commission &mdash; where exporter is established in or has an EU representative in Ireland]</span></p>
+  </div>
+
+
+  <div class="annex" id="annex-ii">
+    <div class="annex-label">Annex II</div>
+    <h2>Technical &amp; Organisational Measures</h2>
+
+    <p>The Processor shall implement and maintain, at minimum, the technical and organisational security measures set out below, and shall promptly update this Annex II in the event of material change. All measures shall be appropriate to the risk presented by the Processing (GDPR Art. 32).</p>
+
+    <h4>1. Encryption &amp; key management</h4>
+    <ul>
+      <li>Personal Data in transit between Processor systems and the Controller, and between Processor systems and any Sub-processor, shall be encrypted using TLS 1.2 or higher with modern cipher suites (no RC4, no SSLv3, no TLS 1.0/1.1).</li>
+      <li>Personal Data at rest in production databases, object storage, and back-ups shall be encrypted using AES-256 or an equivalent industry-standard algorithm.</li>
+      <li>Cryptographic keys shall be managed through a dedicated key-management service (KMS) or hardware security module (HSM), with documented rotation policies and segregation of duties.</li>
+    </ul>
+
+    <h4>2. Access control</h4>
+    <ul>
+      <li>All administrative access to systems Processing Personal Data shall require multi-factor authentication (MFA) using a phishing-resistant second factor (hardware token or platform authenticator) where commercially practicable.</li>
+      <li>Access shall be granted on a role-based access control (RBAC) basis, following the principle of least privilege and reviewed at least quarterly.</li>
+      <li>Joiner-mover-leaver processes shall ensure access is revoked within twenty-four (24) hours of role change or termination.</li>
+      <li>Production access shall be logged in a tamper-evident audit trail retained for at least twelve (12) months.</li>
+    </ul>
+
+    <h4>3. Network &amp; application security</h4>
+    <ul>
+      <li>Production environments shall be segregated from development and test environments, with no Personal Data permitted in non-production environments without prior anonymisation or pseudonymisation.</li>
+      <li>The Processor shall conduct vulnerability scans of internet-facing systems at least monthly and shall remediate critical (CVSS &ge; 9.0) findings within seven (7) days of discovery, high findings (CVSS 7.0&ndash;8.9) within thirty (30) days.</li>
+      <li>An independent penetration test of the production environment shall be conducted at least annually; a summary report shall be made available to the Controller on request.</li>
+      <li>Web application firewall (WAF) and DDoS protection shall be deployed in front of internet-facing services that Process Personal Data.</li>
+    </ul>
+
+    <h4>4. Secure development</h4>
+    <ul>
+      <li>Code changes affecting Personal Data shall be subject to peer review and automated static application security testing (SAST) before deployment.</li>
+      <li>Software dependencies shall be tracked and scanned for known vulnerabilities at least weekly.</li>
+      <li>Secrets shall never be stored in source control and shall be issued via a dedicated secrets-management system.</li>
+    </ul>
+
+    <h4>5. Incident response</h4>
+    <ul>
+      <li>The Processor shall maintain a written incident response plan covering detection, containment, eradication, recovery, and post-incident review.</li>
+      <li>The plan shall be tested at least annually, including a tabletop or simulation exercise involving the Personal Data Breach notification workflow under Section 8.</li>
+      <li>A 24x7 security operations capability (either in-house or via a managed service) shall be maintained.</li>
+    </ul>
+
+    <h4>6. Personnel security &amp; training</h4>
+    <ul>
+      <li>All personnel with access to Personal Data shall complete data-protection and information-security training on hire and annually thereafter.</li>
+      <li>Personnel shall be subject to written confidentiality undertakings extending beyond the term of their employment.</li>
+      <li>Background checks shall be performed on personnel with privileged access to Personal Data, to the extent permitted by local law.</li>
+    </ul>
+
+    <h4>7. Business continuity &amp; resilience</h4>
+    <ul>
+      <li>Personal Data shall be backed up at least daily, with back-ups encrypted and stored in a geographically distinct location from the primary site.</li>
+      <li>Recovery time objective (RTO) and recovery point objective (RPO) for production services Processing Personal Data shall be documented and tested at least annually.</li>
+    </ul>
+
+    <h4>8. Third-party assurance</h4>
+    <ul>
+      <li>The Processor shall maintain a current independent attestation in respect of the services covered by the Principal Agreement, for example SOC 2 Type II or ISO/IEC 27001 (or a documented roadmap to obtain one).</li>
+      <li>A current attestation summary shall be provided to the Controller annually and on request.</li>
+    </ul>
+
+    <h4>9. Data minimisation &amp; pseudonymisation</h4>
+    <ul>
+      <li>The Processor shall not request from the Controller, or collect from Data Subjects on behalf of the Controller, Personal Data that exceeds what is necessary for the documented purpose.</li>
+      <li>Where commercially practicable, identifiers shall be pseudonymised (e.g., hashed customer IDs in analytics pipelines) before further Processing.</li>
+    </ul>
+  </div>
+
+
+  <div class="annex" id="annex-iii">
+    <div class="annex-label">Annex III</div>
+    <h2>Approved Sub-processors</h2>
+
+    <p>As at the effective date of this DPA, the Controller authorises the Processor to engage the following Sub-processors:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Sub-processor</th>
+          <th>Registered location</th>
+          <th>Processing activity</th>
+          <th>Categories of Personal Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="fillable">[Name]</span></td>
+          <td><span class="fillable">[Country]</span></td>
+          <td><span class="fillable">[e.g., cloud hosting]</span></td>
+          <td><span class="fillable">[Categories from Annex I]</span></td>
+        </tr>
+        <tr>
+          <td><span class="fillable">[Name]</span></td>
+          <td><span class="fillable">[Country]</span></td>
+          <td><span class="fillable">[e.g., transactional email]</span></td>
+          <td><span class="fillable">[Categories from Annex I]</span></td>
+        </tr>
+        <tr>
+          <td><span class="fillable">[Name]</span></td>
+          <td><span class="fillable">[Country]</span></td>
+          <td><span class="fillable">[e.g., customer-support ticketing]</span></td>
+          <td><span class="fillable">[Categories from Annex I]</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The Processor shall maintain a current, accurate version of this list and shall provide updates to the Controller in accordance with Section 5.</p>
+  </div>
+
+
+  <hr class="section-rule">
+
+
+  <h2 id="signatures">Signature Blocks</h2>
+
+  <p>By signing below, each Party confirms that the signatory is duly authorised to bind the Party to this DPA, including Annexes I, II, and III, and (where applicable under Section 6) the EU Standard Contractual Clauses 2021/914.</p>
+
+  <div class="signature-grid">
+    <div class="sig-block">
+      <h4>For the Controller</h4>
+      <p style="font-size:13.5px;margin-bottom:18px;"><strong>Peanut eSIM LLC</strong><br>State of Delaware, USA</p>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Signature</div>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Name (printed)</div>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Title</div>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Date</div>
+    </div>
+
+    <div class="sig-block">
+      <h4>For the Processor</h4>
+      <p style="font-size:13.5px;margin-bottom:18px;"><strong><span class="fillable">[Processor legal name]</span></strong><br><span class="fillable">[Jurisdiction]</span></p>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Signature</div>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Name (printed)</div>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Title</div>
+      <div class="sig-line"></div>
+      <div class="sig-cap">Date</div>
+    </div>
+  </div>
+
+
+  <div class="footer">
+    <p><strong>Template control.</strong> This DPA template is owned and maintained by Peanut eSIM LLC. Version 1.0, draft for legal review, dated 2026-05-21. Counter-party-specific edits must be tracked as redlines against this base text; any change to Sections 6, 8, 13, or 14 requires sign-off from Peanut eSIM&rsquo;s nominated counsel before signature.</p>
+    <p>Questions regarding this template &mdash; <a href="mailto:legal@peanutesim.com">legal@peanutesim.com</a>. Breach notifications under Section 8 &mdash; <a href="mailto:security@peanutesim.com">security@peanutesim.com</a>.</p>
+  </div>
+
+</main>
+
+</body>
+</html>

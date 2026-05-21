@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor DPA Checklist — Peanut eSIM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --warning: #C97E22;
+    --warning-soft: #FFF8EE;
+    --warning-border: #F0D9A8;
+    --rose: #C97070;
+    --rose-soft: #FAEDED;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 250, 247, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .brand-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .back-link {
+    font-size: 13px;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    transition: 0.2s ease;
+  }
+  .back-link:hover { color: var(--accent); border-color: var(--accent); }
+  .meta-row {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    flex-wrap: wrap;
+  }
+  .meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row .dot-small {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-3);
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 32px 96px;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    color: var(--text-2);
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin: 24px 0 40px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .doc-meta strong { color: var(--text); font-weight: 600; }
+  .doc-meta-item { display: flex; gap: 6px; }
+
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.25;
+    margin-top: 56px;
+    margin-bottom: 8px;
+    color: var(--text);
+    scroll-margin-top: 80px;
+  }
+  h2 .num {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .cat-sub {
+    color: var(--text-3);
+    font-size: 13.5px;
+    margin-bottom: 20px;
+  }
+
+  p { margin-bottom: 14px; color: var(--text-2); }
+  p strong, li strong { color: var(--text); font-weight: 600; }
+
+  ul, ol { margin: 12px 0 18px 22px; color: var(--text-2); }
+  li { margin-bottom: 6px; }
+
+  a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(45,140,126,0.3); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  /* Vendor card */
+  .vendor {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .vendor-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .vendor-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .vendor-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-left: 8px;
+  }
+  .pills { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .pill-todo { background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning-border); }
+  .pill-signed { background: var(--accent-soft); color: var(--accent); border: 1px solid rgba(45,140,126,0.25); }
+  .pill-na { background: #F4F2EB; color: var(--text-3); border: 1px solid var(--line); }
+  .pill-action { background: var(--rose-soft); color: #8E3F3F; border: 1px solid #E8C4C4; }
+  .pill-type {
+    background: #F0EDE3;
+    color: var(--text-2);
+    border: 1px solid var(--line);
+  }
+  .pill-template { background: #F5EFE3; color: #7A5A1F; border: 1px solid #E0CFA3; }
+
+  .vendor-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 6px 16px;
+    font-size: 13.5px;
+    margin-top: 14px;
+  }
+  .vendor-grid dt {
+    color: var(--text-3);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding-top: 2px;
+  }
+  .vendor-grid dd { color: var(--text-2); margin: 0; }
+
+  .next-action {
+    margin-top: 14px;
+    padding: 10px 14px;
+    background: #FBFAF5;
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    font-size: 13.5px;
+    color: var(--text-2);
+  }
+  .next-action strong { color: var(--text); }
+  .next-action.critical { border-left-color: var(--rose); background: #FCF5F5; }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 22px;
+    font-size: 13px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .summary-table th, .summary-table td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text-2);
+    vertical-align: top;
+  }
+  .summary-table th {
+    background: var(--accent-soft);
+    color: var(--text);
+    font-weight: 600;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .summary-table tr:last-child td { border-bottom: 0; }
+
+  .lawyer-flag {
+    background: var(--warning-soft);
+    border: 1px solid var(--warning-border);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    font-size: 13.5px;
+    color: #6E4A1C;
+    line-height: 1.65;
+  }
+  .lawyer-flag::before {
+    content: "LAWYER REVIEW";
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--warning);
+    background: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+
+  .footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-3);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 40px; }
+    h2 { font-size: 26px; }
+    .container { padding: 40px 22px 64px; }
+    .vendor-grid { grid-template-columns: 1fr; gap: 2px 0; }
+    .vendor-grid dt { padding-top: 10px; }
+  }
+
+  @media print {
+    .topbar, .back-link { display: none; }
+    body { background: #fff; color: #000; font-size: 10.5pt; line-height: 1.55; }
+    h1, h2 { color: #000; page-break-after: avoid; }
+    .vendor { page-break-inside: avoid; border: 1px solid #999; }
+    .lawyer-flag { border: 1px solid #999; background: #f6f6f6; color: #333; page-break-inside: avoid; }
+    .container { padding: 0; max-width: 100%; }
+    a { color: #000; text-decoration: underline; }
+    .pill { border: 1px solid #999 !important; background: #eee !important; color: #000 !important; }
+    .summary-table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand-pill" href="/"><span class="dot"></span>Peanut eSIM</a>
+    <div class="meta-row">
+      <span>Vendor DPA register</span>
+      <span class="dot-small"></span>
+      <span>Last reviewed: <strong style="color:var(--text-2)">2026-05-21</strong></span>
+    </div>
+    <a class="back-link" href="/">&larr; Back to site</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <h1>Vendor DPA Checklist</h1>
+  <p class="subtitle">Working register of every third party that Processes personal data on behalf of Peanut eSIM LLC, the DPA that applies to each, and the current signing status. Use this page when onboarding new processors or completing privacy impact assessments.</p>
+
+  <div class="doc-meta">
+    <div class="doc-meta-item"><strong>Owner:</strong> Privacy &amp; Compliance, Peanut eSIM LLC</div>
+    <div class="doc-meta-item"><strong>Review cadence:</strong> quarterly</div>
+    <div class="doc-meta-item"><strong>Vendors enumerated:</strong> 17</div>
+    <div class="doc-meta-item"><strong>Status:</strong> Pre-launch</div>
+  </div>
+
+  <p>For each vendor below we record (a) which standard contract applies &mdash; the vendor&rsquo;s own DPA, our <a href="vendor-dpa-template.html">vendor DPA template</a>, or no separate DPA where the platform terms cover Processing &mdash; (b) the personal data the vendor receives, and (c) the next action to reach a signed position before product launch. Pillars: <span class="pill pill-signed">SIGNED</span> when fully executed and filed; <span class="pill pill-todo">TO DO</span> when action is still required; <span class="pill pill-na">N/A</span> when no separate DPA exists and the platform agreement covers Processing; <span class="pill pill-action">ACTION CRITICAL</span> for high-volume processors blocking launch.</p>
+
+  <div class="lawyer-flag">
+    This register is a working document. Counsel should validate (i) the legal basis for transfers to each non-EEA vendor (adequacy vs SCCs vs derogation), (ii) whether any vendor below is in fact a joint controller rather than a processor (notably analytics and ad platforms), and (iii) whether the volume of data we send to Mixpanel and Google Analytics 4 triggers a transfer impact assessment under Schrems II.</p>
+  </div>
+
+  <h2 id="summary"><span class="num">Overview</span></h2>
+  <p class="cat-sub">Snapshot of the seventeen vendors covered on this page, grouped by category.</p>
+
+  <table class="summary-table">
+    <thead>
+      <tr><th>Category</th><th>Vendor</th><th>DPA path</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Payment</td><td>Stripe</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Payment</td><td>Apple In-App Purchase</td><td>Covered by Apple Developer Agreement</td><td>N/A</td></tr>
+      <tr><td>Payment</td><td>Google Play Billing</td><td>Covered by Google Play DDA</td><td>N/A</td></tr>
+      <tr><td>Banking</td><td>Mercury</td><td>Own DPA</td><td>TO DO &mdash; request</td></tr>
+      <tr><td>Aggregator</td><td>Samurai Wifi</td><td>Our template</td><td>ACTION CRITICAL</td></tr>
+      <tr><td>Infrastructure</td><td>Vercel</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Infrastructure</td><td>AWS</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Infrastructure</td><td>Cloudflare</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Analytics</td><td>PostHog</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Analytics</td><td>Mixpanel</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Analytics</td><td>Google Analytics 4</td><td>Google Ads Data Processing Terms</td><td>TO DO &mdash; in-console accept</td></tr>
+      <tr><td>Email</td><td>Postmark</td><td>Own DPA</td><td>TO DO &mdash; request</td></tr>
+      <tr><td>Email</td><td>Resend</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Support</td><td>Intercom</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Support</td><td>Crisp</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Marketing</td><td>Mailchimp</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+      <tr><td>Marketing</td><td>Klaviyo</td><td>Own DPA</td><td>TO DO &mdash; accept</td></tr>
+    </tbody>
+  </table>
+
+
+  <h2 id="payment"><span class="num">1. Payment</span></h2>
+  <p class="cat-sub">Card and in-app billing processors. PCI scope reduction means we never receive raw PANs.</p>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Stripe</span><span class="vendor-tag">payments</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor for web/app card payments; Stripe acts as data controller for fraud-prevention purposes (Radar).</dd>
+      <dt>Data processed</dt><dd>Customer email, billing country, tokenised card reference (last 4, brand, expiry, country of issuance), IP, device fingerprint, transaction amount &amp; currency.</dd>
+      <dt>DPA URL</dt><dd><a href="https://stripe.com/legal/dpa" target="_blank" rel="noopener">stripe.com/legal/dpa</a> &mdash; standard non-negotiable</dd>
+      <dt>Transfers</dt><dd>EEA &rarr; US under SCCs + supplementary measures published in Stripe&rsquo;s privacy hub.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept Stripe DPA in dashboard at the time of account activation. No counter-party signature required &mdash; click-through.</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Apple In-App Purchase</span><span class="vendor-tag">iOS billing</span></div>
+      <div class="pills"><span class="pill pill-type">Platform terms</span><span class="pill pill-na">N/A</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Apple is the seller of record on iOS / iPadOS / macOS App Store; we never see card data. Apple acts as an independent controller for the transaction relationship with the user.</dd>
+      <dt>Data processed</dt><dd>Opaque transaction identifier, receipt, subscription state. No PII reaches us through this channel beyond what the user separately gives us at sign-up.</dd>
+      <dt>DPA URL</dt><dd>No separate DPA. Processing is governed by the Apple Developer Program License Agreement and the Apple Privacy Policy.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> No DPA to sign. Document in our internal RoPA that Apple is a separate controller for billing and that we receive only pseudonymous transaction tokens.</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Google Play Billing</span><span class="vendor-tag">Android billing</span></div>
+      <div class="pills"><span class="pill pill-type">Platform terms</span><span class="pill pill-na">N/A</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Google is the seller of record on Google Play for users in markets where Google Play Billing is mandatory; independent controller for the billing relationship.</dd>
+      <dt>Data processed</dt><dd>Purchase token, order ID, subscription state.</dd>
+      <dt>DPA URL</dt><dd>No separate DPA. Governed by the Google Play Developer Distribution Agreement and Google&rsquo;s privacy terms.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> No DPA to sign. Confirm Google Play Console privacy declarations are accurate at app submission.</div>
+  </article>
+
+
+  <h2 id="banking"><span class="num">2. Banking</span></h2>
+  <p class="cat-sub">Operating bank for the Delaware LLC.</p>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Mercury</span><span class="vendor-tag">business banking</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Banking partner via Choice Financial / Evolve. Processor for our business records; independent controller for AML/KYC obligations.</dd>
+      <dt>Data processed</dt><dd>Beneficial owner identity documents, signatories, transaction metadata, counter-party details (Stripe payouts, vendor disbursements).</dd>
+      <dt>DPA URL</dt><dd>Mercury DPA is provided on request through their compliance team; click-through during onboarding.</dd>
+      <dt>Transfers</dt><dd>US-based; primarily processes US-routed data. Mercury is not GDPR-primary, but indirect processing of EU customer data is minimal (only refund payee details if any).</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Request current Mercury DPA via support; counter-sign and file. Confirm Mercury is in our internal vendor inventory under the AML category.</div>
+  </article>
+
+
+  <h2 id="aggregator"><span class="num">3. Aggregator</span></h2>
+  <p class="cat-sub">Primary upstream eSIM aggregator. Highest-volume processor of customer connectivity data.</p>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Samurai Wifi</span><span class="vendor-tag">eSIM aggregator (Japan)</span></div>
+      <div class="pills"><span class="pill pill-template">Our template</span><span class="pill pill-action">ACTION CRITICAL</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor on our behalf for provisioning of eSIM profiles and brokering MNO connectivity in Japan, Korea, Taiwan, and select APAC markets. Sub-processor relationships with downstream MNOs.</dd>
+      <dt>Data processed</dt><dd>Pseudonymous customer ID, EID/ICCID, plan SKU, country of consumption, aggregate MB used, session metadata. No content data and no URL-level metadata.</dd>
+      <dt>DPA URL</dt><dd>No published vendor DPA; we are attaching <a href="vendor-dpa-template.html">our DPA template</a> as Schedule 3 to the MSA.</dd>
+      <dt>Transfers</dt><dd>Japan benefits from an EU adequacy decision (Commission Implementing Decision (EU) 2019/419) for commercial operators in scope; Section 6 of our template still incorporates SCCs as a fallback for any downstream non-adequate Sub-processor.</dd>
+    </dl>
+    <div class="next-action critical"><strong>Next action:</strong> Send our DPA template alongside the MSA draft. Counsel to lead negotiation on Sections 6 (transfers), 8 (24-hour breach window), and 13 (liability carve-out). Target signature before commercial launch.</div>
+  </article>
+
+
+  <h2 id="infra"><span class="num">4. Infrastructure</span></h2>
+  <p class="cat-sub">Hosting, edge, and cloud compute. Click-through DPAs from established hyperscalers &mdash; accept as published.</p>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Vercel</span><span class="vendor-tag">edge hosting (marketing site, dashboard)</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor for the Peanut eSIM marketing site and customer dashboard.</dd>
+      <dt>Data processed</dt><dd>HTTP request metadata, IPs, user-agent, edge cache identifiers.</dd>
+      <dt>DPA URL</dt><dd><a href="https://vercel.com/legal/dpa" target="_blank" rel="noopener">vercel.com/legal/dpa</a></dd>
+      <dt>Transfers</dt><dd>EEA &rarr; US under SCCs; Vercel supports EU-region deployments which we use for the customer dashboard.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept current Vercel DPA from team settings. Confirm production project is pinned to the EU region for any route that handles authenticated customer data.</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Amazon Web Services (AWS)</span><span class="vendor-tag">core backend infra</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor for our production backend (compute, RDS, S3, KMS).</dd>
+      <dt>Data processed</dt><dd>All customer data Processed by the Peanut eSIM platform &mdash; account, payment tokens, device, usage, support metadata.</dd>
+      <dt>DPA URL</dt><dd><a href="https://aws.amazon.com/compliance/data-processing-addendum" target="_blank" rel="noopener">aws.amazon.com/compliance/data-processing-addendum</a></dd>
+      <dt>Transfers</dt><dd>AWS DPA incorporates SCCs by reference. We are deployed in <code>eu-central-1</code> (Frankfurt) as the primary region for EU customer data; cross-region replication only to <code>us-east-1</code> for disaster recovery, encrypted under EU-held keys.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept AWS DPA via AWS Artifact for both the Peanut eSIM production and staging accounts. File the executed PDF in the compliance vault.</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Cloudflare</span><span class="vendor-tag">DNS, CDN, WAF, bot mitigation</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor for edge traffic. Processes IP addresses, request metadata, and TLS termination data.</dd>
+      <dt>Data processed</dt><dd>Source IP, requested host/path, user-agent, security event logs.</dd>
+      <dt>DPA URL</dt><dd><a href="https://www.cloudflare.com/cloudflare-customer-dpa" target="_blank" rel="noopener">cloudflare.com/cloudflare-customer-dpa</a></dd>
+      <dt>Transfers</dt><dd>SCCs incorporated; Cloudflare offers Data Localization Suite for EU traffic which we are evaluating.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept Cloudflare DPA from account settings. Evaluate Data Localization Suite during pre-launch testing.</div>
+  </article>
+
+
+  <h2 id="analytics"><span class="num">5. Analytics</span></h2>
+  <p class="cat-sub">Product analytics, session replay, and ad analytics. Highest privacy sensitivity &mdash; subject to consent gating.</p>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">PostHog</span><span class="vendor-tag">product analytics + session replay</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor. We use PostHog Cloud (EU) so primary data residency is in Frankfurt.</dd>
+      <dt>Data processed</dt><dd>Pseudonymous user ID, event names, event properties, session replay (DOM-masked for input fields), feature-flag evaluations.</dd>
+      <dt>DPA URL</dt><dd><a href="https://posthog.com/dpa" target="_blank" rel="noopener">posthog.com/dpa</a></dd>
+      <dt>Transfers</dt><dd>EU instance; no cross-border transfer for EU customers in normal operation.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept PostHog DPA via dashboard. Confirm session-replay input masking is enabled by default in our SDK configuration.</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Mixpanel</span><span class="vendor-tag">product analytics</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor. EU residency available on Enterprise plans; if we remain on the Growth plan, residency defaults to US.</dd>
+      <dt>Data processed</dt><dd>Pseudonymous user ID, event metadata. Mixpanel typically does not receive financial data from us.</dd>
+      <dt>DPA URL</dt><dd><a href="https://mixpanel.com/legal/dpa" target="_blank" rel="noopener">mixpanel.com/legal/dpa</a></dd>
+      <dt>Transfers</dt><dd>If on US residency, EEA &rarr; US under SCCs.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Decide between PostHog and Mixpanel before launch &mdash; running both duplicates processing for the same purpose. If Mixpanel stays, accept their DPA and plan a transfer impact assessment.</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Google Analytics 4</span><span class="vendor-tag">marketing-site analytics</span></div>
+      <div class="pills"><span class="pill pill-type">Platform terms</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Google acts as processor under the Google Ads Data Processing Terms (where accepted in console), with onward independent-controller positioning for measurement-products data.</dd>
+      <dt>Data processed</dt><dd>IP (truncated &mdash; we enable IP anonymisation by default), page path, referrer, device, GA pseudonymous client ID.</dd>
+      <dt>DPA URL</dt><dd><a href="https://business.safety.google/adsprocessorterms/" target="_blank" rel="noopener">Google Ads Data Processing Terms</a> (in-console acceptance required)</dd>
+      <dt>Transfers</dt><dd>EEA &rarr; US under SCCs. Schrems II risk profile high &mdash; post-CNIL guidance we will server-side route via Cloudflare and document a TIA before launch.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept Google Ads DPA terms in the GA4 admin console. Server-side route GA hits via the Cloudflare reverse-proxy pattern. Document the EU transfer impact assessment.</div>
+  </article>
+
+
+  <h2 id="email"><span class="num">6. Transactional email</span></h2>
+  <p class="cat-sub">Receipts, account verification, and breach notification delivery.</p>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Postmark</span><span class="vendor-tag">transactional email</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor for transactional email (receipts, password resets, install instructions).</dd>
+      <dt>Data processed</dt><dd>Recipient email, message body, attachment metadata, message ID, deliverability events.</dd>
+      <dt>DPA URL</dt><dd>Postmark publishes a standard DPA on request via support.</dd>
+      <dt>Transfers</dt><dd>US-based; transfers covered by SCCs.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Request current Postmark DPA via support and counter-sign. Decide between Postmark and Resend before launch &mdash; pick one primary.</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Resend</span><span class="vendor-tag">transactional email (alt)</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor &mdash; alternative to Postmark, currently used by developer team in staging.</dd>
+      <dt>Data processed</dt><dd>Recipient email, message body, deliverability events.</dd>
+      <dt>DPA URL</dt><dd>Available via Resend dashboard (Settings &rarr; Legal).</dd>
+      <dt>Transfers</dt><dd>SCCs.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept Resend DPA. If Postmark is selected as primary, deprecate Resend from production before launch.</div>
+  </article>
+
+
+  <h2 id="support"><span class="num">7. Customer support</span></h2>
+  <p class="cat-sub">Inbound support widget and ticketing.</p>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Intercom</span><span class="vendor-tag">in-app messenger + ticketing</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor for inbound and outbound customer support conversations.</dd>
+      <dt>Data processed</dt><dd>User email, name, conversation content, attachments, browser metadata, install/EID context if attached by the support agent.</dd>
+      <dt>DPA URL</dt><dd><a href="https://www.intercom.com/legal/dpa" target="_blank" rel="noopener">intercom.com/legal/dpa</a></dd>
+      <dt>Transfers</dt><dd>Intercom is Irish-headquartered with US sub-processors; SCCs incorporated.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept Intercom DPA from workspace settings. Configure data-retention period (currently default &mdash; reduce to 24 months for closed conversations).</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Crisp</span><span class="vendor-tag">support widget (alt)</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor &mdash; lower-cost alternative we are evaluating against Intercom.</dd>
+      <dt>Data processed</dt><dd>User email, name, conversation content, attachments, geo metadata.</dd>
+      <dt>DPA URL</dt><dd><a href="https://crisp.chat/en/dpa/" target="_blank" rel="noopener">crisp.chat/en/dpa</a></dd>
+      <dt>Transfers</dt><dd>Crisp is French-headquartered; primary data residency in the EU.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept Crisp DPA from dashboard if we proceed with Crisp. Pick one of Crisp / Intercom by end of pre-launch.</div>
+  </article>
+
+
+  <h2 id="marketing"><span class="num">8. Marketing</span></h2>
+  <p class="cat-sub">Newsletter and lifecycle email. Strictly opt-in.</p>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Mailchimp</span><span class="vendor-tag">newsletter</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor for marketing emails to opted-in subscribers.</dd>
+      <dt>Data processed</dt><dd>Email, name, preferences, opt-in source, open/click events, IP at open time, list segmentation tags.</dd>
+      <dt>DPA URL</dt><dd>Available via Mailchimp account (Account &rarr; Settings &rarr; Privacy &amp; Compliance). Owned by Intuit; US-headquartered.</dd>
+      <dt>Transfers</dt><dd>EEA &rarr; US under SCCs. Schrems II considerations apply &mdash; document TIA.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept Mailchimp DPA in account. Confirm double opt-in is enabled for all EEA-source signups.</div>
+  </article>
+
+  <article class="vendor">
+    <div class="vendor-head">
+      <div><span class="vendor-name">Klaviyo</span><span class="vendor-tag">lifecycle email + SMS</span></div>
+      <div class="pills"><span class="pill pill-type">Own DPA</span><span class="pill pill-todo">TO DO</span></div>
+    </div>
+    <dl class="vendor-grid">
+      <dt>Role</dt><dd>Processor for lifecycle email (e.g., abandoned-checkout, post-purchase) and potentially SMS for high-value markets.</dd>
+      <dt>Data processed</dt><dd>Email, phone (if SMS opt-in), purchase events, page-view events forwarded from PostHog.</dd>
+      <dt>DPA URL</dt><dd>Available via Klaviyo account (Account &rarr; Privacy). US-headquartered.</dd>
+      <dt>Transfers</dt><dd>EEA &rarr; US under SCCs.</dd>
+    </dl>
+    <div class="next-action"><strong>Next action:</strong> Accept Klaviyo DPA in account. Confirm SMS is gated behind a separate, explicit opt-in distinct from email.</div>
+  </article>
+
+
+  <h2 id="working-notes"><span class="num">9. Working notes</span></h2>
+
+  <p>The register above is intentionally fenced to vendors that handle personal data on our behalf. Vendors that do not Process personal data (e.g., commodity SaaS without user data, public cloud documentation services) are tracked in a separate operational tooling list and are out of scope for this DPA register.</p>
+
+  <p>Each new vendor must, before being granted production access to personal data:</p>
+  <ul>
+    <li>Be added to this register with a category, role, and data-processed description;</li>
+    <li>Have either (a) their published DPA reviewed and accepted, or (b) our DPA template attached and counter-signed;</li>
+    <li>Be added to the internal Record of Processing Activities (RoPA) within five business days;</li>
+    <li>Be referenced in the Privacy Policy if the vendor is named or category of vendor is materially new.</li>
+  </ul>
+
+  <p>The Privacy &amp; Compliance owner reviews this register quarterly and confirms in writing that the list matches what is actually deployed in production. Vendor de-onboarding triggers Section 12 deletion certification under whichever DPA applies.</p>
+
+
+  <div class="footer">
+    <p><strong>Document control.</strong> Vendor DPA Checklist v1.0, last reviewed 2026-05-21 by Privacy &amp; Compliance, Peanut eSIM LLC. The associated reusable DPA template is at <a href="vendor-dpa-template.html">/docs/vendor-dpa-template.html</a>. Questions &mdash; <a href="mailto:legal@peanutesim.com">legal@peanutesim.com</a>.</p>
+  </div>
+
+</main>
+
+</body>
+</html>
