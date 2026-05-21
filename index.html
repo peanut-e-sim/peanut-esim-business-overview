@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How an eSIM business actually works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0E1A;
+    --bg-2: #0F1422;
+    --surface: #151B2E;
+    --surface-2: #1C2440;
+    --text: #F2EEE3;
+    --text-dim: #8B92A8;
+    --text-faint: #4D556B;
+    --cyan: #5EEAD4;
+    --coral: #F4A261;
+    --violet: #A78BFA;
+    --rose: #F472B6;
+    --line: rgba(242, 238, 227, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(800px circle at 80% 10%, rgba(94, 234, 212, 0.08), transparent 50%),
+      radial-gradient(900px circle at 10% 70%, rgba(244, 162, 97, 0.06), transparent 50%),
+      radial-gradient(700px circle at 90% 90%, rgba(167, 139, 250, 0.06), transparent 50%);
+  }
+
+  .serif { font-family: 'Instrument Serif', serif; font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 92vh;
+    padding: 80px 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -200px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(94, 234, 212, 0.18) 0%, transparent 60%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+
+  .signal-rings {
+    position: absolute;
+    right: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 480px;
+    height: 480px;
+    pointer-events: none;
+  }
+  .signal-rings .ring {
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid var(--cyan);
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse 4s ease-out infinite;
+  }
+  .signal-rings .ring:nth-child(2) { animation-delay: 1s; }
+  .signal-rings .ring:nth-child(3) { animation-delay: 2s; }
+  .signal-rings .ring:nth-child(4) { animation-delay: 3s; }
+  .signal-rings .core {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px; height: 18px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 40px var(--cyan);
+  }
+  @keyframes pulse {
+    0% { opacity: 0.7; transform: scale(0.1); }
+    100% { opacity: 0; transform: scale(1); }
+  }
+
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+  .kicker::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--cyan);
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 7.5vw, 110px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    max-width: 14ch;
+    margin-bottom: 32px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--cyan);
+  }
+
+  .hero .lead {
+    font-size: clamp(17px, 1.4vw, 22px);
+    color: var(--text-dim);
+    max-width: 56ch;
+    line-height: 1.5;
+  }
+
+  .hero .meta {
+    margin-top: 64px;
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+  }
+  .hero .meta span strong {
+    display: block;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 4px;
+    letter-spacing: 0;
+  }
+
+  /* ─── SECTION SHELL ─── */
+  section {
+    padding: 120px 6vw;
+    position: relative;
+  }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  section > h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    max-width: 22ch;
+    margin-bottom: 24px;
+  }
+  section > h2 em { color: var(--cyan); font-style: italic; }
+
+  section > .intro {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 60ch;
+    margin-bottom: 64px;
+  }
+
+  /* ─── SUPPLY CHAIN ─── */
+  .chain {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 1100px;
+  }
+  .tier {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px 28px 28px 100px;
+    padding: 28px 40px 28px 40px;
+    display: grid;
+    grid-template-columns: 80px 1fr 2fr;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+  .tier:hover { transform: translateX(8px); border-color: rgba(94, 234, 212, 0.3); }
+  .tier-marker {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--text-dim);
+    border: 1px solid var(--line);
+  }
+  .tier h3 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .tier h3 .label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .tier p {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .tier.you {
+    background: linear-gradient(90deg, rgba(94, 234, 212, 0.14), rgba(94, 234, 212, 0.04));
+    border-color: rgba(94, 234, 212, 0.45);
+  }
+  .tier.you .tier-marker {
+    background: var(--cyan);
+    color: var(--bg);
+    border-color: var(--cyan);
+    box-shadow: 0 0 40px rgba(94, 234, 212, 0.4);
+  }
+  .tier.you h3 .label { color: var(--cyan); }
+  .arrow {
+    align-self: center;
+    margin-left: 100px;
+    color: var(--text-faint);
+    font-size: 20px;
+    line-height: 0;
+  }
+
+  /* ─── API NODES ─── */
+  .api-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+  }
+  .api-node {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 40px 32px;
+    position: relative;
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+  .api-node:nth-child(1) { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  .api-node:nth-child(2) { border-radius: 40% 60% 70% 30% / 40% 50% 50% 60%; }
+  .api-node:nth-child(3) { border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%; }
+  .api-node:nth-child(4) { border-radius: 50% 50% 40% 60% / 50% 60% 40% 50%; }
+  .api-node:hover {
+    border-color: rgba(94, 234, 212, 0.4);
+    transform: translateY(-6px);
+  }
+  .api-node .blob {
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    opacity: 0.18;
+    filter: blur(40px);
+  }
+  .api-node:nth-child(1) .blob { background: var(--cyan); }
+  .api-node:nth-child(2) .blob { background: var(--coral); }
+  .api-node:nth-child(3) .blob { background: var(--violet); }
+  .api-node:nth-child(4) .blob { background: var(--rose); }
+
+  .api-node .endpoint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+  .api-node h3 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 32px;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .api-node p {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .api-node .quote {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    font-size: 14px;
+    color: var(--text-faint);
+    font-style: italic;
+  }
+
+  /* ─── WATERFALL / MONEY ─── */
+  .money-section {
+    background: linear-gradient(180deg, transparent, rgba(244, 162, 97, 0.04), transparent);
+  }
+  .waterfall {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bar {
+    display: grid;
+    grid-template-columns: 200px 1fr 120px;
+    align-items: center;
+    gap: 32px;
+    padding: 22px 32px;
+    border-radius: 60px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    transition: all 0.3s ease;
+  }
+  .bar:hover { transform: translateX(8px); }
+  .bar .amount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .bar .label {
+    color: var(--text-dim);
+    font-size: 15px;
+  }
+  .bar .visual {
+    height: 8px;
+    background: var(--line);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bar .visual::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    border-radius: 4px;
+    background: currentColor;
+  }
+  .bar.full { background: linear-gradient(90deg, rgba(94, 234, 212, 0.18), transparent); border-color: rgba(94, 234, 212, 0.3); }
+  .bar.full .amount { color: var(--cyan); }
+  .bar.full .visual { color: var(--cyan); }
+  .bar.full .visual::after { width: 100%; }
+
+  .bar.apple .amount { color: #FF6B6B; }
+  .bar.apple .visual { color: #FF6B6B; }
+  .bar.apple .visual::after { width: 30%; }
+
+  .bar.stripe .amount { color: var(--coral); }
+  .bar.stripe .visual { color: var(--coral); }
+  .bar.stripe .visual::after { width: 3%; }
+
+  .bar.wholesale .amount { color: var(--violet); }
+  .bar.wholesale .visual { color: var(--violet); }
+  .bar.wholesale .visual::after { width: 33%; }
+
+  .bar.result {
+    background: linear-gradient(90deg, rgba(94, 234, 212, 0.18), rgba(94, 234, 212, 0.04));
+    border-color: rgba(94, 234, 212, 0.5);
+    margin-top: 16px;
+  }
+  .bar.result .amount { color: var(--cyan); font-size: 28px; }
+  .bar.result .visual { color: var(--cyan); }
+  .bar.result .visual::after { width: 34%; }
+
+  .money-note {
+    margin-top: 40px;
+    padding: 28px;
+    background: rgba(244, 162, 97, 0.08);
+    border-left: 3px solid var(--coral);
+    border-radius: 12px;
+    max-width: 900px;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .money-note strong { color: var(--coral); }
+
+  /* ─── INSTALL FLOW ─── */
+  .install-flow {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1200px;
+  }
+  .smdp {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .server-orb {
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--violet), #4C2D8F);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    box-shadow: 0 0 80px rgba(167, 139, 250, 0.4);
+    position: relative;
+    z-index: 2;
+  }
+  .server-orb::before, .server-orb::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 50%;
+    animation: pulseSlow 5s ease-out infinite;
+  }
+  .server-orb::before { inset: -40px; }
+  .server-orb::after { inset: -80px; animation-delay: 2.5s; }
+  @keyframes pulseSlow {
+    0% { opacity: 0.6; transform: scale(0.9); }
+    100% { opacity: 0; transform: scale(1.4); }
+  }
+  .server-orb .icon { font-size: 40px; margin-bottom: 12px; }
+  .server-orb h3 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .server-orb p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.05em;
+  }
+  .methods {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .method {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 24px;
+    align-items: start;
+    padding: 24px 28px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px 60px 20px 60px;
+    transition: all 0.3s ease;
+  }
+  .method:hover { transform: translateX(8px); border-color: rgba(167, 139, 250, 0.4); }
+  .method .badge {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--violet);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+  }
+  .method h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .method p {
+    color: var(--text-dim);
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .method .tag {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 10px;
+    background: rgba(94, 234, 212, 0.12);
+    color: var(--cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+  .method .tag.locked { background: rgba(255, 107, 107, 0.12); color: #FF6B6B; }
+
+  /* ─── MARKET ─── */
+  .market {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+  }
+  .competitor {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 32px 28px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .competitor:hover { transform: translateY(-6px); border-color: rgba(94, 234, 212, 0.3); }
+  .competitor .rank {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .competitor h3 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 32px;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .competitor p {
+    color: var(--text-dim);
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  .competitor .stat {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+  }
+  .competitor.you {
+    background: linear-gradient(135deg, rgba(94, 234, 212, 0.16), rgba(94, 234, 212, 0.03));
+    border-color: rgba(94, 234, 212, 0.5);
+    box-shadow: 0 0 40px rgba(94, 234, 212, 0.15);
+  }
+  .competitor.you h3 { color: var(--cyan); }
+  .competitor.you .stat { color: var(--cyan); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 100px 6vw 80px;
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  footer .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  footer h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(28px, 4vw, 48px);
+    margin-bottom: 24px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  footer p {
+    color: var(--text-dim);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  footer .sig {
+    margin-top: 48px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .signal-rings { display: none; }
+    .install-flow { grid-template-columns: 1fr; gap: 48px; }
+    .tier { grid-template-columns: 60px 1fr; }
+    .tier p { grid-column: 1 / -1; padding-top: 8px; }
+    .bar { grid-template-columns: 1fr 100px; gap: 16px; }
+    .bar .visual { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="signal-rings">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="core"></div>
+  </div>
+  <span class="kicker">eSIM UAE — Business Model</span>
+  <h1>How an <em>eSIM business</em><br>actually works.</h1>
+  <p class="lead">From the cell tower to your customer's pocket — the supply chain, the API, the money, and the magic. One page. One pass-through.</p>
+  <div class="meta">
+    <span>Prepared for<strong>Akito × Balraj</strong></span>
+    <span>Market<strong>UAE → Global travelers</strong></span>
+    <span>Date<strong>May 2026</strong></span>
+  </div>
+</header>
+
+<!-- ─── 1. SUPPLY CHAIN ─── -->
+<section id="chain">
+  <div class="section-num">01 — THE FOOD CHAIN</div>
+  <h2>Four <em>tiers</em>. You sit on the third.</h2>
+  <p class="intro">eSIM connectivity travels through four hands before reaching the user's phone. Knowing who owns what makes everything downstream make sense.</p>
+
+  <div class="chain">
+    <div class="tier">
+      <div class="tier-marker">i</div>
+      <h3><span class="label">Tier 1 · Infrastructure</span>Mobile Network Operators</h3>
+      <p>They own the actual towers and spectrum. Vodafone, AT&T, Etisalat, NTT Docomo, KDDI, T-Mobile, Orange. They sell data wholesale, mostly in bulk to roaming partners. They do not talk to consumers like you directly.</p>
+    </div>
+    <div class="tier">
+      <div class="tier-marker">ii</div>
+      <h3><span class="label">Tier 2 · Aggregator</span>eSIM aggregators</h3>
+      <p>The middleman layer. They've stitched together wholesale roaming deals with hundreds of MNOs and run the technical plumbing (SM-DP+ servers, billing, eSIM profiles). They expose all of that to you as a single API. Names: 1GLOBAL, eSIM Go, Telna, Truphone, MobileX — and Akito's Thailand contact.</p>
+    </div>
+    <div class="tier you">
+      <div class="tier-marker">★</div>
+      <h3><span class="label">Tier 3 · Reseller / Brand · YOU</span>Brand-facing app</h3>
+      <p>You wrap an aggregator's API in a polished, branded experience. You own the customer relationship, the marketing, the support, the price. The aggregator is invisible to your user. Airalo, Holafly, Nomad sit here — and so will you.</p>
+    </div>
+    <div class="tier">
+      <div class="tier-marker">iv</div>
+      <h3><span class="label">Tier 4 · Customer</span>The traveler</h3>
+      <p>Opens your app, picks a country, pays. Installs the eSIM in seconds. Flies somewhere. Stays connected. Never knew there were three companies behind the experience — and that's exactly the point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 2. API ─── -->
+<section id="api">
+  <div class="section-num">02 — THE API SURFACE</div>
+  <h2>The whole API is <em>genuinely just four things</em>.</h2>
+  <p class="intro">When people say "we'll plug into an eSIM API", this is what they actually mean. Four endpoints. That's the entire game.</p>
+
+  <div class="api-grid">
+    <div class="api-node">
+      <div class="blob"></div>
+      <div class="endpoint">GET /packages</div>
+      <h3>Catalog</h3>
+      <p>Every country, every plan, every wholesale price. You pull this on a schedule and present it in your app — usually with your own markup on top.</p>
+      <div class="quote">"Here's what's for sale today."</div>
+    </div>
+    <div class="api-node">
+      <div class="blob"></div>
+      <div class="endpoint">POST /orders</div>
+      <h3>Order</h3>
+      <p>The one transactional call. You pay the aggregator wholesale, they reserve an eSIM profile for your user. This is the call that costs you money each time it fires.</p>
+      <div class="quote">"Charge me. Give me an eSIM."</div>
+    </div>
+    <div class="api-node">
+      <div class="blob"></div>
+      <div class="endpoint">GET /esim/install</div>
+      <h3>Install method</h3>
+      <p>A QR code, an LPA activation string, or a universal link. Your app shows this to the user right after checkout. This is the moment of truth — make it feel effortless.</p>
+      <div class="quote">"Here's how to put me on your phone."</div>
+    </div>
+    <div class="api-node">
+      <div class="blob"></div>
+      <div class="endpoint">GET /esim/usage</div>
+      <h3>Usage</h3>
+      <p>How much data has this eSIM consumed. Your app polls this to show users a live "2.4 GB of 5 GB used" bar — table-stakes UX in this category.</p>
+      <div class="quote">"How much have they burned?"</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 3. MONEY ─── -->
+<section id="money" class="money-section">
+  <div class="section-num">03 — THE MONEY FLOW</div>
+  <h2>Where every dollar of a <em>$15 plan</em> actually goes.</h2>
+  <p class="intro">Worked example: customer buys a $15 / 5 GB Europe plan inside your iOS app. Here's what's left on your side of the table.</p>
+
+  <div class="waterfall">
+    <div class="bar full">
+      <span class="amount">+$15.00</span>
+      <div class="visual"></div>
+      <span class="label">Customer pays you (retail)</span>
+    </div>
+    <div class="bar apple">
+      <span class="amount">−$4.50</span>
+      <div class="visual"></div>
+      <span class="label">Apple's 30% cut (in-app purchase)</span>
+    </div>
+    <div class="bar stripe">
+      <span class="amount">−$0.45</span>
+      <div class="visual"></div>
+      <span class="label">Stripe / payment processor ~3%</span>
+    </div>
+    <div class="bar wholesale">
+      <span class="amount">−$5.00</span>
+      <div class="visual"></div>
+      <span class="label">Aggregator wholesale cost</span>
+    </div>
+    <div class="bar result">
+      <span class="amount">$5.05</span>
+      <div class="visual"></div>
+      <span class="label">Your gross margin (~34%)</span>
+    </div>
+  </div>
+
+  <div class="money-note">
+    <strong>The Apple-tax escape hatch.</strong> Route checkout to a web page instead of using in-app purchase and that $4.50 stays yours — margin jumps from $5.05 to $9.55 on the same sale. Apple has been cracking down on this since the Epic ruling; some operators still do it, but it's a moving target. Airalo just eats the 30% to avoid the fight. Decision worth a separate conversation.
+  </div>
+</section>
+
+<!-- ─── 4. INSTALL ─── -->
+<section id="install">
+  <div class="section-num">04 — THE MAGIC</div>
+  <h2>How an eSIM <em>actually lands</em> on a phone.</h2>
+  <p class="intro">Strip away the marketing and an eSIM is just a small file. It's downloaded from a special server the aggregator runs, called an SM-DP+. The user reaches that server in one of three ways.</p>
+
+  <div class="install-flow">
+    <div class="smdp">
+      <div class="server-orb">
+        <div class="icon">🛰</div>
+        <h3>SM-DP+</h3>
+        <p>SUBSCRIPTION MANAGER<br>DATA PREPARATION</p>
+      </div>
+    </div>
+    <div class="methods">
+      <div class="method">
+        <div class="badge">A</div>
+        <div>
+          <h4>Scan a QR code</h4>
+          <p>The old reliable. The QR encodes the SM-DP+ address + activation token. User opens their camera, taps "add eSIM", done. Works on every eSIM-capable phone since 2018.</p>
+          <span class="tag">UNIVERSAL · FRICTION: 4 TAPS</span>
+        </div>
+      </div>
+      <div class="method">
+        <div class="badge">B</div>
+        <div>
+          <h4>Tap a universal link</h4>
+          <p>iOS 17.4+ and modern Android. User taps a link inside your app (or in an email) and the eSIM installs in <em>one tap</em>. This is the killer modern UX.</p>
+          <span class="tag">PREMIUM · FRICTION: 1 TAP</span>
+        </div>
+      </div>
+      <div class="method">
+        <div class="badge">C</div>
+        <div>
+          <h4>In-app install (carrier entitlement)</h4>
+          <p>The eSIM installs without the user ever leaving your app. Requires Apple's <span class="mono" style="color:var(--violet)">com.apple.CommCenter.fine-grained</span> entitlement — granted only to approved carriers. Airalo has it. You won't on day one. Apply later, once you have scale.</p>
+          <span class="tag locked">REQUIRES APPLE APPROVAL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 5. MARKET ─── -->
+<section id="market">
+  <div class="section-num">05 — THE COMPETITION</div>
+  <h2>The reseller layer is <em>crowded</em>. Most are mediocre.</h2>
+  <p class="intro">Why this matters: nobody wins by competing on price with Airalo. You win by owning a specific audience that doesn't trust generic brands — and that's where Emirates crew distribution becomes a real moat.</p>
+
+  <div class="market">
+    <div class="competitor">
+      <div class="rank">— MARKET LEADER —</div>
+      <h3>Airalo</h3>
+      <p>18M+ users. Carrier entitlement on iOS. Cheap, broad coverage, very bland brand. The default Google result.</p>
+      <div class="stat"><span>USERS</span><span>18M+</span></div>
+    </div>
+    <div class="competitor">
+      <div class="rank">— PREMIUM —</div>
+      <h3>Holafly</h3>
+      <p>Unlimited plans, slick site, expensive. Strong on Spanish/LatAm markets, weaker UX on the app.</p>
+      <div class="stat"><span>POSITIONING</span><span>UNLIMITED</span></div>
+    </div>
+    <div class="competitor">
+      <div class="rank">— DESIGNER-LED —</div>
+      <h3>Nomad</h3>
+      <p>Beautiful brand, loved by tech crowd. Small footprint, premium feel. Closest aesthetic reference for you.</p>
+      <div class="stat"><span>VIBE</span><span>TASTEFUL</span></div>
+    </div>
+    <div class="competitor">
+      <div class="rank">— FUNDED CHALLENGER —</div>
+      <h3>Saily</h3>
+      <p>By NordVPN. New, deep marketing pockets, leans on the NordVPN brand for trust. Aggressive on price.</p>
+      <div class="stat"><span>BACKED BY</span><span>NORDVPN</span></div>
+    </div>
+    <div class="competitor you">
+      <div class="rank">— YOU —</div>
+      <h3>Your brand</h3>
+      <p>UAE-native, Emirates-crew seeded, GCC-traveler tailored. Local trust + community + airline-grade taste. Not trying to beat Airalo on price — beating them on belonging.</p>
+      <div class="stat"><span>EDGE</span><span>DISTRIBUTION</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h2>That's the whole picture.</h2>
+    <p>Four tiers. Four endpoints. One waterfall. Three install methods. One crowded but beatable market. The next real decision is <em>which aggregator</em> you actually build on — Akito's Thailand contact, or a Western API like 1GLOBAL or eSIM Go. We'll talk about that next.</p>
+    <div class="sig">— PREPARED FOR HIKITO &amp; BALRAJ · ESIM UAE · 2026 —</div>
+  </div>
+</footer>
+
+</body>
+</html>
