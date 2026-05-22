@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM · Executive Summary · 2026-05-22</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-2: #5EAEA3;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning-soft: #FFF8EE;
+    --warning: #C97E22;
+    --rose: #C97070;
+    --rose-soft: rgba(201, 112, 112, 0.12);
+    --violet: #7A6CB8;
+    --violet-soft: #EFEDF7;
+    --gold: #C9A227;
+    --gold-soft: rgba(201, 162, 39, 0.12);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+  }
+  .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 28px;
+  }
+  .back:hover { color: var(--accent); }
+
+  header.hero {
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+  .doc-tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  h1 em { color: var(--accent); font-style: italic; }
+  .lead {
+    color: var(--text-2);
+    font-size: 16.5px;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .meta strong {
+    display: block;
+    margin-top: 4px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  section {
+    margin: 56px 0;
+  }
+  .sec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: clamp(24px, 3.5vw, 32px);
+    line-height: 1.2;
+    margin: 0 0 22px;
+    letter-spacing: -0.005em;
+  }
+  h2 em { color: var(--accent); font-style: italic; }
+
+  /* Thesis card */
+  .thesis {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-top: 8px;
+  }
+  .thesis-line {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--text);
+    margin: 0;
+  }
+  .thesis-line strong {
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 13.5px;
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: top;
+  }
+  th {
+    background: var(--line-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-2);
+  }
+  tr:last-child td { border-bottom: none; }
+  td.num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--text-3);
+    width: 52px;
+  }
+  td.name { font-weight: 600; }
+  td.status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+  .pill.done { background: var(--accent-soft); color: var(--accent); }
+  .pill.progress { background: var(--warning-soft); color: var(--warning); }
+  .pill.starting { background: var(--peanut-soft); color: var(--peanut); }
+  .pill.upcoming { background: var(--line-soft); color: var(--text-3); }
+  .pill.open { background: var(--rose-soft); color: var(--rose); }
+  .pill.decided { background: var(--accent-soft); color: var(--accent); }
+
+  /* Market sizing tiles */
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .market-tile {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .market-tile .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    font-weight: 700;
+  }
+  .market-tile .value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 34px;
+    color: var(--accent);
+    margin: 8px 0 6px;
+    line-height: 1.1;
+  }
+  .market-tile .desc {
+    color: var(--text-2);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  @media (max-width: 720px) {
+    .market-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Risk list */
+  .risk-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .risk-list li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .risk-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--rose);
+    line-height: 1;
+  }
+  .risk-list h4 {
+    margin: 0 0 4px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+  .risk-list p {
+    margin: 0;
+    color: var(--text-2);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  /* Provider grid */
+  .provider-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .provider-list .row {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+  }
+  .provider-list .row strong { font-size: 14px; }
+  .provider-list .row .status { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.05em; }
+  .provider-list .row.live { border-color: var(--accent); background: var(--accent-soft); }
+  .provider-list .row.out { opacity: 0.6; }
+  @media (max-width: 720px) {
+    .provider-list { grid-template-columns: 1fr; }
+  }
+
+  /* Closing CTA */
+  .closing {
+    background: var(--accent-soft);
+    border-radius: 16px;
+    padding: 28px 32px;
+    border: 1px solid rgba(45, 140, 126, 0.2);
+  }
+  .closing h3 {
+    margin: 0 0 14px;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 24px;
+  }
+  .closing ol {
+    margin: 0;
+    padding-left: 22px;
+    line-height: 1.8;
+    color: var(--text-2);
+  }
+  .closing ol li { margin-bottom: 8px; }
+  .closing ol li strong { color: var(--text); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-soft);
+    color: var(--text-3);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a href="index.html" class="back">← Full dashboard</a>
+
+  <header class="hero">
+    <span class="doc-tag">PEANUT ESIM · EXECUTIVE SUMMARY · 2026-05-22</span>
+    <h1>The <em>bird's-eye view</em>.</h1>
+    <p class="lead">Vertical SaaS for airline crew, with eSIM as the wedge and crew-curated travel intelligence as the long-game moat. Built for Akito as a 5-minute orientation across the whole plan.</p>
+    <div class="meta">
+      <span>Founders<strong>Akito × Balraj</strong></span>
+      <span>Vehicle<strong>Delaware LLC (offshore)</strong></span>
+      <span>Seed market<strong>Emirates crew, Dubai</strong></span>
+      <span>Stage<strong>Pre-incorporation</strong></span>
+    </div>
+  </header>
+
+  <!-- 1. THESIS -->
+  <section>
+    <div class="sec-label">01 · The one-line thesis</div>
+    <h2>Why <em>this</em>, why <em>us</em>, why <em>now</em>.</h2>
+    <div class="thesis">
+      <p class="thesis-line">
+        <strong>Vertical SaaS for airline crew.</strong> eSIM is the wedge that gets us the user. <strong>Schedule-upload smart-pricing</strong> is the day-1 differentiator no competitor can copy in a week. <strong>Crew-curated travel intelligence</strong> — Michelin-style recommendations only crew know — is the long-game moat. Closed gating keeps the positioning premium until the data network is dense enough to defend itself.
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. THE 8-PHASE PLAN -->
+  <section>
+    <div class="sec-label">02 · The 8-phase plan</div>
+    <h2>From <em>idea</em> to <em>scale</em>, one phase at a time.</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Phase</th>
+          <th>Status</th>
+          <th>Headline</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">0</td>
+          <td class="name">Research &amp; Validation</td>
+          <td class="status"><span class="pill progress">In progress · 4 / 10</span></td>
+          <td>UAE regulatory verdict + Delaware LLC structure locked. Competitor benchmark done. Market sizing closed. Provider diligence ongoing across 8 candidates.</td>
+        </tr>
+        <tr>
+          <td class="num">1</td>
+          <td class="name">Legal &amp; Corporate</td>
+          <td class="status"><span class="pill starting">Starting now · 0 / 18</span></td>
+          <td>Stripe Atlas to file Delaware LLC + Mercury + Stripe US. Terms / Privacy / Refund drafted. Trademark + 18 sub-items queued.</td>
+        </tr>
+        <tr>
+          <td class="num">2</td>
+          <td class="name">Brand &amp; Product Design</td>
+          <td class="status"><span class="pill starting">Starting now · 0 / 14</span></td>
+          <td>Brand strategy → logo / type → Figma design system → key screens → marketing site → app-store assets. Plus crew-verification UX + accessibility + support framework.</td>
+        </tr>
+        <tr>
+          <td class="num">3</td>
+          <td class="name">Tech Build</td>
+          <td class="status"><span class="pill upcoming">Upcoming · 18 items</span></td>
+          <td>Backend + iOS + Android + marketing site. Strategic core: <strong>schedule-upload OCR + smart-pricing engine</strong>.</td>
+        </tr>
+        <tr>
+          <td class="num">4</td>
+          <td class="name">Beta &amp; Pre-launch</td>
+          <td class="status"><span class="pill upcoming">Upcoming · 12 items</span></td>
+          <td>20–50 crew testers, 4–8 weeks. Pricing validated. App stores submitted. Crisis playbook written.</td>
+        </tr>
+        <tr>
+          <td class="num">5</td>
+          <td class="name">Soft Launch (invite-only)</td>
+          <td class="status"><span class="pill upcoming">Upcoming · 10 items</span></td>
+          <td>First 100 paying crew. Prove unit economics before spending on paid acquisition. Crew lounge poster in DXB T3.</td>
+        </tr>
+        <tr>
+          <td class="num">6</td>
+          <td class="name">Public Launch &amp; Growth</td>
+          <td class="status"><span class="pill upcoming">Upcoming · 10 items</span></td>
+          <td>Gates open. Paid ads, ASO, SEO, influencer / creator partnerships. Etihad outreach at ~10% Emirates penetration.</td>
+        </tr>
+        <tr>
+          <td class="num">7</td>
+          <td class="name">Scale &amp; Strategic</td>
+          <td class="status"><span class="pill upcoming">Upcoming · 10 items</span></td>
+          <td>JAL / ANA / Singapore / Qatar. <strong>Michelin recs layer ships</strong>. B2B + adjacent products. Bootstrap default; fundraise / sale optional.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 3. THE 16 OPEN DECISIONS -->
+  <section>
+    <div class="sec-label">03 · The 16 open decisions</div>
+    <h2>What Akito &amp; Balraj still need to <em>align on</em>.</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Decision</th>
+          <th>One-line</th>
+          <th>Balraj's lean</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">00</td>
+          <td class="name">Legal entity name</td>
+          <td>What's the LLC actually called on every contract?</td>
+          <td>Peanut eSIM LLC</td>
+        </tr>
+        <tr>
+          <td class="num">00B</td>
+          <td class="name">Trademark filing</td>
+          <td>File USPTO + Madrid for the brand name — yes / no / scope.</td>
+          <td>Yes, USPTO + Madrid</td>
+        </tr>
+        <tr>
+          <td class="num">00C</td>
+          <td class="name">Governing law</td>
+          <td>Delaware + AAA arbitration vs UAE court for disputes.</td>
+          <td>Delaware + AAA</td>
+        </tr>
+        <tr>
+          <td class="num">00E</td>
+          <td class="name">Refund window</td>
+          <td>30-day pre-activation refund — match Airalo / Holafly?</td>
+          <td>30-day (matches market)</td>
+        </tr>
+        <tr>
+          <td class="num">01</td>
+          <td class="name">Apple 30% cut</td>
+          <td>In-app purchase vs web checkout (Netflix hybrid).</td>
+          <td>Netflix hybrid — web preferred</td>
+        </tr>
+        <tr>
+          <td class="num">02</td>
+          <td class="name">Carrier entitlement</td>
+          <td>Apply for Apple's in-app eSIM install entitlement — when?</td>
+          <td>Post-launch, ~10K active users</td>
+        </tr>
+        <tr>
+          <td class="num">03</td>
+          <td class="name">Aggregator strategy</td>
+          <td>Stick with Samurai (Akito's relationship) or move direct?</td>
+          <td>Decide after 3+ real quotes</td>
+        </tr>
+        <tr>
+          <td class="num">04</td>
+          <td class="name">UAE-customer compliance risk</td>
+          <td>Two of 8 providers block UAE buyers — is this a real signal?</td>
+          <td>Real signal · need every candidate's answer</td>
+        </tr>
+        <tr>
+          <td class="num">05</td>
+          <td class="name">Day-1 wedge vs Crew SIM</td>
+          <td>Compete on price or schedule-upload smart-plan?</td>
+          <td>Schedule-upload (price war is dead)</td>
+        </tr>
+        <tr>
+          <td class="num">06</td>
+          <td class="name">Brand voice &amp; tone</td>
+          <td>Warm-confident, playful, or premium-minimal?</td>
+          <td>Warm-confident · crew-insider feel</td>
+        </tr>
+        <tr>
+          <td class="num">07</td>
+          <td class="name">App design approach</td>
+          <td>Figma kit starting point or scratch-build?</td>
+          <td>Figma kit + customize</td>
+        </tr>
+        <tr>
+          <td class="num">08</td>
+          <td class="name">V1 feature scope</td>
+          <td>What ships in v1 vs cut to v2?</td>
+          <td>Browse + buy + schedule-upload · everything else v2</td>
+        </tr>
+        <tr>
+          <td class="num">09</td>
+          <td class="name">Crew roster data handling</td>
+          <td>Where does uploaded roster data live, and for how long?</td>
+          <td>Process + discard · no long-term storage</td>
+        </tr>
+        <tr>
+          <td class="num">10</td>
+          <td class="name">App availability model</td>
+          <td>Invite-only soft launch, then open up — when's the trigger?</td>
+          <td>Open when conversion + retention numbers hold</td>
+        </tr>
+        <tr>
+          <td class="num">11</td>
+          <td class="name">Marketing website model</td>
+          <td>Webflow vs Framer vs Next.js for peanutesim.com.</td>
+          <td>Next.js on Vercel (long-game SEO)</td>
+        </tr>
+        <tr>
+          <td class="num">13</td>
+          <td class="name">3-year SOM target</td>
+          <td>Posture A (cautious 10K) / B (lean 30K) / C (ambitious 60K).</td>
+          <td>Posture B · ~30K crew, ~$5.4M ARR Y3</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 16px; color: var(--text-3); font-size: 13px;">Decisions 00D (jurisdiction → Delaware) and 12 (marketing &amp; distribution channels) have already been closed.</p>
+  </section>
+
+  <!-- 4. MARKET SIZING -->
+  <section>
+    <div class="sec-label">04 · Market sizing snapshot</div>
+    <h2>How big is the <em>opportunity</em>, honestly.</h2>
+    <div class="market-grid">
+      <div class="market-tile">
+        <div class="label">TAM</div>
+        <div class="value">~1.55M</div>
+        <div class="desc">All airline crew worldwide — ~1.2M cabin + ~350K cockpit per IATA / ICAO industry estimates.</div>
+      </div>
+      <div class="market-tile">
+        <div class="label">SAM</div>
+        <div class="value">~430K</div>
+        <div class="desc">Plausibly-reachable airlines: Gulf 70K + Asia 80K + Europe 110K + N. America 110K + Other 60K.</div>
+      </div>
+      <div class="market-tile" style="border-color: var(--accent); background: var(--accent-soft);">
+        <div class="label">SOM · Y3 lean</div>
+        <div class="value">~30K</div>
+        <div class="desc">Decision 13 Posture B baseline — ~$5.4M ARR by Year 3. ARPU assumption $15–25 / month, ±20%.</div>
+      </div>
+    </div>
+    <p style="margin-top: 16px; color: var(--text-2); font-size: 13.5px;">Capital-light: no inventory, no warehouses, no SIM chips. Margin compounds with brand + the data network behind the recs layer.</p>
+  </section>
+
+  <!-- 5. TOP 5 RISKS -->
+  <section>
+    <div class="sec-label">05 · Top 5 risks</div>
+    <h2>What could <em>kill</em> this.</h2>
+    <ul class="risk-list">
+      <li>
+        <div class="risk-num">1</div>
+        <div>
+          <h4>Founder agreement gap (Balraj + Akito)</h4>
+          <p>Operating today on goodwill and shared text threads. The longer this runs without paper, the more painful any disagreement becomes — and the harder it gets to walk into Stripe Atlas with clean ownership. Mitigation: start as single-member LLC under Balraj, formalize equity once founder agreement is negotiated (Phase 0 Item 5 path).</p>
+        </div>
+      </li>
+      <li>
+        <div class="risk-num">2</div>
+        <div>
+          <h4>Single-customer-segment dependency (Emirates crew)</h4>
+          <p>If Emirates objects to the crew-gating mechanic (Phase 1 Item 18 — crew verification legal framework), they could effectively shut us out of our day-1 audience. Mitigation: build crew-verification on the lowest-friction option (airline email domain) so we never touch identity documents; have JAL / ANA / Singapore expansion path ready before opening any conversation with Emirates HR.</p>
+        </div>
+      </li>
+      <li>
+        <div class="risk-num">3</div>
+        <div>
+          <h4>Aggregator concentration (Samurai is Tier-3 sub-reseller)</h4>
+          <p>Per the 40%-markup audit, Samurai sits 3 hops down the food chain — we're paying a stacked margin and inheriting their pricing volatility. If they walk or change terms, the whole catalog breaks. Mitigation: Decision 03 (aggregator strategy) closes only after we have 3+ real direct quotes; eSIM Access is the leading alternative.</p>
+        </div>
+      </li>
+      <li>
+        <div class="risk-num">4</div>
+        <div>
+          <h4>Apple / Google policy risk (in-app eSIM, IAP coercion)</h4>
+          <p>Apple's carrier entitlement is gatekept and political; Apple could also push us onto IAP at the 30% rate (Decision 01). Either alone is painful, both together is fatal. Mitigation: Netflix-hybrid model — web checkout primary, app for browse + install only. Apple Carrier Entitlement applied post-launch (Phase 1 Item 16) once we have user numbers to justify.</p>
+        </div>
+      </li>
+      <li>
+        <div class="risk-num">5</div>
+        <div>
+          <h4>Crew SIM accelerates / Airalo notices</h4>
+          <p>Crew SIM is solo + slow today, but a price drop or a copycat schedule-upload feature could erase our wedge in weeks. Bigger threat: Airalo (the category leader) decides crew is worth a vertical and ships it themselves with their distribution. Mitigation: depth-over-breadth — build crew-vertical features Airalo's horizontal positioning makes structurally awkward to ship (roster integration, crew-only Michelin recs layer).</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 6. PROVIDER PIPELINE -->
+  <section>
+    <div class="sec-label">06 · Provider pipeline snapshot</div>
+    <h2>The <em>8 candidates</em>, today.</h2>
+    <div class="provider-list">
+      <div class="row"><span><strong>1. Samurai Wifi</strong> · Japan (via Akito)</span><span class="status" style="color: var(--warning);">🟡 Diligence pending</span></div>
+      <div class="row live"><span><strong>2. eSIM Access</strong> · China (Redtea Mobile)</span><span class="status" style="color: var(--accent);">✅ Live · prices in hand</span></div>
+      <div class="row out"><span><strong>3. eSIM Go</strong> · UK</span><span class="status" style="color: var(--rose);">❌ UAE-sale blocked</span></div>
+      <div class="row"><span><strong>4. Telna Connect Flex</strong> · USA</span><span class="status" style="color: var(--warning);">🟡 Sample data only</span></div>
+      <div class="row"><span><strong>5. 1GLOBAL</strong> · Truphone merged</span><span class="status" style="color: var(--warning);">🟡 Form submitted</span></div>
+      <div class="row"><span><strong>6. Airalo Partners</strong> · Singapore</span><span class="status" style="color: var(--warning);">🟡 48hr verification</span></div>
+      <div class="row"><span><strong>7. Nomad eSIM</strong> · LotusFlare-backed</span><span class="status" style="color: var(--warning);">🟡 Distribution form sent</span></div>
+      <div class="row out"><span><strong>8. BNESIM</strong> · Hong Kong</span><span class="status" style="color: var(--rose);">⚠️ Likely UAE block</span></div>
+    </div>
+    <p style="margin-top: 16px; color: var(--text-2); font-size: 13.5px;">Of 8 candidates, 2 are effectively ruled out on the UAE-customer block. Decision 03 (aggregator strategy) unblocks once 3+ remaining candidates return real net pricing — we can finally compare Samurai's stacked margin against direct rates.</p>
+  </section>
+
+  <!-- 7. CLOSING -->
+  <section>
+    <div class="closing">
+      <h3>Next 2-3 critical decisions to lock with Akito.</h3>
+      <ol>
+        <li><strong>Legal entity name (Decision 00)</strong> — blocks Stripe Atlas, which blocks Mercury + Stripe US + Apple Developer + Play Console. Single biggest lock on Phase 1.</li>
+        <li><strong>Aggregator strategy (Decision 03)</strong> — wait for 3+ real direct quotes, then choose: stay Samurai (relationship-first) or move direct (margin-first). Drives the entire Phase 3 provisioning integration.</li>
+        <li><strong>3-year SOM ambition (Decision 13)</strong> — Posture A / B / C. Sets the spending pace, the hiring trigger, and whether we ever talk about external capital.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    Peanut eSIM · Executive Summary · 2026-05-22 · For Akito review
+  </footer>
+
+</div>
+</body>
+</html>
