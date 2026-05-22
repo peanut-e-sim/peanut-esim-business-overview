@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM · Risk Register · 2026-05-22</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-2: #555;
+    --line: #E5E2DC;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning: #C97E22;
+    --warning-soft: #FFF8EE;
+    --rose: #C97070;
+    --rose-soft: #FBEDED;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 56px 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 920px; margin: 0 auto; }
+
+  .doc-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: var(--warning-soft);
+    color: var(--warning);
+    padding: 6px 12px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 52px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  h1 em { color: var(--accent); font-style: normal; }
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+  .meta strong { color: var(--accent); }
+  .lead {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin-bottom: 48px;
+    max-width: 720px;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 48px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .risk {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    border-left: 4px solid var(--accent);
+  }
+  .risk.severity-existential { border-left-color: var(--rose); }
+  .risk.severity-high { border-left-color: var(--warning); }
+  .risk.severity-med { border-left-color: var(--peanut); }
+  .risk-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .risk-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-2);
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .risk h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.45;
+    flex: 1;
+    min-width: 240px;
+  }
+  .badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .badge.sev-existential { background: var(--rose-soft); color: var(--rose); }
+  .badge.sev-high { background: var(--warning-soft); color: var(--warning); }
+  .badge.sev-med { background: var(--peanut-soft); color: var(--peanut); }
+  .badge.likelihood { background: var(--bg); color: var(--text-2); border: 1px solid var(--line); }
+  .badge.owner { background: var(--peanut-soft); color: var(--peanut); }
+  .risk p.mitigation {
+    color: var(--text-2);
+    font-size: 14.5px;
+    line-height: 1.75;
+    margin-top: 8px;
+  }
+  .risk p.mitigation strong { color: var(--text); font-weight: 600; }
+  .risk p.depth {
+    margin-top: 10px;
+    color: var(--text-2);
+    font-size: 14px;
+    line-height: 1.75;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .footer {
+    margin-top: 64px;
+    padding: 28px 32px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .footer strong { color: var(--accent); }
+  .footer-meta {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  a { color: var(--accent); }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <span class="doc-tag">Risk Register · v1</span>
+  <h1>Peanut eSIM · <em>Risk Register</em></h1>
+  <div class="meta">2026-05-22 &nbsp; · &nbsp; <strong>Reviewed monthly</strong> &nbsp; · &nbsp; Owners: Balraj &amp; Akito</div>
+
+  <p class="lead">The top 10 things that could kill Peanut eSIM — with severity, likelihood, mitigation, and owner. This is the v1 of the register; expected to evolve as the business ships and lessons land.</p>
+
+  <div class="section-label">10 Tracked Risks</div>
+
+  <!-- 1 -->
+  <div class="risk severity-high">
+    <div class="risk-head">
+      <span class="risk-num">01</span>
+      <h3>Supplier relationship breaks or rates worsen</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-high">Severity · High</span>
+      <span class="badge likelihood">Likelihood · Med</span>
+      <span class="badge owner">Owner · Balraj</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Multi-aggregator strategy — keep eSIM Access, Airalo, and Nomad pipelines warm even while running primarily on Samurai.</p>
+    <p class="depth">If the primary aggregator's pricing degrades or the relationship sours, having pre-warmed alternatives lets us switch without freezing inventory. The eSIM Access account is already live with USD pricing in hand; Airalo and Nomad partner forms are in flight. The goal is to never be more than 30 days away from a working second source.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="risk severity-existential">
+    <div class="risk-head">
+      <span class="risk-num">02</span>
+      <h3>TDRA enforces against Delaware-LLC structure</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-existential">Severity · Existential</span>
+      <span class="badge likelihood">Likelihood · Low</span>
+      <span class="badge owner">Owner · Balraj</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Stripe US via Atlas (no UAE processor), monitor TDRA quarterly for enforcement signals against the offshore-LLC pattern.</p>
+    <p class="depth">Airalo, Saily, Nomad, and Holafly all use the same offshore-incorporation pattern from outside the UAE without incident. Our defense is to look exactly like them at the structural level — US bank, US processor, US registered agent. We re-check TDRA enforcement bulletins each quarter so we get early warning if the regulator's posture shifts.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="risk severity-high">
+    <div class="risk-head">
+      <span class="risk-num">03</span>
+      <h3>Apple rejects the eSIM app</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-high">Severity · High</span>
+      <span class="badge likelihood">Likelihood · Med</span>
+      <span class="badge owner">Owner · Balraj</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Engage Apple early, declare MCC 4814 transparently, apply for the carrier entitlement on the timeline in Phase 1 Item 16.</p>
+    <p class="depth">Apple's App Store review is the single largest distribution risk. We mitigate by being legible: clear MCC declaration at Stripe onboarding, transparent product copy, and a privacy posture that satisfies App Tracking Transparency before submission. The carrier entitlement application (the 1-tap-install permission Airalo has) is queued for post-launch once we have ~10K active users to point at in the application.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="risk severity-high">
+    <div class="risk-head">
+      <span class="risk-num">04</span>
+      <h3>Emirates objects to crew gating or roster handling</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-high">Severity · High</span>
+      <span class="badge likelihood">Likelihood · Med</span>
+      <span class="badge owner">Owner · Akito</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> On-device-only roster parsing (Decision 09, leaning Option A), with the Phase 1 Item 18 legal framework reviewed by UAE-licensed counsel before v1 ships.</p>
+    <p class="depth">Crew gating is our wedge, but it touches data Emirates may consider corporate. Keeping roster parsing entirely on-device means we never receive, store, or transmit the actual schedule data — we just see derived signals (next destination, layover length). This drastically reduces the surface area for an objection. Akito owns the relationship sensing on the Emirates side.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="risk severity-med">
+    <div class="risk-head">
+      <span class="risk-num">05</span>
+      <h3>Crew SIM cuts prices OR builds schedule-upload feature</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-med">Severity · Med</span>
+      <span class="badge likelihood">Likelihood · Med-high</span>
+      <span class="badge owner">Owner · Balraj</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Day-1 wedge = schedule-upload (Decision 05), ship fast before Crew SIM closes the feature gap.</p>
+    <p class="depth">Crew SIM is already price-competitive with Airalo, so a price war isn't really winnable. The defensible wedge is the schedule-upload smart-plan feature — they don't have it, and building it requires shipping roster parsing thoughtfully. Speed of ship is the moat; every week we delay narrows the window where this is a differentiator vs table stakes.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="risk severity-existential">
+    <div class="risk-head">
+      <span class="risk-num">06</span>
+      <h3>Stripe terminates merchant account (high-risk MCC)</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-existential">Severity · Existential</span>
+      <span class="badge likelihood">Likelihood · Low-med</span>
+      <span class="badge owner">Owner · Balraj</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Keep chargeback ratio under 0.5%, maintain healthy reserves in Mercury, pre-qualify Telr / Wise Business as backup processors.</p>
+    <p class="depth">Telecom MCCs (4814) are flagged high-risk by every processor. The standard reason for termination is a chargeback spike, so we obsess about chargeback prevention: clear refund policy, transparent receipts, rapid customer-support response, and a fraud filter on the checkout. If Stripe ever pulls the plug, the backup processor pipeline activates within 72 hours.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="risk severity-high">
+    <div class="risk-head">
+      <span class="risk-num">07</span>
+      <h3>Fraud / chargeback waves</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-high">Severity · High</span>
+      <span class="badge likelihood">Likelihood · Med</span>
+      <span class="badge owner">Owner · Balraj</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Strong KYC at sign-up (crew verification), refund-policy guardrails (30-day pre-activation only), velocity limits on new accounts.</p>
+    <p class="depth">Travel eSIM is a textbook stolen-card target — instant digital delivery, easy resale. Crew verification at sign-up filters out almost all of this — verified crew don't run card-testing rings on their own employer's email domain. We layer with Stripe Radar rules, refund-window discipline, and human review on any account with three or more sequential purchases in 24 hours.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="risk severity-high">
+    <div class="risk-head">
+      <span class="risk-num">08</span>
+      <h3>Key-person risk — Akito leaves</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-high">Severity · High</span>
+      <span class="badge likelihood">Likelihood · Low</span>
+      <span class="badge owner">Owner · Both</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Founder agreement (Phase 0 Item 5) with vesting + cliffs, Samurai contact path documented so the relationship isn't single-threaded through Akito.</p>
+    <p class="depth">Akito brings the Samurai contact and the Emirates crew network — losing him without a documented hand-off would create a real continuity gap. The founder agreement encodes vesting + buyback so the equity outcome is clean either way. In parallel, every key supplier and crew-network introduction is documented in shared notes so the institutional memory survives a departure.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="risk severity-existential">
+    <div class="risk-head">
+      <span class="risk-num">09</span>
+      <h3>Capital runs out before break-even</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-existential">Severity · Existential</span>
+      <span class="badge likelihood">Likelihood · Low-med</span>
+      <span class="badge owner">Owner · Both</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Working budget ceiling (Decision 14, $20K lean), monthly burn review, predefined re-evaluation triggers if burn outpaces revenue ramp.</p>
+    <p class="depth">The whole thesis is capital-light — no inventory, no warehouses, no physical SIMs — but soft-launch marketing + the long tail of compliance / accounting / tooling costs can still consume capital faster than revenue ramps. The Decision 14 budget ceiling is the hard stop that forces a re-evaluation conversation rather than an unconscious slide into trouble.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="risk severity-med">
+    <div class="risk-head">
+      <span class="risk-num">10</span>
+      <h3>Single-base dependence (95% Emirates crew)</h3>
+    </div>
+    <div class="badges">
+      <span class="badge sev-med">Severity · Med</span>
+      <span class="badge likelihood">Likelihood · High</span>
+      <span class="badge owner">Owner · Balraj</span>
+    </div>
+    <p class="mitigation"><strong>Mitigation:</strong> Etihad / Qatar in Phase 6, multi-airline target by Y2 (Decision 13 SOM Posture B), parallel network-building in adjacent crew communities through soft launch.</p>
+    <p class="depth">Concentrating on Emirates crew is the right Y1 move — it's where Akito has the network and where the demand insight originated. But running on a single airline forever creates a fragility (any one corporate decision at Emirates could erase the user base). By Y2 we want Etihad, Qatar, and at least one Asian carrier (Singapore or Cathay) live so no single carrier is more than ~50% of revenue.</p>
+  </div>
+
+  <div class="footer">
+    <strong>Review cadence:</strong> This register is reviewed monthly in a Balraj × Akito sync. Any risk where likelihood moves up a band (e.g., Med-high → High) gets escalated to a separate decision discussion in the next sync, with a written mitigation update. New risks are added as they emerge; closed risks are kept in an archive section (not yet populated as of v1).
+    <div class="footer-meta">Document version · v1 · 2026-05-22 · Next review · 2026-06-22</div>
+  </div>
+</div>
+</body>
+</html>

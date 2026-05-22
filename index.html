@@ -954,6 +954,31 @@
     text-transform: uppercase;
     font-weight: 600;
   }
+  .dec-ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 4px 0 10px;
+    padding: 4px 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .dec-ref:hover { background: var(--accent); color: white; }
+  .dec-ref::before { content: "→"; opacity: 0.6; }
+  .roadmap-item.ri-highlight {
+    background: var(--accent-soft) !important;
+    transition: background 0.4s ease;
+  }
 
   /* ─── TASKS (Balraj / Akito tabs) ─── */
   .task-card {
@@ -2698,10 +2723,11 @@
   </header>
 
   <section style="border-bottom: none;">
-    <div class="sec-label"><span class="lang en">OPEN · 16 ITEMS</span><span class="lang jp">未決 ・ 16件</span></div>
+    <div class="sec-label"><span class="lang en">OPEN · 19 ITEMS</span><span class="lang jp">未決 ・ 19件</span></div>
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 00 · LEGAL ENTITY NAME</span><span class="lang jp">判断 00 ・ 法人正式名称</span></div>
+      <a class="dec-ref" href="#phase-1-item-1">Phase 1 · Item 1</a>
       <h3>
         <span class="lang en">What's the legal name of the LLC?</span>
         <span class="lang jp">LLC の正式名称をどうするか？</span>
@@ -2724,6 +2750,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 00B · TRADEMARK FILING</span><span class="lang jp">判断 00B ・ 商標出願</span></div>
+      <a class="dec-ref" href="#phase-1-item-2">Phase 1 · Item 2</a>
       <h3>
         <span class="lang en">Do we file a trademark for "Peanut eSIM" at all?</span>
         <span class="lang jp">「Peanut eSIM」の商標を出願するかどうか？</span>
@@ -2770,6 +2797,7 @@
 
     <div class="decision-card">
       <div class="dec-meta"><span class="lang en">DECISION 00C · GOVERNING LAW</span><span class="lang jp">判断 00C ・ 準拠法</span></div>
+      <a class="dec-ref" href="#phase-1-item-4">Phase 1 · Item 4</a>
       <h3>
         <span class="lang en">Which jurisdiction handles disputes with customers?</span>
         <span class="lang jp">顧客との紛争はどの法域で解決するか？</span>
@@ -2792,6 +2820,7 @@
 
     <div class="decision-card">
       <div class="dec-meta"><span class="lang en">DECISION 00E · REFUND WINDOW</span><span class="lang jp">判断 00E ・ 返金期限</span></div>
+      <a class="dec-ref" href="#phase-1-item-4">Phase 1 · Item 4</a>
       <h3>
         <span class="lang en">How long after purchase can a customer get a refund?</span>
         <span class="lang jp">購入後、お客様が返金請求できる期間は？</span>
@@ -2817,6 +2846,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 01 · APPLE 30% CUT</span><span class="lang jp">判断 01 ・ Apple 30% 手数料</span></div>
+      <a class="dec-ref" href="#phase-1-item-7">Phase 1 · Item 7</a>
       <h3><span class="lang en">IAP vs Web vs Hybrid checkout</span><span class="lang jp">IAP vs Web vs ハイブリッド決済</span></h3>
       <p>
         <span class="lang en">Three real paths around Apple's 30% cut. I recommend Path C (Hybrid / Netflix model) — first sale on web, app for management + later top-ups. ~50% blended margin vs 34% for IAP-only. Detailed analysis in Overview Section 04.</span>
@@ -2832,6 +2862,7 @@
 
     <div class="decision-card">
       <div class="dec-meta"><span class="lang en">DECISION 02 · CARRIER ENTITLEMENT</span><span class="lang jp">判断 02 ・ キャリア権限の申請時期</span></div>
+      <a class="dec-ref" href="#phase-1-item-16">Phase 1 · Item 16</a>
       <h3><span class="lang en">When to apply for Apple's in-app eSIM install entitlement</span><span class="lang jp">Apple キャリア権限の申請タイミング</span></h3>
       <p>
         <span class="lang en">Apple's special permission for 1-tap eSIM install. Airalo has it. We won't on day 1. Apply at ~10K users? Or earlier with the right Apple/carrier contact?</span>
@@ -2847,6 +2878,7 @@
 
     <div class="decision-card">
       <div class="dec-meta"><span class="lang en">DECISION 03 · AGGREGATOR STRATEGY</span><span class="lang jp">判断 03 ・ アグリゲーター戦略</span></div>
+      <a class="dec-ref" href="#phase-0-item-2">Phase 0 · Item 2</a>
       <h3><span class="lang en">Samurai Wifi exclusive, or multi-source from launch?</span><span class="lang jp">Samurai Wifi 単独 vs 複数アグリゲーター</span></h3>
       <p>
         <span class="lang en">Single-aggregator means simpler tech and tighter relationship. Multi gives margin flexibility and fallback. Pending Samurai's answers to our partner questionnaire (see Akito tab).</span>
@@ -2862,6 +2894,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 04 · UAE-CUSTOMER COMPLIANCE RISK</span><span class="lang jp">判断 04 ・ UAE 顧客販売リスク</span></div>
+      <a class="dec-ref" href="#phase-0-item-2">Phase 0 · Item 2</a>
       <h3>
         <span class="lang en">Which aggregators can legally sell eSIMs to customers physically in the UAE?</span>
         <span class="lang jp">UAE 国内にいる顧客に合法的に eSIM を販売できるアグリゲーターはどれか？</span>
@@ -2887,6 +2920,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 05 · DAY-1 WEDGE VS CREW SIM</span><span class="lang jp">判断 05 ・ Crew SIM に対する初日アドバンテージ</span></div>
+      <a class="dec-ref" href="#phase-0-item-6">Phase 0 · Item 6</a>
       <h3>
         <span class="lang en">What's our day-1 reason for an Emirates crew member to choose Peanut over Crew SIM?</span>
         <span class="lang jp">Emirates 乗務員が初日に Crew SIM ではなく Peanut を選ぶ理由は何か？</span>
@@ -2938,6 +2972,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 06 · BRAND VOICE &amp; TONE</span><span class="lang jp">判断 06 ・ ブランドボイス＆トーン</span></div>
+      <a class="dec-ref" href="#phase-2-item-1">Phase 2 · Item 1</a>
       <h3>
         <span class="lang en">How does Peanut sound — across app, push notifications, emails, social, support?</span>
         <span class="lang jp">Peanut の話し方 — アプリ・プッシュ通知・メール・SNS・サポート全体の声をどうするか？</span>
@@ -2984,6 +3019,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 07 · APP DESIGN APPROACH</span><span class="lang jp">判断 07 ・ アプリデザインのアプローチ</span></div>
+      <a class="dec-ref" href="#phase-2-item-4">Phase 2 · Item 4</a>
       <h3>
         <span class="lang en">Who designs the app — freelancer / agency, or Balraj with AI tools?</span>
         <span class="lang jp">アプリは誰がデザインするか — 外注 / エージェンシー、それとも Balraj が AI ツールで自作するか？</span>
@@ -3012,6 +3048,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 08 · V1 FEATURE SCOPE</span><span class="lang jp">判断 08 ・ v1 機能スコープ</span></div>
+      <a class="dec-ref" href="#phase-2-item-5">Phase 2 · Item 5</a>
       <h3>
         <span class="lang en">Which features ship on v1, and which get deferred to v1.x?</span>
         <span class="lang jp">v1 にどの機能を載せ、どれを v1.x に延ばすか？</span>
@@ -3040,6 +3077,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 09 · CREW ROSTER DATA HANDLING</span><span class="lang jp">判断 09 ・ 乗務員スケジュールデータの取扱い</span></div>
+      <a class="dec-ref" href="#phase-2-item-5">Phase 2 · Item 5</a>
       <h3>
         <span class="lang en">Do we store crew schedules on our servers — or parse on-device and never upload?</span>
         <span class="lang jp">乗務員スケジュールをサーバーに保存するか、それとも端末上で解析しサーバーには送らないか？</span>
@@ -3067,6 +3105,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 10 · APP AVAILABILITY (INVITE-ONLY vs OPEN)</span><span class="lang jp">判断 10 ・ アプリの公開モデル（招待制 vs オープン）</span></div>
+      <a class="dec-ref" href="#phase-2-item-7">Phase 2 · Item 7</a>
       <h3>
         <span class="lang en">Is Peanut on the App Store as invite-only — or public from day 1?</span>
         <span class="lang jp">Peanut は App Store 上で招待制にするか、それとも初日からオープンにするか？</span>
@@ -3093,6 +3132,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 11 · MARKETING WEBSITE MODEL</span><span class="lang jp">判断 11 ・ マーケサイトのモデル</span></div>
+      <a class="dec-ref" href="#phase-2-item-6">Phase 2 · Item 6</a>
       <h3>
         <span class="lang en">Is peanutesim.com public, gated, or hybrid?</span>
         <span class="lang jp">peanutesim.com はパブリック、ゲート付き、それともハイブリッド？</span>
@@ -3116,6 +3156,7 @@
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 13 · 3-YEAR SOM TARGET (MARKET-CAPTURE AMBITION)</span><span class="lang jp">判断 13 ・ 3 年間の SOM 目標（市場獲得の野心度）</span></div>
+      <a class="dec-ref" href="#phase-0-item-7">Phase 0 · Item 7</a>
       <h3>
         <span class="lang en">How aggressive a 3-year crew-acquisition target are we willing to bet on?</span>
         <span class="lang jp">3 年間の乗務員獲得目標を、どこまで強気に設定するか？</span>
@@ -3168,10 +3209,147 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · DEFINES PHASE 6 + PHASE 7 SCOPE</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 6 + Phase 7 のスコープを規定</span></div>
     </div>
 
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 14 · WORKING BUDGET CEILING</span><span class="lang jp">判断 14 ・ 運転資金の上限</span></div>
+      <a class="dec-ref" href="#phase-0-item-9">Phase 0 · Item 9</a>
+      <h3>
+        <span class="lang en">What's the maximum we're willing to spend $0 → break-even before re-evaluating?</span>
+        <span class="lang jp">$0 から損益分岐点までに、再判断する前に投じる最大額をいくらに置くか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Working budget ceiling is a stop-line, not a target — the number that triggers a re-evaluation conversation, not the number we plan to spend. Constrains every Phase 2–5 spending decision (designer hire vs AI, paid ads vs organic, freelance contractor vs DIY). Phase 0 Item 9 runway analysis estimates a $15K–$25K range to reach break-even on sweat-equity + AI-driven build.</span>
+        <span class="lang jp">運転資金の上限は「目標」ではなく「ストップライン」。これを超えたら再判断会議を開くトリガー額。Phase 2〜5 の全支出判断（デザイナー外注 vs AI、有料広告 vs オーガニック、業務委託 vs DIY）を規定。Phase 0 Item 9 のランウェイ分析では、自己労務 + AI 主導の構築で損益分岐到達まで $15K〜$25K のレンジ。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Three options:</span><span class="lang jp">3 つの選択肢:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead>
+            <tr>
+              <th><span class="lang en">Option</span><span class="lang jp">選択肢</span></th>
+              <th><span class="lang en">Ceiling</span><span class="lang jp">上限</span></th>
+              <th><span class="lang en">What it allows</span><span class="lang jp">許容される使い方</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong><span class="lang en">A. Tight</span><span class="lang jp">A. タイト</span></strong></td>
+              <td>$15K</td>
+              <td><span class="lang en">Forces AI-only build, organic-only marketing. Highest discipline, slowest growth.</span><span class="lang jp">AI 構築オンリー、オーガニック マーケのみを強制。最も規律的、成長は最遅。</span></td>
+            </tr>
+            <tr class="pick">
+              <td><strong><span class="lang en">B. Mid ⭐ (Balraj lean)</span><span class="lang jp">B. ミドル ⭐（Balraj の意向）</span></strong></td>
+              <td>$20K</td>
+              <td><span class="lang en">Allows one freelance contractor if AI tools hit a ceiling + a small paid-ads test. Pragmatic balance.</span><span class="lang jp">AI ツールが頭打ちになった場合、フリーランス 1 名 + 有料広告の小規模テストを許容。実用的バランス。</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">C. Generous</span><span class="lang jp">C. ゆとり</span></strong></td>
+              <td>$25–30K</td>
+              <td><span class="lang en">Allows hiring a designer if AI tools fail + real paid-ad spend in soft launch. More optionality, more risk.</span><span class="lang jp">AI ツール失敗時にデザイナー採用 + ソフトローンチで本格的な有料広告を許容。選択肢は増えるがリスクも増。</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Balraj's lean:</strong> Option B ($20K). $15K feels too tight for any contractor backup; $25K+ is more money than the thesis needs to validate at break-even.</span>
+          <span class="lang jp"><strong>Balraj の意向:</strong>選択肢 B（$20K）。$15K だと外注バックアップの余地がなく、$25K 超は損益分岐検証に対して過剰。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 2-5 SPEND DECISIONS</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2〜5 の支出判断に影響</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 15 · CAPITAL SPLIT FORMULA (BALRAJ × AKITO)</span><span class="lang jp">判断 15 ・ 資本配分の方式（Balraj × Akito）</span></div>
+      <a class="dec-ref" href="#phase-0-item-9">Phase 0 · Item 9</a>
+      <h3>
+        <span class="lang en">How is the $15–25K bankroll split between Balraj and Akito?</span>
+        <span class="lang jp">$15K〜$25K の資金を Balraj と Akito でどう負担するか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Affects equity percentages, future tax treatment, and founder-agreement terms (Phase 0 Item 5). Currently the single-member LLC has Balraj as sole owner — equity formalization waits for the founder agreement. Time-vs-money equivalence: Akito brings the Samurai contact + crew network access; Balraj brings dev + ops + design time.</span>
+        <span class="lang jp">持分比率、将来の税務処理、創業者合意書の条件（Phase 0 Item 5）に影響。現状、シングルメンバー LLC では Balraj が単独オーナー — 持分の正式化は創業者合意書の交渉後。時間と現金の等価性:Akito は Samurai 接点 + クルーネットワークへのアクセス、Balraj は開発 + 運用 + デザイン工数を提供。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Three options:</span><span class="lang jp">3 つの選択肢:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead>
+            <tr>
+              <th><span class="lang en">Option</span><span class="lang jp">選択肢</span></th>
+              <th><span class="lang en">Split</span><span class="lang jp">分担</span></th>
+              <th><span class="lang en">What it implies</span><span class="lang jp">含意</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pick">
+              <td><strong><span class="lang en">A. 50/50 ⭐ (Balraj lean)</span><span class="lang jp">A. 50/50 ⭐（Balraj の意向）</span></strong></td>
+              <td>50% / 50%</td>
+              <td><span class="lang en">Equal partners by default. Clean, simple, mutually motivating. Skin in the game on both sides.</span><span class="lang jp">既定で対等パートナー。シンプル・明快・両者の自走インセンティブを保つ。両者にコミットメントを担保。</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">B. Proportional to time + network value</span><span class="lang jp">B. 時間 + ネットワーク価値で按分</span></strong></td>
+              <td><span class="lang en">e.g., 60/40 either direction</span><span class="lang jp">例:60/40（方向は応相談）</span></td>
+              <td><span class="lang en">Reflects who's bringing more "non-cash" value. Cleaner if one side dramatically over-contributes.</span><span class="lang jp">どちらが「非現金」価値を多く提供するかを反映。一方の貢献が極端に偏る場合に整合性が高い。</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">C. Defer until founder agreement</span><span class="lang jp">C. 創業者合意書まで保留</span></strong></td>
+              <td><span class="lang en">Equal cash now, formalize later</span><span class="lang jp">いまは等額拠出、後で正式化</span></td>
+              <td><span class="lang en">Both put equal cash in to start moving; revisit ratio with vesting / network-value lens once we negotiate the agreement.</span><span class="lang jp">まずは等額拠出で立ち上げ、合意書交渉時にベスティング・ネットワーク価値の観点で比率を再検討。</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Balraj's lean:</strong> Option A (50/50). Easiest to live with; the founder agreement can encode vesting + cliffs + buyback so we're protected without making the cash split asymmetric on day 1.</span>
+          <span class="lang jp"><strong>Balraj の意向:</strong>選択肢 A（50/50）。最も摩擦が少なく、創業者合意書側でベスティング + クリフ + バイバックを定めれば、初日から非対称な現金分担にせずとも保護可能。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · BLOCKS PHASE 0 ITEM 5 (FOUNDER AGREEMENT)</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 0 Item 5（創業者合意書）のブロッカー</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 16 · US CPA ENGAGEMENT</span><span class="lang jp">判断 16 ・ 米国 CPA との契約</span></div>
+      <a class="dec-ref" href="#phase-1-item-14">Phase 1 · Item 14</a>
+      <h3>
+        <span class="lang en">Which accountant handles our annual US tax filing (Form 5472 + 1120 pro-forma)?</span>
+        <span class="lang jp">年次の米国税務申告（Form 5472 + 1120 プロフォーマ）をどの会計士に任せるか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Form 5472 carries a <strong>$25,000 penalty</strong> for missing or wrong filing — required annually for a foreign-owned single-member LLC. Engaging a CPA <strong>before incorporation</strong> matters because they review the structure + set up the bookkeeping mapping (Phase 1 Item 15) from day 1 — switching CPAs mid-year is painful and creates audit risk.</span>
+        <span class="lang jp">Form 5472 は提出漏れ・誤りで <strong>$25,000 の罰金</strong> — 外国人オーナーのシングルメンバー LLC では毎年必須。<strong>設立前</strong>に CPA と契約することが重要 — 構造をレビューし、初日から経理マッピング（Phase 1 Item 15）を整える必要がある。年度途中での CPA 変更は手間が大きく、監査リスクも生む。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Two real options (omitting riskier paths):</span><span class="lang jp">現実的な 2 つの選択肢（リスクの高い経路は除外）:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead>
+            <tr>
+              <th><span class="lang en">Option</span><span class="lang jp">選択肢</span></th>
+              <th><span class="lang en">Cost</span><span class="lang jp">費用</span></th>
+              <th><span class="lang en">What you get</span><span class="lang jp">提供される内容</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pick">
+              <td><strong><span class="lang en">A. Stripe Atlas-partnered CPA ⭐ (Balraj lean)</span><span class="lang jp">A. Stripe Atlas 提携 CPA ⭐（Balraj の意向）</span></strong></td>
+              <td>$400–$800/yr</td>
+              <td><span class="lang en">Vetted list from Atlas dashboard, knows Atlas LLCs cold, standard 5472 + 1120 filing.</span><span class="lang jp">Atlas ダッシュボードの審査済みリスト、Atlas LLC の構造を熟知、標準的な 5472 + 1120 申告。</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">B. International-tax specialist</span><span class="lang jp">B. 国際税務専門</span></strong></td>
+              <td>$800–$1,500/yr</td>
+              <td><span class="lang en">Greenback / Bright!Tax / MyExpatTaxes — premium specialist, broader cross-border advice if we ever need it.</span><span class="lang jp">Greenback / Bright!Tax / MyExpatTaxes — プレミアム専門、将来的なクロスボーダー助言が必要になっても対応可能。</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Balraj's lean:</strong> Option A. Atlas-partnered CPAs are the cheapest valid path and already integrated with the Atlas + Mercury + Stripe pipeline. We can upgrade to a specialist (Option B) later if the entity gets more complex.</span>
+          <span class="lang jp"><strong>Balraj の意向:</strong>選択肢 A。Atlas 提携 CPA は最も安価な妥当解で、Atlas + Mercury + Stripe のパイプラインと既に統合済み。法人構造が複雑化したら、後で選択肢 B にアップグレード可能。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 1 ITEM 14</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 1 Item 14 に影響</span></div>
+    </div>
+
     <div class="sec-label" style="margin-top: 48px; color: var(--accent);"><span class="lang en">✓ RESOLVED · 2 ITEMS</span><span class="lang jp">✓ 解決済 ・ 2件</span></div>
 
     <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
       <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 12 · MARKETING + DISTRIBUTION CHANNELS ✓</span><span class="lang jp">判断 12 ・ マーケ・流通チャネル ✓</span></div>
+      <a class="dec-ref" href="#phase-2-item-9">Phase 2 · Item 9</a>
       <h3>
         <span class="lang en">Where do we acquire crew users?</span>
         <span class="lang jp">乗務員ユーザーをどこで獲得するか？</span>
@@ -3198,6 +3376,7 @@
 
     <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
       <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 00D · INCORPORATION JURISDICTION ✓</span><span class="lang jp">判断 00D ・ 法人設立地 ✓</span></div>
+      <a class="dec-ref" href="#phase-1-item-1">Phase 1 · Item 1</a>
       <h3>
         <span class="lang en">Where should Peanut eSIM be incorporated?</span>
         <span class="lang jp">Peanut eSIM をどこで設立するか？</span>
@@ -3630,7 +3809,7 @@ Akito</div>
         <tr><th>#</th><th><span class="lang en">PHASE</span><span class="lang jp">フェーズ</span></th><th><span class="lang en">STATUS</span><span class="lang jp">状況</span></th></tr>
       </thead>
       <tbody>
-        <tr class="current"><td class="phase-no">0</td><td class="phase-name"><span class="lang en">Research &amp; Validation</span><span class="lang jp">リサーチ＆検証</span></td><td class="phase-stat">🟡 <span class="lang en">In progress (4/10)</span><span class="lang jp">進行中（4/10）</span></td></tr>
+        <tr class="current"><td class="phase-no">0</td><td class="phase-name"><span class="lang en">Research &amp; Validation</span><span class="lang jp">リサーチ＆検証</span></td><td class="phase-stat">🟡 <span class="lang en">In progress (5/10)</span><span class="lang jp">進行中（5/10）</span></td></tr>
         <tr class="current"><td class="phase-no">1</td><td class="phase-name"><span class="lang en">Legal &amp; Corporate</span><span class="lang jp">法務・法人設立</span></td><td class="phase-stat">▶ <span class="lang en">Starting now (0/18)</span><span class="lang jp">開始中（0/18）</span></td></tr>
         <tr class="current"><td class="phase-no">2</td><td class="phase-name"><span class="lang en">Brand &amp; Product Design</span><span class="lang jp">ブランド・プロダクトデザイン</span></td><td class="phase-stat">▶ <span class="lang en">Starting now (0/14)</span><span class="lang jp">開始中（0/14）</span></td></tr>
         <tr><td class="phase-no">3</td><td class="phase-name"><span class="lang en">Tech Build</span><span class="lang jp">技術開発</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
@@ -3647,13 +3826,13 @@ Akito</div>
     <div class="phase-detail-header p0">
       <div class="phase-detail-num">0</div>
       <div>
-        <span class="phase-status-pill progress"><span class="lang en">IN PROGRESS · 4 / 10 CLOSED</span><span class="lang jp">進行中 ・ 10項目中4項目完了</span></span>
+        <span class="phase-status-pill progress"><span class="lang en">IN PROGRESS · 5 / 10 CLOSED</span><span class="lang jp">進行中 ・ 10項目中5項目完了</span></span>
         <h2><span class="lang en">Phase 0 — Research &amp; Validation</span><span class="lang jp">フェーズ0 — リサーチ＆検証</span></h2>
       </div>
     </div>
 
     <!-- Item 1 — THE BIG ONE (Regulatory verdict + Tax math) -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-1">
       <div class="ri-head">
         <span class="ri-status done"><span class="lang en">CLOSED · 2026-05-21</span><span class="lang jp">完了 ・ 2026-05-21</span></span>
         <h3><span class="lang en">Item 1 — UAE Regulatory</span><span class="lang jp">Item 1 — UAE 規制関連</span></h3>
@@ -3725,7 +3904,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 2 -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-2">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">IN PROGRESS · 8 providers in pipeline</span><span class="lang jp">進行中 ・ プロバイダー候補 8社</span></span>
         <h3><span class="lang en">Item 2 — Aggregator Diligence (Provider Pipeline)</span><span class="lang jp">Item 2 — アグリゲーター精査（プロバイダー候補一覧）</span></h3>
@@ -3803,7 +3982,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 3 -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-3">
       <div class="ri-head">
         <span class="ri-status done"><span class="lang en">CLOSED · 2026-05-21</span><span class="lang jp">完了 ・ 2026-05-21</span></span>
         <h3><span class="lang en">Item 3 — Competitive Pricing Benchmark</span><span class="lang jp">Item 3 — 競合価格ベンチマーク</span></h3>
@@ -3815,7 +3994,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 4 — skipped -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-4">
       <div class="ri-head">
         <span class="ri-status skipped"><span class="lang en">SKIPPED (for now)</span><span class="lang jp">保留中</span></span>
         <h3><span class="lang en">Item 4 — Emirates Crew Interviews</span><span class="lang jp">Item 4 — エミレーツ航空乗務員インタビュー</span></h3>
@@ -3827,7 +4006,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 5 — skipped -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-5">
       <div class="ri-head">
         <span class="ri-status skipped"><span class="lang en">SKIPPED (for now)</span><span class="lang jp">保留中</span></span>
         <h3><span class="lang en">Item 5 — Founder Agreement (you + Akito)</span><span class="lang jp">Item 5 — 共同創業者合意書（あなた + Akito）</span></h3>
@@ -3839,7 +4018,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 6 — DONE — Crew SIM competitive deep-dive -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-6">
       <div class="ri-head">
         <span class="ri-status done"><span class="lang en">CLOSED · 2026-05-22</span><span class="lang jp">完了 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 6 — Crew SIM competitive deep-dive</span><span class="lang jp">Item 6 — Crew SIM 詳細競合分析</span></h3>
@@ -3851,7 +4030,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 7 — CLOSED — Market sizing -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-7">
       <div class="ri-head">
         <span class="ri-status done"><span class="lang en">CLOSED · 2026-05-22</span><span class="lang jp">完了 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 7 — Market sizing (TAM / SAM / SOM)</span><span class="lang jp">Item 7 — 市場規模試算（TAM / SAM / SOM）</span></h3>
@@ -3876,7 +4055,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 8 — NEW — Unit economics model -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-8">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 8 — Unit economics model</span><span class="lang jp">Item 8 — ユニットエコノミクスモデル</span></h3>
@@ -3888,7 +4067,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 9 — NEW — Financial runway model -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-0-item-9">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 9 — Financial runway model</span><span class="lang jp">Item 9 — 資金繰り（ランウェイ）モデル</span></h3>
@@ -3899,15 +4078,121 @@ Mercury（米国法人銀行口座）
       </p>
     </div>
 
-    <!-- Item 10 — NEW — Risk register -->
-    <div class="roadmap-item">
+    <!-- Item 10 — CLOSED 2026-05-22 — Risk register -->
+    <div class="roadmap-item" id="phase-0-item-10">
       <div class="ri-head">
-        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <span class="ri-status done"><span class="lang en">CLOSED · 2026-05-22</span><span class="lang jp">完了 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 10 — Risk register</span><span class="lang jp">Item 10 — リスク登録簿</span></h3>
       </div>
       <p class="ri-desc">
-        <span class="lang en">A single living document listing the top 10 things that could kill Peanut eSIM, with mitigations and owners. Examples: TDRA enforcement against Delaware LLC structure; Samurai relationship collapses; Apple rejects the eSIM app; Emirates objects to crew gating; Crew SIM cuts prices aggressively; aggregator pricing wars; key-person risk (Akito leaves); fraud / chargeback waves; Stripe terminates merchant account. Reviewed monthly.</span>
-        <span class="lang jp">Peanut eSIM を破壊しうるトップ 10 のリスク・対策・担当者を 1 枚の生きた文書で管理。例:TDRA がデラウェア LLC 構造に対し執行・Samurai 関係崩壊・Apple がアプリ却下・Emirates が乗務員ゲーティングに異議・Crew SIM の値下げ攻勢・卸価格戦争・キーパーソンリスク（Akito 離脱）・不正利用 / チャージバック・Stripe アカウント停止。月次レビュー。</span>
+        <span class="lang en">Top 10 things that could kill Peanut eSIM, with severity, likelihood, mitigation, and owner. Reviewed monthly in a Balraj × Akito sync. This is the v1 of the register — expected to evolve as we ship.</span>
+        <span class="lang jp">Peanut eSIM を破壊しうるトップ 10 のリスク。重要度・発生確率・対策・担当者を明記。Balraj × Akito の月次同期でレビュー。これは v1 — 事業の進行に応じて随時更新。</span>
+      </p>
+
+      <table class="mini-table" style="margin-top: 14px;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th><span class="lang en">Risk</span><span class="lang jp">リスク</span></th>
+            <th><span class="lang en">Severity</span><span class="lang jp">影響度</span></th>
+            <th><span class="lang en">Likelihood</span><span class="lang jp">発生確率</span></th>
+            <th><span class="lang en">Mitigation</span><span class="lang jp">対策</span></th>
+            <th><span class="lang en">Owner</span><span class="lang jp">担当</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><span class="lang en">Samurai relationship breaks or rates worsen</span><span class="lang jp">Samurai との関係崩壊・価格悪化</span></td>
+            <td><span class="lang en">High</span><span class="lang jp">高</span></td>
+            <td><span class="lang en">Med</span><span class="lang jp">中</span></td>
+            <td><span class="lang en">Multi-aggregator strategy — keep eSIM Access, Airalo, Nomad pipelines warm</span><span class="lang jp">複数アグリゲーター戦略 — eSIM Access・Airalo・Nomad のパイプを常時温める</span></td>
+            <td>Balraj</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><span class="lang en">TDRA enforces against Delaware-LLC structure</span><span class="lang jp">TDRA がデラウェア LLC 構造に対して執行</span></td>
+            <td><span class="lang en">Existential</span><span class="lang jp">致命的</span></td>
+            <td><span class="lang en">Low</span><span class="lang jp">低</span></td>
+            <td><span class="lang en">Stripe US via Atlas, monitor TDRA quarterly</span><span class="lang jp">Atlas 経由の Stripe US、TDRA を四半期ごとに監視</span></td>
+            <td>Balraj</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><span class="lang en">Apple rejects the eSIM app</span><span class="lang jp">Apple が eSIM アプリを却下</span></td>
+            <td><span class="lang en">High</span><span class="lang jp">高</span></td>
+            <td><span class="lang en">Med</span><span class="lang jp">中</span></td>
+            <td><span class="lang en">Engage Apple early, MCC 4814 disclosure, carrier entitlement (Phase 1 Item 16)</span><span class="lang jp">Apple との早期エンゲージ、MCC 4814 を明示、キャリア権限申請（Phase 1 Item 16）</span></td>
+            <td>Balraj</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><span class="lang en">Emirates objects to crew gating or roster handling</span><span class="lang jp">Emirates がクルーゲーティングまたはロスター取扱に異議</span></td>
+            <td><span class="lang en">High</span><span class="lang jp">高</span></td>
+            <td><span class="lang en">Med</span><span class="lang jp">中</span></td>
+            <td><span class="lang en">On-device-only roster parsing (Decision 09 lean=A), Phase 1 Item 18 legal framework</span><span class="lang jp">ロスターはオンデバイスのみで処理（Decision 09 ・ A 案）、Phase 1 Item 18 の法的フレームワーク</span></td>
+            <td>Akito</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><span class="lang en">Crew SIM cuts prices OR builds schedule-upload feature</span><span class="lang jp">Crew SIM が値下げ or ロスター連動機能を実装</span></td>
+            <td><span class="lang en">Med</span><span class="lang jp">中</span></td>
+            <td><span class="lang en">Med-high</span><span class="lang jp">中〜高</span></td>
+            <td><span class="lang en">Day-1 wedge = schedule-upload (Decision 05), ship fast</span><span class="lang jp">初日ウェッジ＝ロスター連動（Decision 05）、迅速ローンチ</span></td>
+            <td>Balraj</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><span class="lang en">Stripe terminates merchant account (high-risk MCC)</span><span class="lang jp">Stripe が加盟店アカウント停止（高リスク MCC）</span></td>
+            <td><span class="lang en">Existential</span><span class="lang jp">致命的</span></td>
+            <td><span class="lang en">Low-med</span><span class="lang jp">低〜中</span></td>
+            <td><span class="lang en">Chargeback &lt;0.5%, keep Mercury healthy, Telr/Wise as backup</span><span class="lang jp">チャージバック率 0.5% 未満維持、Mercury 健全、Telr / Wise をバックアップに</span></td>
+            <td>Balraj</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><span class="lang en">Fraud / chargeback waves</span><span class="lang jp">不正利用 / チャージバックの波</span></td>
+            <td><span class="lang en">High</span><span class="lang jp">高</span></td>
+            <td><span class="lang en">Med</span><span class="lang jp">中</span></td>
+            <td><span class="lang en">Strong KYC at sign-up (crew verification), refund-policy guardrails</span><span class="lang jp">サインアップ時に強固な KYC（クルー認証）、返金ポリシーでガードレール</span></td>
+            <td>Balraj</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><span class="lang en">Key-person risk — Akito leaves</span><span class="lang jp">キーパーソンリスク — Akito 離脱</span></td>
+            <td><span class="lang en">High</span><span class="lang jp">高</span></td>
+            <td><span class="lang en">Low</span><span class="lang jp">低</span></td>
+            <td><span class="lang en">Founder agreement (Phase 0 Item 5) with vesting, Samurai contact documented</span><span class="lang jp">創業者合意書（Phase 0 Item 5）+ ベスティング、Samurai 連絡先を文書化</span></td>
+            <td><span class="lang en">Both</span><span class="lang jp">両者</span></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><span class="lang en">Capital runs out before break-even</span><span class="lang jp">損益分岐前に資金枯渇</span></td>
+            <td><span class="lang en">Existential</span><span class="lang jp">致命的</span></td>
+            <td><span class="lang en">Low-med</span><span class="lang jp">低〜中</span></td>
+            <td><span class="lang en">Budget ceiling (Decision 14, $20K), monthly burn review</span><span class="lang jp">予算上限（Decision 14、$20K）、月次バーンレビュー</span></td>
+            <td><span class="lang en">Both</span><span class="lang jp">両者</span></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><span class="lang en">Single-base dependence (95% Emirates crew)</span><span class="lang jp">単一拠点依存（Emirates クルー 95%）</span></td>
+            <td><span class="lang en">Med</span><span class="lang jp">中</span></td>
+            <td><span class="lang en">High</span><span class="lang jp">高</span></td>
+            <td><span class="lang en">Etihad/Qatar in Phase 6, multi-airline target by Y2 (Decision 13 SOM Posture B)</span><span class="lang jp">Phase 6 で Etihad / Qatar、Y2 までに複数航空会社展開（Decision 13 SOM ポスチャ B）</span></td>
+            <td>Balraj</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ri-callout" style="margin-top: 14px;">
+        <strong><span class="lang en">Cadence:</span><span class="lang jp">レビュー頻度:</span></strong>
+        <span class="lang en"> Reviewed monthly in a Balraj × Akito sync. Any item that moves from Med-high to High likelihood gets escalated to a separate decision discussion.</span>
+        <span class="lang jp">Balraj × Akito の月次同期でレビュー。発生確率が「中〜高」から「高」へ移行した項目は、別途判断議論として切り出し。</span>
+      </div>
+
+      <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+        <span class="lang en">See full register: <a href="docs/downloads/risk-register.html" target="_blank" style="color: var(--accent); text-decoration: underline;">risk-register.html</a></span>
+        <span class="lang jp">完全版: <a href="docs/downloads/risk-register.html" target="_blank" style="color: var(--accent); text-decoration: underline;">risk-register.html</a></span>
       </p>
     </div>
   </section>
@@ -3948,7 +4233,7 @@ Mercury（米国法人銀行口座）
     <h3 style="font-family: 'Shippori Mincho', serif; font-weight: 600; font-size: 22px; margin: 36px 0 18px; color: var(--text);"><span class="lang en">Item details &amp; what we've discussed</span><span class="lang jp">各項目の詳細・これまでの議論</span></h3>
 
     <!-- ITEM 1 — Incorporate Delaware LLC -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-1">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">BLOCKED · NAME</span><span class="lang jp">ブロック中 ・ 名称未定</span></span>
         <h3><span class="lang en">Item 1 — Incorporate Delaware LLC</span><span class="lang jp">Item 1 — デラウェア LLC 設立</span></h3>
@@ -3967,7 +4252,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 2 — Trademark -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-2">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">BLOCKED · YES/NO + NAME</span><span class="lang jp">ブロック中 ・ Y/N＋名称未定</span></span>
         <h3><span class="lang en">Item 2 — Trademark "Peanut eSIM"</span><span class="lang jp">Item 2 — 商標出願「Peanut eSIM」</span></h3>
@@ -3991,7 +4276,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 3 — Domains + handles -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-3">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">BLOCKED · NAME</span><span class="lang jp">ブロック中 ・ 名称未定</span></span>
         <h3><span class="lang en">Item 3 — Domains + social handles</span><span class="lang jp">Item 3 — ドメイン + SNSアカウント</span></h3>
@@ -4006,7 +4291,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 4 — Terms / Privacy / Refund -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-4">
       <div class="ri-head">
         <span class="ri-status done"><span class="lang en">DRAFTED · LAWYER REVIEW PENDING</span><span class="lang jp">起草済 ・ 弁護士レビュー待</span></span>
         <h3><span class="lang en">Item 4 — Terms of Service / Privacy / Refund Policy</span><span class="lang jp">Item 4 — 利用規約 / プライバシー / 返金ポリシー</span></h3>
@@ -4031,7 +4316,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 5 — Data protection -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-5">
       <div class="ri-head">
         <span class="ri-status starting"><span class="lang en">PARTIAL · DPA TEMPLATE IN PROGRESS</span><span class="lang jp">一部完了 ・ DPAテンプレ作成中</span></span>
         <h3><span class="lang en">Item 5 — Data protection compliance (PDPL + GDPR)</span><span class="lang jp">Item 5 — データ保護準拠（PDPL + GDPR）</span></h3>
@@ -4053,7 +4338,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 6 — Mercury (with the 3 bank options) -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-6">
       <div class="ri-head">
         <span class="ri-status done"><span class="lang en">DECIDED · MERCURY (auto via Atlas)</span><span class="lang jp">決定 ・ Mercury（Atlas経由自動開設）</span></span>
         <h3><span class="lang en">Item 6 — Mercury US business bank account</span><span class="lang jp">Item 6 — Mercury 米国法人銀行口座</span></h3>
@@ -4087,7 +4372,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 7 — Stripe US -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-7">
       <div class="ri-head">
         <span class="ri-status done"><span class="lang en">DECIDED · STRIPE US (auto via Atlas)</span><span class="lang jp">決定 ・ Stripe US（Atlas経由自動開設）</span></span>
         <h3><span class="lang en">Item 7 — Stripe US merchant account</span><span class="lang jp">Item 7 — Stripe US 加盟店アカウント</span></h3>
@@ -4104,7 +4389,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEMS 8-11 — short cards -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-8">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">BLOCKED · ITEM 1</span><span class="lang jp">ブロック中 ・ Item 1 待</span></span>
         <h3><span class="lang en">Item 8 — Apple Developer account</span><span class="lang jp">Item 8 — Apple Developer アカウント</span></h3>
@@ -4116,7 +4401,7 @@ Mercury（米国法人銀行口座）
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$99/year</strong></span></div>
     </div>
 
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-9">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">BLOCKED · ITEM 1</span><span class="lang jp">ブロック中 ・ Item 1 待</span></span>
         <h3><span class="lang en">Item 9 — Google Play Console</span><span class="lang jp">Item 9 — Google Play Console</span></h3>
@@ -4125,7 +4410,7 @@ Mercury（米国法人銀行口座）
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$25 one-time</strong></span></div>
     </div>
 
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-10">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">BLOCKED · PHASE 0 ITEM 2</span><span class="lang jp">ブロック中 ・ Phase 0 Item 2 待</span></span>
         <h3><span class="lang en">Item 10 — Aggregator MSA (Samurai or alt)</span><span class="lang jp">Item 10 — アグリゲーター MSA（Samurai または代替）</span></h3>
@@ -4137,7 +4422,7 @@ Mercury（米国法人銀行口座）
       </ul>
     </div>
 
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-11">
       <div class="ri-head">
         <span class="ri-status skipped"><span class="lang en">DEFERRED · POST-LAUNCH</span><span class="lang jp">保留 ・ ローンチ後</span></span>
         <h3><span class="lang en">Item 11 — Business insurance (E&amp;O + cyber)</span><span class="lang jp">Item 11 — 事業保険（E&amp;O + サイバー）</span></h3>
@@ -4147,7 +4432,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 12 — NEW — EIN registration confirmation -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-12">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 12 — EIN registration confirmation</span><span class="lang jp">Item 12 — EIN（連邦雇用主番号）取得確認</span></h3>
@@ -4157,7 +4442,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 13 — NEW — Delaware annual franchise tax + report -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-13">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 13 — Delaware annual franchise tax + report</span><span class="lang jp">Item 13 — デラウェア州 年次フランチャイズ税＋報告書</span></h3>
@@ -4167,7 +4452,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 14 — NEW — US CPA engagement -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-14">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 14 — US CPA engagement</span><span class="lang jp">Item 14 — 米国 CPA 契約</span></h3>
@@ -4177,7 +4462,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 15 — NEW — Bookkeeping system -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-15">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 15 — Bookkeeping system</span><span class="lang jp">Item 15 — 経理（ブックキーピング）システム</span></h3>
@@ -4187,7 +4472,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 16 — NEW — Apple Carrier Entitlement application -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-16">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 16 — Apple Carrier Entitlement application</span><span class="lang jp">Item 16 — Apple キャリア権限の申請</span></h3>
@@ -4197,7 +4482,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 17 — NEW — NDA + contractor agreement templates -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-17">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 17 — NDA + contractor agreement templates</span><span class="lang jp">Item 17 — NDA・業務委託契約のテンプレート</span></h3>
@@ -4207,7 +4492,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- Item 18 — NEW — Crew verification legal framework -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-1-item-18">
       <div class="ri-head">
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 18 — Crew verification legal framework</span><span class="lang jp">Item 18 — 乗務員身分確認の法的フレームワーク</span></h3>
@@ -4251,7 +4536,7 @@ Mercury（米国法人銀行口座）
     <h3 style="font-family: 'Shippori Mincho', serif; font-weight: 600; font-size: 22px; margin: 36px 0 18px; color: var(--text);"><span class="lang en">Item details</span><span class="lang jp">各項目の詳細</span></h3>
 
     <!-- ITEM 1 — Brand strategy -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-1">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">TO DISCUSS</span><span class="lang jp">要協議</span></span>
         <h3><span class="lang en">Item 1 — Brand strategy</span><span class="lang jp">Item 1 — ブランド戦略</span></h3>
@@ -4261,7 +4546,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 2 — Logo / wordmark / app icon -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-2">
       <div class="ri-head">
         <span class="ri-status starting"><span class="lang en">DRAFT BRIEF EXISTS</span><span class="lang jp">ブリーフ草案あり</span></span>
         <h3><span class="lang en">Item 2 — Logo, wordmark, app icon</span><span class="lang jp">Item 2 — ロゴ・ワードマーク・アプリアイコン</span></h3>
@@ -4280,7 +4565,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 3 — Color / Type -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-3">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">AFTER ITEM 2</span><span class="lang jp">Item 2 後</span></span>
         <h3><span class="lang en">Item 3 — Color palette &amp; typography system</span><span class="lang jp">Item 3 — カラーパレット・タイポグラフィシステム</span></h3>
@@ -4290,7 +4575,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 4 — UI design system -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-4">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">AFTER ITEM 3</span><span class="lang jp">Item 3 後</span></span>
         <h3><span class="lang en">Item 4 — UI design system (Figma)</span><span class="lang jp">Item 4 — UI デザインシステム（Figma）</span></h3>
@@ -4305,7 +4590,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 5 — Key app screens -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-5">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">AFTER ITEM 4</span><span class="lang jp">Item 4 後</span></span>
         <h3><span class="lang en">Item 5 — Key app screens</span><span class="lang jp">Item 5 — 主要アプリ画面</span></h3>
@@ -4315,7 +4600,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 6 — Marketing website -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-6">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">AFTER ITEM 3</span><span class="lang jp">Item 3 後</span></span>
         <h3><span class="lang en">Item 6 — Marketing website design</span><span class="lang jp">Item 6 — マーケティング Web サイトデザイン</span></h3>
@@ -4325,7 +4610,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 7 — App Store / Play Store assets -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-7">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">AFTER ITEM 5</span><span class="lang jp">Item 5 後</span></span>
         <h3><span class="lang en">Item 7 — App Store + Play Store assets</span><span class="lang jp">Item 7 — App Store + Play Store 素材</span></h3>
@@ -4335,7 +4620,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 8 — Email + receipt templates -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-8">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">AFTER ITEM 3</span><span class="lang jp">Item 3 後</span></span>
         <h3><span class="lang en">Item 8 — Email + receipt templates</span><span class="lang jp">Item 8 — メール・領収書テンプレート</span></h3>
@@ -4345,7 +4630,7 @@ Mercury（米国法人銀行口座）
     </div>
 
     <!-- ITEM 9 — Social kit + brand guidelines -->
-    <div class="roadmap-item">
+    <div class="roadmap-item" id="phase-2-item-9">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">AFTER ITEM 3</span><span class="lang jp">Item 3 後</span></span>
         <h3><span class="lang en">Item 9 — Social media kit + brand guidelines</span><span class="lang jp">Item 9 — SNS キット + ブランドガイドライン</span></h3>
@@ -5892,6 +6177,26 @@ Mercury（米国法人銀行口座）
   }
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  });
+
+  // ─── Decision-card → Roadmap-item navigation (.dec-ref pills) ───
+  document.querySelectorAll('.dec-ref').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').slice(1);
+      // Switch to roadmap tab first
+      switchTab('roadmap');
+      // Wait for tab transition, then scroll
+      setTimeout(() => {
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Brief highlight
+          target.classList.add('ri-highlight');
+          setTimeout(() => { target.classList.remove('ri-highlight'); }, 1500);
+        }
+      }, 120);
+    });
   });
 
   // Restore tab from hash or storage
