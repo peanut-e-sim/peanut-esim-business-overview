@@ -1,176 +1,273 @@
-/* =================================================================
-   Peanut eSIM — App Demo
-   Vanilla JS — no frameworks.
-   ================================================================= */
+/* =========================================================
+   Peanut eSIM — App Demo v3
+   Vanilla JS routing + interactions for the SPA prototype.
+   ========================================================= */
 
-(() => {
+(function () {
   'use strict';
 
-  const $  = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const screens = document.querySelectorAll('.screen');
+  const bottomNav = document.getElementById('bottom-nav');
+  const tabs = document.querySelectorAll('.bottom-nav .tab');
+  const loader = document.getElementById('loader-overlay');
+  const loaderText = document.getElementById('loader-text');
+  const toast = document.getElementById('toast');
 
-  const viewport     = $('#viewport');
-  const bottomNav    = $('#bottom-nav');
-  const loadingOver  = $('#loading-overlay');
-  const loadingLabel = $('#loading-label');
+  // Tabs that show the global bottom nav (true = show; false = hide)
+  const NAV_VISIBLE = {
+    splash: false,
+    home: true,
+    plans: true,
+    'smart-plan-result': false,
+    'plan-detail': false,
+    checkout: false,
+    'purchase-success': false,
+    'my-esims': true,
+    'esim-detail': false,
+    'crew-recs': true,
+    'place-detail': true,
+    'add-place': false,
+    'my-places': true,
+    'my-places-2': true,
+    rewards: true,
+    'ai-chat-1': true,
+    'ai-chat-2': true,
+    hotels: true,
+    'hotel-detail': true,
+    'style-guide': false,
+  };
 
-  /* ----- 1.  SCREEN NAVIGATION ----- */
-  function goTo(screenId) {
-    const target = viewport.querySelector(`.screen[data-screen="${screenId}"]`);
-    if (!target) return;
+  // Which bottom-nav tab is the "current" tab for each screen
+  const ACTIVE_TAB = {
+    home: 'home',
+    plans: 'plans',
+    'smart-plan-result': null,
+    'plan-detail': null,
+    checkout: null,
+    'purchase-success': null,
+    'my-esims': 'esims',
+    'esim-detail': null,
+    'crew-recs': 'home',
+    'place-detail': 'home',
+    'my-places': 'profile',
+    'my-places-2': 'profile',
+    rewards: 'profile',
+    'ai-chat-1': 'profile',
+    'ai-chat-2': 'profile',
+    hotels: 'hotels',
+    'hotel-detail': 'hotels',
+  };
 
-    // hide all
-    $$('.screen', viewport).forEach(s => s.classList.remove('is-active'));
-    // show target — scroll to top
-    target.classList.add('is-active');
-    target.scrollTop = 0;
+  // ---- Routing ----
+  let currentScreen = null;
+  let backStack = [];
 
-    // Bottom nav visibility per screen
-    const showsNav = target.dataset.showsBottomNav === 'true';
-    bottomNav.classList.toggle('is-hidden', !showsNav);
+  function show(screen, pushHistory = true) {
+    if (!screen || screen === currentScreen) return;
+    screens.forEach(s => s.classList.remove('is-active'));
+    const el = document.querySelector(`[data-screen="${screen}"]`);
+    if (!el) {
+      console.warn('Screen not found:', screen);
+      return;
+    }
+    el.classList.add('is-active');
+    el.querySelectorAll('.screen-scroll').forEach(c => { c.scrollTop = 0; });
 
-    // Active tab
-    const activeTab = target.dataset.navTab;
-    $$('.nav-tab', bottomNav).forEach(t => {
-      t.classList.toggle('is-active', activeTab && t.dataset.tab === activeTab);
+    // Bottom nav visibility
+    bottomNav.classList.toggle('is-hidden', !NAV_VISIBLE[screen]);
+
+    // Active tab state
+    const tab = ACTIVE_TAB[screen];
+    tabs.forEach(t => t.classList.toggle('is-active', tab && t.dataset.tab === tab));
+
+    if (pushHistory && currentScreen && currentScreen !== screen) backStack.push(currentScreen);
+    currentScreen = screen;
+
+    // Mirror in URL hash for dev navigation only
+    if (history.replaceState) history.replaceState(null, '', `#/${screen}`);
+  }
+
+  function back() {
+    const prev = backStack.pop();
+    if (prev) show(prev, false);
+  }
+
+  function showLoader(text, ms, next) {
+    loaderText.textContent = text || 'Loading…';
+    loader.classList.add('is-active');
+    setTimeout(() => {
+      loader.classList.remove('is-active');
+      if (next) next();
+    }, ms);
+  }
+
+  let toastTimer = null;
+  function showToast(text, ms = 1800) {
+    toast.textContent = text;
+    toast.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('is-visible'), ms);
+  }
+
+  // ---- Splash auto-advance (only if user landed on splash) ----
+  function maybeAdvanceSplash() {
+    if (currentScreen === 'splash') setTimeout(() => { if (currentScreen === 'splash') show('home'); }, 1800);
+  }
+
+  // ---- Bottom nav handlers ----
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.target;
+      if (target) show(target);
     });
-  }
-  window.__goTo = goTo; // for debug
+  });
 
-  /* ----- 2.  LOADING OVERLAY ----- */
-  function showLoading(label = 'Reading your May roster…') {
-    loadingLabel.textContent = label;
-    loadingOver.classList.add('is-open');
-  }
-  function hideLoading() { loadingOver.classList.remove('is-open'); }
-
-  /* ----- 3.  GLOBAL CLICK ROUTER ----- */
+  // ---- Global delegated click handler (data-go="screen-id") ----
   document.addEventListener('click', (e) => {
     const goEl = e.target.closest('[data-go]');
-    const actEl = e.target.closest('[data-action]');
-
-    // navigation
-    if (goEl && !actEl) {
+    if (goEl) {
       e.preventDefault();
-      const dest = goEl.dataset.go;
-      // Topup deep-link from My eSIMs row
-      if (goEl.dataset.openTopup === '1') {
-        goTo(dest);
-        // open topup after the screen swap
-        setTimeout(() => $('#topup-overlay').classList.add('is-open'), 250);
-        return;
+      const target = goEl.dataset.go;
+      const loaderMs = parseInt(goEl.dataset.loader || '0', 10);
+      const loaderTxt = goEl.dataset.loaderText || 'Loading…';
+      if (loaderMs > 0) {
+        showLoader(loaderTxt, loaderMs, () => show(target));
+      } else {
+        show(target);
       }
-      goTo(dest);
       return;
     }
 
-    // actions
-    if (actEl) {
-      const action = actEl.dataset.action;
+    const backEl = e.target.closest('[data-back]');
+    if (backEl) {
       e.preventDefault();
-      handleAction(action, actEl);
+      back();
+      return;
+    }
+
+    const toastEl = e.target.closest('[data-toast]');
+    if (toastEl) {
+      e.preventDefault();
+      showToast(toastEl.dataset.toast);
+      const after = toastEl.dataset.after;
+      if (after) setTimeout(() => show(after), 900);
+      return;
     }
   });
 
-  function handleAction(action, el) {
-    switch (action) {
-
-      case 'upload-roster': {
-        showLoading('Reading your May roster…');
-        setTimeout(() => {
-          hideLoading();
-          goTo('result');
-        }, 2000);
-        break;
+  // ---- Plan Detail: data option selection updates CTA ----
+  document.querySelectorAll('[data-screen="plan-detail"] .plan-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const all = btn.parentElement.querySelectorAll('.plan-option');
+      all.forEach(b => b.classList.remove('is-selected'));
+      btn.classList.add('is-selected');
+      const data = btn.dataset.data || '5GB';
+      const price = btn.dataset.price || '$14';
+      const cta = document.getElementById('plan-buy-cta');
+      if (cta) cta.textContent = `Buy ${data} · ${price}`;
+      const checkoutTotal = document.getElementById('checkout-total');
+      const checkoutItem  = document.getElementById('checkout-item');
+      const checkoutPay   = document.getElementById('checkout-pay');
+      if (checkoutTotal && checkoutItem && checkoutPay) {
+        const num = parseFloat(price.replace('$','')) || 14;
+        const discounted = (num - 1.5).toFixed(2);
+        checkoutItem.textContent = `Japan · ${data} · 14 days`;
+        checkoutTotal.textContent = `$${discounted}`;
+        checkoutPay.textContent  = `Pay $${discounted}`;
       }
-
-      case 'activate-plan': {
-        showLoading('Activating your plan…');
-        setTimeout(() => {
-          hideLoading();
-          goTo('esims');
-        }, 1200);
-        break;
-      }
-
-      case 'pay': {
-        showLoading('Processing payment…');
-        setTimeout(() => {
-          hideLoading();
-          goTo('esims');
-        }, 1000);
-        break;
-      }
-
-      case 'open-topup': {
-        $('#topup-overlay').classList.add('is-open');
-        break;
-      }
-      case 'close-topup': {
-        $('#topup-overlay').classList.remove('is-open');
-        break;
-      }
-
-      case 'reset-demo': {
-        goTo('splash');
-        setTimeout(() => goTo('home'), 1800);
-        break;
-      }
-    }
-  }
-
-  /* ----- 4.  PLAN-DETAIL OPTION SELECTION ----- */
-  const optionList = $('#plan-options');
-  const buyLabel   = $('#buy-cta-label');
-  if (optionList && buyLabel) {
-    optionList.addEventListener('click', (e) => {
-      const card = e.target.closest('.option-card');
-      if (!card) return;
-      $$('.option-card', optionList).forEach(c => c.classList.remove('is-selected'));
-      card.classList.add('is-selected');
-
-      const gb    = card.dataset.gb;
-      const price = card.dataset.price;
-      buyLabel.textContent = `Buy ${gb}GB · $${price}`;
-
-      // also reflect into checkout summary in case user navigates there
-      const summaryPrice = $('#checkout-line-price');
-      const totalPrice   = $('#checkout-total');
-      const ctaTotal     = $('#checkout-cta-total');
-      // crew discount 1.50 flat
-      const total = (parseFloat(price) - 1.5).toFixed(2);
-      if (summaryPrice) summaryPrice.textContent = `$${parseFloat(price).toFixed(2)}`;
-      if (totalPrice)   totalPrice.textContent   = `$${total}`;
-      if (ctaTotal)     ctaTotal.textContent     = `$${total}`;
-    });
-  }
-
-  /* ----- 5.  TOGGLES (eSIM detail) ----- */
-  $$('[data-toggle]').forEach(t => {
-    t.addEventListener('click', () => t.classList.toggle('is-on'));
-  });
-
-  /* ----- 6.  TOPUP SHEET — opt selection ----- */
-  const topupOpts = $$('#topup-overlay .opt');
-  topupOpts.forEach(opt => {
-    opt.addEventListener('click', (e) => {
-      e.preventDefault();
-      topupOpts.forEach(o => o.classList.remove('is-selected'));
-      opt.classList.add('is-selected');
-      const radio = opt.querySelector('input[type="radio"]');
-      if (radio) radio.checked = true;
     });
   });
 
-  /* ----- 7.  AUTO-ADVANCE FROM SPLASH ----- */
-  // After 1.8s on splash, hop to home
-  setTimeout(() => {
-    if ($('.screen[data-screen="splash"]').classList.contains('is-active')) {
-      goTo('home');
-    }
-  }, 1800);
+  // ---- Top-up sheet (eSIM Detail) ----
+  const topUpOpenBtn = document.getElementById('topup-open');
+  const topUpSheet = document.getElementById('topup-sheet');
+  if (topUpOpenBtn && topUpSheet) {
+    topUpOpenBtn.addEventListener('click', () => topUpSheet.classList.add('is-open'));
+    topUpSheet.querySelector('.sheet-backdrop').addEventListener('click', () => topUpSheet.classList.remove('is-open'));
+    topUpSheet.querySelector('.sheet-close')?.addEventListener('click', () => topUpSheet.classList.remove('is-open'));
+  }
 
-  /* ----- 8.  DEFAULT NAV STATE ----- */
-  bottomNav.classList.add('is-hidden'); // hidden while on splash
+  // ---- Rewards: redeem buttons ----
+  document.querySelectorAll('.reward-redeem').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showToast('Redeemed! Added to My eSIMs');
+      const balanceEl = document.getElementById('rewards-balance');
+      if (balanceEl) {
+        const cost = parseInt(btn.dataset.cost || '100', 10);
+        const current = parseInt(balanceEl.textContent.replace(/[^\d]/g,''),10) || 1890;
+        balanceEl.textContent = (current - cost).toLocaleString();
+      }
+    });
+  });
 
+  // ---- Add-a-place chip selection ----
+  document.querySelectorAll('.chip-group').forEach(group => {
+    group.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        group.querySelectorAll('.chip').forEach(c => c.classList.remove('is-selected'));
+        chip.classList.add('is-selected');
+      });
+    });
+  });
+
+  // ---- Aviation rating: 5 flight icons ----
+  document.querySelectorAll('.aviation-rating').forEach(group => {
+    const icons = group.querySelectorAll('.material-symbols-outlined');
+    icons.forEach((icon, idx) => {
+      icon.addEventListener('click', () => {
+        icons.forEach((ic, j) => {
+          if (j <= idx) { ic.style.color = '#B47A48'; ic.style.fontVariationSettings = "'FILL' 1"; }
+          else { ic.style.color = '#bdc9c5'; ic.style.fontVariationSettings = "'FILL' 0"; }
+        });
+      });
+    });
+  });
+
+  // ---- My Places page toggle ----
+  document.querySelectorAll('[data-places-page]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const which = btn.dataset.placesPage;
+      show(which === '2' ? 'my-places-2' : 'my-places');
+    });
+  });
+
+  // ---- AI chat input demo: each send swaps between chat-1 and chat-2 ----
+  const chatForms = document.querySelectorAll('.ai-chat-form');
+  chatForms.forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const input = form.querySelector('input');
+      if (!input.value.trim()) return;
+      input.value = '';
+      // toggle between the two prebuilt chat screens
+      show(currentScreen === 'ai-chat-1' ? 'ai-chat-2' : 'ai-chat-1');
+    });
+  });
+
+  // ---- Rewards tab switch (Redeem / History / How to earn) ----
+  document.querySelectorAll('.rewards-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      const id = t.dataset.rewardsTab;
+      document.querySelectorAll('.rewards-tab').forEach(x => x.classList.toggle('is-active', x === t));
+      document.querySelectorAll('.rewards-panel').forEach(p => p.classList.toggle('is-active', p.dataset.rewardsPanel === id));
+    });
+  });
+
+  // ---- Hero parallax-ish on crew-recs ----
+  // (subtle — keeps it cheap)
+  document.querySelectorAll('.screen-scroll').forEach(s => {
+    s.addEventListener('scroll', () => {
+      const hero = s.querySelector('[data-parallax]');
+      if (hero) hero.style.transform = `translateY(${s.scrollTop * 0.12}px)`;
+    });
+  });
+
+  // ---- Initial route: respect hash on load, else splash ----
+  const hash = window.location.hash.replace('#/','');
+  if (hash && document.querySelector(`[data-screen="${hash}"]`)) {
+    show(hash, false);
+  } else {
+    show('splash', false);
+    maybeAdvanceSplash();
+  }
 })();
