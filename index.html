@@ -1718,7 +1718,7 @@
   [data-lang="en"] .phase-detail-num { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 28px; }
   .phase-detail-header.p0 .phase-detail-num { background: var(--accent-soft); color: var(--accent); }
   .phase-detail-header.p1 .phase-detail-num { background: var(--peanut-soft); color: var(--peanut); }
-  .phase-detail-header.p2 .phase-detail-num,
+  .phase-detail-header.p2 .phase-detail-num { background: var(--warning-soft); color: var(--warning); }
   .phase-detail-header.p3 .phase-detail-num,
   .phase-detail-header.p4 .phase-detail-num,
   .phase-detail-header.p5 .phase-detail-num,
@@ -1774,6 +1774,11 @@
   .ri-status.todo { background: var(--line-soft); color: var(--text-2); }
   .ri-status.skipped { background: rgba(0,0,0,0.04); color: var(--text-3); }
   .ri-status.starting { background: var(--peanut-soft); color: var(--peanut); }
+  .ri-status.new {
+    background: linear-gradient(135deg, #FFF4D6 0%, #FFE7A0 100%);
+    color: #8C5A00;
+    box-shadow: 0 0 0 2px rgba(255, 231, 160, 0.4);
+  }
   .roadmap-item h3 {
     font-size: 17px;
     font-weight: 600;
@@ -2689,7 +2694,7 @@
   </header>
 
   <section style="border-bottom: none;">
-    <div class="sec-label"><span class="lang en">OPEN · 8 ITEMS</span><span class="lang jp">未決 ・ 8件</span></div>
+    <div class="sec-label"><span class="lang en">OPEN · 16 ITEMS</span><span class="lang jp">未決 ・ 16件</span></div>
 
     <div class="decision-card urgent">
       <div class="dec-meta"><span class="lang en">DECISION 00 · LEGAL ENTITY NAME</span><span class="lang jp">判断 00 ・ 法人正式名称</span></div>
@@ -2876,7 +2881,316 @@
       <div class="dec-status"><span class="lang en">STATUS · DILIGENCE REQUIRED ON ALL 6 ACTIVE PROVIDERS</span><span class="lang jp">ステータス ・ アクティブ 6 社全てに確認必要</span></div>
     </div>
 
-    <div class="sec-label" style="margin-top: 48px; color: var(--accent);"><span class="lang en">✓ RESOLVED · 1 ITEM</span><span class="lang jp">✓ 解決済 ・ 1件</span></div>
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 05 · DAY-1 WEDGE VS CREW SIM</span><span class="lang jp">判断 05 ・ Crew SIM に対する初日アドバンテージ</span></div>
+      <h3>
+        <span class="lang en">What's our day-1 reason for an Emirates crew member to choose Peanut over Crew SIM?</span>
+        <span class="lang jp">Emirates 乗務員が初日に Crew SIM ではなく Peanut を選ぶ理由は何か？</span>
+      </h3>
+      <p>
+        <span class="lang en">Crew SIM already runs the closed-crew-eSIM model and gates by airline email domain. Our long-term moat (crew-curated Michelin-style travel recs + community) doesn't exist on day 1 — so we need a single, sharp wedge that works *before* the intelligence layer ships. Marketing copy will lead with whichever angle we pick, even if all three are quietly true.</span>
+        <span class="lang jp">Crew SIM はすでに「乗務員限定 eSIM」モデルを運営しており、航空会社メールドメインで会員登録を制限している。我々の長期的な堀（乗務員キュレーションのミシュラン式旅行情報＋コミュニティ）は初日には存在しないため、インテリジェンス層が出る<em>前</em>に効くシャープな差別化軸を 1 つ選ぶ必要がある。マーケティングコピーは選んだ軸を前面に打ち出す（他 2 つが裏で成立していてもメッセージは絞る）。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Four day-1 wedge options (revised 2026-05-22 after Crew SIM deep-dive):</span><span class="lang jp">初日 4 つの差別化軸（2026-05-22 Crew SIM 調査後に改訂）:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead>
+            <tr>
+              <th><span class="lang en">Wedge</span><span class="lang jp">差別化軸</span></th>
+              <th><span class="lang en">Means in practice</span><span class="lang jp">具体的に何をすることか</span></th>
+              <th><span class="lang en">Verdict after research</span><span class="lang jp">調査後の評価</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong><span class="lang en">A. Better price (original lean — ❌ now ruled out)</span><span class="lang jp">A. 低価格（当初の意向 — ❌ 棄却）</span></strong></td>
+              <td><span class="lang en">Lean on Samurai rates; undercut Crew SIM</span><span class="lang jp">Samurai のレートを活かし Crew SIM を下回る</span></td>
+              <td><span class="lang en">Crew SIM is already at $1.50/GB on most major destinations (USA, UK, Thailand, Europe). Undercutting by 10-20% won't move the needle and starts a price war we can't afford.</span><span class="lang jp">Crew SIM は既に主要国（USA, UK, タイ, 欧州）で $1.50/GB。10-20% 下回ってもインパクト薄く、勝てない価格競争を招くだけ。</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">B. Better app</span><span class="lang jp">B. アプリ体験の優位性</span></strong></td>
+              <td><span class="lang en">Polished UI, faster install flow</span><span class="lang jp">洗練された UI と高速なインストールフロー</span></td>
+              <td><span class="lang en">True but generic. Doesn't communicate the actual product in a tagline.</span><span class="lang jp">事実だが汎用的・タグラインに落としにくい。</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">C. Built by people in your city</span><span class="lang jp">C. 「ドバイの中の人が作った」感</span></strong></td>
+              <td><span class="lang en">Akito + Balraj in Dubai vs Crew SIM founder in Germany</span><span class="lang jp">ドバイ在住の Akito + Balraj 対 ドイツの Crew SIM 創業者</span></td>
+              <td><span class="lang en">Genuinely defensible — Crew SIM's founder is in Germany. But emotional, not functional.</span><span class="lang jp">本物の差別化（Crew SIM 創業者は ドイツ在住）。ただし感情訴求で機能的ではない。</span></td>
+            </tr>
+            <tr class="pick">
+              <td><strong><span class="lang en">D. Schedule-upload smart-plan ⭐ (revised lean)</span><span class="lang jp">D. ロスター連動自動プラン ⭐（改訂後の意向）</span></strong></td>
+              <td><span class="lang en">Upload your roster → app generates the optimal data plan automatically. Crew SIM makes you shop country-by-country manually.</span><span class="lang jp">ロスターをアップロード → アプリが最適プランを自動生成。Crew SIM は国別に手動で選ぶ必要あり。</span></td>
+              <td><span class="lang en">Crew SIM doesn't have this. Their solo team can't easily build it. It's the thing that makes Peanut feel made-for-this-specific-job.</span><span class="lang jp">Crew SIM 未実装。ソロチームでは構築困難。これこそが Peanut を「この職種に特化」と感じさせる要素。</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Balraj's revised lean (2026-05-22):</strong> Option D. After the Crew SIM diligence pass, price as the wedge is dead — they're already at $1.50/GB on most major destinations. The schedule-upload smart-plan is the actual differentiator: a feature their solo team can't replicate quickly, and one that turns Peanut from "another eSIM brand" into "the thing built for how I actually work." Working positioning candidate: <em>"Built around your roster, by people who know your airline."</em></span>
+          <span class="lang jp"><strong>Balraj の改訂後意向（2026-05-22）:</strong>オプション D。Crew SIM 調査の結果、価格は差別化軸として失効（既に主要国で $1.50/GB）。ロスター連動の自動プランこそが本物の差別化要素 — ソロチームでは短期間で実装困難で、Peanut を「もう 1 つの eSIM」から「自分の働き方のために作られた」プロダクトに変える。ポジショニング候補:<em>「あなたのロスターを軸に、あなたの航空会社を知る人間が作ったもの」</em>。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · REVISED 2026-05-22 · TO CONFIRM WITH AKITO · INFORMS PHASE 2 ITEM 1 (BRAND STRATEGY) + ITEM 10 (PRICING)</span><span class="lang jp">ステータス ・ 2026-05-22 改訂 ・ Akito と要確認 ・ Phase 2 Item 1（ブランド戦略）+ Item 10（価格）に影響</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 06 · BRAND VOICE &amp; TONE</span><span class="lang jp">判断 06 ・ ブランドボイス＆トーン</span></div>
+      <h3>
+        <span class="lang en">How does Peanut sound — across app, push notifications, emails, social, support?</span>
+        <span class="lang jp">Peanut の話し方 — アプリ・プッシュ通知・メール・SNS・サポート全体の声をどうするか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Audience is mixed: cabin crew (younger average, social, Facebook / Instagram active) + cockpit crew / pilots (older average, more professional). The voice has to feel like Peanut without alienating either. Lock this now — once Item 2 (logo) ships, every piece of marketing copy + every product string + every support reply inherits the tone we choose here.</span>
+        <span class="lang jp">オーディエンスは混在:キャビンクルー（年齢層若め・SNS 活用度高）+ コックピットクルー / パイロット（年齢層高め・プロフェッショナル志向）。どちらの層も離反させずに「Peanut らしさ」を感じさせる声が必要。Item 2（ロゴ）以降、全マーケコピー・全プロダクトテキスト・全サポート返信がここで決めるトーンを継承するため、今ロック。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Three voice directions:</span><span class="lang jp">3 つの声の方向性:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead>
+            <tr>
+              <th><span class="lang en">Voice</span><span class="lang jp">声</span></th>
+              <th><span class="lang en">Sounds like</span><span class="lang jp">具体例</span></th>
+              <th><span class="lang en">Risk if overshot</span><span class="lang jp">行き過ぎたときのリスク</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pick">
+              <td><strong><span class="lang en">A. Insider-warm ⭐ (Balraj lean)</span><span class="lang jp">A. インサイダー＆温かみ ⭐（Balraj の意向）</span></strong></td>
+              <td><span class="lang en">"Off to JFK on the 33rd? We've got you. 10GB activates the moment you land."</span><span class="lang jp">「33 日に JFK へ?お任せください。着陸と同時に 10GB が有効化されます。」</span></td>
+              <td><span class="lang en">Too casual → pilots tune out</span><span class="lang jp">カジュアル過ぎてパイロット層が離反</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">B. Professional-direct</span><span class="lang jp">B. プロフェッショナル＆ストレート</span></strong></td>
+              <td><span class="lang en">"Activate 10GB in JFK before landing. No roaming charges."</span><span class="lang jp">「着陸前に JFK で 10GB を有効化。ローミング料金なし。」</span></td>
+              <td><span class="lang en">Too corporate → cabin crew don't feel it's *theirs*</span><span class="lang jp">企業臭が強くキャビンクルーが「自分たちの」プロダクトと感じない</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">C. Knowing-minimal</span><span class="lang jp">C. ノウイング＆ミニマル</span></strong></td>
+              <td><span class="lang en">"JFK · 10GB · activates on landing." (Confident, no fluff)</span><span class="lang jp">「JFK ・ 10GB ・ 着陸時有効化」（自信ある最小限の言葉）</span></td>
+              <td><span class="lang en">Too cold → loses the community-by-crew feel that's our moat</span><span class="lang jp">冷たすぎてクルー発のコミュニティ感が出ず、堀になっている要素を失う</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Balraj's lean:</strong> Option A with restraint — Apple Genius energy: friendly, informed, never patronizing. Uses crew language correctly (layover, slip, base) but never silly or memey, so it works for cabin and cockpit alike.</span>
+          <span class="lang jp"><strong>Balraj の意向:</strong>オプション A を抑制効かせて — Apple Genius 風:親しみあり・知識ある・上から目線ではない。クルー用語（layover / slip / base）を正しく使いつつ、おふざけ過剰にならない。キャビン・コックピット両方に効くトーン。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 2 ITEM 1 (BRAND STRATEGY)</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2 Item 1（ブランド戦略）に影響</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 07 · APP DESIGN APPROACH</span><span class="lang jp">判断 07 ・ アプリデザインのアプローチ</span></div>
+      <h3>
+        <span class="lang en">Who designs the app — freelancer / agency, or Balraj with AI tools?</span>
+        <span class="lang jp">アプリは誰がデザインするか — 外注 / エージェンシー、それとも Balraj が AI ツールで自作するか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Balraj's strong lean: <strong>self-design with AI tools + Figma</strong>, modelled after Airalo / Holafly with our own taste. No freelancer. This keeps Phase 2 cost near zero (Figma free tier works), keeps full design control inside the company, and lets us iterate at speed. Trade-off: requires Balraj's design time, and quality ceiling depends on which AI design tools we get fluent with.</span>
+        <span class="lang jp">Balraj の強い意向:<strong>Figma + AI ツールで自作</strong>。Airalo / Holafly を参考にしつつ独自のテイストを加える。外注は使わない。Figma の無料枠で済むので Phase 2 のコストはほぼゼロ。デザインの主導権が完全に社内に残り、反復速度が上がる。トレードオフ:Balraj のデザイン時間が必要、AI デザインツールの習熟度が品質上限を決める。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Tooling stack (working assumption):</span><span class="lang jp">想定するツールスタック:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead><tr><th><span class="lang en">Phase</span><span class="lang jp">フェーズ</span></th><th><span class="lang en">Tool</span><span class="lang jp">ツール</span></th><th><span class="lang en">Cost</span><span class="lang jp">費用</span></th></tr></thead>
+          <tbody>
+            <tr class="pick"><td><span class="lang en">Design</span><span class="lang jp">デザイン</span></td><td><strong>Figma</strong> + AI plugins (Magician, Anima, etc.)</td><td><span class="lang en">$0 free tier</span><span class="lang jp">無料枠で $0</span></td></tr>
+            <tr><td><span class="lang en">Screen generation</span><span class="lang jp">画面生成</span></td><td>v0.dev / Builder.io / Figma Make</td><td>$0–$20/mo</td></tr>
+            <tr><td><span class="lang en">Code (Phase 3)</span><span class="lang jp">コード（Phase 3）</span></td><td>React Native + Expo, with Cursor + Claude Code</td><td>$20–$40/mo</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en">Reference brands to model: Airalo (clarity), Holafly (warmth), Saily (minimalism). We borrow patterns, not the look.</span>
+          <span class="lang jp">参考ブランド:Airalo（明快さ）、Holafly（温かさ）、Saily（ミニマリズム）。パターンを借りるが、見た目は真似しない。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · PRINCIPLE LOCKED (Balraj) · TO CONFIRM WITH AKITO</span><span class="lang jp">ステータス ・ 原則ロック（Balraj） ・ Akito と要確認</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 08 · V1 FEATURE SCOPE</span><span class="lang jp">判断 08 ・ v1 機能スコープ</span></div>
+      <h3>
+        <span class="lang en">Which features ship on v1, and which get deferred to v1.x?</span>
+        <span class="lang jp">v1 にどの機能を載せ、どれを v1.x に延ばすか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Goal: ship a v1 that's tight enough to launch fast, but distinctive enough to earn the "first-choice eSIM for Emirates crew" position. The biggest specific question: does the schedule-upload smart-plan flow ship in v1 (it's our signature feature, justifies the brand) or v1.x (faster launch, less risk)?</span>
+        <span class="lang jp">目標:速く立ち上げられる程度にタイトな v1 でありつつ、「Emirates 乗務員にとっての第一選択 eSIM」のポジションを取れる程度に差別化されている v1 を出す。最大の論点:スケジュールアップロード式の自動プラン機能を v1 に入れる（差別化の要・ブランド納得感）か、v1.x に回す（速いローンチ・リスク低減）か？</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Working scope (to debate with Akito):</span><span class="lang jp">想定スコープ（Akito と協議）:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead><tr><th><span class="lang en">Feature</span><span class="lang jp">機能</span></th><th><span class="lang en">v1?</span><span class="lang jp">v1?</span></th><th><span class="lang en">Why</span><span class="lang jp">理由</span></th></tr></thead>
+          <tbody>
+            <tr><td><span class="lang en">Browse plans by country + buy eSIM</span><span class="lang jp">国別プラン閲覧＋ eSIM 購入</span></td><td>✅ v1</td><td><span class="lang en">Core wedge product</span><span class="lang jp">中核ウェッジ機能</span></td></tr>
+            <tr><td><span class="lang en">Crew verification at sign-up (email domain)</span><span class="lang jp">サインアップ時の乗務員認証（メールドメイン）</span></td><td>✅ v1</td><td><span class="lang en">Gatekeeping is the brand</span><span class="lang jp">ゲートキープがブランド</span></td></tr>
+            <tr><td><span class="lang en">My eSIMs + data usage + top-up</span><span class="lang jp">マイ eSIM ＋ データ使用量 ＋ トップアップ</span></td><td>✅ v1</td><td><span class="lang en">Required by Apple/Google</span><span class="lang jp">Apple / Google 必須</span></td></tr>
+            <tr class="pick"><td><strong><span class="lang en">Schedule-upload smart-plan ⭐ (signature)</span><span class="lang jp">スケジュールアップロード式自動プラン ⭐（シグネチャー機能）</span></strong></td><td><span class="lang en">?? v1 or v1.x — open</span><span class="lang jp">?? v1 か v1.x か — 未決</span></td><td><span class="lang en">This is what differentiates us from Crew SIM. But it's also the riskiest piece (OCR + pricing engine).</span><span class="lang jp">Crew SIM との最大の差別化要素。ただし OCR ＋ 価格エンジンで最もリスクが高い部分でもある。</span></td></tr>
+            <tr><td><span class="lang en">Crew-curated recommendations (Michelin layer)</span><span class="lang jp">乗務員キュレーション推薦（ミシュラン層）</span></td><td>⏸ v1.x or v2</td><td><span class="lang en">Needs critical mass of crew first</span><span class="lang jp">クルーの臨界数が貯まってから</span></td></tr>
+            <tr><td><span class="lang en">Push notifications (landed / data-low)</span><span class="lang jp">プッシュ通知（着陸時 / データ残量低下）</span></td><td>✅ v1</td><td><span class="lang en">Cheap, high-value</span><span class="lang jp">低コスト・高価値</span></td></tr>
+            <tr><td><span class="lang en">Referral / invite system</span><span class="lang jp">紹介・招待システム</span></td><td><span class="lang en">⏸ depends on Decision 10</span><span class="lang jp">⏸ Decision 10 次第</span></td><td><span class="lang en">Needed only if we go invite-only</span><span class="lang jp">招待制を選んだ場合のみ必要</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · BLOCKS PHASE 2 ITEM 5 + PHASE 3 SCOPING</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2 Item 5 ＋ Phase 3 スコープを左右</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 09 · CREW ROSTER DATA HANDLING</span><span class="lang jp">判断 09 ・ 乗務員スケジュールデータの取扱い</span></div>
+      <h3>
+        <span class="lang en">Do we store crew schedules on our servers — or parse on-device and never upload?</span>
+        <span class="lang jp">乗務員スケジュールをサーバーに保存するか、それとも端末上で解析しサーバーには送らないか？</span>
+      </h3>
+      <p>
+        <span class="lang en">The schedule-upload feature (Decision 08) creates a privacy + Emirates-policy question. Crew rosters reveal where staff are flying, when. That's sensitive data — Emirates may have policies about sharing it with third parties, and crew may be uneasy about it sitting on our servers. Three architectures, very different implications:</span>
+        <span class="lang jp">スケジュールアップロード機能（Decision 08）は、プライバシー + Emirates の社内規定上の論点を生む。乗務員のスケジュールは「誰がいつどこに飛ぶか」を露わにする機微情報。Emirates 社内には第三者への共有規定がある可能性が高く、乗務員も自社サーバーにデータが残ることを嫌がる可能性。アーキテクチャ 3 案、それぞれ意味合いが大きく異なる:</span>
+      </p>
+      <div class="dec-impact">
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead><tr><th><span class="lang en">Architecture</span><span class="lang jp">アーキテクチャ</span></th><th><span class="lang en">Pros</span><span class="lang jp">利点</span></th><th><span class="lang en">Cons</span><span class="lang jp">欠点</span></th></tr></thead>
+          <tbody>
+            <tr class="pick"><td><strong><span class="lang en">A. On-device only ⭐</span><span class="lang jp">A. 端末内処理のみ ⭐</span></strong></td><td><span class="lang en">Zero privacy concern · Emirates can't object · trust-positive</span><span class="lang jp">プライバシー懸念ゼロ ・ Emirates も異議を申し立てられない ・ 信頼ポジ</span></td><td><span class="lang en">Can't run analytics on aggregated travel data; each device must do the parsing</span><span class="lang jp">集約データでの分析不可・各端末で OCR 実行</span></td></tr>
+            <tr><td><span class="lang en">B. Server-side, encrypted</span><span class="lang jp">B. サーバー側保存・暗号化</span></td><td><span class="lang en">Enables analytics, cross-device sync, smart recommendations later</span><span class="lang jp">分析可・端末間同期可・将来の推薦機能を可能に</span></td><td><span class="lang en">Privacy concern; needs DPA + opt-in; potential Emirates-policy issue</span><span class="lang jp">プライバシー懸念・DPA + 明示同意が必要・Emirates 規定リスク</span></td></tr>
+            <tr><td><span class="lang en">C. Hybrid (parse on-device, send only destination list)</span><span class="lang jp">C. ハイブリッド（端末で OCR・宛先国リストのみ送信）</span></td><td><span class="lang en">Lets us build the pricing engine on minimal data</span><span class="lang jp">最小限のデータで価格エンジンを構築可能</span></td><td><span class="lang en">Still touches the privacy line; needs careful UX disclosure</span><span class="lang jp">プライバシー線にギリギリ触れる・UX 上の説明設計が必要</span></td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Balraj's working lean:</strong> A (on-device only) — eliminates the policy + trust risk entirely, and is a strong marketing message ("we never see your roster"). Trade-off: gives up the data moat we were excited about.</span>
+          <span class="lang jp"><strong>Balraj の現状の意向:</strong>A（端末内処理のみ）— 規定 + 信頼面のリスクを完全に排除でき、「あなたのスケジュールは見えません」というマーケメッセージとしても強い。トレードオフ:データを使った将来の堀を一部諦めることになる。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 3 ARCHITECTURE</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 3 アーキテクチャに直結</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 10 · APP AVAILABILITY (INVITE-ONLY vs OPEN)</span><span class="lang jp">判断 10 ・ アプリの公開モデル（招待制 vs オープン）</span></div>
+      <h3>
+        <span class="lang en">Is Peanut on the App Store as invite-only — or public from day 1?</span>
+        <span class="lang jp">Peanut は App Store 上で招待制にするか、それとも初日からオープンにするか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Balraj's working lean: <strong>invite-only at launch</strong> to create exclusivity, FOMO in the crew Facebook groups, and reduce Apple/Google moderation risk (eSIM apps often draw extra scrutiny). The downside is App Store discovery is muted, so you depend more on community-driven growth.</span>
+        <span class="lang jp">Balraj の現状の意向:<strong>ローンチ時は招待制</strong>。乗務員 Facebook グループ内での独占感・FOMO を生み、Apple / Google の審査リスクも下がる（eSIM 系は厳しめに見られがち）。デメリット:App Store からの自然流入が抑えられ、コミュニティ経由の成長依存度が上がる。</span>
+      </p>
+      <div class="dec-impact">
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead><tr><th><span class="lang en">Model</span><span class="lang jp">モデル</span></th><th><span class="lang en">Pros</span><span class="lang jp">利点</span></th><th><span class="lang en">Cons</span><span class="lang jp">欠点</span></th></tr></thead>
+          <tbody>
+            <tr class="pick"><td><strong><span class="lang en">A. Invite-only ⭐ (Balraj lean)</span><span class="lang jp">A. 招待制 ⭐（Balraj の意向）</span></strong></td><td><span class="lang en">Exclusivity · FOMO · controlled growth · easier moderation</span><span class="lang jp">独占感 ・ FOMO ・ 成長コントロール容易 ・ 審査リスク減</span></td><td><span class="lang en">No App Store discovery · slower organic ramp</span><span class="lang jp">App Store 流入なし ・ 自然成長が遅い</span></td></tr>
+            <tr><td><span class="lang en">B. Open from day 1</span><span class="lang jp">B. 初日からオープン</span></td><td><span class="lang en">Maximum reach · ASO + ads work · easy expansion to other airlines</span><span class="lang jp">最大リーチ ・ ASO + 広告が効く ・ 他社展開も容易</span></td><td><span class="lang en">No exclusivity · harder to keep "crew-only" feel</span><span class="lang jp">独占感なし ・ 「乗務員専用」感の維持が難しい</span></td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en">Either way: the verification gate at sign-up (Emirates email domain) stays. Invite-only just adds a second gate on top.</span>
+          <span class="lang jp">どちらにせよ:サインアップ時の Emirates メールドメイン認証は残す。招待制を選んだ場合はその上に第 2 ゲートが乗る形。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 2 ITEM 7 (STORE ASSETS) + 6 (MARKETING SITE)</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2 Item 7（ストア素材）＋ Item 6（マーケサイト）に影響</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 11 · MARKETING WEBSITE MODEL</span><span class="lang jp">判断 11 ・ マーケサイトのモデル</span></div>
+      <h3>
+        <span class="lang en">Is peanutesim.com public, gated, or hybrid?</span>
+        <span class="lang jp">peanutesim.com はパブリック、ゲート付き、それともハイブリッド？</span>
+      </h3>
+      <p>
+        <span class="lang en">If we go invite-only on the app (Decision 10), the marketing site has to compensate — it's where curious crew first hear about us, learn what we do, and request an invite. Three site models, very different SEO / brand consequences:</span>
+        <span class="lang jp">アプリを招待制（Decision 10）にする場合、マーケサイトがそれを補う必要がある — 関心ある乗務員がまずここで Peanut を知り、何をするのかを学び、招待リクエストを送る入り口になる。3 モデル、SEO とブランドへの影響が大きく異なる:</span>
+      </p>
+      <div class="dec-impact">
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead><tr><th><span class="lang en">Model</span><span class="lang jp">モデル</span></th><th><span class="lang en">SEO</span><span class="lang jp">SEO</span></th><th><span class="lang en">Exclusivity</span><span class="lang jp">独占感</span></th></tr></thead>
+          <tbody>
+            <tr><td><span class="lang en">A. Fully public</span><span class="lang jp">A. 完全公開</span></td><td>✅ <span class="lang en">Max — country pages rank in Google</span><span class="lang jp">最大 ・ 国別ページが Google で上位表示</span></td><td>❌ <span class="lang en">Low — feels like just another eSIM site</span><span class="lang jp">低 ・ 普通の eSIM サイトに見える</span></td></tr>
+            <tr><td><span class="lang en">B. Fully gated</span><span class="lang jp">B. 完全ゲート</span></td><td>❌ <span class="lang en">Zero — search engines can't index</span><span class="lang jp">ゼロ ・ 検索エンジンでインデックス不可</span></td><td>✅ <span class="lang en">Maximum — full "secret club" feel</span><span class="lang jp">最大 ・ 「秘密クラブ」感</span></td></tr>
+            <tr class="pick"><td><strong><span class="lang en">C. Hybrid ⭐ (likely)</span><span class="lang jp">C. ハイブリッド ⭐（有力候補）</span></strong></td><td>✅ <span class="lang en">Public marketing pages + invite-only app/checkout behind a wall</span><span class="lang jp">マーケページは公開 ・ アプリ / 決済は招待制ウォール越し</span></td><td>✅ <span class="lang en">Best of both — SEO works, mystery is preserved</span><span class="lang jp">両取り ・ SEO 効果あり ・ ミステリー感も保てる</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · DOWNSTREAM OF DECISION 10</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Decision 10 に依存</span></div>
+    </div>
+
+    <div class="decision-card urgent">
+      <div class="dec-meta"><span class="lang en">DECISION 13 · 3-YEAR SOM TARGET (MARKET-CAPTURE AMBITION)</span><span class="lang jp">判断 13 ・ 3 年間の SOM 目標（市場獲得の野心度）</span></div>
+      <h3>
+        <span class="lang en">How aggressive a 3-year crew-acquisition target are we willing to bet on?</span>
+        <span class="lang jp">3 年間の乗務員獲得目標を、どこまで強気に設定するか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Phase 0 Item 7 (Market Sizing) produced: TAM ≈ 1.55M crew globally, SAM ≈ 430K crew across the airlines we can plausibly reach in 3-5 years. SOM is the part with the real decision — our 3-year capture target. For context: <strong>Crew SIM sits at ~5K users after several years.</strong> Even our conservative posture is 4× that.</span>
+        <span class="lang jp">Phase 0 Item 7（市場規模試算）の結果:TAM ≈ 世界の乗務員 155 万人、SAM ≈ 3-5 年で現実的に到達可能な航空会社の乗務員 43 万人。SOM がここでの実質的な判断ポイント — 3 年間の獲得目標。比較:<strong>Crew SIM は数年運営して約 5,000 ユーザー。</strong>当社の保守的目標でも既に 4 倍。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Three postures:</span><span class="lang jp">3 つの姿勢:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead>
+            <tr>
+              <th><span class="lang en">Posture</span><span class="lang jp">姿勢</span></th>
+              <th><span class="lang en">Y3 crew</span><span class="lang jp">3 年目クルー数</span></th>
+              <th><span class="lang en">Y3 ARR</span><span class="lang jp">3 年目 ARR</span></th>
+              <th><span class="lang en">What it requires</span><span class="lang jp">必要な前提</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong><span class="lang en">A. Conservative</span><span class="lang jp">A. 保守的</span></strong></td>
+              <td>20,000</td>
+              <td>~$3.6M</td>
+              <td><span class="lang en">Gulf carriers only (Emirates → Etihad → Qatar → Saudia). Slow, careful, profitable from Y2.</span><span class="lang jp">湾岸キャリアのみ（Emirates → Etihad → Qatar → Saudia）。スロー＆ケア重視、Y2 から黒字化。</span></td>
+            </tr>
+            <tr class="pick">
+              <td><strong><span class="lang en">B. Mid ⭐ (Balraj lean)</span><span class="lang jp">B. ミドル ⭐（Balraj の意向）</span></strong></td>
+              <td>30,000</td>
+              <td>~$5.4M</td>
+              <td><span class="lang en">Gulf + early Asia (Singapore, Cathay). Controlled marketing spend, no outside capital required.</span><span class="lang jp">湾岸 + アジア初期（Singapore, Cathay）。マーケ予算は統制下、外部資本不要。</span></td>
+            </tr>
+            <tr>
+              <td><strong><span class="lang en">C. Aggressive</span><span class="lang jp">C. 強気</span></strong></td>
+              <td>40,000+</td>
+              <td>~$7.2M+</td>
+              <td><span class="lang en">Gulf + Asia + first European outreach by Y3. Either reinvested profit + sweat or outside capital.</span><span class="lang jp">湾岸 + アジア + Y3 までに欧州初期接触。再投資 + 自己労務 or 外部資金が必要。</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Balraj's lean:</strong> Posture B (mid). Gulf-only feels too narrow for a category-defining crew brand; full-aggressive is risky to bankroll personally. Mid assumes execution discipline but no outside money.</span>
+          <span class="lang jp"><strong>Balraj の意向:</strong>ポスチャ B（ミドル）。湾岸限定はカテゴリ代表になるには狭く、フル強気は自己資金で支えるにはリスク大。ミドルは実行力次第で外部資金なしで到達可能。</span>
+        </p>
+        <p style="margin-top: 10px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Reference numbers (assumption-based, ±20%):</strong> ARPU $15–25/month per active crew. Capital-light (no inventory, no warehouses, no physical SIMs). Most ARR above aggregator + Stripe fees drops to operating margin.</span>
+          <span class="lang jp"><strong>参考数値（仮定ベース、±20%）:</strong>アクティブクルー 1 名あたり月 ARPU $15–25。在庫・倉庫・物理 SIM 不要の資本ライト構造。卸価格 + Stripe 手数料以上の ARR の大半が営業利益に落ちる。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · DEFINES PHASE 6 + PHASE 7 SCOPE</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 6 + Phase 7 のスコープを規定</span></div>
+    </div>
+
+    <div class="sec-label" style="margin-top: 48px; color: var(--accent);"><span class="lang en">✓ RESOLVED · 2 ITEMS</span><span class="lang jp">✓ 解決済 ・ 2件</span></div>
+
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 12 · MARKETING + DISTRIBUTION CHANNELS ✓</span><span class="lang jp">判断 12 ・ マーケ・流通チャネル ✓</span></div>
+      <h3>
+        <span class="lang en">Where do we acquire crew users?</span>
+        <span class="lang jp">乗務員ユーザーをどこで獲得するか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Resolved <strong>2026-05-22</strong> based on Balraj's plan during Phase 2 walkthrough.</span>
+        <span class="lang jp">Phase 2 ウォークスルー中の Balraj の方針に基づき <strong>2026-05-22</strong> に決定。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Resolution: 4 channels, prioritized in this order</span><span class="lang jp">結論:以下の優先順で 4 チャネル</span></strong>
+        <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+          <li style="padding: 4px 0 4px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">1</span><strong><span class="lang en">Emirates crew Facebook groups</span><span class="lang jp">Emirates 乗務員 Facebook グループ</span></strong> <span class="lang en">— the founding insight: this is where the "which eSIM should I use?" demand originates. Highest-trust touchpoint.</span><span class="lang jp">— 創業の着眼点:「どの eSIM を使うべき?」という需要が生まれている場所。最も信頼度が高い接点。</span></li>
+          <li style="padding: 4px 0 4px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">2</span><strong><span class="lang en">Word of mouth (crew → crew)</span><span class="lang jp">口コミ（乗務員 → 乗務員）</span></strong> <span class="lang en">— amplified by invite-only model (Decision 10)</span><span class="lang jp">— 招待制（Decision 10）により増幅</span></li>
+          <li style="padding: 4px 0 4px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">3</span><strong><span class="lang en">Social handles + paid ads</span><span class="lang jp">SNS アカウント＋有料広告</span></strong> <span class="lang en">— Instagram + TikTok + X + LinkedIn. Targeted ads to Emirates crew demographic.</span><span class="lang jp">— Instagram + TikTok + X + LinkedIn。Emirates 乗務員層をターゲット広告。</span></li>
+          <li style="padding: 4px 0 4px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">4</span><strong><span class="lang en">Crew lounge presence</span><span class="lang jp">乗務員ラウンジでの露出</span></strong> <span class="lang en">— posters / QR / sponsored coffee. Phase 5 once approved by Akito.</span><span class="lang jp">— ポスター / QR / コーヒースポンサー。Akito 承認後 Phase 5 で実施。</span></li>
+        </ul>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Note:</strong> Brand guidelines document (Phase 2 Item 9) is still required, because paid ads need a consistent look once we scale spend.</span>
+          <span class="lang jp"><strong>備考:</strong>有料広告のスケール時に統一感を担保するため、ブランドガイドラインドキュメント（Phase 2 Item 9）は引き続き必要。</span>
+        </p>
+      </div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · Channels confirmed by Balraj 2026-05-22</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-05-22 に Balraj 承認</span></div>
+    </div>
 
     <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
       <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 00D · INCORPORATION JURISDICTION ✓</span><span class="lang jp">判断 00D ・ 法人設立地 ✓</span></div>
@@ -3314,7 +3628,7 @@ Akito</div>
       <tbody>
         <tr class="current"><td class="phase-no">0</td><td class="phase-name"><span class="lang en">Research &amp; Validation</span><span class="lang jp">リサーチ＆検証</span></td><td class="phase-stat">🟡 <span class="lang en">In progress (3/5)</span><span class="lang jp">進行中（3/5）</span></td></tr>
         <tr class="current"><td class="phase-no">1</td><td class="phase-name"><span class="lang en">Legal &amp; Corporate</span><span class="lang jp">法務・法人設立</span></td><td class="phase-stat">▶ <span class="lang en">Starting now</span><span class="lang jp">開始中</span></td></tr>
-        <tr><td class="phase-no">2</td><td class="phase-name"><span class="lang en">Brand &amp; Product Design</span><span class="lang jp">ブランド・プロダクトデザイン</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
+        <tr class="current"><td class="phase-no">2</td><td class="phase-name"><span class="lang en">Brand &amp; Product Design</span><span class="lang jp">ブランド・プロダクトデザイン</span></td><td class="phase-stat">▶ <span class="lang en">Starting now (0/9)</span><span class="lang jp">開始中（0/9）</span></td></tr>
         <tr><td class="phase-no">3</td><td class="phase-name"><span class="lang en">Tech Build</span><span class="lang jp">技術開発</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
         <tr><td class="phase-no">4</td><td class="phase-name"><span class="lang en">Beta &amp; Pre-launch</span><span class="lang jp">ベータ・ローンチ準備</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
         <tr><td class="phase-no">5</td><td class="phase-name"><span class="lang en">Soft Launch</span><span class="lang jp">ソフトローンチ</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
@@ -3517,6 +3831,66 @@ Mercury（米国法人銀行口座）
       <p class="ri-desc">
         <span class="lang en">Critical before incorporation if multi-member LLC. Tactical workaround: start as single-member LLC (Balraj solo), formalize equity with Akito after the founder agreement is properly negotiated. Avoids blocking on this.</span>
         <span class="lang jp">マルチメンバー LLC の場合、設立前に必須。戦術的回避策:Balraj 単独のシングルメンバー LLC として開始、Akito との持分は合意書交渉後に正式化。これにより本項目がボトルネックにならない。</span>
+      </p>
+    </div>
+
+    <!-- Item 6 — DONE — Crew SIM competitive deep-dive -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status done"><span class="lang en">CLOSED · 2026-05-22</span><span class="lang jp">完了 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 6 — Crew SIM competitive deep-dive</span><span class="lang jp">Item 6 — Crew SIM 詳細競合分析</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">Full diligence pass completed 2026-05-22. <strong>Findings:</strong> Crew SIM is eSIM Mobile GmbH (Germany), founded by pilot Michael Schoepfer, likely solo / near-solo team, ~5K users, 30 App Store ratings (5.0★), v2.0.4. Pricing model: single global credit balance, pay-per-MB, no expiry, with referral mechanic baked in. Rates are already competitive with Airalo (~$1.50/GB on USA / UK / Thailand / Europe). They sell UAE eSIMs via du / Etisalat at €3.42/GB — somehow routed around the regulatory block that hit eSIM Go and BNESIM. <strong>Strategic conclusion:</strong> Decision 05 day-1 wedge revised — price is dead, schedule-upload smart-plan is the actual differentiator. Full profile in local file <code>/Users/a44/esim-uae/crewsim-competitive-profile.html</code> (NOT pushed to public site — Crew SIM can find anything we publish here).</span>
+        <span class="lang jp">2026-05-22 に詳細調査完了。<strong>主な発見:</strong>Crew SIM は eSIM Mobile GmbH（ドイツ）、創業者は パイロット Michael Schoepfer、ほぼソロチーム、ユーザー約 5,000 名、App Store レビュー 30 件（5.0★）、v2.0.4。価格モデル:単一グローバル クレジット残高・MB 単位課金・無期限・紹介機能内蔵。価格は既に Airalo と同水準（USA / UK / タイ / 欧州で ~$1.50/GB）。UAE 向けは du / Etisalat 経由で €3.42/GB — eSIM Go と BNESIM が引っかかった規制ブロックを何らかの方法で回避している。<strong>戦略結論:</strong>Decision 05 の初日ウェッジを改訂 — 価格戦略は無効、ロスター連動自動プランが真の差別化軸。詳細プロファイルはローカルファイル <code>/Users/a44/esim-uae/crewsim-competitive-profile.html</code>（公開サイトには push しない — Crew SIM が公開サイトを発見できるため）。</span>
+      </p>
+    </div>
+
+    <!-- Item 7 — NEW — Market sizing -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 7 — Market sizing (TAM / SAM / SOM)</span><span class="lang jp">Item 7 — 市場規模試算（TAM / SAM / SOM）</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">Emirates ≈ 26K crew. Multi-airline addressable (Etihad, JAL, ANA, Singapore, Qatar, etc.) ≈ 500K+ crew worldwide. Build a one-page model: TAM (all airline crew globally), SAM (the airlines we can realistically expand to), SOM (3-year capture target). Needed for Akito alignment + any future investor conversation.</span>
+        <span class="lang jp">Emirates ≈ 26K 名。多航空会社展開時の対象（Etihad / JAL / ANA / Singapore / Qatar など）≈ 世界で 50 万人以上。1 ページの試算モデルを作成:TAM（全世界の航空乗務員）、SAM（現実的に展開可能な航空会社）、SOM（3 年での獲得目標）。Akito 合意 + 将来の投資家対話に必要。</span>
+      </p>
+    </div>
+
+    <!-- Item 8 — NEW — Unit economics model -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 8 — Unit economics model</span><span class="lang jp">Item 8 — ユニットエコノミクスモデル</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">Per-crew financial model: retail price − aggregator wholesale − Stripe fees − Apple cut (if IAP) − CAC = gross margin. Plus LTV assumptions (avg plans per crew per year × retention curve). Validates whether the whole thesis works mathematically before we burn cycles on it. Lives in the existing Cost tab as a deeper layer.</span>
+        <span class="lang jp">乗務員一人あたりの財務モデル:小売価格 − 卸価格 − Stripe 手数料 − Apple 手数料（IAP の場合） − CAC = 粗利。加えて LTV 想定（年間プラン数 × リテンションカーブ）。ビジネス全体が数字で成立するかを工数投入前に検証。既存の Cost タブ内に深掘り層として配置。</span>
+      </p>
+    </div>
+
+    <!-- Item 9 — NEW — Financial runway model -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 9 — Financial runway model</span><span class="lang jp">Item 9 — 資金繰り（ランウェイ）モデル</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">How much capital do we need from $0 to break-even? Comes from Balraj + Akito personal contribution at first. Model assumes: incorporation + design + tech build + 6 months of operating costs before revenue ramps. Output: a single number we know we need to put in, plus the trigger for raising external capital (if ever).</span>
+        <span class="lang jp">$0 から損益分岐点までに必要な資金は?当面は Balraj + Akito の個人出資が前提。モデル想定:設立 + デザイン + 技術開発 + 売上立ち上がり前の運転 6 ヶ月分。アウトプット:必要な投入額 1 つの数字 + 外部調達検討のトリガー条件（必要なら）。</span>
+      </p>
+    </div>
+
+    <!-- Item 10 — NEW — Risk register -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 10 — Risk register</span><span class="lang jp">Item 10 — リスク登録簿</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">A single living document listing the top 10 things that could kill Peanut eSIM, with mitigations and owners. Examples: TDRA enforcement against Delaware LLC structure; Samurai relationship collapses; Apple rejects the eSIM app; Emirates objects to crew gating; Crew SIM cuts prices aggressively; aggregator pricing wars; key-person risk (Akito leaves); fraud / chargeback waves; Stripe terminates merchant account. Reviewed monthly.</span>
+        <span class="lang jp">Peanut eSIM を破壊しうるトップ 10 のリスク・対策・担当者を 1 枚の生きた文書で管理。例:TDRA がデラウェア LLC 構造に対し執行・Samurai 関係崩壊・Apple がアプリ却下・Emirates が乗務員ゲーティングに異議・Crew SIM の値下げ攻勢・卸価格戦争・キーパーソンリスク（Akito 離脱）・不正利用 / チャージバック・Stripe アカウント停止。月次レビュー。</span>
       </p>
     </div>
   </section>
@@ -3754,15 +4128,272 @@ Mercury（米国法人銀行口座）
       <p class="ri-desc"><span class="lang en">Errors &amp; Omissions + cyber-liability coverage. Defer until we have actual customers and revenue — there's nothing to insure pre-launch.</span><span class="lang jp">E&amp;O（業務過誤）+ サイバー責任保険。実際の顧客と売上が発生してから取得 — ローンチ前は保険対象がない。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$1–3K/year</strong></span></div>
     </div>
+
+    <!-- Item 12 — NEW — EIN registration confirmation -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 12 — EIN registration confirmation</span><span class="lang jp">Item 12 — EIN（連邦雇用主番号）取得確認</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Employer Identification Number = the US federal tax ID for the LLC. Auto-issued by Stripe Atlas as part of the LLC filing, but should be tracked as a discrete item so it doesn't slip through the cracks. Required for Mercury, Stripe US, every contract.</span><span class="lang jp">EIN = LLC の連邦税務 ID 番号。Stripe Atlas が LLC 設立時に自動取得するが、抜け漏れ防止のため個別項目として管理。Mercury・Stripe US・全契約に必須。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong><span class="lang en">Auto with Item 1</span><span class="lang jp">Item 1 と同時</span></strong></span></div>
+    </div>
+
+    <!-- Item 13 — NEW — Delaware annual franchise tax + report -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 13 — Delaware annual franchise tax + report</span><span class="lang jp">Item 13 — デラウェア州 年次フランチャイズ税＋報告書</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">$300/year flat for the LLC. Due 1 June every year. Easy to forget = $200 late penalty + loss of good standing (which freezes the bank account and Stripe). Calendar reminder + autopay through Stripe Atlas dashboard.</span><span class="lang jp">LLC につき年 $300 固定。毎年 6 月 1 日が期限。失念すると $200 延滞罰金 + 法人格の有効性失効（→ 銀行口座・Stripe が凍結）。Stripe Atlas ダッシュボード経由で自動引落 + カレンダー通知を設定。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$300/year</strong></span><span><span class="lang en">DUE</span><span class="lang jp">期限</span><strong>1 June annually</strong></span></div>
+    </div>
+
+    <!-- Item 14 — NEW — US CPA engagement -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 14 — US CPA engagement</span><span class="lang jp">Item 14 — 米国 CPA 契約</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Need a US Certified Public Accountant who knows non-resident-owned LLCs to file the annual Form 5472 + 1120 pro-forma. Penalties for missing or wrong filings start at $25K. Engage one before incorporation, not after. Recommended: someone Stripe Atlas-partnered (they have a vetted list) or international-tax specialists like Greenback / Bright!Tax.</span><span class="lang jp">米国非居住者オーナーの LLC に詳しい CPA（公認会計士）と契約し、年次の Form 5472 + 1120 プロフォーマを提出依頼。提出漏れ・誤りで $25K〜の罰金。設立前に確保。推奨:Stripe Atlas 提携先（審査済みリストあり） or 国際税務専門の Greenback / Bright!Tax など。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$400 – $1.2K/year</strong></span></div>
+    </div>
+
+    <!-- Item 15 — NEW — Bookkeeping system -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 15 — Bookkeeping system</span><span class="lang jp">Item 15 — 経理（ブックキーピング）システム</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Pick one and stick with it from day 1: QuickBooks Online (industry standard), Xero (cleaner UX), Pilot (CPA-assisted), or Bench (CPA-assisted, cheaper). Clean books from transaction 1 save weeks of pain at tax time and at any future acquisition / fundraise. Connects directly to Mercury + Stripe.</span><span class="lang jp">初日からの選定が重要:QuickBooks Online（業界標準）、Xero（UX クリーン）、Pilot（CPA 込み）、Bench（CPA 込み・低価格）から 1 つ選択。最初の取引から綺麗な帳簿を保てば、税務申告時 + 将来の M&A / 資金調達時に数週間分の作業を節約。Mercury + Stripe と直接連携。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$15 – $250/month</strong></span></div>
+    </div>
+
+    <!-- Item 16 — NEW — Apple Carrier Entitlement application -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 16 — Apple Carrier Entitlement application</span><span class="lang jp">Item 16 — Apple キャリア権限の申請</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Apple's special permission for 1-tap in-app eSIM installation (the entitlement Airalo has). Separate application from the regular Apple Developer account. Deferred until post-launch per Decision 02 — but tracked here so it gets done. Application targets: 6–12 months after launch + ~10K active users.</span><span class="lang jp">Apple のアプリ内 1 タップ eSIM インストール特別権限（Airalo が取得済みのもの）。通常の Apple Developer アカウントとは別申請。Decision 02 によりローンチ後に延期 — ただし忘れないようここで追跡。申請目安:ローンチ後 6〜12 ヶ月 + アクティブユーザー約 10K 名。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (Apple application)</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>Post-launch</strong></span></div>
+    </div>
+
+    <!-- Item 17 — NEW — NDA + contractor agreement templates -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 17 — NDA + contractor agreement templates</span><span class="lang jp">Item 17 — NDA・業務委託契約のテンプレート</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Mutual NDA template (for vendor conversations like Samurai/Airalo), contractor agreement template (for any designer/developer/marketer we hire short-term), and IP-assignment clause (so anything they make belongs to the LLC, not them personally). Cheap to set up now; expensive when something goes wrong without them.</span><span class="lang jp">相互 NDA テンプレート（Samurai / Airalo などベンダー協議用）、業務委託契約テンプレート（短期で雇うデザイナー / 開発者 / マーケター用）、IP 譲渡条項（成果物の所有権が個人ではなく LLC に帰属）。今作れば安価、トラブル時に無いと高くつく。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (template-only) – $500 (lawyer review)</strong></span></div>
+    </div>
+
+    <!-- Item 18 — NEW — Crew verification legal framework -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 18 — Crew verification legal framework</span><span class="lang jp">Item 18 — 乗務員身分確認の法的フレームワーク</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Verifying that a user is actually Emirates crew has legal sensitivity. Options: (a) verify by airline email domain — risk: we're processing what Emirates may consider its corporate data; (b) ask for crew ID / badge upload — risk: identity-document handling = strict PDPL + GDPR obligations; (c) crew vouching system — minimal data risk but harder to enforce. Needs UAE-licensed counsel review before locking the v1 verification flow (Phase 2 Item 11). Could be the single decision that blocks launch if it triggers an Emirates objection.</span><span class="lang jp">「Emirates 乗務員かどうか」の確認は法的に機微。選択肢:(a) 航空会社メールドメインで確認 — リスク:Emirates が「自社データ」と見なす可能性。(b) クルー ID / バッジ画像アップロード — リスク:本人確認書類扱いとなり PDPL + GDPR の厳しい義務。(c) 既存クルーによる紹介認証 — データリスクは最小だが運用が難しい。v1 検証フロー（Phase 2 Item 11）確定前に UAE ライセンス取得済み弁護士のレビュー必要。Emirates が異議を唱えれば、ローンチを止めうる唯一の決定。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$500 – $1.5K (lawyer review)</strong></span></div>
+    </div>
   </section>
 
-  <!-- Phases 2-7 -->
+  <!-- Phase 2 Detail -->
   <section class="phase-detail-section">
-    <div class="sec-label"><span class="lang en">PHASES 2 — 7 · UPCOMING</span><span class="lang jp">フェーズ 2 — 7 ・ 今後</span></div>
+    <div class="phase-detail-header p2">
+      <div class="phase-detail-num">2</div>
+      <div>
+        <span class="phase-status-pill starting"><span class="lang en">STARTING NOW</span><span class="lang jp">開始中</span></span>
+        <h2><span class="lang en">Phase 2 — Brand &amp; Product Design</span><span class="lang jp">フェーズ2 — ブランド・プロダクトデザイン</span></h2>
+      </div>
+    </div>
+
+    <p class="ri-desc">
+      <span class="lang en">Everything that defines how Peanut eSIM <em>looks, feels and reads</em> — before any code is written. The output of Phase 2 becomes the input for Phase 3 (Tech Build): a logo, a color/type system, a UI design system, and key screens that the developers will implement. We'll work top-down: <strong>brand strategy → visual identity → design system → applied designs (app, web, store)</strong>.</span>
+      <span class="lang jp">コード着手前に、Peanut eSIM の<em>見た目・体験・コピー</em>を全て確定する段階。Phase 2 の成果物が Phase 3（技術開発）の入力となる:ロゴ、カラー・タイポシステム、UI デザインシステム、開発者が実装する主要画面。トップダウンで進める:<strong>ブランド戦略 → ビジュアルアイデンティティ → デザインシステム → 各種デザイン展開（アプリ・Web・ストア）</strong>。</span>
+    </p>
+
+    <table class="phase-overview-table">
+      <thead><tr><th>#</th><th><span class="lang en">SUB-ITEM</span><span class="lang jp">項目</span></th><th><span class="lang en">STATUS</span><span class="lang jp">状況</span></th><th><span class="lang en">COST</span><span class="lang jp">費用</span></th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><span class="lang en">Brand strategy (positioning, audience, voice, tone)</span><span class="lang jp">ブランド戦略（ポジショニング・ターゲット・声・トーン）</span></td><td>🔴 <span class="lang en">To discuss</span><span class="lang jp">未着手</span></td><td>$0–$1.5K</td></tr>
+        <tr><td>2</td><td><span class="lang en">Logo, wordmark, app icon</span><span class="lang jp">ロゴ・ワードマーク・アプリアイコン</span></td><td>🟡 <span class="lang en">Draft brief exists</span><span class="lang jp">ブリーフ草案あり</span></td><td>$0–$1K</td></tr>
+        <tr><td>3</td><td><span class="lang en">Color palette &amp; typography system</span><span class="lang jp">カラーパレット・タイポグラフィシステム</span></td><td>🔴 <span class="lang en">After #2</span><span class="lang jp">#2 後</span></td><td><span class="lang en">bundled</span><span class="lang jp">#2 に含む</span></td></tr>
+        <tr><td>4</td><td><span class="lang en">UI design system (Figma library)</span><span class="lang jp">UI デザインシステム（Figma ライブラリ）</span></td><td>🔴 <span class="lang en">After #3</span><span class="lang jp">#3 後</span></td><td>$1.5–$3K</td></tr>
+        <tr><td>5</td><td><span class="lang en">Key app screens (onboarding, browse, checkout, my eSIM)</span><span class="lang jp">主要アプリ画面（オンボーディング・プラン閲覧・決済・マイ eSIM）</span></td><td>🔴 <span class="lang en">After #4</span><span class="lang jp">#4 後</span></td><td><span class="lang en">bundled</span><span class="lang jp">#4 に含む</span></td></tr>
+        <tr><td>6</td><td><span class="lang en">Marketing website design</span><span class="lang jp">マーケティング Web サイトデザイン</span></td><td>🔴 <span class="lang en">After #3</span><span class="lang jp">#3 後</span></td><td>$500–$1.5K</td></tr>
+        <tr><td>7</td><td><span class="lang en">App Store + Play Store assets (screenshots, copy, preview video)</span><span class="lang jp">App Store + Play Store 素材（スクショ・コピー・プレビュー動画）</span></td><td>🔴 <span class="lang en">After #5</span><span class="lang jp">#5 後</span></td><td>$500–$1.5K</td></tr>
+        <tr><td>8</td><td><span class="lang en">Email + receipt templates</span><span class="lang jp">メール・領収書テンプレート</span></td><td>🔴 <span class="lang en">After #3</span><span class="lang jp">#3 後</span></td><td>$300–$800</td></tr>
+        <tr><td>9</td><td><span class="lang en">Social media kit + brand guidelines doc</span><span class="lang jp">SNS キット + ブランドガイドライン</span></td><td>🔴 <span class="lang en">After #3</span><span class="lang jp">#3 後</span></td><td>$300–$800</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Phase 2 — Item Details -->
+    <h3 style="font-family: 'Shippori Mincho', serif; font-weight: 600; font-size: 22px; margin: 36px 0 18px; color: var(--text);"><span class="lang en">Item details</span><span class="lang jp">各項目の詳細</span></h3>
+
+    <!-- ITEM 1 — Brand strategy -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">TO DISCUSS</span><span class="lang jp">要協議</span></span>
+        <h3><span class="lang en">Item 1 — Brand strategy</span><span class="lang jp">Item 1 — ブランド戦略</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">The foundation everything else inherits from. Before we draw any pixel, we lock: <strong>positioning</strong> (who we are vs Airalo/Holafly/Saily), <strong>primary audience</strong> (Emirates crew + UAE-based frequent travelers), <strong>voice &amp; tone</strong> (warm and confident, or playful, or premium-minimal?), <strong>brand promise</strong> (the single sentence we'd use to describe ourselves). This is a 1-hour conversation with you + Akito.</span><span class="lang jp">他の全項目が継承する土台。ピクセル一つ描く前に確定する:<strong>ポジショニング</strong>（Airalo / Holafly / Saily と何が違うか）、<strong>主要オーディエンス</strong>（エミレーツ航空乗務員 + UAE 拠点のフリークエントトラベラー）、<strong>声とトーン</strong>（温かく自信あり / 遊び心 / プレミアム・ミニマル?）、<strong>ブランド プロミス</strong>（自分たちを 1 文で説明するなら）。Balraj + Akito との 1 時間の会話。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (DIY) – $1.5K (workshop)</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>1 day</strong></span></div>
+    </div>
+
+    <!-- ITEM 2 — Logo / wordmark / app icon -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status starting"><span class="lang en">DRAFT BRIEF EXISTS</span><span class="lang jp">ブリーフ草案あり</span></span>
+        <h3><span class="lang en">Item 2 — Logo, wordmark, app icon</span><span class="lang jp">Item 2 — ロゴ・ワードマーク・アプリアイコン</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">The visible face of the brand. Three deliverables: <strong>primary logo</strong> (used on the site + decks), <strong>wordmark</strong> (text-only variant for tight spaces), <strong>app icon</strong> (square, must read at 60×60px on a home screen). Draft brief: globe + SIM ribbon + hands concept — we may iterate or scrap it entirely depending on Item 1.</span><span class="lang jp">ブランドの可視的な顔。3 つの成果物:<strong>プライマリロゴ</strong>（サイト・資料用）、<strong>ワードマーク</strong>（タイトなスペース用テキストのみ版）、<strong>アプリアイコン</strong>（正方形・ホーム画面の 60×60px で読める必要あり）。ブリーフ草案：地球儀 + SIM リボン + 手のコンセプト — Item 1 次第で反復または完全に再構築。</span></p>
+      <h4><span class="lang en">3 routes to consider</span><span class="lang jp">3 つのルート</span></h4>
+      <table class="mini-table">
+        <thead><tr><th><span class="lang en">Route</span><span class="lang jp">ルート</span></th><th><span class="lang en">Cost</span><span class="lang jp">費用</span></th><th><span class="lang en">Trade-off</span><span class="lang jp">トレードオフ</span></th></tr></thead>
+        <tbody>
+          <tr><td><span class="lang en">AI tools (Looka / Logo.com / Midjourney)</span><span class="lang jp">AI ツール（Looka / Logo.com / Midjourney）</span></td><td>$0–$50</td><td><span class="lang en">Fast, generic-feeling, no IP guarantee</span><span class="lang jp">高速だが汎用的・IP 保証なし</span></td></tr>
+          <tr class="pick"><td><strong><span class="lang en">Freelance designer ⭐ (Dribbble / Behance)</span><span class="lang jp">フリーランスデザイナー ⭐（Dribbble / Behance）</span></strong></td><td>$300–$1K</td><td><span class="lang en">Best balance — original work, clear IP, 1–2 week turnaround</span><span class="lang jp">最良バランス — オリジナル・明確な IP・1〜2 週間</span></td></tr>
+          <tr><td><span class="lang en">Agency / branding studio</span><span class="lang jp">エージェンシー / ブランディングスタジオ</span></td><td>$3K–$10K+</td><td><span class="lang en">Premium feel; overkill for our stage</span><span class="lang jp">プレミアム感 — 現段階ではオーバースペック</span></td></tr>
+        </tbody>
+      </table>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 – $1K</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>1–2 weeks</strong></span></div>
+    </div>
+
+    <!-- ITEM 3 — Color / Type -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">AFTER ITEM 2</span><span class="lang jp">Item 2 後</span></span>
+        <h3><span class="lang en">Item 3 — Color palette &amp; typography system</span><span class="lang jp">Item 3 — カラーパレット・タイポグラフィシステム</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Defines the brand's complete visual vocabulary: <strong>primary + secondary + neutral palette</strong>, <strong>type scale</strong> (headline / body / micro), <strong>type pairings</strong> (serif + sans for editorial feel, or all-sans for utility feel). Same designer from Item 2 usually delivers this together — at no extra cost — because the logo dictates them.</span><span class="lang jp">ブランドの完全な視覚語彙を定義:<strong>プライマリ + セカンダリ + ニュートラル パレット</strong>、<strong>タイポスケール</strong>（見出し / 本文 / 補足）、<strong>タイポペアリング</strong>（エディトリアル感ならセリフ + サンセリフ、ユーティリティ感ならオールサンセリフ）。通常 Item 2 と同じデザイナーが追加費用なしで一緒に納品（ロゴが規定するため）。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong><span class="lang en">bundled with Item 2</span><span class="lang jp">Item 2 に含む</span></strong></span></div>
+    </div>
+
+    <!-- ITEM 4 — UI design system -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">AFTER ITEM 3</span><span class="lang jp">Item 3 後</span></span>
+        <h3><span class="lang en">Item 4 — UI design system (Figma)</span><span class="lang jp">Item 4 — UI デザインシステム（Figma）</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">A reusable component library in Figma: buttons (primary / secondary / disabled), input fields, cards (plan card, eSIM card, top-up card), modals, navigation bars, status badges, loading states, empty states. Build this <strong>once</strong>, every screen in Items 5–9 reuses it. Massive time-saver vs designing each screen from scratch.</span><span class="lang jp">Figma 上の再利用可能コンポーネントライブラリ:ボタン（プライマリ / セカンダリ / 無効）、入力フィールド、カード（プランカード / eSIM カード / トップアップカード）、モーダル、ナビバー、ステータスバッジ、ロード状態、空状態。<strong>一度</strong>作れば、Item 5〜9 の全画面で再利用可能。各画面をゼロから設計するより圧倒的に時短。</span></p>
+      <h4><span class="lang en">2 routes</span><span class="lang jp">2 つのルート</span></h4>
+      <ul class="ri-bullets">
+        <li><span class="lang en"><strong>Start from a Figma kit</strong> (e.g., Untitled UI, Tailwind UI Figma) — $200–$300, then customize with our colors/type. Ships in days.</span><span class="lang jp"><strong>Figma キットから開始</strong>（例:Untitled UI、Tailwind UI Figma） — $200〜$300、当社のカラー / タイポでカスタマイズ。数日で完成。</span></li>
+        <li><span class="lang en"><strong>Build from scratch</strong> with the same freelance designer — $1.5K–$3K, 2–3 weeks. More original but slower.</span><span class="lang jp"><strong>ゼロから構築</strong>（Item 2 と同じフリーランス） — $1.5K〜$3K、2〜3 週間。よりオリジナルだが遅い。</span></li>
+      </ul>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$300 – $3K</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>1–3 weeks</strong></span></div>
+    </div>
+
+    <!-- ITEM 5 — Key app screens -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">AFTER ITEM 4</span><span class="lang jp">Item 4 後</span></span>
+        <h3><span class="lang en">Item 5 — Key app screens</span><span class="lang jp">Item 5 — 主要アプリ画面</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Using the Item 4 components, design the actual screens developers will build: <strong>onboarding</strong> (3-step intro + sign-in), <strong>plan browse</strong> (country list + filters), <strong>plan detail</strong> (the buy-now screen), <strong>checkout</strong> (Stripe payment flow), <strong>my eSIM</strong> (active eSIMs + data usage + top-up button), <strong>support</strong> (FAQ + contact). ~12–15 screens total to cover the primary user journey.</span><span class="lang jp">Item 4 のコンポーネントを使って、開発者が実装する実際の画面をデザイン:<strong>オンボーディング</strong>（3 ステップ説明 + サインイン）、<strong>プラン閲覧</strong>（国別リスト + フィルタ）、<strong>プラン詳細</strong>（購入画面）、<strong>決済</strong>（Stripe 決済フロー）、<strong>マイ eSIM</strong>（アクティブ eSIM + データ使用量 + トップアップボタン）、<strong>サポート</strong>（FAQ + 問い合わせ）。主要ユーザージャーニーを網羅するのに約 12〜15 画面。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong><span class="lang en">bundled with Item 4</span><span class="lang jp">Item 4 に含む</span></strong></span></div>
+    </div>
+
+    <!-- ITEM 6 — Marketing website -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">AFTER ITEM 3</span><span class="lang jp">Item 3 後</span></span>
+        <h3><span class="lang en">Item 6 — Marketing website design</span><span class="lang jp">Item 6 — マーケティング Web サイトデザイン</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">The public-facing site at <code>peanutesim.com</code> — separate from this internal dashboard. Pages: home, country picker (anchor for SEO), individual country pages (~10 priority countries), help / FAQ, blog template. This is where most sales originate (per the Netflix Hybrid model from Decision 01). Can be built on Framer / Webflow / Next.js — design decision in this item, build decision in Phase 3.</span><span class="lang jp"><code>peanutesim.com</code> の公開向けサイト — このインターナルダッシュボードとは別物。ページ:ホーム、国セレクタ（SEO アンカー）、個別国ページ（優先 10 カ国程度）、ヘルプ / FAQ、ブログテンプレ。Decision 01 の Netflix ハイブリッドモデルにより、売上の大半がここから発生。Framer / Webflow / Next.js のいずれかで構築可能 — デザインは本項目で、構築は Phase 3 で判断。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$500 – $1.5K</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>1–2 weeks</strong></span></div>
+    </div>
+
+    <!-- ITEM 7 — App Store / Play Store assets -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">AFTER ITEM 5</span><span class="lang jp">Item 5 後</span></span>
+        <h3><span class="lang en">Item 7 — App Store + Play Store assets</span><span class="lang jp">Item 7 — App Store + Play Store 素材</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Apple and Google require very specific assets for store listings. <strong>Screenshots</strong> (3–10 per device size, with overlay copy showing key benefits), <strong>app preview video</strong> (15–30s, autoplay on App Store), <strong>icon variants</strong> (1024×1024 marketing), <strong>description copy</strong> (subtitle + 4,000-char long description, ASO-optimized), <strong>promotional text</strong>. These directly affect conversion from "browsing" to "installed."</span><span class="lang jp">Apple と Google はストア掲載用に細かい素材を要求:<strong>スクリーンショット</strong>（デバイスサイズごとに 3〜10 枚 + キーベネフィットを示すオーバーレイコピー）、<strong>アプリプレビュー動画</strong>（15〜30 秒 ・ App Store では自動再生）、<strong>アイコンバリエーション</strong>（1024×1024 マーケ用）、<strong>説明コピー</strong>（サブタイトル + 4,000 文字の本文 ・ ASO 最適化）、<strong>プロモーションテキスト</strong>。「閲覧」から「インストール」へのコンバージョン率に直結。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$500 – $1.5K</strong></span></div>
+    </div>
+
+    <!-- ITEM 8 — Email + receipt templates -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">AFTER ITEM 3</span><span class="lang jp">Item 3 後</span></span>
+        <h3><span class="lang en">Item 8 — Email + receipt templates</span><span class="lang jp">Item 8 — メール・領収書テンプレート</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Every customer receives at minimum: <strong>welcome email</strong>, <strong>purchase confirmation + receipt</strong>, <strong>eSIM delivery</strong> (QR code + install instructions), <strong>data-low warning</strong>, <strong>top-up reminder</strong>, <strong>refund notification</strong>. Each must be on-brand and render across Gmail, Apple Mail, Outlook. Templates built once, populated by code in Phase 3.</span><span class="lang jp">全顧客が最低限受け取る:<strong>ウェルカムメール</strong>、<strong>購入確認 + 領収書</strong>、<strong>eSIM 配信</strong>（QR コード + インストール手順）、<strong>データ残量警告</strong>、<strong>トップアップ リマインダー</strong>、<strong>返金通知</strong>。各メールはブランドに準拠し、Gmail / Apple Mail / Outlook で正しく表示必要。テンプレを一度作成、Phase 3 でコードから差し込み。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$300 – $800</strong></span></div>
+    </div>
+
+    <!-- ITEM 9 — Social kit + brand guidelines -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status waiting"><span class="lang en">AFTER ITEM 3</span><span class="lang jp">Item 3 後</span></span>
+        <h3><span class="lang en">Item 9 — Social media kit + brand guidelines</span><span class="lang jp">Item 9 — SNS キット + ブランドガイドライン</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en"><strong>Social kit:</strong> Instagram post / story templates, X card layouts, TikTok cover frames, LinkedIn banner. <strong>Brand guidelines doc:</strong> the single PDF anyone (us, a contractor, an agency) can read to produce on-brand work — logo do's/don'ts, color values, type, voice rules, photography style. This is what protects the brand from drift once we hand off to freelancers / agencies / influencers.</span><span class="lang jp"><strong>SNS キット:</strong>Instagram 投稿・ストーリーテンプレ、X カードレイアウト、TikTok カバーフレーム、LinkedIn バナー。<strong>ブランドガイドラインドキュメント:</strong>誰でも（自社・外注・エージェンシー）読めばオンブランドの成果を出せる単一 PDF — ロゴ Do/Don't、カラー値、タイポ、声のルール、写真スタイル。フリーランス・エージェンシー・インフルエンサーへ業務移管した際にブランドの逸脱を防ぐもの。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$300 – $800</strong></span></div>
+    </div>
+
+    <!-- ITEM 10 — NEW — Plan & pricing strategy -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 10 — Plan &amp; pricing strategy</span><span class="lang jp">Item 10 — プラン・価格戦略</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">The product structure question: do we sell <strong>per-country fixed plans</strong> (like Airalo), <strong>regional bundles</strong> (Europe / Asia), <strong>unlimited daily</strong> (like Holafly), <strong>monthly subscriptions</strong>, <strong>pay-as-you-fly</strong> (auto-generated from roster), or some hybrid? Plus the pricing curve: how much above Samurai wholesale? Undercut Crew SIM by how much? Tiers for crew seniority? This decision drives the entire SKU catalog, the UI of the plan browser, and the smart-pricing engine in Phase 3.</span><span class="lang jp">プロダクト構成の判断:<strong>国別固定プラン</strong>（Airalo 型）、<strong>地域パック</strong>（欧州・アジア）、<strong>無制限デイリー</strong>（Holafly 型）、<strong>月額サブスク</strong>、<strong>運行スケジュール連動の従量制</strong>（ロスター自動生成）、それともハイブリッド? 加えて価格設定:Samurai 卸値より何%上乗せ?Crew SIM を何%下回る?乗務員勤続年数で階層化?この判断が SKU カタログ全体、プラン閲覧画面の UX、Phase 3 のスマート価格エンジン全てを規定する。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (internal)</strong></span></div>
+    </div>
+
+    <!-- ITEM 11 — NEW — Crew verification UX -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 11 — Crew verification UX</span><span class="lang jp">Item 11 — 乗務員認証 UX</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">The "prove you're crew" flow's user experience. Three patterns (each with different feel + legal risk per Phase 1 Item 18): <strong>(a) Airline email domain</strong> verification (lowest friction), <strong>(b) crew ID / badge photo</strong> (highest trust, highest data sensitivity), <strong>(c) crew-vouching system</strong> (community-feel, hardest to enforce). Whichever wins, the screen design + tone + privacy copy must reassure the user without slowing them down.</span><span class="lang jp">「クルーであることを証明する」フローの UX。3 パターン（それぞれ Phase 1 Item 18 で異なる感触・法的リスク）:<strong>(a) 航空会社メールドメイン認証</strong>（最低摩擦）、<strong>(b) クルー ID / バッジ画像</strong>（最高信頼性・高データ機微）、<strong>(c) 既存クルーによる紹介認証</strong>（コミュニティ感・運用難）。どれを選ぶにせよ、画面デザイン・トーン・プライバシー説明文で、ユーザーを止めずに安心させる必要あり。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong><span class="lang en">bundled with Item 4</span><span class="lang jp">Item 4 に含む</span></strong></span></div>
+    </div>
+
+    <!-- ITEM 12 — NEW — Localization strategy -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 12 — Localization strategy</span><span class="lang jp">Item 12 — 多言語化（ローカライゼーション）戦略</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">English-only at v1 launch is fine (Emirates crew operating language is English). But the architecture decisions for localization need to happen NOW, not after launch: should every string be wrapped in an i18n key? Which language ships in v2 — Arabic for UAE-based crew, Mandarin for ANA / JAL crew? Marketing site separate or shared translation pipeline? Decide framework now, save weeks later.</span><span class="lang jp">v1 ローンチ時は英語のみで OK（Emirates 乗務員の業務言語は英語）。ただし多言語化のアーキテクチャ判断は<strong>今</strong>行う必要あり:全テキストを i18n キーでラップするか?v2 で追加する言語は — UAE 在住クルー向けの アラビア語?ANA / JAL クルー向けの 中国語・日本語?マーケサイトは別か翻訳パイプライン共有か?今フレームワークを決めれば、後で数週間節約。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (planning) – $500/lang (launch)</strong></span></div>
+    </div>
+
+    <!-- ITEM 13 — NEW — Customer support framework -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 13 — Customer support framework</span><span class="lang jp">Item 13 — カスタマーサポート・フレームワーク</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Lives between brand and ops. Three pieces: <strong>help center content</strong> (50+ FAQ articles around onboarding, install, top-up, refunds, eSIM compatibility), <strong>FAQ structure</strong> (searchable, with screenshots), <strong>support reply tone guidelines</strong> (matches Decision 06 brand voice). Apple + Google require a working support contact pre-launch. Tool selection (Intercom / Crisp / HelpScout) happens in Phase 3.</span><span class="lang jp">ブランドとオペレーションの境界に位置。3 要素:<strong>ヘルプセンター コンテンツ</strong>（オンボーディング・インストール・トップアップ・返金・eSIM 互換性に関する FAQ を 50+ 記事）、<strong>FAQ 構造</strong>（検索可能・スクショ付き）、<strong>サポート返信トーンガイドライン</strong>（Decision 06 のブランドボイスと整合）。Apple + Google はローンチ前にサポート窓口の動作確認を要求。ツール選定（Intercom / Crisp / HelpScout）は Phase 3。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (DIY) – $500 (copywriter)</strong></span></div>
+    </div>
+
+    <!-- ITEM 14 — NEW — Accessibility baseline -->
+    <div class="roadmap-item">
+      <div class="ri-head">
+        <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
+        <h3><span class="lang en">Item 14 — Accessibility baseline (WCAG 2.1 AA)</span><span class="lang jp">Item 14 — アクセシビリティ基準（WCAG 2.1 AA）</span></h3>
+      </div>
+      <p class="ri-desc"><span class="lang en">Aim for WCAG 2.1 AA from the start: 4.5:1 color contrast minimum, all interactive elements 44×44px touch targets, screen-reader labels on every icon-only button, no color-only state indication (use icons or text too), keyboard navigability on the web. Apple + Google both reward (and increasingly require) accessible apps in their store rankings. Free if designed in, expensive to retrofit.</span><span class="lang jp">最初から WCAG 2.1 AA 準拠を目指す:色コントラスト比 4.5:1 以上、インタラクティブ要素は 44×44px のタッチターゲット、アイコンのみのボタンには スクリーンリーダー用ラベル、状態を色だけで示さない（アイコンやテキストも併用）、Web ではキーボード操作可能。Apple + Google は ストアランキングでアクセシブルアプリを優遇（次第に必須化の傾向）。設計時に組み込めば無料、後付けは高コスト。</span></p>
+      <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong><span class="lang en">bundled with Items 4 + 5</span><span class="lang jp">Item 4 + 5 に含む</span></strong></span></div>
+    </div>
+  </section>
+
+  <!-- Phases 3-7 -->
+  <section class="phase-detail-section">
+    <div class="sec-label"><span class="lang en">PHASES 3 — 7 · UPCOMING</span><span class="lang jp">フェーズ 3 — 7 ・ 今後</span></div>
     <h2 class="lang en">The rest of <em>the journey</em>.</h2>
     <h2 class="lang jp"><em>残りの道のり</em>。</h2>
     <div class="upcoming-grid">
-      <div class="upcoming-chip"><div class="uc-num">2</div><div class="uc-name"><span class="lang en">Brand &amp; Product Design</span><span class="lang jp">ブランド・プロダクトデザイン</span></div></div>
       <div class="upcoming-chip"><div class="uc-num">3</div><div class="uc-name"><span class="lang en">Tech Build (iOS · Android · Web)</span><span class="lang jp">技術開発（iOS・Android・Web）</span></div></div>
       <div class="upcoming-chip"><div class="uc-num">4</div><div class="uc-name"><span class="lang en">Beta &amp; Pre-launch</span><span class="lang jp">ベータ・ローンチ準備</span></div></div>
       <div class="upcoming-chip"><div class="uc-num">5</div><div class="uc-name"><span class="lang en">Soft Launch</span><span class="lang jp">ソフトローンチ</span></div></div>
