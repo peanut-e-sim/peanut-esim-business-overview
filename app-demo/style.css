@@ -113,15 +113,28 @@ body {
 .screen.is-active {
   display: flex;
   opacity: 1;
+  flex-direction: column;
+  height: 100%;
   animation: screenFadeIn 280ms cubic-bezier(.4,0,.2,1);
+}
+/* Sticky headers + footers inside any screen */
+.screen.is-active > header,
+.screen.is-active > .screen-header {
+  flex: 0 0 auto;
+}
+.screen.is-active > .screen-footer,
+.screen.is-active > .sticky-footer {
+  flex: 0 0 auto;
 }
 @keyframes screenFadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .screen-scroll {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -393,6 +406,132 @@ body {
   .status-bar { display: none; }
   .bottom-nav { padding-bottom: max(20px, env(safe-area-inset-bottom)); }
 }
+
+/* ---------- Calendar Confirmation Sheet (R8) ---------- */
+.calendar-sheet.is-open .sheet-panel {
+  display: flex;
+  flex-direction: column;
+  max-height: 86%;
+  padding: 12px 0 0 0;
+}
+.cal-sheet-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 20px 20px 20px;
+}
+.cal-sheet-cta {
+  flex: 0 0 auto;
+  padding: 16px 20px 20px 20px;
+  background: linear-gradient(to top, #fff 60%, rgba(255,255,255,0));
+}
+.cal-flight-card {
+  border: 1px solid #E8E5DD;
+  border-radius: 14px;
+  background: #fff;
+  padding: 12px;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.cal-flight-card:hover { border-color: #B47A48; transform: translateY(-1px); }
+
+/* iOS-style permission modal */
+.ios-perm-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 95;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  background: rgba(22,27,42,0.18);
+}
+.ios-perm-overlay.is-open { display: flex; }
+.ios-perm-card {
+  width: 100%;
+  max-width: 280px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  transform: scale(0.92);
+  opacity: 0;
+  transition: opacity .25s ease, transform .25s cubic-bezier(.32,.72,0,1);
+}
+.ios-perm-overlay.is-open .ios-perm-card { opacity: 1; transform: scale(1); }
+.ios-perm-card .perm-body { padding: 18px 18px 14px; text-align: center; }
+.ios-perm-card .perm-title { font-weight: 700; font-size: 15px; color: #161b2a; margin: 0 0 6px; }
+.ios-perm-card .perm-msg { font-size: 13px; color: #161b2a; line-height: 1.35; margin: 0; }
+.ios-perm-card .perm-actions { display: grid; grid-template-columns: 1fr 1fr; border-top: 0.5px solid rgba(0,0,0,0.1); }
+.ios-perm-card .perm-actions button {
+  background: transparent;
+  border: none;
+  padding: 12px 0;
+  font-size: 16px;
+  color: #007AFF;
+  cursor: pointer;
+}
+.ios-perm-card .perm-actions button.primary { font-weight: 700; }
+.ios-perm-card .perm-actions button + button { border-left: 0.5px solid rgba(0,0,0,0.1); }
+
+/* Calendar success state */
+.cal-success-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 96;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: #fff;
+}
+.cal-success-overlay.is-open { display: flex; }
+.cal-success-icon {
+  width: 96px; height: 96px;
+  background: #99f3e2;
+  color: #005047;
+  border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+  transform: scale(0);
+  transition: transform .5s cubic-bezier(.32,1.6,.6,1) .15s;
+}
+.cal-success-overlay.is-open .cal-success-icon { transform: scale(1); }
+.cal-success-icon .material-symbols-outlined {
+  font-size: 56px;
+  font-variation-settings: 'FILL' 1, 'wght' 700;
+}
+.cal-success-title {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 28px;
+  line-height: 1.15;
+  color: #161b2a;
+  text-align: center;
+  margin: 0 0 10px;
+}
+.cal-success-sub {
+  font-size: 14px;
+  color: #3e4946;
+  text-align: center;
+  margin: 0 0 32px;
+}
+.cal-success-actions { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 12px; }
+.cal-success-actions .btn-primary {
+  height: 52px; border-radius: 14px;
+  background: #00685c; color: #fff;
+  font-weight: 700; font-size: 16px;
+  border: none; cursor: pointer;
+}
+.cal-success-actions .btn-secondary {
+  height: 52px; border-radius: 14px;
+  background: #eaedff; color: #161b2a;
+  font-weight: 700; font-size: 16px;
+  border: none; cursor: pointer;
+}
+.peanut-divider { background-color: #E8E5DD; }
 
 /* ---------- Style Guide Dev Route ---------- */
 .style-guide-panel {

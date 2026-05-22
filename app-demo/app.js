@@ -187,6 +187,56 @@
     topUpSheet.querySelector('.sheet-close')?.addEventListener('click', () => topUpSheet.classList.remove('is-open'));
   }
 
+  // ---- Calendar Save sheet (R8) ----
+  const calOpenBtn  = document.getElementById('save-cal-cta');
+  const calSheet    = document.getElementById('calendar-sheet');
+  const calSaveBtn  = document.getElementById('calendar-save-btn');
+  const calPerm     = document.getElementById('calendar-perm-overlay');
+  const calPermDeny = document.getElementById('calendar-perm-deny');
+  const calPermAllow= document.getElementById('calendar-perm-allow');
+  const calSuccess  = document.getElementById('calendar-success');
+  const calDoneBtn  = document.getElementById('calendar-done-btn');
+  const calOpenAppBtn = document.getElementById('calendar-open-btn');
+  let calAutoCloseTimer = null;
+
+  function closeCalendarSheet() {
+    calSheet.classList.remove('is-open');
+    calPerm.classList.remove('is-open');
+    calSuccess.classList.remove('is-open');
+    clearTimeout(calAutoCloseTimer);
+  }
+  if (calOpenBtn && calSheet) {
+    calOpenBtn.addEventListener('click', () => {
+      calSheet.classList.add('is-open');
+    });
+    calSheet.querySelector('.sheet-backdrop').addEventListener('click', closeCalendarSheet);
+  }
+  if (calSaveBtn) {
+    calSaveBtn.addEventListener('click', () => {
+      calPerm.classList.add('is-open');
+    });
+  }
+  if (calPermDeny) {
+    calPermDeny.addEventListener('click', () => calPerm.classList.remove('is-open'));
+  }
+  if (calPermAllow) {
+    calPermAllow.addEventListener('click', () => {
+      calPerm.classList.remove('is-open');
+      setTimeout(() => {
+        calSuccess.classList.add('is-open');
+        // auto-dismiss after 3s
+        clearTimeout(calAutoCloseTimer);
+        calAutoCloseTimer = setTimeout(closeCalendarSheet, 3000);
+      }, 240);
+    });
+  }
+  if (calDoneBtn) calDoneBtn.addEventListener('click', closeCalendarSheet);
+  if (calOpenAppBtn) calOpenAppBtn.addEventListener('click', (e) => {
+    // visual only — links to nowhere
+    e.preventDefault();
+    showToast('Opening Calendar…');
+  });
+
   // ---- Rewards: redeem buttons ----
   document.querySelectorAll('.reward-redeem').forEach(btn => {
     btn.addEventListener('click', () => {
