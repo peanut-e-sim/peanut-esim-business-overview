@@ -1,1124 +1,750 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="theme-color" content="#FAFAF7" />
-  <title>Peanut eSIM — App Demo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Peanut eSIM — App Demo</title>
+
+<!-- Fonts: Inter (body) + JetBrains Mono (labels) + Newsreader italic (headlines) + Instrument Serif (display) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Desktop frame: shows the iPhone mockup. On mobile, this collapses to full-screen. -->
-  <div class="desktop-bg">
-    <div class="brand-corner">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><ellipse cx="12" cy="8" rx="6" ry="7" fill="#B47A48"/><ellipse cx="12" cy="16" rx="6" ry="7" fill="#B47A48"/><path d="M9 9.5h6M9 14.5h6" stroke="#FAF1E8" stroke-width="0.8" stroke-linecap="round"/></svg>
-      <span>Peanut eSIM — Prototype</span>
+
+<div class="phone-shell" id="phone-shell">
+
+  <!-- Dynamic Island & Home Indicator (live in shell, not per screen) -->
+  <div class="dynamic-island" aria-hidden="true"></div>
+
+  <!-- Shared status bar -->
+  <div class="status-bar" id="status-bar">
+    <div>9:41</div>
+    <div class="signal-cluster" aria-hidden="true">
+      <span class="material-symbols-outlined" style="font-size:16px">signal_cellular_4_bar</span>
+      <span class="material-symbols-outlined" style="font-size:16px">wifi</span>
+      <span class="material-symbols-outlined" style="font-size:18px">battery_full_alt</span>
     </div>
-    <div class="hint-text">Tap through it like a real iPhone app</div>
   </div>
 
-  <!-- Phone frame -->
-  <div class="phone-frame">
-    <div class="phone-buttons-left"></div>
-    <div class="phone-buttons-right"></div>
+  <!-- Screen viewport — only one .screen is active at a time -->
+  <div class="screen-viewport" id="viewport">
 
-    <div class="phone-screen" id="phone-screen">
+    <!-- ============================ SPLASH ============================ -->
+    <section class="screen splash-screen is-active" data-screen="splash" data-nav-tab="" data-shows-bottom-nav="false">
+      <h1 class="splash-mark">Peanut</h1>
+      <div class="splash-tag">FOR CREW · BY CREW</div>
+      <div class="splash-dot" aria-hidden="true"></div>
+    </section>
 
-      <!-- Status bar (persistent) -->
-      <div class="status-bar">
-        <div class="status-time">9:41</div>
-        <div class="dynamic-island"></div>
-        <div class="status-right">
-          <svg width="17" height="11" viewBox="0 0 17 11" fill="none"><rect x="0.5" y="3.5" width="2" height="7" rx="0.5" fill="currentColor"/><rect x="4.5" y="2" width="2" height="8.5" rx="0.5" fill="currentColor"/><rect x="8.5" y="0.5" width="2" height="10" rx="0.5" fill="currentColor"/><rect x="12.5" y="0.5" width="2" height="10" rx="0.5" fill="currentColor"/></svg>
-          <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><path d="M7.5 2.5C9.6 2.5 11.6 3.3 13 4.6L14.5 3C12.6 1.3 10.1 0.3 7.5 0.3C4.9 0.3 2.4 1.3 0.5 3L2 4.6C3.4 3.3 5.4 2.5 7.5 2.5ZM7.5 6.6C8.7 6.6 9.9 7 10.8 7.8L12.3 6.3C11 5 9.3 4.4 7.5 4.4C5.7 4.4 4 5 2.7 6.3L4.2 7.8C5.1 7 6.3 6.6 7.5 6.6ZM7.5 10.8L9.7 8.5C9.1 7.9 8.3 7.6 7.5 7.6C6.7 7.6 5.9 7.9 5.3 8.5L7.5 10.8Z" fill="currentColor"/></svg>
-          <div class="battery"><div class="battery-fill"></div></div>
+    <!-- ============================ HOME ============================== -->
+    <section class="screen home-screen" data-screen="home" data-nav-tab="home" data-shows-bottom-nav="true">
+      <div class="home-header">
+        <h1 class="home-greeting">Good morning, Layla</h1>
+        <span class="crew-pill">EMIRATES · DXB BASE</span>
+      </div>
+
+      <!-- Hero upload card -->
+      <div class="home-hero-card shimmer">
+        <div class="photo-overlay" aria-hidden="true"></div>
+        <div class="row">
+          <div>
+            <h2>Upload your May roster</h2>
+            <p class="sub">Get your perfect data plan in 30 seconds</p>
+          </div>
+          <span class="material-symbols-outlined cloud-icon">cloud_upload</span>
+        </div>
+        <button class="btn-primary" data-action="upload-roster">Choose screenshot</button>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="stats-card">
+        <div class="stat">
+          <span class="material-symbols-outlined">flight_takeoff</span>
+          <span>12 trips</span>
+        </div>
+        <div class="stat">
+          <span class="material-symbols-outlined">public</span>
+          <span>23 destinations</span>
+        </div>
+        <div class="stat">
+          <span class="material-symbols-outlined">payments</span>
+          <span>$0 spent</span>
         </div>
       </div>
 
-      <!-- Screen stack -->
-      <div class="screen-stack" id="screen-stack">
-
-        <!-- SCREEN 1: SPLASH -->
-        <section class="screen screen-splash" data-screen="splash">
-          <div class="splash-content">
-            <div class="splash-logo">
-              <svg viewBox="0 0 80 100" width="76" height="92" class="peanut-mark">
-                <ellipse cx="40" cy="32" rx="26" ry="30" fill="#B47A48"/>
-                <ellipse cx="40" cy="68" rx="26" ry="30" fill="#B47A48"/>
-                <ellipse cx="40" cy="32" rx="22" ry="26" fill="none" stroke="#FAF1E8" stroke-width="1.5" opacity="0.5"/>
-                <ellipse cx="40" cy="68" rx="22" ry="26" fill="none" stroke="#FAF1E8" stroke-width="1.5" opacity="0.5"/>
-                <g opacity="0.6">
-                  <circle cx="32" cy="28" r="1.2" fill="#FAF1E8"/>
-                  <circle cx="46" cy="34" r="1.2" fill="#FAF1E8"/>
-                  <circle cx="38" cy="22" r="1.2" fill="#FAF1E8"/>
-                  <circle cx="34" cy="66" r="1.2" fill="#FAF1E8"/>
-                  <circle cx="46" cy="70" r="1.2" fill="#FAF1E8"/>
-                  <circle cx="42" cy="60" r="1.2" fill="#FAF1E8"/>
-                </g>
-              </svg>
-            </div>
-            <h1 class="splash-wordmark"><em>Peanut eSIM</em></h1>
-            <div class="splash-tag">FOR CREW · BY CREW</div>
+      <!-- Upcoming flights -->
+      <div class="section-head">
+        <h3>Upcoming flights</h3>
+        <a href="#" data-go="plans">See all</a>
+      </div>
+      <div class="trip-list">
+        <div class="trip-row" data-go="plan-detail">
+          <div class="left">
+            <span class="date">May 3</span>
+            <span class="dest">🇺🇸 JFK</span>
           </div>
-        </section>
-
-        <!-- SCREEN 2: ONBOARDING -->
-        <section class="screen screen-onboarding" data-screen="onboarding">
-          <div class="onboarding-skip">
-            <button class="text-btn" data-action="goto" data-target="signin">Skip</button>
+          <div class="right">
+            <span class="tag tag--soft">5 days</span>
+            <span class="tag tag--hot">No plan</span>
           </div>
-          <div class="onboarding-slides" id="onb-slides">
-            <div class="onb-slide active" data-idx="0">
-              <div class="onb-illustration">
-                <svg viewBox="0 0 240 200" width="220" height="180">
-                  <rect x="40" y="30" width="160" height="140" rx="12" fill="#FFFFFF" stroke="#E8E5DD" stroke-width="2"/>
-                  <rect x="56" y="50" width="128" height="10" rx="3" fill="#F0EEE7"/>
-                  <rect x="56" y="70" width="90" height="6" rx="2" fill="#EBF5F2"/>
-                  <rect x="56" y="86" width="128" height="6" rx="2" fill="#F0EEE7"/>
-                  <rect x="56" y="100" width="100" height="6" rx="2" fill="#F0EEE7"/>
-                  <rect x="56" y="114" width="120" height="6" rx="2" fill="#EBF5F2"/>
-                  <rect x="56" y="128" width="80" height="6" rx="2" fill="#F0EEE7"/>
-                  <rect x="56" y="142" width="110" height="6" rx="2" fill="#F0EEE7"/>
-                  <g transform="translate(170,140)">
-                    <circle r="22" fill="#2D8C7E"/>
-                    <path d="M-2 -8 L-2 4 M-8 -2 L-2 -8 L4 -2" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    <line x1="-8" y1="8" x2="6" y2="8" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
-                  </g>
-                </svg>
-              </div>
-              <h2 class="onb-title">Built around your <em>roster</em></h2>
-              <p class="onb-body">Drop your monthly schedule. We do the rest.</p>
-            </div>
-
-            <div class="onb-slide" data-idx="1">
-              <div class="onb-illustration">
-                <svg viewBox="0 0 240 200" width="220" height="180">
-                  <path d="M30 130 Q80 80 130 100 Q180 120 210 90" stroke="#E8E5DD" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
-                  <g transform="translate(120,100) rotate(15)">
-                    <path d="M0 -30 L10 0 L30 8 L10 14 L0 40 L-10 14 L-30 8 L-10 0 Z" fill="#1A1F2E"/>
-                    <circle cx="0" cy="-10" r="3" fill="#2D8C7E"/>
-                  </g>
-                  <g transform="translate(180,60)">
-                    <circle r="20" fill="#EBF5F2"/>
-                    <path d="M-6 0 L-2 4 L6 -4" stroke="#2D8C7E" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                  </g>
-                  <g transform="translate(60,160)">
-                    <rect x="-30" y="-12" width="60" height="24" rx="6" fill="#FFFFFF" stroke="#E8E5DD" stroke-width="1.5"/>
-                    <text x="0" y="4" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#2D8C7E" font-weight="600">CONNECTED</text>
-                  </g>
-                </svg>
-              </div>
-              <h2 class="onb-title">Data ready before you <em>land</em></h2>
-              <p class="onb-body">Your eSIM activates the moment your plane touches down.</p>
-            </div>
-
-            <div class="onb-slide" data-idx="2">
-              <div class="onb-illustration">
-                <svg viewBox="0 0 240 200" width="220" height="180">
-                  <g transform="translate(80,100)">
-                    <circle r="42" fill="#FAF1E8"/>
-                    <circle cx="0" cy="-8" r="11" fill="#B47A48"/>
-                    <path d="M-16 18 Q-16 4 0 4 Q16 4 16 18 Z" fill="#B47A48"/>
-                  </g>
-                  <g transform="translate(160,100)">
-                    <circle r="42" fill="#EBF5F2"/>
-                    <circle cx="0" cy="-8" r="11" fill="#2D8C7E"/>
-                    <path d="M-16 18 Q-16 4 0 4 Q16 4 16 18 Z" fill="#2D8C7E"/>
-                    <rect x="-7" y="-10" width="14" height="4" rx="1" fill="#FFFFFF" opacity="0.7"/>
-                  </g>
-                  <path d="M105 100 L135 100" stroke="#1A1F2E" stroke-width="1.5" stroke-dasharray="3 3"/>
-                </svg>
-              </div>
-              <h2 class="onb-title">Made for <em>crew</em>, by crew</h2>
-              <p class="onb-body">Cabin and cockpit. We know the routes, the layovers, the slips.</p>
-            </div>
-          </div>
-
-          <div class="onb-footer">
-            <div class="onb-dots" id="onb-dots">
-              <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
-            </div>
-            <button class="btn btn-primary btn-full" id="onb-next">Next</button>
-          </div>
-        </section>
-
-        <!-- SCREEN 3: SIGN IN / SIGN UP -->
-        <section class="screen screen-signin" data-screen="signin">
-          <div class="screen-header">
-            <button class="icon-btn" data-action="back"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4 L6 10 L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          </div>
-          <div class="screen-body">
-            <h1 class="screen-title"><em>Welcome</em></h1>
-            <p class="screen-sub">Crew members only. We verify on the next step.</p>
-
-            <div class="tabs" data-tabs="signin">
-              <button class="tab active" data-tab="signin">Sign In</button>
-              <button class="tab" data-tab="signup">Sign Up</button>
-            </div>
-
-            <div class="tab-panel active" data-panel="signin">
-              <div class="field">
-                <label class="field-label">Email</label>
-                <input type="email" class="field-input" placeholder="your.personal@email.com" />
-              </div>
-              <div class="field">
-                <label class="field-label">Password</label>
-                <input type="password" class="field-input" placeholder="••••••••" />
-              </div>
-              <button class="text-btn text-btn-right">Forgot password?</button>
-              <button class="btn btn-primary btn-full" data-action="goto" data-target="verify">Sign In</button>
-            </div>
-
-            <div class="tab-panel" data-panel="signup">
-              <div class="field">
-                <label class="field-label">Email</label>
-                <input type="email" class="field-input" placeholder="your.personal@email.com" />
-              </div>
-              <div class="field">
-                <label class="field-label">Password</label>
-                <input type="password" class="field-input" placeholder="Create a password" />
-              </div>
-              <button class="btn btn-primary btn-full" data-action="goto" data-target="verify">Continue</button>
-            </div>
-
-            <div class="divider"><span>or continue with</span></div>
-
-            <div class="social-row">
-              <button class="btn btn-social">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.07-.5-2.06-.52-3.18 0-1.43.7-2.18.5-3.04-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.07.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.52 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                Apple
-              </button>
-              <button class="btn btn-social">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.5 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.32z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.15-4.53H2.18v2.84A11 11 0 0 0 12 23z" fill="#34A853"/><path d="M5.85 14.1A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.44.35-2.1V7.07H2.18A11 11 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.67-2.83z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.07L5.85 9.9c.86-2.6 3.29-4.52 6.15-4.52z" fill="#EA4335"/></svg>
-                Google
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <!-- SCREEN 4: CREW VERIFICATION -->
-        <section class="screen screen-verify" data-screen="verify">
-          <div class="screen-header">
-            <button class="icon-btn" data-action="back"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4 L6 10 L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <div class="step-indicator"><span id="verify-step-label">1 of 2</span></div>
-          </div>
-          <div class="screen-body">
-            <h1 class="screen-title">Verify your <em>crew</em> status</h1>
-
-            <div class="verify-step active" data-step="1">
-              <p class="screen-sub">Enter your airline email. We'll send a 6-digit code.</p>
-              <div class="field">
-                <label class="field-label">Airline email</label>
-                <input type="email" class="field-input" placeholder="name@emirates.com" id="airline-email" />
-                <div class="field-hint">Supported: @emirates.com, @etihad.ae, @jal.com, @ana.co.jp</div>
-              </div>
-              <div class="info-card">
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#2D8C7E" stroke-width="1.5"/><path d="M10 6v5M10 13.5v.5" stroke="#2D8C7E" stroke-width="1.5" stroke-linecap="round"/></svg>
-                <span>We use this only to verify. Your account login is your personal email.</span>
-              </div>
-              <button class="btn btn-primary btn-full" id="verify-next">Send code</button>
-            </div>
-
-            <div class="verify-step" data-step="2">
-              <p class="screen-sub">We sent a code to <span id="verify-email-echo" class="strong">name@emirates.com</span></p>
-              <div class="otp-row">
-                <input class="otp-box" maxlength="1" inputmode="numeric" />
-                <input class="otp-box" maxlength="1" inputmode="numeric" />
-                <input class="otp-box" maxlength="1" inputmode="numeric" />
-                <input class="otp-box" maxlength="1" inputmode="numeric" />
-                <input class="otp-box" maxlength="1" inputmode="numeric" />
-                <input class="otp-box" maxlength="1" inputmode="numeric" />
-              </div>
-              <button class="text-btn">Resend code (30s)</button>
-              <button class="btn btn-primary btn-full" data-action="goto" data-target="home">Verify & continue</button>
-            </div>
-          </div>
-        </section>
-
-        <!-- SCREEN 5: HOME -->
-        <section class="screen screen-home with-nav" data-screen="home">
-          <div class="scroll-body">
-            <div class="home-top">
-              <div class="home-greeting">
-                <div class="screen-eyebrow">GOOD MORNING</div>
-                <h1 class="home-name"><em>Layla</em></h1>
-              </div>
-              <button class="icon-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-              </button>
-            </div>
-
-            <div class="hero-card" data-action="goto" data-target="upload-loading">
-              <div class="hero-card-bg">
-                <svg viewBox="0 0 200 200" preserveAspectRatio="none"><circle cx="170" cy="50" r="60" fill="#EBF5F2" opacity="0.5"/><circle cx="40" cy="180" r="40" fill="#FAF1E8" opacity="0.5"/></svg>
-              </div>
-              <div class="hero-card-content">
-                <div class="screen-eyebrow accent">SIGNATURE FEATURE</div>
-                <h2 class="hero-title">Upload your <em>May roster</em></h2>
-                <p class="hero-body">We'll auto-generate the perfect data plan for every trip.</p>
-                <div class="hero-cta">
-                  <span>Upload screenshot</span>
-                  <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 10h10M10 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
-              </div>
-            </div>
-
-            <button class="text-btn text-btn-block" data-action="goto" data-target="plans">Or browse plans manually →</button>
-
-            <div class="stats-row">
-              <div class="stat">
-                <div class="stat-num">12</div>
-                <div class="stat-label">Trips this month</div>
-              </div>
-              <div class="stat-divider"></div>
-              <div class="stat">
-                <div class="stat-num">23</div>
-                <div class="stat-label">Destinations</div>
-              </div>
-              <div class="stat-divider"></div>
-              <div class="stat">
-                <div class="stat-num">$0</div>
-                <div class="stat-label">Spent</div>
-              </div>
-            </div>
-
-            <div class="section">
-              <div class="section-head">
-                <h3 class="section-title">Upcoming flights</h3>
-                <button class="text-btn">See all</button>
-              </div>
-              <div class="trip-list">
-                <div class="trip-item">
-                  <div class="trip-flag">🇺🇸</div>
-                  <div class="trip-info">
-                    <div class="trip-route">DXB → JFK</div>
-                    <div class="trip-meta">May 24 · EK 203 · 14h layover</div>
-                  </div>
-                  <div class="trip-badge">No plan</div>
-                </div>
-                <div class="trip-item">
-                  <div class="trip-flag">🇯🇵</div>
-                  <div class="trip-info">
-                    <div class="trip-route">DXB → NRT</div>
-                    <div class="trip-meta">May 27 · EK 318 · 26h layover</div>
-                  </div>
-                  <div class="trip-badge">No plan</div>
-                </div>
-                <div class="trip-item">
-                  <div class="trip-flag">🇬🇧</div>
-                  <div class="trip-info">
-                    <div class="trip-route">DXB → LHR</div>
-                    <div class="trip-meta">May 30 · EK 003 · 22h layover</div>
-                  </div>
-                  <div class="trip-badge">No plan</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="section">
-              <h3 class="section-title">Crew tips</h3>
-              <div class="tip-card">
-                <div class="tip-emoji">🇯🇵</div>
-                <div>
-                  <div class="tip-title">Narita layover, 26h</div>
-                  <div class="tip-body">Heads-up: hotel WiFi is patchy. 5GB plan covers your slip comfortably.</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="scroll-pad"></div>
-          </div>
-        </section>
-
-        <!-- INTERSTITIAL: Upload loading -->
-        <section class="screen screen-loading" data-screen="upload-loading">
-          <div class="loading-content">
-            <div class="loading-spinner">
-              <svg viewBox="0 0 60 60" width="60" height="60">
-                <circle cx="30" cy="30" r="24" stroke="#E8E5DD" stroke-width="3" fill="none"/>
-                <circle cx="30" cy="30" r="24" stroke="#2D8C7E" stroke-width="3" fill="none" stroke-dasharray="40 200" stroke-linecap="round" transform="rotate(-90 30 30)">
-                  <animateTransform attributeName="transform" type="rotate" from="-90 30 30" to="270 30 30" dur="1.2s" repeatCount="indefinite"/>
-                </circle>
-              </svg>
-            </div>
-            <div class="loading-status" id="loading-status">Reading your roster…</div>
-            <div class="loading-steps">
-              <div class="loading-step done"><span class="loading-dot"></span>Found 12 trips</div>
-              <div class="loading-step done"><span class="loading-dot"></span>Matched 8 destinations</div>
-              <div class="loading-step pending"><span class="loading-dot"></span>Optimising data plan…</div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SCREEN 6: SCHEDULE UPLOAD RESULT -->
-        <section class="screen screen-result with-nav" data-screen="result">
-          <div class="scroll-body">
-            <div class="screen-header transparent">
-              <button class="icon-btn" data-action="goto" data-target="home"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4 L6 10 L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="4" cy="10" r="1.5" fill="currentColor"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/><circle cx="16" cy="10" r="1.5" fill="currentColor"/></svg></button>
-            </div>
-            <div class="result-top">
-              <div class="screen-eyebrow accent">SMART PLAN GENERATED</div>
-              <h1 class="result-title">We found <em>12 trips</em>.<br/>Here's your May plan.</h1>
-            </div>
-
-            <div class="price-card">
-              <div class="price-card-glow"></div>
-              <div class="price-amount">
-                <span class="price-symbol">$</span><span class="price-int">47</span><span class="price-dec">.20</span>
-              </div>
-              <div class="price-label">for the month — covers all 12 trips</div>
-              <div class="price-savings">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="#2D8C7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                You save $34.80 vs buying separately
-              </div>
-            </div>
-
-            <div class="section">
-              <div class="section-head">
-                <h3 class="section-title">Trip-by-trip breakdown</h3>
-                <button class="text-btn" data-action="goto" data-target="plans">Customise →</button>
-              </div>
-              <div class="result-trips">
-                <div class="result-trip">
-                  <div class="result-trip-left">
-                    <div class="result-trip-flag">🇺🇸</div>
-                    <div>
-                      <div class="result-trip-name">New York · 14h</div>
-                      <div class="result-trip-sub">May 24 · EK 203</div>
-                    </div>
-                  </div>
-                  <div class="result-trip-right">
-                    <div class="result-trip-data">2 GB</div>
-                    <div class="result-trip-price">$6.50</div>
-                  </div>
-                </div>
-                <div class="result-trip">
-                  <div class="result-trip-left">
-                    <div class="result-trip-flag">🇯🇵</div>
-                    <div>
-                      <div class="result-trip-name">Tokyo · 26h</div>
-                      <div class="result-trip-sub">May 27 · EK 318</div>
-                    </div>
-                  </div>
-                  <div class="result-trip-right">
-                    <div class="result-trip-data">5 GB</div>
-                    <div class="result-trip-price">$8.90</div>
-                  </div>
-                </div>
-                <div class="result-trip">
-                  <div class="result-trip-left">
-                    <div class="result-trip-flag">🇬🇧</div>
-                    <div>
-                      <div class="result-trip-name">London · 22h</div>
-                      <div class="result-trip-sub">May 30 · EK 003</div>
-                    </div>
-                  </div>
-                  <div class="result-trip-right">
-                    <div class="result-trip-data">3 GB</div>
-                    <div class="result-trip-price">$5.40</div>
-                  </div>
-                </div>
-                <div class="result-trip">
-                  <div class="result-trip-left">
-                    <div class="result-trip-flag">🇹🇭</div>
-                    <div>
-                      <div class="result-trip-name">Bangkok · 18h</div>
-                      <div class="result-trip-sub">Jun 2 · EK 372</div>
-                    </div>
-                  </div>
-                  <div class="result-trip-right">
-                    <div class="result-trip-data">3 GB</div>
-                    <div class="result-trip-price">$4.20</div>
-                  </div>
-                </div>
-                <div class="result-trip">
-                  <div class="result-trip-left">
-                    <div class="result-trip-flag">🇦🇺</div>
-                    <div>
-                      <div class="result-trip-name">Sydney · 30h</div>
-                      <div class="result-trip-sub">Jun 5 · EK 414</div>
-                    </div>
-                  </div>
-                  <div class="result-trip-right">
-                    <div class="result-trip-data">5 GB</div>
-                    <div class="result-trip-price">$7.80</div>
-                  </div>
-                </div>
-                <div class="result-trip subtle">
-                  <div class="result-trip-left">
-                    <div class="result-trip-flag" style="filter:grayscale(0.4)">＋7</div>
-                    <div>
-                      <div class="result-trip-name">7 more trips</div>
-                      <div class="result-trip-sub">Singapore, Paris, Munich…</div>
-                    </div>
-                  </div>
-                  <div class="result-trip-right">
-                    <div class="result-trip-data">21 GB</div>
-                    <div class="result-trip-price">$14.40</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="result-cta-wrap">
-              <button class="btn btn-primary btn-full btn-large" data-action="goto" data-target="checkout">Activate plan — $47.20</button>
-              <button class="text-btn text-btn-block" data-action="goto" data-target="plans">Or customise each trip →</button>
-            </div>
-            <div class="scroll-pad"></div>
-          </div>
-        </section>
-
-        <!-- SCREEN 7: PLAN BROWSE -->
-        <section class="screen screen-plans with-nav" data-screen="plans">
-          <div class="scroll-body">
-            <div class="screen-header transparent">
-              <h1 class="screen-title small"><em>Plans</em></h1>
-            </div>
-            <div class="search-wrap">
-              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="#8B92A3" stroke-width="1.5"/><path d="M14 14l3 3" stroke="#8B92A3" stroke-width="1.5" stroke-linecap="round"/></svg>
-              <input class="search-input" placeholder="Where are you flying?" />
-            </div>
-
-            <div class="section">
-              <h3 class="section-title small">Recent searches</h3>
-              <div class="chip-row">
-                <button class="chip">🇺🇸 USA</button>
-                <button class="chip">🇬🇧 UK</button>
-                <button class="chip">🇯🇵 Japan</button>
-                <button class="chip">🇹🇭 Thailand</button>
-              </div>
-            </div>
-
-            <div class="section">
-              <h3 class="section-title small">Popular for crew</h3>
-              <div class="country-grid">
-                <button class="country-card" data-action="goto" data-target="plan-detail">
-                  <div class="country-flag">🇺🇸</div>
-                  <div class="country-name">USA</div>
-                  <div class="country-price">from $4.50</div>
-                </button>
-                <button class="country-card" data-action="goto" data-target="plan-detail">
-                  <div class="country-flag">🇬🇧</div>
-                  <div class="country-name">UK</div>
-                  <div class="country-price">from $3.20</div>
-                </button>
-                <button class="country-card" data-action="goto" data-target="plan-detail">
-                  <div class="country-flag">🇯🇵</div>
-                  <div class="country-name">Japan</div>
-                  <div class="country-price">from $4.90</div>
-                </button>
-                <button class="country-card" data-action="goto" data-target="plan-detail">
-                  <div class="country-flag">🇹🇭</div>
-                  <div class="country-name">Thailand</div>
-                  <div class="country-price">from $2.10</div>
-                </button>
-                <button class="country-card" data-action="goto" data-target="plan-detail">
-                  <div class="country-flag">🇸🇬</div>
-                  <div class="country-name">Singapore</div>
-                  <div class="country-price">from $3.80</div>
-                </button>
-                <button class="country-card" data-action="goto" data-target="plan-detail">
-                  <div class="country-flag">🇦🇺</div>
-                  <div class="country-name">Australia</div>
-                  <div class="country-price">from $5.40</div>
-                </button>
-              </div>
-              <button class="text-btn text-btn-block">View all 180+ destinations →</button>
-            </div>
-
-            <div class="section">
-              <h3 class="section-title small">Regional bundles</h3>
-              <div class="bundle-card">
-                <div>
-                  <div class="bundle-name">Europe — 30 countries</div>
-                  <div class="bundle-sub">10 GB · 30 days · 5G</div>
-                </div>
-                <div class="bundle-price">$24.90</div>
-              </div>
-              <div class="bundle-card">
-                <div>
-                  <div class="bundle-name">Asia — 14 countries</div>
-                  <div class="bundle-sub">10 GB · 30 days · 5G</div>
-                </div>
-                <div class="bundle-price">$19.90</div>
-              </div>
-            </div>
-
-            <div class="scroll-pad"></div>
-          </div>
-        </section>
-
-        <!-- SCREEN 8: PLAN DETAIL -->
-        <section class="screen screen-plan-detail" data-screen="plan-detail">
-          <div class="scroll-body">
-            <div class="screen-header transparent">
-              <button class="icon-btn" data-action="back"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4 L6 10 L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3l2 5 5 .5-3.7 3.3 1.1 5L10 14.5 5.6 16.8l1.1-5L3 8.5 8 8z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/></svg></button>
-            </div>
-
-            <div class="plan-hero">
-              <div class="plan-hero-flag">🇯🇵</div>
-              <h1 class="screen-title"><em>Japan</em></h1>
-              <div class="plan-hero-meta">SoftBank · NTT Docomo · KDDI</div>
-              <div class="plan-hero-features">
-                <span class="feature-pill">5G</span>
-                <span class="feature-pill">Activates on landing</span>
-                <span class="feature-pill">No roaming</span>
-              </div>
-            </div>
-
-            <div class="section">
-              <h3 class="section-title small">Choose your plan</h3>
-              <div class="plan-options" id="plan-options">
-                <button class="plan-option" data-plan="1">
-                  <div class="plan-option-left">
-                    <div class="plan-option-data">1 GB</div>
-                    <div class="plan-option-days">7 days</div>
-                  </div>
-                  <div class="plan-option-price">$4.90</div>
-                </button>
-                <button class="plan-option selected" data-plan="5">
-                  <div class="plan-option-left">
-                    <div class="plan-option-data">5 GB</div>
-                    <div class="plan-option-days">15 days</div>
-                  </div>
-                  <div class="plan-option-price">$12.90</div>
-                </button>
-                <button class="plan-option" data-plan="10">
-                  <div class="plan-option-left">
-                    <div class="plan-option-data">10 GB</div>
-                    <div class="plan-option-days">30 days</div>
-                  </div>
-                  <div class="plan-option-price">$19.90</div>
-                </button>
-                <button class="plan-option" data-plan="unlimited">
-                  <div class="plan-option-left">
-                    <div class="plan-option-data">Unlimited</div>
-                    <div class="plan-option-days">30 days · fair use</div>
-                  </div>
-                  <div class="plan-option-price">$34.90</div>
-                </button>
-              </div>
-            </div>
-
-            <div class="section">
-              <h3 class="section-title small">What's included</h3>
-              <ul class="features-list">
-                <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="#2D8C7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Activates the moment you land</li>
-                <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="#2D8C7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> No roaming charges, ever</li>
-                <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="#2D8C7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 5G where available, 4G everywhere</li>
-                <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="#2D8C7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Tethering allowed</li>
-                <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-6" stroke="#2D8C7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Top up anytime in-app</li>
-              </ul>
-            </div>
-
-            <div class="scroll-pad-cta"></div>
-          </div>
-          <div class="floating-cta">
-            <button class="btn btn-primary btn-full btn-large" data-action="goto" data-target="checkout">Buy now — $12.90</button>
-          </div>
-        </section>
-
-        <!-- SCREEN 9: CHECKOUT -->
-        <section class="screen screen-checkout" data-screen="checkout">
-          <div class="scroll-body">
-            <div class="screen-header">
-              <button class="icon-btn" data-action="back"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4 L6 10 L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <h2 class="screen-header-title">Checkout</h2>
-              <div style="width:36px"></div>
-            </div>
-
-            <div class="section">
-              <h3 class="section-title small">Order summary</h3>
-              <div class="order-card">
-                <div class="order-row">
-                  <div class="order-row-left">
-                    <span class="order-flag">🇯🇵</span>
-                    <div>
-                      <div class="order-name">Japan · 5 GB</div>
-                      <div class="order-sub">15 days · 5G</div>
-                    </div>
-                  </div>
-                  <div class="order-price">$12.90</div>
-                </div>
-                <div class="order-divider"></div>
-                <div class="order-row plain">
-                  <span>Subtotal</span><span>$12.90</span>
-                </div>
-                <div class="order-row plain">
-                  <span>Crew discount</span><span class="discount">−$1.30</span>
-                </div>
-                <div class="order-divider"></div>
-                <div class="order-row total">
-                  <span>Total</span><span>$11.60</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="section">
-              <h3 class="section-title small">Payment</h3>
-              <div class="pay-options" id="pay-options">
-                <button class="pay-option selected" data-pay="apple">
-                  <div class="pay-option-left">
-                    <div class="pay-icon-circle"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.07-.5-2.06-.52-3.18 0-1.43.7-2.18.5-3.04-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.07.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.52 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg></div>
-                    <div>
-                      <div class="pay-option-name">Apple Pay</div>
-                      <div class="pay-option-sub">Face ID required</div>
-                    </div>
-                  </div>
-                  <div class="pay-option-radio"></div>
-                </button>
-                <button class="pay-option" data-pay="card">
-                  <div class="pay-option-left">
-                    <div class="pay-icon-circle"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 9h16" stroke="currentColor" stroke-width="1.5"/></svg></div>
-                    <div>
-                      <div class="pay-option-name">Card</div>
-                      <div class="pay-option-sub">Visa, Mastercard, Amex</div>
-                    </div>
-                  </div>
-                  <div class="pay-option-radio"></div>
-                </button>
-              </div>
-
-              <div class="card-form" id="card-form" style="display:none">
-                <div class="field">
-                  <label class="field-label">Cardholder name</label>
-                  <input class="field-input" placeholder="Layla Khan" />
-                </div>
-                <div class="field">
-                  <label class="field-label">Card number</label>
-                  <input class="field-input" placeholder="1234 5678 9012 3456" inputmode="numeric" />
-                </div>
-                <div class="field-row">
-                  <div class="field">
-                    <label class="field-label">Expiry</label>
-                    <input class="field-input" placeholder="MM/YY" inputmode="numeric" />
-                  </div>
-                  <div class="field">
-                    <label class="field-label">CVV</label>
-                    <input class="field-input" placeholder="•••" inputmode="numeric" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="trust-row">
-              <div class="trust-item">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 5v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V5l-7-3z" stroke="#8B92A3" stroke-width="1.5" stroke-linejoin="round"/></svg>
-                Stripe secured
-              </div>
-              <div class="trust-item">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#8B92A3" stroke-width="1.5"/><path d="M6 10l3 3 5-6" stroke="#8B92A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                30-day refund
-              </div>
-            </div>
-
-            <div class="scroll-pad-cta"></div>
-          </div>
-          <div class="floating-cta">
-            <button class="btn btn-apple btn-full btn-large" id="pay-btn" data-action="goto" data-target="success">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.07-.5-2.06-.52-3.18 0-1.43.7-2.18.5-3.04-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.07.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.52 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-              <span>Pay $11.60</span>
-            </button>
-          </div>
-        </section>
-
-        <!-- SCREEN 10: PURCHASE SUCCESS + QR -->
-        <section class="screen screen-success" data-screen="success">
-          <div class="scroll-body">
-            <div class="success-top">
-              <div class="success-check">
-                <svg viewBox="0 0 80 80" width="72" height="72">
-                  <circle cx="40" cy="40" r="36" fill="#EBF5F2"/>
-                  <circle cx="40" cy="40" r="36" stroke="#2D8C7E" stroke-width="2" fill="none" stroke-dasharray="226" stroke-dashoffset="0" class="success-ring"/>
-                  <path d="M26 41 L36 51 L55 32" stroke="#2D8C7E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" class="success-tick"/>
-                </svg>
-              </div>
-              <h1 class="success-title"><em>You're connected</em></h1>
-              <p class="success-sub">Your Japan eSIM is ready to install.</p>
-            </div>
-
-            <div class="qr-card">
-              <div class="qr-image">
-                <!-- placeholder QR -->
-                <svg viewBox="0 0 100 100" width="180" height="180">
-                  <rect width="100" height="100" fill="#FFFFFF"/>
-                  <g fill="#1A1F2E">
-                    <rect x="5" y="5" width="20" height="20"/>
-                    <rect x="9" y="9" width="12" height="12" fill="#FFFFFF"/>
-                    <rect x="12" y="12" width="6" height="6"/>
-                    <rect x="75" y="5" width="20" height="20"/>
-                    <rect x="79" y="9" width="12" height="12" fill="#FFFFFF"/>
-                    <rect x="82" y="12" width="6" height="6"/>
-                    <rect x="5" y="75" width="20" height="20"/>
-                    <rect x="9" y="79" width="12" height="12" fill="#FFFFFF"/>
-                    <rect x="12" y="82" width="6" height="6"/>
-                    <rect x="30" y="6" width="3" height="3"/><rect x="36" y="6" width="3" height="3"/><rect x="42" y="6" width="3" height="3"/><rect x="48" y="6" width="3" height="3"/><rect x="60" y="6" width="3" height="3"/><rect x="66" y="6" width="3" height="3"/>
-                    <rect x="30" y="12" width="3" height="3"/><rect x="42" y="12" width="3" height="3"/><rect x="54" y="12" width="3" height="3"/><rect x="60" y="12" width="3" height="3"/><rect x="66" y="12" width="3" height="3"/>
-                    <rect x="30" y="18" width="3" height="3"/><rect x="36" y="18" width="3" height="3"/><rect x="48" y="18" width="3" height="3"/><rect x="54" y="18" width="3" height="3"/><rect x="66" y="18" width="3" height="3"/>
-                    <rect x="6" y="30" width="3" height="3"/><rect x="12" y="30" width="3" height="3"/><rect x="24" y="30" width="3" height="3"/><rect x="36" y="30" width="3" height="3"/><rect x="42" y="30" width="3" height="3"/><rect x="54" y="30" width="3" height="3"/><rect x="66" y="30" width="3" height="3"/><rect x="78" y="30" width="3" height="3"/><rect x="90" y="30" width="3" height="3"/>
-                    <rect x="6" y="36" width="3" height="3"/><rect x="18" y="36" width="3" height="3"/><rect x="30" y="36" width="3" height="3"/><rect x="48" y="36" width="3" height="3"/><rect x="60" y="36" width="3" height="3"/><rect x="72" y="36" width="3" height="3"/><rect x="84" y="36" width="3" height="3"/>
-                    <rect x="12" y="42" width="3" height="3"/><rect x="24" y="42" width="3" height="3"/><rect x="36" y="42" width="3" height="3"/><rect x="42" y="42" width="3" height="3"/><rect x="54" y="42" width="3" height="3"/><rect x="66" y="42" width="3" height="3"/><rect x="78" y="42" width="3" height="3"/><rect x="90" y="42" width="3" height="3"/>
-                    <rect x="6" y="48" width="3" height="3"/><rect x="18" y="48" width="3" height="3"/><rect x="30" y="48" width="3" height="3"/><rect x="48" y="48" width="3" height="3"/><rect x="60" y="48" width="3" height="3"/><rect x="72" y="48" width="3" height="3"/><rect x="84" y="48" width="3" height="3"/>
-                    <rect x="12" y="54" width="3" height="3"/><rect x="24" y="54" width="3" height="3"/><rect x="42" y="54" width="3" height="3"/><rect x="54" y="54" width="3" height="3"/><rect x="66" y="54" width="3" height="3"/><rect x="78" y="54" width="3" height="3"/><rect x="90" y="54" width="3" height="3"/>
-                    <rect x="6" y="60" width="3" height="3"/><rect x="18" y="60" width="3" height="3"/><rect x="36" y="60" width="3" height="3"/><rect x="48" y="60" width="3" height="3"/><rect x="60" y="60" width="3" height="3"/><rect x="72" y="60" width="3" height="3"/><rect x="84" y="60" width="3" height="3"/>
-                    <rect x="12" y="66" width="3" height="3"/><rect x="30" y="66" width="3" height="3"/><rect x="42" y="66" width="3" height="3"/><rect x="54" y="66" width="3" height="3"/><rect x="66" y="66" width="3" height="3"/><rect x="78" y="66" width="3" height="3"/><rect x="90" y="66" width="3" height="3"/>
-                    <rect x="30" y="78" width="3" height="3"/><rect x="42" y="78" width="3" height="3"/><rect x="48" y="78" width="3" height="3"/><rect x="60" y="78" width="3" height="3"/><rect x="72" y="78" width="3" height="3"/><rect x="84" y="78" width="3" height="3"/>
-                    <rect x="36" y="84" width="3" height="3"/><rect x="48" y="84" width="3" height="3"/><rect x="54" y="84" width="3" height="3"/><rect x="66" y="84" width="3" height="3"/><rect x="78" y="84" width="3" height="3"/><rect x="90" y="84" width="3" height="3"/>
-                    <rect x="30" y="90" width="3" height="3"/><rect x="36" y="90" width="3" height="3"/><rect x="42" y="90" width="3" height="3"/><rect x="60" y="90" width="3" height="3"/><rect x="72" y="90" width="3" height="3"/><rect x="84" y="90" width="3" height="3"/>
-                  </g>
-                  <g transform="translate(50,50)">
-                    <circle r="11" fill="#FFFFFF"/>
-                    <ellipse cx="0" cy="-3" rx="5" ry="6" fill="#B47A48"/>
-                    <ellipse cx="0" cy="4" rx="5" ry="6" fill="#B47A48"/>
-                  </g>
-                </svg>
-              </div>
-              <button class="btn btn-primary btn-full" id="install-btn">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="15" width="14" height="2" fill="currentColor" rx="1"/></svg>
-                Install on this iPhone
-              </button>
-              <div class="qr-help">Or scan with another device</div>
-            </div>
-
-            <div class="info-card center">
-              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#2D8C7E" stroke-width="1.5"/><path d="M10 6v5M10 13.5v.5" stroke="#2D8C7E" stroke-width="1.5" stroke-linecap="round"/></svg>
-              <span>Your eSIM activates the moment you land in <strong>Japan</strong>.</span>
-            </div>
-
-            <button class="text-btn text-btn-block" data-action="goto" data-target="my-esims">Manage in My eSIMs →</button>
-            <div class="scroll-pad"></div>
-          </div>
-        </section>
-
-        <!-- SCREEN 11: MY ESIMS -->
-        <section class="screen screen-esims with-nav" data-screen="my-esims">
-          <div class="scroll-body">
-            <div class="screen-header transparent">
-              <h1 class="screen-title small"><em>My eSIMs</em></h1>
-              <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            </div>
-
-            <div class="tabs" data-tabs="esims">
-              <button class="tab active" data-tab="active">Active <span class="tab-count">2</span></button>
-              <button class="tab" data-tab="history">History</button>
-            </div>
-
-            <div class="tab-panel active" data-panel="active">
-              <div class="esim-card" data-action="goto" data-target="esim-detail">
-                <div class="esim-card-head">
-                  <div class="esim-card-left">
-                    <span class="esim-card-flag">🇯🇵</span>
-                    <div>
-                      <div class="esim-card-name">Japan</div>
-                      <div class="esim-card-sub">5 GB plan · SoftBank</div>
-                    </div>
-                  </div>
-                  <span class="status-pill active">Active</span>
-                </div>
-                <div class="esim-progress">
-                  <div class="esim-progress-row">
-                    <span class="esim-progress-label">Data used</span>
-                    <span class="esim-progress-value">3.2 / 5 GB</span>
-                  </div>
-                  <div class="progress-bar"><div class="progress-fill" style="width:64%"></div></div>
-                </div>
-                <div class="esim-card-foot">
-                  <span class="esim-days">5 days left</span>
-                  <div class="esim-card-actions">
-                    <button class="chip chip-sm">Top up</button>
-                    <button class="icon-btn sm"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2M5 5l1.5 1.5M13.5 13.5L15 15M5 15l1.5-1.5M13.5 6.5L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="esim-card">
-                <div class="esim-card-head">
-                  <div class="esim-card-left">
-                    <span class="esim-card-flag">🇹🇭</span>
-                    <div>
-                      <div class="esim-card-name">Thailand</div>
-                      <div class="esim-card-sub">3 GB plan · AIS</div>
-                    </div>
-                  </div>
-                  <span class="status-pill scheduled">Scheduled</span>
-                </div>
-                <div class="esim-scheduled">
-                  Activates on landing · Jun 2
-                </div>
-                <div class="esim-card-foot">
-                  <span class="esim-days">In 11 days</span>
-                  <button class="chip chip-sm">View QR</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="tab-panel" data-panel="history">
-              <div class="history-item">
-                <span class="history-flag">🇺🇸</span>
-                <div class="history-info">
-                  <div class="history-name">USA · 5 GB</div>
-                  <div class="history-meta">Apr 18 → May 3 · Used 4.8 / 5 GB</div>
-                </div>
-                <button class="text-btn">Re-buy</button>
-              </div>
-              <div class="history-item">
-                <span class="history-flag">🇬🇧</span>
-                <div class="history-info">
-                  <div class="history-name">UK · 3 GB</div>
-                  <div class="history-meta">Apr 10 → Apr 25 · Used 2.1 / 3 GB</div>
-                </div>
-                <button class="text-btn">Re-buy</button>
-              </div>
-              <div class="history-item">
-                <span class="history-flag">🇸🇬</span>
-                <div class="history-info">
-                  <div class="history-name">Singapore · 3 GB</div>
-                  <div class="history-meta">Apr 2 → Apr 17 · Used 3.0 / 3 GB</div>
-                </div>
-                <button class="text-btn">Re-buy</button>
-              </div>
-              <div class="history-item">
-                <span class="history-flag">🇫🇷</span>
-                <div class="history-info">
-                  <div class="history-name">France · 5 GB</div>
-                  <div class="history-meta">Mar 28 → Apr 12 · Used 3.9 / 5 GB</div>
-                </div>
-                <button class="text-btn">Re-buy</button>
-              </div>
-            </div>
-            <div class="scroll-pad"></div>
-          </div>
-        </section>
-
-        <!-- SCREEN 12: ESIM DETAIL + TOP-UP -->
-        <section class="screen screen-esim-detail" data-screen="esim-detail">
-          <div class="scroll-body">
-            <div class="screen-header transparent">
-              <button class="icon-btn" data-action="back"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4 L6 10 L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <h2 class="screen-header-title">Japan eSIM</h2>
-              <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="4" cy="10" r="1.5" fill="currentColor"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/><circle cx="16" cy="10" r="1.5" fill="currentColor"/></svg></button>
-            </div>
-
-            <div class="detail-hero">
-              <div class="detail-flag">🇯🇵</div>
-              <h1 class="detail-country"><em>Japan</em></h1>
-              <span class="status-pill active">Active · SoftBank 5G</span>
-            </div>
-
-            <div class="circular-chart">
-              <svg viewBox="0 0 160 160" width="160" height="160">
-                <circle cx="80" cy="80" r="62" stroke="#F0EEE7" stroke-width="14" fill="none"/>
-                <circle cx="80" cy="80" r="62" stroke="#2D8C7E" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="389" stroke-dashoffset="140" transform="rotate(-90 80 80)"/>
-              </svg>
-              <div class="circular-chart-center">
-                <div class="circular-value">3.2<span>/5 GB</span></div>
-                <div class="circular-label">used</div>
-              </div>
-            </div>
-
-            <div class="detail-meta-row">
-              <div class="detail-meta">
-                <div class="detail-meta-num">5</div>
-                <div class="detail-meta-label">days left</div>
-              </div>
-              <div class="detail-meta-divider"></div>
-              <div class="detail-meta">
-                <div class="detail-meta-num">1.8</div>
-                <div class="detail-meta-label">GB remaining</div>
-              </div>
-              <div class="detail-meta-divider"></div>
-              <div class="detail-meta">
-                <div class="detail-meta-num">364<span>mb</span></div>
-                <div class="detail-meta-label">avg/day</div>
-              </div>
-            </div>
-
-            <div class="section">
-              <div class="section-head">
-                <h3 class="section-title small">Last 7 days</h3>
-                <span class="section-meta">MB/day</span>
-              </div>
-              <div class="usage-graph">
-                <div class="usage-bar"><div class="usage-fill" style="height:30%"></div><span>M</span></div>
-                <div class="usage-bar"><div class="usage-fill" style="height:55%"></div><span>T</span></div>
-                <div class="usage-bar"><div class="usage-fill" style="height:42%"></div><span>W</span></div>
-                <div class="usage-bar"><div class="usage-fill" style="height:78%"></div><span>T</span></div>
-                <div class="usage-bar"><div class="usage-fill" style="height:62%"></div><span>F</span></div>
-                <div class="usage-bar"><div class="usage-fill" style="height:88%"></div><span>S</span></div>
-                <div class="usage-bar active"><div class="usage-fill" style="height:48%"></div><span>S</span></div>
-              </div>
-            </div>
-
-            <div class="settings-list">
-              <div class="settings-item">
-                <div>
-                  <div class="settings-name">Auto-renew</div>
-                  <div class="settings-sub">Top up before you run out</div>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" checked />
-                  <span class="switch-slider"></span>
-                </label>
-              </div>
-              <div class="settings-item">
-                <div>
-                  <div class="settings-name">Low-data alert</div>
-                  <div class="settings-sub">Notify at 80% used</div>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" checked />
-                  <span class="switch-slider"></span>
-                </label>
-              </div>
-            </div>
-
-            <button class="btn btn-ghost-danger btn-full">Deactivate eSIM</button>
-            <div class="scroll-pad-cta"></div>
-          </div>
-          <div class="floating-cta">
-            <button class="btn btn-primary btn-full btn-large" id="topup-trigger">Top up</button>
-          </div>
-        </section>
-
-        <!-- PROFILE -->
-        <section class="screen screen-profile with-nav" data-screen="profile">
-          <div class="scroll-body">
-            <div class="screen-header transparent">
-              <h1 class="screen-title small"><em>Profile</em></h1>
-              <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 3v2M10 15v2M3 10h2M15 10h2M5 5l1.5 1.5M13.5 13.5L15 15M5 15l1.5-1.5M13.5 6.5L15 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            </div>
-
-            <div class="profile-hero">
-              <div class="profile-avatar">LK</div>
-              <h2 class="profile-name">Layla Khan</h2>
-              <div class="profile-meta">
-                <span class="badge-verified">
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#2D8C7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  Verified crew
-                </span>
-                <span class="profile-airline">Emirates · DXB base</span>
-              </div>
-            </div>
-
-            <div class="profile-stats">
-              <div class="profile-stat">
-                <div class="profile-stat-num">17</div>
-                <div class="profile-stat-label">Countries visited</div>
-              </div>
-              <div class="profile-stat">
-                <div class="profile-stat-num">$184</div>
-                <div class="profile-stat-label">Saved on roaming</div>
-              </div>
-              <div class="profile-stat">
-                <div class="profile-stat-num">3</div>
-                <div class="profile-stat-label">Crew referred</div>
-              </div>
-            </div>
-
-            <div class="settings-list">
-              <button class="settings-link">
-                <span>Payment methods</span>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#8B92A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="settings-link">
-                <span>Notifications</span>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#8B92A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="settings-link">
-                <span>Refer a crew member</span>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#8B92A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="settings-link">
-                <span>Help & support</span>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#8B92A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="settings-link">
-                <span>Terms & privacy</span>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#8B92A3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-              <button class="settings-link danger" id="demo-reset">
-                <span>Reset demo</span>
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 8a6 6 0 1 1 1.5 4M4 4v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-
-            <div class="profile-foot">
-              <div class="screen-eyebrow">PEANUT eSIM · v0.1 PROTOTYPE</div>
-            </div>
-            <div class="scroll-pad"></div>
-          </div>
-        </section>
-
-      </div><!-- /screen-stack -->
-
-      <!-- Persistent bottom nav -->
-      <nav class="bottom-nav" id="bottom-nav">
-        <button class="nav-item active" data-nav="home" data-target="home">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 11l9-8 9 8v10a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2V11z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          <span>Home</span>
-        </button>
-        <button class="nav-item" data-nav="plans" data-target="plans">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><ellipse cx="12" cy="12" rx="4" ry="9" stroke="currentColor" stroke-width="1.5"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span>Plans</span>
-        </button>
-        <button class="nav-item" data-nav="my-esims" data-target="my-esims">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="9" y="10" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M9 13h6M12 10v6" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span>eSIMs</span>
-        </button>
-        <button class="nav-item" data-nav="profile" data-target="profile">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 21a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <span>Profile</span>
-        </button>
-      </nav>
-
-      <!-- Top-up modal -->
-      <div class="sheet-backdrop" id="topup-backdrop"></div>
-      <div class="sheet" id="topup-sheet">
-        <div class="sheet-handle"></div>
-        <div class="sheet-head">
-          <h3 class="sheet-title">Top up <em>Japan</em></h3>
-          <p class="sheet-sub">Adds data to your current plan. Same network, same speeds.</p>
         </div>
-        <div class="topup-options">
-          <button class="topup-option" data-topup="2">
-            <div>
-              <div class="topup-data">+2 GB</div>
-              <div class="topup-days">+7 days</div>
-            </div>
-            <div class="topup-price">$5.90</div>
-          </button>
-          <button class="topup-option selected" data-topup="5">
-            <div>
-              <div class="topup-data">+5 GB</div>
-              <div class="topup-days">+15 days</div>
-              <span class="topup-tag">Most popular</span>
-            </div>
-            <div class="topup-price">$11.90</div>
-          </button>
-          <button class="topup-option" data-topup="10">
-            <div>
-              <div class="topup-data">+10 GB</div>
-              <div class="topup-days">+30 days</div>
-            </div>
-            <div class="topup-price">$18.90</div>
-          </button>
+        <div class="trip-row" data-go="plan-detail">
+          <div class="left">
+            <span class="date">May 8</span>
+            <span class="dest">🇬🇧 LHR</span>
+          </div>
+          <div class="right">
+            <span class="tag tag--soft">Layover</span>
+          </div>
         </div>
-        <button class="btn btn-primary btn-full btn-large" id="topup-confirm">Confirm — $11.90</button>
-        <button class="text-btn text-btn-block" id="topup-cancel">Cancel</button>
+        <div class="trip-row" data-go="plan-detail">
+          <div class="left">
+            <span class="date">May 12</span>
+            <span class="dest">🇯🇵 NRT</span>
+          </div>
+          <div class="right">
+            <span class="tag tag--soft">3 days</span>
+            <span class="tag tag--hot">No plan</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Home indicator -->
-      <div class="home-indicator"></div>
-    </div><!-- /phone-screen -->
-  </div><!-- /phone-frame -->
+      <!-- Crew tip -->
+      <div class="crew-tip">
+        <span class="emoji" aria-hidden="true">🍵</span>
+        <p>
+          <span class="lead">Narita layover tip from Captain Rashid:</span>
+          "Tatemichiya Diner, 12-min walk from the crew hotel"
+        </p>
+      </div>
+    </section>
 
-  <script src="app.js"></script>
+    <!-- ============================ SMART PLAN RESULT ================= -->
+    <section class="screen result-screen" data-screen="result" data-nav-tab="" data-shows-bottom-nav="false">
+      <header class="result-topbar">
+        <button class="icon-btn" data-go="home" aria-label="Go back">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1>Your May Plan</h1>
+        <div style="width:40px"></div>
+      </header>
+
+      <div class="result-main">
+        <div class="success-badge">
+          <span class="material-symbols-outlined">auto_awesome</span>
+          <span>SMART PLAN GENERATED</span>
+        </div>
+
+        <h2 class="result-hero">We found 12 trips. Here's your plan.</h2>
+
+        <div class="price-card">
+          <div class="blur-blob" aria-hidden="true"></div>
+          <div class="row">
+            <div class="price">$47.20</div>
+            <div class="save-pill">
+              <span class="material-symbols-outlined">check_circle</span>
+              <span>SAVE $23 vs. buying each separately</span>
+            </div>
+          </div>
+          <p class="month-label">for the entire month of May</p>
+        </div>
+
+        <div class="result-section">
+          <div class="section-eyebrow">YOUR PLAN COVERS:</div>
+          <div class="result-trip-list">
+            <div class="result-trip-row" data-go="plan-detail">
+              <div class="left">
+                <div class="flag-circle">🇺🇸</div>
+                <div>
+                  <div class="country">USA · New York</div>
+                  <div class="meta">10GB · 5 days</div>
+                </div>
+              </div>
+              <div class="price">$4.20</div>
+            </div>
+            <div class="result-trip-row" data-go="plan-detail">
+              <div class="left">
+                <div class="flag-circle">🇬🇧</div>
+                <div>
+                  <div class="country">UK · London</div>
+                  <div class="meta">5GB · 3 days</div>
+                </div>
+              </div>
+              <div class="price">$3.50</div>
+            </div>
+            <div class="result-trip-row" data-go="plan-detail">
+              <div class="left">
+                <div class="flag-circle">🇫🇷</div>
+                <div>
+                  <div class="country">France · Paris</div>
+                  <div class="meta">20GB · 7 days</div>
+                </div>
+              </div>
+              <div class="price">$8.90</div>
+            </div>
+            <div class="result-trip-row" data-go="plan-detail">
+              <div class="left">
+                <div class="flag-circle">🇯🇵</div>
+                <div>
+                  <div class="country">Japan · Tokyo</div>
+                  <div class="meta">50GB · 14 days</div>
+                </div>
+              </div>
+              <div class="price">$15.00</div>
+            </div>
+            <div class="result-trip-row" data-go="plan-detail">
+              <div class="left">
+                <div class="flag-circle">🇮🇹</div>
+                <div>
+                  <div class="country">Italy · Rome</div>
+                  <div class="meta">10GB · 4 days</div>
+                </div>
+              </div>
+              <div class="price">$4.50</div>
+            </div>
+            <div class="result-trip-row" data-go="plan-detail">
+              <div class="left">
+                <div class="flag-circle">🇲🇽</div>
+                <div>
+                  <div class="country">Mexico · CDMX</div>
+                  <div class="meta">15GB · 6 days</div>
+                </div>
+              </div>
+              <div class="price">$6.10</div>
+            </div>
+          </div>
+          <button class="expand-link">+ 6 more trips</button>
+        </div>
+      </div>
+
+      <div class="sticky-footer">
+        <button class="btn-savings" data-action="activate-plan">Activate plan</button>
+        <button class="expand-link" style="margin:0; display:flex; align-items:center; justify-content:center; gap:6px;" data-go="plan-detail">
+          Customize each trip
+          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================ PLANS BROWSE (agent fill) ========= -->
+    <section class="screen plans-screen" data-screen="plans" data-nav-tab="plans" data-shows-bottom-nav="true">
+      <div class="plans-topbar">
+        <h2>Plans</h2>
+        <div class="search-box">
+          <span class="material-symbols-outlined">search</span>
+          <input type="text" placeholder="Search 200+ destinations" />
+        </div>
+      </div>
+
+      <div class="section-eyebrow-row">POPULAR WITH CREW</div>
+
+      <div class="country-grid">
+        <div class="country-card" data-go="plan-detail">
+          <img class="bg-img" src="assets/photos/tokyo-shibuya.png" alt="Tokyo">
+          <div class="shroud"></div>
+          <div class="country-name">Japan</div>
+          <div class="country-meta">From $6 · 5G</div>
+        </div>
+        <div class="country-card" data-go="plan-detail">
+          <img class="bg-img" src="assets/photos/new-york.png" alt="New York">
+          <div class="shroud"></div>
+          <div class="country-name">USA</div>
+          <div class="country-meta">From $4 · 5G</div>
+        </div>
+        <div class="country-card" data-go="plan-detail">
+          <img class="bg-img" src="assets/photos/rome.png" alt="Rome">
+          <div class="shroud"></div>
+          <div class="country-name">Italy</div>
+          <div class="country-meta">From $5 · 5G</div>
+        </div>
+        <div class="country-card flat" data-go="plan-detail">
+          <span class="emoji-mark" aria-hidden="true">🇬🇧</span>
+          <div class="country-name">United Kingdom</div>
+          <div class="country-meta">FROM $7 · 5G</div>
+        </div>
+        <div class="country-card flat" data-go="plan-detail">
+          <span class="emoji-mark" aria-hidden="true">🇫🇷</span>
+          <div class="country-name">France</div>
+          <div class="country-meta">FROM $6 · 5G</div>
+        </div>
+        <div class="country-card flat" data-go="plan-detail">
+          <span class="emoji-mark" aria-hidden="true">🇹🇭</span>
+          <div class="country-name">Thailand</div>
+          <div class="country-meta">FROM $4 · 5G</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PLAN DETAIL (Japan) =============== -->
+    <section class="screen detail-screen" data-screen="plan-detail" data-nav-tab="" data-shows-bottom-nav="false">
+      <div class="detail-hero">
+        <img class="bg-photo" src="assets/photos/tokyo-shibuya.png" alt="Shibuya crossing at night" />
+        <div class="flag-overlay" aria-hidden="true"><div></div></div>
+        <div class="gradient-shroud" aria-hidden="true"></div>
+        <header class="topbar">
+          <button class="icon-btn-glass" data-go="home" aria-label="Back">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <div class="brand">Peanut</div>
+          <button class="icon-btn-glass" aria-label="Share">
+            <span class="material-symbols-outlined">share</span>
+          </button>
+        </header>
+        <div class="country-card">
+          <h1>Japan</h1>
+          <div class="provider">
+            <div class="flag-circle" style="background:#fff;">🇯🇵</div>
+            <span>via SoftBank, NTT Docomo, KDDI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pill-strip">
+        <div class="feature-pill"><span>⚡</span><span>5G</span></div>
+        <div class="feature-pill"><span>✈️</span><span>Activates on landing</span></div>
+        <div class="feature-pill"><span>🚫</span><span>No roaming</span></div>
+      </div>
+
+      <div class="choose-data">
+        <h2>Choose Data</h2>
+        <div class="option-list" id="plan-options">
+          <button class="option-card" data-gb="1" data-price="6" data-days="7">
+            <div>
+              <div class="gb">1GB</div>
+              <div class="duration">7 days</div>
+            </div>
+            <div class="opt-price">$6</div>
+          </button>
+          <button class="option-card is-selected" data-gb="5" data-price="14" data-days="14">
+            <div class="popular-tag">Most popular</div>
+            <div>
+              <div class="gb">5GB</div>
+              <div class="duration">14 days</div>
+            </div>
+            <div class="opt-price">$14</div>
+          </button>
+          <button class="option-card" data-gb="10" data-price="24" data-days="30">
+            <div>
+              <div class="gb">10GB</div>
+              <div class="duration">30 days</div>
+            </div>
+            <div class="opt-price">$24</div>
+          </button>
+          <button class="option-card" data-gb="Unlimited" data-price="32" data-days="7">
+            <div>
+              <div class="gb">Unlimited</div>
+              <div class="duration">7 days</div>
+            </div>
+            <div class="opt-price">$32</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="included">
+        <h2>What's included</h2>
+        <ul>
+          <li><span class="material-symbols-outlined">check_circle</span><span>Activates the moment you land in Japan</span></li>
+          <li><span class="material-symbols-outlined">check_circle</span><span>Hotspot supported (share with cabin crew)</span></li>
+          <li><span class="material-symbols-outlined">check_circle</span><span>Compatible with iPhone XS and newer</span></li>
+          <li><span class="material-symbols-outlined">check_circle</span><span>24/7 crew support</span></li>
+        </ul>
+      </div>
+
+      <div class="sticky-footer">
+        <button class="btn-primary" id="buy-cta" data-go="checkout">
+          <span id="buy-cta-label">Buy 5GB · $14</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================ CHECKOUT ========================= -->
+    <section class="screen checkout-screen" data-screen="checkout" data-nav-tab="" data-shows-bottom-nav="false">
+      <header class="checkout-topbar">
+        <button class="icon-btn" data-go="plan-detail" aria-label="Back">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1>Checkout</h1>
+        <div style="width:40px"></div>
+      </header>
+
+      <main class="checkout-main">
+        <section class="summary-card">
+          <div class="row">
+            <span class="item"><span class="flag-circle" style="width:20px;height:20px;font-size:12px">🇯🇵</span> Japan · 5GB · 14 days</span>
+            <span class="price" id="checkout-line-price">$14.00</span>
+          </div>
+          <div class="row">
+            <span class="discount">Crew discount applied</span>
+            <span class="discount">−$1.50</span>
+          </div>
+          <hr class="divider" />
+          <div class="row">
+            <span class="total-label">Total</span>
+            <span class="total-price" id="checkout-total">$12.50</span>
+          </div>
+        </section>
+
+        <section class="payment-section">
+          <h2>Payment Method</h2>
+          <div class="payment-list">
+            <label class="payment-option is-selected">
+              <div class="left">
+                <div class="applepay-chip">Pay</div>
+                <span class="label">Apple Pay</span>
+              </div>
+              <input type="radio" name="pay" checked hidden />
+              <span class="material-symbols-outlined radio-icon">radio_button_checked</span>
+            </label>
+            <label class="payment-option">
+              <div class="left">
+                <span class="material-symbols-outlined">credit_card</span>
+                <span class="label">Credit / Debit Card</span>
+              </div>
+              <input type="radio" name="pay" hidden />
+              <span class="material-symbols-outlined">chevron_right</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="trust-row">
+          <div><span class="material-symbols-outlined">lock</span><span>Stripe secured</span></div>
+          <div><span class="material-symbols-outlined">replay</span><span>30-day refund</span></div>
+        </section>
+      </main>
+
+      <footer class="checkout-footer">
+        <button class="btn-dark" data-action="pay">
+          <span>Pay <span id="checkout-cta-total">$12.50</span></span>
+        </button>
+        <p class="legal">By paying, you accept our terms</p>
+      </footer>
+    </section>
+
+    <!-- ============================ MY eSIMs ========================= -->
+    <section class="screen esims-screen" data-screen="esims" data-nav-tab="esims" data-shows-bottom-nav="true">
+      <header class="esims-topbar">
+        <div class="avatar"><span class="material-symbols-outlined">person</span></div>
+        <div class="brand">Peanut</div>
+        <button class="bell-btn" aria-label="Notifications">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+      </header>
+
+      <div class="esims-header">
+        <h2>My eSIMs</h2>
+        <button class="add-btn" data-go="plans" aria-label="Add new eSIM">
+          <span class="material-symbols-outlined">add</span>
+        </button>
+      </div>
+
+      <div class="tab-row">
+        <button class="tab is-active">Active (2)</button>
+        <button class="tab">History</button>
+      </div>
+
+      <div class="esim-cards">
+        <div class="esim-card" data-go="esim-detail">
+          <div class="top">
+            <div class="country-line">
+              <div class="flag-circle">🇯🇵</div>
+              <span class="country-name">Japan</span>
+            </div>
+            <div class="status-stack">
+              <span class="status-pill status-pill--active">
+                <span class="dot"></span><span>ACTIVE</span>
+              </span>
+              <span class="meta-line">5 days left</span>
+            </div>
+          </div>
+
+          <div class="usage-row">
+            <div class="labels">
+              <span>DATA USAGE</span>
+              <span>3.2 / 10 GB</span>
+            </div>
+            <div class="progress-bar"><div style="width:32%"></div></div>
+          </div>
+
+          <div class="card-actions">
+            <button class="topup-btn" data-go="esim-detail" data-open-topup="1">Top up</button>
+            <button class="gear-btn"><span class="material-symbols-outlined">settings</span></button>
+          </div>
+        </div>
+
+        <div class="esim-card">
+          <div class="top">
+            <div class="country-line">
+              <div class="flag-circle">🇹🇭</div>
+              <span class="country-name">Thailand</span>
+            </div>
+            <div class="status-stack">
+              <span class="status-pill status-pill--scheduled">
+                <span class="dot"></span><span>SCHEDULED</span>
+              </span>
+              <span class="meta-line">Activates on landing</span>
+            </div>
+          </div>
+
+          <div class="scheduled-info">
+            <span class="material-symbols-outlined">event</span>
+            <div class="stack">
+              <span class="lead">Scheduled for May 12</span>
+              <span class="sub">We'll notify you when it's ready.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ eSIM DETAIL + TOPUP ============== -->
+    <section class="screen esimd-screen" data-screen="esim-detail" data-nav-tab="esims" data-shows-bottom-nav="false">
+      <header class="esimd-topbar">
+        <button class="icon-btn" data-go="esims" aria-label="Back">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <div class="center-flag">🇯🇵</div>
+        <div style="width:40px;height:40px"></div>
+      </header>
+
+      <div class="esimd-main">
+        <section class="esimd-hero">
+          <img class="bg" src="assets/photos/tokyo-shibuya.png" alt="Japan" />
+          <div class="shroud"></div>
+          <div class="stack">
+            <h1>Japan eSIM</h1>
+            <div class="live-pill">
+              <span class="dot"></span><span>ACTIVE CONNECTION</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="ring-section">
+          <div class="ring-wrap">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#E8E5DD" stroke-width="8" />
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#00685c" stroke-width="8"
+                stroke-linecap="round"
+                stroke-dasharray="283"
+                stroke-dashoffset="192"
+                transform="rotate(-90 50 50)" />
+            </svg>
+            <div class="ring-center">
+              <div class="gb">3.2<span>GB</span></div>
+              <div class="of">OF 10 GB USED</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <div class="stat-card">
+            <span class="material-symbols-outlined">calendar_month</span>
+            <div class="num">5 days</div>
+            <div class="lbl">LEFT</div>
+          </div>
+          <div class="stat-card">
+            <span class="material-symbols-outlined">database</span>
+            <div class="num">6.8 GB</div>
+            <div class="lbl">REMAINING</div>
+          </div>
+          <div class="stat-card">
+            <span class="material-symbols-outlined">speed</span>
+            <div class="num">640 MB</div>
+            <div class="lbl">AVG/DAY</div>
+          </div>
+        </section>
+
+        <section class="usage-graph">
+          <h3>7-DAY USAGE</h3>
+          <div class="usage-bars">
+            <div class="usage-bar"><div class="day">Mon</div><div class="bar-bg"><div class="bar-fill" style="width:20%;background:#dee2f7"></div></div></div>
+            <div class="usage-bar"><div class="day">Tue</div><div class="bar-bg"><div class="bar-fill" style="width:45%;background:rgba(0,104,92,.4)"></div></div></div>
+            <div class="usage-bar"><div class="day">Wed</div><div class="bar-bg"><div class="bar-fill" style="width:60%;background:rgba(0,104,92,.6)"></div></div></div>
+            <div class="usage-bar is-today"><div class="day">Thu</div><div class="bar-bg"><div class="bar-fill" style="width:85%;background:#00685c"></div></div></div>
+            <div class="usage-bar"><div class="day">Fri</div><div class="bar-bg"><div class="bar-fill" style="width:0%;background:#dee2f7"></div></div></div>
+            <div class="usage-bar"><div class="day">Sat</div><div class="bar-bg"><div class="bar-fill" style="width:0%;background:#dee2f7"></div></div></div>
+            <div class="usage-bar"><div class="day">Sun</div><div class="bar-bg"><div class="bar-fill" style="width:0%;background:#dee2f7"></div></div></div>
+          </div>
+        </section>
+
+        <section class="settings-card">
+          <div class="setting-row">
+            <div>
+              <div class="lbl">Auto-renew at expiry</div>
+              <div class="sub">Add same plan automatically</div>
+            </div>
+            <div class="toggle" data-toggle><div class="knob"></div></div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <div class="lbl">Notify me at 80% data</div>
+              <div class="sub">Get an alert before you run out</div>
+            </div>
+            <div class="toggle is-on" data-toggle><div class="knob"></div></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="sticky-footer">
+        <button class="btn-primary" data-action="open-topup">
+          <span class="material-symbols-outlined">add_circle</span>
+          <span>Top up</span>
+        </button>
+        <button class="danger-link">Deactivate eSIM</button>
+      </div>
+
+      <!-- Topup bottom sheet (within this screen) -->
+      <div class="topup-overlay" id="topup-overlay">
+        <div class="backdrop" data-action="close-topup"></div>
+        <div class="sheet">
+          <div class="drag-handle"></div>
+          <h2>Top up Japan eSIM</h2>
+          <div class="opts">
+            <label class="opt">
+              <input type="radio" name="topup" hidden />
+              <div>
+                <span class="gb">+1GB</span>
+                <span class="valid">VALID FOR 7 DAYS</span>
+              </div>
+              <span class="opt-price">$3</span>
+            </label>
+            <label class="opt is-selected">
+              <input type="radio" name="topup" checked hidden />
+              <div>
+                <div class="name-row">
+                  <span class="gb">+5GB</span>
+                  <span class="pop-pill">Most popular</span>
+                </div>
+                <span class="valid">VALID FOR 15 DAYS</span>
+              </div>
+              <span class="opt-price">$12</span>
+            </label>
+            <label class="opt">
+              <input type="radio" name="topup" hidden />
+              <div>
+                <span class="gb">+10GB</span>
+                <span class="valid">VALID FOR 30 DAYS</span>
+              </div>
+              <span class="opt-price">$22</span>
+            </label>
+          </div>
+          <button class="btn-primary" data-action="close-topup">Add 5GB for $12</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PROFILE (agent fill) ============= -->
+    <section class="screen profile-screen" data-screen="profile" data-nav-tab="profile" data-shows-bottom-nav="true">
+      <div class="profile-topbar">
+        <h2>Profile</h2>
+      </div>
+
+      <div class="profile-card">
+        <div class="avatar">L</div>
+        <div>
+          <h3 class="name">Layla Al-Mansoori</h3>
+          <span class="crew-pill">EMIRATES · DXB BASE</span>
+        </div>
+      </div>
+
+      <div class="profile-stats">
+        <div class="stat">
+          <span class="num">12</span>
+          <span class="lbl">TRIPS · MAY</span>
+        </div>
+        <div class="stat">
+          <span class="num">23</span>
+          <span class="lbl">COUNTRIES</span>
+        </div>
+        <div class="stat">
+          <span class="num">$0</span>
+          <span class="lbl">SPENT</span>
+        </div>
+      </div>
+
+      <div class="settings-list">
+        <div class="row">
+          <div class="left">
+            <span class="material-symbols-outlined">badge</span>
+            <span>Crew verification</span>
+          </div>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </div>
+        <div class="row">
+          <div class="left">
+            <span class="material-symbols-outlined">credit_card</span>
+            <span>Payment methods</span>
+          </div>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </div>
+        <div class="row">
+          <div class="left">
+            <span class="material-symbols-outlined">receipt_long</span>
+            <span>Billing history</span>
+          </div>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </div>
+        <div class="row">
+          <div class="left">
+            <span class="material-symbols-outlined">notifications</span>
+            <span>Notifications</span>
+          </div>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </div>
+        <div class="row">
+          <div class="left">
+            <span class="material-symbols-outlined">support_agent</span>
+            <span>Crew support</span>
+          </div>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </div>
+        <div class="row danger" data-action="reset-demo">
+          <div class="left">
+            <span class="material-symbols-outlined">restart_alt</span>
+            <span>Reset demo</span>
+          </div>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /screen-viewport -->
+
+  <!-- Shared bottom nav -->
+  <nav class="bottom-nav" id="bottom-nav">
+    <a class="nav-tab" href="#" data-go="home" data-tab="home">
+      <span class="material-symbols-outlined">home</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a class="nav-tab" href="#" data-go="plans" data-tab="plans">
+      <span class="material-symbols-outlined">language</span>
+      <span class="nav-label">Plans</span>
+    </a>
+    <a class="nav-tab" href="#" data-go="esims" data-tab="esims">
+      <span class="material-symbols-outlined">sim_card</span>
+      <span class="nav-label">My eSIMs</span>
+    </a>
+    <a class="nav-tab" href="#" data-go="profile" data-tab="profile">
+      <span class="material-symbols-outlined">person</span>
+      <span class="nav-label">Profile</span>
+    </a>
+  </nav>
+
+  <!-- Loading interstitial overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-spinner" aria-hidden="true"></div>
+    <div class="label" id="loading-label">Reading your May roster…</div>
+    <div class="sub">Matching 12 trips to 200+ networks</div>
+  </div>
+
+  <!-- Home indicator (sits over everything) -->
+  <div class="home-indicator" aria-hidden="true"></div>
+
+</div><!-- /phone-shell -->
+
+<script src="app.js"></script>
 </body>
 </html>
