@@ -1,0 +1,4939 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-05-25",
+  "notes": "Starter DB for CrewLink Crew Recs feature. ~18 venues per destination across top 30 Emirates DXB routes. Contact info left blank where unverified — fill via outreach. Sources cited per entry.",
+  "destinations": [
+    {
+      "iata": "LHR",
+      "city": "London",
+      "country": "United Kingdom",
+      "emirates_layover_hotels_known": [
+        "Sofitel London Heathrow",
+        "Hilton London Heathrow Airport Terminal 4",
+        "Renaissance London Heathrow",
+        "Crowne Plaza London Heathrow"
+      ],
+      "venues": [
+        {
+          "name": "Flat White",
+          "category": "cafe",
+          "neighborhood": "Soho",
+          "address": "17 Berwick St, London W1F 0PT",
+          "why_crew_relevant": "Pioneer of flat white culture; opens 8am; specialty coffee beloved by Antipodean crew; 30 min from Heathrow by tube",
+          "price_range": "$",
+          "contact": {
+            "website": "flatwhitesoho.co.uk",
+            "email": "",
+            "instagram": "@flatwhitesoho"
+          },
+          "source": "https://www.timeout.com/london/bars-and-pubs/best-coffee-shops-in-london",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Monmouth Coffee Company",
+          "category": "cafe",
+          "neighborhood": "Covent Garden",
+          "address": "27 Monmouth St, London WC2H 9EU",
+          "why_crew_relevant": "Legendary London specialty roaster; opens 8am Mon-Sat; long-standing crew favourite; near West End hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "monmouthcoffee.co.uk",
+            "email": "",
+            "instagram": "@monmouthcoffee"
+          },
+          "source": "https://www.timeout.com/london/bars-and-pubs/best-coffee-shops-in-london",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Ozone Coffee Roasters",
+          "category": "cafe",
+          "neighborhood": "Old Street",
+          "address": "11 Leonard St, London EC2A 4AQ",
+          "why_crew_relevant": "New Zealand-owned; opens 7am weekdays; full brunch; popular with Kiwi/Aussie cabin crew layovers",
+          "price_range": "$$",
+          "contact": {
+            "website": "ozonecoffee.co.uk",
+            "email": "",
+            "instagram": "@ozonecoffee"
+          },
+          "source": "https://www.timeout.com/london/bars-and-pubs/best-coffee-shops-in-london",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Federation Coffee",
+          "category": "cafe",
+          "neighborhood": "Brixton",
+          "address": "Unit 77-78, Brixton Village, London SW9 8PS",
+          "why_crew_relevant": "Australian-run specialty cafe; popular layover stop; serves food all day",
+          "price_range": "$",
+          "contact": {
+            "website": "federationcoffee.com",
+            "email": "",
+            "instagram": "@federationcoffee"
+          },
+          "source": "https://www.timeout.com/london/bars-and-pubs/best-coffee-shops-in-london",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Attendant Coffee",
+          "category": "cafe",
+          "neighborhood": "Fitzrovia",
+          "address": "27A Foley St, London W1W 6DY",
+          "why_crew_relevant": "Famous converted Victorian toilet; opens 8am; quirky crew photo stop; excellent espresso",
+          "price_range": "$",
+          "contact": {
+            "website": "the-attendant.com",
+            "email": "",
+            "instagram": "@theattendant"
+          },
+          "source": "https://www.timeout.com/london/bars-and-pubs/best-coffee-shops-in-london",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Nightjar",
+          "category": "bar",
+          "neighborhood": "Old Street",
+          "address": "129 City Rd, London EC1V 1JB",
+          "why_crew_relevant": "World's top 50 cocktail bar; open till 3am Fri-Sat; ideal for arriving evening crews; reservation recommended",
+          "price_range": "$$$",
+          "contact": {
+            "website": "barnightjar.com",
+            "email": "reservations@barnightjar.com",
+            "instagram": "@barnightjar"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Swift",
+          "category": "bar",
+          "neighborhood": "Soho",
+          "address": "12 Old Compton St, London W1D 4TQ",
+          "why_crew_relevant": "Two-floor cocktail bar; open daily till midnight; excellent Irish whiskey; central Soho location for crew nights out",
+          "price_range": "$$",
+          "contact": {
+            "website": "barswift.com",
+            "email": "",
+            "instagram": "@barswiftlondon"
+          },
+          "source": "https://www.timeout.com/london/bars-and-pubs/best-bars-in-london",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Connaught Bar",
+          "category": "bar",
+          "neighborhood": "Mayfair",
+          "address": "Carlos Pl, London W1K 2AL",
+          "why_crew_relevant": "World's #1 bar (2023-24); martini trolley service; bucket-list for senior crew; hotel bar open till midnight",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "the-connaught.co.uk/mayfair-bars/the-connaught-bar",
+            "email": "",
+            "instagram": "@theconnaughtbar"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Lyaness",
+          "category": "bar",
+          "neighborhood": "South Bank",
+          "address": "Sea Containers London, 20 Upper Ground, London SE1 9PD",
+          "why_crew_relevant": "Ryan Chetiyawardana's flagship; riverside views; open till midnight; innovative seasonal cocktails",
+          "price_range": "$$$",
+          "contact": {
+            "website": "lyaness.com",
+            "email": "",
+            "instagram": "@lyaness"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bimber Distillery Bar",
+          "category": "bar",
+          "neighborhood": "Park Royal",
+          "address": "56 Sunbeam Rd, London NW10 6JQ",
+          "why_crew_relevant": "Craft gin and whisky distillery with on-site bar; open Fri-Sat; unique London spirit to take home",
+          "price_range": "$$",
+          "contact": {
+            "website": "bimberdistillery.co.uk",
+            "email": "",
+            "instagram": "@bimberdistillery"
+          },
+          "source": "https://www.timeout.com/london/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "British Museum",
+          "category": "museum",
+          "neighborhood": "Bloomsbury",
+          "address": "Great Russell St, London WC1B 3DG",
+          "why_crew_relevant": "Free entry; opens 10am; Rosetta Stone, Elgin Marbles; 2-3 hour layover activity; near central London hotels",
+          "price_range": "free",
+          "contact": {
+            "website": "britishmuseum.org",
+            "email": "",
+            "instagram": "@britishmuseum"
+          },
+          "source": "https://www.visitlondon.com/things-to-do/sightseeing/london-attraction/museum",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Tate Modern",
+          "category": "museum",
+          "neighborhood": "South Bank",
+          "address": "Bankside, London SE1 9TG",
+          "why_crew_relevant": "Free permanent collection; opens 10am; riverside walk; combines with Borough Market for full layover day",
+          "price_range": "free",
+          "contact": {
+            "website": "tate.org.uk/visit/tate-modern",
+            "email": "",
+            "instagram": "@tate"
+          },
+          "source": "https://www.visitlondon.com/things-to-do/sightseeing/london-attraction/museum",
+          "crew_mentioned": false
+        },
+        {
+          "name": "V&A Museum",
+          "category": "museum",
+          "neighborhood": "South Kensington",
+          "address": "Cromwell Rd, London SW7 2RL",
+          "why_crew_relevant": "Free entry; fashion and design collections; near crew-favourite South Kensington restaurants; opens 10am",
+          "price_range": "free",
+          "contact": {
+            "website": "vam.ac.uk",
+            "email": "",
+            "instagram": "@vamuseum"
+          },
+          "source": "https://www.visitlondon.com/things-to-do/sightseeing/london-attraction/museum",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Gymbox Farringdon",
+          "category": "fitness",
+          "neighborhood": "Farringdon",
+          "address": "50 St John St, London EC1M 4DG",
+          "why_crew_relevant": "Day pass available; opens 6am weekdays; good for jet-lag reset before early departures",
+          "price_range": "$$",
+          "contact": {
+            "website": "gymbox.com",
+            "email": "",
+            "instagram": "@gymbox"
+          },
+          "source": "https://www.gymbox.com",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Third Space Soho",
+          "category": "fitness",
+          "neighborhood": "Soho",
+          "address": "10 Endell St, London WC2H 9BD",
+          "why_crew_relevant": "Premium gym with spa and pool; day pass £30; central location; popular with visiting crew",
+          "price_range": "$$$",
+          "contact": {
+            "website": "thirdspace.london",
+            "email": "",
+            "instagram": "@thirdspacelondon"
+          },
+          "source": "https://thirdspace.london",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Dishoom Covent Garden",
+          "category": "restaurant",
+          "neighborhood": "Covent Garden",
+          "address": "12 Upper St Martin's Ln, London WC2H 9FB",
+          "why_crew_relevant": "Bombay-style all-day dining; opens 8am for breakfast; bacon naan roll is legendary; popular with South Asian crew",
+          "price_range": "$$",
+          "contact": {
+            "website": "dishoom.com",
+            "email": "",
+            "instagram": "@dishoom"
+          },
+          "source": "https://www.timeout.com/london/restaurants/best-restaurants-london",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Bao Soho",
+          "category": "restaurant",
+          "neighborhood": "Soho",
+          "address": "53 Lexington St, London W1F 9AS",
+          "why_crew_relevant": "Taiwanese bao buns; usually has queues but worth it; central Soho; beloved by Asian crew layover groups",
+          "price_range": "$$",
+          "contact": {
+            "website": "baolondon.com",
+            "email": "",
+            "instagram": "@baolondon"
+          },
+          "source": "https://www.timeout.com/london/restaurants/best-restaurants-london",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Borough Market",
+          "category": "restaurant",
+          "neighborhood": "London Bridge",
+          "address": "8 Southwark St, London SE1 1TL",
+          "why_crew_relevant": "London's best food market; open Wed-Sat from 10am; great for sampling food to take back; 30 min from Heathrow",
+          "price_range": "$",
+          "contact": {
+            "website": "boroughmarket.org.uk",
+            "email": "",
+            "instagram": "@boroughmarket"
+          },
+          "source": "https://www.timeout.com/london/restaurants/best-food-markets-london",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "BKK",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "emirates_layover_hotels_known": [
+        "Novotel Bangkok Suvarnabhumi Airport",
+        "Novotel Bangkok Platinum Pratunam",
+        "Marriott Marquis Queen's Park"
+      ],
+      "venues": [
+        {
+          "name": "Roots Coffee Roaster",
+          "category": "cafe",
+          "neighborhood": "Ari",
+          "address": "28/1 Phaholyothin Soi 11, Phaya Thai, Bangkok 10400",
+          "why_crew_relevant": "Bangkok's best specialty roaster; opens 8am; peaceful neighbourhood cafe; 20 min from Pratunam crew hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "rootsbkk.com",
+            "email": "",
+            "instagram": "@rootsbkk"
+          },
+          "source": "https://www.timeout.com/bangkok/restaurants/best-coffee-shops-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Ceresia Coffee Roasters",
+          "category": "cafe",
+          "neighborhood": "Silom",
+          "address": "Gaysorn Village, Level 1, Ploenchit Rd, Bangkok 10330",
+          "why_crew_relevant": "Premium Thai specialty coffee; near BTS Chit Lom; great for first-morning coffee before shopping",
+          "price_range": "$$",
+          "contact": {
+            "website": "ceresia.coffee",
+            "email": "",
+            "instagram": "@ceresiacoffee"
+          },
+          "source": "https://www.timeout.com/bangkok/restaurants/best-coffee-shops-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Brave Roasters",
+          "category": "cafe",
+          "neighborhood": "Thonglor",
+          "address": "Thonglor Soi 10, Bangkok 10110",
+          "why_crew_relevant": "Specialty cafe in expat-heavy Thonglor; opens 8am; near crew-popular Thonglor bars and restaurants",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@braveroasters"
+          },
+          "source": "https://www.timeout.com/bangkok/restaurants/best-coffee-shops-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Phil Coffee Company",
+          "category": "cafe",
+          "neighborhood": "Sukhumvit",
+          "address": "Sukhumvit Soi 31, Bangkok 10110",
+          "why_crew_relevant": "Aussie-style brunch and specialty coffee; opens 7:30am; near Sukhumvit crew hotel cluster",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@philcoffeebkk"
+          },
+          "source": "https://www.timeout.com/bangkok/restaurants/best-coffee-shops-bangkok",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Kaizen Coffee Co.",
+          "category": "cafe",
+          "neighborhood": "Siam",
+          "address": "Siam Square Soi 7, Bangkok 10330",
+          "why_crew_relevant": "Japanese-inspired cafe; opens 9am; excellent matcha and espresso; next to BTS Siam for easy access",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@kaizencoffeeco"
+          },
+          "source": "https://www.timeout.com/bangkok/restaurants/best-coffee-shops-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Maggie Choo's",
+          "category": "bar",
+          "neighborhood": "Silom",
+          "address": "Novotel Bangkok Fenix Silom, 320 Silom Rd, Bangkok 10500",
+          "why_crew_relevant": "1930s Shanghai speakeasy vibe underground; open Thur-Sat till 2am; legendary Bangkok bar; EK crew layover hot spot",
+          "price_range": "$$",
+          "contact": {
+            "website": "maggiechoos.com",
+            "email": "",
+            "instagram": "@maggiechoos"
+          },
+          "source": "https://www.timeout.com/bangkok/bars/best-bars-bangkok",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Smalls",
+          "category": "bar",
+          "neighborhood": "Sukhumvit",
+          "address": "186/3 Sukhumvit Soi 49, Bangkok 10110",
+          "why_crew_relevant": "Hidden bar; world-class cocktails; intimate; EK and Etihad crew both mention on Reddit; Thonglor walking distance",
+          "price_range": "$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@smallsbkk"
+          },
+          "source": "https://www.reddit.com/r/ThailandTourism/comments/bangkok_bars",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Rabbit Hole",
+          "category": "bar",
+          "neighborhood": "Thonglor",
+          "address": "125 Thonglor Soi 8, Bangkok 10110",
+          "why_crew_relevant": "Underground cocktail bar; Wed-Sun till late; near crew hotels; excellent food-pairing menu",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@rabbitholebkk"
+          },
+          "source": "https://www.timeout.com/bangkok/bars/best-bars-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Above Eleven",
+          "category": "bar",
+          "neighborhood": "Sukhumvit",
+          "address": "Fraser Suites Sukhumvit, 38/8 Sukhumvit Soi 11, Bangkok 10110",
+          "why_crew_relevant": "Rooftop bar with skyline views; daily from 5pm; Peruvian-Japanese cocktails; Soi 11 crew cluster",
+          "price_range": "$$$",
+          "contact": {
+            "website": "aboveeleven.com",
+            "email": "",
+            "instagram": "@aboveeleven"
+          },
+          "source": "https://www.timeout.com/bangkok/bars/best-rooftop-bars-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Iron Fairies",
+          "category": "bar",
+          "neighborhood": "Thonglor",
+          "address": "394 Thonglor Soi 9, Bangkok 10110",
+          "why_crew_relevant": "Live jazz; industrial fairy-tale setting; open daily from 7pm; beloved Bangkok institution; near crew hotels",
+          "price_range": "$$",
+          "contact": {
+            "website": "thesilverball.com/iron-fairies-thonglor",
+            "email": "",
+            "instagram": "@thesilverball"
+          },
+          "source": "https://www.timeout.com/bangkok/bars",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bangkok Art and Culture Centre (BACC)",
+          "category": "museum",
+          "neighborhood": "Siam",
+          "address": "939 Rama I Rd, Pathum Wan, Bangkok 10330",
+          "why_crew_relevant": "Free entry; next to BTS National Stadium; rotating modern art shows; great AC break from heat",
+          "price_range": "free",
+          "contact": {
+            "website": "bacc.or.th",
+            "email": "",
+            "instagram": "@baccbangkok"
+          },
+          "source": "https://www.timeout.com/bangkok/art/museums-in-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Museum of Contemporary Art Bangkok (MOCA)",
+          "category": "museum",
+          "neighborhood": "Chatuchak",
+          "address": "499 Kamphaengphet 6 Rd, Chatuchak, Bangkok 10900",
+          "why_crew_relevant": "World-class Thai modern art; near JJ Market; combine with weekend market visit; $6 entry",
+          "price_range": "$",
+          "contact": {
+            "website": "mocabangkok.com",
+            "email": "",
+            "instagram": "@mocabangkok"
+          },
+          "source": "https://www.timeout.com/bangkok/art/museums-in-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Jim Thompson House",
+          "category": "museum",
+          "neighborhood": "National Stadium",
+          "address": "6 Kasemsan 2, Rama I Rd, Bangkok 10330",
+          "why_crew_relevant": "Silk magnate's Thai house museum; guided tour $6; fascinating Cold War story; near Siam BTS",
+          "price_range": "$",
+          "contact": {
+            "website": "jimthompsonhouse.com",
+            "email": "",
+            "instagram": "@jimthompsonhouse"
+          },
+          "source": "https://www.timeout.com/bangkok/attractions/jim-thompson-house",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Jetts Fitness Sukhumvit 101",
+          "category": "fitness",
+          "neighborhood": "Phra Khanong",
+          "address": "Sukhumvit Soi 101, Bangkok 10260",
+          "why_crew_relevant": "24-hour gym; day pass available; popular with crew for post-flight workout before sleep",
+          "price_range": "$",
+          "contact": {
+            "website": "jetts.co.th",
+            "email": "",
+            "instagram": "@jettsthailand"
+          },
+          "source": "https://www.jetts.co.th",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Let's Relax Spa (Sukhumvit 39)",
+          "category": "fitness",
+          "neighborhood": "Phrom Phong",
+          "address": "Sukhumvit Soi 39, Bangkok 10110",
+          "why_crew_relevant": "Famous Thai massage chain; 90-min herbal compress massage for ~$35; open till midnight; crew jet-lag standard",
+          "price_range": "$$",
+          "contact": {
+            "website": "letsrelaxspa.com",
+            "email": "",
+            "instagram": "@letsrelaxspa"
+          },
+          "source": "https://www.timeout.com/bangkok/health-fitness/best-spas-bangkok",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Jay Fai",
+          "category": "restaurant",
+          "neighborhood": "Phra Nakhon",
+          "address": "327 Maha Chai Rd, Samran Rat, Bangkok 10200",
+          "why_crew_relevant": "Michelin-star street food; famous crab omelette; opens 2pm; worth the queue; must-do Bangkok experience",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@jayfaibkk"
+          },
+          "source": "https://guide.michelin.com/en/th/bangkok-region/bangkok/restaurant/jay-fai",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Supanniga Eating Room (Tha Tien)",
+          "category": "restaurant",
+          "neighborhood": "Tha Tien",
+          "address": "392/25-26 Maharaj Rd, Phra Borom, Bangkok 10200",
+          "why_crew_relevant": "Riverside setting with Wat Arun views; authentic eastern Thai cuisine; great for crew group dinners",
+          "price_range": "$$",
+          "contact": {
+            "website": "supanniga.com",
+            "email": "",
+            "instagram": "@supannigagroup"
+          },
+          "source": "https://www.timeout.com/bangkok/restaurants/best-restaurants-in-bangkok",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Or Tor Kor Market",
+          "category": "restaurant",
+          "neighborhood": "Chatuchak",
+          "address": "101 Kamphaengphet Rd, Chatuchak, Bangkok 10900",
+          "why_crew_relevant": "Premium fresh market; best fruit in Bangkok; clean, AC food court; opens 8am; next to MRT Kamphaeng Phet",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/bangkok/restaurants/best-food-markets-in-bangkok",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "SIN",
+      "city": "Singapore",
+      "country": "Singapore",
+      "emirates_layover_hotels_known": [
+        "Crowne Plaza Changi Airport",
+        "YOTELAIR Singapore Changi Airport",
+        "Hilton Singapore Orchard",
+        "Marriott Tang Plaza"
+      ],
+      "venues": [
+        {
+          "name": "Chye Seng Huat Hardware",
+          "category": "cafe",
+          "neighborhood": "Lavender",
+          "address": "150 Tyrwhitt Rd, Singapore 207563",
+          "why_crew_relevant": "Iconic heritage shophouse cafe; 7am open; voted Singapore's best coffee; 20 min from Changi hotels by MRT",
+          "price_range": "$",
+          "contact": {
+            "website": "cshhcoffee.com",
+            "email": "",
+            "instagram": "@cshhcoffee"
+          },
+          "source": "https://www.timeout.com/singapore/restaurants/best-cafes-in-singapore",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Nylon Coffee Roasters",
+          "category": "cafe",
+          "neighborhood": "Everton Park",
+          "address": "4 Everton Park #01-40, Singapore 080004",
+          "why_crew_relevant": "Queue-worthy specialty roaster; weekend draw for crew; known for micro-lot coffees",
+          "price_range": "$",
+          "contact": {
+            "website": "nyloncoffee.sg",
+            "email": "",
+            "instagram": "@nyloncoffeeroasters"
+          },
+          "source": "https://www.timeout.com/singapore/restaurants/best-cafes-in-singapore",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Papa Palheta",
+          "category": "cafe",
+          "neighborhood": "Tiong Bahru",
+          "address": "150 Tyrwhitt Rd, Singapore 207563",
+          "why_crew_relevant": "Pioneer of Singapore's third-wave coffee; opens 8:30am; in vibrant Tiong Bahru neighbourhood",
+          "price_range": "$",
+          "contact": {
+            "website": "papapalheta.com",
+            "email": "",
+            "instagram": "@papapalheta"
+          },
+          "source": "https://www.timeout.com/singapore/restaurants/best-cafes-in-singapore",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Sarnies",
+          "category": "cafe",
+          "neighborhood": "Telok Ayer",
+          "address": "136 Telok Ayer St, Singapore 068601",
+          "why_crew_relevant": "Australian-style all-day brunch; opens 7:30am weekdays; excellent eggs and flat whites; CBD crew favourite",
+          "price_range": "$$",
+          "contact": {
+            "website": "sarnies.com.sg",
+            "email": "",
+            "instagram": "@sarniescafe"
+          },
+          "source": "https://www.timeout.com/singapore/restaurants/best-cafes-in-singapore",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Jewel Changi Airport Starbucks Reserve",
+          "category": "cafe",
+          "neighborhood": "Changi",
+          "address": "78 Airport Blvd, Jewel Changi Airport #02-221, Singapore 819666",
+          "why_crew_relevant": "Connected to airport; open early; crew often pop in before/after; RAIN VORTEX view from seating",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.jewelchangiairport.com",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Manhattan Bar (Regent Singapore)",
+          "category": "bar",
+          "neighborhood": "Orchard",
+          "address": "1 Cuscaden Rd, Singapore 249715",
+          "why_crew_relevant": "Asia's #1 bar multiple years; open daily from 5pm; stunning bar room; pre-flight treat for senior crew",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "regenthotels.com/regent-singapore/dining/manhattan",
+            "email": "",
+            "instagram": "@manhattanbarsg"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "28 HongKong Street",
+          "category": "bar",
+          "neighborhood": "Clarke Quay",
+          "address": "28 Hongkong St, Singapore 059667",
+          "why_crew_relevant": "Asia's 50 best bars; speakeasy style; Tue-Sat from 6pm; craft cocktails; good for crew groups",
+          "price_range": "$$$",
+          "contact": {
+            "website": "28hks.com",
+            "email": "",
+            "instagram": "@28hongkongstreet"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Anti:dote (Fairmont Singapore)",
+          "category": "bar",
+          "neighborhood": "City Hall",
+          "address": "80 Bras Basah Rd, Singapore 189560",
+          "why_crew_relevant": "Hotel cocktail bar with light bites; opens 5pm; near City Hall MRT; good for quick crew meetup",
+          "price_range": "$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@antidotesg"
+          },
+          "source": "https://www.timeout.com/singapore/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Employees Only Singapore",
+          "category": "bar",
+          "neighborhood": "Tanjong Pagar",
+          "address": "112 Amoy St, Singapore 069932",
+          "why_crew_relevant": "NYC transplant; open till 3am; free psychic readings; industry crowd; crew favourite on Reddit",
+          "price_range": "$$$",
+          "contact": {
+            "website": "employeesonlysg.com",
+            "email": "",
+            "instagram": "@employeesonlysg"
+          },
+          "source": "https://www.reddit.com/r/Singapore/comments/best_bars_sg",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Atlas Bar",
+          "category": "bar",
+          "neighborhood": "Bugis",
+          "address": "600 North Bridge Rd, Parkview Square, Singapore 188778",
+          "why_crew_relevant": "Art Deco grand hotel bar in stunning art-deco tower; largest gin collection in Asia; opens 3pm",
+          "price_range": "$$$",
+          "contact": {
+            "website": "atlasbar.sg",
+            "email": "",
+            "instagram": "@atlasbarsg"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "National Museum of Singapore",
+          "category": "museum",
+          "neighborhood": "Bras Basah",
+          "address": "93 Stamford Rd, Singapore 178897",
+          "why_crew_relevant": "Free entry Friday evenings; neoclassical building; Singapore history galleries; near City Hall hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "nationalmuseum.sg",
+            "email": "",
+            "instagram": "@natmuseum_sg"
+          },
+          "source": "https://www.timeout.com/singapore/art/museums-in-singapore",
+          "crew_mentioned": false
+        },
+        {
+          "name": "ArtScience Museum",
+          "category": "museum",
+          "neighborhood": "Marina Bay",
+          "address": "6 Bayfront Ave, Singapore 018974",
+          "why_crew_relevant": "Lotus-shaped building at Marina Bay; digital art shows; popular Instagram stop for crew; opens 10am",
+          "price_range": "$$",
+          "contact": {
+            "website": "marinabaysands.com/museum.html",
+            "email": "",
+            "instagram": "@artscience_museum"
+          },
+          "source": "https://www.timeout.com/singapore/art/museums-in-singapore",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Gardens by the Bay (free sections)",
+          "category": "museum",
+          "neighborhood": "Marina Bay",
+          "address": "18 Marina Gardens Dr, Singapore 018953",
+          "why_crew_relevant": "Supertree Grove free to walk; Skywalk has fee; crew sunset photo stop; 10 min from CBD hotels",
+          "price_range": "free",
+          "contact": {
+            "website": "gardensbythebay.com.sg",
+            "email": "",
+            "instagram": "@gardensbythebay"
+          },
+          "source": "https://www.timeout.com/singapore/attractions",
+          "crew_mentioned": false
+        },
+        {
+          "name": "True Fitness Clarke Quay",
+          "category": "fitness",
+          "neighborhood": "Clarke Quay",
+          "address": "3 River Valley Rd, Clarke Quay Block E, Singapore 179024",
+          "why_crew_relevant": "Premium gym; day pass available; pool; good for morning reset before exploring",
+          "price_range": "$$",
+          "contact": {
+            "website": "truefitness.com.sg",
+            "email": "",
+            "instagram": "@truefitnessg"
+          },
+          "source": "https://www.truefitness.com.sg",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Wildseed Spa at The Outpost Hotel",
+          "category": "fitness",
+          "neighborhood": "Sentosa",
+          "address": "10 Artillery Ave, Sentosa Island, Singapore 099951",
+          "why_crew_relevant": "Boutique spa on Sentosa; 60-min express treatments; popular crew wind-down spot after long-haul",
+          "price_range": "$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@wildseedsg"
+          },
+          "source": "https://www.timeout.com/singapore/spa",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Hawker Chan",
+          "category": "restaurant",
+          "neighborhood": "Chinatown",
+          "address": "78 Smith St, Singapore 058972",
+          "why_crew_relevant": "World's cheapest Michelin-star meal (~$3 soy chicken); iconic crew experience; opens 10:30am",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@hawkerchan"
+          },
+          "source": "https://guide.michelin.com/sg/en/singapore-region/singapore/restaurant/liao-fan-hawker-chan",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Newton Food Centre",
+          "category": "restaurant",
+          "neighborhood": "Newton",
+          "address": "500 Clemenceau Ave N, Singapore 229495",
+          "why_crew_relevant": "Open-air hawker centre from 12pm to midnight; famous chilli crab and barbecue; near Newton MRT; crew classic",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/singapore/restaurants/best-hawker-centres-in-singapore",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Jumbo Seafood River Walk",
+          "category": "restaurant",
+          "neighborhood": "Clarke Quay",
+          "address": "30 Merchant Rd, Riverside Point #01-01/02, Singapore 058282",
+          "why_crew_relevant": "Chilli crab institution; river views; crew group dinner favourite; book ahead or walk-in off-peak",
+          "price_range": "$$$",
+          "contact": {
+            "website": "jumboseafood.com.sg",
+            "email": "reservations@jumboseafood.com.sg",
+            "instagram": "@jumboseafood"
+          },
+          "source": "https://www.timeout.com/singapore/restaurants/best-restaurants-singapore",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "NRT",
+      "city": "Tokyo",
+      "country": "Japan",
+      "emirates_layover_hotels_known": [
+        "Hilton Tokyo Narita Airport",
+        "Radisson Hotel Narita",
+        "APA Hotel Narita",
+        "Marriott Tokyo"
+      ],
+      "venues": [
+        {
+          "name": "Fuglen Tokyo",
+          "category": "cafe",
+          "neighborhood": "Tomigaya",
+          "address": "1-16-11 Tomigaya, Shibuya, Tokyo 151-0063",
+          "why_crew_relevant": "Oslo roaster outpost; opens 8am; doubles as cocktail bar at night; near Yoyogi Park; crew favourite",
+          "price_range": "$",
+          "contact": {
+            "website": "fuglen.no/tokyo",
+            "email": "",
+            "instagram": "@fuglentokyo"
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-coffee-shops-tokyo",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Bear Pond Espresso",
+          "category": "cafe",
+          "neighborhood": "Shimokitazawa",
+          "address": "2-36-12 Kitazawa, Setagaya, Tokyo 155-0031",
+          "why_crew_relevant": "Legendary espresso artisan; tiny shop; quirky rules; 11am open; worth the trip to Shimokita",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@bearpond_espresso"
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-coffee-shops-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Streamer Coffee Company Shibuya",
+          "category": "cafe",
+          "neighborhood": "Shibuya",
+          "address": "1-20-28 Shibuya, Tokyo 150-0002",
+          "why_crew_relevant": "Latte art world champion's brand; opens 8am; near Shibuya crossing; great for early morning crew",
+          "price_range": "$",
+          "contact": {
+            "website": "streamercoffee.com",
+            "email": "",
+            "instagram": "@streamercoffeecompany"
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-coffee-shops-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "About Life Coffee Brewers",
+          "category": "cafe",
+          "neighborhood": "Daikanyama",
+          "address": "1-19-8 Daikanyama, Shibuya, Tokyo 150-0034",
+          "why_crew_relevant": "Tiny standing bar; excellent pour-overs; opens 9am; in fashionable Daikanyama; 5 min from Tsutaya Books",
+          "price_range": "$",
+          "contact": {
+            "website": "about-life.coffee",
+            "email": "",
+            "instagram": "@aboutlifecoffee"
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-coffee-shops-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Onibus Coffee Nakameguro",
+          "category": "cafe",
+          "neighborhood": "Nakameguro",
+          "address": "2-14-1 Kamimeguro, Meguro, Tokyo 153-0051",
+          "why_crew_relevant": "Canal-side location; opens 9am; excellent single origins; Nakameguro walk is crew layover classic",
+          "price_range": "$",
+          "contact": {
+            "website": "onibuscoffee.com",
+            "email": "",
+            "instagram": "@onibuscoffee"
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-coffee-shops-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar Trench",
+          "category": "bar",
+          "neighborhood": "Ebisu",
+          "address": "1-5-8 Ebisu-Nishi, Shibuya, Tokyo 150-0021",
+          "why_crew_relevant": "Art Nouveau absinthe bar; craft cocktails; opens 6pm; close to Ebisu station; intimate 10-seat bar",
+          "price_range": "$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@bar_trench"
+          },
+          "source": "https://www.timeout.com/tokyo/bars-and-pubs/best-bars-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar High Five",
+          "category": "bar",
+          "neighborhood": "Ginza",
+          "address": "Nishi-5 Building B1F, 5-4-15 Ginza, Chuo, Tokyo 104-0061",
+          "why_crew_relevant": "World's top 50 bar; Hidetsugu Ueno's legendary craft; opens 5pm; Ginza location; book ahead",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@bar_high_five"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Gen Yamamoto",
+          "category": "bar",
+          "neighborhood": "Azabu-Juban",
+          "address": "1-6-4 Azabu-Juban, Minato, Tokyo 106-0045",
+          "why_crew_relevant": "4-seat or 8-seat tasting menus; seasonal Japanese ingredients; bucket-list cocktail experience; reservation only",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "genyamamoto.jp",
+            "email": "",
+            "instagram": "@gen_yamamoto_bar"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Zoetrope",
+          "category": "bar",
+          "neighborhood": "Shinjuku",
+          "address": "7-10-14 Nishi-Shinjuku, Tokyo 160-0023",
+          "why_crew_relevant": "300+ Japanese whiskies; famous Shinjuku whisky bar; opens 7pm; great for crew whisky exploration",
+          "price_range": "$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/tokyo/bars-and-pubs/best-whisky-bars-tokyo",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Tight (クラフトビール)",
+          "category": "bar",
+          "neighborhood": "Shimokitazawa",
+          "address": "2-12-15 Kitazawa, Setagaya, Tokyo 155-0031",
+          "why_crew_relevant": "Craft beer izakaya; laid-back Shimokita vibe; opens 5pm; good rotating Japanese taps",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/tokyo/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Tokyo National Museum",
+          "category": "museum",
+          "neighborhood": "Ueno",
+          "address": "13-9 Uenokoen, Taito, Tokyo 110-8712",
+          "why_crew_relevant": "Japan's largest museum; opens 9:30am; samurai armour and Buddhist art; Ueno park walk combo",
+          "price_range": "$",
+          "contact": {
+            "website": "tnm.jp",
+            "email": "",
+            "instagram": "@tnm_pr"
+          },
+          "source": "https://www.timeout.com/tokyo/art/museums-in-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "teamLab Planets",
+          "category": "museum",
+          "neighborhood": "Toyosu",
+          "address": "6-1-16 Toyosu, Koto, Tokyo 135-0061",
+          "why_crew_relevant": "Immersive digital art; crew Instagram favourite; book ahead online; sensory experience unlike anything",
+          "price_range": "$$",
+          "contact": {
+            "website": "planets.teamlab.art",
+            "email": "",
+            "instagram": "@teamlab_planets"
+          },
+          "source": "https://www.timeout.com/tokyo/art/teamlab",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Mori Art Museum",
+          "category": "museum",
+          "neighborhood": "Roppongi",
+          "address": "6-10-1 Roppongi Hills Mori Tower 53F, Tokyo 106-6150",
+          "why_crew_relevant": "Contemporary art + Tokyo city views; opens till 10pm (Tue till 5pm); free with Tokyo City View ticket",
+          "price_range": "$$",
+          "contact": {
+            "website": "mori.art.museum",
+            "email": "",
+            "instagram": "@moriartmuseum"
+          },
+          "source": "https://www.timeout.com/tokyo/art/museums-in-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Tipness Ebisu",
+          "category": "fitness",
+          "neighborhood": "Ebisu",
+          "address": "1-5-6 Ebisu-Minami, Shibuya, Tokyo 150-0022",
+          "why_crew_relevant": "Clean gym with pool; day pass ~¥2200; opens 7am; near crew-popular Ebisu/Daikanyama area",
+          "price_range": "$$",
+          "contact": {
+            "website": "tipness.co.jp",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.tipness.co.jp",
+          "crew_mentioned": false
+        },
+        {
+          "name": "SPA LaQua (Tokyo Dome City)",
+          "category": "fitness",
+          "neighborhood": "Bunkyo",
+          "address": "1-1-1 Kasuga, Bunkyo, Tokyo 112-0003",
+          "why_crew_relevant": "Natural hot spring spa in central Tokyo; opens 11am (some floors to 9am); sauna + onsen for crew recovery",
+          "price_range": "$$",
+          "contact": {
+            "website": "laqua.jp/spa",
+            "email": "",
+            "instagram": "@laqua_official"
+          },
+          "source": "https://www.timeout.com/tokyo/spas-and-wellbeing",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Tsukiji Outer Market",
+          "category": "restaurant",
+          "neighborhood": "Tsukiji",
+          "address": "4-16-2 Tsukiji, Chuo, Tokyo 104-0045",
+          "why_crew_relevant": "Opens 5am; sushi breakfast is Tokyo crew ritual; tamagoyaki, fresh tuna; best at 6-8am before crowds",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/tsukiji-market",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Ichiran Ramen Shinjuku",
+          "category": "restaurant",
+          "neighborhood": "Shinjuku",
+          "address": "3-34-11 Shinjuku, Tokyo 160-0022",
+          "why_crew_relevant": "Solo ramen booths; 24-hour; classic jet-lag meal at any hour; customize your bowl; crew must-do",
+          "price_range": "$",
+          "contact": {
+            "website": "ichiran.com",
+            "email": "",
+            "instagram": "@ichiranofficial"
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-ramen-restaurants-tokyo",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Sushi Saito",
+          "category": "restaurant",
+          "neighborhood": "Toranomon",
+          "address": "1-9-15 Toranomon, Minato, Tokyo 105-0001",
+          "why_crew_relevant": "3-Michelin-star omakase; bucket-list sushi; reservation only months in advance; for special occasions",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://guide.michelin.com/en/tokyo-region/tokyo/restaurant/sushi-saito",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "HND",
+      "city": "Tokyo (Haneda)",
+      "country": "Japan",
+      "emirates_layover_hotels_known": [
+        "Haneda Excel Hotel Tokyu",
+        "APA Hotel Haneda",
+        "Royal Park Hotel The Haneda"
+      ],
+      "venues": [
+        {
+          "name": "Fuglen Tokyo",
+          "category": "cafe",
+          "neighborhood": "Tomigaya",
+          "address": "1-16-11 Tomigaya, Shibuya, Tokyo 151-0063",
+          "why_crew_relevant": "Same as NRT note — accessible from Haneda via Keikyu Line to Shibuya; crew favourite Oslo-style coffee",
+          "price_range": "$",
+          "contact": {
+            "website": "fuglen.no/tokyo",
+            "email": "",
+            "instagram": "@fuglentokyo"
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-coffee-shops-tokyo",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Kuramae Coffee Roasters",
+          "category": "cafe",
+          "neighborhood": "Kuramae",
+          "address": "2-12-4 Kuramae, Taito, Tokyo 111-0051",
+          "why_crew_relevant": "Emerging Tokyo coffee district; small-batch roasters; Asakusa day trip add-on; opens 10am",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-coffee-shops-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar High Five",
+          "category": "bar",
+          "neighborhood": "Ginza",
+          "address": "Nishi-5 Building B1F, 5-4-15 Ginza, Chuo, Tokyo 104-0061",
+          "why_crew_relevant": "Easier to access from Haneda via Keikyu to Ginza; world-class cocktail bar",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@bar_high_five"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Yakitori Alley (Yurakucho)",
+          "category": "bar",
+          "neighborhood": "Yurakucho",
+          "address": "Yurakucho, Chiyoda, Tokyo 100-0006",
+          "why_crew_relevant": "Under the train tracks; tiny izakayas from 5pm; closest izakaya strip to Haneda via Keikyu to Yurakucho",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/tokyo/bars-and-pubs/best-izakayas-tokyo",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Edo-Tokyo Museum",
+          "category": "museum",
+          "neighborhood": "Ryogoku",
+          "address": "1-4-1 Yokoami, Sumida, Tokyo 130-0015",
+          "why_crew_relevant": "Open Wed-Sun; Tokyo history exhibits; near sumo stadium; combination visit with sumo museum",
+          "price_range": "$",
+          "contact": {
+            "website": "edo-tokyo-museum.or.jp",
+            "email": "",
+            "instagram": "@edotokyomuseum"
+          },
+          "source": "https://www.timeout.com/tokyo/art/museums-in-tokyo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Haneda Airport Hot Spring (Kuko no Yado)",
+          "category": "fitness",
+          "neighborhood": "Haneda",
+          "address": "Haneda Airport Terminal area, Tokyo",
+          "why_crew_relevant": "Airport-connected natural hot spring; open 24 hours; crew jet-lag recovery; no advance booking needed",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/tokyo/spas-and-wellbeing",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Tsukiji Outer Market",
+          "category": "restaurant",
+          "neighborhood": "Tsukiji",
+          "address": "4-16-2 Tsukiji, Chuo, Tokyo 104-0045",
+          "why_crew_relevant": "Opens 5am; 30 min from Haneda by Keikyu; sushi breakfast is Tokyo crew ritual",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/tsukiji-market",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Sushi no Midori Umegaoka",
+          "category": "restaurant",
+          "neighborhood": "Umegaoka",
+          "address": "1-21-9 Umegaoka, Setagaya, Tokyo 154-0022",
+          "why_crew_relevant": "Excellent value sushi; queues but worth it; fresh quality near mid-cost; popular with crew groups",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/tokyo/restaurants/best-sushi-restaurants-tokyo",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "ICN",
+      "city": "Seoul",
+      "country": "South Korea",
+      "emirates_layover_hotels_known": [
+        "Sofitel Ambassador Seoul",
+        "Grand Hyatt Seoul",
+        "Marriott Executive Apartments Seoul",
+        "Novotel Ambassador Gangnam"
+      ],
+      "venues": [
+        {
+          "name": "Fritz Coffee Company",
+          "category": "cafe",
+          "neighborhood": "Mapo-gu",
+          "address": "28-1 Tojeong-ro 5-gil, Mapo-gu, Seoul 04087",
+          "why_crew_relevant": "Seoul's most-loved indie roaster; opens 9am; beautiful space; Sangsu neighbourhood exploration",
+          "price_range": "$",
+          "contact": {
+            "website": "fritz.co.kr",
+            "email": "",
+            "instagram": "@fritz_coffee_company"
+          },
+          "source": "https://www.timeout.com/seoul/restaurants/best-coffee-shops-seoul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Namusairo",
+          "category": "cafe",
+          "neighborhood": "Bukchon",
+          "address": "5 Bukchon-ro 12-gil, Jongno-gu, Seoul 03053",
+          "why_crew_relevant": "Hanok (traditional house) cafe in Bukchon; opens 11am; matcha and traditional tea; photo-worthy",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@namusairo"
+          },
+          "source": "https://www.timeout.com/seoul/restaurants/best-cafes-seoul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Coffee Montage",
+          "category": "cafe",
+          "neighborhood": "Seongsu-dong",
+          "address": "31 Seongsuil-ro 4-gil, Seongdong-gu, Seoul 04787",
+          "why_crew_relevant": "Seongsu (Seoul's Brooklyn) specialty coffee; opens 9am; good for Seongsu street-food day",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@coffee_montage"
+          },
+          "source": "https://www.timeout.com/seoul/restaurants/best-coffee-shops-seoul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bau Haus Cafe Hongdae",
+          "category": "cafe",
+          "neighborhood": "Hongdae",
+          "address": "15-5 Eoulmadang-ro, Mapo-gu, Seoul 04047",
+          "why_crew_relevant": "Dog cafe institution; opens 10am; Hongdae street food access; unique Korean cafe culture experience",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/seoul/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Felt Coffee Roasters",
+          "category": "cafe",
+          "neighborhood": "Itaewon",
+          "address": "Itaewon-ro, Yongsan-gu, Seoul 04349",
+          "why_crew_relevant": "Near crew-popular Itaewon; specialty coffee and food; mixed expat and local crowd; opens 9am",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@feltcoffeeroasters"
+          },
+          "source": "https://www.timeout.com/seoul/restaurants/best-coffee-shops-seoul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Southside Parlor",
+          "category": "bar",
+          "neighborhood": "Itaewon",
+          "address": "Global Bldg 1F, 683-60 Hannam-dong, Yongsan-gu, Seoul 04419",
+          "why_crew_relevant": "Expat dive bar; Itaewon; open till 3am weekdays; crew known gathering spot; cheap and fun",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@southsideparlor"
+          },
+          "source": "https://www.reddit.com/r/Seoul/comments/itaewon_bars",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Le Chamber",
+          "category": "bar",
+          "neighborhood": "Gangnam",
+          "address": "507 Apgujeong-ro, Gangnam-gu, Seoul 06016",
+          "why_crew_relevant": "Asia's 50 best; secret library-themed bar; craft cocktails; opens 6pm; Gangnam for senior crew",
+          "price_range": "$$$",
+          "contact": {
+            "website": "lechamber.kr",
+            "email": "",
+            "instagram": "@lechamber_seoul"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Cakeshop",
+          "category": "bar",
+          "neighborhood": "Itaewon",
+          "address": "134-1 Itaewon-ro, Yongsan-gu, Seoul 04348",
+          "why_crew_relevant": "Seoul's top club for electronic music; Fri-Sat from 11pm; international DJs; crew night out institution",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@cakeshopseoul"
+          },
+          "source": "https://www.timeout.com/seoul/nightlife",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Bar Bau",
+          "category": "bar",
+          "neighborhood": "Euljiro",
+          "address": "Euljiro 3-ga, Jung-gu, Seoul",
+          "why_crew_relevant": "Cocktail bar in underground Euljiro print district; artistic crowd; opens 6pm; authentic Seoul scene",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/seoul/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Southside Parlor",
+          "category": "bar",
+          "neighborhood": "Itaewon",
+          "address": "Global Bldg 1F, 683-60 Hannam-dong, Yongsan-gu, Seoul",
+          "why_crew_relevant": "Known crew meetup; Itaewon location; easy taxi back to Gangnam hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@southsideparlor"
+          },
+          "source": "https://www.reddit.com/r/Seoul",
+          "crew_mentioned": true
+        },
+        {
+          "name": "National Museum of Korea",
+          "category": "museum",
+          "neighborhood": "Yongsan",
+          "address": "137 Seobinggo-ro, Yongsan-gu, Seoul 04383",
+          "why_crew_relevant": "Free entry; opens 10am; celadon and Joseon dynasty collections; near Itaewon crew hotels",
+          "price_range": "free",
+          "contact": {
+            "website": "museum.go.kr",
+            "email": "",
+            "instagram": "@nationalmuseumofkorea"
+          },
+          "source": "https://www.timeout.com/seoul/art/museums-in-seoul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Leeum Samsung Museum of Art",
+          "category": "museum",
+          "neighborhood": "Hannam-dong",
+          "address": "60-16 Itaewon-ro 55-gil, Yongsan-gu, Seoul 04348",
+          "why_crew_relevant": "World-class Korean art and international contemporary; opens Tue-Sun 10am; near Itaewon hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "leeum.org",
+            "email": "",
+            "instagram": "@leeum_museum"
+          },
+          "source": "https://www.timeout.com/seoul/art/museums-in-seoul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bukchon Hanok Village",
+          "category": "museum",
+          "neighborhood": "Jongno-gu",
+          "address": "37 Gyedong-gil, Jongno-gu, Seoul 03057",
+          "why_crew_relevant": "Traditional Korean village; free to walk; opens all hours for exterior; Instagram crew favourite",
+          "price_range": "free",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/seoul/attractions",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Spa 1899 Itaewon (Donginbi)",
+          "category": "fitness",
+          "neighborhood": "Itaewon",
+          "address": "257-1 Itaewon-ro, Yongsan-gu, Seoul",
+          "why_crew_relevant": "Korean red ginseng spa brand; signature facials and treatments; luxury; near crew hotels",
+          "price_range": "$$$",
+          "contact": {
+            "website": "spa1899.com",
+            "email": "",
+            "instagram": "@donginbi_official"
+          },
+          "source": "https://www.timeout.com/seoul/beauty-and-wellbeing",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Dragon Hill Spa (Yongsan)",
+          "category": "fitness",
+          "neighborhood": "Yongsan",
+          "address": "40-713 Hangang-daero, Yongsan-gu, Seoul 04324",
+          "why_crew_relevant": "Huge 24hr jjimjilbang; all amenities; ~$15 entry; crew jet-lag staple; pool, saunas, sleeping rooms",
+          "price_range": "$",
+          "contact": {
+            "website": "dragonhillspa.com",
+            "email": "",
+            "instagram": "@dragonhill_spa"
+          },
+          "source": "https://www.timeout.com/seoul/beauty-and-wellbeing",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Gwangjang Market",
+          "category": "restaurant",
+          "neighborhood": "Jongno-gu",
+          "address": "88 Changgyeonggung-ro, Jongno-gu, Seoul 03197",
+          "why_crew_relevant": "100-year-old market; opens 9am; famous bindaetteok and yukhoe; best Korean street food in Seoul",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/seoul/restaurants/best-food-markets-in-seoul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Mingles",
+          "category": "restaurant",
+          "neighborhood": "Cheongdam-dong",
+          "address": "8-11 Dosan-daero 67-gil, Gangnam-gu, Seoul 06015",
+          "why_crew_relevant": "2-Michelin-star Korean tasting menu; reservation needed; best modern Korean cuisine; senior crew splurge",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "restaurant-mingles.com",
+            "email": "booking@restaurant-mingles.com",
+            "instagram": "@restaurant_mingles"
+          },
+          "source": "https://guide.michelin.com/kr/en/seoul-capital-area/seoul/restaurant/mingles",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Noryangjin Fish Market",
+          "category": "restaurant",
+          "neighborhood": "Noryangjin",
+          "address": "674 Nodeul-ro, Dongjak-gu, Seoul 07069",
+          "why_crew_relevant": "24-hour wholesale fish market; buy fresh seafood, take upstairs to cook; early-morning crew experience",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/seoul/restaurants/best-food-markets-in-seoul",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "HKG",
+      "city": "Hong Kong",
+      "country": "Hong Kong SAR",
+      "emirates_layover_hotels_known": [
+        "JW Marriott Hotel Hong Kong",
+        "Conrad Hong Kong",
+        "Regal Airport Hotel",
+        "NOVOTEL Hong Kong Nathan Road"
+      ],
+      "venues": [
+        {
+          "name": "Cupping Room Coffee Roasters",
+          "category": "cafe",
+          "neighborhood": "Central",
+          "address": "3/F, 10 Pottinger St, Central, Hong Kong",
+          "why_crew_relevant": "HK's leading specialty roaster; opens 8am; Central location; near IFC crew hotel drop-off",
+          "price_range": "$",
+          "contact": {
+            "website": "thecuppingroom.com.hk",
+            "email": "",
+            "instagram": "@cuppingroomhk"
+          },
+          "source": "https://www.timeout.com/hong-kong/restaurants/best-coffee-shops-hong-kong",
+          "crew_mentioned": false
+        },
+        {
+          "name": "% Arabica Hong Kong (Peak Tram Lower Terminus)",
+          "category": "cafe",
+          "neighborhood": "Central",
+          "address": "33 Garden Rd, Mid-Levels, Hong Kong",
+          "why_crew_relevant": "Japanese-origin specialty chain; stunning tram terminus setting; opens 9am; crew Hong Kong classic",
+          "price_range": "$",
+          "contact": {
+            "website": "arabica.coffee",
+            "email": "",
+            "instagram": "@arabica.coffee"
+          },
+          "source": "https://www.timeout.com/hong-kong/restaurants/best-coffee-shops-hong-kong",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Quinary",
+          "category": "bar",
+          "neighborhood": "Central",
+          "address": "56-58 Hollywood Rd, Central, Hong Kong",
+          "why_crew_relevant": "Asia's 50 best bar; multi-sensory cocktails; opens 5pm Mon-Sat; Soho area close to crew hotels",
+          "price_range": "$$$",
+          "contact": {
+            "website": "quinary.hk",
+            "email": "",
+            "instagram": "@quinaryhk"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Old Man",
+          "category": "bar",
+          "neighborhood": "Sheung Wan",
+          "address": "37 Aberdeen St, Central, Hong Kong",
+          "why_crew_relevant": "Hemingway-themed; Asia's top bars list; opens 5pm; literary cocktail menu; easy MTR access",
+          "price_range": "$$$",
+          "contact": {
+            "website": "theoldmanhk.com",
+            "email": "",
+            "instagram": "@theoldmanhk"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Hong Kong Museum of History",
+          "category": "museum",
+          "neighborhood": "Tsim Sha Tsui",
+          "address": "100 Chatham Rd S, Tsim Sha Tsui, Kowloon, Hong Kong",
+          "why_crew_relevant": "Free on Wednesdays; full HK story from prehistoric to handover; near Kowloon crew hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "lcsd.gov.hk/CE/Museum/History",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/hong-kong/art/museums-in-hong-kong",
+          "crew_mentioned": false
+        },
+        {
+          "name": "M+ Museum",
+          "category": "museum",
+          "neighborhood": "West Kowloon",
+          "address": "38 Museum Dr, West Kowloon Cultural District, Hong Kong",
+          "why_crew_relevant": "Asia's leading contemporary art museum; opened 2021; stunning building; opens Tue-Sun 10am",
+          "price_range": "$",
+          "contact": {
+            "website": "mplus.museum",
+            "email": "",
+            "instagram": "@mplusmuseum"
+          },
+          "source": "https://www.timeout.com/hong-kong/art/museums-in-hong-kong",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Pure Fitness IFC",
+          "category": "fitness",
+          "neighborhood": "Central",
+          "address": "Podium Level 3, IFC Mall, 8 Finance St, Central, Hong Kong",
+          "why_crew_relevant": "Premium gym with harbour views; day pass available; opens 6am; near crew hotel cluster Central",
+          "price_range": "$$$",
+          "contact": {
+            "website": "pure-international.com",
+            "email": "",
+            "instagram": "@pure_fitness"
+          },
+          "source": "https://www.pure-international.com",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Tim Ho Wan (Sham Shui Po)",
+          "category": "restaurant",
+          "neighborhood": "Sham Shui Po",
+          "address": "9-11 Fuk Wing St, Sham Shui Po, Kowloon, Hong Kong",
+          "why_crew_relevant": "World's most affordable Michelin star; opens 10am; polo bun and BBQ pork buns; crew dim sum classic",
+          "price_range": "$",
+          "contact": {
+            "website": "timhowan.com",
+            "email": "",
+            "instagram": "@timhowanworld"
+          },
+          "source": "https://guide.michelin.com/hk/en/kowloon/hong-kong/restaurant/tim-ho-wan",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Yung Kee Restaurant",
+          "category": "restaurant",
+          "neighborhood": "Central",
+          "address": "32-40 Wellington St, Central, Hong Kong",
+          "why_crew_relevant": "HK institution since 1942; roast goose; opens 11am; Central prime location; must-try with crew groups",
+          "price_range": "$$",
+          "contact": {
+            "website": "yungkee.com.hk",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/hong-kong/restaurants/best-restaurants-hong-kong",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Mak's Noodle",
+          "category": "restaurant",
+          "neighborhood": "Central",
+          "address": "77 Wellington St, Central, Hong Kong",
+          "why_crew_relevant": "Legendary wonton noodle soup; opens 11am; tiny but iconic; quick crew fuel; traditional HK bowl",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/hong-kong/restaurants/best-noodle-restaurants-hong-kong",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "CDG",
+      "city": "Paris",
+      "country": "France",
+      "emirates_layover_hotels_known": [
+        "Pullman Paris Roissy CDG Airport",
+        "Hilton Paris Opera",
+        "Le Méridien Etoile",
+        "Marriott Paris Champs-Elysées"
+      ],
+      "venues": [
+        {
+          "name": "Cafe de Flore",
+          "category": "cafe",
+          "neighborhood": "Saint-Germain-des-Prés",
+          "address": "172 Bd Saint-Germain, 75006 Paris",
+          "why_crew_relevant": "Paris institution since 1887; opens 7:30am; intellectual Left Bank history; crew Paris classic",
+          "price_range": "$$",
+          "contact": {
+            "website": "cafedeflore.fr",
+            "email": "",
+            "instagram": "@cafedeflore"
+          },
+          "source": "https://www.timeout.com/paris/restaurants/best-cafes-paris",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Telescope Cafe",
+          "category": "cafe",
+          "neighborhood": "Palais-Royal",
+          "address": "5 Rue Villedo, 75001 Paris",
+          "why_crew_relevant": "Paris's best specialty coffee; opens 8:30am; near Palais Royal; Aussie expat run; flat white destination",
+          "price_range": "$$",
+          "contact": {
+            "website": "telescopecafe.com",
+            "email": "",
+            "instagram": "@telescopecafe"
+          },
+          "source": "https://www.timeout.com/paris/restaurants/best-coffee-paris",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Cafe Verlet",
+          "category": "cafe",
+          "neighborhood": "1st arrondissement",
+          "address": "256 Rue Saint-Honoré, 75001 Paris",
+          "why_crew_relevant": "Old-world Parisian roaster since 1880; opens 9am; near Tuileries; quiet and beautiful",
+          "price_range": "$$",
+          "contact": {
+            "website": "cafesverlet.com",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/paris/restaurants/best-cafes-paris",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Dirty Lemon Paris",
+          "category": "cafe",
+          "neighborhood": "Marais",
+          "address": "36 Rue de Bretagne, 75003 Paris",
+          "why_crew_relevant": "Specialty coffee and healthy food; opens 8am; Marais neighbourhood base for crew morning",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/paris/restaurants/best-cafes-paris",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Le Comptoir General",
+          "category": "bar",
+          "neighborhood": "Canal Saint-Martin",
+          "address": "80 Quai de Jemmapes, 75010 Paris",
+          "why_crew_relevant": "Quirky Afro-bohemian bar; canal-side; opens from noon; flea market-style interior; crew discovery bar",
+          "price_range": "$$",
+          "contact": {
+            "website": "lecomptoirgeneral.com",
+            "email": "",
+            "instagram": "@lecomptoirgeneral"
+          },
+          "source": "https://www.timeout.com/paris/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Little Red Door",
+          "category": "bar",
+          "neighborhood": "Marais",
+          "address": "60 Rue Charlot, 75003 Paris",
+          "why_crew_relevant": "World's 50 best bar; seasonal conceptual cocktail menu; opens 6pm Mon-Sat; crew cocktail destination",
+          "price_range": "$$$",
+          "contact": {
+            "website": "lrdparis.com",
+            "email": "",
+            "instagram": "@lrd_paris"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Prescription Cocktail Club",
+          "category": "bar",
+          "neighborhood": "Saint-Germain",
+          "address": "23 Rue Mazarine, 75006 Paris",
+          "why_crew_relevant": "Prohibition-style speakeasy; opens 7pm; near Saint-Germain hotels; classic Parisian cocktail scene",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@prescriptioncocktailclub"
+          },
+          "source": "https://www.timeout.com/paris/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Louvre Museum",
+          "category": "museum",
+          "neighborhood": "1st arrondissement",
+          "address": "Rue de Rivoli, 75001 Paris",
+          "why_crew_relevant": "World's largest museum; book online to skip queues; opens 9am (closed Tue); crew must-do at least once",
+          "price_range": "$$",
+          "contact": {
+            "website": "louvre.fr",
+            "email": "",
+            "instagram": "@museelouvre"
+          },
+          "source": "https://www.timeout.com/paris/art/museums-in-paris",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Musée d'Orsay",
+          "category": "museum",
+          "neighborhood": "7th arrondissement",
+          "address": "1 Rue de la Légion d'Honneur, 75007 Paris",
+          "why_crew_relevant": "Impressionist masterpieces in a converted railway station; opens 9:30am (closed Mon); crew art destination",
+          "price_range": "$$",
+          "contact": {
+            "website": "musee-orsay.fr",
+            "email": "",
+            "instagram": "@museeorsay"
+          },
+          "source": "https://www.timeout.com/paris/art/museums-in-paris",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Centre Pompidou",
+          "category": "museum",
+          "neighborhood": "Beaubourg",
+          "address": "Place Georges-Pompidou, 75004 Paris",
+          "why_crew_relevant": "Modern and contemporary art; opens 11am (closed Tue); rooftop view of Paris; free 1st Sunday",
+          "price_range": "$$",
+          "contact": {
+            "website": "centrepompidou.fr",
+            "email": "",
+            "instagram": "@centrepompidou"
+          },
+          "source": "https://www.timeout.com/paris/art/museums-in-paris",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Le Perchoir Marais",
+          "category": "bar",
+          "neighborhood": "Marais",
+          "address": "14 Rue Crespin du Gast, 75011 Paris",
+          "why_crew_relevant": "Rooftop bar; Paris rooftop views; opens 6pm; wine and cocktails; crew Instagram stop",
+          "price_range": "$$",
+          "contact": {
+            "website": "leperchoir.tv",
+            "email": "",
+            "instagram": "@leperchoir"
+          },
+          "source": "https://www.timeout.com/paris/bars-and-pubs/best-rooftop-bars-paris",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Wellness Club Paris (Nuxe Spa)",
+          "category": "fitness",
+          "neighborhood": "Châtelet",
+          "address": "32 Montorgueil St, 75002 Paris",
+          "why_crew_relevant": "Famous French beauty brand spa; near Les Halles; facials and massage; popular with crew females",
+          "price_range": "$$$",
+          "contact": {
+            "website": "nuxe.com/en/spas-hotels/paris",
+            "email": "",
+            "instagram": "@nuxe"
+          },
+          "source": "https://www.timeout.com/paris/beauty-and-wellbeing",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Klay BBG Studio",
+          "category": "fitness",
+          "neighborhood": "Marais",
+          "address": "16 Rue de la Verrerie, 75004 Paris",
+          "why_crew_relevant": "Barre and HIIT classes; drop-in friendly; opens 7am; popular Marais fitness spot for crew mornings",
+          "price_range": "$$",
+          "contact": {
+            "website": "klay.fr",
+            "email": "",
+            "instagram": "@klay.studios"
+          },
+          "source": "https://www.timeout.com/paris/health-and-fitness",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Septime",
+          "category": "restaurant",
+          "neighborhood": "Bastille",
+          "address": "80 Rue de Charonne, 75011 Paris",
+          "why_crew_relevant": "World's top 100 restaurant; natural wine; creative French; book well ahead; crew foodie bucket-list",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "septime-charonne.fr",
+            "email": "reservation@septime-charonne.fr",
+            "instagram": "@septime_paris"
+          },
+          "source": "https://www.theworlds50best.com/restaurants/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Marche d'Aligre",
+          "category": "restaurant",
+          "neighborhood": "Bastille",
+          "address": "Place d'Aligre, 75012 Paris",
+          "why_crew_relevant": "Open-air market Tue-Sun morning; best cheese and charcuterie in Paris; crew picnic supplies",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/paris/restaurants/best-food-markets-paris",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "FRA",
+      "city": "Frankfurt",
+      "country": "Germany",
+      "emirates_layover_hotels_known": [
+        "Sheraton Frankfurt Airport Hotel",
+        "Hilton Frankfurt Airport",
+        "Marriott Frankfurt",
+        "Steigenberger Airport Hotel"
+      ],
+      "venues": [
+        {
+          "name": "Hoppenworth & Ploch",
+          "category": "cafe",
+          "neighborhood": "Sachsenhausen",
+          "address": "Wallstraße 2, 60594 Frankfurt",
+          "why_crew_relevant": "Frankfurt's leading specialty roaster; opens 8am; south of river; close to airport S-Bahn",
+          "price_range": "$",
+          "contact": {
+            "website": "hoppenworth-ploch.de",
+            "email": "",
+            "instagram": "@hoppenworth_ploch"
+          },
+          "source": "https://www.timeout.com/frankfurt/restaurants/best-coffee-shops-frankfurt",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Java Haus",
+          "category": "cafe",
+          "neighborhood": "Sachsenhausen",
+          "address": "Dreieichstraße 58, 60594 Frankfurt",
+          "why_crew_relevant": "Cozy specialty cafe; opens 9am; Sachsenhausen location near apple wine bars for combo visit",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/frankfurt/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Apfelwein Wagner",
+          "category": "bar",
+          "neighborhood": "Sachsenhausen",
+          "address": "Schweizer Str. 71, 60594 Frankfurt",
+          "why_crew_relevant": "Frankfurt apple wine institution since 1931; local Ebbelwei experience; opens noon; crew German classic",
+          "price_range": "$",
+          "contact": {
+            "website": "apfelwein-wagner.com",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/frankfurt/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar Shuka",
+          "category": "bar",
+          "neighborhood": "Nordend",
+          "address": "Fischerfeldstraße 7, 60311 Frankfurt",
+          "why_crew_relevant": "Craft cocktails; opens 6pm; good music; central Frankfurt; crew night out location",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@barshuka"
+          },
+          "source": "https://www.timeout.com/frankfurt/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Städel Museum",
+          "category": "museum",
+          "neighborhood": "Sachsenhausen",
+          "address": "Schaumainkai 63, 60596 Frankfurt",
+          "why_crew_relevant": "One of Germany's finest art museums; 700 years of art history; opens 10am Tue-Sun; €16 entry",
+          "price_range": "$$",
+          "contact": {
+            "website": "staedelmuseum.de",
+            "email": "",
+            "instagram": "@staedelmuseum"
+          },
+          "source": "https://www.timeout.com/frankfurt/art/museums-in-frankfurt",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Museum Embankment (Museumsufer)",
+          "category": "museum",
+          "neighborhood": "Sachsenhausen",
+          "address": "Schaumainkai, 60596 Frankfurt",
+          "why_crew_relevant": "15 museums along south riverbank; Architectural Museum, Film Museum, Museum of Applied Arts; stroll the embankment",
+          "price_range": "$",
+          "contact": {
+            "website": "museumsufer.de",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/frankfurt/art/museums-in-frankfurt",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Holmes Place Premium Frankfurt",
+          "category": "fitness",
+          "neighborhood": "Mitte",
+          "address": "Große Eschenheimer Str. 31, 60313 Frankfurt",
+          "why_crew_relevant": "Day pass available; central location; opens 6:30am; pool and spa facilities; crew transit gym",
+          "price_range": "$$",
+          "contact": {
+            "website": "holmesplace.de",
+            "email": "",
+            "instagram": "@holmesplace_de"
+          },
+          "source": "https://www.holmesplace.de",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Kleinmarkthalle",
+          "category": "restaurant",
+          "neighborhood": "Mitte",
+          "address": "Hasengasse 5-7, 60311 Frankfurt",
+          "why_crew_relevant": "Indoor food market; opens 8am Mon-Sat; butchers, cheese, fresh produce; Frankfurt sausage lunch upstairs",
+          "price_range": "$",
+          "contact": {
+            "website": "kleinmarkthalle.de",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/frankfurt/restaurants/best-food-markets-frankfurt",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Lobster & Champagne",
+          "category": "restaurant",
+          "neighborhood": "Westend",
+          "address": "Bockenheimer Landstraße 51, 60325 Frankfurt",
+          "why_crew_relevant": "Upscale but not stuffy; lobster rolls and champagne bar; opens noon; business-class crew treat",
+          "price_range": "$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/frankfurt/restaurants",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "SYD",
+      "city": "Sydney",
+      "country": "Australia",
+      "emirates_layover_hotels_known": [
+        "Shangri-La Sydney",
+        "Four Seasons Hotel Sydney",
+        "Hilton Sydney",
+        "Park Hyatt Sydney"
+      ],
+      "venues": [
+        {
+          "name": "Single O Surry Hills",
+          "category": "cafe",
+          "neighborhood": "Surry Hills",
+          "address": "60-64 Reservoir St, Surry Hills NSW 2010",
+          "why_crew_relevant": "Sydney's legendary roaster; opens 7am; great breakfast; near CBD crew hotels; long-standing crew favourite",
+          "price_range": "$",
+          "contact": {
+            "website": "singleo.com.au",
+            "email": "",
+            "instagram": "@singleoespresso"
+          },
+          "source": "https://www.timeout.com/sydney/restaurants/best-cafes-sydney",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Reuben Hills",
+          "category": "cafe",
+          "neighborhood": "Surry Hills",
+          "address": "61 Albion St, Surry Hills NSW 2010",
+          "why_crew_relevant": "Latin American-inspired specialty cafe; opens 7am; crew-popular Surry Hills morning destination",
+          "price_range": "$",
+          "contact": {
+            "website": "reubenhills.com.au",
+            "email": "",
+            "instagram": "@reubenhills"
+          },
+          "source": "https://www.timeout.com/sydney/restaurants/best-cafes-sydney",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Toby's Estate Woolloomooloo",
+          "category": "cafe",
+          "neighborhood": "Woolloomooloo",
+          "address": "1 Bourke Rd, Woolloomooloo NSW 2011",
+          "why_crew_relevant": "Opens 6:30am; harbour-adjacent; crew morning run coffee stop; roastery setting",
+          "price_range": "$",
+          "contact": {
+            "website": "tobysestate.com.au",
+            "email": "",
+            "instagram": "@tobysestate"
+          },
+          "source": "https://www.timeout.com/sydney/restaurants/best-cafes-sydney",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Baxter Inn",
+          "category": "bar",
+          "neighborhood": "CBD",
+          "address": "152-156 Clarence St, Sydney NSW 2000",
+          "why_crew_relevant": "World's 50 best bar; laneway whisky bar; 1000+ whiskies; opens 4pm Mon-Sat; CBD crew classic",
+          "price_range": "$$",
+          "contact": {
+            "website": "thebaxterinn.com",
+            "email": "",
+            "instagram": "@thebaxterinn"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Bulletin Place",
+          "category": "bar",
+          "neighborhood": "CBD",
+          "address": "10-14 Bulletin Pl, Sydney NSW 2000",
+          "why_crew_relevant": "Seasonal cocktail menu changes daily; CBD; opens 5pm Mon-Sat; crew after-work favourite",
+          "price_range": "$$",
+          "contact": {
+            "website": "bulletinplace.com",
+            "email": "",
+            "instagram": "@bulletinplace"
+          },
+          "source": "https://www.timeout.com/sydney/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Opera Bar",
+          "category": "bar",
+          "neighborhood": "Circular Quay",
+          "address": "Lower Concourse, Sydney Opera House, Bennelong Point NSW 2000",
+          "why_crew_relevant": "Iconic Opera House terrace; harbour views; opens 11:30am daily; tourist and crew bucket-list sundowner",
+          "price_range": "$$",
+          "contact": {
+            "website": "operabar.com.au",
+            "email": "",
+            "instagram": "@operabar"
+          },
+          "source": "https://www.timeout.com/sydney/bars-and-pubs",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Museum of Contemporary Art Australia",
+          "category": "museum",
+          "neighborhood": "Circular Quay",
+          "address": "140 George St, The Rocks NSW 2000",
+          "why_crew_relevant": "Free entry permanent collection; opens 10am; Circular Quay; great for 3-hour layover art fix",
+          "price_range": "free",
+          "contact": {
+            "website": "mca.com.au",
+            "email": "",
+            "instagram": "@mcaaustralia"
+          },
+          "source": "https://www.timeout.com/sydney/art/best-museums-sydney",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Australian Museum",
+          "category": "museum",
+          "neighborhood": "CBD",
+          "address": "1 William St, Sydney NSW 2010",
+          "why_crew_relevant": "Natural history; opens 10am; dinosaurs + Aboriginal collection; near Hyde Park crew hotel zone",
+          "price_range": "$",
+          "contact": {
+            "website": "australianmuseum.net.au",
+            "email": "",
+            "instagram": "@austmus"
+          },
+          "source": "https://www.timeout.com/sydney/art/best-museums-sydney",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Fitness First Wynyard",
+          "category": "fitness",
+          "neighborhood": "CBD",
+          "address": "9 York St, Sydney NSW 2000",
+          "why_crew_relevant": "Central CBD gym; opens 5:30am weekdays; day pass available; crew morning workout before checkout",
+          "price_range": "$$",
+          "contact": {
+            "website": "fitnessfirst.com.au",
+            "email": "",
+            "instagram": "@fitnessfirstau"
+          },
+          "source": "https://www.fitnessfirst.com.au",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Icebergs Dining Room and Bar",
+          "category": "restaurant",
+          "neighborhood": "Bondi Beach",
+          "address": "1 Notts Ave, Bondi Beach NSW 2026",
+          "why_crew_relevant": "Ocean views over Bondi; opens noon; Italian menu; crew group lunch destination; Bondi walk after",
+          "price_range": "$$$",
+          "contact": {
+            "website": "idrb.com",
+            "email": "reservations@idrb.com",
+            "instagram": "@icediningsydney"
+          },
+          "source": "https://www.timeout.com/sydney/restaurants/best-restaurants-sydney",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Quay Restaurant",
+          "category": "restaurant",
+          "neighborhood": "Circular Quay",
+          "address": "Upper Level, Overseas Passenger Terminal, Sydney NSW 2000",
+          "why_crew_relevant": "2-hat Australian cuisine; Opera House + Harbour Bridge views; special occasion crew dinner",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "quay.com.au",
+            "email": "info@quay.com.au",
+            "instagram": "@quay_restaurant"
+          },
+          "source": "https://www.theworlds50best.com/restaurants/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Nomad Restaurant Surry Hills",
+          "category": "restaurant",
+          "neighborhood": "Surry Hills",
+          "address": "16 Foster St, Surry Hills NSW 2010",
+          "why_crew_relevant": "Middle Eastern-influenced share plates; good natural wine list; opens for lunch and dinner; crew group friendly",
+          "price_range": "$$",
+          "contact": {
+            "website": "nomad.com.au",
+            "email": "",
+            "instagram": "@nomadsurryhills"
+          },
+          "source": "https://www.timeout.com/sydney/restaurants/best-restaurants-sydney",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "JNB",
+      "city": "Johannesburg",
+      "country": "South Africa",
+      "emirates_layover_hotels_known": [
+        "Radisson Blu Hotel Sandton",
+        "Hilton Sandton",
+        "InterContinental Johannesburg Sandton Towers",
+        "Michelangelo Hotel Sandton"
+      ],
+      "venues": [
+        {
+          "name": "Truth Coffee Roasting",
+          "category": "cafe",
+          "neighborhood": "CBD",
+          "address": "36 Buitenkant St, Cape Town 8001 (flagship) / Rosebank JHB branch",
+          "why_crew_relevant": "Cape Town origin but Joburg crew seek it out; steampunk decor; world-renowned roaster; opens 7am",
+          "price_range": "$",
+          "contact": {
+            "website": "truth.coffee",
+            "email": "",
+            "instagram": "@truthcoffeecult"
+          },
+          "source": "https://www.timeout.com/johannesburg/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Cactus Club",
+          "category": "cafe",
+          "neighborhood": "Maboneng",
+          "address": "Fox St, Maboneng Precinct, Johannesburg 2094",
+          "why_crew_relevant": "Artsy Maboneng neighbourhood; specialty coffee and creative crowd; opens 8am weekends",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/johannesburg/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Gin Bar at 44 Stanley",
+          "category": "bar",
+          "neighborhood": "Milpark",
+          "address": "44 Stanley Ave, Milpark, Johannesburg 2092",
+          "why_crew_relevant": "100+ South African gins; opens 4pm; boutique retail hub; crew gin discovery session",
+          "price_range": "$$",
+          "contact": {
+            "website": "44stanley.co.za",
+            "email": "",
+            "instagram": "@44stanleyave"
+          },
+          "source": "https://www.timeout.com/johannesburg/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Shine Bar Sandton",
+          "category": "bar",
+          "neighborhood": "Sandton",
+          "address": "Nelson Mandela Square, Sandton, Johannesburg 2196",
+          "why_crew_relevant": "Central Sandton; hotel-bar quality cocktails; near crew hotels; opens 11am; easy crew meetup spot",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/johannesburg/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Apartheid Museum",
+          "category": "museum",
+          "neighborhood": "Ormonde",
+          "address": "Northern Park Way & Gold Reef Rd, Ormonde, Johannesburg 2001",
+          "why_crew_relevant": "One of Africa's most important museums; opens 9am Tue-Sun; powerful history; mandatory JHB crew visit",
+          "price_range": "$",
+          "contact": {
+            "website": "apartheidmuseum.org",
+            "email": "",
+            "instagram": "@apartheidmuseum"
+          },
+          "source": "https://www.timeout.com/johannesburg/art/museums-in-johannesburg",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Zeitz MOCAA",
+          "category": "museum",
+          "neighborhood": "Cape Town (day trip from JHB optional)",
+          "address": "V&A Waterfront, Cape Town 8002",
+          "why_crew_relevant": "Africa's largest contemporary art museum; note: in Cape Town — JHB crew occasionally fly down; opens 10am",
+          "price_range": "$$",
+          "contact": {
+            "website": "zeitzmocaa.museum",
+            "email": "",
+            "instagram": "@zeitzmocaa"
+          },
+          "source": "https://www.timeout.com/cape-town/art",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Planet Fitness Sandton",
+          "category": "fitness",
+          "neighborhood": "Sandton",
+          "address": "Sandton City Mall, Sandton, Johannesburg 2196",
+          "why_crew_relevant": "In Sandton City mall connected to crew hotel zone; opens 5am; day pass available",
+          "price_range": "$",
+          "contact": {
+            "website": "planetfitness.co.za",
+            "email": "",
+            "instagram": "@planetfitnessa"
+          },
+          "source": "https://www.planetfitness.co.za",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Moyo Zoo Lake",
+          "category": "restaurant",
+          "neighborhood": "Saxonwold",
+          "address": "Zoo Lake Park, Jan Smuts Ave, Saxonwold, Johannesburg 2196",
+          "why_crew_relevant": "Pan-African cuisine; outdoor setting in park; opens noon; mealie beer and face-painting; JHB institution",
+          "price_range": "$$",
+          "contact": {
+            "website": "moyo.co.za",
+            "email": "",
+            "instagram": "@moyorestaurants"
+          },
+          "source": "https://www.timeout.com/johannesburg/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Service Station",
+          "category": "restaurant",
+          "neighborhood": "Maboneng",
+          "address": "Arts on Main, 264 Fox St, Johannesburg 2094",
+          "why_crew_relevant": "Converted service station restaurant in art precinct; opens for brunch Sat-Sun; great energy for crew groups",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/johannesburg/restaurants",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "MLE",
+      "city": "Malé",
+      "country": "Maldives",
+      "emirates_layover_hotels_known": [
+        "Crossroads Maldives",
+        "Cocoon Maldives (Lhaviyani)",
+        "Hulhule Island Hotel (near airport)"
+      ],
+      "venues": [
+        {
+          "name": "Sea House Restaurant (COMO Cocoa Island)",
+          "category": "restaurant",
+          "neighborhood": "South Malé Atoll",
+          "address": "COMO Cocoa Island, South Malé Atoll, Maldives",
+          "why_crew_relevant": "Overwater dining; sunset views; seasonal menu; crew splurge on longer Maldives layovers",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "comohotels.com/como-cocoa-island",
+            "email": "",
+            "instagram": "@comohotels"
+          },
+          "source": "https://www.timeout.com/maldives/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Sala Thai (Cinnamon Dhonveli)",
+          "category": "restaurant",
+          "neighborhood": "North Malé Atoll",
+          "address": "Cinnamon Dhonveli Maldives, Makunudhoo Island",
+          "why_crew_relevant": "Resort-accessible Thai dining; crew decompression meals; good value surf resort with food",
+          "price_range": "$$$",
+          "contact": {
+            "website": "cinnamonhotels.com",
+            "email": "",
+            "instagram": "@cinnamonhotels"
+          },
+          "source": "https://www.timeout.com/maldives",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Veli Bar (Crossroads Maldives)",
+          "category": "bar",
+          "neighborhood": "South Malé Atoll",
+          "address": "Crossroads Maldives, South Malé Atoll",
+          "why_crew_relevant": "Overwater bar; daily sunset cocktails; crew stopover classic; 15 min speedboat from airport",
+          "price_range": "$$$",
+          "contact": {
+            "website": "crossroadsmaldives.com",
+            "email": "",
+            "instagram": "@crossroadsmaldives"
+          },
+          "source": "https://crossroadsmaldives.com",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Dive Zone Maldives",
+          "category": "fitness",
+          "neighborhood": "Malé",
+          "address": "H. Asrumaa, Amdheemaage Magu, Malé 20189",
+          "why_crew_relevant": "Snorkeling and diving day trips from Malé; crew can book independently; 2-hour excursion option",
+          "price_range": "$$",
+          "contact": {
+            "website": "divezone.net",
+            "email": "info@divezone.net",
+            "instagram": "@divezone_maldives"
+          },
+          "source": "https://www.divezone.net",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "KUL",
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "emirates_layover_hotels_known": [
+        "Hilton Kuala Lumpur",
+        "Le Meridien Kuala Lumpur",
+        "Shangri-La Hotel KL"
+      ],
+      "venues": [
+        {
+          "name": "VCR Cafe",
+          "category": "cafe",
+          "neighborhood": "Pudu",
+          "address": "2 Jalan Galloway, City Centre, 50150 Kuala Lumpur",
+          "why_crew_relevant": "KL's most celebrated specialty cafe; opens 8am; KLCC proximity; crew standard first stop",
+          "price_range": "$",
+          "contact": {
+            "website": "vcr.my",
+            "email": "",
+            "instagram": "@vcrcafe"
+          },
+          "source": "https://www.timeout.com/kuala-lumpur/restaurants/best-coffee-shops-kl",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Pulp by Papa Palheta",
+          "category": "cafe",
+          "neighborhood": "Pudu",
+          "address": "29 Jalan Riong, Bangsar, 59100 KL",
+          "why_crew_relevant": "Singapore roaster outpost in Bangsar; opens 9am; good for morning before shopping",
+          "price_range": "$",
+          "contact": {
+            "website": "papapalheta.com",
+            "email": "",
+            "instagram": "@papapalheta"
+          },
+          "source": "https://www.timeout.com/kuala-lumpur/restaurants/best-cafes-kl",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar Trigona (Four Seasons KL)",
+          "category": "bar",
+          "neighborhood": "KLCC",
+          "address": "145 Jalan Ampang, 50450 KL",
+          "why_crew_relevant": "Asia's 50 best bar; honey-focused cocktails from own bee farm; opens 5pm; rooftop and KLCC views",
+          "price_range": "$$$",
+          "contact": {
+            "website": "fourseasons.com/kualalumpur/dining/restaurants/bar-trigona",
+            "email": "",
+            "instagram": "@bartrigona"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Coley Cocktail Bar",
+          "category": "bar",
+          "neighborhood": "Bangsar South",
+          "address": "Jalan Riong, Bangsar, Kuala Lumpur",
+          "why_crew_relevant": "Asia's 50 best bar; tiny bar; female-led; opens 5pm Tue-Sat; Malaysian cocktail ingredients",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@coleycocktailbar"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Islamic Arts Museum Malaysia",
+          "category": "museum",
+          "neighborhood": "Perdana Botanical Garden",
+          "address": "Jalan Lembah Perdana, 50480 KL",
+          "why_crew_relevant": "World's finest Islamic art collection; free with KLCC combo; opens 10am; near Brickfields hotel belt",
+          "price_range": "$",
+          "contact": {
+            "website": "iamm.org.my",
+            "email": "",
+            "instagram": "@iamm_official"
+          },
+          "source": "https://www.timeout.com/kuala-lumpur/art/museums-in-kl",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Jalan Alor Night Market",
+          "category": "restaurant",
+          "neighborhood": "Bukit Bintang",
+          "address": "Jalan Alor, Bukit Bintang, 50200 KL",
+          "why_crew_relevant": "KL's best street food strip; opens 5pm daily; grilled stingray, satay, char kway teow; 10 min walk from KLCC hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/kuala-lumpur/restaurants",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Nadodi KL",
+          "category": "restaurant",
+          "neighborhood": "KLCC",
+          "address": "Level 13, Else Hotel, Lorong Ceylon, 50200 KL",
+          "why_crew_relevant": "Nomadic South Indian tasting menu; Michelin Guide listed; opens 6pm; unique Tamil Nadu experience",
+          "price_range": "$$$",
+          "contact": {
+            "website": "nadodikl.com",
+            "email": "reservations@nadodikl.com",
+            "instagram": "@nadodikl"
+          },
+          "source": "https://guide.michelin.com/my/en/kuala-lumpur/restaurant",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Urban Retreat (Starhill Gallery)",
+          "category": "fitness",
+          "neighborhood": "Bukit Bintang",
+          "address": "Starhill Gallery, 181 Jalan Bukit Bintang, 55100 KL",
+          "why_crew_relevant": "Luxury day spa in famous mall; 24hr concierge; body treatments from ~$60; central KL location",
+          "price_range": "$$$",
+          "contact": {
+            "website": "starhillgallery.com",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/kuala-lumpur/beauty",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "DEL",
+      "city": "Delhi",
+      "country": "India",
+      "emirates_layover_hotels_known": [
+        "ITC Maurya Delhi",
+        "The Leela Palace New Delhi",
+        "Hyatt Regency Delhi",
+        "Hilton Garden Inn IGI Airport"
+      ],
+      "venues": [
+        {
+          "name": "Blue Tokai Coffee (Lodhi Colony)",
+          "category": "cafe",
+          "neighborhood": "Lodhi Colony",
+          "address": "Middle Lane, Lodhi Colony Market, New Delhi 110003",
+          "why_crew_relevant": "India's top specialty roaster; opens 8am; crew-popular south Delhi location; good for post-layover hotel morning",
+          "price_range": "$",
+          "contact": {
+            "website": "bluetokaicoffee.com",
+            "email": "",
+            "instagram": "@bluetokaicoffee"
+          },
+          "source": "https://www.timeout.com/delhi/restaurants/best-coffee-shops-delhi",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Digboi Coffee (Connaught Place)",
+          "category": "cafe",
+          "neighborhood": "Connaught Place",
+          "address": "N-10, Connaught Place, New Delhi 110001",
+          "why_crew_relevant": "Assam-sourced specialty coffee; opens 9am; CP location close to metro for crew hotel access",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@digboicoffeeroasters"
+          },
+          "source": "https://www.timeout.com/delhi/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Indian Accent",
+          "category": "restaurant",
+          "neighborhood": "Lodhi Colony",
+          "address": "The Lodhi, Lodhi Rd, New Delhi 110003",
+          "why_crew_relevant": "India's best restaurant (Asia's 50 Best); modern Indian tasting menu; crew bucket-list dinner",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "indianaccent.com",
+            "email": "reservation@indianaccent.com",
+            "instagram": "@indianaccent"
+          },
+          "source": "https://www.theworlds50best.com/restaurants/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Andhra Pradesh Bhavan Canteen",
+          "category": "restaurant",
+          "neighborhood": "Chanakyapuri",
+          "address": "1 Ashoka Rd, Chanakyapuri, New Delhi 110021",
+          "why_crew_relevant": "Legendary South Indian thali for ~$2; opens 12:30pm; cult favourite; crew India food experience",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/delhi/restaurants",
+          "crew_mentioned": true
+        },
+        {
+          "name": "PCO (Pass Code Only) Bar",
+          "category": "bar",
+          "neighborhood": "Vasant Vihar",
+          "address": "Behind Central Market, Vasant Vihar, New Delhi 110057",
+          "why_crew_relevant": "Delhi's best cocktail bar; speakeasy entry; opens 7pm; crew splurge bar",
+          "price_range": "$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@pcodelhi"
+          },
+          "source": "https://www.timeout.com/delhi/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "National Museum New Delhi",
+          "category": "museum",
+          "neighborhood": "Janpath",
+          "address": "Janpath, New Delhi 110011",
+          "why_crew_relevant": "India's largest museum; free entry; opens 10am Tue-Sun; 5000 years of history; near hotel zone",
+          "price_range": "free",
+          "contact": {
+            "website": "nationalmuseumindia.gov.in",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/delhi/art",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Cult.fit Aerocity",
+          "category": "fitness",
+          "neighborhood": "Aerocity",
+          "address": "Worldmark 1, Aerocity, New Delhi 110037",
+          "why_crew_relevant": "Airport-adjacent gym; opens 6am; day pass available; 10 min from Terminal 3 crew hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "cult.fit",
+            "email": "",
+            "instagram": "@cult.fit"
+          },
+          "source": "https://cult.fit",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "BOM",
+      "city": "Mumbai",
+      "country": "India",
+      "emirates_layover_hotels_known": [
+        "ITC Maratha Mumbai Airport",
+        "JW Marriott Mumbai Juhu",
+        "Trident Nariman Point"
+      ],
+      "venues": [
+        {
+          "name": "Cafe Madras (Matunga)",
+          "category": "cafe",
+          "neighborhood": "Matunga",
+          "address": "392 B Rd, Matunga West, Mumbai 400019",
+          "why_crew_relevant": "80-year-old Udupi cafe; opens 7am; filter coffee institution; South Indian breakfast; crew cultural stop",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/mumbai/restaurants/best-cafes-mumbai",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Subko Coffee Bandra",
+          "category": "cafe",
+          "neighborhood": "Bandra West",
+          "address": "Linking Rd, Bandra West, Mumbai 400050",
+          "why_crew_relevant": "Mumbai's best specialty roaster; opens 8am; Bandra West crew district; excellent espresso",
+          "price_range": "$",
+          "contact": {
+            "website": "subko.in",
+            "email": "",
+            "instagram": "@subkocoffee"
+          },
+          "source": "https://www.timeout.com/mumbai/restaurants/best-cafes-mumbai",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Aer Bar (Four Seasons Mumbai)",
+          "category": "bar",
+          "neighborhood": "Worli",
+          "address": "114 Dr E Moses Rd, Worli, Mumbai 400018",
+          "why_crew_relevant": "34th floor rooftop; Mumbai skyline and sea; opens 5pm; crew sundowner classic",
+          "price_range": "$$$",
+          "contact": {
+            "website": "fourseasons.com/mumbai",
+            "email": "",
+            "instagram": "@aerrooftopbar"
+          },
+          "source": "https://www.timeout.com/mumbai/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bastian Seafood",
+          "category": "restaurant",
+          "neighborhood": "Bandra West",
+          "address": "New Kamal Bldg, Linking Rd, Bandra West, Mumbai 400050",
+          "why_crew_relevant": "Mumbai's best seafood; opens noon; Bandra celeb haunt; crew group dinner favourite",
+          "price_range": "$$$",
+          "contact": {
+            "website": "bastian.com",
+            "email": "",
+            "instagram": "@bastianmumbai"
+          },
+          "source": "https://www.timeout.com/mumbai/restaurants/best-restaurants-mumbai",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Leopold Cafe",
+          "category": "restaurant",
+          "neighborhood": "Colaba",
+          "address": "Colaba Causeway, Mumbai 400001",
+          "why_crew_relevant": "130-year institution; backpacker favourite; opens 8am; Shantaram landmark; central crew Colaba stop",
+          "price_range": "$$",
+          "contact": {
+            "website": "leopoldcafe.com",
+            "email": "",
+            "instagram": "@leopoldcafemumbai"
+          },
+          "source": "https://www.timeout.com/mumbai/restaurants",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Chhatrapati Shivaji Maharaj Museum",
+          "category": "museum",
+          "neighborhood": "Fort",
+          "address": "159-161 Mahatma Gandhi Rd, Fort, Mumbai 400023",
+          "why_crew_relevant": "Indo-Saracenic architecture; opens 10:15am Tue-Sun; ₹200 entry; near crew Colaba hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "csmvs.in",
+            "email": "",
+            "instagram": "@csmvs_museum"
+          },
+          "source": "https://www.timeout.com/mumbai/art",
+          "crew_mentioned": false
+        },
+        {
+          "name": "F45 Training Bandra",
+          "category": "fitness",
+          "neighborhood": "Bandra West",
+          "address": "Bandra West, Mumbai 400050",
+          "why_crew_relevant": "HIIT classes; drop-in friendly; near crew Bandra hotel cluster; opens 6am",
+          "price_range": "$$",
+          "contact": {
+            "website": "f45training.com",
+            "email": "",
+            "instagram": "@f45training"
+          },
+          "source": "https://f45training.com",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "MUC",
+      "city": "Munich",
+      "country": "Germany",
+      "emirates_layover_hotels_known": [
+        "Hilton Munich Airport",
+        "NH Munich Airport",
+        "Marriott Munich"
+      ],
+      "venues": [
+        {
+          "name": "Vits Kaffeeroesterei",
+          "category": "cafe",
+          "neighborhood": "Schwabing",
+          "address": "Leopoldstraße 43, 80802 Munich",
+          "why_crew_relevant": "Munich's leading specialty roaster; opens 8am; Schwabing neighbourhood for crew strolls",
+          "price_range": "$",
+          "contact": {
+            "website": "vits-kaffee.de",
+            "email": "",
+            "instagram": "@vitskaffee"
+          },
+          "source": "https://www.timeout.com/munich/restaurants/best-coffee-shops-munich",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Cafe Luitpold",
+          "category": "cafe",
+          "neighborhood": "Maxvorstadt",
+          "address": "Brienner Str. 11, 80333 Munich",
+          "why_crew_relevant": "Historic Munich cafe since 1888; pastries and coffee; opens 8am; near Pinakothek museums",
+          "price_range": "$$",
+          "contact": {
+            "website": "cafe-luitpold.de",
+            "email": "",
+            "instagram": "@cafeluitpold"
+          },
+          "source": "https://www.timeout.com/munich/restaurants/best-cafes-munich",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Hofbräuhaus München",
+          "category": "bar",
+          "neighborhood": "Altstadt",
+          "address": "Platzl 9, 80331 Munich",
+          "why_crew_relevant": "World-famous beer hall; opens 9am; 1L steins; obligatory Munich crew experience; tourist but iconic",
+          "price_range": "$$",
+          "contact": {
+            "website": "hofbraeuhaus.de",
+            "email": "",
+            "instagram": "@hofbraeuhaus_muenchen"
+          },
+          "source": "https://www.timeout.com/munich/bars-and-pubs",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Augustiner-Keller Beer Garden",
+          "category": "bar",
+          "neighborhood": "Maxvorstadt",
+          "address": "Arnulfstr. 52, 80335 Munich",
+          "why_crew_relevant": "Oldest beer cellar garden in Munich; opens 11:30am in season; massive outdoor space; local favourite",
+          "price_range": "$",
+          "contact": {
+            "website": "augustinerkeller.de",
+            "email": "",
+            "instagram": "@augustinerkeller"
+          },
+          "source": "https://www.timeout.com/munich/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Alte Pinakothek",
+          "category": "museum",
+          "neighborhood": "Maxvorstadt",
+          "address": "Barer Str. 27, 80333 Munich",
+          "why_crew_relevant": "World's finest Old Masters collection; opens 10am Tue-Sun; €1 on Sundays; near tram from Marienplatz",
+          "price_range": "$",
+          "contact": {
+            "website": "pinakothek.de/alte-pinakothek",
+            "email": "",
+            "instagram": "@pinakotheken"
+          },
+          "source": "https://www.timeout.com/munich/art/museums-in-munich",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Victuals Market (Viktualienmarkt)",
+          "category": "restaurant",
+          "neighborhood": "Altstadt",
+          "address": "Viktualienmarkt 3, 80331 Munich",
+          "why_crew_relevant": "Open-air food market since 1807; opens 8am Mon-Sat; Bavarian sausages, cheese, bread; crew picnic staple",
+          "price_range": "$",
+          "contact": {
+            "website": "viktualienmarkt.de",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/munich/restaurants/best-food-markets-munich",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Käfer Schänke",
+          "category": "restaurant",
+          "neighborhood": "Bogenhausen",
+          "address": "Prinzregentenstraße 73, 81675 Munich",
+          "why_crew_relevant": "Munich delicatessen institution; Bavarian cuisine; opens noon; special-occasion crew dinner",
+          "price_range": "$$$",
+          "contact": {
+            "website": "feinkost-kaefer.de",
+            "email": "",
+            "instagram": "@feinkostkaefer"
+          },
+          "source": "https://www.timeout.com/munich/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "McFit Munich Airport",
+          "category": "fitness",
+          "neighborhood": "Airport (MUC)",
+          "address": "Munich Airport Terminal 2, Munich",
+          "why_crew_relevant": "Gym directly in T2 transit area; day pass available; crew transit workout; unique in-airport gym",
+          "price_range": "$",
+          "contact": {
+            "website": "mcfit.com",
+            "email": "",
+            "instagram": "@mcfit"
+          },
+          "source": "https://www.mcfit.com",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "MAD",
+      "city": "Madrid",
+      "country": "Spain",
+      "emirates_layover_hotels_known": [
+        "Marriott Madrid Auditorium",
+        "Hilton Madrid Airport",
+        "Gran Melia Palacio de los Duques"
+      ],
+      "venues": [
+        {
+          "name": "Toma Cafe",
+          "category": "cafe",
+          "neighborhood": "Malasaña",
+          "address": "Calle de la Palma, 49, 28015 Madrid",
+          "why_crew_relevant": "Madrid's third-wave specialty pioneer; opens 9am Mon-Fri; Malasaña hipster district walk",
+          "price_range": "$",
+          "contact": {
+            "website": "tomacafe.es",
+            "email": "",
+            "instagram": "@tomacafe_madrid"
+          },
+          "source": "https://www.timeout.com/madrid/restaurants/best-coffee-shops-madrid",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar Cock",
+          "category": "bar",
+          "neighborhood": "Gran Via",
+          "address": "Calle de la Reina, 16, 28004 Madrid",
+          "why_crew_relevant": "Classic 1920s Madrid cocktail bar; opens 7pm; historic interior; near Gran Via crew hotel strip",
+          "price_range": "$$$",
+          "contact": {
+            "website": "barcock.com",
+            "email": "",
+            "instagram": "@barcock_madrid"
+          },
+          "source": "https://www.timeout.com/madrid/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "El Prado Museum",
+          "category": "museum",
+          "neighborhood": "Retiro",
+          "address": "Calle de Ruiz de Alarcón, 23, 28014 Madrid",
+          "why_crew_relevant": "World's finest Spanish art; opens 10am; Velázquez, Goya; free Mon-Sat 6-8pm; crew must-do",
+          "price_range": "$$",
+          "contact": {
+            "website": "museodelprado.es",
+            "email": "",
+            "instagram": "@museodelprado"
+          },
+          "source": "https://www.timeout.com/madrid/art/museums-in-madrid",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Reina Sofía Museum",
+          "category": "museum",
+          "neighborhood": "Atocha",
+          "address": "Calle de Santa Isabel, 52, 28012 Madrid",
+          "why_crew_relevant": "Guernica; modern Spanish art; opens 10am (closed Tue); free Mon + Wed-Sat 7-9pm",
+          "price_range": "$$",
+          "contact": {
+            "website": "museoreinasofia.es",
+            "email": "",
+            "instagram": "@museoreinasofia"
+          },
+          "source": "https://www.timeout.com/madrid/art/museums-in-madrid",
+          "crew_mentioned": false
+        },
+        {
+          "name": "DiverXO",
+          "category": "restaurant",
+          "neighborhood": "Tetuán",
+          "address": "NH Eurobuidling, Calle de Padre Damián, 23, 28036 Madrid",
+          "why_crew_relevant": "Spain's only 3-Michelin-star in Madrid; Dabiz Muñoz; avant-garde; book 2 months ahead; senior crew treat",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "diverxo.com",
+            "email": "reservas@diverxo.com",
+            "instagram": "@dabizdiverxo"
+          },
+          "source": "https://guide.michelin.com/es/en/community-of-madrid/madrid/restaurant/diverxo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Mercado de San Miguel",
+          "category": "restaurant",
+          "neighborhood": "La Latina",
+          "address": "Plaza de San Miguel, s/n, 28005 Madrid",
+          "why_crew_relevant": "Gourmet market; opens 10am-midnight; tapas and wine; near Plaza Mayor; crew favourite for quick bites",
+          "price_range": "$$",
+          "contact": {
+            "website": "mercadodesanmiguel.es",
+            "email": "",
+            "instagram": "@mercadosanmiguel"
+          },
+          "source": "https://www.timeout.com/madrid/restaurants/best-food-markets-madrid",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Fisioterapia & Bienestar Madrid Centro",
+          "category": "fitness",
+          "neighborhood": "Centro",
+          "address": "Calle Gran Via, Madrid",
+          "why_crew_relevant": "Day massage and wellness centre; near Gran Via hotels; crew recovery between flights",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/madrid/beauty-and-wellbeing",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "BCN",
+      "city": "Barcelona",
+      "country": "Spain",
+      "emirates_layover_hotels_known": [
+        "Hilton Diagonal Mar Barcelona",
+        "W Barcelona",
+        "Hotel Arts Barcelona"
+      ],
+      "venues": [
+        {
+          "name": "Nomad Coffee Bar",
+          "category": "cafe",
+          "neighborhood": "Eixample",
+          "address": "Carrer de Passatge de Sert, 12, 08003 Barcelona",
+          "why_crew_relevant": "Barcelona's World Barista Champion roaster; opens 9am; crew specialty coffee destination",
+          "price_range": "$",
+          "contact": {
+            "website": "nomadcoffee.es",
+            "email": "",
+            "instagram": "@nomadcoffee"
+          },
+          "source": "https://www.timeout.com/barcelona/restaurants/best-coffee-shops-barcelona",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar Marsella",
+          "category": "bar",
+          "neighborhood": "El Raval",
+          "address": "Carrer de Sant Pau, 65, 08001 Barcelona",
+          "why_crew_relevant": "Barcelona's oldest bar since 1820; absinthe-focused; opens 9pm; dusty bottles; historic crew experience",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/barcelona/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Picasso Museum",
+          "category": "museum",
+          "neighborhood": "El Born",
+          "address": "Carrer Montcada, 15-23, 08003 Barcelona",
+          "why_crew_relevant": "14 medieval palaces; opens 10am Tue-Sun; free first Sun monthly; Blue Period collection; Born district walk",
+          "price_range": "$$",
+          "contact": {
+            "website": "museupicasso.bcn.cat",
+            "email": "",
+            "instagram": "@museupicasso"
+          },
+          "source": "https://www.timeout.com/barcelona/art/museums-in-barcelona",
+          "crew_mentioned": false
+        },
+        {
+          "name": "La Boqueria Market",
+          "category": "restaurant",
+          "neighborhood": "Las Ramblas",
+          "address": "La Rambla, 91, 08001 Barcelona",
+          "why_crew_relevant": "Famous market; opens 8am Mon-Sat; fresh juice and jamón; tourist but authentic core; crew food photo stop",
+          "price_range": "$",
+          "contact": {
+            "website": "boqueria.info",
+            "email": "",
+            "instagram": "@mercatboqueria"
+          },
+          "source": "https://www.timeout.com/barcelona/restaurants/best-food-markets-barcelona",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Tickets (Albert Adrià)",
+          "category": "restaurant",
+          "neighborhood": "Eixample",
+          "address": "Avinguda del Paral·lel, 164, 08015 Barcelona",
+          "why_crew_relevant": "El Bulli heir; tapas spectacle; book 2 months ahead; one of Barcelona's most exciting restaurants",
+          "price_range": "$$$",
+          "contact": {
+            "website": "ticketsbar.es",
+            "email": "",
+            "instagram": "@ticketsbar"
+          },
+          "source": "https://www.timeout.com/barcelona/restaurants/best-restaurants-barcelona",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Aire de Barcelona Spa",
+          "category": "fitness",
+          "neighborhood": "El Born",
+          "address": "Passeig de Picasso, 22, 08003 Barcelona",
+          "why_crew_relevant": "Thermal bath circuit in Roman-style spa; book in advance; opens 9am; crew post-flight recovery treatment",
+          "price_range": "$$$",
+          "contact": {
+            "website": "beaire.com/barcelona",
+            "email": "",
+            "instagram": "@aireancientbaths"
+          },
+          "source": "https://www.timeout.com/barcelona/beauty-and-wellbeing",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "FCO",
+      "city": "Rome",
+      "country": "Italy",
+      "emirates_layover_hotels_known": [
+        "Hilton Rome Airport",
+        "NH Roma Villa Carpegna",
+        "Marriott Grand Hotel Flora"
+      ],
+      "venues": [
+        {
+          "name": "Roscioli Caffè Pasticceria",
+          "category": "cafe",
+          "neighborhood": "Campo de' Fiori",
+          "address": "Piazza Benedetto Cairoli, 16, 00186 Rome",
+          "why_crew_relevant": "Rome's best cornetto and espresso; opens 7:30am Mon-Sat; Roman morning institution; central crew coffee stop",
+          "price_range": "$",
+          "contact": {
+            "website": "anticofornoroscioli.com/caffe",
+            "email": "",
+            "instagram": "@roscioliroma"
+          },
+          "source": "https://www.timeout.com/rome/restaurants/best-cafes-rome",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar San Calisto",
+          "category": "bar",
+          "neighborhood": "Trastevere",
+          "address": "Piazza di San Calisto, 4, 00153 Rome",
+          "why_crew_relevant": "Gritty Trastevere local bar; opens 6am-2am; cheap wine and beer; authentic non-tourist Rome; crew classic",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/rome/bars-and-pubs",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Freni e Frizioni",
+          "category": "bar",
+          "neighborhood": "Trastevere",
+          "address": "Via del Politeama, 4, 00153 Rome",
+          "why_crew_relevant": "Converted mechanic shop; aperitivo buffet 7-10pm; packed with young crew-age crowd; opens daily 6:30pm",
+          "price_range": "$$",
+          "contact": {
+            "website": "freniefrizioni.com",
+            "email": "",
+            "instagram": "@freniefrizioni"
+          },
+          "source": "https://www.timeout.com/rome/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Capitoline Museums",
+          "category": "museum",
+          "neighborhood": "Campidoglio",
+          "address": "Piazza del Campidoglio, 1, 00186 Rome",
+          "why_crew_relevant": "World's oldest public museums; opens 9:30am Tue-Sun; Marcus Aurelius statue; rooftop views over Forum",
+          "price_range": "$$",
+          "contact": {
+            "website": "museicapitolini.org",
+            "email": "",
+            "instagram": "@museicapitolini"
+          },
+          "source": "https://www.timeout.com/rome/art/museums-in-rome",
+          "crew_mentioned": false
+        },
+        {
+          "name": "MAXXI National Museum",
+          "category": "museum",
+          "neighborhood": "Prati",
+          "address": "Via Guido Reni, 4/A, 00196 Rome",
+          "why_crew_relevant": "Zaha Hadid-designed; Italy's premier contemporary art museum; opens 11am Tue-Sun; near Vatican crew hotels",
+          "price_range": "$$",
+          "contact": {
+            "website": "maxxi.art",
+            "email": "",
+            "instagram": "@museomaxxi"
+          },
+          "source": "https://www.timeout.com/rome/art/museums-in-rome",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Da Enzo al 29",
+          "category": "restaurant",
+          "neighborhood": "Trastevere",
+          "address": "Via dei Vascellari, 29, 00153 Rome",
+          "why_crew_relevant": "Classic Roman trattoria; cacio e pepe and carbonara; opens noon; book ahead; crew Roman food essential",
+          "price_range": "$$",
+          "contact": {
+            "website": "daenzoal29.com",
+            "email": "",
+            "instagram": "@daenzoal29"
+          },
+          "source": "https://www.timeout.com/rome/restaurants/best-restaurants-rome",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Forno Campo de' Fiori",
+          "category": "restaurant",
+          "neighborhood": "Campo de' Fiori",
+          "address": "Piazza Campo de' Fiori, 22, 00186 Rome",
+          "why_crew_relevant": "Best pizza bianca in Rome; opens 7:30am; crew breakfast essential; cheap and authentic bakery",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/rome/restaurants",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Piscina delle Rose",
+          "category": "fitness",
+          "neighborhood": "EUR",
+          "address": "Viale America, 20, 00144 Rome",
+          "why_crew_relevant": "Outdoor pool complex; opens 9am May-Sep; day ticket ~€20; good for summer layover crew recovery",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/rome/health-and-fitness",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "ZRH",
+      "city": "Zurich",
+      "country": "Switzerland",
+      "emirates_layover_hotels_known": [
+        "Hilton Zurich Airport",
+        "Mövenpick Hotel Zurich Airport",
+        "Sheraton Zurich Hotel"
+      ],
+      "venues": [
+        {
+          "name": "Volkshaus Basel (roaster)",
+          "category": "cafe",
+          "neighborhood": "Langstrasse",
+          "address": "Langgasse 60, 8004 Zurich",
+          "why_crew_relevant": "Award-winning Zurich roaster; opens 8am; Langstrasse crew morning base",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/zurich/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Hiltl Vegetarian Restaurant",
+          "category": "restaurant",
+          "neighborhood": "City Centre",
+          "address": "Sihlstrasse 28, 8001 Zurich",
+          "why_crew_relevant": "World's oldest vegetarian restaurant (1898); opens 6am for breakfast; crew health-conscious choice",
+          "price_range": "$$",
+          "contact": {
+            "website": "hiltl.ch",
+            "email": "",
+            "instagram": "@restaurant_hiltl"
+          },
+          "source": "https://www.timeout.com/zurich/restaurants/best-restaurants-zurich",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Kronenhalle Bar",
+          "category": "bar",
+          "neighborhood": "City Centre",
+          "address": "Rämistrasse 4, 8001 Zurich",
+          "why_crew_relevant": "Zurich institution with Picasso, Chagall, Miró originals on walls; opens noon; cocktail history",
+          "price_range": "$$$",
+          "contact": {
+            "website": "kronenhalle.com",
+            "email": "",
+            "instagram": "@kronenhalle"
+          },
+          "source": "https://www.timeout.com/zurich/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Kunsthaus Zürich",
+          "category": "museum",
+          "neighborhood": "Heimplatz",
+          "address": "Heimplatz 1, 8001 Zurich",
+          "why_crew_relevant": "Switzerland's largest art museum; expanded 2021; opens 10am Tue-Sun; free Wed evenings",
+          "price_range": "$$",
+          "contact": {
+            "website": "kunsthaus.ch",
+            "email": "",
+            "instagram": "@kunsthauszurich"
+          },
+          "source": "https://www.timeout.com/zurich/art/museums-in-zurich",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Thermalbad & Spa Zürich",
+          "category": "fitness",
+          "neighborhood": "Industriequartier",
+          "address": "Brandschenkestrasse 150, 8002 Zurich",
+          "why_crew_relevant": "Roman-style thermal baths in converted brewery; opens 9am; crew decompression; book ahead",
+          "price_range": "$$$",
+          "contact": {
+            "website": "thermalbad-zuerich.ch",
+            "email": "",
+            "instagram": "@thermalbadziurich"
+          },
+          "source": "https://www.timeout.com/zurich/health-and-fitness",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "AMS",
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "emirates_layover_hotels_known": [
+        "Hilton Amsterdam Airport Schiphol",
+        "NH Hotel Schiphol Airport",
+        "Sheraton Amsterdam Airport"
+      ],
+      "venues": [
+        {
+          "name": "Bocca Coffee",
+          "category": "cafe",
+          "neighborhood": "Westermarkt",
+          "address": "Keizersgracht 254, 1016 EV Amsterdam",
+          "why_crew_relevant": "Amsterdam's specialty coffee pioneer; opens 8am; canal-side; classic crew Amsterdam morning stop",
+          "price_range": "$",
+          "contact": {
+            "website": "bocca.nl",
+            "email": "",
+            "instagram": "@bocca_coffee"
+          },
+          "source": "https://www.timeout.com/amsterdam/restaurants/best-coffee-shops-amsterdam",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar Oldenhof",
+          "category": "bar",
+          "neighborhood": "Jordaan",
+          "address": "Elandsgracht 84, 1016 TX Amsterdam",
+          "why_crew_relevant": "Dutch gin (jenever) bar; opens 5pm; Jordaan neighbourhood; crew first Dutch spirits experience",
+          "price_range": "$$",
+          "contact": {
+            "website": "baroldenhof.nl",
+            "email": "",
+            "instagram": "@baroldenhof"
+          },
+          "source": "https://www.timeout.com/amsterdam/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Hiding in Plain Sight",
+          "category": "bar",
+          "neighborhood": "Waterlooplein",
+          "address": "Rapenburgstraat 18, 1011 VM Amsterdam",
+          "why_crew_relevant": "Creative cocktail bar; industrial setting; opens 5pm; near Artis zoo area; crew mixology night",
+          "price_range": "$$",
+          "contact": {
+            "website": "hpsamsterdam.com",
+            "email": "",
+            "instagram": "@hpsamsterdam"
+          },
+          "source": "https://www.timeout.com/amsterdam/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Rijksmuseum",
+          "category": "museum",
+          "neighborhood": "Museumplein",
+          "address": "Museumstraat 1, 1071 XX Amsterdam",
+          "why_crew_relevant": "Dutch Golden Age masterpieces; opens 9am daily; Night Watch; book online; crew Amsterdam classic",
+          "price_range": "$$",
+          "contact": {
+            "website": "rijksmuseum.nl",
+            "email": "",
+            "instagram": "@rijksmuseum"
+          },
+          "source": "https://www.timeout.com/amsterdam/art/museums-in-amsterdam",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Van Gogh Museum",
+          "category": "museum",
+          "neighborhood": "Museumplein",
+          "address": "Museumplein 6, 1071 DJ Amsterdam",
+          "why_crew_relevant": "World's largest Van Gogh collection; opens 9am; book in advance; 2 hours; crew first-timer must",
+          "price_range": "$$",
+          "contact": {
+            "website": "vangoghmuseum.nl",
+            "email": "",
+            "instagram": "@vangoghmuseum"
+          },
+          "source": "https://www.timeout.com/amsterdam/art/museums-in-amsterdam",
+          "crew_mentioned": false
+        },
+        {
+          "name": "De Kas Restaurant",
+          "category": "restaurant",
+          "neighborhood": "Frankendael",
+          "address": "Kamerlingh Onneslaan 3, 1097 DE Amsterdam",
+          "why_crew_relevant": "Farm-to-table greenhouse restaurant; opens for lunch; set menu; beautiful setting; crew food experience",
+          "price_range": "$$$",
+          "contact": {
+            "website": "restaurantdekas.nl",
+            "email": "reservations@restaurantdekas.nl",
+            "instagram": "@restaurantdekas"
+          },
+          "source": "https://www.timeout.com/amsterdam/restaurants/best-restaurants-amsterdam",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Foodhallen Amsterdam",
+          "category": "restaurant",
+          "neighborhood": "Oud-West",
+          "address": "Bellamyplein 51, 1053 AT Amsterdam",
+          "why_crew_relevant": "Indoor food market; opens noon daily; 21 food stalls + craft beer; near Vondelpark hotels",
+          "price_range": "$$",
+          "contact": {
+            "website": "foodhallen.nl",
+            "email": "",
+            "instagram": "@foodhallen"
+          },
+          "source": "https://www.timeout.com/amsterdam/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Sauna Deco Amsterdam",
+          "category": "fitness",
+          "neighborhood": "Grachtengordel",
+          "address": "Herengracht 115, 1015 BH Amsterdam",
+          "why_crew_relevant": "Art Deco sauna on a canal; opens 11am; mixed bathing; crew wellness layover option; unique Amsterdam experience",
+          "price_range": "$$",
+          "contact": {
+            "website": "saunadeco.nl",
+            "email": "",
+            "instagram": "@saunadeco"
+          },
+          "source": "https://www.timeout.com/amsterdam/health-and-fitness",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "IST",
+      "city": "Istanbul",
+      "country": "Turkey",
+      "emirates_layover_hotels_known": [
+        "Hilton Istanbul Bomonti",
+        "Marriott Istanbul Asia",
+        "Radisson Blu Hotel Istanbul Asia"
+      ],
+      "venues": [
+        {
+          "name": "Kronotrop",
+          "category": "cafe",
+          "neighborhood": "Cihangir",
+          "address": "Firuzağa Mah, Cihangir Cad 2/A, Beyoğlu, Istanbul 34433",
+          "why_crew_relevant": "Istanbul's best specialty roaster; opens 8am; Cihangir neighbourhood walk; crew coffee first stop",
+          "price_range": "$",
+          "contact": {
+            "website": "kronotrop.com.tr",
+            "email": "",
+            "instagram": "@kronotrop"
+          },
+          "source": "https://www.timeout.com/istanbul/restaurants/best-coffee-shops-istanbul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Mikla Restaurant Bar",
+          "category": "bar",
+          "neighborhood": "Beyoğlu",
+          "address": "The Marmara Pera, Meşrutiyet Cad 15, 34430 Istanbul",
+          "why_crew_relevant": "Rooftop bar with Bosphorus panorama; opens 6:30pm; cocktails and Turkish tapas; crew sunset destination",
+          "price_range": "$$$",
+          "contact": {
+            "website": "miklarestaurant.com",
+            "email": "",
+            "instagram": "@miklarestaurant"
+          },
+          "source": "https://www.timeout.com/istanbul/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "360 Istanbul",
+          "category": "bar",
+          "neighborhood": "Beyoğlu",
+          "address": "Istiklal Cad 163, Beyoğlu, Istanbul 34435",
+          "why_crew_relevant": "360-degree Istanbul skyline; opens 6pm; club after midnight; crew full night option",
+          "price_range": "$$",
+          "contact": {
+            "website": "360istanbul.com",
+            "email": "",
+            "instagram": "@360istanbul"
+          },
+          "source": "https://www.timeout.com/istanbul/nightlife",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Hagia Sophia",
+          "category": "museum",
+          "neighborhood": "Sultanahmet",
+          "address": "Sultan Ahmet, Ayasofya Meydanı, Fatih, Istanbul 34122",
+          "why_crew_relevant": "Free entry (mosque since 2020); opens 9am-5pm; 1500-year Byzantine wonder; crew history must-see",
+          "price_range": "free",
+          "contact": {
+            "website": "ayasofyacamii.com",
+            "email": "",
+            "instagram": "@ayasofyacamii"
+          },
+          "source": "https://www.timeout.com/istanbul/attractions",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Istanbul Modern",
+          "category": "museum",
+          "neighborhood": "Karaköy",
+          "address": "Meclis-i Mebusan Cad, Liman İşletmeleri Sahası, Karaköy, Istanbul",
+          "why_crew_relevant": "Turkish contemporary art; Bosphorus views; opens 10am Tue-Sun; near Galata crew hotels",
+          "price_range": "$$",
+          "contact": {
+            "website": "istanbulmodern.org",
+            "email": "",
+            "instagram": "@istanbulmodern"
+          },
+          "source": "https://www.timeout.com/istanbul/art/museums-in-istanbul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Karaköy Lokantasi",
+          "category": "restaurant",
+          "neighborhood": "Karaköy",
+          "address": "Kemankeş Cad 37, Karaköy, Istanbul 34425",
+          "why_crew_relevant": "Modern Ottoman mezes; opens for lunch and dinner; Bosphorus-area location; crew group dinner classic",
+          "price_range": "$$",
+          "contact": {
+            "website": "karakoylokantasi.com",
+            "email": "",
+            "instagram": "@karakoylokantasi"
+          },
+          "source": "https://www.timeout.com/istanbul/restaurants/best-restaurants-istanbul",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Grand Bazaar (Kapalıçarşı)",
+          "category": "restaurant",
+          "neighborhood": "Fatih",
+          "address": "Beyazıt, Kalpakçılar Cd. No:22, Fatih, Istanbul 34126",
+          "why_crew_relevant": "4000-shop covered bazaar; opens 9am Mon-Sat; Turkish tea houses inside; crew souvenir and experience stop",
+          "price_range": "$",
+          "contact": {
+            "website": "grandbazaaristanbul.org",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/istanbul/shopping",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Cemberlitas Hamami",
+          "category": "fitness",
+          "neighborhood": "Sultanahmet",
+          "address": "Vezirhan Cad No:8, Cemberlitas, Fatih, Istanbul 34440",
+          "why_crew_relevant": "400-year-old Ottoman hammam; opens 6am-midnight; full hamam experience ~€40; crew essential Istanbul ritual",
+          "price_range": "$$",
+          "contact": {
+            "website": "cemberlitashamami.com.tr",
+            "email": "info@cemberlitashamami.com",
+            "instagram": "@cemberlitashamami"
+          },
+          "source": "https://www.timeout.com/istanbul/health-and-fitness",
+          "crew_mentioned": true
+        }
+      ]
+    },
+    {
+      "iata": "MEL",
+      "city": "Melbourne",
+      "country": "Australia",
+      "emirates_layover_hotels_known": [
+        "Hilton on the Park Melbourne",
+        "Crown Metropol Melbourne",
+        "Marriott Melbourne"
+      ],
+      "venues": [
+        {
+          "name": "Patricia Coffee Brewers",
+          "category": "cafe",
+          "neighborhood": "CBD",
+          "address": "Level 1, rear 493-495 Little Bourke St, Melbourne VIC 3000",
+          "why_crew_relevant": "Melbourne's legendary standing-room espresso bar; opens 7am weekdays; crew CBD coffee destination",
+          "price_range": "$",
+          "contact": {
+            "website": "patriciacoffee.com.au",
+            "email": "",
+            "instagram": "@patriciacoffee"
+          },
+          "source": "https://www.timeout.com/melbourne/restaurants/best-cafes-melbourne",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Proud Mary",
+          "category": "cafe",
+          "neighborhood": "Collingwood",
+          "address": "172 Oxford St, Collingwood VIC 3066",
+          "why_crew_relevant": "Collingwood specialty powerhouse; opens 7am; exports globally; crew foodie suburb stop",
+          "price_range": "$",
+          "contact": {
+            "website": "proudmarycoffee.com.au",
+            "email": "",
+            "instagram": "@proudmarycoffee"
+          },
+          "source": "https://www.timeout.com/melbourne/restaurants/best-cafes-melbourne",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Bar Liberty",
+          "category": "bar",
+          "neighborhood": "Fitzroy North",
+          "address": "234 Johnston St, Fitzroy North VIC 3068",
+          "why_crew_relevant": "Natural wine bar; world-class list; opens 4pm Tue-Sat; crew wine bar institution Melbourne",
+          "price_range": "$$",
+          "contact": {
+            "website": "barliberty.com.au",
+            "email": "",
+            "instagram": "@barliberty"
+          },
+          "source": "https://www.timeout.com/melbourne/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Black Pearl",
+          "category": "bar",
+          "neighborhood": "Fitzroy",
+          "address": "304 Brunswick St, Fitzroy VIC 3065",
+          "why_crew_relevant": "Melbourne cocktail legend; opens 5pm Tue-Sat; world-class craft drinks; intimate space",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@blackpearlbar"
+          },
+          "source": "https://www.timeout.com/melbourne/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "NGV International",
+          "category": "museum",
+          "neighborhood": "Southbank",
+          "address": "180 St Kilda Rd, Melbourne VIC 3006",
+          "why_crew_relevant": "Australia's most-visited art museum; free permanent collection; opens 10am daily; crew first Melbourne art stop",
+          "price_range": "free",
+          "contact": {
+            "website": "ngv.vic.gov.au",
+            "email": "",
+            "instagram": "@ngv_melbourne"
+          },
+          "source": "https://www.timeout.com/melbourne/art/museums-in-melbourne",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Supernormal",
+          "category": "restaurant",
+          "neighborhood": "CBD",
+          "address": "180 Flinders Ln, Melbourne VIC 3000",
+          "why_crew_relevant": "Lobster rolls and Asian-fusion plates; opens noon; best CBD crew group lunch Melbourne",
+          "price_range": "$$",
+          "contact": {
+            "website": "supernormal.net.au",
+            "email": "",
+            "instagram": "@supernormal_mel"
+          },
+          "source": "https://www.timeout.com/melbourne/restaurants/best-restaurants-melbourne",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Gimlet at Cavendish House",
+          "category": "restaurant",
+          "neighborhood": "CBD",
+          "address": "33 Russell St, Melbourne VIC 3000",
+          "why_crew_relevant": "Melbourne's most critically acclaimed; Parisian brasserie vibe; opens for dinner; crew splurge",
+          "price_range": "$$$",
+          "contact": {
+            "website": "gimletmelbourne.com.au",
+            "email": "reservations@gimletmelbourne.com.au",
+            "instagram": "@gimletmelbourne"
+          },
+          "source": "https://www.timeout.com/melbourne/restaurants/best-restaurants-melbourne",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Lygon Street Italian Strip (Carlton)",
+          "category": "restaurant",
+          "neighborhood": "Carlton",
+          "address": "Lygon St, Carlton VIC 3053",
+          "why_crew_relevant": "Melbourne's Little Italy; open for lunch and dinner; legendary pizza and pasta strip; crew group staple",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/melbourne/restaurants",
+          "crew_mentioned": true
+        }
+      ]
+    },
+    {
+      "iata": "AKL",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "emirates_layover_hotels_known": [
+        "Hilton Auckland",
+        "Grand Millennium Auckland",
+        "Sofitel Auckland Viaduct Harbour"
+      ],
+      "venues": [
+        {
+          "name": "Eighthirty Coffee Roasters",
+          "category": "cafe",
+          "neighborhood": "CBD",
+          "address": "21 Wyndham St, Auckland CBD 1010",
+          "why_crew_relevant": "Auckland's specialist roaster; opens 7am; near Sky Tower crew hotels; crew NZ coffee first stop",
+          "price_range": "$",
+          "contact": {
+            "website": "eighthirty.co.nz",
+            "email": "",
+            "instagram": "@eighthirtycoffee"
+          },
+          "source": "https://www.timeout.com/auckland/restaurants/best-coffee-auckland",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Kokako Café",
+          "category": "cafe",
+          "neighborhood": "Grey Lynn",
+          "address": "537 Great North Rd, Grey Lynn, Auckland 1021",
+          "why_crew_relevant": "Fair trade roaster; opens 7am; Grey Lynn neighbourhood; crew morning run route stop",
+          "price_range": "$",
+          "contact": {
+            "website": "kokako.co.nz",
+            "email": "",
+            "instagram": "@kokakocoffee"
+          },
+          "source": "https://www.timeout.com/auckland/restaurants/best-coffee-auckland",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Jefferson",
+          "category": "bar",
+          "neighborhood": "CBD",
+          "address": "Elliot Stables, 39 Elliott St, Auckland CBD 1010",
+          "why_crew_relevant": "American whiskey bar; bourbon specialists; opens 5pm; near crew hotel cluster Viaduct",
+          "price_range": "$$",
+          "contact": {
+            "website": "thejefferson.co.nz",
+            "email": "",
+            "instagram": "@thejefferson_auckland"
+          },
+          "source": "https://www.timeout.com/auckland/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Auckland Art Gallery Toi o Tāmaki",
+          "category": "museum",
+          "neighborhood": "CBD",
+          "address": "Corner Kitchener and Wellesley Streets, Auckland CBD 1010",
+          "why_crew_relevant": "Free entry; opens 10am; Māori art and New Zealand artists; excellent café inside",
+          "price_range": "free",
+          "contact": {
+            "website": "aucklandartgallery.com",
+            "email": "",
+            "instagram": "@aucklandartgallery"
+          },
+          "source": "https://www.timeout.com/auckland/art/museums-in-auckland",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Depot Eatery",
+          "category": "restaurant",
+          "neighborhood": "CBD",
+          "address": "86 Federal St, Auckland CBD 1010",
+          "why_crew_relevant": "Al Brown's Auckland institution; local seafood; opens 7am; crew morning oyster and coffee stop",
+          "price_range": "$$",
+          "contact": {
+            "website": "eatatdepot.co.nz",
+            "email": "",
+            "instagram": "@depoteatery"
+          },
+          "source": "https://www.timeout.com/auckland/restaurants/best-restaurants-auckland",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The French Café",
+          "category": "restaurant",
+          "neighborhood": "Newton",
+          "address": "210 Symonds St, Eden Terrace, Auckland 1010",
+          "why_crew_relevant": "Auckland's most celebrated fine diner; French-NZ tasting menu; crew special-occasion Auckland dinner",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "thefrenchcafe.co.nz",
+            "email": "reservations@thefrenchcafe.co.nz",
+            "instagram": "@thefrenchcafeauckland"
+          },
+          "source": "https://www.timeout.com/auckland/restaurants/best-restaurants-auckland",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Les Mills Auckland",
+          "category": "fitness",
+          "neighborhood": "CBD",
+          "address": "7 Victoria St W, Auckland CBD 1010",
+          "why_crew_relevant": "Flagship gym; pool + classes; day pass ~NZ$20; opens 5:30am weekdays; crew transit workout",
+          "price_range": "$$",
+          "contact": {
+            "website": "lesmills.co.nz",
+            "email": "",
+            "instagram": "@lesmillsnz"
+          },
+          "source": "https://www.lesmills.co.nz",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "GRU",
+      "city": "São Paulo",
+      "country": "Brazil",
+      "emirates_layover_hotels_known": [
+        "Hilton Guarulhos Airport",
+        "Marriott Guarulhos Airport",
+        "Grand Hyatt São Paulo"
+      ],
+      "venues": [
+        {
+          "name": "Coffee Lab",
+          "category": "cafe",
+          "neighborhood": "Pinheiros",
+          "address": "Rua Padre João Manuel, 1115, Jardim Paulista, São Paulo SP 01411-001",
+          "why_crew_relevant": "São Paulo's specialty coffee pioneer; opens 8am; Jardins neighbourhood close to crew hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "coffeelabsp.com.br",
+            "email": "",
+            "instagram": "@coffeelab"
+          },
+          "source": "https://www.timeout.com/sao-paulo/restaurants/best-cafes-sao-paulo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Guilhotina Bar",
+          "category": "bar",
+          "neighborhood": "Vila Madalena",
+          "address": "Rua Fidalga 254, Vila Madalena, São Paulo SP 05432-070",
+          "why_crew_relevant": "São Paulo's acclaimed cocktail bar; opens 6pm Tue-Sat; Vila Madalena creative district; crew nightlife base",
+          "price_range": "$$",
+          "contact": {
+            "website": "guilhotina.com.br",
+            "email": "",
+            "instagram": "@guilhotina_bar"
+          },
+          "source": "https://www.timeout.com/sao-paulo/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Museu de Arte de São Paulo (MASP)",
+          "category": "museum",
+          "neighborhood": "Avenida Paulista",
+          "address": "Avenida Paulista, 1578, Bela Vista, São Paulo SP 01310-200",
+          "why_crew_relevant": "Brazil's most important art museum; iconic red glass building; opens 10am Tue-Sun; Paulista walk",
+          "price_range": "$$",
+          "contact": {
+            "website": "masp.org.br",
+            "email": "",
+            "instagram": "@masp.oficial"
+          },
+          "source": "https://www.timeout.com/sao-paulo/art/museums-in-sao-paulo",
+          "crew_mentioned": false
+        },
+        {
+          "name": "D.O.M. Restaurant",
+          "category": "restaurant",
+          "neighborhood": "Jardim Paulista",
+          "address": "Rua Barão de Capanema, 549, Jardins, São Paulo SP 01411-011",
+          "why_crew_relevant": "Alex Atala; Brazilian biodiversity ingredients; world's 50 best; crew bucket-list São Paulo dinner",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "domrestaurante.com.br",
+            "email": "reservas@domrestaurante.com.br",
+            "instagram": "@alexatala_dom"
+          },
+          "source": "https://www.theworlds50best.com/restaurants/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Mercado Municipal",
+          "category": "restaurant",
+          "neighborhood": "Brás",
+          "address": "Rua da Cantareira, 306, Centro, São Paulo SP 01024-900",
+          "why_crew_relevant": "Iconic market hall; opens 6am Mon-Sat; mortadella sandwich institution; crew São Paulo food pilgrimage",
+          "price_range": "$",
+          "contact": {
+            "website": "mercadomunicipal.com.br",
+            "email": "",
+            "instagram": "@mercadao_sp"
+          },
+          "source": "https://www.timeout.com/sao-paulo/restaurants/best-food-markets-sao-paulo",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "LAX",
+      "city": "Los Angeles",
+      "country": "USA",
+      "emirates_layover_hotels_known": [
+        "Hilton Los Angeles Airport",
+        "Marriott Los Angeles Airport",
+        "AC Hotel LAX"
+      ],
+      "venues": [
+        {
+          "name": "Go Get Em Tiger (Larchmont)",
+          "category": "cafe",
+          "neighborhood": "Larchmont Village",
+          "address": "230 N Larchmont Blvd, Los Angeles CA 90004",
+          "why_crew_relevant": "LA's best specialty coffee; opens 7am; neighborhood cafe vibe; 20 min from LAX crew hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "gget.com",
+            "email": "",
+            "instagram": "@gget"
+          },
+          "source": "https://www.timeout.com/los-angeles/restaurants/best-coffee-shops-la",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Civil Coffee Highland Park",
+          "category": "cafe",
+          "neighborhood": "Highland Park",
+          "address": "5629 N Figueroa St, Los Angeles CA 90042",
+          "why_crew_relevant": "LA's craft coffee district; opens 7:30am; Highland Park art scene combo; popular crew-age crowd",
+          "price_range": "$",
+          "contact": {
+            "website": "civilcoffee.com",
+            "email": "",
+            "instagram": "@civilcoffee"
+          },
+          "source": "https://www.timeout.com/los-angeles/restaurants/best-coffee-shops-la",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The NoMad Bar (NoMad Hotel)",
+          "category": "bar",
+          "neighborhood": "Downtown",
+          "address": "649 S Olive St, Los Angeles CA 90014",
+          "why_crew_relevant": "NYC transplant cocktail bar; elegant library setting; opens 6pm; downtown LA crew night",
+          "price_range": "$$$",
+          "contact": {
+            "website": "thenomadhotel.com/los-angeles/food-and-drink/the-bar",
+            "email": "",
+            "instagram": "@nomadhotellosangeles"
+          },
+          "source": "https://www.timeout.com/los-angeles/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Harvard & Stone",
+          "category": "bar",
+          "neighborhood": "Thai Town / East Hollywood",
+          "address": "5221 Hollywood Blvd, Los Angeles CA 90027",
+          "why_crew_relevant": "Industry bar; multiple rooms; live music; opens 8pm; crew LA nightlife alternative to WeHo",
+          "price_range": "$$",
+          "contact": {
+            "website": "harvardandstone.com",
+            "email": "",
+            "instagram": "@harvardandstone"
+          },
+          "source": "https://www.timeout.com/los-angeles/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "LACMA",
+          "category": "museum",
+          "neighborhood": "Mid-Wilshire",
+          "address": "5905 Wilshire Blvd, Los Angeles CA 90036",
+          "why_crew_relevant": "Largest art museum in western US; opens 11am Mon+Fri, 10am Sat-Sun; free after 3pm; Urban Light photo stop",
+          "price_range": "$$",
+          "contact": {
+            "website": "lacma.org",
+            "email": "",
+            "instagram": "@lacma"
+          },
+          "source": "https://www.timeout.com/los-angeles/art/museums-in-la",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Getty Center",
+          "category": "museum",
+          "neighborhood": "Brentwood",
+          "address": "1200 Getty Center Dr, Los Angeles CA 90049",
+          "why_crew_relevant": "Free entry; opens 10am Tue-Sun; stunning Meier architecture; LA views; tram from parking; crew art + view day",
+          "price_range": "free",
+          "contact": {
+            "website": "getty.edu",
+            "email": "",
+            "instagram": "@thegetty"
+          },
+          "source": "https://www.timeout.com/los-angeles/art/museums-in-la",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Equinox West Hollywood",
+          "category": "fitness",
+          "neighborhood": "West Hollywood",
+          "address": "8590 Sunset Blvd, West Hollywood CA 90069",
+          "why_crew_relevant": "Flagship gym; day pass available; opens 5am; crew transit workout with WeHo restaurant access after",
+          "price_range": "$$$",
+          "contact": {
+            "website": "equinox.com",
+            "email": "",
+            "instagram": "@equinox"
+          },
+          "source": "https://www.equinox.com",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Providence Restaurant",
+          "category": "restaurant",
+          "neighborhood": "Hollywood",
+          "address": "5955 Melrose Ave, Los Angeles CA 90038",
+          "why_crew_relevant": "LA's best seafood; 2-Michelin star; tasting menu; crew once-in-a-layover meal; Hollywood location",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "providencela.com",
+            "email": "reservations@providencela.com",
+            "instagram": "@providencela"
+          },
+          "source": "https://guide.michelin.com/us/en/california/los-angeles/restaurant/providence",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Grand Central Market",
+          "category": "restaurant",
+          "neighborhood": "Downtown",
+          "address": "317 S Broadway, Los Angeles CA 90013",
+          "why_crew_relevant": "Historic 1917 market; opens 8am daily; 40+ food stalls; Egg Slut, Horse Thief BBQ; crew Downtown LA food stop",
+          "price_range": "$",
+          "contact": {
+            "website": "grandcentralmarket.com",
+            "email": "",
+            "instagram": "@grandcentralmkt"
+          },
+          "source": "https://www.timeout.com/los-angeles/restaurants/best-food-markets-la",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "JFK",
+      "city": "New York",
+      "country": "USA",
+      "emirates_layover_hotels_known": [
+        "JFK Airport TWA Hotel",
+        "Marriott JFK Airport Hotel",
+        "Hilton New York JFK"
+      ],
+      "venues": [
+        {
+          "name": "Stumptown Coffee Roasters (Ace Hotel)",
+          "category": "cafe",
+          "neighborhood": "Midtown",
+          "address": "18 W 29th St, New York NY 10001",
+          "why_crew_relevant": "Portland roaster NYC flagship; opens 7am; crew Midtown morning base; great before Metropolitan Museum",
+          "price_range": "$",
+          "contact": {
+            "website": "stumptowncoffee.com",
+            "email": "",
+            "instagram": "@stumptowncoffee"
+          },
+          "source": "https://www.timeout.com/newyork/restaurants/best-coffee-shops-nyc",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Intelligentsia Coffee (Greenwich Village)",
+          "category": "cafe",
+          "neighborhood": "Greenwich Village",
+          "address": "1 Hanson Pl, Brooklyn NY 11243 / 180 Duane St NYC",
+          "why_crew_relevant": "Chicago roaster NYC presence; opens 7am; specialty pour-overs; crew West Village walk companion",
+          "price_range": "$",
+          "contact": {
+            "website": "intelligentsia.com",
+            "email": "",
+            "instagram": "@intelligentsia"
+          },
+          "source": "https://www.timeout.com/newyork/restaurants/best-coffee-shops-nyc",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Death & Co",
+          "category": "bar",
+          "neighborhood": "East Village",
+          "address": "433 E 6th St, New York NY 10009",
+          "why_crew_relevant": "World's 50 best bar; cocktail bible published here; opens 6pm daily; East Village; crew cocktail pilgrimage",
+          "price_range": "$$$",
+          "contact": {
+            "website": "deathandcompany.com",
+            "email": "",
+            "instagram": "@deathandcompanynyc"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Attaboy",
+          "category": "bar",
+          "neighborhood": "Lower East Side",
+          "address": "134 Eldridge St, New York NY 10002",
+          "why_crew_relevant": "No menu cocktail bar; bespoke to your preference; opens 7pm; LES location; crew must-experience NYC bar",
+          "price_range": "$$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@attaboynyc"
+          },
+          "source": "https://www.timeout.com/newyork/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Metropolitan Museum of Art",
+          "category": "museum",
+          "neighborhood": "Upper East Side",
+          "address": "1000 Fifth Ave, New York NY 10028",
+          "why_crew_relevant": "World-class; opens 10am Thu-Mon; pay-what-you-wish for NY residents; crew art full-day destination",
+          "price_range": "$$",
+          "contact": {
+            "website": "metmuseum.org",
+            "email": "",
+            "instagram": "@metmuseum"
+          },
+          "source": "https://www.timeout.com/newyork/art/museums-in-nyc",
+          "crew_mentioned": false
+        },
+        {
+          "name": "MoMA",
+          "category": "museum",
+          "neighborhood": "Midtown",
+          "address": "11 W 53rd St, New York NY 10019",
+          "why_crew_relevant": "Modern art icons; opens 10:30am Thu-Mon; free Friday 5:30-9pm; crew art afternoon in Midtown",
+          "price_range": "$$",
+          "contact": {
+            "website": "moma.org",
+            "email": "",
+            "instagram": "@themuseumofmodernart"
+          },
+          "source": "https://www.timeout.com/newyork/art/museums-in-nyc",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Equinox E 92nd St",
+          "category": "fitness",
+          "neighborhood": "Upper East Side",
+          "address": "140 E 92nd St, New York NY 10128",
+          "why_crew_relevant": "Flagship gym; day pass available; opens 5am; near crew Upper East Side hotels; premium facilities",
+          "price_range": "$$$",
+          "contact": {
+            "website": "equinox.com",
+            "email": "",
+            "instagram": "@equinox"
+          },
+          "source": "https://www.equinox.com",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Eleven Madison Park",
+          "category": "restaurant",
+          "neighborhood": "Flatiron",
+          "address": "11 Madison Ave, New York NY 10010",
+          "why_crew_relevant": "3-Michelin-star; plant-based tasting menu; world's 50 best; senior crew once-in-career NYC dinner",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "elevenmadisonpark.com",
+            "email": "",
+            "instagram": "@elevenmadisonpark"
+          },
+          "source": "https://www.theworlds50best.com/restaurants/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Katz's Delicatessen",
+          "category": "restaurant",
+          "neighborhood": "Lower East Side",
+          "address": "205 E Houston St, New York NY 10002",
+          "why_crew_relevant": "NYC institution since 1888; pastrami sandwich; opens 8am daily; When Harry Met Sally film location; crew NYC classic",
+          "price_range": "$$",
+          "contact": {
+            "website": "katzsdelicatessen.com",
+            "email": "",
+            "instagram": "@katzsdelicatessen"
+          },
+          "source": "https://www.timeout.com/newyork/restaurants/best-restaurants-nyc",
+          "crew_mentioned": true
+        }
+      ]
+    },
+    {
+      "iata": "SFO",
+      "city": "San Francisco",
+      "country": "USA",
+      "emirates_layover_hotels_known": [
+        "Hilton San Francisco Airport",
+        "Westin SFO",
+        "Marriott SFO"
+      ],
+      "venues": [
+        {
+          "name": "Sightglass Coffee (SoMa)",
+          "category": "cafe",
+          "neighborhood": "SoMa",
+          "address": "270 7th St, San Francisco CA 94103",
+          "why_crew_relevant": "SF's best specialty roaster; opens 7am; two-story roastery; crew SoMa food tour base",
+          "price_range": "$",
+          "contact": {
+            "website": "sightglasscoffee.com",
+            "email": "",
+            "instagram": "@sightglasscoffee"
+          },
+          "source": "https://www.timeout.com/san-francisco/restaurants/best-coffee-shops-sf",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Trick Dog",
+          "category": "bar",
+          "neighborhood": "Mission District",
+          "address": "3010 20th St, San Francisco CA 94110",
+          "why_crew_relevant": "San Francisco's acclaimed cocktail bar; thematic menus; opens 3pm daily; Mission crew bar",
+          "price_range": "$$",
+          "contact": {
+            "website": "trickdogbar.com",
+            "email": "",
+            "instagram": "@trickdog"
+          },
+          "source": "https://www.timeout.com/san-francisco/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "SFMOMA",
+          "category": "museum",
+          "neighborhood": "SoMa",
+          "address": "151 Third St, San Francisco CA 94103",
+          "why_crew_relevant": "World-class modern art; opens 10am (closed Wed); rooftop garden; crew art afternoon near Union Square hotels",
+          "price_range": "$$",
+          "contact": {
+            "website": "sfmoma.org",
+            "email": "",
+            "instagram": "@sfmoma"
+          },
+          "source": "https://www.timeout.com/san-francisco/art/museums-in-sf",
+          "crew_mentioned": false
+        },
+        {
+          "name": "State Bird Provisions",
+          "category": "restaurant",
+          "neighborhood": "Western Addition",
+          "address": "1529 Fillmore St, San Francisco CA 94115",
+          "why_crew_relevant": "James Beard award; dim-sum-style California cuisine; book ahead or queue; crew SF food bucket list",
+          "price_range": "$$$",
+          "contact": {
+            "website": "statebirdsf.com",
+            "email": "",
+            "instagram": "@statebirdsf"
+          },
+          "source": "https://www.timeout.com/san-francisco/restaurants/best-restaurants-sf",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Ferry Building Marketplace",
+          "category": "restaurant",
+          "neighborhood": "Embarcadero",
+          "address": "1 Ferry Building, San Francisco CA 94111",
+          "why_crew_relevant": "Artisan food hall + Tuesday/Thursday/Saturday farmers market; opens 8am; Bay views; crew SF food morning",
+          "price_range": "$$",
+          "contact": {
+            "website": "ferrybuildingmarketplace.com",
+            "email": "",
+            "instagram": "@ferrybldgmktplace"
+          },
+          "source": "https://www.timeout.com/san-francisco/restaurants/best-food-markets-sf",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "ORD",
+      "city": "Chicago",
+      "country": "USA",
+      "emirates_layover_hotels_known": [
+        "Hilton O'Hare Airport",
+        "Marriott Chicago O'Hare",
+        "Aloft Chicago O'Hare"
+      ],
+      "venues": [
+        {
+          "name": "Intelligentsia Coffee (Millennium Park)",
+          "category": "cafe",
+          "neighborhood": "Millennium Park",
+          "address": "53 W Jackson Blvd, Chicago IL 60604",
+          "why_crew_relevant": "Chicago flagship roaster; opens 6am weekdays; crew Loop coffee before museum; the original location",
+          "price_range": "$",
+          "contact": {
+            "website": "intelligentsia.com",
+            "email": "",
+            "instagram": "@intelligentsia"
+          },
+          "source": "https://www.timeout.com/chicago/restaurants/best-coffee-shops-chicago",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Violet Hour",
+          "category": "bar",
+          "neighborhood": "Wicker Park",
+          "address": "1520 N Damen Ave, Chicago IL 60622",
+          "why_crew_relevant": "World-class craft cocktails; no sign on door; opens 6pm daily; crew cocktail destination in Wicker Park",
+          "price_range": "$$",
+          "contact": {
+            "website": "theviolethour.com",
+            "email": "",
+            "instagram": "@theviolethour"
+          },
+          "source": "https://www.timeout.com/chicago/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Art Institute of Chicago",
+          "category": "museum",
+          "neighborhood": "Millennium Park",
+          "address": "111 S Michigan Ave, Chicago IL 60603",
+          "why_crew_relevant": "World's finest Impressionist collection outside Paris; opens 10:30am; crew Chicago art must-see",
+          "price_range": "$$",
+          "contact": {
+            "website": "artic.edu",
+            "email": "",
+            "instagram": "@artinstitutechi"
+          },
+          "source": "https://www.timeout.com/chicago/art/museums-in-chicago",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Alinea",
+          "category": "restaurant",
+          "neighborhood": "Lincoln Park",
+          "address": "1723 N Halsted St, Chicago IL 60614",
+          "why_crew_relevant": "World's 50 best restaurant; Grant Achatz molecular gastronomy; crew bucket-list Chicago meal; book months ahead",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "alinearestaurant.com",
+            "email": "",
+            "instagram": "@alinearestaurant"
+          },
+          "source": "https://www.theworlds50best.com/restaurants/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Chicago French Market",
+          "category": "restaurant",
+          "neighborhood": "Ogilvie Transportation Center",
+          "address": "131 N Clinton St, Chicago IL 60661",
+          "why_crew_relevant": "Indoor market; opens 7am Mon-Fri; artisan breakfast and lunch; near River North crew hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "frenchmarketchicago.com",
+            "email": "",
+            "instagram": "@frenchmarketchicago"
+          },
+          "source": "https://www.timeout.com/chicago/restaurants",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "CPT",
+      "city": "Cape Town",
+      "country": "South Africa",
+      "emirates_layover_hotels_known": [
+        "One&Only Cape Town",
+        "The Table Bay Hotel",
+        "Radisson Blu Hotel & Residence Cape Town"
+      ],
+      "venues": [
+        {
+          "name": "Truth Coffee Roasting",
+          "category": "cafe",
+          "neighborhood": "CBD",
+          "address": "36 Buitenkant St, Cape Town 8001",
+          "why_crew_relevant": "Steampunk roastery cathedral; opens 7am; named world's best coffee shop; crew Cape Town essential",
+          "price_range": "$",
+          "contact": {
+            "website": "truth.coffee",
+            "email": "",
+            "instagram": "@truthcoffeecult"
+          },
+          "source": "https://www.timeout.com/cape-town/restaurants/best-coffee-cape-town",
+          "crew_mentioned": true
+        },
+        {
+          "name": "The Orphanage Cocktail Emporium",
+          "category": "bar",
+          "neighborhood": "CBD",
+          "address": "110 Bree St, Cape Town 8001",
+          "why_crew_relevant": "Cape Town's best craft cocktail bar; opens 5pm Tue-Sat; antique Victorian decor; crew cocktail destination",
+          "price_range": "$$",
+          "contact": {
+            "website": "theorphanage.co.za",
+            "email": "",
+            "instagram": "@theorphanagecpt"
+          },
+          "source": "https://www.timeout.com/cape-town/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Cause & Effect Cocktail Kitchen",
+          "category": "bar",
+          "neighborhood": "Kloof Street",
+          "address": "95 Kloof St, Cape Town 8001",
+          "why_crew_relevant": "Cape Town's award-winning bar; opens 3pm; Kloof Street dining strip; crew cocktail-to-dinner transition spot",
+          "price_range": "$$",
+          "contact": {
+            "website": "causeandeffectcocktails.co.za",
+            "email": "",
+            "instagram": "@causeandeffectcpt"
+          },
+          "source": "https://www.timeout.com/cape-town/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Zeitz MOCAA",
+          "category": "museum",
+          "neighborhood": "V&A Waterfront",
+          "address": "Silo District, V&A Waterfront, Cape Town 8002",
+          "why_crew_relevant": "Africa's largest contemporary art museum in converted grain silo; opens 10am; V&A Waterfront crew day",
+          "price_range": "$$",
+          "contact": {
+            "website": "zeitzmocaa.museum",
+            "email": "",
+            "instagram": "@zeitzmocaa"
+          },
+          "source": "https://www.timeout.com/cape-town/art/museums-in-cape-town",
+          "crew_mentioned": false
+        },
+        {
+          "name": "La Colombe",
+          "category": "restaurant",
+          "neighborhood": "Constantia",
+          "address": "Silvermist Wine Estate, Constantia, Cape Town 7806",
+          "why_crew_relevant": "South Africa's best restaurant; wine estate setting; tasting menu; book ahead; crew special occasion",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "lacolombe.co.za",
+            "email": "reservations@lacolombe.co.za",
+            "instagram": "@lacolombesa"
+          },
+          "source": "https://www.theworlds50best.com/restaurants/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Old Biscuit Mill (Neighbourgoods Market)",
+          "category": "restaurant",
+          "neighborhood": "Woodstock",
+          "address": "373-375 Albert Rd, Woodstock, Cape Town 7925",
+          "why_crew_relevant": "Sat morning market 9am-2pm; Cape Town artisan food + crafts; crew weekend Cape Town food ritual",
+          "price_range": "$",
+          "contact": {
+            "website": "theoldbiscuitmill.co.za",
+            "email": "",
+            "instagram": "@oldbiscuitmill"
+          },
+          "source": "https://www.timeout.com/cape-town/restaurants",
+          "crew_mentioned": true
+        },
+        {
+          "name": "Virgin Active Cape Quarter",
+          "category": "fitness",
+          "neighborhood": "De Waterkant",
+          "address": "Cape Quarter Lifestyle Village, De Waterkant, Cape Town 8001",
+          "why_crew_relevant": "Premium gym with rooftop pool; day pass available; opens 5:30am; V&A/De Waterkant crew hotel access",
+          "price_range": "$$",
+          "contact": {
+            "website": "virginactive.co.za",
+            "email": "",
+            "instagram": "@virginactivesa"
+          },
+          "source": "https://www.virginactive.co.za",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "MRU",
+      "city": "Mauritius",
+      "country": "Mauritius",
+      "emirates_layover_hotels_known": [
+        "Hilton Mauritius Resort",
+        "Le Meridien Ile Maurice",
+        "Intercontinental Mauritius Resort Balaclava Fort"
+      ],
+      "venues": [
+        {
+          "name": "Labourdonnais Waterfront Hotel Restaurant",
+          "category": "restaurant",
+          "neighborhood": "Port Louis Waterfront",
+          "address": "Caudan Waterfront, Port Louis, Mauritius",
+          "why_crew_relevant": "Port Louis best hotel dining; Creole and French cuisine; opens noon; Caudan Waterfront location",
+          "price_range": "$$$",
+          "contact": {
+            "website": "labourdonnais.com",
+            "email": "",
+            "instagram": "@labourdonnaishotel"
+          },
+          "source": "https://www.timeout.com/mauritius",
+          "crew_mentioned": false
+        },
+        {
+          "name": "La Rougaille Creole",
+          "category": "restaurant",
+          "neighborhood": "Grand Baie",
+          "address": "Grand Baie, Mauritius",
+          "why_crew_relevant": "Authentic Mauritian Creole; rougaille and vindaye; crew local food experience; Grand Baie resort area",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.tripadvisor.com/Restaurants-g293842-Mauritius.html",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Domaine Les Pailles Rum Museum",
+          "category": "museum",
+          "neighborhood": "Pailles",
+          "address": "Pailles, Mauritius",
+          "why_crew_relevant": "Old colonial estate; rum distillery tour; ox-cart rides; opens daily; crew culture + rum combo",
+          "price_range": "$$",
+          "contact": {
+            "website": "domainelespailles.com",
+            "email": "",
+            "instagram": "@domainelespailles"
+          },
+          "source": "https://www.tripadvisor.com/Attractions-g293842-Activities-Mauritius.html",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Blue Bay Beach",
+          "category": "fitness",
+          "neighborhood": "Blue Bay",
+          "address": "Blue Bay Marine Park, Mahebourg, Mauritius",
+          "why_crew_relevant": "Best snorkeling in Mauritius; marine park; crew water sports and beach on longer layovers",
+          "price_range": "free",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/mauritius/attractions",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "SEZ",
+      "city": "Mahé (Seychelles)",
+      "country": "Seychelles",
+      "emirates_layover_hotels_known": [
+        "Hilton Seychelles Northolme Resort",
+        "Kempinski Seychelles Resort"
+      ],
+      "venues": [
+        {
+          "name": "Marie Antoinette Restaurant",
+          "category": "restaurant",
+          "neighborhood": "Victoria",
+          "address": "Serret Rd, Victoria, Mahé, Seychelles",
+          "why_crew_relevant": "Oldest restaurant in Seychelles; colonial house; Creole fixed menu; authentic crew Seychelles food experience",
+          "price_range": "$$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.tripadvisor.com/Restaurants-g293840-Seychelles.html",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Berjaya Beau Vallon Bay Beach",
+          "category": "fitness",
+          "neighborhood": "Beau Vallon",
+          "address": "Beau Vallon, Mahé, Seychelles",
+          "why_crew_relevant": "Best beach on Mahé; 5 min from Victoria; snorkeling gear hire; crew beach decompression on island layover",
+          "price_range": "free",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/seychelles",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Natural History Museum Seychelles",
+          "category": "museum",
+          "neighborhood": "Victoria",
+          "address": "Victoria, Mahé, Seychelles",
+          "why_crew_relevant": "Free; island wildlife and history; tortoise exhibits; near harbour; short layover option",
+          "price_range": "free",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.tripadvisor.com/Attractions-g293840",
+          "crew_mentioned": false
+        }
+      ]
+    },
+    {
+      "iata": "MNL",
+      "city": "Manila",
+      "country": "Philippines",
+      "emirates_layover_hotels_known": [
+        "New World Makati Hotel",
+        "Raffles Makati",
+        "Diamond Hotel Philippines"
+      ],
+      "venues": [
+        {
+          "name": "Yardstick Coffee",
+          "category": "cafe",
+          "neighborhood": "Makati",
+          "address": "114 Aguirre St, Legaspi Village, Makati, Manila 1229",
+          "why_crew_relevant": "Manila's specialty coffee leader; opens 8am; Legaspi Village close to Makati crew hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "yardstick.ph",
+            "email": "",
+            "instagram": "@yardstickcoffee"
+          },
+          "source": "https://www.timeout.com/manila/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "The Curator Coffee & Cocktails",
+          "category": "bar",
+          "neighborhood": "Makati",
+          "address": "134 Legazpi St, Legaspi Village, Makati, Manila",
+          "why_crew_relevant": "Coffee by day, cocktails by night; Asia's 50 best bar; opens 9am; Makati central; crew versatile stop",
+          "price_range": "$$",
+          "contact": {
+            "website": "thecurator.com.ph",
+            "email": "",
+            "instagram": "@thecuratorcoffeecocktails"
+          },
+          "source": "https://www.theworlds50best.com/bars/list",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Intramuros",
+          "category": "museum",
+          "neighborhood": "Intramuros",
+          "address": "Intramuros, Manila 1002",
+          "why_crew_relevant": "Walled Spanish colonial city; Fort Santiago free entry; opens 8am; Manila history walk; bamboo bike tours",
+          "price_range": "$",
+          "contact": {
+            "website": "intramuros.gov.ph",
+            "email": "",
+            "instagram": "@intramuros_administration"
+          },
+          "source": "https://www.timeout.com/manila/attractions",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Manam Comfort Filipino",
+          "category": "restaurant",
+          "neighborhood": "Quezon City / BGC",
+          "address": "Multiple locations including BGC Taguig",
+          "why_crew_relevant": "Modern Filipino comfort food; sinigang, kare-kare; opens 11am; best introduction to Filipino cuisine for crew",
+          "price_range": "$$",
+          "contact": {
+            "website": "manam.com.ph",
+            "email": "",
+            "instagram": "@manamph"
+          },
+          "source": "https://www.timeout.com/manila/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Salcedo Saturday Market",
+          "category": "restaurant",
+          "neighborhood": "Makati",
+          "address": "Salcedo Village Park, Legaspi St, Makati",
+          "why_crew_relevant": "Saturday 7am-2pm; Manila artisan food market; organic produce and street food; near Makati crew hotels",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": ""
+          },
+          "source": "https://www.timeout.com/manila/restaurants",
+          "crew_mentioned": true
+        }
+      ]
+    },
+    {
+      "iata": "CGK",
+      "city": "Jakarta",
+      "country": "Indonesia",
+      "emirates_layover_hotels_known": [
+        "JW Marriott Jakarta",
+        "Sheraton Grand Jakarta Gandaria City Hotel",
+        "Hilton Jakarta"
+      ],
+      "venues": [
+        {
+          "name": "Tanamera Coffee",
+          "category": "cafe",
+          "neighborhood": "Sudirman",
+          "address": "Wisma GKBI Suite 116, Jl. Jenderal Sudirman No.28, Jakarta 10210",
+          "why_crew_relevant": "Jakarta's leading specialty roaster sourcing Indonesian beans; opens 8am; Sudirman crew hotel zone",
+          "price_range": "$",
+          "contact": {
+            "website": "tanameracoffee.com",
+            "email": "",
+            "instagram": "@tanameracoffee"
+          },
+          "source": "https://www.timeout.com/jakarta/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Potato Head Beach Club (Seminyak side if Bali transit)",
+          "category": "bar",
+          "neighborhood": "Sudirman",
+          "address": "Various Jakarta locations",
+          "why_crew_relevant": "Jakarta's premium bar group; Potato Head Studios Senayan has pool bar; opens 11am; crew pool day in Jakarta",
+          "price_range": "$$$",
+          "contact": {
+            "website": "ptthead.com",
+            "email": "",
+            "instagram": "@ptthead"
+          },
+          "source": "https://www.timeout.com/jakarta/bars-and-pubs",
+          "crew_mentioned": false
+        },
+        {
+          "name": "National Museum of Indonesia",
+          "category": "museum",
+          "neighborhood": "Merdeka Square",
+          "address": "Jl. Merdeka Barat No.12, Jakarta 10110",
+          "why_crew_relevant": "Ganesha statues; opens 8am Tue-Fri; free; near Merdeka Square; colonial history and Javanese art",
+          "price_range": "free",
+          "contact": {
+            "website": "museumnasional.or.id",
+            "email": "",
+            "instagram": "@museumnasional_ri"
+          },
+          "source": "https://www.timeout.com/jakarta/art",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Namaaz Dining",
+          "category": "restaurant",
+          "neighborhood": "Pakubuwono",
+          "address": "Jl. Pakubuwono VI No.18A, Kebayoran Baru, Jakarta 12120",
+          "why_crew_relevant": "Indonesia's most inventive fine dining; molecular cuisine with Indonesian flavors; book ahead; crew must-try",
+          "price_range": "$$$$",
+          "contact": {
+            "website": "namaaz.co.id",
+            "email": "reservasi@namaaz.co.id",
+            "instagram": "@namaaz.dining"
+          },
+          "source": "https://www.timeout.com/jakarta/restaurants",
+          "crew_mentioned": false
+        },
+        {
+          "name": "Pasar Santa",
+          "category": "restaurant",
+          "neighborhood": "Kebayoran Baru",
+          "address": "Jl. Cipaku I, Kebayoran Baru, Jakarta 12170",
+          "why_crew_relevant": "Hipster market conversion; multiple food stalls; opens noon; local Jakarta food scene; crew food discovery",
+          "price_range": "$",
+          "contact": {
+            "website": "",
+            "email": "",
+            "instagram": "@pasarsanta"
+          },
+          "source": "https://www.timeout.com/jakarta/restaurants",
+          "crew_mentioned": false
+        }
+      ]
+    }
+  ]
+}

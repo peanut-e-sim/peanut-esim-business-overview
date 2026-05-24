@@ -1,0 +1,1852 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-05-25",
+  "notes": "Crew-curated must-try food, souvenirs, and experiences across top 30 Emirates DXB destinations. Sources cited per entry. Prices approximate in USD.",
+  "destinations": [
+    {
+      "iata": "LHR",
+      "city": "London",
+      "country": "United Kingdom",
+      "must_try_food": [
+        {
+          "item": "Full English Breakfast",
+          "where": "Any greasy spoon cafe (e.g., E Pellici, Bethnal Green)",
+          "why": "Cultural institution; bacon, eggs, beans, black pudding; cheap and filling before a long return flight",
+          "approx_cost": "$8-12"
+        },
+        {
+          "item": "Fish and Chips",
+          "where": "Poppies Fish & Chips, Camden or Spitalfields",
+          "why": "Classic British; crew bring the smell on board jokes aside — genuinely excellent battered cod",
+          "approx_cost": "$12-18"
+        },
+        {
+          "item": "Borough Market cheese toastie or jamón",
+          "where": "Borough Market, London Bridge",
+          "why": "Best artisan produce in London; grab and walk; crew Saturday morning tradition",
+          "approx_cost": "$5-10"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Marmite (large jar)",
+          "where": "Any Waitrose or Sainsbury's supermarket",
+          "why": "Iconic British spread; cheap; excellent gift that divides opinion globally; easy to pack",
+          "approx_cost": "$5-8"
+        },
+        {
+          "item": "Fortnum & Mason tea selection tin",
+          "where": "Fortnum & Mason, 181 Piccadilly",
+          "why": "Royal Warrant gifting; crew take these back to bases worldwide; beautiful tins reused forever",
+          "approx_cost": "$25-50"
+        },
+        {
+          "item": "Penhaligon's perfume",
+          "where": "Penhaligon's stores, Covent Garden or Burlington Arcade",
+          "why": "British heritage fragrance; eccentric British character bottles; crew gift that impresses",
+          "approx_cost": "$80-150"
+        },
+        {
+          "item": "Liberty London fabric or cosmetics pouch",
+          "where": "Liberty London, Great Marlborough St",
+          "why": "Iconic Liberty print; cosmetics bags popular with crew; distinctive gift",
+          "approx_cost": "$30-80"
+        },
+        {
+          "item": "Scottish whisky miniature set",
+          "where": "The Whisky Exchange, Covent Garden",
+          "why": "Compact; variety of expressions; perfect crew gift for spirit-loving colleagues",
+          "approx_cost": "$25-50"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Walk from Tate Modern to Borough Market along the Thames",
+          "why": "Free; world-class art + London's best food market; river views; 3-4 hour ideal layover itinerary",
+          "approx_cost": "free-$20"
+        },
+        {
+          "item": "Afternoon tea at Claridge's or The Savoy",
+          "why": "Quintessential British experience; finger sandwiches and scones; senior crew tradition",
+          "approx_cost": "$60-90"
+        },
+        {
+          "item": "West End show (TKTS discount booth)",
+          "why": "World's best theatre; TKTS booth at Leicester Square sells same-day discounts; crew love musicals",
+          "approx_cost": "$30-70"
+        }
+      ]
+    },
+    {
+      "iata": "BKK",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "must_try_food": [
+        {
+          "item": "Pad kra pao (basil stir-fry) at a street stall",
+          "where": "Any side-street vendor near Sukhumvit area",
+          "why": "Thailand's true national dish; cheap; 24hr available; crew comeback food after every layover",
+          "approx_cost": "$2-4"
+        },
+        {
+          "item": "Mango sticky rice",
+          "where": "Mae Varee, Thonglor Soi 2 (famous stall)",
+          "why": "Seasonal June-Sep best; iconic Thai dessert; crew bring this to hotels in takeaway bags",
+          "approx_cost": "$3-5"
+        },
+        {
+          "item": "Tom yum goong from a proper restaurant",
+          "where": "Baan Phadthai or Err Urban Rustic Thai",
+          "why": "The real version — nothing like the packet; crew food education for what Thai actually tastes like",
+          "approx_cost": "$6-10"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Thai silk scarf or fabric",
+          "where": "Jim Thompson House store, Siam",
+          "why": "Legendary brand; crew wearable souvenir; quality assurance vs market counterfeits",
+          "approx_cost": "$30-80"
+        },
+        {
+          "item": "Coconut oil beauty products",
+          "where": "Harnn Heritage Spa stores, major malls",
+          "why": "Thai botanical brand; crew carry-on legal; gift for colleagues; coconut body butter beloved by cabin crew",
+          "approx_cost": "$15-40"
+        },
+        {
+          "item": "Thai massage oil set",
+          "where": "Boots Thailand (pharmacy chain) or Chatuchak Market",
+          "why": "Genuine Thai herbs; crew use for self-massage; light to pack",
+          "approx_cost": "$5-15"
+        },
+        {
+          "item": "Chatuchak Market ceramics or handicrafts",
+          "where": "Chatuchak Weekend Market (Sat-Sun)",
+          "why": "Handmade; unique; affordable; crew browse for hours; Section 2-3 best for ceramics",
+          "approx_cost": "$5-30"
+        },
+        {
+          "item": "Thai tea and coffee blends",
+          "where": "Or Tor Kor Market or airport duty-free",
+          "why": "Compact gift; Thai green tea and coffee sachets; crew bring home by the bag",
+          "approx_cost": "$3-10"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Traditional Thai massage (2 hours)",
+          "where": "Wat Pho temple massage school or any reputable parlour",
+          "why": "Crew jet-lag reset ritual; the real thing for $15-25; crew comparison notes across cities",
+          "approx_cost": "$15-25"
+        },
+        {
+          "item": "Floating market day trip (Damnoen Saduak or Amphawa)",
+          "where": "Day trip from Bangkok, Sat-Sun best",
+          "why": "Iconic Thailand experience; crew with longer layovers take this; Amphawa is more authentic",
+          "approx_cost": "$20-40"
+        },
+        {
+          "item": "Rooftop bar sunset (Vertigo, Lebua, or Octave)",
+          "where": "Various rooftop bars",
+          "why": "Bangkok skyline at sunset is spectacular; crew group ritual before evening flights",
+          "approx_cost": "$20-40"
+        }
+      ]
+    },
+    {
+      "iata": "SIN",
+      "city": "Singapore",
+      "country": "Singapore",
+      "must_try_food": [
+        {
+          "item": "Chilli crab",
+          "where": "Jumbo Seafood (Clarke Quay) or No Signboard Seafood",
+          "why": "Singapore's national dish; messy and communal; crew group dinner essential",
+          "approx_cost": "$30-60/person"
+        },
+        {
+          "item": "Chicken rice at Tian Tian, Maxwell Food Centre",
+          "where": "Maxwell Food Centre, Tanjong Pagar",
+          "why": "Hawker Centre Michelin; $5 plate; Gordon Ramsay lost to them; crew pilgrimage",
+          "approx_cost": "$5"
+        },
+        {
+          "item": "Kaya toast with soft-boiled eggs and coffee",
+          "where": "Ya Kun Kaya Toast, any outlet from 7:30am",
+          "why": "Singapore breakfast ritual; crew morning fuel; the half-soft eggs with dark soy is specific and wonderful",
+          "approx_cost": "$4-6"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Bengawan Solo kueh and pineapple tarts",
+          "where": "Bengawan Solo, multiple locations",
+          "why": "Singapore's most gifted kueh brand; pineapple tarts especially; crew buy boxes to take home",
+          "approx_cost": "$10-25"
+        },
+        {
+          "item": "TWG Tea Singapore Breakfast Tea",
+          "where": "TWG Tea boutiques in malls or airport",
+          "why": "Singapore's luxury tea brand; beautiful tins; crew premium gift that travels well",
+          "approx_cost": "$20-60"
+        },
+        {
+          "item": "Bak kwa (pork jerky) from Bee Cheng Hiang",
+          "where": "Bee Cheng Hiang, multiple outlets",
+          "why": "Singapore pork jerky; crew bring back by the kilo; note: can't bring into some countries (check)",
+          "approx_cost": "$20-30/500g"
+        },
+        {
+          "item": "Tiger Balm (original red tin)",
+          "where": "Any pharmacy or supermarket",
+          "why": "Iconic Singapore-origin product; crew have it in every bag; utility gift that everyone keeps",
+          "approx_cost": "$5-8"
+        },
+        {
+          "item": "Peranakan porcelain or keepsake",
+          "where": "Katong/Joo Chiat shops or Peranakan Museum store",
+          "why": "Unique to Singapore/Malacca; nonya culture; beautiful small pieces crew take home",
+          "approx_cost": "$15-50"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Hawker Centre meal at Lau Pa Sat or Old Airport Road",
+          "where": "Various hawker centres",
+          "why": "The authentic Singapore food court experience; crew eat with locals; open-air; late night",
+          "approx_cost": "$5-15"
+        },
+        {
+          "item": "Gardens by the Bay Supertree Grove at dusk",
+          "where": "Gardens by the Bay, free outdoor area",
+          "why": "The iconic Singapore skyline view; light show at 7:45pm and 8:45pm; crew photo essential",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Singapore Sling at Raffles Long Bar",
+          "where": "Raffles Hotel Singapore, Beach Rd",
+          "why": "Invented here 1915; tourist-priced but authentic; crew rite of passage on their first SIN layover",
+          "approx_cost": "$30"
+        }
+      ]
+    },
+    {
+      "iata": "NRT",
+      "city": "Tokyo",
+      "country": "Japan",
+      "must_try_food": [
+        {
+          "item": "Convenience store onigiri breakfast",
+          "where": "Lawson, 7-Eleven, or FamilyMart — any branch",
+          "why": "Rice triangles at $1; transcendent quality; crew morning ritual every Tokyo layover without exception",
+          "approx_cost": "$1-2"
+        },
+        {
+          "item": "Tonkatsu set at Tonki Meguro",
+          "where": "2-1-39 Shimomeguro, Meguro, Tokyo",
+          "why": "85-year institution; crispy pork cutlet; single-minded perfection; crew go every layover for 20 years",
+          "approx_cost": "$15-20"
+        },
+        {
+          "item": "Tsukiji sushi at 6am",
+          "where": "Tsukiji Outer Market — Sushi Dai or Daiwa Sushi",
+          "why": "Best sushi at lowest prices when fish is freshest; early morning crew ritual; queues worth it",
+          "approx_cost": "$20-40"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "KitKat Japan exclusive flavors (matcha, sake, yuzu)",
+          "where": "Don Quijote stores, airport duty-free, convenience stores",
+          "why": "Iconic; cheap; perfect gift; flavors unavailable globally; crew carry boxes of these",
+          "approx_cost": "$2-5"
+        },
+        {
+          "item": "Japanese whisky miniatures (Nikka, Suntory)",
+          "where": "Don Quijote, airport duty-free, Isetan B1",
+          "why": "World-class whisky; compact gifting; mini bottles legal in carry-on if sealed; crew favourite souvenir",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Muji stationery and travel accessories",
+          "where": "Any Muji store — Yurakucho or Shinjuku",
+          "why": "Japanese minimalism; crew packing organizers, travel items; practical gift beloved globally",
+          "approx_cost": "$5-30"
+        },
+        {
+          "item": "Noren (Japanese doorway curtain) from Kyoto craft store",
+          "where": "Flying Tiger at Shibuya or Nishiki Market Kyoto day trip",
+          "why": "Traditional Japanese textile; crew home decoration; lightweight to pack",
+          "approx_cost": "$15-40"
+        },
+        {
+          "item": "Furoshiki wrapping cloth",
+          "where": "Tokyu Hands or department store B2 floor",
+          "why": "Reusable Japanese wrapping fabric; eco-gift; multiple uses; crew sustainable souvenir",
+          "approx_cost": "$10-25"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Onsen (public hot spring bath)",
+          "where": "SPA LaQua (Tokyo Dome) or Oedo Onsen Odaiba",
+          "why": "Cultural immersion; jet-lag cure; tatami rest areas; crew decompression essential in Japan",
+          "approx_cost": "$15-30"
+        },
+        {
+          "item": "Conveyor belt sushi (kaiten-zushi) at Sushiro or Hamazushi",
+          "where": "Multiple locations — Sushiro Shibuya or Ikebukuro",
+          "why": "Affordable; fun; iPad ordering; crew bring first-timers here; excellent value Japanese food theater",
+          "approx_cost": "$10-20"
+        },
+        {
+          "item": "Shibuya Crossing and scramble at rush hour",
+          "where": "Shibuya Station exit — Hachiko side",
+          "why": "World's busiest pedestrian crossing; free; crew bring everyone they travel with; 5pm-7pm best",
+          "approx_cost": "free"
+        }
+      ]
+    },
+    {
+      "iata": "ICN",
+      "city": "Seoul",
+      "country": "South Korea",
+      "must_try_food": [
+        {
+          "item": "Bibimbap at Gogung (Insadong)",
+          "where": "30-1 Insadong-gil, Jongno-gu, Seoul",
+          "why": "Stone pot version with dolsot; crew Korean food standard; filling and photogenic",
+          "approx_cost": "$8-12"
+        },
+        {
+          "item": "Korean fried chicken + beer (chimaek)",
+          "where": "Any BBQ Chicken or Kyochon outlet",
+          "why": "Crew after-work ritual in Seoul; crispy double-fried; delivery culture; open till midnight",
+          "approx_cost": "$12-20"
+        },
+        {
+          "item": "Tteokbokki (spicy rice cakes) at Gwangjang Market",
+          "where": "Gwangjang Market, Jongno-gu",
+          "why": "Street food essential; cheap; fire-hot; crew bond over the chilli burn",
+          "approx_cost": "$3-5"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Korean skincare haul (Cosrx, Laneige, Innisfree)",
+          "where": "Olive Young stores — multiple CBD locations",
+          "why": "Korean beauty is the world standard; crew most consistent purchase in Seoul; Olive Young is the go-to chain",
+          "approx_cost": "$10-50"
+        },
+        {
+          "item": "Gochujang paste (fermented chilli)",
+          "where": "Gwangjang Market or any supermarket",
+          "why": "Korea's umami secret; crew cooking essential; glass jar packs well; converts everyone who tries it",
+          "approx_cost": "$5-10"
+        },
+        {
+          "item": "Hahoetal mask (traditional Korean wooden mask)",
+          "where": "Insadong craft shops",
+          "why": "Traditional Korean folk art; wall decoration; crew cultural souvenir; hand-carved in Andong",
+          "approx_cost": "$15-40"
+        },
+        {
+          "item": "Soju and makgeolli set",
+          "where": "Duty-free at ICN or Lotte Mart",
+          "why": "Korean national drink; takju rice wine is underrated; crew pair these for home Korean BBQ nights",
+          "approx_cost": "$5-20"
+        },
+        {
+          "item": "K-beauty sheet masks (box of 10)",
+          "where": "Olive Young or airport duty-free",
+          "why": "Lightest possible crew gift; high quality; single-use; works; crew hand these out on flights too",
+          "approx_cost": "$10-20"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Jjimjilbang (Korean sauna/bathhouse) all-nighter",
+          "where": "Dragon Hill Spa (Yongsan) — open 24hrs",
+          "why": "Full Korean body scrub + sauna circuit + sleeping room; crew jet-lag nuclear option; $15 all night",
+          "approx_cost": "$15"
+        },
+        {
+          "item": "Korean BBQ dinner (KBBQ)",
+          "where": "Mapo Galmaegi or Maple Tree House, Itaewon",
+          "why": "The real KBBQ experience; grill your own pork belly; crew group ritual every Seoul layover",
+          "approx_cost": "$20-35/person"
+        },
+        {
+          "item": "Bukchon Hanok Village morning walk",
+          "where": "Bukchon-ro, Jongno-gu",
+          "why": "Free; traditional Korean tile-roofed houses; best before 9am to avoid crowds; crew photo essential",
+          "approx_cost": "free"
+        }
+      ]
+    },
+    {
+      "iata": "HKG",
+      "city": "Hong Kong",
+      "country": "Hong Kong SAR",
+      "must_try_food": [
+        {
+          "item": "Dim sum at Yum Cha Tea House",
+          "where": "City Hall Maxim's Palace or Tim Ho Wan, Sham Shui Po",
+          "why": "The original; trolley service at Maxim's; Michelin at Tim Ho Wan; crew Sunday morning ritual",
+          "approx_cost": "$10-25"
+        },
+        {
+          "item": "Wonton noodle soup at Mak's",
+          "where": "Mak's Noodle, 77 Wellington St, Central",
+          "why": "Tiny shrimp wontons; pork lard noodles; small bowl by design; crew arrive at 11am for opening",
+          "approx_cost": "$6-10"
+        },
+        {
+          "item": "Egg tart (dan tat)",
+          "where": "Tai Cheong Bakery, Lyndhurst Terrace, Central",
+          "why": "Chris Patten's favourite; silky custard; opens 7:30am; crew HK breakfast essential",
+          "approx_cost": "$1-2"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Pineapple bun (polo bao) bakery goods from Saint Honore",
+          "where": "Saint Honore Cake Shop, multiple locations",
+          "why": "HK-style bread; crew take boxes; polo bun, cocktail bun, and wife cake all crew favourites",
+          "approx_cost": "$1-5"
+        },
+        {
+          "item": "Temple Street Night Market jade accessories",
+          "where": "Temple Street Night Market, Yau Ma Tei (opens 4pm)",
+          "why": "Authentic jade market; small pendants and bracelets for $5-20; crew negotiate in Cantonese",
+          "approx_cost": "$5-25"
+        },
+        {
+          "item": "Po Chai pills (traditional medicine)",
+          "where": "Any Chinese pharmacy or Watson's",
+          "why": "Hong Kong digestive remedy; tiny bottles; crew swear by them for stomach upset mid-flight",
+          "approx_cost": "$5-10"
+        },
+        {
+          "item": "Frozen HK-style pineapple buns from supermarket",
+          "where": "ParknShop or Wellcome supermarkets",
+          "why": "Take home frozen; reheat; better than any bakery abroad; crew fill their bags with these",
+          "approx_cost": "$3-5"
+        },
+        {
+          "item": "Dickson card jewellery or gold accessories",
+          "where": "Nathan Road gold shops, Tsim Sha Tsui",
+          "why": "HK gold jewellery is some of the world's best value; crew purchases here are legendary",
+          "approx_cost": "$50-200+"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Star Ferry Kowloon to Central at night",
+          "where": "Tsim Sha Tsui Star Ferry Pier",
+          "why": "10-minute crossing; HK skyline; $0.50; world's best cheap experience; crew never tire of it",
+          "approx_cost": "$0.50"
+        },
+        {
+          "item": "Morning tai chi in Victoria Park",
+          "where": "Victoria Park, Causeway Bay (6-8am)",
+          "why": "Free; watch locals practice; crew who get up early swear this resets their circadian rhythm",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Peak Tram + Victoria Peak at sunset",
+          "where": "Central Peak Tram Lower Terminus",
+          "why": "HK panorama at golden hour; crew bring first-timers; book tram online to skip 45-min queues",
+          "approx_cost": "$12-15"
+        }
+      ]
+    },
+    {
+      "iata": "CDG",
+      "city": "Paris",
+      "country": "France",
+      "must_try_food": [
+        {
+          "item": "Croissant from a boulangerise (not a chain)",
+          "where": "Any neighbourhood boulangerie — Du Pain et des Idées (10th) is exceptional",
+          "why": "Judge a Parisian bakery by its croissant; crew become connoisseurs after 5 layovers",
+          "approx_cost": "$1.50-2.50"
+        },
+        {
+          "item": "Steak frites at a classic bistro",
+          "where": "Le Relais de l'Entrecote (no reservations, queue early)",
+          "why": "One dish done perfectly; secret walnut butter sauce; crew institution; opens 7:30pm",
+          "approx_cost": "$25-35"
+        },
+        {
+          "item": "Wine and cheese plate at a wine bar (cave à vin)",
+          "where": "Le Baron Rouge, Aligre Market area",
+          "why": "Eat standing from barrels; local wine for $4; crew Paris classic that feels lived-in and real",
+          "approx_cost": "$10-20"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Diptyque or Maison Margiela REPLICA candle/perfume",
+          "where": "Diptyque Saint-Germain or department stores (Bon Marché)",
+          "why": "French niche fragrance; crew most consistent Paris luxury purchase; Baies candle is crew cult item",
+          "approx_cost": "$65-200"
+        },
+        {
+          "item": "Le Labo fragrance (Paris exclusives)",
+          "where": "Le Labo Paris stores, Marais",
+          "why": "City-exclusive blends — Poivre 23 was Paris-only; crew hunt these out for themselves and gifts",
+          "approx_cost": "$80-200"
+        },
+        {
+          "item": "Chocolate from Patrick Roger or Pierre Hermé",
+          "where": "Patrick Roger, 108 Bd Saint-Germain / Pierre Hermé boutiques",
+          "why": "World-class French chocolatiers; not cheap but crew gift these for senior colleagues",
+          "approx_cost": "$20-50"
+        },
+        {
+          "item": "French pharmacy staples (Caudalie, La Roche-Posay, Avène)",
+          "where": "Any pharmacy (Pharmavie, Pharmacie Monge)",
+          "why": "French pharmacy beauty is world-renowned; crew fill bags with Caudalie Vinosource and Avène thermal spray",
+          "approx_cost": "$10-40"
+        },
+        {
+          "item": "Beurre de Noirmoutier (salted Brittany butter)",
+          "where": "Monoprix or specialist fromageries",
+          "why": "France's best butter; crew carry this in cool bags; it converts people to butter forever",
+          "approx_cost": "$5-10"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Picnic by the Seine with wine and baguette",
+          "where": "Pont des Arts or Champ de Mars lawn",
+          "why": "Free and quintessentially Parisian; crew buy bread + wine at Monoprix and sit by the river",
+          "approx_cost": "$10-20"
+        },
+        {
+          "item": "Marché d'Aligre Saturday morning",
+          "where": "Place d'Aligre, 12th arrondissement",
+          "why": "Most authentic Paris market; cheap wine and produce; crew shop here for apartment cooking on layovers",
+          "approx_cost": "free entry"
+        },
+        {
+          "item": "Perfume blending workshop at Fragonard or Galimard",
+          "where": "Fragonard Parfumeur, 196 Bd Saint-Germain",
+          "why": "2-hour experience creating your own scent; crew senior officers often do this on longer Paris stays",
+          "approx_cost": "$80-150"
+        }
+      ]
+    },
+    {
+      "iata": "SYD",
+      "city": "Sydney",
+      "country": "Australia",
+      "must_try_food": [
+        {
+          "item": "Flat white at a Surry Hills cafe",
+          "where": "Single O or Reuben Hills, Surry Hills",
+          "why": "The Australian flat white is what inspired global third-wave coffee; crew take pride in this",
+          "approx_cost": "$4-5"
+        },
+        {
+          "item": "Sydney rock oysters",
+          "where": "Fish Market (Pyrmont) or Golden Century, Sussex St",
+          "why": "World's sweetest oysters; eaten alive with lemon; crew shuck these at Sydney Fish Market for $1 each",
+          "approx_cost": "$1-3 each"
+        },
+        {
+          "item": "Souvlaki from a Greek precinct",
+          "where": "Marrickville or Newtown Greek strip",
+          "why": "Sydney's Greek community makes extraordinary souvlaki; crew discover this is better than anything in Greece",
+          "approx_cost": "$8-12"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Australian Merino wool products (Icebreaker, or local brand)",
+          "where": "Icebreaker Sydney or department stores",
+          "why": "World's finest merino; crew buy base layers for cold-destination layovers; practical premium gift",
+          "approx_cost": "$50-120"
+        },
+        {
+          "item": "Vegemite (large jar)",
+          "where": "Any Woolworths or Coles supermarket",
+          "why": "Australian cultural icon; cheap; excellent conversation-starter gift for non-Australians; yeast extract",
+          "approx_cost": "$4-6"
+        },
+        {
+          "item": "Tim Tam chocolate biscuits (family pack)",
+          "where": "Any supermarket",
+          "why": "Crew Tim Tam Slam technique is a crew cultural ritual; packs travel well; cheaper in Sydney than duty-free",
+          "approx_cost": "$3-5"
+        },
+        {
+          "item": "Aesop face wash or hand balm",
+          "where": "Aesop stores (Paddington, Pitt Street Mall)",
+          "why": "Melbourne-born luxury skincare; crew consider this the best grooming gift; herbal scent is distinctive",
+          "approx_cost": "$35-60"
+        },
+        {
+          "item": "Aboriginal art print or card set",
+          "where": "Cooee Art Gallery or Aboriginal Art Gallery, The Rocks",
+          "why": "Authentic certified artwork; cards and small prints are affordable; important cultural souvenir",
+          "approx_cost": "$5-80"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Bondi to Coogee coastal walk",
+          "where": "Start: Bondi Beach car park, End: Coogee Beach",
+          "why": "6km; free; oceanside cliffs; $20 if you stop at Icebergs pool; crew fitness ritual; best morning activity",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Sydney Harbour kayak or ferry to Manly",
+          "where": "Circular Quay ferry or Kayaks at Lavender Bay",
+          "why": "See Sydney from the water; Manly ferry is $7; crew afternoon activity before evening departures",
+          "approx_cost": "$7-60"
+        },
+        {
+          "item": "Wine and cheese at the Sydney Fish Market Saturday",
+          "where": "Sydney Fish Market, Pyrmont (opens 7am)",
+          "why": "Largest fish market in southern hemisphere; crew arrive early; whole mud crabs and shucked oysters",
+          "approx_cost": "$20-40"
+        }
+      ]
+    },
+    {
+      "iata": "JNB",
+      "city": "Johannesburg",
+      "country": "South Africa",
+      "must_try_food": [
+        {
+          "item": "Braai (BBQ) at a local restaurant",
+          "where": "Carnivore Restaurant, Muldersdrift or any boerewors specialist",
+          "why": "South African BBQ culture; boerewors sausage + pap + chakalaka; crew immersion experience",
+          "approx_cost": "$15-30"
+        },
+        {
+          "item": "Bunny chow",
+          "where": "Patel's Vegetarian Refreshment Room, Fordsburg",
+          "why": "Durban-origin; quarter loaf of bread hollowed and filled with curry; crew unique SA street food",
+          "approx_cost": "$5-8"
+        },
+        {
+          "item": "Piri-piri chicken at Nando's flagship",
+          "where": "Original Nando's (Rosettenville or Sunninghill)",
+          "why": "Yes, the global chain started here in JHB 1987; the original is noticeably better; crew must try the source",
+          "approx_cost": "$10-15"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Rooibos tea selection (large box)",
+          "where": "Pick n Pay, Woolworths Food or airport",
+          "why": "Unique to SA; crew fill bags; Eleven O'Clock or Tick Tock brands; great gift for health-conscious colleagues",
+          "approx_cost": "$5-15"
+        },
+        {
+          "item": "South African wine (Swartland or Stellenbosch varieties)",
+          "where": "Norman Goodfellows bottle store, Sandton",
+          "why": "World-class at a third of the price; crew use their duty-free allowance; Pinotage is uniquely South African",
+          "approx_cost": "$8-25/bottle"
+        },
+        {
+          "item": "Amarula cream liqueur",
+          "where": "Any supermarket or duty-free",
+          "why": "Made from marula fruit; elephant on label; crew gift that's distinctly African; airport price competitive",
+          "approx_cost": "$15-20"
+        },
+        {
+          "item": "Beaded Zulu wire art or basket",
+          "where": "African Craft Market, Rosebank Mall",
+          "why": "Traditional Zulu beadwork; colourful; lightweight; authentic cultural souvenir crew carry home",
+          "approx_cost": "$10-50"
+        },
+        {
+          "item": "Biltong (air-dried spiced meat)",
+          "where": "Any Woolworths Food or speciality biltong shops",
+          "why": "SA's greatest gift to snacking; crew attempt to bring home internationally (check import rules)",
+          "approx_cost": "$8-15"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Apartheid Museum half-day visit",
+          "where": "Gold Reef Rd, Ormonde, JHB",
+          "why": "Essential South African history; powerful; 3-4 hours minimum; crew leave changed; opens 9am Tue-Sun",
+          "approx_cost": "$10"
+        },
+        {
+          "item": "Soweto township tour",
+          "where": "Book through hotel concierge or Soweto Backpackers",
+          "why": "Vibrancy and history of Africa's most famous township; Mandela's house; crew culture essential",
+          "approx_cost": "$30-50"
+        },
+        {
+          "item": "Lion and safari day trip (Pilanesberg or Cradle)",
+          "where": "Pilanesberg National Park (2hrs from JHB)",
+          "why": "For longer JHB layovers; Big 5 possible; crew who stay 24+ hours often do this",
+          "approx_cost": "$80-200"
+        }
+      ]
+    },
+    {
+      "iata": "IST",
+      "city": "Istanbul",
+      "country": "Turkey",
+      "must_try_food": [
+        {
+          "item": "Simit and çay (sesame bread ring + tea)",
+          "where": "Any street simitçi cart, or Simit Sarayı chain",
+          "why": "Turkish breakfast of champions; $0.50 + $0.50; crew morning walk fuel around Sultanahmet",
+          "approx_cost": "$1"
+        },
+        {
+          "item": "Balık ekmek (grilled fish sandwich)",
+          "where": "Floating boats at Galata Bridge, Eminönü",
+          "why": "Iconic Istanbul; fresh mackerel; open air; crew classic that you eat standing over the Bosphorus",
+          "approx_cost": "$3-5"
+        },
+        {
+          "item": "Iskender kebab at Bursa's original İskender restaurant",
+          "where": "İskender Kebap Restaurant, Istiklal area",
+          "why": "Lamb over bread with tomato sauce and brown butter; original and best; crew Istanbul food religion",
+          "approx_cost": "$10-15"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Turkish delight (lokum) from Hafız Mustafa",
+          "where": "Hafız Mustafa 1864 — multiple locations including airport",
+          "why": "170-year-old confectionery; the real lokum; pistachios, rose, pomegranate; crew gift standard",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Spice market blends (saffron, sumac, za'atar)",
+          "where": "Egyptian Bazaar (Mısır Çarşısı), Eminönü",
+          "why": "Cheapest quality saffron in crew travel universe; crew buy in bulk; pack flat in luggage",
+          "approx_cost": "$5-20"
+        },
+        {
+          "item": "Turkish evil eye (nazar boncuğu) glass amulet",
+          "where": "Grand Bazaar or Kapalicarsi",
+          "why": "Iconic; blue glass; wall hanging or keyring; crew gift that everyone accepts; cheap and meaningful",
+          "approx_cost": "$1-15"
+        },
+        {
+          "item": "Copper cezve (Turkish coffee pot)",
+          "where": "Grand Bazaar, Copper Bazaar section",
+          "why": "Functional souvenir; enables Turkish coffee at home; crew take these and small cups; beautiful craft object",
+          "approx_cost": "$15-40"
+        },
+        {
+          "item": "Handwoven Turkish towel (peshtemal)",
+          "where": "Jennifer's Hamam, Arasta Bazaar",
+          "why": "Flat-weave towel; compact; crew use these as beach towels globally; authentic vs tourist-grade",
+          "approx_cost": "$20-50"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Hammam experience at Çemberlitaş",
+          "where": "Çemberlitaş Hamamı, 400-year-old bathhouse",
+          "why": "Full Ottoman hammam; kese (exfoliation) + massage; crew ritual for jet-lag and cultural experience both",
+          "approx_cost": "$40-70"
+        },
+        {
+          "item": "Bosphorus boat cruise at sunset",
+          "where": "Eminönü ferry docks; city boats or private tours",
+          "why": "Two continents from the water; tulip-shaped tea glass; crew sunset ritual before evening flights",
+          "approx_cost": "$3-25"
+        },
+        {
+          "item": "Breakfast feast at a Turkish breakfast specialist",
+          "where": "Van Kahvaltı Evi, Cihangir / any Van-style breakfast place",
+          "why": "30+ small dishes; olives, cheese, honey, eggs, breads; crews have 3-hour brunches here",
+          "approx_cost": "$12-20/person"
+        }
+      ]
+    },
+    {
+      "iata": "KUL",
+      "city": "Kuala Lumpur",
+      "country": "Malaysia",
+      "must_try_food": [
+        {
+          "item": "Nasi lemak at Nasi Lemak Wanjo, Kampung Baru",
+          "where": "Kampung Baru traditional Malay village, KL",
+          "why": "Malaysia's national dish done properly; fragrant coconut rice, sambal, ikan bilis; crew early morning ritual",
+          "approx_cost": "$3-5"
+        },
+        {
+          "item": "Char kway teow at Old Chinatown hawker stalls",
+          "where": "Petaling Street area, Chinatown",
+          "why": "Wok-fried flat noodles, egg, prawn, bean sprouts; charred wok technique; crew Malaysian noodle essential",
+          "approx_cost": "$3-5"
+        },
+        {
+          "item": "Cendol at Penang Village food stalls",
+          "where": "Lot 10 Hutong or Jalan Alor night stalls",
+          "why": "Shaved ice dessert with pandan jelly, palm sugar, coconut milk; crew cool down treat in KL heat",
+          "approx_cost": "$2-3"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Batik fabric or scarf",
+          "where": "Craft Cultural Complex (KL Craft) or Central Market",
+          "why": "Malaysian batik is uniquely beautiful; different patterns from Indonesian; crew wearable souvenir",
+          "approx_cost": "$10-40"
+        },
+        {
+          "item": "Ipoh white coffee sachets",
+          "where": "Any supermarket (Old Town White Coffee brand)",
+          "why": "Malaysia's distinctive white coffee blend; crew box sachets; cheaper than airport; good gift",
+          "approx_cost": "$5-10"
+        },
+        {
+          "item": "Salted egg yolk snacks (chips, pretzels)",
+          "where": "Any 7-Eleven or Mr. DIY store",
+          "why": "Malaysian snacking craze; salted duck egg yolk flavour; crew bring boxes home as addictive gifts",
+          "approx_cost": "$3-8"
+        },
+        {
+          "item": "Royal Selangor pewter souvenir",
+          "where": "Royal Selangor Visitor Centre, Setapak Jaya",
+          "why": "125-year Malaysian pewter brand; tankards, photo frames; crew factory tour + shop available",
+          "approx_cost": "$20-80"
+        },
+        {
+          "item": "Muslimah fashion from Jakel Mall",
+          "where": "Jakel Mall, Jalan Sultan Ismail",
+          "why": "World's largest Islamic fashion mall; crew with Muslim colleagues bring back scarves and abayas as gifts",
+          "approx_cost": "$15-60"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Batu Caves morning visit (before 10am)",
+          "where": "Batu Caves, 13km north of KL city",
+          "why": "272 rainbow-painted steps; golden Murugan statue; free; Hindu cave temple; crew photo stop + culture",
+          "approx_cost": "free"
+        },
+        {
+          "item": "KLCC Petronas Tower skybridge visit",
+          "where": "Petronas Twin Towers, tickets from Level 2",
+          "why": "World's tallest twin towers; skybridge at Level 41; crew bring every visitor here; book ahead",
+          "approx_cost": "$20"
+        },
+        {
+          "item": "Head to Jalan Alor for dinner",
+          "where": "Jalan Alor street food strip, Bukit Bintang",
+          "why": "Open-air street food; every Malaysian dish available; cold beer; crew group dinner standard every layover",
+          "approx_cost": "$10-20"
+        }
+      ]
+    },
+    {
+      "iata": "DEL",
+      "city": "Delhi",
+      "country": "India",
+      "must_try_food": [
+        {
+          "item": "Chole bhature at Sita Ram Diwan Chand",
+          "where": "3283 Rajguru Rd, Paharganj area, Old Delhi",
+          "why": "Famous chickpea curry + fried bread; opens 8am; crew Old Delhi food pilgrimage start",
+          "approx_cost": "$2-4"
+        },
+        {
+          "item": "Tandoori chicken at Moti Mahal",
+          "where": "3703 Netaji Subhash Marg, Daryaganj",
+          "why": "Invented tandoori chicken here; 1947; crew historical food reference point; not cheap but worth it",
+          "approx_cost": "$15-25"
+        },
+        {
+          "item": "Delhi street chaat (golgappa, papdi chaat)",
+          "where": "Chandni Chowk street stalls — Paranthewali Gali",
+          "why": "Puffed bread with tamarind water shot; crew challenge is the water (stomach tolerance); local experience",
+          "approx_cost": "$1-3"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Pashmina shawl from Kashmir emporium",
+          "where": "Government of India Emporium (Cottage Industries), Janpath",
+          "why": "Authentic Kashmiri pashmina; not Ludhiana acrylic fakes; crew know the difference; Government shop = legit",
+          "approx_cost": "$30-150"
+        },
+        {
+          "item": "Chai masala blend",
+          "where": "Khari Baoli spice market, Old Delhi or Khan Market",
+          "why": "World's largest spice market; crew buy blended masala chai packs; flat and light to pack",
+          "approx_cost": "$3-10"
+        },
+        {
+          "item": "Brass or copper deity figurine (Ganesh, etc.)",
+          "where": "Dilli Haat market, INA",
+          "why": "Craft fair with artisans from all Indian states; fixed prices; crew spiritual souvenir for colleagues and family",
+          "approx_cost": "$10-40"
+        },
+        {
+          "item": "Indian block-printed cotton fabric or kurta",
+          "where": "Fabindia store, Khan Market or Connaught Place",
+          "why": "Quality Indian ethnic wear; Fabindia is crew-trusted brand; kurta as comfortable travel wear",
+          "approx_cost": "$15-50"
+        },
+        {
+          "item": "Multani mitti (clay face mask)",
+          "where": "Any Ayurvedic pharmacy or Kama Ayurveda store",
+          "why": "Ancient Indian beauty clay; crew buy as DIY face mask; Kama Ayurveda is the premium brand",
+          "approx_cost": "$5-20"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Old Delhi rickshaw tour through Chandni Chowk",
+          "where": "Start from Red Fort Gate, hire cycle rickshaw",
+          "why": "Sensory overload; spice bazaar, silver market, parantha lane; crew say this is the most alive they've felt traveling",
+          "approx_cost": "$10-20"
+        },
+        {
+          "item": "Yoga class at a Lodi Garden park early morning",
+          "where": "Lodi Colony area, 6-8am daily in park",
+          "why": "Free; locals practice yoga at sunrise; Delhi's most beautiful Mughal gardens; crew sunrise walk + stretch",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Hauz Khas Village food and gallery walk",
+          "where": "Hauz Khas Village, South Delhi",
+          "why": "Medieval ruins + contemporary galleries + restaurant rooftops over a lake; crew afternoon cultural loop",
+          "approx_cost": "$5-20"
+        }
+      ]
+    },
+    {
+      "iata": "BOM",
+      "city": "Mumbai",
+      "country": "India",
+      "must_try_food": [
+        {
+          "item": "Vada pav (Mumbai burger) from a street stall",
+          "where": "Any street stall — Shivaji Park area or CST Station",
+          "why": "Mumbai's soul food; spiced potato fritter in bread; crew arrive from 16hr flights and eat this first",
+          "approx_cost": "$0.50-1"
+        },
+        {
+          "item": "Pav bhaji at Sardar Restaurant",
+          "where": "Tardeo, Mumbai 400034",
+          "why": "Mixed vegetable mash with buttered bread rolls; crew Mumbai dinner staple; 50+ years institution",
+          "approx_cost": "$3-6"
+        },
+        {
+          "item": "Bombay sandwich at Juhu Beach stalls",
+          "where": "Juhu Beach, adjacent to JW Marriott crew hotel",
+          "why": "Pressed sandwich with chutney, cucumber, tomato, beet; crew with Juhu layover hotels get these at breakfast",
+          "approx_cost": "$2-4"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Kolhapuri leather chappals (sandals)",
+          "where": "Dharavi cooperative shops or Fashion Street",
+          "why": "Handmade leather sandals from Maharashtra; crew practical souvenir; durable and authentic",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Warli tribal art painting",
+          "where": "Bombay Store, PM Rd, Fort Mumbai",
+          "why": "Indigenous Maharashtra tribal art; white geometric patterns on brown background; crew wall decoration",
+          "approx_cost": "$15-80"
+        },
+        {
+          "item": "Forest Essentials Ayurvedic skincare",
+          "where": "Forest Essentials stores, Bandra or Colaba",
+          "why": "Premium Indian luxury Ayurveda; rose face mist and almond milk soap are crew staples; better value in Mumbai",
+          "approx_cost": "$20-60"
+        },
+        {
+          "item": "Mumbai Dabba carrier tiffin box replica",
+          "where": "Government Craft Shops or online from Bombay Store",
+          "why": "Functional Dabbawala lunch box; stainless steel; crew use for meal prep; unique Mumbai symbol",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Chai spice kit + Indian filter coffee set",
+          "where": "Kama Ayurveda, Colaba Causeway",
+          "why": "India's best portable gift; crew bring masala chai kits and explain Indian coffee filter technique to colleagues",
+          "approx_cost": "$10-25"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Dharavi walk with Reality Tours",
+          "where": "Dharavi, Mumbai — Reality Tours booking required",
+          "why": "Ethical guided tour; Asia's largest working township; crew perspective shift; all proceeds to local programs",
+          "approx_cost": "$15-20"
+        },
+        {
+          "item": "Sunset at Marine Drive (Queen's Necklace)",
+          "where": "Marine Drive, Nariman Point",
+          "why": "Curved seafront boulevard; sunset over Arabian Sea; crew running route and people-watching; free",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Elephanta Caves day trip by ferry",
+          "where": "Gateway of India ferry, 1-hour crossing",
+          "why": "UNESCO World Heritage 7th-century cave temples; crew with 24hr+ layovers highly recommend this",
+          "approx_cost": "$10-15"
+        }
+      ]
+    },
+    {
+      "iata": "SFO",
+      "city": "San Francisco",
+      "country": "USA",
+      "must_try_food": [
+        {
+          "item": "Sourdough clam chowder in a bread bowl",
+          "where": "Boudin Bakery, Fisherman's Wharf or Ferry Building",
+          "why": "Iconic SF; crew clam chowder ritual at the waterfront; the bread bowl concept originated here",
+          "approx_cost": "$12-18"
+        },
+        {
+          "item": "Mission burrito at La Taqueria",
+          "where": "2889 Mission St, Mission District",
+          "why": "James Beard Award-winning burrito; no rice, double-grilled; crew call this the world's best burrito",
+          "approx_cost": "$10-14"
+        },
+        {
+          "item": "Dungeness crab at the Ferry Building",
+          "where": "Ferry Building Marketplace",
+          "why": "In season Nov-June; crack your own; SF waterfront; crew crustacean ritual on West Coast layovers",
+          "approx_cost": "$20-40"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Ghirardelli chocolate squares (assorted bag)",
+          "where": "Ghirardelli Square or any Walgreens",
+          "why": "San Francisco chocolate institution; crew bring these back by the bag; cheaper in-city than duty-free",
+          "approx_cost": "$5-15"
+        },
+        {
+          "item": "Anchor Steam Beer six-pack",
+          "where": "Any Safeway or BevMo",
+          "why": "SF's original craft beer (1896); California flag on label; crew carry-on or check bag souvenir",
+          "approx_cost": "$10-15"
+        },
+        {
+          "item": "TCHO chocolate or Dandelion Chocolate bars",
+          "where": "Dandelion Chocolate, Valencia St, Mission or Ferry Building",
+          "why": "San Francisco craft chocolate revolution; single-origin bars; crew gift that says 'I know San Francisco'",
+          "approx_cost": "$10-20"
+        },
+        {
+          "item": "Patagonia or Arc'teryx (discounted at REI)",
+          "where": "REI Co-op, 840 Brannan St, SoMa",
+          "why": "Premium outdoor gear; crew buy technical layers here for cold-destination layovers globally",
+          "approx_cost": "$80-300"
+        },
+        {
+          "item": "Muir Woods redwood souvenir (postcard, seed kit)",
+          "where": "Muir Woods National Monument gift shop",
+          "why": "Ancient coast redwood souvenirs; small and meaningful; crew who do the Muir Woods day trip buy these",
+          "approx_cost": "$5-15"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Walk across the Golden Gate Bridge",
+          "where": "Battery East Trailhead, Presidio",
+          "why": "Free on foot; 2.7km; crew morning ritual; wind usually cold so bring jacket; sunrise walk for arriving crew",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Ferry to Sausalito for lunch",
+          "where": "Ferry Building to Sausalito (35 min)",
+          "why": "Harbour views; houseboat community; oyster lunch; crew weekend escape from city chaos",
+          "approx_cost": "$15-30"
+        },
+        {
+          "item": "Alcatraz Island tour",
+          "where": "Pier 33 ferry; book 2 weeks ahead minimum",
+          "why": "Audio tour narrated by former inmates and guards; crew rate this as one of the best US historic experiences",
+          "approx_cost": "$41-47"
+        }
+      ]
+    },
+    {
+      "iata": "JFK",
+      "city": "New York",
+      "country": "USA",
+      "must_try_food": [
+        {
+          "item": "New York bagel with lox and cream cheese",
+          "where": "Russ & Daughters, 179 E Houston St, LES (opens 8am)",
+          "why": "110-year-old appetizing shop; the definitive NYC bagel experience; crew arrive at opening before queues",
+          "approx_cost": "$15-18"
+        },
+        {
+          "item": "Katz's Deli pastrami sandwich",
+          "where": "205 E Houston St, LES (opens 8am daily)",
+          "why": "NYC institution since 1888; 1lb pastrami sandwich; splitting is acceptable; crew classic lunch",
+          "approx_cost": "$25-30"
+        },
+        {
+          "item": "New York slice from a coal-fired pizzeria",
+          "where": "Di Fara Pizza (Brooklyn) or Joe's Pizza (Greenwich Village)",
+          "why": "The correct New York pizza debate never ends; crew compare Neapolitan vs NYC coal-fired slice every layover",
+          "approx_cost": "$4-6/slice"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "New York Times Sunday edition (on Saturday night)",
+          "where": "Any 24-hour newsstand or Duane Reade",
+          "why": "Still the best broadsheet; crew take the Sunday Times home as cultural artifact; available Saturday night",
+          "approx_cost": "$6"
+        },
+        {
+          "item": "Magnolia Bakery banana pudding or cupcake",
+          "where": "Magnolia Bakery, Bleecker St, West Village or Rockefeller Plaza",
+          "why": "NYC cultural icon; banana pudding is their best; crew bring these to hotel room for jet-lag comfort food",
+          "approx_cost": "$5-8"
+        },
+        {
+          "item": "Strand Bookstore tote bag + one great book",
+          "where": "Strand Bookstore, 828 Broadway, Union Square",
+          "why": "18 miles of books; $1 outdoor bins; tote bag is iconic NYC accessory; crew book haul tradition",
+          "approx_cost": "$1-20"
+        },
+        {
+          "item": "Chelsea Market hot sauce or artisan food",
+          "where": "Chelsea Market, 75 9th Ave",
+          "why": "High Line access + food hall; NYC artisan condiments and local brands; crew food souvenir destination",
+          "approx_cost": "$5-25"
+        },
+        {
+          "item": "Glossier or beauty brand direct from NYC flagship",
+          "where": "Glossier, 123 Lafayette St, SoHo",
+          "why": "NYC-origin brand; in-person exclusives sometimes; crew beauty haul destination; Phase 1 sets beloved",
+          "approx_cost": "$15-50"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "High Line walk from Meatpacking District to Hudson Yards",
+          "where": "Enter at Gansevoort St, Meatpacking District",
+          "why": "Elevated park on former railway; art installations; skyline views; free; crew daily walk standard in NYC",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Brooklyn Bridge walk + DUMBO photo + Grimaldi's pizza",
+          "where": "Manhattan Bridge Park entrance, City Hall area",
+          "why": "Full NYC afternoon: bridge walk, Brooklyn views, Grimaldi's coal-fired pizza; crew afternoon circuit",
+          "approx_cost": "$0-15"
+        },
+        {
+          "item": "Late night jazz at Village Vanguard or Blue Note",
+          "where": "Village Vanguard: 178 7th Ave S, West Village",
+          "why": "World's most famous jazz clubs; two sets nightly; crew treat themselves after early-arrival evenings",
+          "approx_cost": "$30-40"
+        }
+      ]
+    },
+    {
+      "iata": "MUC",
+      "city": "Munich",
+      "country": "Germany",
+      "must_try_food": [
+        {
+          "item": "Weisswurst with sweet mustard and pretzel (before noon)",
+          "where": "Hofbräuhaus or any traditional Bavarian restaurant",
+          "why": "Bavarian white veal sausage; ONLY eaten before noon by tradition; crew observe the rule to feel like locals",
+          "approx_cost": "$6-10"
+        },
+        {
+          "item": "Obatzda (Bavarian cheese spread) with dark bread",
+          "where": "Any beer garden — Augustiner-Keller or Viktualienmarkt beer garden",
+          "why": "Soft cheese, butter, paprika spread; with a Maß (1L) beer; the quintessential Munich outdoor meal",
+          "approx_cost": "$5-8"
+        },
+        {
+          "item": "Leberkäse (meat loaf) sandwich at Viktualienmarkt",
+          "where": "Viktualienmarkt sandwich stands, opens 8am",
+          "why": "Munich street food; warm meat loaf slice in fresh roll; $3; crew pre-museum fuel on Maxvorstadt days",
+          "approx_cost": "$3-5"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Authentic Bavarian steins (not painted tourist ones)",
+          "where": "Hofbräuhaus shop or Hirmer department store",
+          "why": "Heavy but crew check-bag them; one-litre stone tankard; family heirloom quality; proper German craft",
+          "approx_cost": "$30-80"
+        },
+        {
+          "item": "Radi (Bavarian white radish) slicer tool + Maß glass",
+          "where": "Viktualienmarkt kitchen goods stalls",
+          "why": "Niche and specific Munich souvenir; the spiral-sliced radish is beer garden culture; crew gift for beer lovers",
+          "approx_cost": "$10-20"
+        },
+        {
+          "item": "Ritter Sport chocolate special edition",
+          "where": "Ritter Sport BUNTE SCHOKOWELT, Marienplatz",
+          "why": "German chocolate institution; seasonal squares; crew gift standard; design your own box option in store",
+          "approx_cost": "$3-15"
+        },
+        {
+          "item": "Dirndl fabric or mini dirndl accessory",
+          "where": "Loden-Frey, Maffeistraße (traditional outfitter)",
+          "why": "Traditional Bavarian dress; crew who don't buy the full thing get headbands or small accessories as jokes",
+          "approx_cost": "$10-200"
+        },
+        {
+          "item": "Dallmayr coffee beans (Munich's famous delicatessen)",
+          "where": "Dallmayr, Dienerstraße 14-15, Munich",
+          "why": "Coffee royal warrant supplier; the original Dallmayr Prodomo blend; crew food souvenir from a German institution",
+          "approx_cost": "$10-20"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Beer garden (Biergarten) afternoon",
+          "where": "Augustiner-Keller (3000 seats) or English Garden Chinesischer Turm",
+          "why": "Bring your own food + buy beer; Munich social institution; crew blend with locals under chestnut trees",
+          "approx_cost": "$8-15"
+        },
+        {
+          "item": "Surfing the Eisbach river wave in the English Garden",
+          "where": "Eisbach, Englischer Garten (near Museum Insel)",
+          "why": "Free spectator sport; year-round surfers on a standing river wave; crew watch on walks through the park",
+          "approx_cost": "free"
+        },
+        {
+          "item": "BMW Museum and World tour",
+          "where": "BMW-Welt, Am Olympiapark 2, Munich",
+          "why": "Architecture + cars + motorcycles; opens 9am Tue-Sun; free exterior; crew tech and design experience",
+          "approx_cost": "$15-20"
+        }
+      ]
+    },
+    {
+      "iata": "CPT",
+      "city": "Cape Town",
+      "country": "South Africa",
+      "must_try_food": [
+        {
+          "item": "Bobotie at a Cape Malay restaurant",
+          "where": "Biesmiellah Restaurant, Bo-Kaap",
+          "why": "Cape Malay spiced minced meat with egg custard top; crew Cape Town signature dish stop at Bo-Kaap",
+          "approx_cost": "$8-12"
+        },
+        {
+          "item": "Snoek braai fish at Kalk Bay",
+          "where": "Kalk Bay harbour fish market (Sat morning)",
+          "why": "West Coast smoked fish; crew drive the scenic route to Kalk Bay for fresh catch from the boats",
+          "approx_cost": "$8-15"
+        },
+        {
+          "item": "Gatsby sandwich (Cape Town foot-long)",
+          "where": "Super Fisheries, Athlone or any Cape Flats takeaway",
+          "why": "Half-metre bread roll with chips, egg, meat; crew must-try local food that no guidebook covers properly",
+          "approx_cost": "$5-8"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Rooibos tea and Honeybush tea selection",
+          "where": "Woolworths Food, V&A Waterfront",
+          "why": "Cape fynbos teas; Woolworths range is the best quality; crew pack these as they can't be found elsewhere",
+          "approx_cost": "$5-15"
+        },
+        {
+          "item": "Constantia wine bottles (pinotage, chenin blanc)",
+          "where": "Groot Constantia Estate or V&A Waterfront wine shops",
+          "why": "Oldest wine estate in SA; Constantia wine is Cape's finest; crew use duty-free allowance here every time",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Streetwire art (recycled wire sculptures)",
+          "where": "Greenmarket Square craft market",
+          "why": "Recycled wire figures of African animals and people; unique Cape Town craft; lightweight to carry",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Animaltastic leather goods (handmade Cape Town)",
+          "where": "Old Biscuit Mill, Woodstock or Neighbourgoods Market",
+          "why": "Local Cape Town leather artisans; crew buy wallets and passport covers; supports local",
+          "approx_cost": "$20-80"
+        },
+        {
+          "item": "Buchu gin or Inverroche Cape fynbos gin",
+          "where": "Norman Goodfellows or specialist bottle stores",
+          "why": "Cape botanical gin using unique fynbos plants; crew gin enthusiasts seek this out; export-quality",
+          "approx_cost": "$20-35"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Table Mountain Cable Car at sunrise",
+          "where": "Cable Car Lower Station, Tafelberg Rd",
+          "why": "360-degree views; opening is 8am (weather permitting); crew who wake at dawn for this call it life-changing",
+          "approx_cost": "$20-25"
+        },
+        {
+          "item": "Cape Point and Boulders Beach penguin colony drive",
+          "where": "Cape Peninsula National Park (rental car or tour)",
+          "why": "African penguins at Boulders; Cape Point lighthouse; crew half-day scenic drive is standard layover activity",
+          "approx_cost": "$25-60"
+        },
+        {
+          "item": "Neighbourgoods Market at Old Biscuit Mill (Saturday)",
+          "where": "Old Biscuit Mill, 373 Albert Rd, Woodstock (9am-2pm)",
+          "why": "Cape Town's best artisan food market; DJ sets; local chefs; crew Saturday morning ritual for longer layovers",
+          "approx_cost": "$10-30"
+        }
+      ]
+    },
+    {
+      "iata": "FRA",
+      "city": "Frankfurt",
+      "country": "Germany",
+      "must_try_food": [
+        {
+          "item": "Grüne Soße (Frankfurt Green Sauce)",
+          "where": "Apfelwein Wagner or any traditional Sachsenhausen restaurant",
+          "why": "Frankfurt's UNESCO-listed culinary tradition; 7-herb sauce over boiled eggs or schnitzel; crew heritage meal",
+          "approx_cost": "$10-15"
+        },
+        {
+          "item": "Ebbelwei (Frankfurt apple wine) at Sachsenhausen",
+          "where": "Apfelwein Wagner, Schweizer Str 71",
+          "why": "Frankfurt's regional speciality; drunk from a blue-patterned Bembel jug; crew German beer alternative",
+          "approx_cost": "$3-5"
+        },
+        {
+          "item": "Frankfurter sausage from Kleinmarkthalle",
+          "where": "Kleinmarkthalle, Hasengasse 5-7",
+          "why": "The original; thin, served with mustard and bread; crew note it's different from hot dogs named after it",
+          "approx_cost": "$3-5"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Riesling wine from Rheingau",
+          "where": "Frankfurt wine specialist or Kleinmarkthalle wine stalls",
+          "why": "Germany's finest white wine region is 30 min away; crew use duty-free for Riesling Spätlese",
+          "approx_cost": "$10-25"
+        },
+        {
+          "item": "Brotzeit box (artisan rye bread + German sausages)",
+          "where": "Kleinmarkthalle",
+          "why": "German charcuterie board components to take home; vacuum-packed sausages travel well",
+          "approx_cost": "$15-30"
+        },
+        {
+          "item": "Goethe souvenir (Frankfurt's son)",
+          "where": "Goethe House shop, Grosser Hirschgraben 23",
+          "why": "Birthplace of Germany's greatest writer; crew buy Faust editions or quill-pen sets as niche literary gifts",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "German mustard variety pack",
+          "where": "Any REWE supermarket or Kleinmarkthalle",
+          "why": "German mustard range from sweet to extra-hot; crew pack assortments; inexpensive flavourful gift",
+          "approx_cost": "$5-15"
+        },
+        {
+          "item": "Lebkuchen (German gingerbread) from Nuremberg brand",
+          "where": "Any supermarket — Haeberlein-Metzger brand best",
+          "why": "German biscuit tradition; spiced; crew gift around Christmas but available year-round",
+          "approx_cost": "$5-15"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Römerberg medieval square walk + river waterfront",
+          "where": "Römerberg, Frankfurt Altstadt",
+          "why": "Half-timbered houses; river views; free; crew architecture + riverside walk before museum strip",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Main River cycle hire along the Museumsufer",
+          "where": "Call-a-Bike stations near Sachsenhausen",
+          "why": "Cycle 15 museums in one afternoon; flat; bike rental €10; crew active layover day option",
+          "approx_cost": "$10-15"
+        },
+        {
+          "item": "Day trip to Heidelberg Castle",
+          "where": "Heidelberg by ICE train (45 min from Frankfurt HBF)",
+          "why": "Germany's most romantic castle ruins; old town walk; crew longer layover classic day excursion",
+          "approx_cost": "$25-40"
+        }
+      ]
+    },
+    {
+      "iata": "MAD",
+      "city": "Madrid",
+      "country": "Spain",
+      "must_try_food": [
+        {
+          "item": "Churros con chocolate at San Ginés",
+          "where": "Pasadizo de San Ginés, 5 (open 24 hours)",
+          "why": "Open all night; post-clubbing crew breakfast; thick hot chocolate for dipping; Madrid institution since 1894",
+          "approx_cost": "$5-8"
+        },
+        {
+          "item": "Jamón Ibérico de bellota at a specialist bar",
+          "where": "Juana la Loca or any jamonería in Chueca",
+          "why": "The world's finest cured ham; crew discover that supermarket jamón is not this; tasting education",
+          "approx_cost": "$15-30"
+        },
+        {
+          "item": "Pintxos and vermouth (vermut) walk, La Latina",
+          "where": "La Latina neighbourhood, Sunday midday ritual",
+          "why": "Sunday vermouth culture; cheap bar snacks; crew walk from bar to bar; the right way to do Madrid lunch",
+          "approx_cost": "$10-20"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Whole leg Jamón Ibérico (mini vacuum-packed leg)",
+          "where": "Museo del Jamón, Gran Via / Carrefour market",
+          "why": "Crew buy whole cured legs; the mini 500g vacuum packs travel well; serious gift for food lovers",
+          "approx_cost": "$25-80"
+        },
+        {
+          "item": "Turron (almond nougat) from El Almendro",
+          "where": "El Almendro stores, multiple locations",
+          "why": "Spain's Christmas sweet available year-round; hard or soft varieties; crew gift for holiday season",
+          "approx_cost": "$5-15"
+        },
+        {
+          "item": "Loewe leather accessory",
+          "where": "Loewe flagship, Calle Serrano",
+          "why": "Madrid's iconic luxury leather house; crew treat themselves or gift small leather goods",
+          "approx_cost": "$80-300"
+        },
+        {
+          "item": "Abanicos (Spanish fans) from Casa de Diego",
+          "where": "Casa de Diego, Puerta del Sol 12 (since 1858)",
+          "why": "Handmade fans; practical in Madrid heat; crew female flight attendants love these; genuine craft",
+          "approx_cost": "$15-60"
+        },
+        {
+          "item": "Spanish olive oil (EVOO) from La Chinata",
+          "where": "La Chinata stores or Mercado de San Miguel",
+          "why": "Spain produces 44% of world's olive oil; La Chinata is the crew-recommended brand for quality-to-price",
+          "approx_cost": "$10-25"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Flamenco show at Corral de la Morería",
+          "where": "Calle de la Morería, 17, La Latina",
+          "why": "World's most famous tablao; 1956; intimate setting; crew love this on first Madrid layover",
+          "approx_cost": "$40-60"
+        },
+        {
+          "item": "Retiro Park row boat and Sunday people-watching",
+          "where": "Parque del Retiro, Estanque del Retiro lake",
+          "why": "€6 row boat; crew Sunday morning; street performers; glass palace; free park entry",
+          "approx_cost": "$6-10"
+        },
+        {
+          "item": "El Rastro flea market (Sunday morning only)",
+          "where": "Calle de la Ribera de Curtidores, La Latina",
+          "why": "Europe's largest flea market; Sunday 9am-3pm; crew antique and vintage finds; must leave by noon before crowds",
+          "approx_cost": "free entry"
+        }
+      ]
+    },
+    {
+      "iata": "BCN",
+      "city": "Barcelona",
+      "country": "Spain",
+      "must_try_food": [
+        {
+          "item": "Pan con tomate (bread + tomato + olive oil)",
+          "where": "Any traditional Catalan bar or Bar Marsella",
+          "why": "Catalan breakfast ritual; rub raw tomato on bread; crew do this daily in Barcelona as morning ritual",
+          "approx_cost": "$2-4"
+        },
+        {
+          "item": "Patatas bravas at Bar Calders, Sant Antoni",
+          "where": "Bar Calders, Parlament 25, Sant Antoni",
+          "why": "Barcelona tapas standard; fried potatoes + spicy + aioli; crew bar-hop and order these everywhere",
+          "approx_cost": "$5-8"
+        },
+        {
+          "item": "Seafood paella at La Mar Salada",
+          "where": "Passeig de Joan de Borbó 58-59, Barceloneta",
+          "why": "Proper Catalan seafood rice; not tourist trap; crew lunch near Barceloneta beach; socarrat crust essential",
+          "approx_cost": "$20-30/person"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Espardanyes (canvas espadrilles) from La Manual Alpargatera",
+          "where": "La Manual Alpargatera, Carrer d'Avinyó 7",
+          "why": "Handmade Catalan espadrilles since 1941; sold to Dali and Hemingway; crew wear these on off days",
+          "approx_cost": "$25-60"
+        },
+        {
+          "item": "Cava (Catalan sparkling wine)",
+          "where": "El Nacional restaurant bar or Mercat de Santa Caterina",
+          "why": "Catalan answer to Champagne; excellent value; crew buy bottles for home celebrations; light vs brut discussion",
+          "approx_cost": "$8-20"
+        },
+        {
+          "item": "Colmado (deli) goods from Lafuente, La Boqueria",
+          "where": "La Boqueria market stalls",
+          "why": "Catalan charcuterie, olives, oils; vacuum-packed for travel; crew foodie souvenir standard in Barcelona",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Gaudi architectural print or tile replica",
+          "where": "Palau Güell gift shop or MNAC museum shop",
+          "why": "Trencadis tile mosaic replicas; crew design-conscious gift; Casa Batlló postcards and Sagrada Familia prints",
+          "approx_cost": "$5-30"
+        },
+        {
+          "item": "FC Barcelona replica jersey (from official store)",
+          "where": "FC Barcelona Megastore, Camp Nou or Maremàgnum",
+          "why": "World's most recognized football club; crew gifts for football-loving colleagues; buy official, not market fakes",
+          "approx_cost": "$80-120"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Sagrada Família interior with booked ticket",
+          "where": "Carrer de Mallorca 401, Eixample",
+          "why": "Gaudí's unfinished masterpiece; interior light show at noon is extraordinary; crew book the tower climb",
+          "approx_cost": "$26-36"
+        },
+        {
+          "item": "Barceloneta beach morning swim before crowds",
+          "where": "Barceloneta beach, before 9am",
+          "why": "Mediterranean swimming; crew arrive early before tourist crush; post-swim coffee at beach chiringuito",
+          "approx_cost": "free"
+        },
+        {
+          "item": "El Born neighbourhood tapas evening walk",
+          "where": "Start at Mercat de Santa Caterina, meander south",
+          "why": "Bar-hopping with vermouth culture; tiny pintxos bars; crew evening before late departures",
+          "approx_cost": "$15-25"
+        }
+      ]
+    },
+    {
+      "iata": "AKL",
+      "city": "Auckland",
+      "country": "New Zealand",
+      "must_try_food": [
+        {
+          "item": "Flat white at a Grey Lynn or Ponsonby cafe",
+          "where": "Kokako, Grey Lynn / Eighthirty, CBD",
+          "why": "New Zealand co-invented the flat white (alongside Australia); crew take sides in this debate over the first cup",
+          "approx_cost": "$4-5"
+        },
+        {
+          "item": "Hangi (earth oven Māori feast)",
+          "where": "Hāngī restaurant or cultural night show event",
+          "why": "Traditional Māori cooking method; pork and vegetables in earth pit; crew cultural food experience NZ-specific",
+          "approx_cost": "$40-80"
+        },
+        {
+          "item": "Fresh green-lipped mussels",
+          "where": "Any fish and chip shop near the waterfront or Depot Eatery",
+          "why": "NZ endemic species; sweeter than any mussel elsewhere; crew benchmark food that NZ does best",
+          "approx_cost": "$8-15"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Manuka honey (certified UMF 10+)",
+          "where": "Any chemist or specialty store — Honeyland or supermarket",
+          "why": "NZ-only antibacterial honey; crew medical and culinary essential; buy certified rating not cheap fakes",
+          "approx_cost": "$20-50"
+        },
+        {
+          "item": "Merino wool possum beanie or gloves",
+          "where": "Untouched World or Icebreaker stores, CBD",
+          "why": "Merino-possum blend is uniquely NZ; softest warm garment; crew buy for cold-route layovers",
+          "approx_cost": "$30-80"
+        },
+        {
+          "item": "Pounamu (greenstone/jade) pendant from Māori artist",
+          "where": "Certified Māori arts galleries — Council of Maori Craftsmen",
+          "why": "Sacred Māori stone; look for authentication; crew meaningful cultural souvenir with provenance certificate",
+          "approx_cost": "$50-200"
+        },
+        {
+          "item": "L&P (Lemon & Paeroa) bottles",
+          "where": "Any supermarket or Countdown",
+          "why": "NZ-only soft drink; crew novelty food souvenir; the unique flavour is hard to describe outside NZ",
+          "approx_cost": "$2-3"
+        },
+        {
+          "item": "Pavlova mix (NZ-style meringue dessert)",
+          "where": "Countdown or Pak'nSave supermarkets",
+          "why": "NZ (not Australia) invented pavlova (crew take sides here too); take the mix home; lightweight",
+          "approx_cost": "$3-5"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Waiheke Island wine ferry day trip",
+          "where": "Ferry from Britomart — 35 min to Waiheke",
+          "why": "Auckland's own Tuscany; vineyard restaurants; crew with 24hr+ layovers rate this as top 10 NZ experience",
+          "approx_cost": "$40-80"
+        },
+        {
+          "item": "Sky Tower bungee jump or walk",
+          "where": "Corner Victoria and Federal St, CBD",
+          "why": "Sky Tower walk or jump; views to Bay of Islands; crew adrenaline activity on arrival-day layover",
+          "approx_cost": "$25-225"
+        },
+        {
+          "item": "Waitematā Harbour sailing with Tourism NZ boats",
+          "where": "Viaduct Harbour, downtown Auckland",
+          "why": "Auckland City of Sails; crew go sailing on visiting tall ships or charter yachts; unique to AKL",
+          "approx_cost": "$50-120"
+        }
+      ]
+    },
+    {
+      "iata": "GRU",
+      "city": "São Paulo",
+      "country": "Brazil",
+      "must_try_food": [
+        {
+          "item": "Churrasco at a rodízio (all-you-can-eat BBQ)",
+          "where": "Fogo de Chão, R. Barão de Campinas 91 or Barbacoa",
+          "why": "Endless grilled meats brought tableside; crew group dinner institution; the real Brazilian BBQ",
+          "approx_cost": "$25-50/person"
+        },
+        {
+          "item": "Pão de queijo (cheese bread rolls)",
+          "where": "Any padaria bakery from 7am or Bob's chain",
+          "why": "Tapioca flour cheese bread; warm from oven; crew morning snack every Brazil layover without fail",
+          "approx_cost": "$1-2"
+        },
+        {
+          "item": "Açaí bowl at a specialist juice bar",
+          "where": "Polis Sucos, Vila Madalena or any juice chain",
+          "why": "Brazilian açaí is completely different from what's exported; frozen pulp with banana and granola; crew health reset",
+          "approx_cost": "$5-8"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Havaianas flip-flops (at their cheapest)",
+          "where": "Shopping Iguatemi or any Havaianas store",
+          "why": "Made in Brazil; prices are 60% of international retail; crew stock up on 3-4 pairs per visit",
+          "approx_cost": "$15-30"
+        },
+        {
+          "item": "Cachaça (Brazilian sugarcane rum) — quality brands",
+          "where": "Empório São Paulo or Wine.com.br delivery",
+          "why": "Leblon, Ypióca Crystal are crew-recommended; take home caipirinha kit with fresh lime; uniquely Brazilian",
+          "approx_cost": "$15-40"
+        },
+        {
+          "item": "Coffee — Sul de Minas or Cerrado beans",
+          "where": "Any good empório or Mercado Municipal",
+          "why": "Brazil is the world's largest coffee producer; fresh single-origin; crew buy kilo bags for home",
+          "approx_cost": "$8-20"
+        },
+        {
+          "item": "Parana pine cone resin figurine (folk art)",
+          "where": "Artisanal craft fair — ARTESP approved markets",
+          "why": "South Brazilian folk carving tradition; unique to Brazil; crew cultural souvenir that's lightweight",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Brazilian precious gemstone pendant (amethyst, aquamarine)",
+          "where": "H.Stern or Amsterdam Sauer, Iguatemi mall",
+          "why": "Brazil mines most of the world's precious coloured stones; crew buy gems at source prices; certificates important",
+          "approx_cost": "$50-300"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Ibirapuera Park Sunday morning run or cycle",
+          "where": "Ibirapuera Park — accessible from Jardins hotels",
+          "why": "São Paulo's Central Park; 350 acres; free; open-air museums inside; crew morning wellness routine",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Liberdade Japanese neighbourhood walk and Sunday market",
+          "where": "Rua Galvão Bueno, Liberdade, São Paulo",
+          "why": "Largest Japanese diaspora city outside Japan; ramen, sake bars, Japanese supermarkets; crew Japan-in-Brazil",
+          "approx_cost": "$5-20"
+        },
+        {
+          "item": "Helipad tour over São Paulo skyline",
+          "where": "Helisul Táxi Aéreo or similar operators (GRU airport area)",
+          "why": "São Paulo skyline by helicopter is extraordinary scale; crew aviation types especially love this; 20-30 min tours",
+          "approx_cost": "$80-150"
+        }
+      ]
+    },
+    {
+      "iata": "LAX",
+      "city": "Los Angeles",
+      "country": "USA",
+      "must_try_food": [
+        {
+          "item": "In-N-Out Burger (Double-Double, Animal Style)",
+          "where": "Nearest LAX location: 9149 S Sepulveda Blvd",
+          "why": "California institution; crew land and go straight here; 5 min from airport; Animal Style is crew order",
+          "approx_cost": "$8-10"
+        },
+        {
+          "item": "Breakfast burrito from a taqueria",
+          "where": "Lupe's #2 Tex-Mex, or any Mexican truck on La Brea",
+          "why": "LA breakfast burrito culture; scrambled eggs, cheese, salsa in a flour tortilla; crew morning after red-eye fuel",
+          "approx_cost": "$8-12"
+        },
+        {
+          "item": "Omakase ramen at Tatsu or Tsujita",
+          "where": "Tsujita LA Artisan Noodle, 2057 Sawtelle Blvd",
+          "why": "Little Osaka on Sawtelle Blvd; authentic Japanese ramen; crew food discovery neighbourhood in West LA",
+          "approx_cost": "$15-20"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Grocery haul from Erewhon Market",
+          "where": "Erewhon, multiple locations (Calabasas, Cahuenga)",
+          "why": "LA's iconic overpriced wellness market; crew buy Hailey Bieber smoothies as celebrity-adjacent experience",
+          "approx_cost": "$10-20/item"
+        },
+        {
+          "item": "Vintage band tee or Levi's from Melrose Ave shops",
+          "where": "Wasteland or Resurrection, Melrose Ave",
+          "why": "LA vintage is global reference point; crew thrifting tour; buy vintage Levi's for 1/3 of EU price",
+          "approx_cost": "$20-100"
+        },
+        {
+          "item": "Patagonia or outdoor gear from REI (LA flagship)",
+          "where": "REI, 402 Colorado Ave, Santa Monica",
+          "why": "Santa Monica location; crew buy technical outdoor gear for rotation; prices and selection best in US",
+          "approx_cost": "$60-300"
+        },
+        {
+          "item": "Local California olive oil or wine from Santa Barbara",
+          "where": "Farmshop, Brentwood Country Mart",
+          "why": "California EVOO and Sta. Rita Hills Pinot; crew food-wine souvenir from a producer 2hrs away",
+          "approx_cost": "$15-40"
+        },
+        {
+          "item": "Lakers or Dodgers merchandise (from official store)",
+          "where": "Lakers Store at Staples/Arena or Dodgers team store",
+          "why": "LA sports culture gift; crew buy for sports-fan colleagues; official store quality vs airport knockoffs",
+          "approx_cost": "$25-80"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Griffith Observatory hike at sunset",
+          "where": "2800 E Observatory Ave — hike from Los Feliz trail",
+          "why": "Free; best LA skyline view; planetarium shows $10; crew 2hr hike from Hillhurst Ave entrance",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Santa Monica Pier + Third Street Promenade walk",
+          "where": "Santa Monica Pier, Ocean Ave",
+          "why": "Pacific Ocean + Route 66 end point; free; crew beach walk before late-night departures",
+          "approx_cost": "free"
+        },
+        {
+          "item": "Joshua Tree day trip (desert + rock climbing + stars)",
+          "where": "Joshua Tree National Park, 2hrs from LAX",
+          "why": "For longer LA layovers; crew stargazing is spectacular; unique desert landscape; book accommodation early",
+          "approx_cost": "$15-30"
+        }
+      ]
+    },
+    {
+      "iata": "ORD",
+      "city": "Chicago",
+      "country": "USA",
+      "must_try_food": [
+        {
+          "item": "Chicago deep-dish pizza at Lou Malnati's",
+          "where": "Lou Malnati's, 439 N Wells St, River North",
+          "why": "30-min bake time; order ahead; crew first-timer Chicago experience; buttery crust is the secret",
+          "approx_cost": "$18-25"
+        },
+        {
+          "item": "Chicago-style hot dog at Portillo's",
+          "where": "Portillo's, 100 W Ontario St",
+          "why": "No ketchup ever; celery salt, sport peppers, dill pickle, yellow mustard; crew food culture lesson",
+          "approx_cost": "$4-6"
+        },
+        {
+          "item": "Italian beef sandwich at Al's #1 Italian Beef",
+          "where": "Al's #1 Italian Beef, 169 W Ontario St",
+          "why": "Chicago original since 1938; giardiniera hot; dipped in beef jus; crew discover this is not Italian",
+          "approx_cost": "$8-12"
+        }
+      ],
+      "must_buy_souvenirs": [
+        {
+          "item": "Garrett Mix (cheddar + caramel popcorn) tin",
+          "where": "Garrett Popcorn, multiple Chicago locations",
+          "why": "Chicago institution; the mix flavour is controversial and addictive; crew buy tins to take on the plane back",
+          "approx_cost": "$10-30"
+        },
+        {
+          "item": "Lou Malnati's frozen deep-dish pizza (pack to fly)",
+          "where": "Lou Malnati's ships or in-store pickup",
+          "why": "Crew check-bag frozen pizza; dry ice available; arrives home; Chicago neighbours are jealous",
+          "approx_cost": "$20-40"
+        },
+        {
+          "item": "Chicago Architecture Foundation merchandise",
+          "where": "Chicago Architecture Center, 111 E Wacker Dr",
+          "why": "World's best architectural museum in city form; crew buy prints, books, and scale models of Chicago buildings",
+          "approx_cost": "$10-50"
+        },
+        {
+          "item": "Malört liqueur (local Chicago tradition)",
+          "where": "Any Chicago liquor store — Binny's Beverage Depot",
+          "why": "The notoriously bitter wormwood spirit; crew dare colleagues to drink it; only sold in Illinois; novelty gift",
+          "approx_cost": "$15-20"
+        },
+        {
+          "item": "Blues Brothers or Chicago music merchandise",
+          "where": "Rock Around the Clock, Wabash St",
+          "why": "Chicago blues and jazz culture; Buddy Guy's Legends has a store; crew music fans love the legacy merch",
+          "approx_cost": "$15-40"
+        }
+      ],
+      "must_do_experience": [
+        {
+          "item": "Chicago Architecture River Cruise",
+          "where": "Wendella or Chicago's First Lady departures, Michigan Ave",
+          "why": "90-minute river tour; guides explain every building; crew architecture enthusiasts rate this top-5 globally",
+          "approx_cost": "$38-48"
+        },
+        {
+          "item": "Blues club night at Buddy Guy's Legends",
+          "where": "700 S Wabash Ave, South Loop",
+          "why": "Buddy Guy's own club; live blues Fri-Sat; opens 5pm; crew music pilgrimage in birthplace of electric blues",
+          "approx_cost": "$15-20 cover"
+        },
+        {
+          "item": "Bean (Cloud Gate) + Millennium Park at dawn",
+          "where": "Millennium Park, S Michigan Ave",
+          "why": "Crowds gone; reflection is clear; Chicago skyline in the chrome; crew fitness run through the park at 6am",
+          "approx_cost": "free"
+        }
+      ]
+    }
+  ]
+}
