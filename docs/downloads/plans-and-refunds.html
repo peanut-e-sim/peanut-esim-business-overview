@@ -343,6 +343,38 @@
   .faq-a p { margin-bottom: 8px; }
   .faq-a p:last-child { margin-bottom: 0; }
 
+  /* Brand tagline callout */
+  .brand-callout {
+    background: linear-gradient(135deg, var(--peanut-soft) 0%, var(--accent-soft) 100%);
+    border: 1.5px solid var(--peanut);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin: 0 0 36px;
+  }
+  .brand-callout-tagline {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px; font-weight: 800; color: var(--peanut);
+    letter-spacing: -0.01em; margin-bottom: 8px;
+  }
+  .brand-callout-body {
+    font-size: 14px; color: var(--text-2); line-height: 1.7; font-style: italic;
+  }
+  .brand-callout-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--peanut); margin-bottom: 10px; opacity: 0.7;
+  }
+
+  /* Plan card tagline + ad copy */
+  .plan-tagline {
+    font-size: 13.5px; font-weight: 700; color: var(--text);
+    margin-bottom: 4px; margin-top: 2px; line-height: 1.35;
+  }
+  .plan-adcopy {
+    font-size: 12.5px; color: var(--text-2); line-height: 1.6;
+    margin-bottom: 12px; font-style: italic;
+  }
+
   /* callout note */
   .callout {
     background: var(--peanut-soft);
@@ -416,6 +448,16 @@
   </div>
 
 
+  <!-- BRAND TAGLINE CALLOUT -->
+  <div class="brand-callout">
+    <div class="brand-callout-label lang en">🎯 Brand tagline</div>
+    <div class="brand-callout-label lang jp">🎯 ブランドタグライン</div>
+    <div class="brand-callout-tagline lang en">"Travel data. Made for crew."</div>
+    <div class="brand-callout-tagline lang jp">「旅のデータは、クルーのために。」</div>
+    <div class="brand-callout-body lang en">The eSIM service designed by airline crew for airline crew. Upload your roster, get your data. Travel without thinking about it.</div>
+    <div class="brand-callout-body lang jp">航空乗務員が航空乗務員のために設計したeSIMサービス。ロスターをアップロードして、データを受け取る。それだけで旅の準備が整います。</div>
+  </div>
+
   <!-- ===================== SECTION 1 — PLAN TIERS ===================== -->
   <div class="section">
     <div class="section-label lang en">Section 1 — Plan Tiers (Cabin Class)</div>
@@ -434,6 +476,10 @@
         <div class="plan-tier lang jp">ティア1 — エコノミー</div>
         <div class="plan-name lang en">Economy</div>
         <div class="plan-name lang jp">エコノミー</div>
+        <div class="plan-tagline lang en">"One country. One tap."</div>
+        <div class="plan-tagline lang jp">"1ヶ国。1タップ。"</div>
+        <div class="plan-adcopy lang en">When you only need data for one country, you only need Economy.</div>
+        <div class="plan-adcopy lang jp">1ヶ国だけのデータが必要なら、Economyで十分です。</div>
         <div class="plan-price">$3–7 <span class="lang en">/ trip</span><span class="lang jp">/ 旅行</span></div>
         <ul class="plan-features">
           <li class="lang en">"One trip, done." — Casual flyers</li>
@@ -458,6 +504,10 @@
         <div class="plan-tier lang jp">ティア2 — ロスターバンドル</div>
         <div class="plan-name lang en">Roster Bundle</div>
         <div class="plan-name lang jp">ロスターバンドル</div>
+        <div class="plan-tagline lang en">"Upload your roster. Skip the planning."</div>
+        <div class="plan-tagline lang jp">"ロスターをアップロード。計画は不要。"</div>
+        <div class="plan-adcopy lang en">Drop in your schedule. We build the bundle. You fly the trip.</div>
+        <div class="plan-adcopy lang jp">スケジュールをドロップ。私たちがバンドルを作成。あなたは飛ぶだけ。</div>
         <div class="plan-price lang en">~15–20% <span>off Economy rate</span></div>
         <div class="plan-price lang jp">エコノミー比<span>15〜20%お得</span></div>
         <ul class="plan-features">
@@ -483,6 +533,10 @@
         <div class="plan-tier lang jp">ティア5 — リフューエル</div>
         <div class="plan-name lang en">Refuel</div>
         <div class="plan-name lang jp">リフューエル</div>
+        <div class="plan-tagline lang en">"Out of fuel? One tap."</div>
+        <div class="plan-tagline lang jp">"残量切れ？ワンタップ。"</div>
+        <div class="plan-adcopy lang en">Running low mid-trip? Tap. Refuel. Done.</div>
+        <div class="plan-adcopy lang jp">移動中にデータ不足？タップ。補給。完了。</div>
         <div class="plan-price">$1.99–$2.99 <span>/ GB</span></div>
         <ul class="plan-features">
           <li class="lang en">"Out of data? Refuel." — Add 1 GB to any active eSIM</li>
@@ -537,21 +591,21 @@
           <td><span class="price">$24</span><span class="lang en">/mo</span><span class="lang jp">/月</span></td>
           <td>10 GB</td>
           <td><span class="lang en">50%</span><span class="lang jp">50%</span></td>
-          <td><span class="lang en">"You travel often. Lock in your month, save on every destination." Hotel WiFi tips included.</span><span class="lang jp">「よく旅行する方。月を固定して、目的地ごとに節約。」ホテルWiFiのヒントも含む。</span></td>
+          <td><span class="lang en"><strong>"Stepped up."</strong><br><em>For the regulars who don't fly First — but want more than Economy.</em></span><span class="lang jp"><strong>「ステップアップ。」</strong><br><em>Firstは飛ばないけれど、Economyよりは欲しい — そんな常連クルーへ。</em></span></td>
         </tr>
         <tr class="highlight-row">
           <td><span class="lang en">Business</span><span class="lang jp">ビジネス</span></td>
           <td><span class="price">$34</span><span class="lang en">/mo</span><span class="lang jp">/月</span></td>
           <td>15 GB</td>
           <td>75%</td>
-          <td><span class="lang en">"You work on the move." WhatsApp, email, social — covered. Hotel WiFi tips included.</span><span class="lang jp">「移動中も仕事。」WhatsApp・メール・SNS — すべてカバー。ホテルWiFiのヒントも含む。</span></td>
+          <td><span class="lang en"><strong>"The crew's class."</strong><br><em>Email, social, news, family calls. The cabin where work gets done.</em></span><span class="lang jp"><strong>「クルーの定番クラス。」</strong><br><em>メール、SNS、ニュース、家族との通話。仕事がはかどるキャビン。</em></span></td>
         </tr>
         <tr>
           <td><span class="lang en">First</span><span class="lang jp">ファースト</span></td>
           <td><span class="price">$44</span><span class="lang en">/mo</span><span class="lang jp">/月</span></td>
           <td>20 GB</td>
           <td>100%</td>
-          <td><span class="lang en">"Stream Netflix from Bangkok. Video-call home from Tokyo. Watch matches in Mauritius." 100% carryover. Auto Wi-Fi Save mode.</span><span class="lang jp">「バンコクでNetflix。東京でビデオ通話。モーリシャスで試合観戦。」100%繰り越し。自動Wi-Fi節約モード付き。</span></td>
+          <td><span class="lang en"><strong>"Stream like you're home."</strong><br><em>Netflix from Bangkok. Family calls from Tokyo. First doesn't hold back.</em></span><span class="lang jp"><strong>「家にいるように、ストリーミング。」</strong><br><em>バンコクからNetflix。東京から家族と通話。Firstに妥協はありません。</em></span></td>
         </tr>
       </tbody>
     </table>
@@ -567,6 +621,10 @@
         <div class="plan-tier lang jp">ティア4 — コックピット</div>
         <div class="plan-name lang en">Cockpit</div>
         <div class="plan-name lang jp">コックピット</div>
+        <div class="plan-tagline lang en">"You. In control."</div>
+        <div class="plan-tagline lang jp">"あなたが。コントロール。"</div>
+        <div class="plan-adcopy lang en">One year. Your terms. Your tier. Take the Cockpit.</div>
+        <div class="plan-adcopy lang jp">1年間。あなたの条件で。あなたのティアで。コックピットを取る。</div>
         <div class="plan-price">$249 <span class="lang en">/ year (saves ~$50 vs monthly)</span><span class="lang jp">/ 年（月額比 約$50お得）</span></div>
         <ul class="plan-features">
           <li class="lang en">"Take the Cockpit. Fly your own plan." — You're in control</li>
