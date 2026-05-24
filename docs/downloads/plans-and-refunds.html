@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM — Plans &amp; Refund Policy</title>
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning-soft: #FFF8EE;
+    --warning: #C97E22;
+    --danger-soft: #FFF0EE;
+    --danger: #C03B2A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    padding: 50px 5vw;
+  }
+  body[data-lang="jp"] {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    line-height: 1.85;
+    font-feature-settings: "palt";
+  }
+  /* bilingual toggle */
+  .lang { display: none; }
+  body[data-lang="en"] .lang.en,
+  body[data-lang="jp"] .lang.jp { display: inline; }
+  body[data-lang="en"] div.lang.en,
+  body[data-lang="jp"] div.lang.jp,
+  body[data-lang="en"] p.lang.en,
+  body[data-lang="jp"] p.lang.jp,
+  body[data-lang="en"] li.lang.en,
+  body[data-lang="jp"] li.lang.jp,
+  body[data-lang="en"] td.lang.en,
+  body[data-lang="jp"] td.lang.jp,
+  body[data-lang="en"] span.lang.en,
+  body[data-lang="jp"] span.lang.jp,
+  body[data-lang="en"] h1.lang.en,
+  body[data-lang="jp"] h1.lang.jp,
+  body[data-lang="en"] h2.lang.en,
+  body[data-lang="jp"] h2.lang.jp,
+  body[data-lang="en"] h3.lang.en,
+  body[data-lang="jp"] h3.lang.jp,
+  body[data-lang="en"] th.lang.en,
+  body[data-lang="jp"] th.lang.jp { display: block; }
+  body[data-lang="en"] .inline.lang.en,
+  body[data-lang="jp"] .inline.lang.jp { display: inline; }
+  body[data-lang="en"] .inblock.lang.en,
+  body[data-lang="jp"] .inblock.lang.jp { display: inline-block; }
+
+  .wrap { max-width: 940px; margin: 0 auto; }
+
+  /* top bar */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .doc-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 3px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .lang-toggle button.active { background: var(--text); color: #fff; }
+
+  /* headings */
+  h1 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  body[data-lang="jp"] h1 {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    letter-spacing: -0.02em;
+  }
+  h1 em { color: var(--peanut); font-style: normal; }
+  .lead { color: var(--text-2); font-size: 15px; max-width: 68ch; margin-bottom: 32px; line-height: 1.7; }
+  h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    color: var(--text);
+    margin: 48px 0 16px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  body[data-lang="jp"] h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-size: 21px;
+  }
+  h3 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; color: var(--text); }
+  p { margin-bottom: 12px; font-size: 14.5px; color: var(--text-2); }
+
+  .section { margin: 0 0 56px; }
+  .section-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--text-3); text-transform: uppercase;
+    margin-bottom: 16px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* TL;DR */
+  .tldr {
+    background: var(--accent-soft);
+    border: 1px solid rgba(45,140,126,0.35);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 0 0 40px;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.75;
+  }
+  .tldr strong { color: var(--accent); }
+  .tldr-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .tldr-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-size: 12px; font-weight: 600; color: var(--text-2);
+  }
+  .tldr-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .tldr-chip .dot.peanut { background: var(--peanut); }
+  .tldr-chip .dot.warning { background: var(--warning); }
+
+  /* Plan cards */
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .plan-card {
+    background: var(--surface);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 20px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .plan-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .plan-card.featured { border-color: var(--accent); }
+  .plan-card.featured::before {
+    content: "★ Crew Favourite";
+    position: absolute;
+    top: -11px; left: 18px;
+    background: var(--accent);
+    color: #fff;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 3px 10px; border-radius: 100px;
+  }
+  body[data-lang="jp"] .plan-card.featured::before { content: "★ 乗務員の人気No.1"; }
+  .plan-icon { font-size: 28px; margin-bottom: 10px; line-height: 1; }
+  .plan-tier {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--text-3); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .plan-name { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .plan-price { font-size: 26px; font-weight: 800; color: var(--accent); line-height: 1.1; margin-bottom: 12px; }
+  .plan-price span { font-size: 13px; font-weight: 500; color: var(--text-3); }
+  .plan-features { list-style: none; }
+  .plan-features li {
+    font-size: 13px; color: var(--text-2);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex; align-items: flex-start; gap: 7px;
+  }
+  .plan-features li:last-child { border-bottom: none; }
+  .plan-features li::before { content: "—"; color: var(--text-3); flex-shrink: 0; }
+  .plan-tag {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 10px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.05em;
+    border-radius: 100px;
+  }
+
+  /* Monthly sub-tiers table */
+  .sub-tiers { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 12px 0 20px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+  .sub-tiers thead tr { background: var(--text); color: #fff; }
+  .sub-tiers thead th { padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.03em; }
+  .sub-tiers tbody tr { border-bottom: 1px solid var(--line-soft); }
+  .sub-tiers tbody tr:last-child { border-bottom: none; }
+  .sub-tiers tbody td { padding: 11px 14px; color: var(--text-2); vertical-align: top; }
+  .sub-tiers tbody td:first-child { font-weight: 700; color: var(--text); }
+  .sub-tiers tbody td .price { font-weight: 800; color: var(--accent); font-size: 15px; }
+  .sub-tiers tbody tr.highlight-row { background: var(--accent-soft); }
+  .sub-tiers tbody tr.highlight-row td { color: var(--text); }
+
+  /* Personas grid */
+  .persona-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .persona-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .persona-emoji { font-size: 32px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+  .persona-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .persona-desc { font-size: 12.5px; color: var(--text-3); margin-bottom: 8px; line-height: 1.55; }
+  .persona-rec {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11px; font-weight: 700;
+    border-radius: 100px;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* Refund scenario cards */
+  .scenario-list { display: flex; flex-direction: column; gap: 14px; }
+  .scenario-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .scenario-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px;
+    background: var(--line-soft);
+    border-bottom: 1px solid var(--line);
+  }
+  .scenario-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--text); color: #fff;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .scenario-title { font-size: 14.5px; font-weight: 700; color: var(--text); }
+  .scenario-body { padding: 16px 18px; }
+  .scenario-row { display: flex; gap: 12px; margin-bottom: 10px; font-size: 13.5px; }
+  .scenario-row:last-child { margin-bottom: 0; }
+  .scenario-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-3); min-width: 80px; padding-top: 1px;
+  }
+  .scenario-val { color: var(--text-2); flex: 1; line-height: 1.55; }
+  .scenario-val strong { color: var(--text); }
+  .scenario-val .pill {
+    display: inline-block;
+    padding: 2px 8px; border-radius: 100px; font-size: 11px; font-weight: 700;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+  }
+  .pill.green { background: var(--accent-soft); color: var(--accent); }
+  .pill.amber { background: var(--warning-soft); color: var(--warning); }
+  .pill.red { background: var(--danger-soft); color: var(--danger); }
+  .pill.peanut { background: var(--peanut-soft); color: var(--peanut); }
+  .scenario-why {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    font-size: 12.5px; color: var(--text-2); line-height: 1.55;
+  }
+  .scenario-why strong { color: var(--accent); }
+
+  /* Quick reference table */
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 12.5px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); margin-bottom: 24px; }
+  .ref-table thead tr { background: var(--text); color: #fff; }
+  .ref-table thead th { padding: 10px 12px; text-align: left; font-weight: 600; font-size: 11.5px; letter-spacing: 0.03em; white-space: nowrap; }
+  .ref-table tbody tr { border-bottom: 1px solid var(--line-soft); }
+  .ref-table tbody tr:last-child { border-bottom: none; }
+  .ref-table tbody td { padding: 10px 12px; color: var(--text-2); vertical-align: top; }
+  .ref-table tbody td:first-child { font-weight: 700; color: var(--text); white-space: nowrap; }
+  .ref-table tbody tr.divider td { background: var(--peanut-soft); font-weight: 700; color: var(--peanut); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* FAQ accordion */
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+  details.faq-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  details.faq-item[open] { border-color: var(--accent); }
+  summary.faq-q {
+    list-style: none;
+    padding: 16px 18px;
+    font-size: 14.5px; font-weight: 600; color: var(--text);
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    transition: background 0.15s;
+  }
+  summary.faq-q::-webkit-details-marker { display: none; }
+  summary.faq-q:hover { background: var(--line-soft); }
+  .faq-arrow { font-size: 14px; color: var(--text-3); transition: transform 0.2s; flex-shrink: 0; }
+  details.faq-item[open] .faq-arrow { transform: rotate(90deg); }
+  .faq-a { padding: 0 18px 16px; font-size: 13.5px; color: var(--text-2); line-height: 1.7; }
+  .faq-a p { margin-bottom: 8px; }
+  .faq-a p:last-child { margin-bottom: 0; }
+
+  /* callout note */
+  .callout {
+    background: var(--peanut-soft);
+    border-left: 3px solid var(--peanut);
+    border-radius: 0 8px 8px 0;
+    padding: 13px 18px;
+    margin: 16px 0;
+    font-size: 13.5px; color: var(--text-2); line-height: 1.65;
+  }
+
+  /* metric bar for chargeback */
+  .metric-bar-wrap { margin: 12px 0; }
+  .metric-bar-row { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-3); margin-bottom: 6px; }
+  .metric-bar-row .bar-track { flex: 1; height: 7px; background: var(--line); border-radius: 100px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 100px; }
+  .bar-fill.safe { background: var(--accent); }
+  .bar-fill.warn { background: var(--warning); }
+  .metric-bar-row .bar-label { min-width: 80px; text-align: right; font-weight: 600; }
+  .metric-bar-row .bar-label.safe { color: var(--accent); }
+  .metric-bar-row .bar-label.warn { color: var(--warning); }
+
+  /* footer */
+  footer { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 12px; color: var(--text-3); }
+
+  /* print */
+  @media print {
+    body { padding: 20px; background: #fff; }
+    .lang-toggle, .faq-arrow { display: none !important; }
+    details.faq-item { border: 1px solid #ccc; }
+    details.faq-item .faq-a { display: block !important; }
+  }
+
+  @media (max-width: 600px) {
+    .plan-grid { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: 1fr; }
+    .ref-table { font-size: 11.5px; }
+    .ref-table thead th, .ref-table tbody td { padding: 8px 9px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <div class="top">
+    <span class="doc-tag">PEANUT-PLANS-v1 · 2026-05-24</span>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-jp" onclick="setLang('jp')">JP</button>
+    </div>
+  </div>
+
+  <!-- HEADING -->
+  <h1 class="lang en">Peanut eSIM —<br><em>Plans &amp; Refund Policy</em></h1>
+  <h1 class="lang jp">Peanut eSIM —<br><em>プラン &amp; 返金ポリシー</em></h1>
+
+  <p class="lead lang en">Everything you need to choose the right plan and understand exactly what happens if something goes wrong. Written for Emirates crew and shared with our co-founder Akito before launch.</p>
+  <p class="lead lang jp">プランの選び方と、万が一の際の対応をすべて記載しています。Emirates乗務員向けに作成し、共同創業者Akitoとローンチ前に共有するための資料です。</p>
+
+  <!-- TL;DR CARD -->
+  <div class="tldr">
+    <span class="lang en"><strong>TL;DR:</strong> 5 plan tiers · 6 refund scenarios · clear rules for every situation · no surprises.</span>
+    <span class="lang jp"><strong>TL;DR:</strong> 5つのプランティア · 6つの返金シナリオ · あらゆる状況への明確なルール · サプライズなし。</span>
+    <div class="tldr-chips">
+      <span class="tldr-chip"><span class="dot peanut"></span><span class="lang en">5 plan tiers</span><span class="lang jp">5プランティア</span></span>
+      <span class="tldr-chip"><span class="dot"></span><span class="lang en">6 refund scenarios</span><span class="lang jp">6返金シナリオ</span></span>
+      <span class="tldr-chip"><span class="dot warning"></span><span class="lang en">6 user personas</span><span class="lang jp">6ユーザーペルソナ</span></span>
+      <span class="tldr-chip"><span class="dot"></span><span class="lang en">Print-friendly</span><span class="lang jp">印刷対応</span></span>
+    </div>
+  </div>
+
+
+  <!-- ===================== SECTION 1 — PLAN TIERS ===================== -->
+  <div class="section">
+    <div class="section-label lang en">Section 1 — Plan Tiers</div>
+    <div class="section-label lang jp">セクション1 — プランティア</div>
+
+    <h2 class="lang en">5 Plan Tiers</h2>
+    <h2 class="lang jp">5つのプランティア</h2>
+
+    <!-- TIER 1 + TIER 2 + TIER 5 (simple plans) -->
+    <div class="plan-grid">
+
+      <!-- TIER 1 -->
+      <div class="plan-card">
+        <div class="plan-icon">🌍</div>
+        <div class="plan-tier lang en">Tier 1</div>
+        <div class="plan-tier lang jp">ティア1</div>
+        <div class="plan-name lang en">Pay-Per-Destination</div>
+        <div class="plan-name lang jp">都度払い（目的地ごと）</div>
+        <div class="plan-price">$3–7 <span class="lang en">/ trip</span><span class="lang jp">/ 旅行</span></div>
+        <ul class="plan-features">
+          <li class="lang en">1 GB · single country · 3–7 day validity</li>
+          <li class="lang jp">1 GB · 対象国1カ国 · 有効期限3〜7日</li>
+          <li class="lang en">Top-up: +1 GB for $2.99</li>
+          <li class="lang jp">追加チャージ: 1GBあたり$2.99</li>
+          <li class="lang en">No commitment, no subscription</li>
+          <li class="lang jp">契約なし・サブスクなし</li>
+          <li class="lang en">Varies by country</li>
+          <li class="lang jp">国によって料金が異なります</li>
+        </ul>
+        <span class="plan-tag lang en">Best for: trying us out</span>
+        <span class="plan-tag lang jp">おすすめ: はじめての方</span>
+      </div>
+
+      <!-- TIER 2 -->
+      <div class="plan-card featured">
+        <div class="plan-icon">🗓️</div>
+        <div class="plan-tier lang en">Tier 2</div>
+        <div class="plan-tier lang jp">ティア2</div>
+        <div class="plan-name lang en">Smart Roster Bundle</div>
+        <div class="plan-name lang jp">スマートロスターバンドル</div>
+        <div class="plan-price lang en">~15–20% <span>cheaper than Tier 1</span></div>
+        <div class="plan-price lang jp">ティア1より<span>15〜20%お得</span></div>
+        <ul class="plan-features">
+          <li class="lang en">Upload monthly roster → app auto-builds bundle</li>
+          <li class="lang jp">月次ロスターをアップロード → アプリが自動でバンドルを構成</li>
+          <li class="lang en">1 GB per destination · 30-day validity</li>
+          <li class="lang jp">目的地ごとに1 GB · 有効期限30日</li>
+          <li class="lang en">Covers every destination in your schedule</li>
+          <li class="lang jp">スケジュール内の全目的地をカバー</li>
+          <li class="lang en">One-time purchase, not a subscription</li>
+          <li class="lang jp">一度の購入、サブスクではない</li>
+        </ul>
+        <span class="plan-tag lang en">Best for: every regular crew member</span>
+        <span class="plan-tag lang jp">おすすめ: レギュラー乗務員全員</span>
+      </div>
+
+      <!-- TIER 5 TOP-UPS -->
+      <div class="plan-card">
+        <div class="plan-icon">⚡</div>
+        <div class="plan-tier lang en">Tier 5</div>
+        <div class="plan-tier lang jp">ティア5</div>
+        <div class="plan-name lang en">Top-Ups</div>
+        <div class="plan-name lang jp">追加チャージ</div>
+        <div class="plan-price">$1.99–$2.99 <span>/ GB</span></div>
+        <ul class="plan-features">
+          <li class="lang en">Add 1 GB to any active eSIM</li>
+          <li class="lang jp">アクティブなeSIMに1 GBを追加</li>
+          <li class="lang en">Pay-per-destination users: $2.99/GB</li>
+          <li class="lang jp">都度払いユーザー: $2.99/GB</li>
+          <li class="lang en">Monthly subscribers: free from pool, then $2.99/GB</li>
+          <li class="lang jp">月額会員: プールから無料、超過後は$2.99/GB</li>
+          <li class="lang en">Annual subscribers: free from pool, then $1.99/GB</li>
+          <li class="lang jp">年間会員: プールから無料、超過後は$1.99/GB</li>
+          <li class="lang en">Auto-prompt at 90% usage</li>
+          <li class="lang jp">使用量90%でアプリが自動通知</li>
+        </ul>
+        <span class="plan-tag lang en">Works with any tier</span>
+        <span class="plan-tag lang jp">すべてのティアで利用可能</span>
+      </div>
+
+    </div><!-- /plan-grid -->
+
+    <!-- TIER 3 -->
+    <h3 class="lang en">Tier 3 — Crew Monthly Pass (3 sub-tiers)</h3>
+    <h3 class="lang jp">ティア3 — クルー月額パス（3サブティア）</h3>
+
+    <p class="lang en">One subscription, three sizes. Pick the one that matches your data lifestyle. Unused GB carries over — so you never lose what you paid for.</p>
+    <p class="lang jp">1つのサブスクリプション、3つのサイズ。自分のデータライフスタイルに合ったものを選んでください。未使用のGBは繰り越しされます。</p>
+
+    <div class="callout lang en">
+      <strong>How it works:</strong> You pay monthly → receive a GB pool → each destination you activate pulls 1 GB from the pool. We only pay the network supplier when you actually activate — not upfront. Unused GB carries over based on your tier's carryover %.
+    </div>
+    <div class="callout lang jp">
+      <strong>仕組み:</strong> 月額を支払うと → GBプールを受け取り → 目的地を有効化するたびにプールから1 GBが消費されます。当社がネットワーク会社に支払うのは実際の有効化時のみ（前払いではありません）。未使用GBはティアの繰越率に応じて翌月に持ち越されます。
+    </div>
+
+    <table class="sub-tiers">
+      <thead>
+        <tr>
+          <th class="lang en">Sub-tier</th>
+          <th class="lang jp">サブティア</th>
+          <th class="lang en">Price</th>
+          <th class="lang jp">料金</th>
+          <th class="lang en">GB Pool</th>
+          <th class="lang jp">GBプール</th>
+          <th class="lang en">Carryover</th>
+          <th class="lang jp">繰越率</th>
+          <th class="lang en">Best for</th>
+          <th class="lang jp">おすすめ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="lang en">A — Light</span><span class="lang jp">A — ライト</span></td>
+          <td><span class="price">$24</span><span class="lang en">/mo</span><span class="lang jp">/月</span></td>
+          <td>10 GB</td>
+          <td><span class="lang en">50%</span><span class="lang jp">50%</span></td>
+          <td><span class="lang en">Hotel WiFi users, low data needs</span><span class="lang jp">ホテルWiFi利用者、データ使用量少</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td><span class="lang en">B — Standard</span><span class="lang jp">B — スタンダード</span></td>
+          <td><span class="price">$34</span><span class="lang en">/mo</span><span class="lang jp">/月</span></td>
+          <td>15 GB</td>
+          <td>75%</td>
+          <td><span class="lang en">Social media + WhatsApp + light streaming</span><span class="lang jp">SNS + WhatsApp + 軽いストリーミング</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">C — Heavy</span><span class="lang jp">C — ヘビー</span></td>
+          <td><span class="price">$44</span><span class="lang en">/mo</span><span class="lang jp">/月</span></td>
+          <td>20 GB</td>
+          <td>100%</td>
+          <td><span class="lang en">Netflix / YouTube / heavy streamers</span><span class="lang jp">Netflix / YouTube / ヘビーストリーマー</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- TIER 4 -->
+    <h3 class="lang en">Tier 4 — Crew Annual Pass</h3>
+    <h3 class="lang jp">ティア4 — クルー年間パス</h3>
+
+    <div class="plan-grid" style="grid-template-columns: 1fr;">
+      <div class="plan-card" style="max-width: 560px;">
+        <div class="plan-icon">💎</div>
+        <div class="plan-tier lang en">Tier 4</div>
+        <div class="plan-tier lang jp">ティア4</div>
+        <div class="plan-name lang en">Crew Annual Pass</div>
+        <div class="plan-name lang jp">クルー年間パス</div>
+        <div class="plan-price">$249 <span class="lang en">/ year (saves ~$50 vs monthly)</span><span class="lang jp">/ 年（月額比 約$50お得）</span></div>
+        <ul class="plan-features">
+          <li class="lang en">Same monthly GB pool as Tier 3 (your chosen size)</li>
+          <li class="lang jp">ティア3と同じ月次GBプール（サイズを選択）</li>
+          <li class="lang en">100% GB carryover for 2 months (vs Tier 3's up to 1 month)</li>
+          <li class="lang jp">2ヶ月間100%GBを繰り越し（ティア3は最大1ヶ月）</li>
+          <li class="lang en">Bonus: 12 GB emergency reserve — use it in any 1 month/yr</li>
+          <li class="lang jp">ボーナス: 12GBの緊急リザーブ — 年間任意の1ヶ月に使用可能</li>
+          <li class="lang en">Cheaper overage: $1.99/GB (vs $2.99 for monthly)</li>
+          <li class="lang jp">低コスト超過: $1.99/GB（月額の$2.99より安い）</li>
+        </ul>
+        <span class="plan-tag lang en">Best for: loyal crew committing to Peanut for a year</span>
+        <span class="plan-tag lang jp">おすすめ: 1年間コミットするロイヤルな乗務員</span>
+      </div>
+    </div>
+
+  </div><!-- /section 1 -->
+
+
+  <!-- ===================== SECTION 2 — PERSONAS ===================== -->
+  <div class="section">
+    <div class="section-label lang en">Section 2 — User Personas</div>
+    <div class="section-label lang jp">セクション2 — ユーザーペルソナ</div>
+
+    <h2 class="lang en">Which Plan Is Right for You?</h2>
+    <h2 class="lang jp">あなたに合うプランは？</h2>
+
+    <p class="lang en">Six crew profiles. Find yours and go straight to the recommended plan.</p>
+    <p class="lang jp">6つの乗務員プロファイル。あなたのプロファイルを見つけて、おすすめのプランへ。</p>
+
+    <div class="persona-grid">
+
+      <div class="persona-card">
+        <div class="persona-emoji">🌱</div>
+        <div>
+          <div class="persona-name lang en">The Casual Traveler</div>
+          <div class="persona-name lang jp">カジュアルトラベラー</div>
+          <div class="persona-desc lang en">Flies 1–2 destinations/month. Mostly uses hotel WiFi. Doesn't want a subscription.</div>
+          <div class="persona-desc lang jp">月1〜2目的地のフライト。主にホテルWiFiを使用。サブスクは不要。</div>
+          <span class="persona-rec lang en">→ Tier 1 Pay-Per-Destination ($3–7 / trip)</span>
+          <span class="persona-rec lang jp">→ ティア1 都度払い（$3〜7/旅）</span>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-emoji">✈️</div>
+        <div>
+          <div class="persona-name lang en">The Regular Crew Member</div>
+          <div class="persona-name lang jp">レギュラー乗務員</div>
+          <div class="persona-desc lang en">Flies 4–6 destinations/month. WhatsApp, Maps, light social. Mid data needs.</div>
+          <div class="persona-desc lang jp">月4〜6目的地のフライト。WhatsApp・マップ・軽いSNS。中程度のデータ使用。</div>
+          <span class="persona-rec lang en">→ Tier 3A Monthly Light ($24/mo, 10 GB)</span>
+          <span class="persona-rec lang jp">→ ティア3A 月額ライト（$24/月・10 GB）</span>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-emoji">📱</div>
+        <div>
+          <div class="persona-name lang en">The Social Crew Member</div>
+          <div class="persona-name lang jp">ソーシャルクルー</div>
+          <div class="persona-desc lang en">Posts on Instagram daily, watches YouTube on layovers. Active social presence.</div>
+          <div class="persona-desc lang jp">毎日Instagramに投稿し、レイオーバー中にYouTubeを視聴。SNS活発。</div>
+          <span class="persona-rec lang en">→ Tier 3B Monthly Standard ($34/mo, 15 GB)</span>
+          <span class="persona-rec lang jp">→ ティア3B 月額スタンダード（$34/月・15 GB）</span>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-emoji">🍿</div>
+        <div>
+          <div class="persona-name lang en">The Netflix Crew Member</div>
+          <div class="persona-name lang jp">ネットフリックスクルー</div>
+          <div class="persona-desc lang en">Streams Netflix every layover. Video-calls family. Heavy data every trip.</div>
+          <div class="persona-desc lang jp">毎レイオーバーでNetflix視聴。家族とビデオ通話。大量データを毎回使用。</div>
+          <span class="persona-rec lang en">→ Tier 3C Monthly Heavy ($44/mo, 20 GB)</span>
+          <span class="persona-rec lang jp">→ ティア3C 月額ヘビー（$44/月・20 GB）</span>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-emoji">💎</div>
+        <div>
+          <div class="persona-name lang en">The Loyalty Type</div>
+          <div class="persona-name lang jp">ロイヤルユーザー</div>
+          <div class="persona-desc lang en">Wants the best deal long-term. Plans ahead. Values perks and savings.</div>
+          <div class="persona-desc lang jp">長期的に最もお得なプランを希望。先を見越して行動。特典と節約を重視。</div>
+          <span class="persona-rec lang en">→ Tier 4 Annual Pass ($249/yr — saves $50)</span>
+          <span class="persona-rec lang jp">→ ティア4 年間パス（$249/年 — $50お得）</span>
+        </div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-emoji">🚀</div>
+        <div>
+          <div class="persona-name lang en">The Roster Power User</div>
+          <div class="persona-name lang jp">ロスターパワーユーザー</div>
+          <div class="persona-desc lang en">Wants data planned automatically. Uploads roster once, forgets about it. Loves automation.</div>
+          <div class="persona-desc lang jp">データを自動でプランニングしたい。ロスターを一度アップロードすれば完了。自動化が好き。</div>
+          <span class="persona-rec lang en">→ Tier 2 Smart Roster Bundle (upload roster, done)</span>
+          <span class="persona-rec lang jp">→ ティア2 スマートロスターバンドル（アップロードして完了）</span>
+        </div>
+      </div>
+
+    </div><!-- /persona-grid -->
+  </div><!-- /section 2 -->
+
+
+  <!-- ===================== SECTION 3 — REFUND POLICY ===================== -->
+  <div class="section">
+    <div class="section-label lang en">Section 3 — Refund Policy</div>
+    <div class="section-label lang jp">セクション3 — 返金ポリシー</div>
+
+    <h2 class="lang en">6 Refund Scenarios</h2>
+    <h2 class="lang jp">6つの返金シナリオ</h2>
+
+    <p class="lang en">Clear rules for every situation. No guesswork.</p>
+    <p class="lang jp">あらゆる状況への明確なルール。推測不要。</p>
+
+    <div class="scenario-list">
+
+      <!-- SCENARIO 1 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-num">1</div>
+          <div class="scenario-title">
+            <span class="lang en">Bought but NOT activated</span>
+            <span class="lang jp">購入済みだが未開通</span>
+          </div>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Within 14 days</div>
+            <div class="scenario-label lang jp">14日以内</div>
+            <div class="scenario-val lang en"><span class="pill green">Full credit</span> or <span class="pill green">Full cash refund</span> — UI defaults to credit</div>
+            <div class="scenario-val lang jp"><span class="pill green">全額クレジット</span>または<span class="pill green">全額現金返金</span> — UIのデフォルトはクレジット</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">After 14 days</div>
+            <div class="scenario-label lang jp">14日経過後</div>
+            <div class="scenario-val lang en"><span class="pill peanut">Credit only</span></div>
+            <div class="scenario-val lang jp"><span class="pill peanut">クレジットのみ</span></div>
+          </div>
+          <div class="scenario-why lang en"><strong>Why:</strong> We haven't paid the network yet — so it's easy to reverse before activation.</div>
+          <div class="scenario-why lang jp"><strong>理由:</strong> まだネットワーク会社への支払いが発生していないため、有効化前であれば簡単に取り消せます。</div>
+        </div>
+      </div>
+
+      <!-- SCENARIO 2 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-num">2</div>
+          <div class="scenario-title">
+            <span class="lang en">eSIM activated (any tier)</span>
+            <span class="lang jp">eSIM開通済み（全ティア共通）</span>
+          </div>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Default</div>
+            <div class="scenario-label lang jp">原則</div>
+            <div class="scenario-val lang en"><span class="pill red">No refund</span> — activation = network commitment</div>
+            <div class="scenario-val lang jp"><span class="pill red">返金不可</span> — 開通 = ネットワークへのコミットメント</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Oops button</div>
+            <div class="scenario-label lang jp">Oopsボタン</div>
+            <div class="scenario-val lang en"><strong>3× per year:</strong> returns <span class="pill peanut">50% of activated GB</span> back to your pool</div>
+            <div class="scenario-val lang jp"><strong>年3回:</strong>開通したGBの<span class="pill peanut">50%をプールに返還</span></div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">After 3 uses</div>
+            <div class="scenario-label lang jp">3回使用後</div>
+            <div class="scenario-val lang en">Contact support for special-case review</div>
+            <div class="scenario-val lang jp">特別ケースとしてサポートに連絡</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Subscribers</div>
+            <div class="scenario-label lang jp">会員の場合</div>
+            <div class="scenario-val lang en">Activation just spends from your pool — no refund question applies</div>
+            <div class="scenario-val lang jp">開通はプールからの消費のみ — 返金の問題は発生しません</div>
+          </div>
+          <div class="scenario-why lang en"><strong>Why:</strong> Once activated we've paid the supplier. The "oops button" lets us absorb a small loss on genuine mistakes without making refunds exploitable.</div>
+          <div class="scenario-why lang jp"><strong>理由:</strong> 開通後は当社がサプライヤーに支払っています。「Oopsボタン」は誠実なミスに対して小さな損失を許容しつつ、悪用を防ぐための仕組みです。</div>
+        </div>
+      </div>
+
+      <!-- SCENARIO 3 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-num">3</div>
+          <div class="scenario-title">
+            <span class="lang en">Bundle partial usage (used some destinations, want to drop the rest)</span>
+            <span class="lang jp">バンドルの一部使用（一部の目的地を使用し、残りをキャンセルしたい）</span>
+          </div>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Formula</div>
+            <div class="scenario-label lang jp">計算式</div>
+            <div class="scenario-val lang en">Refund = <strong>(unused destinations ÷ total destinations) × bundle price</strong></div>
+            <div class="scenario-val lang jp">返金 = <strong>（未使用目的地数 ÷ 総目的地数）× バンドル価格</strong></div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Example</div>
+            <div class="scenario-label lang jp">例</div>
+            <div class="scenario-val lang en">$39.99 bundle, 2 unused of 5 = <span class="pill green">$16 credit</span></div>
+            <div class="scenario-val lang jp">$39.99バンドル、5つ中2つ未使用 = <span class="pill green">$16クレジット</span></div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Credit validity</div>
+            <div class="scenario-label lang jp">有効期限</div>
+            <div class="scenario-val lang en">12 months · usable on any future Peanut purchase</div>
+            <div class="scenario-val lang jp">12ヶ月 · Peanutの将来の購入に使用可能</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Format</div>
+            <div class="scenario-label lang jp">形式</div>
+            <div class="scenario-val lang en"><span class="pill peanut">Credit only</span> — never cash for partial use</div>
+            <div class="scenario-val lang jp"><span class="pill peanut">クレジットのみ</span> — 一部使用の現金返金は不可</div>
+          </div>
+          <div class="scenario-why lang en"><strong>Why:</strong> We've pre-purchased those eSIMs with the supplier. Credits keep us fair to users while protecting our cash position.</div>
+          <div class="scenario-why lang jp"><strong>理由:</strong> サプライヤーにeSIMを事前購入しているため、クレジット対応でユーザーへの公平性を保ちながら資金を守ります。</div>
+        </div>
+      </div>
+
+      <!-- SCENARIO 4 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-num">4</div>
+          <div class="scenario-title">
+            <span class="lang en">Subscription cancellation</span>
+            <span class="lang jp">サブスクリプションのキャンセル</span>
+          </div>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Monthly cancel</div>
+            <div class="scenario-label lang jp">月額キャンセル</div>
+            <div class="scenario-val lang en">Plan active to end of paid month · no future charges · <span class="pill red">no refund</span></div>
+            <div class="scenario-val lang jp">支払い済み月末まで有効 · 次回請求なし · <span class="pill red">返金不可</span></div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Annual cancel</div>
+            <div class="scenario-label lang jp">年間キャンセル</div>
+            <div class="scenario-val lang en">Plan active to end of paid year · no future charges · <span class="pill red">no refund</span></div>
+            <div class="scenario-val lang jp">支払い済み年末まで有効 · 次回請求なし · <span class="pill red">返金不可</span></div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">EU/UK annual</div>
+            <div class="scenario-label lang jp">EU/UK年間</div>
+            <div class="scenario-val lang en">Within 14 days: <span class="pill green">full cash refund</span> (legal requirement)</div>
+            <div class="scenario-val lang jp">14日以内: <span class="pill green">全額現金返金</span>（法的要件）</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">v1 (UAE)</div>
+            <div class="scenario-label lang jp">v1（UAE）</div>
+            <div class="scenario-val lang en">UAE Emirates crew only — no 14-day cooling-off required by law</div>
+            <div class="scenario-val lang jp">UAEのEmirates乗務員のみ — 法的な14日間クーリングオフ不要</div>
+          </div>
+          <div class="scenario-why lang en"><strong>Why:</strong> Subscription revenue is baked into our cost model. Cancellation stops future billing — it doesn't undo past value delivered.</div>
+          <div class="scenario-why lang jp"><strong>理由:</strong> サブスク収益はコストモデルに組み込まれています。キャンセルは将来の請求を停止するものであり、過去に提供した価値を遡及するものではありません。</div>
+        </div>
+      </div>
+
+      <!-- SCENARIO 5 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-num">5</div>
+          <div class="scenario-title">
+            <span class="lang en">Failed eSIM (tech issue, not user fault)</span>
+            <span class="lang jp">eSIM障害（技術的問題、ユーザーの過失なし）</span>
+          </div>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row">
+            <div class="scenario-label lang en">1st failure</div>
+            <div class="scenario-label lang jp">1回目の障害</div>
+            <div class="scenario-val lang en">Replace eSIM + restore the 1 GB to user's pool</div>
+            <div class="scenario-val lang jp">eSIMを交換 + 1 GBをユーザープールに返還</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">2nd failure</div>
+            <div class="scenario-label lang jp">2回目（同国）</div>
+            <div class="scenario-val lang en">Restore GB + <span class="pill green">bonus 2 GB</span> + flag that country for review</div>
+            <div class="scenario-val lang jp">GBを返還 + <span class="pill green">ボーナス2 GB</span> + 対象国をレビューフラグ</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">3rd in a row</div>
+            <div class="scenario-label lang jp">3回連続</div>
+            <div class="scenario-val lang en">Human support: <span class="pill green">free month</span> OR <span class="pill green">cash refund</span> OR supplier fix</div>
+            <div class="scenario-val lang jp">人によるサポート: <span class="pill green">1ヶ月無料</span> または <span class="pill green">現金返金</span> またはサプライヤー修正</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Annual bonus</div>
+            <div class="scenario-label lang jp">年間ボーナス</div>
+            <div class="scenario-val lang en">Annual subscribers: extra week added to term per failure tier</div>
+            <div class="scenario-val lang jp">年間会員: 障害ティアごとに年間期間を1週間延長</div>
+          </div>
+          <div class="scenario-why lang en"><strong>Why:</strong> Reputation &gt; margin. A generous failure response turns a frustrated crew member into a vocal advocate. We earn trust here.</div>
+          <div class="scenario-why lang jp"><strong>理由:</strong> レピュテーションは利益より大切。手厚い障害対応は、不満を持った乗務員を熱烈な支持者に変えます。ここで信頼を勝ち取ります。</div>
+        </div>
+      </div>
+
+      <!-- SCENARIO 6 -->
+      <div class="scenario-card">
+        <div class="scenario-header">
+          <div class="scenario-num">6</div>
+          <div class="scenario-title">
+            <span class="lang en">Chargeback / payment dispute</span>
+            <span class="lang jp">チャージバック / 支払い争議</span>
+          </div>
+        </div>
+        <div class="scenario-body">
+          <div class="scenario-row">
+            <div class="scenario-label lang en">What it is</div>
+            <div class="scenario-label lang jp">概要</div>
+            <div class="scenario-val lang en">Customer calls their bank instead of us — costs us the refund + <strong>$15 Stripe fee</strong> + reputation damage</div>
+            <div class="scenario-val lang jp">顧客が当社ではなく銀行に申し立て — 返金額 + <strong>Stripe手数料$15</strong> + レピュテーション損害が発生</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Prevention</div>
+            <div class="scenario-label lang jp">予防策</div>
+            <div class="scenario-val lang en">Stripe Radar on · 3D Secure every txn · clear merchant name · receipts &lt;1 min · one-tap refund button</div>
+            <div class="scenario-val lang jp">Stripe Radar常時有効 · 全取引3Dセキュア · 明確な取引名 · 1分以内の領収書 · ワンタップ返金ボタン</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Real case</div>
+            <div class="scenario-label lang jp">正当なケース</div>
+            <div class="scenario-val lang en">Service failed → accept chargeback + refund + apologize</div>
+            <div class="scenario-val lang jp">サービス障害 → チャージバックを受け入れ + 返金 + 謝罪</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Service used</div>
+            <div class="scenario-label lang jp">サービス使用済み</div>
+            <div class="scenario-val lang en">Dispute with Stripe evidence</div>
+            <div class="scenario-val lang jp">Stripeの証拠で争議</div>
+          </div>
+          <div class="scenario-row">
+            <div class="scenario-label lang en">Fraud</div>
+            <div class="scenario-label lang jp">不正</div>
+            <div class="scenario-val lang en">Dispute hard + block account</div>
+            <div class="scenario-val lang jp">強く争議 + アカウントをブロック</div>
+          </div>
+          <div class="scenario-why lang en"><strong>Survival metric:</strong> Travely eSIM got shut down at &lt;1% chargeback rate. Our targets:</div>
+          <div class="scenario-why lang jp"><strong>サバイバル指標:</strong> Travely eSIMはチャージバック率&lt;1%で事業停止。当社の目標:</div>
+          <div class="metric-bar-wrap" style="margin-top: 8px;">
+            <div class="metric-bar-row">
+              <span style="min-width:90px;" class="lang en">Safe &lt;0.3%</span>
+              <span style="min-width:90px;" class="lang jp">安全域 &lt;0.3%</span>
+              <div class="bar-track"><div class="bar-fill safe" style="width:30%"></div></div>
+              <span class="bar-label safe">&lt;0.3%</span>
+            </div>
+            <div class="metric-bar-row">
+              <span style="min-width:90px;" class="lang en">Emergency &gt;0.5%</span>
+              <span style="min-width:90px;" class="lang jp">緊急 &gt;0.5%</span>
+              <div class="bar-track"><div class="bar-fill warn" style="width:50%"></div></div>
+              <span class="bar-label warn">&gt;0.5%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /scenario-list -->
+  </div><!-- /section 3 -->
+
+
+  <!-- ===================== SECTION 4 — QUICK REFERENCE TABLE ===================== -->
+  <div class="section">
+    <div class="section-label lang en">Section 4 — Quick Reference</div>
+    <div class="section-label lang jp">セクション4 — クイックリファレンス</div>
+
+    <h2 class="lang en">One-Page Summary</h2>
+    <h2 class="lang jp">一覧サマリー</h2>
+
+    <p class="lang en">All plans and key refund rules in one glance.</p>
+    <p class="lang jp">すべてのプランと主要な返金ルールを一覧で確認。</p>
+
+    <div style="overflow-x:auto;">
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th class="lang en">Plan</th>
+          <th class="lang jp">プラン</th>
+          <th class="lang en">Price</th>
+          <th class="lang jp">価格</th>
+          <th class="lang en">GB / Validity</th>
+          <th class="lang jp">GB / 有効期限</th>
+          <th class="lang en">Carryover</th>
+          <th class="lang jp">繰越</th>
+          <th class="lang en">Refund (before activate)</th>
+          <th class="lang jp">返金（開通前）</th>
+          <th class="lang en">Refund (after activate)</th>
+          <th class="lang jp">返金（開通後）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="divider">
+          <td colspan="12" class="lang en">Pay-As-You-Go</td>
+          <td colspan="12" class="lang jp">都度払い</td>
+        </tr>
+        <tr>
+          <td><span class="lang en">T1 Pay-per-dest.</span><span class="lang jp">T1 都度払い</span></td>
+          <td><span class="lang en">$3–7 / trip</span><span class="lang jp">$3〜7/旅</span></td>
+          <td><span class="lang en">1 GB · 3–7 days</span><span class="lang jp">1 GB · 3〜7日</span></td>
+          <td><span class="lang en">—</span><span class="lang jp">—</span></td>
+          <td><span class="lang en">Full credit/cash (≤14d), credit only (>14d)</span><span class="lang jp">全額クレジット/現金（14日以内）、クレジットのみ（14日超）</span></td>
+          <td><span class="lang en">No refund · 3× oops/yr</span><span class="lang jp">返金不可 · 年3回Oops</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">T2 Smart Bundle</span><span class="lang jp">T2 スマートバンドル</span></td>
+          <td><span class="lang en">~15-20% off T1</span><span class="lang jp">T1より15〜20%引き</span></td>
+          <td><span class="lang en">1 GB / dest · 30 days</span><span class="lang jp">目的地ごと1 GB · 30日</span></td>
+          <td><span class="lang en">—</span><span class="lang jp">—</span></td>
+          <td><span class="lang en">Full credit/cash (≤14d), credit only (>14d)</span><span class="lang jp">全額クレジット/現金（14日以内）、クレジットのみ（14日超）</span></td>
+          <td><span class="lang en">Proportional credit for unused destinations</span><span class="lang jp">未使用目的地に比例したクレジット</span></td>
+        </tr>
+        <tr class="divider">
+          <td colspan="12" class="lang en">Monthly Subscription</td>
+          <td colspan="12" class="lang jp">月額サブスクリプション</td>
+        </tr>
+        <tr>
+          <td><span class="lang en">T3A Monthly Light</span><span class="lang jp">T3A 月額ライト</span></td>
+          <td><span class="lang en">$24/mo</span><span class="lang jp">$24/月</span></td>
+          <td><span class="lang en">10 GB pool</span><span class="lang jp">10 GBプール</span></td>
+          <td><span class="lang en">50% next month</span><span class="lang jp">翌月50%</span></td>
+          <td><span class="lang en">Full credit/cash (≤14d), credit only (>14d)</span><span class="lang jp">全額クレジット/現金（14日以内）、クレジットのみ（14日超）</span></td>
+          <td><span class="lang en">Activations spend from pool, no refund</span><span class="lang jp">開通はプールから消費、返金不可</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td><span class="lang en">T3B Monthly Standard</span><span class="lang jp">T3B 月額スタンダード</span></td>
+          <td><span class="lang en">$34/mo</span><span class="lang jp">$34/月</span></td>
+          <td><span class="lang en">15 GB pool</span><span class="lang jp">15 GBプール</span></td>
+          <td><span class="lang en">75% next month</span><span class="lang jp">翌月75%</span></td>
+          <td><span class="lang en">Full credit/cash (≤14d), credit only (>14d)</span><span class="lang jp">全額クレジット/現金（14日以内）、クレジットのみ（14日超）</span></td>
+          <td><span class="lang en">Activations spend from pool, no refund</span><span class="lang jp">開通はプールから消費、返金不可</span></td>
+        </tr>
+        <tr>
+          <td><span class="lang en">T3C Monthly Heavy</span><span class="lang jp">T3C 月額ヘビー</span></td>
+          <td><span class="lang en">$44/mo</span><span class="lang jp">$44/月</span></td>
+          <td><span class="lang en">20 GB pool</span><span class="lang jp">20 GBプール</span></td>
+          <td><span class="lang en">100% next month</span><span class="lang jp">翌月100%</span></td>
+          <td><span class="lang en">Full credit/cash (≤14d), credit only (>14d)</span><span class="lang jp">全額クレジット/現金（14日以内）、クレジットのみ（14日超）</span></td>
+          <td><span class="lang en">Activations spend from pool, no refund</span><span class="lang jp">開通はプールから消費、返金不可</span></td>
+        </tr>
+        <tr class="divider">
+          <td colspan="12" class="lang en">Annual Subscription</td>
+          <td colspan="12" class="lang jp">年間サブスクリプション</td>
+        </tr>
+        <tr>
+          <td><span class="lang en">T4 Annual Pass</span><span class="lang jp">T4 年間パス</span></td>
+          <td><span class="lang en">$249/yr</span><span class="lang jp">$249/年</span></td>
+          <td><span class="lang en">Monthly pool + 12 GB emergency</span><span class="lang jp">月次プール + 緊急12 GB</span></td>
+          <td><span class="lang en">100% for 2 months</span><span class="lang jp">2ヶ月間100%</span></td>
+          <td><span class="lang en">Full cash if EU/UK within 14d, else credit</span><span class="lang jp">EU/UK14日以内は全額現金、それ以外はクレジット</span></td>
+          <td><span class="lang en">No refund · $1.99/GB overage rate</span><span class="lang jp">返金不可 · 超過率$1.99/GB</span></td>
+        </tr>
+        <tr class="divider">
+          <td colspan="12" class="lang en">Add-ons</td>
+          <td colspan="12" class="lang jp">アドオン</td>
+        </tr>
+        <tr>
+          <td><span class="lang en">T5 Top-Up</span><span class="lang jp">T5 追加チャージ</span></td>
+          <td><span class="lang en">$1.99–$2.99/GB</span><span class="lang jp">$1.99〜$2.99/GB</span></td>
+          <td><span class="lang en">1 GB / add-on</span><span class="lang jp">1 GB / アドオン</span></td>
+          <td><span class="lang en">—</span><span class="lang jp">—</span></td>
+          <td><span class="lang en">Within 14d if unused</span><span class="lang jp">未使用なら14日以内</span></td>
+          <td><span class="lang en">No refund once used</span><span class="lang jp">使用後は返金不可</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div><!-- /section 4 -->
+
+
+  <!-- ===================== SECTION 5 — FAQ ===================== -->
+  <div class="section">
+    <div class="section-label lang en">Section 5 — FAQ</div>
+    <div class="section-label lang jp">セクション5 — よくある質問</div>
+
+    <h2 class="lang en">Frequently Asked Questions</h2>
+    <h2 class="lang jp">よくある質問</h2>
+
+    <p class="lang en">Clear answers for crew (and for NotebookLM to turn into an explainer video).</p>
+    <p class="lang jp">乗務員向けの明確な回答（NotebookLMが解説動画に変換するためにも使用）。</p>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="lang en">What plan is cheapest?</span>
+          <span class="lang jp">一番安いプランはどれですか？</span>
+          <span class="faq-arrow">›</span>
+        </summary>
+        <div class="faq-a">
+          <p class="lang en">It depends on how often you fly. If you fly 1–2 times a month and use hotel WiFi most of the time, <strong>Tier 1 Pay-Per-Destination at $3–7 per trip</strong> is cheapest — you only pay when you actually need data. If you fly frequently, Tier 3A Monthly Light at $24/month works out cheaper because it covers multiple destinations in one fixed fee.</p>
+          <p class="lang jp">飛行頻度によります。月1〜2回フライトし、ほとんどホテルWiFiを使用する場合、<strong>ティア1 都度払い（1旅行$3〜7）</strong>が最安です。データが必要な時だけ支払えばOK。頻繁に飛ぶ場合は、1つの固定料金で複数の目的地をカバーするティア3A 月額ライト（$24/月）の方がお得になります。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="lang en">What plan is most flexible?</span>
+          <span class="lang jp">一番柔軟なプランはどれですか？</span>
+          <span class="faq-arrow">›</span>
+        </summary>
+        <div class="faq-a">
+          <p class="lang en"><strong>Tier 1 Pay-Per-Destination</strong> gives you maximum flexibility — no commitment, no subscription, buy only what you need per trip. If you want smart flexibility (auto-planning from your roster with no manual work), <strong>Tier 2 Smart Roster Bundle</strong> is the most automated option.</p>
+          <p class="lang jp"><strong>ティア1 都度払い</strong>が最も柔軟です。コミットなし、サブスクなし、旅行ごとに必要なものだけ購入。スマートな柔軟性（ロスターから自動プランニング）が欲しい場合は、<strong>ティア2 スマートロスターバンドル</strong>が最も自動化されたオプションです。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="lang en">What if my flight cancels?</span>
+          <span class="lang jp">フライトがキャンセルになった場合は？</span>
+          <span class="faq-arrow">›</span>
+        </summary>
+        <div class="faq-a">
+          <p class="lang en">If you bought a plan but <strong>haven't activated</strong> the eSIM for that destination, you're covered. Within 14 days you can get a full credit or cash refund. After 14 days you get credit valid for 12 months. If you're on a monthly/annual plan, the GB just stays in your pool — use it on your next destination.</p>
+          <p class="lang jp">プランを購入したがその目的地の<strong>eSIMをまだ開通していない</strong>場合は問題ありません。14日以内であれば全額クレジットまたは現金返金が可能です。14日超の場合は12ヶ月有効のクレジットが付与されます。月額・年間プランの場合はGBがプールに残ります — 次の目的地に使用してください。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="lang en">What if the eSIM doesn't work?</span>
+          <span class="lang jp">eSIMが動作しない場合は？</span>
+          <span class="faq-arrow">›</span>
+        </summary>
+        <div class="faq-a">
+          <p class="lang en">We have a three-strike response. <strong>First failure:</strong> we replace the eSIM and restore your 1 GB. <strong>Second failure in the same country:</strong> we restore your GB and give you a bonus 2 GB. <strong>Third failure in a row:</strong> human support steps in — you choose a free month, a cash refund, or we escalate to the supplier for a fix. Annual subscribers also get extra time added to their term. We believe reputation is worth more than margin here.</p>
+          <p class="lang jp">3段階の対応があります。<strong>1回目の障害:</strong> eSIMを交換し、1 GBを返還します。<strong>同じ国での2回目の障害:</strong> GBを返還し、ボーナス2 GBを付与します。<strong>3回連続の障害:</strong> 人によるサポートが介入 — 1ヶ月無料、現金返金、またはサプライヤーへのエスカレーションを選択できます。年間会員は期間も延長されます。ここでは利益よりレピュテーションが大切だと考えています。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="lang en">Can I switch tiers mid-month?</span>
+          <span class="lang jp">月の途中でティアを変更できますか？</span>
+          <span class="faq-arrow">›</span>
+        </summary>
+        <div class="faq-a">
+          <p class="lang en">Yes — you can upgrade or downgrade at any time. Upgrades take effect immediately and you're billed the prorated difference. Downgrades take effect at the start of your next billing cycle. You never lose GB you've already accumulated.</p>
+          <p class="lang jp">はい。いつでもアップグレードまたはダウングレードできます。アップグレードはすぐに有効になり、差額を日割りで請求します。ダウングレードは次の請求サイクルの開始時に有効になります。すでに蓄積したGBが失われることはありません。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="lang en">What happens to unused GB?</span>
+          <span class="lang jp">未使用のGBはどうなりますか？</span>
+          <span class="faq-arrow">›</span>
+        </summary>
+        <div class="faq-a">
+          <p class="lang en">It depends on your tier. <strong>Tier 3A (Light):</strong> 50% carries to next month. <strong>Tier 3B (Standard):</strong> 75% carries over. <strong>Tier 3C (Heavy):</strong> 100% carries over — nothing lost. <strong>Annual (Tier 4):</strong> 100% carries for 2 months, plus you have a 12 GB emergency reserve you can tap any single month. Carryover is one of our biggest advantages versus competitors who let GB expire.</p>
+          <p class="lang jp">ティアによります。<strong>ティア3A（ライト）:</strong>50%が翌月に繰り越し。<strong>ティア3B（スタンダード）:</strong>75%が繰り越し。<strong>ティア3C（ヘビー）:</strong>100%が繰り越し — ロスなし。<strong>年間（ティア4）:</strong>100%が2ヶ月繰り越され、さらに任意の1ヶ月に使える12GBの緊急リザーブあり。GBを失効させる競合と比べ、繰り越しは当社の最大の優位性の一つです。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="lang en">How do refunds work?</span>
+          <span class="lang jp">返金はどのように機能しますか？</span>
+          <span class="faq-arrow">›</span>
+        </summary>
+        <div class="faq-a">
+          <p class="lang en">The key rule is <strong>activation = commitment.</strong> Before you activate an eSIM, getting money back is easy (full credit or cash within 14 days). After activation, refunds are limited to special cases — but we have an "oops button" that gives you 50% of a mistakenly activated GB back, usable 3 times per year. For subscriptions, cancellation stops future charges but doesn't refund the current period. For failed eSIMs (not your fault), we're generous — we replace, restore, and compensate. See Scenarios 1–6 above for every specific case.</p>
+          <p class="lang jp">重要なルールは<strong>開通 = コミットメント</strong>です。eSIMを開通する前は、返金が簡単です（14日以内なら全額クレジットまたは現金）。開通後は特別なケースに限られますが、誤って開通したGBの50%を返還する「Oopsボタン」が年3回使えます。サブスクのキャンセルは将来の請求を停止しますが、現在の期間は返金されません。eSIM障害（ユーザーの過失なし）の場合は手厚く対応します。具体的なケースはシナリオ1〜6を参照してください。</p>
+        </div>
+      </details>
+
+    </div><!-- /faq-list -->
+  </div><!-- /section 5 -->
+
+  <footer>
+    <span class="lang en">Peanut eSIM · Internal Reference · v1 · 2026-05-24 · For Balraj &amp; Akito · Not for public distribution</span>
+    <span class="lang jp">Peanut eSIM · 内部資料 · v1 · 2026-05-24 · Balraj &amp; Akito用 · 一般公開禁止</span>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+  function setLang(lang) {
+    document.body.setAttribute('data-lang', lang);
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-jp').classList.toggle('active', lang === 'jp');
+  }
+</script>
+</body>
+</html>
