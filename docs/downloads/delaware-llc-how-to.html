@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM — How to set up your Delaware LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning-soft: #FFF8EE;
+    --warning: #C97E22;
+    --rose: #C5556F;
+    --rose-soft: #FBEEEE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.65;
+    padding: 50px 5vw;
+  }
+  body[data-lang="jp"] { font-family: 'Noto Sans JP', sans-serif; line-height: 1.85; font-feature-settings: "palt"; }
+  .lang { display: none; }
+  body[data-lang="en"] .lang.en, body[data-lang="jp"] .lang.jp { display: inline; }
+  body[data-lang="en"] div.lang.en, body[data-lang="jp"] div.lang.jp,
+  body[data-lang="en"] p.lang.en, body[data-lang="jp"] p.lang.jp,
+  body[data-lang="en"] li.lang.en, body[data-lang="jp"] li.lang.jp,
+  body[data-lang="en"] h2.lang.en, body[data-lang="jp"] h2.lang.jp,
+  body[data-lang="en"] h3.lang.en, body[data-lang="jp"] h3.lang.jp,
+  body[data-lang="en"] h4.lang.en, body[data-lang="jp"] h4.lang.jp { display: block; }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .doc-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 3px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .lang-toggle button.active { background: var(--text); color: #fff; }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  body[data-lang="jp"] h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  h1 em { color: var(--peanut); font-style: normal; }
+  .lead {
+    color: var(--text-2);
+    font-size: 16px;
+    max-width: 64ch;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--text);
+    margin: 48px 0 18px;
+    font-weight: 400;
+  }
+  body[data-lang="jp"] h2 { font-family: 'Noto Sans JP', sans-serif; font-style: normal; font-weight: 600; font-size: 22px; }
+  h3 {
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+  h4 {
+    font-family: inherit;
+    font-size: 17px;
+    color: var(--text);
+    margin: 16px 0 8px;
+    font-weight: 600;
+  }
+
+  .tldr {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-bottom: 36px;
+  }
+  .tldr .tldr-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    border-radius: 100px;
+    margin-bottom: 12px;
+  }
+  .tldr ul { margin: 10px 0 0 22px; }
+  .tldr li { margin-bottom: 6px; color: var(--text-2); }
+  .tldr strong { color: var(--accent); }
+
+  .pre-block {
+    background: var(--warning-soft);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    padding: 22px 24px;
+    margin-bottom: 36px;
+    font-size: 14.5px;
+    color: var(--text-2);
+    line-height: 1.75;
+  }
+  .pre-block strong { color: var(--warning); }
+  .pre-block ul { margin: 10px 0 0 22px; }
+  .pre-block li { margin-bottom: 6px; }
+
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .phase-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .phase-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 8px;
+    margin-bottom: 18px;
+    letter-spacing: 0.04em;
+  }
+  .phase-meta strong { color: var(--text); }
+
+  .step {
+    margin: 18px 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .step:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .step-num {
+    display: inline-block;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-right: 8px;
+  }
+  .step-title {
+    font-size: 16px;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.45;
+    display: inline;
+  }
+  .step-what {
+    margin-top: 8px;
+    font-size: 14.5px;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+  .step-url {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .step-url:hover { text-decoration: underline; }
+  .step-watch {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--warning-soft);
+    border-left: 3px solid var(--warning);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+  .step-watch strong { color: var(--warning); }
+
+  .critical {
+    background: var(--rose-soft);
+    border-left: 3px solid var(--rose);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+  .critical strong { color: var(--rose); }
+  .critical-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--rose);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 24px;
+    font-size: 14px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  th {
+    background: var(--line-soft);
+    font-weight: 600;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  td.num { font-family: 'JetBrains Mono', monospace; color: var(--text); font-weight: 600; text-align: right; }
+  tr.total td { background: var(--accent-soft); font-weight: 700; }
+  tr.total td.num { color: var(--accent); }
+
+  ul.bullets { margin: 10px 0 20px 22px; color: var(--text-2); line-height: 1.7; }
+  ul.bullets li { margin-bottom: 6px; }
+  ul.bullets strong { color: var(--text); }
+
+  .sources {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    font-size: 13px;
+  }
+  .sources h3 { margin-top: 0; margin-bottom: 12px; }
+  .sources a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+  }
+  .sources a:hover { text-decoration: underline; }
+  .sources li { margin: 4px 0; list-style: none; }
+
+  .foot {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  .foot a { color: var(--peanut); text-decoration: none; margin-left: 12px; }
+  .foot a:hover { text-decoration: underline; }
+</style>
+</head>
+<body data-lang="en">
+<div class="wrap">
+  <div class="top">
+    <span class="doc-tag">PEANUT ESIM · DELAWARE LLC SETUP · 2026-05-24</span>
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('en')">EN</button>
+      <button onclick="setLang('jp')">日本語</button>
+    </div>
+  </div>
+
+  <h1 class="lang en">How to set up your <em>Delaware LLC</em></h1>
+  <h1 class="lang jp"><em>デラウェア LLC</em> 設立の手順</h1>
+
+  <p class="lead lang en">Practical, step-by-step guide for two non-US founders using Stripe Atlas. Every URL verified 2026-05-24. Every cost stated. The single biggest correction: Peanut is a TWO-member LLC, so it files Form 1065 + K-1s — not Form 5472.</p>
+  <p class="lead lang jp">米国非居住者の二人創業者が Stripe Atlas で設立する実務手順。全 URL を 2026-05-24 に確認。費用も全て明示。最重要訂正: Peanut は二人構成員 LLC のため、Form 5472 ではなく Form 1065 + K-1 を申告する。</p>
+
+  <div class="tldr">
+    <span class="tldr-tag">TL;DR</span>
+    <h3 style="color: var(--accent); margin: 0 0 4px;"><span class="lang en">The numbers that matter</span><span class="lang jp">重要数値</span></h3>
+    <ul class="lang en">
+      <li><strong>Total cost year 1:</strong> ~$1,424 – $2,524 (Atlas $500 + Delaware franchise $300 + Apple Dev $99 + Google Play $25 one-time + CPA $500–1,500)</li>
+      <li><strong>Year 2+ recurring:</strong> ~$949 – $2,024 / year</li>
+      <li><strong>Realistic timeline:</strong> 12–16 weeks from clicking "Start" on Atlas to first US-card payment cleared</li>
+      <li><strong>The long pole:</strong> IRS EIN by fax for foreign-no-SSN founders — 3–12 weeks typical</li>
+      <li><strong>Tool of choice:</strong> Stripe Atlas (vs Clerky $800+, Firstbase $399, DIY $150) — best fit for non-US founders</li>
+    </ul>
+    <ul class="lang jp">
+      <li><strong>初年度総コスト:</strong> 約 $1,424〜$2,524（Atlas $500 + デラウェア法人税 $300 + Apple Dev $99 + Google Play $25 一回 + CPA $500〜1,500）</li>
+      <li><strong>2年目以降の年間費用:</strong> 約 $949〜$2,024 / 年</li>
+      <li><strong>現実的タイムライン:</strong> Atlas で「Start」をクリックしてから最初の US カード決済が反映されるまで 12〜16 週間</li>
+      <li><strong>最大ボトルネック:</strong> 米国 SSN なし外国人創業者向けの IRS EIN を FAX で取得 — 3〜12 週間</li>
+      <li><strong>採用ツール:</strong> Stripe Atlas（Clerky $800〜、Firstbase $399、DIY $150 と比較） — 米国非居住者に最適</li>
+    </ul>
+  </div>
+
+  <div class="critical">
+    <span class="critical-tag">⚠ CRITICAL CORRECTION</span>
+    <p class="lang en"><strong>Peanut is a TWO-member LLC</strong> (Balraj + Akito both as legal members), so for US tax it is a <strong>partnership</strong> and files <strong>Form 1065 + K-1s per member</strong> — NOT Form 5472 + pro-forma Form 1120 (those apply only to single-member foreign-owned LLCs). Same $25K penalty risk if missed. Tell your CPA upfront: "two foreign members." Pricing for 1065 + 2 K-1s typically $800–$1,800.</p>
+    <p class="lang jp"><strong>Peanut は二人構成員 LLC</strong>（Balraj + Akito の双方が法的メンバー）のため、米国税務上は<strong>パートナーシップ</strong>扱いとなり、<strong>Form 1065 + 各メンバーの K-1</strong> を申告する — Form 5472 + 簡易 Form 1120 ではない（それはシングルメンバー外国人所有 LLC のみ）。怠った場合の $25K 罰金リスクは同じ。CPA には冒頭で「外国人メンバー二人」と伝える。Form 1065 + 2 K-1 の費用相場は $800〜$1,800。</p>
+  </div>
+
+  <div class="pre-block">
+    <strong class="lang en">✓ Pre-flight checklist — do this BEFORE clicking Atlas</strong>
+    <strong class="lang jp">✓ 事前準備チェックリスト — Atlas を始める前に</strong>
+    <ul>
+      <li class="lang en"><strong>Passport scans</strong> for both members (color, all 4 corners visible, valid &gt;6 months)</li>
+      <li class="lang jp"><strong>両メンバーのパスポートスキャン</strong>（カラー、四隅まで見える、有効期限 6 ヶ月超）</li>
+      <li class="lang en"><strong>LLC name decided</strong> (e.g. "Peanut eSIM LLC"). Search Delaware entity database to confirm availability. Save 1–2 backups.</li>
+      <li class="lang jp"><strong>LLC 名称を決定</strong>（例:「Peanut eSIM LLC」）。デラウェア州法人データベースで利用可能性を確認。バックアップ 1〜2 案も用意。</li>
+      <li class="lang en"><strong>Equity split agreed in writing</strong> (e.g. 60/40, 50/50)</li>
+      <li class="lang jp"><strong>持分比率を書面で合意</strong>（例:60/40、50/50）</li>
+      <li class="lang en"><strong>$500 ready</strong> on a credit/debit card that won't expire in the next 4 months</li>
+      <li class="lang jp"><strong>$500 を用意</strong>、4 ヶ月以内に有効期限切れにならないクレジット／デビットカードで</li>
+      <li class="lang en"><strong>Real physical UAE address</strong> for principal place of business (Mercury and Stripe reject registered-agent / virtual mailbox addresses)</li>
+      <li class="lang jp"><strong>UAE の実在住所</strong>を主たる事業所として準備（Mercury と Stripe は登録代理人住所・バーチャル住所を拒否する）</li>
+      <li class="lang en"><strong>Optional but smoother:</strong> US phone via Google Voice or OpenPhone (~$15/mo). Foreign numbers work but cause friction.</li>
+      <li class="lang jp"><strong>任意（あれば便利）:</strong> Google Voice か OpenPhone（約 $15/月）の米国電話番号。外国番号でも動くが摩擦が増える。</li>
+    </ul>
+  </div>
+
+  <!-- Phase A: Atlas application -->
+  <div class="phase">
+    <span class="phase-tag">Phase A</span>
+    <h2 class="lang en">Stripe Atlas application</h2>
+    <h2 class="lang jp">Stripe Atlas 申請</h2>
+    <div class="phase-meta"><span class="lang en">⏱ <strong>30–90 min clicking</strong> · then 1–2 business days for Delaware filing</span><span class="lang jp">⏱ <strong>クリック 30〜90 分</strong> · その後デラウェア申請に営業日 1〜2 日</span></div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Create a Stripe account (if you don't have one)</span>
+      <span class="step-title lang jp">Stripe アカウントを作成（未保有の場合）</span>
+      <div class="step-what lang en">Use the founder's primary email. Country at this stage doesn't bind Atlas — Atlas creates a SEPARATE US Stripe account for the LLC later.</div>
+      <div class="step-what lang jp">創業者のメインメールを使う。ここで選ぶ国は Atlas を縛らない — Atlas は後で別途 LLC 用の米国 Stripe アカウントを作成する。</div>
+      <a class="step-url" href="https://dashboard.stripe.com/register" target="_blank" rel="noopener">→ https://dashboard.stripe.com/register</a>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Use a permanent email (not a throwaway). All future Atlas, Mercury, and Stripe notifications route here.</span><span class="lang jp">使い捨てではなく永続メールを使う。Atlas・Mercury・Stripe からの全通知がここに届く。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Start the Atlas application</span>
+      <span class="step-title lang jp">Atlas 申請を開始</span>
+      <div class="step-what lang en">Click "Get started". Choose entity structure: <strong>LLC</strong> (not C-corp). Atlas will ask for company name, entity type, founder info, ownership split, officers (LLC manager), company address, US phone, and a 1–2 sentence company description.</div>
+      <div class="step-what lang jp">「Get started」をクリック。法人形態は <strong>LLC</strong> を選択（C-corp ではない）。会社名・形態・創業者情報・持分比率・役員（LLC マネージャー）・会社住所・米国電話・会社説明 1〜2 文を入力。</div>
+      <a class="step-url" href="https://stripe.com/atlas" target="_blank" rel="noopener">→ https://stripe.com/atlas</a>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">LLC vs C-corp is irreversible without major cost. LLC is correct for Peanut (no VC raise planned, simpler tax). The company description must NOT trigger restricted-business flags — describe as <strong>"travel connectivity / eSIM data plans for international travellers"</strong>, NOT "telecommunications carrier".</span><span class="lang jp">LLC か C-corp かは多大な費用なしには変更不可。Peanut は LLC が正解（VC 調達予定なし、税務シンプル）。会社説明は規制業務フラグを立てないように <strong>「travel connectivity / eSIM data plans for international travellers」</strong> と書く。「telecommunications carrier」は禁句。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-title lang en">Fill founder info — designate Responsible Party</span>
+      <span class="step-title lang jp">創業者情報入力 — 責任者（Responsible Party）を指定</span>
+      <div class="step-what lang en">Founder fields: full legal name (as on passport), DOB, home address, email. SSN/ITIN field: select the foreign-founder option — Atlas substitutes "foreign" on Form SS-4 line 7b. List both members with ownership %.</div>
+      <div class="step-what lang jp">創業者欄:パスポート通りの法的氏名・生年月日・自宅住所・メール。SSN/ITIN 欄は外国人創業者オプションを選択 — Atlas が Form SS-4 の line 7b に「foreign」と記入。両メンバーを持分%付きで記載。</div>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Only ONE "Responsible Party" on SS-4 — must be a person, not the LLC. This person becomes IRS's primary contact for the entity. Pick whichever member will handle US tax correspondence.</span><span class="lang jp">SS-4 の「Responsible Party」は一名のみ — 法人ではなく個人。この人物が IRS との一次連絡窓口になる。米国税務対応を担うメンバーを指定する。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <span class="step-title lang en">Review and DocuSign the incorporation pack</span>
+      <span class="step-title lang jp">設立書類を DocuSign で署名</span>
+      <div class="step-what lang en">Atlas emails a DocuSign with 5 LLC documents: (1) Certificate of Formation, (2) Form SS-4 (EIN request), (3) Form 8821 (authorises Atlas to talk to IRS on your behalf), (4) Operating Agreement, (5) Confidential Information &amp; Invention Assignment Agreement. Both members must sign.</div>
+      <div class="step-what lang jp">Atlas から 5 文書の DocuSign がメールされる:(1) Certificate of Formation、(2) Form SS-4（EIN 申請）、(3) Form 8821（Atlas に IRS との連絡権限を付与）、(4) Operating Agreement、(5) 秘密保持・発明譲渡契約。両メンバーが署名必須。</div>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Form 8821 is the KEY foreign-founder accelerator — sign it. It lets Atlas/IRS contact each other directly and shortens EIN turnaround materially.</span><span class="lang jp">Form 8821 は外国人創業者にとって最重要の高速化レバー — 必ず署名。Atlas と IRS が直接連絡でき、EIN 待ち時間が大幅短縮される。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span>
+      <span class="step-title lang en">Pay the $500 Atlas fee</span>
+      <span class="step-title lang jp">Atlas 手数料 $500 を支払う</span>
+      <div class="step-what lang en">Atlas charges $500 ONE-TIME (covers Delaware state filing + next-day expedited processing + year-1 registered agent + EIN filing + Operating Agreement + $2,500 Stripe processing credits + $50K in partner perks). Year-2 registered agent renewal is $100/yr.</div>
+      <div class="step-what lang jp">Atlas は一回 $500 課金（デラウェア州申請 + 翌日処理 + 1 年目登録代理人 + EIN 申請 + Operating Agreement + $2,500 の Stripe 処理クレジット + $50K のパートナー特典）を含む。2 年目以降の登録代理人更新は年 $100。</div>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Atlas only charges AFTER the EIN is issued (per multiple founder reports) — but they pre-authorize the card. Use a card that won't expire in the next 4 months.</span><span class="lang jp">Atlas は EIN 発行後に課金（複数の創業者報告による） — ただし事前与信は行う。4 ヶ月以内に有効期限切れにならないカードを使う。</span></div>
+    </div>
+  </div>
+
+  <!-- Phase B: Delaware filing -->
+  <div class="phase">
+    <span class="phase-tag">Phase B</span>
+    <h2 class="lang en">Wait for Delaware filing</h2>
+    <h2 class="lang jp">デラウェア州申請を待つ</h2>
+    <div class="phase-meta"><span class="lang en">⏱ <strong>1–2 business days</strong></span><span class="lang jp">⏱ <strong>営業日 1〜2 日</strong></span></div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Atlas files Delaware Certificate of Formation</span>
+      <span class="step-title lang jp">Atlas が Certificate of Formation を申請</span>
+      <div class="step-what lang en">Within 1–2 business days, the LLC is officially formed in Delaware. You receive a stamped Certificate of Formation PDF in the Atlas dashboard. <strong>The LLC legally EXISTS now</strong> — Delaware franchise tax clock starts ticking.</div>
+      <div class="step-what lang jp">営業日 1〜2 日以内に、LLC がデラウェアで正式に成立。Atlas ダッシュボードで押印済の Certificate of Formation PDF を受領。<strong>この時点で LLC は法的に存在</strong> — デラウェアの法人税カウントダウンが始まる。</div>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">If you form between Oct 1 – Dec 31, you still owe the FULL $300 Delaware franchise tax by June 1 of the following year (not pro-rated). Forming Jan–Sep is cheaper-per-day.</span><span class="lang jp">10/1〜12/31 に設立すると、翌年 6/1 までに全額 $300 のデラウェア法人税を支払う必要がある（按分されない）。1〜9 月設立の方が日割りで有利。</span></div>
+    </div>
+  </div>
+
+  <!-- Phase C: EIN -->
+  <div class="phase">
+    <span class="phase-tag">Phase C</span>
+    <h2 class="lang en">EIN application + waiting</h2>
+    <h2 class="lang jp">EIN 申請と待機</h2>
+    <div class="phase-meta"><span class="lang en">⏱ <strong>3–12 weeks</strong> (foreign-no-SSN via IRS fax)</span><span class="lang jp">⏱ <strong>3〜12 週間</strong>（米国 SSN なし外国人創業者向け IRS FAX 経路）</span></div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Atlas faxes Form SS-4 to the IRS</span>
+      <span class="step-title lang jp">Atlas が Form SS-4 を IRS に FAX</span>
+      <div class="step-what lang en">Atlas faxes Form SS-4 to the IRS international fax line for foreign applicants without US presence. IRS guidance says ~4 business days. Real-world for foreign-no-SSN founders in 2024–2026: typically 3–8 weeks, occasionally up to 12 weeks during IRS backlogs.</div>
+      <div class="step-what lang jp">Atlas が SS-4 を IRS の外国人創業者向け国際 FAX 番号に送信。IRS 公式は営業日 4 日と案内するが、2024〜2026 年の実態では SSN なし外国人創業者で 3〜8 週間、IRS の混雑時は 12 週間まで延びる。</div>
+      <div class="step-watch"><strong>⚠ CRITICAL — correct fax number:</strong> <span class="lang en">From outside US = <strong>304-707-9471</strong>. From inside US = 855-215-1627. (Old number 855-641-6935 was outdated — do not use.)</span><span class="lang jp">米国外から = <strong>304-707-9471</strong>。米国内から = 855-215-1627。（古い番号 855-641-6935 は廃止 — 使わない。）</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Do NOT do these things while waiting</span>
+      <span class="step-title lang jp">待機中にやってはいけないこと</span>
+      <div class="step-what lang en">Do NOT call IRS yourself — Atlas has Form 8821 authorization. Do NOT refile (you'll get duplicate EINs). Do NOT try to open Mercury without the EIN letter (limited functionality). Mark calendar at week 4 to check Atlas dashboard.</div>
+      <div class="step-what lang jp">自分から IRS に電話しない — Atlas は Form 8821 で代理権限を保有。再申請しない（EIN が重複発行される）。EIN レターなしで Mercury を開設しようとしない（機能制限）。週 4 にカレンダーで Atlas ダッシュボード確認。</div>
+      <div class="step-watch"><strong>💡 DIY alternative path (if not using Atlas):</strong> <span class="lang en">Submit SS-4 yourself: line 7a = your name, line 7b = "foreign" (per IRS Form SS-4 instructions Rev. Dec 2025), fax to 304-707-9471 from outside US. <strong>DO NOT</strong> apply online at irs.gov/ein — that path REQUIRES a US SSN or ITIN.</span><span class="lang jp">Atlas を使わない場合の DIY 経路:SS-4 を自分で提出 — 7a = 氏名、7b = 「foreign」（IRS Form SS-4 instructions Rev. Dec 2025 に準拠）、米国外から 304-707-9471 へ FAX。<strong>絶対に</strong> irs.gov/ein のオンラインでは申請しない — そこは米国 SSN または ITIN が必須。</span></div>
+    </div>
+  </div>
+
+  <!-- Phase D: Mercury -->
+  <div class="phase">
+    <span class="phase-tag">Phase D</span>
+    <h2 class="lang en">Mercury business bank account</h2>
+    <h2 class="lang jp">Mercury 法人銀行口座</h2>
+    <div class="phase-meta"><span class="lang en">⏱ <strong>10 min application → 1–5 business days approval</strong></span><span class="lang jp">⏱ <strong>申請 10 分 → 営業日 1〜5 日で承認</strong></span></div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Apply via Atlas Perks dashboard once EIN letter arrives</span>
+      <span class="step-title lang jp">EIN レター到着後、Atlas Perks ダッシュボードから申請</span>
+      <div class="step-what lang en">Mercury requires a valid EIN (CP575 letter or 147C). Upload: Certificate of Formation, EIN letter, Operating Agreement, founder passports, and the company website (have a 1-page landing live — even a Linktree works). <strong>Apply via Atlas Perks, not mercury.com directly</strong> — you keep pre-EIN privilege and signup bonus.</div>
+      <div class="step-what lang jp">Mercury は有効な EIN（CP575 または 147C）が必須。アップロードするもの:Certificate of Formation、EIN レター、Operating Agreement、創業者パスポート、会社サイト URL（1 ページのランディングで OK、Linktree でも可）。<strong>mercury.com 直接ではなく Atlas Perks 経由</strong>で申請 — pre-EIN 特典と入金ボーナスが残る。</div>
+      <a class="step-url" href="https://mercury.com" target="_blank" rel="noopener">→ https://mercury.com</a>
+      <div class="step-watch"><strong>⚠ Watch out (2024–2026 change):</strong> <span class="lang en">Mercury TIGHTENED rules for foreign founders. They now REJECT registered-agent addresses, virtual mailboxes, and P.O. boxes as the principal place of business. <strong>Use your real Dubai address.</strong> UAE is NOT on Mercury's prohibited-country list (as of May 2026), so approval is possible — but not guaranteed.</span><span class="lang jp">2024〜2026 年で外国人創業者向けルールが厳格化。Mercury は<strong>登録代理人住所・バーチャルメール・私書箱を主たる事業所として拒否</strong>。<strong>実在のドバイ住所を使う。</strong>UAE は Mercury の禁止国リストには非該当（2026 年 5 月時点）だが、承認は保証されない。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Answer the activity questionnaire correctly</span>
+      <span class="step-title lang jp">活動内容アンケートに正確に回答</span>
+      <div class="step-what lang en">Mercury asks: expected monthly volume, customer geography, payment methods, business description. For Peanut: <strong>"travel eSIM data plans, B2C, customers primarily airline crew + travelers, expected $X/mo"</strong>.</div>
+      <div class="step-what lang jp">Mercury が訊くこと:想定月次取扱高、顧客の地理、決済方法、事業説明。Peanut の場合:<strong>「travel eSIM data plans, B2C, customers primarily airline crew + travelers, expected $X/mo」</strong>。</div>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Don't use the words "telecom carrier", "money services business" (MSB), or "reseller of stored value" — describe as "digital travel-data subscriptions". Mercury's banking partner (Choice Financial) flags "stored value" / "prepaid telecom" for extra review.</span><span class="lang jp">「telecom carrier」「money services business（MSB）」「reseller of stored value」は禁句 — 「digital travel-data subscriptions」と説明する。Mercury の銀行パートナー（Choice Financial）は「stored value」「prepaid telecom」を追加審査対象にフラグする。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-title lang en">If Mercury rejects, use Wise Business as fallback</span>
+      <span class="step-title lang jp">Mercury が拒否した場合は Wise Business を代替に</span>
+      <div class="step-what lang en">Mercury approval is no longer guaranteed for non-US founders in 2026. Fallbacks (in order of ease for UAE residents): (a) <strong>Wise Business</strong> — easiest, accepts most non-US founders, full USD account routing &amp; wiring, (b) Relay Financial — FDIC-insured fintech, slightly stricter than Wise, (c) Brex — historically startup-friendly but recently restrictive for non-US.</div>
+      <div class="step-what lang jp">2026 年は Mercury 承認が非米国創業者に保証されない。UAE 居住者向け代替案（容易な順）:(a) <strong>Wise Business</strong> — 最易、ほとんどの非米国創業者を受け入れ、完全な USD 口座のルーティング・送金が可能、(b) Relay Financial — FDIC 保護のフィンテック、Wise よりやや厳しい、(c) Brex — 元々スタートアップ寄りだが最近は非米国に対し制限的。</div>
+      <a class="step-url" href="https://wise.com/us/business" target="_blank" rel="noopener">→ https://wise.com/us/business</a>
+      <div class="step-watch"><strong>💡 Note:</strong> <span class="lang en">Stripe US can deposit to Wise USD account just fine. If Mercury rejects, Wise is the cleanest plan B — apply same day.</span><span class="lang jp">Stripe US は Wise USD 口座への入金に問題なし。Mercury が拒否した場合、Wise が最もクリーンな B 案 — 同日に申請する。</span></div>
+    </div>
+  </div>
+
+  <!-- Phase E: Stripe US -->
+  <div class="phase">
+    <span class="phase-tag">Phase E</span>
+    <h2 class="lang en">Stripe US merchant account</h2>
+    <h2 class="lang jp">Stripe US 加盟店アカウント</h2>
+    <div class="phase-meta"><span class="lang en">⏱ <strong>1–2 hours setup → instant initial approval → 2–6 weeks underwriting for telecom/eSIM</strong></span><span class="lang jp">⏱ <strong>セットアップ 1〜2 時間 → 初期承認は即時 → telecom/eSIM 引受審査に 2〜6 週間</strong></span></div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Activate US Stripe via Atlas dashboard</span>
+      <span class="step-title lang jp">Atlas ダッシュボードから US Stripe を有効化</span>
+      <div class="step-what lang en">Atlas creates a US Stripe account pre-linked to your LLC EIN. Connect the Mercury (or Wise) account for payouts. Add business website, support email, statement descriptor ("PEANUT ESIM").</div>
+      <div class="step-what lang jp">Atlas が LLC EIN に紐付いた US Stripe アカウントを作成。Mercury（または Wise）口座を入金先として接続。事業サイト URL・サポートメール・明細表記「PEANUT ESIM」を追加。</div>
+      <a class="step-url" href="https://dashboard.stripe.com" target="_blank" rel="noopener">→ https://dashboard.stripe.com</a>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Use a real-looking, complete website — Stripe's risk team WILL look. Empty splash pages get held in review for weeks.</span><span class="lang jp">本物に見える完成度のサイトを用意 — Stripe のリスクチームは必ず見る。空のスプラッシュページは数週間レビュー保留される。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Select MCC 4814 — Telecommunication Services</span>
+      <span class="step-title lang jp">MCC 4814（Telecommunication Services）を選択</span>
+      <div class="step-what lang en">Use <strong>MCC 4814</strong> (Telecommunication Services, includes prepaid phone services). This is the accepted code for eSIM resellers like Airalo and Holafly. Stripe US accepts MCC 4814 — it is NOT on Stripe's restricted/prohibited list as of May 2026.</div>
+      <div class="step-what lang jp"><strong>MCC 4814</strong>（Telecommunication Services、プリペイド電話サービスを含む）を使用。Airalo・Holafly などの eSIM リセラーに採用されている標準コード。Stripe US は MCC 4814 を受け入れる — 2026 年 5 月時点で Stripe の制限・禁止リストに非該当。</div>
+      <a class="step-url" href="https://stripe.com/restricted-businesses" target="_blank" rel="noopener">→ https://stripe.com/restricted-businesses</a>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Do NOT use MCC 6051 (stored value) or quasi-cash codes — those trigger heavy compliance review. MCC 4900 (Utilities) is also wrong for eSIM resale. If Stripe auto-picks something different, contact support and request 4814.</span><span class="lang jp">MCC 6051（stored value）や準現金コードは使用しない — 重い遵守審査が発動する。MCC 4900（Utilities）も eSIM 再販には不適。Stripe が違うコードを自動選択した場合はサポートに連絡し 4814 を要求。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-title lang en">Survive the underwriting review</span>
+      <span class="step-title lang jp">引受審査を乗り切る</span>
+      <div class="step-what lang en">Because eSIM = recurring digital top-ups + international customers, Stripe risk may ask for: (a) sample supplier invoice (eSIM Access / your wholesaler), (b) terms of service URL, (c) refund policy, (d) proof you own the wholesale relationship. Provide promptly — silence = freeze.</div>
+      <div class="step-what lang jp">eSIM は定期的なデジタルトップアップ + 国際顧客のため、Stripe リスクチームから要求される可能性:(a) サプライヤー請求書サンプル（eSIM Access / 卸元）、(b) 利用規約 URL、(c) 返金ポリシー、(d) 卸取引関係の証明。即時提出 — 沈黙 = 凍結。</div>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Expect 2–6 weeks of back-and-forth for telecom-adjacent businesses. Have your Terms, Privacy, and Refund pages LIVE before going to underwriting.</span><span class="lang jp">telecom 近接事業は 2〜6 週間の往復を覚悟。引受審査前に利用規約・プライバシー・返金ポリシーのページを公開済にしておく。</span></div>
+    </div>
+  </div>
+
+  <!-- Phase F: Apple + Google -->
+  <div class="phase">
+    <span class="phase-tag">Phase F</span>
+    <h2 class="lang en">Apple Developer + Google Play accounts</h2>
+    <h2 class="lang jp">Apple Developer + Google Play アカウント</h2>
+    <div class="phase-meta"><span class="lang en">⏱ <strong>5–14 days D-U-N-S → 1–4 weeks Apple verification → 14 days closed testing for Google Play</strong></span><span class="lang jp">⏱ <strong>D-U-N-S に 5〜14 日 → Apple 認証に 1〜4 週間 → Google Play は 14 日のクローズドテスト</strong></span></div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Request a D-U-N-S Number (the silent killer)</span>
+      <span class="step-title lang jp">D-U-N-S Number を申請（隠れたボトルネック）</span>
+      <div class="step-what lang en">Apple AND Google Play require a D-U-N-S Number for organization enrollment. <strong>Apple's portal requests one FREE via Dun &amp; Bradstreet</strong>. Takes ~5–14 days. The single biggest scheduling gotcha — most founders forget about it and lose 1–2 weeks. Kick this off the day the LLC is formed.</div>
+      <div class="step-what lang jp">Apple と Google Play の両方が法人アカウントに D-U-N-S Number を要求。<strong>Apple のポータル経由で Dun &amp; Bradstreet から無料取得可能</strong>。所要約 5〜14 日。最大の隠しスケジュール ボトルネック — ほとんどの創業者が忘れて 1〜2 週間ロスする。LLC 設立当日に着手すること。</div>
+      <a class="step-url" href="https://developer.apple.com/enroll/duns-lookup/" target="_blank" rel="noopener">→ https://developer.apple.com/enroll/duns-lookup/</a>
+      <div class="step-watch"><strong>⚠ Watch out:</strong> <span class="lang en">Make sure the D&amp;B entity name EXACTLY matches your Delaware Certificate of Formation. Mismatch = re-request = +10 days. ONE D-U-N-S serves both Apple AND Google Play — apply once, use twice.</span><span class="lang jp">D&amp;B 登録の法人名がデラウェアの Certificate of Formation と完全一致するよう確認。不一致 = 再申請 = +10 日。<strong>1 件の D-U-N-S が Apple と Google Play の両方で使える</strong> — 一度申請、二度利用。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Enroll in Apple Developer Program — $99/yr</span>
+      <span class="step-title lang jp">Apple Developer Program に登録 — 年 $99</span>
+      <div class="step-what lang en">Need D-U-N-S, legal entity name (Delaware LLC), website at the LLC's domain, work email at that domain (e.g., founder@peanutesim.com), proof of legal binding authority (founder is the Member-Manager, sufficient). Apple may take 1–4 weeks to verify the organization in 2025–2026.</div>
+      <div class="step-what lang jp">必要なもの:D-U-N-S・法人名（デラウェア LLC）・LLC ドメインのサイト・そのドメインの業務メール（例:founder@peanutesim.com）・法人を拘束する権限の証明（メンバー マネージャーであることで充分）。2025〜2026 年は Apple の組織検証に 1〜4 週間かかる。</div>
+      <a class="step-url" href="https://developer.apple.com/programs/enroll/" target="_blank" rel="noopener">→ https://developer.apple.com/programs/enroll/</a>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-title lang en">Register Google Play Console — $25 one-time</span>
+      <span class="step-title lang jp">Google Play Console に登録 — 一回 $25</span>
+      <div class="step-what lang en">Fee: $25 ONE-TIME (no annual). Choose "Organization" account → D-U-N-S required (reuse the same one from Apple). Upload ID + business documents. Verification: a few hours to 2 business days.</div>
+      <div class="step-what lang jp">手数料:一回 $25（年会費なし）。「Organization」アカウントを選択 → D-U-N-S 必須（Apple と同じものを再利用）。ID + 事業書類をアップロード。検証:数時間〜営業日 2 日。</div>
+      <a class="step-url" href="https://play.google.com/console/signup" target="_blank" rel="noopener">→ https://play.google.com/console/signup</a>
+      <div class="step-watch"><strong>⚠ Hidden 14-day gotcha:</strong> <span class="lang en">New org accounts must run "closed testing" with at least 20 testers for 14 continuous days before applying for production access. Plan this BEFORE launch week — most founders miss it.</span><span class="lang jp">新規法人アカウントは公開アクセス申請の前に、最低 20 名のテスターによる「クローズドテスト」を 14 日連続で実施必須。ローンチ前に計画する — ほとんどの創業者が見落とす。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <span class="step-title lang en">For full step-by-step: see the account setup how-to</span>
+      <span class="step-title lang jp">詳細な手順は account setup how-to を参照</span>
+      <div class="step-what lang en">A combined sticky-tabbed how-to page covers Mercury, Stripe, Apple Dev, and Google Play with full step-by-step details, MCC codes, rejection risks, and esim-specific notes.</div>
+      <div class="step-what lang jp">Mercury・Stripe・Apple Dev・Google Play の完全手順、MCC コード、却下リスク、eSIM 固有の注意点を網羅したスティッキー タブ式の how-to ページがある。</div>
+      <a class="step-url" href="account-setup-how-to.html" target="_blank" rel="noopener">→ account-setup-how-to.html</a>
+    </div>
+  </div>
+
+  <!-- Total cost table -->
+  <h2 class="lang en">Total cost breakdown</h2>
+  <h2 class="lang jp">総コスト内訳</h2>
+  <table>
+    <thead>
+      <tr>
+        <th><span class="lang en">Item</span><span class="lang jp">項目</span></th>
+        <th><span class="lang en">Year 1</span><span class="lang jp">初年度</span></th>
+        <th><span class="lang en">Year 2+ / yr</span><span class="lang jp">2年目以降 / 年</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Stripe Atlas <span class="lang en">(one-time)</span><span class="lang jp">（一回）</span></td><td class="num">$500</td><td class="num">$0</td></tr>
+      <tr><td><span class="lang en">Delaware franchise tax</span><span class="lang jp">デラウェア法人税</span></td><td class="num">$300</td><td class="num">$300</td></tr>
+      <tr><td><span class="lang en">Registered agent</span><span class="lang jp">登録代理人</span></td><td class="num"><span class="lang en">$0 (year 1 bundled)</span><span class="lang jp">$0（1年目込み）</span></td><td class="num">$50–125</td></tr>
+      <tr><td>Apple Developer</td><td class="num">$99/yr</td><td class="num">$99/yr</td></tr>
+      <tr><td><span class="lang en">Google Play (one-time)</span><span class="lang jp">Google Play（一回）</span></td><td class="num">$25</td><td class="num">$0</td></tr>
+      <tr><td><span class="lang en">US CPA (Form 1065 + 2 K-1s)</span><span class="lang jp">US CPA（Form 1065 + K-1 二枚）</span></td><td class="num">$500–1,500</td><td class="num">$500–1,500</td></tr>
+      <tr><td><span class="lang en">Incidentals (US phone etc.)</span><span class="lang jp">雑費（米国電話など）</span></td><td class="num">$0–100</td><td class="num">$0</td></tr>
+      <tr class="total"><td><span class="lang en">TOTAL</span><span class="lang jp">合計</span></td><td class="num">$1,424 – $2,524</td><td class="num">$949 – $2,024</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Realistic timeline -->
+  <h2 class="lang en">Realistic timeline</h2>
+  <h2 class="lang jp">現実的タイムライン</h2>
+  <table>
+    <thead>
+      <tr>
+        <th><span class="lang en">Stage</span><span class="lang jp">段階</span></th>
+        <th><span class="lang en">Duration</span><span class="lang jp">期間</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="lang en">Atlas signup → LLC formed</span><span class="lang jp">Atlas 申請 → LLC 成立</span></td><td>1–2 business days</td></tr>
+      <tr><td><span class="lang en">LLC formed → EIN issued (foreign-no-SSN via fax)</span><span class="lang jp">LLC 成立 → EIN 取得（SSN なし FAX）</span></td><td>3–12 weeks</td></tr>
+      <tr><td><span class="lang en">EIN → Mercury live</span><span class="lang jp">EIN → Mercury 稼働</span></td><td>1–5 business days (Wise +1 week if Mercury rejects)</td></tr>
+      <tr><td><span class="lang en">Mercury live → Stripe US approved</span><span class="lang jp">Mercury 稼働 → Stripe US 承認</span></td><td>1–2 hours apply, 2–6 weeks underwriting</td></tr>
+      <tr><td><span class="lang en">D-U-N-S (parallel) → Apple Dev verified</span><span class="lang jp">D-U-N-S（並行） → Apple Dev 検証</span></td><td>5–10 days D-U-N-S + 1–4 weeks Apple</td></tr>
+      <tr><td><span class="lang en">Google Play 14-day closed testing</span><span class="lang jp">Google Play 14 日クローズドテスト</span></td><td>14 days (hard gate before first public release)</td></tr>
+      <tr class="total"><td><span class="lang en">Total to first US-card payment cleared</span><span class="lang jp">最初の US カード決済反映までの合計</span></td><td><strong>12–16 weeks realistic, 10 best case</strong></td></tr>
+    </tbody>
+  </table>
+
+  <!-- Common pitfalls -->
+  <h2 class="lang en">Common pitfalls</h2>
+  <h2 class="lang jp">よくある落とし穴</h2>
+  <ul class="bullets lang en">
+    <li>Using personal name on Atlas application instead of legal entity name — wastes a re-submit cycle.</li>
+    <li>Describing the business as "telecom carrier" or "prepaid stored value" on Atlas, Mercury, or Stripe forms — triggers heavy compliance flags. Use "travel-data digital subscriptions" instead.</li>
+    <li>Listing a virtual mailbox or registered-agent address as company principal address — Mercury (2024+) and Stripe risk teams reject these instantly.</li>
+    <li>Forming Oct–Dec — owes full $300 franchise tax for that year by next June 1 anyway. Form Jan–Sep if timing allows.</li>
+    <li>Trying to e-file Form 5472 / 1120 — IRS does not accept e-file for disregarded entities. Mail or fax only.</li>
+    <li><strong>Confusing single-member vs multi-member tax treatment</strong>. Peanut has TWO foreign members, so it files Form 1065 (partnership return) + K-1s, NOT Form 5472 + pro-forma 1120. This is the most common founder mistake.</li>
+    <li>Forgetting Form 1065 in year 2 — $25,000 penalty per form per year, plus $290/mo per missing K-1 (capped $3,500/yr). Get a CPA before April 15.</li>
+    <li>Not having the company website live before Stripe underwriting — empty splash page = multi-week freeze.</li>
+    <li>Letting registered agent lapse in year 2 — LLC loses good standing in Delaware, can be admin-dissolved.</li>
+    <li>Forgetting the D-U-N-S Number — silent killer of timelines. Kick it off the day after the LLC is formed.</li>
+  </ul>
+  <ul class="bullets lang jp">
+    <li>Atlas 申請で法人名ではなく個人名を入力 — 再提出サイクルを浪費。</li>
+    <li>Atlas・Mercury・Stripe で事業を「telecom carrier」「prepaid stored value」と説明 — 重い遵守フラグ発動。「travel-data digital subscriptions」と表現すべし。</li>
+    <li>バーチャルメール・登録代理人住所を主たる事業所として記載 — Mercury（2024 年以降）と Stripe リスクチームに即時拒否される。</li>
+    <li>10〜12 月設立 — その年の $300 法人税を翌年 6/1 までに全額負担。タイミングが許せば 1〜9 月設立を選ぶ。</li>
+    <li>Form 5472 / 1120 を e-filing しようとする — IRS は disregarded entity の e-filing を受け付けない。郵送か FAX のみ。</li>
+    <li><strong>シングルメンバーとマルチメンバーの税務扱いを混同</strong>。Peanut は外国人メンバー二人のため、Form 5472 + 簡易 1120 ではなく Form 1065（パートナーシップ申告）+ K-1 を申告。最頻出ミス。</li>
+    <li>2 年目に Form 1065 を忘れる — フォーム 1 件あたり年 $25,000 罰金 + 未提出 K-1 1 件あたり月 $290（年上限 $3,500）。4/15 前に CPA を確保。</li>
+    <li>Stripe 引受審査前にサイトを公開していない — 空のスプラッシュページ = 数週間凍結。</li>
+    <li>2 年目に登録代理人を更新しない — LLC がデラウェアでの good standing を失い、行政解散の可能性。</li>
+    <li>D-U-N-S Number を忘れる — タイムラインの隠れキラー。LLC 設立翌日に着手。</li>
+  </ul>
+
+  <!-- Sources -->
+  <div class="sources">
+    <h3><span class="lang en">Sources (verified 2026-05-24)</span><span class="lang jp">情報源（2026-05-24 確認済）</span></h3>
+    <ul>
+      <li><a href="https://stripe.com/atlas" target="_blank">stripe.com/atlas</a> — Atlas landing</li>
+      <li><a href="https://docs.stripe.com/atlas" target="_blank">docs.stripe.com/atlas</a> — Atlas full docs</li>
+      <li><a href="https://docs.stripe.com/atlas/incorporation-documents" target="_blank">docs.stripe.com/atlas/incorporation-documents</a></li>
+      <li><a href="https://docs.stripe.com/atlas/company-types" target="_blank">docs.stripe.com/atlas/company-types</a></li>
+      <li><a href="https://stripe.com/restricted-businesses" target="_blank">stripe.com/restricted-businesses</a> — MCC 4814 confirmed off list</li>
+      <li><a href="https://corp.delaware.gov/paytaxes/" target="_blank">corp.delaware.gov/paytaxes</a> — Delaware franchise tax</li>
+      <li><a href="https://corp.delaware.gov/alt-entitytaxinstructions/" target="_blank">corp.delaware.gov/alt-entitytaxinstructions</a></li>
+      <li><a href="https://www.irs.gov/instructions/iss4" target="_blank">irs.gov/instructions/iss4</a> — Form SS-4 (foreign founder rules)</li>
+      <li><a href="https://www.irs.gov/pub/irs-pdf/fss4.pdf" target="_blank">irs.gov/pub/irs-pdf/fss4.pdf</a> — SS-4 PDF</li>
+      <li><a href="https://www.irs.gov/instructions/i5472" target="_blank">irs.gov/instructions/i5472</a> — Form 5472 (for context, NOT applicable to Peanut)</li>
+      <li><a href="https://mercury.com" target="_blank">mercury.com</a></li>
+      <li><a href="https://wise.com/us/business" target="_blank">wise.com/us/business</a> — Mercury fallback</li>
+      <li><a href="https://developer.apple.com/programs/enroll/" target="_blank">developer.apple.com/programs/enroll/</a></li>
+      <li><a href="https://developer.apple.com/enroll/duns-lookup/" target="_blank">developer.apple.com/enroll/duns-lookup/</a> — free D-U-N-S</li>
+      <li><a href="https://developer.apple.com/help/account/membership/D-U-N-S/" target="_blank">developer.apple.com/help/account/membership/D-U-N-S/</a></li>
+      <li><a href="https://play.google.com/console/signup" target="_blank">play.google.com/console/signup</a></li>
+      <li><a href="https://www.fincen.gov/boi" target="_blank">fincen.gov/boi</a> — BOI status (check with CPA — rules moving)</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    PEANUT ESIM · DELAWARE LLC HOW-TO · v1 · 2026-05-24
+    <a href="../../index.html#roadmap">← back to roadmap</a>
+    <a href="account-setup-how-to.html">→ account setup how-to</a>
+  </div>
+</div>
+
+<script>
+function setLang(l) {
+  document.body.setAttribute('data-lang', l);
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-toggle button[onclick*="\'' + l + '\'"]').classList.add('active');
+}
+</script>
+</body>
+</html>

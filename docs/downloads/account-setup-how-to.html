@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM — Account Setup How-To (Mercury / Stripe / Apple / Google)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning-soft: #FFF8EE;
+    --warning: #C97E22;
+    --rose: #C5556F;
+    --rose-soft: #FBEEEE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.65;
+    padding: 50px 5vw 80px;
+  }
+  body[data-lang="jp"] { font-family: 'Noto Sans JP', sans-serif; line-height: 1.85; font-feature-settings: "palt"; }
+  .lang { display: none; }
+  body[data-lang="en"] .lang.en, body[data-lang="jp"] .lang.jp { display: inline; }
+  body[data-lang="en"] div.lang.en, body[data-lang="jp"] div.lang.jp,
+  body[data-lang="en"] p.lang.en, body[data-lang="jp"] p.lang.jp,
+  body[data-lang="en"] li.lang.en, body[data-lang="jp"] li.lang.jp,
+  body[data-lang="en"] h2.lang.en, body[data-lang="jp"] h2.lang.jp,
+  body[data-lang="en"] h3.lang.en, body[data-lang="jp"] h3.lang.jp,
+  body[data-lang="en"] h4.lang.en, body[data-lang="jp"] h4.lang.jp { display: block; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .doc-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 3px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .lang-toggle button.active { background: var(--text); color: #fff; }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  body[data-lang="jp"] h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  h1 em { color: var(--peanut); font-style: normal; }
+  .lead {
+    color: var(--text-2);
+    font-size: 16px;
+    max-width: 64ch;
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--text);
+    margin: 30px 0 12px;
+    font-weight: 400;
+  }
+  body[data-lang="jp"] h2 { font-family: 'Noto Sans JP', sans-serif; font-style: normal; font-weight: 600; font-size: 22px; }
+  h3 {
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin: 22px 0 10px;
+  }
+  h4 {
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--text);
+    margin: 14px 0 8px;
+    font-weight: 600;
+  }
+
+  /* Sticky tab nav */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 250, 247, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 14px 0;
+    margin: 0 -5vw 30px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  }
+  .tab-nav-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tab {
+    padding: 8px 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--text-2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .tab:hover {
+    border-color: var(--peanut);
+    color: var(--peanut);
+    background: var(--peanut-soft);
+  }
+  .tab.active {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+
+  /* Global watchouts */
+  .global-watch {
+    background: var(--warning-soft);
+    border-left: 3px solid var(--warning);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+  }
+  .global-watch h3 { margin-top: 0; color: var(--warning); }
+  .global-watch ul { margin: 8px 0 0 22px; }
+  .global-watch li { margin-bottom: 6px; color: var(--text-2); }
+  .global-watch strong { color: var(--warning); }
+
+  /* Sequencing */
+  .ordering {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+  }
+  .ordering h3 { margin-top: 0; color: var(--accent); }
+  .ordering ol { margin: 8px 0 0 22px; }
+  .ordering li { margin-bottom: 6px; color: var(--text-2); }
+  .ordering strong { color: var(--accent); }
+
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    scroll-margin-top: 90px;
+  }
+  .section-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-summary {
+    font-size: 14.5px;
+    color: var(--text-2);
+    line-height: 1.7;
+    padding: 14px 16px;
+    background: var(--line-soft);
+    border-radius: 8px;
+    margin: 14px 0 18px;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 14px 0 18px;
+  }
+  .meta {
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .meta-val { color: var(--text); font-weight: 500; }
+
+  .step {
+    margin: 14px 0;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .step:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .step-num {
+    display: inline-block;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-right: 8px;
+  }
+  .step-title {
+    font-size: 15.5px;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.45;
+    display: inline;
+  }
+  .step-what {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+  .step-url {
+    display: inline-block;
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .step-url:hover { text-decoration: underline; }
+  .step-watch {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--warning-soft);
+    border-left: 3px solid var(--warning);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+  .step-watch strong { color: var(--warning); }
+
+  .info-box {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+  .info-box h4 {
+    margin: 0 0 8px;
+    color: var(--text);
+    font-size: 13.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .info-box ul { margin: 4px 0 0 20px; }
+  .info-box li { margin-bottom: 4px; }
+  .info-box.rose { background: var(--rose-soft); border-color: var(--rose); }
+  .info-box.rose h4 { color: var(--rose); }
+  .info-box.accent { background: var(--accent-soft); border-color: var(--accent); }
+  .info-box.accent h4 { color: var(--accent); }
+
+  .key-fact {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 100px;
+    margin: 0 4px;
+  }
+
+  .sources {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--text-3);
+  }
+  .sources a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    display: block;
+    margin: 3px 0;
+  }
+  .sources a:hover { text-decoration: underline; }
+
+  .foot {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  .foot a { color: var(--peanut); text-decoration: none; margin-left: 12px; }
+  .foot a:hover { text-decoration: underline; }
+</style>
+</head>
+<body data-lang="en">
+<div class="wrap">
+  <div class="top">
+    <span class="doc-tag">PEANUT ESIM · ACCOUNT SETUP HOW-TO · 2026-05-24</span>
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('en')">EN</button>
+      <button onclick="setLang('jp')">日本語</button>
+    </div>
+  </div>
+
+  <h1 class="lang en">How to set up your <em>operational accounts</em></h1>
+  <h1 class="lang jp"><em>運用アカウント</em>のセットアップ手順</h1>
+
+  <p class="lead lang en">Mercury bank, Stripe US merchant, Apple Developer, Google Play Console. Sequenced for foreign founders with no US SSN. Every URL verified 2026-05-24.</p>
+  <p class="lead lang jp">Mercury 銀行、Stripe US 加盟店、Apple Developer、Google Play Console。米国 SSN なしの外国人創業者向けに順序立て。全 URL を 2026-05-24 に確認。</p>
+</div>
+
+<!-- Sticky tab nav -->
+<div class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="#mercury" class="tab" data-target="mercury">🏦 Mercury</a>
+    <a href="#stripe" class="tab" data-target="stripe">💳 Stripe</a>
+    <a href="#apple-dev" class="tab" data-target="apple-dev">🍎 Apple Dev</a>
+    <a href="#google-play" class="tab" data-target="google-play">▶ Google Play</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- Sequencing -->
+  <div class="ordering">
+    <h3><span class="lang en">📋 Correct sequencing (foreign founders)</span><span class="lang jp">📋 正しい順序（外国人創業者）</span></h3>
+    <ol class="lang en">
+      <li><strong>Day 0:</strong> Stripe Atlas LLC filing submitted</li>
+      <li><strong>Day 1:</strong> LLC formed; Atlas dashboard live</li>
+      <li><strong>Day 1 in parallel:</strong> Apply for Mercury via Atlas Perks (pre-EIN — same-day approval possible)</li>
+      <li><strong>Day 1 in parallel:</strong> Submit D-U-N-S Number request via Apple's portal (5–14 days)</li>
+      <li><strong>Day 1 in parallel:</strong> Build the public peanut-esim.com landing page so Apple + Stripe risk reviews pass</li>
+      <li><strong>Day 7–14:</strong> D-U-N-S received → start Apple Developer org enrollment AND Google Play org enrollment</li>
+      <li><strong>Week 4–8:</strong> EIN (IRS CP 575) arrives → upload to Mercury to unlock wires + debit card</li>
+      <li><strong>Week 4–8 (after EIN):</strong> Sign up for Stripe US merchant account, link Mercury for payouts</li>
+      <li><strong>Week 4–8:</strong> Stripe risk review for MCC 4814 (+7–14 days)</li>
+      <li><strong>Week 8–10:</strong> Google Play 14-day closed testing window starts (gates first public release)</li>
+    </ol>
+    <ol class="lang jp">
+      <li><strong>0 日目:</strong> Stripe Atlas LLC 申請を提出</li>
+      <li><strong>1 日目:</strong> LLC 成立、Atlas ダッシュボード稼働</li>
+      <li><strong>1 日目（並行）:</strong> Atlas Perks 経由で Mercury 申請（pre-EIN — 同日承認も可能）</li>
+      <li><strong>1 日目（並行）:</strong> Apple ポータルから D-U-N-S Number 申請（5〜14 日）</li>
+      <li><strong>1 日目（並行）:</strong> peanut-esim.com の公開ランディングを構築（Apple と Stripe のリスク審査通過のため）</li>
+      <li><strong>7〜14 日目:</strong> D-U-N-S 受領 → Apple Developer 法人登録と Google Play 法人登録を開始</li>
+      <li><strong>4〜8 週目:</strong> EIN（IRS CP 575）到着 → Mercury にアップロードし送金・デビットカードを解放</li>
+      <li><strong>4〜8 週目（EIN 後）:</strong> Stripe US 加盟店アカウント申請、Mercury を入金先に接続</li>
+      <li><strong>4〜8 週目:</strong> MCC 4814 の Stripe リスク審査（+7〜14 日）</li>
+      <li><strong>8〜10 週目:</strong> Google Play の 14 日クローズドテスト開始（最初の公開リリースを止める関門）</li>
+    </ol>
+  </div>
+
+  <!-- Global watchouts -->
+  <div class="global-watch">
+    <h3><span class="lang en">⚠ Top-of-mind constraints (apply to all 4 accounts)</span><span class="lang jp">⚠ 全 4 アカウント共通の重要制約</span></h3>
+    <ul class="lang en">
+      <li><strong>ONE D-U-N-S serves both Apple AND Google Play.</strong> Apply for it the day the LLC is formed — it is the longest lead-time item (5–14 days).</li>
+      <li><strong>Mercury can be opened pre-EIN via Atlas — DO IT IMMEDIATELY. Stripe US cannot.</strong></li>
+      <li>Foreign founder + no US SSN is fully supported across all 4 services as long as the LLC is a real US legal entity (not a DBA).</li>
+      <li>UAE is not on any of the four services' prohibited country lists as of 2026-05-24.</li>
+      <li>Atlas registered agent address works as the LEGAL/HEADQUARTERS address but NOT as the principal place of business — use UAE residential address there.</li>
+      <li>Mercury and Stripe both ban "Money Services Businesses" — never describe Peanut as one. "Telecommunications / Travel tech" is the safe framing.</li>
+      <li>Plan a 6–10 week runway from LLC-formed to first revenue. Unavoidable bottlenecks: EIN (4–8 wks), D-U-N-S (1–2 wks), Stripe telecom risk review (1–2 wks), Google Play closed testing (2 wks).</li>
+    </ul>
+    <ul class="lang jp">
+      <li><strong>1 件の D-U-N-S が Apple と Google Play の両方を兼ねる。</strong>LLC 設立当日に申請すること — 最長リードタイムの項目（5〜14 日）。</li>
+      <li><strong>Mercury は Atlas 経由で pre-EIN 開設可能 — 即時実行。Stripe US は不可。</strong></li>
+      <li>外国人創業者 + 米国 SSN なしは、LLC が実在の米国法人（DBA ではない）であれば 4 サービス全てでフル対応。</li>
+      <li>UAE は 2026-05-24 時点で 4 サービスいずれの禁止国リストにも非該当。</li>
+      <li>Atlas の登録代理人住所は法定／本社住所として使えるが、主たる事業所としては不可 — UAE 住所を使う。</li>
+      <li>Mercury と Stripe は「Money Services Business（MSB）」を禁止 — Peanut を MSB と表現しない。「Telecommunications / Travel tech」が安全な表現。</li>
+      <li>LLC 成立から初収益まで 6〜10 週の余裕を見込む。避けられないボトルネック:EIN（4〜8 週）、D-U-N-S（1〜2 週）、Stripe telecom リスク審査（1〜2 週）、Google Play クローズドテスト（2 週）。</li>
+    </ul>
+  </div>
+
+  <!-- ========== MERCURY ========== -->
+  <div class="section" id="mercury">
+    <span class="section-tag">Phase 1 · Item 6</span>
+    <h2 class="lang en">🏦 Mercury — US business bank account</h2>
+    <h2 class="lang jp">🏦 Mercury — 米国法人銀行口座</h2>
+
+    <div class="section-summary lang en">Mercury is the default fintech bank for Stripe Atlas LLCs. Foreign founders are explicitly supported (no US SSN required). UAE is NOT on Mercury's prohibited countries list as of 2026-05-24. <strong>Application can be launched pre-EIN from the Atlas dashboard</strong> — Mercury is the only Atlas partner that offers banking before the EIN arrives.</div>
+    <div class="section-summary lang jp">Mercury は Stripe Atlas LLC のデフォルト フィンテック銀行。外国人創業者は明示的にサポート（米国 SSN 不要）。UAE は 2026-05-24 時点で Mercury 禁止国リストに非該当。<strong>Atlas ダッシュボードから pre-EIN 申請可能</strong> — EIN 到着前に銀行を提供する唯一の Atlas パートナー。</div>
+
+    <div class="meta-grid">
+      <div class="meta"><span class="meta-label">Timeline</span><span class="meta-val lang en">Same-day to 24h via Atlas (pre-EIN). 3–10 days if foreign-founder review flagged.</span><span class="meta-val lang jp">Atlas 経由なら当日〜24 時間。外国人創業者レビュー時は 3〜10 日。</span></div>
+      <div class="meta"><span class="meta-label">Fees</span><span class="meta-val lang en">$0 open. $0/mo. $0 USD wire/ACH. Atlas bonus up to $500.</span><span class="meta-val lang jp">$0 開設。$0/月。USD 送金・ACH 無料。Atlas ボーナス最大 $500。</span></div>
+    </div>
+
+    <div class="info-box accent">
+      <h4>✓ Pre-requisites</h4>
+      <ul class="lang en">
+        <li>Delaware LLC formed (Atlas filing complete)</li>
+        <li>Passport in hand for every beneficial owner with &gt;=25% ownership</li>
+        <li>A real physical address (UAE residential is fine — registered agent address NOT accepted as principal place of business)</li>
+        <li>Description of the business and source of funds ready to type</li>
+        <li><strong>EIN is NOT required up-front</strong> via Atlas — Mercury accepts pre-EIN through Atlas partner flow</li>
+      </ul>
+      <ul class="lang jp">
+        <li>デラウェア LLC 成立（Atlas 申請完了）</li>
+        <li>25% 以上保有の各受益者のパスポート</li>
+        <li>実在の物理住所（UAE 住居で OK — 登録代理人住所は主たる事業所として不可）</li>
+        <li>事業内容と資金源を文章で説明できる準備</li>
+        <li><strong>EIN は前もって不要</strong>（Atlas 経由）— Mercury は Atlas パートナーフロー経由で pre-EIN を受け入れる</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Open the Mercury invite inside the Stripe Atlas dashboard</span>
+      <span class="step-title lang jp">Stripe Atlas ダッシュボードから Mercury 招待を開く</span>
+      <div class="step-what lang en">Inside the Atlas dashboard go to Perks &gt; Mercury and click "Apply". The application opens pre-filled with your LLC's legal name, formation docs, and your personal info.</div>
+      <div class="step-what lang jp">Atlas ダッシュボードで Perks &gt; Mercury に進み「Apply」をクリック。LLC 法人名・設立書類・個人情報が事前入力された申請が開く。</div>
+      <a class="step-url" href="https://dashboard.stripe.com/atlas/perks" target="_blank" rel="noopener">→ dashboard.stripe.com/atlas/perks</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Do NOT apply at mercury.com directly — you lose the Atlas pre-EIN privilege and any signup bonus.</span><span class="lang jp">mercury.com で直接申請しない — Atlas の pre-EIN 特典と入金ボーナスを失う。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Confirm legal entity details</span>
+      <span class="step-title lang jp">法人情報を確認</span>
+      <div class="step-what lang en">Confirm the company name, Delaware Certificate of Formation, and EIN field. If EIN has not yet arrived, leave blank and check "EIN pending" (Atlas flow only).</div>
+      <div class="step-what lang jp">会社名・デラウェア Certificate of Formation・EIN 欄を確認。EIN 未到着なら空欄にし「EIN pending」をチェック（Atlas フロー限定）。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Mercury will eventually require the EIN to unlock wire transfers and the debit card. Treat the account as "partially active" until the IRS CP 575 arrives and you upload it.</span><span class="lang jp">Mercury は最終的に EIN が必須（送金・デビットカード解放のため）。IRS CP 575 到着 → アップロードまで「部分稼働」と捉える。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-title lang en">Enter your two addresses</span>
+      <span class="step-title lang jp">2 つの住所を入力</span>
+      <div class="step-what lang en"><strong>Legal address</strong> = your Atlas-provided Delaware registered agent address. <strong>Physical / principal place of business</strong> = your real UAE residential address.</div>
+      <div class="step-what lang jp"><strong>法定住所</strong> = Atlas 提供のデラウェア登録代理人住所。<strong>物理／主たる事業所</strong> = UAE の実在住居住所。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Registered agent address, P.O. boxes, and UPS Store boxes are NOT accepted as the principal place of business. Use your Dubai residential address.</span><span class="lang jp">登録代理人住所・私書箱・UPS Store は主たる事業所として不可。ドバイ住居住所を使う。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <span class="step-title lang en">Describe the business in plain English</span>
+      <span class="step-title lang jp">事業内容を平易な英語で説明</span>
+      <div class="step-what lang en"><strong>Industry</strong> = "Telecommunications" or "Travel / Tourism technology". <strong>Description</strong> = <em>"Travel eSIM reseller — we sell prepaid mobile data plans to international travelers via iOS app, Android app, and web checkout. Underlying connectivity is wholesaled from licensed MVNO partners."</em></div>
+      <div class="step-what lang jp"><strong>業種</strong> = 「Telecommunications」または「Travel / Tourism technology」。<strong>説明</strong> = <em>「Travel eSIM reseller — we sell prepaid mobile data plans to international travelers via iOS app, Android app, and web checkout. Underlying connectivity is wholesaled from licensed MVNO partners.」</em></div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Do NOT describe yourself as a "money services business" (MSB) or "prepaid card issuer" — Mercury bans MSBs outright. eSIM reselling is NOT an MSB, but a careless description can trigger that classification.</span><span class="lang jp">「Money Services Business（MSB）」「prepaid card issuer」と説明しない — Mercury は MSB を明確に禁止。eSIM 再販は MSB ではないが、雑な説明で分類される可能性。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span>
+      <span class="step-title lang en">List every beneficial owner &gt;=25%</span>
+      <span class="step-title lang jp">25% 以上の各受益者を全員リスト</span>
+      <div class="step-what lang en">Add Balraj (and any co-founder &gt;=25%). Upload passport for each. Designate one "control person" (CEO/CFO/COO) — this person gets admin access on approval.</div>
+      <div class="step-what lang jp">Balraj（および 25% 以上の共同創業者）を追加。各自のパスポートをアップロード。「control person」（CEO/CFO/COO）を一名指定 — 承認時に管理者権限を取得。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Lying or omitting a beneficial owner is a CIP (Customer Identification Program) violation under US BSA rules. Mercury cross-checks against the Atlas filing — the names must match exactly.</span><span class="lang jp">受益者の虚偽記載・省略は米国 BSA 規則の CIP（Customer Identification Program）違反。Mercury は Atlas 申請と照合 — 氏名は完全一致必須。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span>
+      <span class="step-title lang en">Submit and wait for the auto-decision</span>
+      <span class="step-title lang jp">送信し自動判定を待つ</span>
+      <div class="step-what lang en">If you applied via Atlas, most approvals come back within minutes to 24 hours. Manual review (foreign-founder flag) adds 3–10 business days.</div>
+      <div class="step-what lang jp">Atlas 経由で申請した場合、ほとんどの承認は数分〜24 時間で戻る。手動レビュー（外国人創業者フラグ）は営業日 3〜10 日追加。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Foreign-founder applications have come under more scrutiny in 2025–2026 — Mercury may ask for an additional "source of funds" explanation or proof of UAE residence. Reply within 48 hours; stale tickets are auto-closed.</span><span class="lang jp">2025〜2026 年は外国人創業者申請がより精査される — Mercury は追加の「資金源」説明や UAE 在住証明を要求する場合あり。48 時間以内に返信、放置すると自動クローズ。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span>
+      <span class="step-title lang en">Fund the account and order debit cards</span>
+      <span class="step-title lang jp">入金しデビットカードを発行</span>
+      <div class="step-what lang en">Make an initial transfer from your UAE bank via SWIFT or use Wise/Revolut to push USD into Mercury. Order a virtual debit card immediately; physical cards take ~7 days but cannot ship to UAE — pick a US forwarding address or skip the physical card.</div>
+      <div class="step-what lang jp">UAE 銀行から SWIFT 送金、または Wise/Revolut で USD を Mercury に入金。仮想デビットカードを即発行;物理カードは約 7 日だが UAE へ発送不可 — 米国転送先住所を選ぶか物理カードをスキップ。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Mercury will NOT ship a physical debit card outside the US. Virtual cards work for almost everything (Stripe, DUNS-related fees, Apple Dev fees, Google Play fees).</span><span class="lang jp">Mercury は物理デビットカードを米国外に発送しない。仮想カードでほとんど対応可能（Stripe、DUNS 関連費用、Apple Dev 費用、Google Play 費用）。</span></div>
+    </div>
+
+    <div class="info-box rose">
+      <h4>⚠ Pre-EIN limitation</h4>
+      <p class="lang en">Pre-EIN Mercury accounts can <strong>RECEIVE</strong> money but cannot send wires or issue physical cards until EIN is uploaded. Plan around this 4–8 week gap.</p>
+      <p class="lang jp">Pre-EIN の Mercury アカウントは入金は<strong>受け取れる</strong>が、EIN アップロードまで送金・物理カード発行は不可。この 4〜8 週ギャップを織り込む。</p>
+    </div>
+
+    <div class="info-box">
+      <h4>eSIM-specific notes</h4>
+      <ul class="lang en">
+        <li>Mercury supports eSIM resellers — they classify as "Telecommunications" or "Travel tech", NOT as MSBs</li>
+        <li>If you ever start issuing your own prepaid debit cards or wallets, you cross into MSB territory and Mercury will close the account</li>
+        <li>Mercury does not police MCC codes (that's Stripe's job) — focus on a clean, accurate description</li>
+      </ul>
+      <ul class="lang jp">
+        <li>Mercury は eSIM リセラーをサポート — 「Telecommunications」または「Travel tech」分類で、MSB ではない</li>
+        <li>独自のプリペイドデビットカード・ウォレットを発行し始めると MSB 領域に踏み込み、Mercury は口座閉鎖</li>
+        <li>Mercury は MCC コードを管理しない（Stripe の管轄）— クリーンで正確な説明に集中</li>
+      </ul>
+    </div>
+
+    <div class="sources">
+      <strong>Sources:</strong>
+      <a href="https://support.mercury.com/hc/en-us/articles/28770467511060-Eligibility" target="_blank">support.mercury.com — Eligibility</a>
+      <a href="https://support.mercury.com/hc/en-us/articles/28771710754580-Prohibited-countries" target="_blank">support.mercury.com — Prohibited countries</a>
+      <a href="https://mercury.com/blog/mercury-stripe-atlas-partnership" target="_blank">mercury.com/blog — Atlas partnership</a>
+      <a href="https://docs.stripe.com/atlas/payments-business-bank" target="_blank">docs.stripe.com/atlas/payments-business-bank</a>
+    </div>
+  </div>
+
+  <!-- ========== STRIPE ========== -->
+  <div class="section" id="stripe">
+    <span class="section-tag">Phase 1 · Item 7</span>
+    <h2 class="lang en">💳 Stripe US — Merchant account for the LLC</h2>
+    <h2 class="lang jp">💳 Stripe US — LLC 加盟店アカウント</h2>
+
+    <div class="section-summary lang en">Stripe is the payments rail for both the web checkout and any Apple/Google IAP refunds-and-credits flow. <strong>Travel eSIM / prepaid mobile data is NOT on Stripe's prohibited or restricted business lists as of 2026-05-24</strong> — it processes under standard MCC 4814 (Telecommunication Services). First-time telecom merchant risk review adds 7–14 days.</div>
+    <div class="section-summary lang jp">Stripe は Web チェックアウトと Apple/Google IAP 返金・クレジット フローの決済レール。<strong>Travel eSIM / プリペイド モバイルデータは 2026-05-24 時点で Stripe の禁止・制限事業リストに非該当</strong> — 標準の MCC 4814（Telecommunication Services）で処理される。telecom 初出店者のリスク審査で 7〜14 日追加。</div>
+
+    <div class="meta-grid">
+      <div class="meta"><span class="meta-label">Timeline</span><span class="meta-val lang en">Account live: minutes. First payout: 7–14 days. Risk review: +7–14 days.</span><span class="meta-val lang jp">アカウント稼働:数分。初回入金:7〜14 日。リスク審査:+7〜14 日。</span></div>
+      <div class="meta"><span class="meta-label">Fees</span><span class="meta-val">2.9% + $0.30 US / 3.4% + $0.30 intl / $0 setup</span></div>
+    </div>
+
+    <div class="info-box accent">
+      <h4>✓ Pre-requisites</h4>
+      <ul class="lang en">
+        <li>Delaware LLC formed</li>
+        <li><strong>EIN issued (IRS CP 575) — REQUIRED</strong>, no pre-EIN path on Stripe</li>
+        <li>Mercury (or Atlas Treasury) account number + routing number ready</li>
+        <li>Live website with: company name, contact info, what you sell, prices, refund policy, ToS, privacy policy</li>
+        <li>Mobile / WhatsApp number reachable for SMS verification</li>
+      </ul>
+      <ul class="lang jp">
+        <li>デラウェア LLC 成立</li>
+        <li><strong>EIN 発行済（IRS CP 575）— 必須</strong>、Stripe には pre-EIN 経路なし</li>
+        <li>Mercury（または Atlas Treasury）の口座番号 + ルーティング番号を準備</li>
+        <li>公開済サイト:会社名・連絡先・販売内容・価格・返金ポリシー・ToS・プライバシーポリシー</li>
+        <li>SMS 認証用の携帯／WhatsApp 番号</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Sign up at the Stripe dashboard</span>
+      <span class="step-title lang jp">Stripe ダッシュボードで登録</span>
+      <div class="step-what lang en">Use your business email. Choose <strong>"United States"</strong> as country. After email verification you'll land in the dashboard.</div>
+      <div class="step-what lang jp">業務メールを使用。国は <strong>「United States」</strong> を選択。メール認証後、ダッシュボードに着く。</div>
+      <a class="step-url" href="https://dashboard.stripe.com/register" target="_blank" rel="noopener">→ dashboard.stripe.com/register</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Once you pick a country at signup you cannot change it. United States only — do NOT pick UAE here.</span><span class="lang jp">登録時に選んだ国は変更不可。United States 一択 — ここで UAE を選ばない。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Activate the account — business details</span>
+      <span class="step-title lang jp">アカウント有効化 — 事業情報</span>
+      <div class="step-what lang en">Business type: "Company" &gt; "Single-member LLC" (or "Multi-member LLC"). Country: US. Enter EIN, Delaware Certificate of Formation address, and the registered agent address.</div>
+      <div class="step-what lang jp">事業形態:「Company」&gt;「Single-member LLC」（または「Multi-member LLC」）。国:US。EIN・デラウェア Certificate of Formation 住所・登録代理人住所を入力。</div>
+      <a class="step-url" href="https://dashboard.stripe.com/account/onboarding" target="_blank" rel="noopener">→ dashboard.stripe.com/account/onboarding</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Where Stripe asks for "business representative SSN", tick "I do not have a US SSN". Stripe will accept the passport number + foreign address as the alternative. This is the standard Atlas flow — works.</span><span class="lang jp">「business representative SSN」欄では「I do not have a US SSN」にチェック。Stripe はパスポート番号 + 外国住所を代替として受け入れる。Atlas 標準フロー — 動く。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-title lang en">Pick the right MCC — <span class="key-fact">MCC 4814</span></span>
+      <span class="step-title lang jp">正しい MCC を選択 — <span class="key-fact">MCC 4814</span></span>
+      <div class="step-what lang en">Industry: "Telecommunications Services". <strong>MCC 4814</strong> (Telecommunication Services — local &amp; long-distance, prepaid phone services, recurring telephone). Sub-category: "Mobile Data / Connectivity". <strong>Same MCC as Airalo, Holafly, Crew SIM.</strong></div>
+      <div class="step-what lang jp">業種:「Telecommunications Services」。<strong>MCC 4814</strong>（Telecommunication Services — 市内・長距離、プリペイド電話サービス、定期通信）。サブカテゴリー:「Mobile Data / Connectivity」。<strong>Airalo・Holafly・Crew SIM と同じ MCC。</strong></div>
+      <a class="step-url" href="https://dashboard.stripe.com/settings/payments" target="_blank" rel="noopener">→ dashboard.stripe.com/settings/payments</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Do NOT pick MCC 6051 (Quasi-cash) or 5816 (Digital Goods) — both trigger heavier risk review and worse interchange. 4814 is the correct, lowest-friction code for prepaid eSIM data.</span><span class="lang jp">MCC 6051（Quasi-cash）や 5816（Digital Goods）は選ばない — どちらも重いリスク審査と悪い interchange を発動。4814 がプリペイド eSIM データに正しく最摩擦最小のコード。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <span class="step-title lang en">Add the Mercury bank account</span>
+      <span class="step-title lang jp">Mercury 銀行口座を接続</span>
+      <div class="step-what lang en">Enter the Mercury routing + account number. Stripe will do two micro-deposits within 1–2 business days; verify them to enable payouts.</div>
+      <div class="step-what lang jp">Mercury のルーティング + 口座番号を入力。Stripe が営業日 1〜2 日でマイクロ デポジット 2 件を実行;検証して入金を有効化。</div>
+      <a class="step-url" href="https://dashboard.stripe.com/settings/payouts" target="_blank" rel="noopener">→ dashboard.stripe.com/settings/payouts</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Stripe payouts to Mercury take 2 business days (T+2) on standard. The <strong>first payout is held 7–14 days</strong> for risk reasons — plan cashflow accordingly.</span><span class="lang jp">Stripe の Mercury 入金は標準で営業日 2 日（T+2）。<strong>初回入金は 7〜14 日保留</strong>（リスク対策） — キャッシュフロー計画に反映。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span>
+      <span class="step-title lang en">Publish a compliant website BEFORE going live</span>
+      <span class="step-title lang jp">公開前に準拠サイトを公開</span>
+      <div class="step-what lang en">The site must show: business name = Peanut eSIM LLC (or matching legal name), contact email, full price in USD, refund policy, ToS, privacy policy, what's sold ("travel eSIM data plans"). Stripe's risk team checks this manually.</div>
+      <div class="step-what lang jp">サイトに必須:事業名 = Peanut eSIM LLC（または法定名）、連絡先メール、USD での全価格、返金ポリシー、ToS、プライバシーポリシー、販売内容（「travel eSIM data plans」）。Stripe リスクチームが手動チェック。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">A coming-soon page or password-protected site WILL fail Stripe risk review. Have a one-page public site live with all 7 elements before submitting for activation.</span><span class="lang jp">Coming-soon ページやパスワード保護サイトは Stripe リスク審査で必ず失敗。7 要素を備えた 1 ページ公開サイトを有効化申請前に立てる。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span>
+      <span class="step-title lang en">Submit for activation and wait for risk review</span>
+      <span class="step-title lang jp">有効化申請しリスク審査を待つ</span>
+      <div class="step-what lang en">Stripe usually auto-approves within minutes. Telecom merchants (MCC 4814) sometimes get queued for risk review — Stripe will email asking for supplier docs, a refund policy, or proof of MVNO relationship. Reply within 48 hours.</div>
+      <div class="step-what lang jp">Stripe は通常数分以内に自動承認。Telecom 加盟店（MCC 4814）はリスク審査に入る場合 — Stripe からサプライヤー書類・返金ポリシー・MVNO 関係証明をメールで要求される。48 時間以内に返信。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">First-time telecom merchants under MCC 4814 see review times of 7–14 days. Account stays in "restricted — limited functionality" until cleared. You can still test in test mode during review.</span><span class="lang jp">MCC 4814 の初回 telecom 加盟店は審査 7〜14 日。クリアまで「restricted — limited functionality」状態。審査中も test mode でテスト可。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span>
+      <span class="step-title lang en">Enable Stripe Tax and Apple Pay / Google Pay</span>
+      <span class="step-title lang jp">Stripe Tax と Apple Pay / Google Pay を有効化</span>
+      <div class="step-what lang en">Turn on Stripe Tax (auto-calculates US sales tax / VAT). Enable Apple Pay (domain verification required — drop the file from Stripe at /.well-known/apple-developer-merchantid-domain-association). Google Pay is auto-enabled.</div>
+      <div class="step-what lang jp">Stripe Tax を ON（米国売上税 / VAT を自動計算）。Apple Pay を有効化（ドメイン認証必須 — Stripe からのファイルを /.well-known/apple-developer-merchantid-domain-association に配置）。Google Pay は自動有効。</div>
+      <a class="step-url" href="https://dashboard.stripe.com/settings/tax" target="_blank" rel="noopener">→ dashboard.stripe.com/settings/tax</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Without Apple Pay domain verification, iPhone web checkout conversion drops ~20%. This step is free, takes 5 minutes.</span><span class="lang jp">Apple Pay ドメイン認証なしだと iPhone Web チェックアウト コンバージョンが約 20% 低下。無料、5 分。</span></div>
+    </div>
+
+    <div class="info-box accent">
+      <h4>eSIM-specific notes</h4>
+      <ul class="lang en">
+        <li><strong>Stripe officially DOES NOT list eSIM</strong> or prepaid mobile data on its restricted/prohibited business pages (verified 2026-05-24)</li>
+        <li>MCC 4814 is the industry-standard code for prepaid eSIM data — used by Airalo, Holafly, Saily, Crew SIM</li>
+        <li>Carrier-billed top-ups (sending USSD or carrier APIs) are out of scope — you only sell the data plan, the user installs the eSIM</li>
+        <li>Stripe risk loves to see a clear "instant digital delivery" message — customers receive a QR code by email within 60 seconds. State this on the checkout and the FAQ.</li>
+      </ul>
+      <ul class="lang jp">
+        <li><strong>Stripe は公式に eSIM</strong> やプリペイドモバイルデータを制限・禁止リストに載せていない（2026-05-24 確認）</li>
+        <li>MCC 4814 はプリペイド eSIM データの業界標準 — Airalo・Holafly・Saily・Crew SIM が採用</li>
+        <li>キャリア決済型トップアップ（USSD やキャリア API）は範囲外 — データプラン販売のみ、eSIM 設定はユーザー</li>
+        <li>Stripe リスクは「instant digital delivery」明示が好き — 顧客は 60 秒以内にメールで QR コードを受領。これをチェックアウトと FAQ に明記。</li>
+      </ul>
+    </div>
+
+    <div class="info-box rose">
+      <h4>⚠ Top watchout</h4>
+      <p class="lang en">New telecom merchants get a 7–14 day rolling reserve on the first payout. <strong>Do not promise upstream suppliers payment-on-arrival; build a 2-week cash buffer.</strong></p>
+      <p class="lang jp">新規 telecom 加盟店は初回入金に 7〜14 日のローリングリザーブ。<strong>上流サプライヤーに着金即払いを約束しない;2 週間の現金バッファを構築する。</strong></p>
+    </div>
+
+    <div class="sources">
+      <strong>Sources:</strong>
+      <a href="https://stripe.com/legal/restricted-businesses" target="_blank">stripe.com/legal/restricted-businesses</a>
+      <a href="https://dashboard.stripe.com/register" target="_blank">dashboard.stripe.com/register</a>
+      <a href="https://www.eflow.com/mcc/4814" target="_blank">eflow.com/mcc/4814</a>
+      <a href="https://stripe.com/atlas" target="_blank">stripe.com/atlas</a>
+    </div>
+  </div>
+
+  <!-- ========== APPLE DEV ========== -->
+  <div class="section" id="apple-dev">
+    <span class="section-tag">Phase 1 · Item 8</span>
+    <h2 class="lang en">🍎 Apple Developer Program — Organization enrollment</h2>
+    <h2 class="lang jp">🍎 Apple Developer Program — 法人登録</h2>
+
+    <div class="section-summary lang en">Apple Developer Program ($99/yr) is required to ship an iOS app. Organization enrollment REQUIRES a D-U-N-S Number tied to the legal LLC — free, 5–14 days from Dun &amp; Bradstreet. <strong>The D-U-N-S step is the single biggest scheduling gotcha</strong> — most founders forget about it and lose 1–2 weeks. eSIM in-app installation requires a SEPARATE "Carrier Entitlement" application (Phase 1 Item 16), gated by a signed MNO/MVNO agreement.</div>
+    <div class="section-summary lang jp">Apple Developer Program（年 $99）は iOS アプリ公開に必須。法人登録には法定 LLC に紐付いた D-U-N-S Number が必須 — Dun &amp; Bradstreet から無料、5〜14 日。<strong>D-U-N-S が最大の隠しスケジュール ボトルネック</strong> — ほとんどの創業者が忘れ 1〜2 週間ロスする。eSIM のアプリ内インストールには別途「Carrier Entitlement」申請（Phase 1 Item 16）が必要、MNO/MVNO 契約が前提。</div>
+
+    <div class="meta-grid">
+      <div class="meta"><span class="meta-label">Timeline</span><span class="meta-val lang en">D-U-N-S 5–14 days + Apple verify 1–5 days = 1–3 weeks total. Carrier Entitlement: 4–8 weeks more (separate).</span><span class="meta-val lang jp">D-U-N-S 5〜14 日 + Apple 検証 1〜5 日 = 計 1〜3 週間。Carrier Entitlement は別途 4〜8 週間。</span></div>
+      <div class="meta"><span class="meta-label">Fees</span><span class="meta-val">$99/yr · D-U-N-S free via Apple portal</span></div>
+    </div>
+
+    <div class="info-box rose">
+      <h4>⚠ The silent killer: D-U-N-S Number</h4>
+      <p class="lang en">D-U-N-S is the silent killer of timelines. <strong>Kick it off the day after the Atlas LLC is formed, in parallel with EIN waiting.</strong> This buys back 1–2 weeks. The same D-U-N-S record will be reused for Google Play organization enrollment — getting one D-U-N-S unlocks BOTH stores.</p>
+      <p class="lang jp">D-U-N-S はタイムラインの隠れキラー。<strong>Atlas で LLC 成立翌日に着手、EIN 待ちと並行</strong>。これで 1〜2 週間取り戻せる。同じ D-U-N-S レコードは Google Play 法人登録で再利用 — 1 件で両ストア解放。</p>
+    </div>
+
+    <div class="info-box accent">
+      <h4>✓ Pre-requisites</h4>
+      <ul class="lang en">
+        <li>Delaware LLC formed (must be a legal entity — DBAs, trade names, branches all rejected)</li>
+        <li>D-U-N-S Number issued for the LLC's exact legal name + Atlas registered agent address (free from D&amp;B, 5–14 days)</li>
+        <li>A real, owned domain that resolves to a real site about the business (Apple manually checks this)</li>
+        <li>An Apple ID with 2FA enabled, ideally created on the founder's work email at the company domain</li>
+        <li>A virtual debit card from Mercury (USD) to pay the $99 fee — UAE-issued cards sometimes get declined by Apple's billing</li>
+      </ul>
+      <ul class="lang jp">
+        <li>デラウェア LLC 成立（法定法人必須 — DBA・通称・支店は全て却下）</li>
+        <li>LLC の完全法定名 + Atlas 登録代理人住所で D-U-N-S Number を発行（D&amp;B から無料、5〜14 日）</li>
+        <li>事業について実在の所有ドメインで実サイトを公開（Apple が手動確認）</li>
+        <li>2FA 有効化済 Apple ID — 理想的には会社ドメインの業務メールで作成</li>
+        <li>$99 支払い用の Mercury USD 仮想デビットカード — UAE 発行カードは Apple 課金で時々拒否される</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Look up whether the LLC already has a D-U-N-S</span>
+      <span class="step-title lang jp">LLC に既に D-U-N-S があるか検索</span>
+      <div class="step-what lang en">Enter the LLC's exact legal name and registered agent address. Most brand-new Delaware LLCs return "not found".</div>
+      <div class="step-what lang jp">LLC の完全法定名 + 登録代理人住所を入力。新規デラウェア LLC のほとんどは「not found」が返る。</div>
+      <a class="step-url" href="https://developer.apple.com/enroll/duns-lookup/" target="_blank" rel="noopener">→ developer.apple.com/enroll/duns-lookup/</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">If a result comes back with a slightly different address or a wrong name, do NOT use it. Apple matches the D-U-N-S to the entity name on enrollment — wrong record = rejection.</span><span class="lang jp">違う住所や名前で結果が出ても使わない。Apple は登録時に D-U-N-S と法人名を照合 — 不一致レコード = 却下。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Request a D-U-N-S Number (free, via Apple's portal)</span>
+      <span class="step-title lang jp">D-U-N-S Number を申請（Apple ポータル経由で無料）</span>
+      <div class="step-what lang en">Submit the same form with company legal name, Atlas registered agent address (works as HQ for D&amp;B), founder's name, work email at the company domain, and a real phone number that can take an international call.</div>
+      <div class="step-what lang jp">同じフォームを送信:会社法定名、Atlas 登録代理人住所（D&amp;B 上の本社として機能）、創業者名、会社ドメインの業務メール、国際電話を受けられる実在番号。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">DO NOT pay D&amp;B for an expedited D-U-N-S — Apple's portal route is free. D&amp;B will email or call you within 2–5 business days to verify; pick up the call. Total wait: 5–14 days.</span><span class="lang jp">D&amp;B に有料で D-U-N-S を急がせない — Apple ポータル経由は無料。D&amp;B が営業日 2〜5 日でメール／電話確認 — 必ず出る。合計待ち時間:5〜14 日。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-title lang en">Set up a public-facing website on the company domain</span>
+      <span class="step-title lang jp">会社ドメインで公開向けサイトを構築</span>
+      <div class="step-what lang en">Apple manually visits the URL during organization review. The site must show: legal company name, contact email at the same domain, what the company does. A "coming soon" page or social-link page WILL fail.</div>
+      <div class="step-what lang jp">Apple は法人レビュー時に手動で URL 訪問。サイトに必須:法定会社名、同じドメインの連絡先メール、事業内容。「coming soon」ページや SNS リンクページは必ず失敗。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">The email you enroll with MUST be at the same domain as the website (e.g. balraj@peanut-esim.com). Personal Gmail/Outlook = rejection. Apple is strict about this.</span><span class="lang jp">登録メールはサイトと同じドメイン必須（例:balraj@peanut-esim.com）。個人 Gmail/Outlook = 却下。Apple はここを厳格に見る。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <span class="step-title lang en">Create the Apple ID with 2FA</span>
+      <span class="step-title lang jp">2FA 有効化の Apple ID を作成</span>
+      <div class="step-what lang en">Create a fresh Apple ID with the founder's work email (balraj@peanut-esim.com). Enable two-factor authentication with a UAE mobile number.</div>
+      <div class="step-what lang jp">創業者の業務メール（balraj@peanut-esim.com）で新規 Apple ID を作成。UAE モバイル番号で 2FA を有効化。</div>
+      <a class="step-url" href="https://appleid.apple.com/account" target="_blank" rel="noopener">→ appleid.apple.com/account</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Do NOT reuse a personal Apple ID with iCloud purchases / family sharing — it complicates the enrollment review.</span><span class="lang jp">iCloud 購入履歴・ファミリー共有のある個人 Apple ID を再利用しない — 登録レビューが複雑化。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span>
+      <span class="step-title lang en">Start the Organization enrollment</span>
+      <span class="step-title lang jp">法人登録を開始</span>
+      <div class="step-what lang en">Select "Company / Organization" (not Individual). Enter: legal entity name (must match D&amp;B record exactly), D-U-N-S Number, work email, role ("Owner / Founder"), website, headquarters address (Atlas registered agent address), and phone.</div>
+      <div class="step-what lang jp">「Company / Organization」を選択（Individual ではない）。入力:法人名（D&amp;B レコードと完全一致）、D-U-N-S Number、業務メール、役割（「Owner / Founder」）、サイト、本社住所（Atlas 登録代理人住所）、電話。</div>
+      <a class="step-url" href="https://developer.apple.com/enroll/" target="_blank" rel="noopener">→ developer.apple.com/enroll/</a>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span>
+      <span class="step-title lang en">Wait for Apple verification</span>
+      <span class="step-title lang jp">Apple 認証を待つ</span>
+      <div class="step-what lang en">Apple verifies your D-U-N-S record matches your enrollment data, then emails / calls the founder to confirm legal authority to bind the LLC. Typical: 1–5 business days after D-U-N-S is on file.</div>
+      <div class="step-what lang jp">Apple が D-U-N-S レコードと登録データの一致を確認、その後創業者に法人拘束権限の確認メール／電話。D-U-N-S 受領後営業日 1〜5 日。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Apple sometimes calls a phone number listed on the website to verify the founder works there. Make sure the phone on the site is the founder's UAE mobile, or have someone ready to confirm.</span><span class="lang jp">Apple がサイト掲載番号に電話して創業者の所属を確認することあり。サイトの電話番号を創業者の UAE モバイルにする、または確認できる人を待機させる。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span>
+      <span class="step-title lang en">Pay the $99 annual fee</span>
+      <span class="step-title lang jp">年会費 $99 を支払う</span>
+      <div class="step-what lang en">Once verified, you'll be prompted to pay the membership fee. Use the Mercury virtual debit card.</div>
+      <div class="step-what lang jp">認証完了後、会費支払いを促される。Mercury 仮想デビットカードを使用。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Apple bills in USD on the US storefront. If you're physically using the developer portal from UAE, choose "United States" as the storefront for billing. Receipts go to the enrolling email — keep them for accounting.</span><span class="lang jp">Apple は US ストアフロントで USD 課金。UAE から portal を使う場合、課金ストアフロントは「United States」を選択。領収書は登録メールへ — 会計用に保管。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">8</span>
+      <span class="step-title lang en">(Later, Phase 1 Item 16) Apply for Carrier Entitlement</span>
+      <span class="step-title lang jp">（後で・Phase 1 Item 16）Carrier Entitlement を申請</span>
+      <div class="step-what lang en">After enrollment, request the "eSIM Carrier Entitlement" so the app can call <code>CTCellularPlanProvisioning.addPlan()</code> and install the eSIM in-app. This requires a signed agreement with a supported MNO/MVNO.</div>
+      <div class="step-what lang jp">登録後、「eSIM Carrier Entitlement」を申請しアプリが <code>CTCellularPlanProvisioning.addPlan()</code> を呼び eSIM をアプリ内インストール可能にする。サポート対象 MNO/MVNO との契約必須。</div>
+      <a class="step-url" href="https://developer.apple.com/contact/request/networking-csp" target="_blank" rel="noopener">→ developer.apple.com/contact/request/networking-csp</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">This is a SEPARATE multi-week approval. Plan for it but do not block app development on it — almost all eSIM resellers fall back to QR code or universal-link install for v1.0.</span><span class="lang jp">これは別途数週間の承認プロセス。計画には入れるがアプリ開発をブロックしない — ほとんどの eSIM リセラーは v1.0 で QR コードまたは Universal Link インストールにフォールバック。</span></div>
+    </div>
+
+    <div class="info-box">
+      <h4>eSIM-specific notes</h4>
+      <ul class="lang en">
+        <li>iOS app can ship with QR-code-based eSIM install on Day 1 — no Carrier Entitlement needed</li>
+        <li>For one-tap in-app install you NEED Carrier Entitlement, which needs a real MNO/MVNO contract (Crew SIM uses one; Airalo has multiple)</li>
+        <li>Phase 1 Item 16 covers the Carrier Entitlement application — do not duplicate that work here</li>
+        <li>Apple does NOT restrict eSIM resellers in App Store guidelines; the gatekeeper is the entitlement, not the policy</li>
+      </ul>
+      <ul class="lang jp">
+        <li>iOS アプリは初日から QR コード ベースの eSIM インストールで公開可能 — Carrier Entitlement 不要</li>
+        <li>ワンタップ アプリ内インストールには Carrier Entitlement が必要、実 MNO/MVNO 契約が前提（Crew SIM は 1 件、Airalo は複数）</li>
+        <li>Phase 1 Item 16 が Carrier Entitlement 申請を担当 — ここで重複作業しない</li>
+        <li>Apple は App Store ガイドラインで eSIM リセラーを制限していない;関門はエンタイトルメントであってポリシーではない</li>
+      </ul>
+    </div>
+
+    <div class="sources">
+      <strong>Sources:</strong>
+      <a href="https://developer.apple.com/programs/enroll/" target="_blank">developer.apple.com/programs/enroll/</a>
+      <a href="https://developer.apple.com/support/D-U-N-S/" target="_blank">developer.apple.com/support/D-U-N-S/</a>
+      <a href="https://developer.apple.com/enroll/duns-lookup/" target="_blank">developer.apple.com/enroll/duns-lookup/</a>
+      <a href="https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioning" target="_blank">developer.apple.com/documentation/coretelephony/ctcellularplanprovisioning</a>
+    </div>
+  </div>
+
+  <!-- ========== GOOGLE PLAY ========== -->
+  <div class="section" id="google-play">
+    <span class="section-tag">Phase 1 · Item 9</span>
+    <h2 class="lang en">▶ Google Play Console — Organization developer account</h2>
+    <h2 class="lang jp">▶ Google Play Console — 法人デベロッパーアカウント</h2>
+
+    <div class="section-summary lang en">Google Play Console organization enrollment is $25 ONE-TIME (not annual). As of 2024, organization accounts <strong>REQUIRE a D-U-N-S Number</strong> — same as Apple. Combined with ID verification, business document upload, and a 2-step Google payments profile, this typically takes 1–4 weeks. UAE founders pass identity verification without issue.</div>
+    <div class="section-summary lang jp">Google Play Console 法人登録は一回 $25（年会費なし）。2024 年以降、法人アカウントは <strong>D-U-N-S Number 必須</strong> — Apple と同じ。ID 認証・事業書類アップロード・2 段階 Google payments profile と合わせ、通常 1〜4 週間。UAE 創業者は ID 認証を問題なく通過。</div>
+
+    <div class="meta-grid">
+      <div class="meta"><span class="meta-label">Timeline</span><span class="meta-val lang en">1–4 weeks app + verify. <strong>+14 days closed testing</strong> before first public release.</span><span class="meta-val lang jp">申請＋検証 1〜4 週間。<strong>+14 日のクローズドテスト</strong>が最初の公開リリース前に必須。</span></div>
+      <div class="meta"><span class="meta-label">Fees</span><span class="meta-val">$25 one-time · 15/30% Play revenue share when monetizing</span></div>
+    </div>
+
+    <div class="info-box rose">
+      <h4>⚠ Hidden 14-day gate</h4>
+      <p class="lang en">New organization accounts (Aug-2023 policy) must run <strong>"closed testing" with at least 20 testers for 14 continuous days</strong> before they can apply for production access. This is a HARD requirement and a hidden timeline gotcha. <strong>Build the tester pool now</strong> (crew friends, JV team) — don't discover this 14 days from launch.</p>
+      <p class="lang jp">新規法人アカウント（2023 年 8 月ポリシー）は本番アクセス申請前に<strong>「クローズドテスト」を最低 20 名で 14 日間連続実施必須</strong>。HARD 要件かつ隠しタイムライン ボトルネック。<strong>テスター プールを今のうちに構築</strong>（クルー友人、JV チーム） — ローンチ 14 日前に気付かないこと。</p>
+    </div>
+
+    <div class="info-box accent">
+      <h4>✓ Pre-requisites</h4>
+      <ul class="lang en">
+        <li>Delaware LLC formed</li>
+        <li><strong>D-U-N-S Number issued — reuse the same one from Apple</strong></li>
+        <li>A Google account with 2-step verification enabled</li>
+        <li>Government-issued photo ID for the account owner (passport or Emirates ID)</li>
+        <li>Business registration document (Delaware Certificate of Formation)</li>
+        <li>Reachable email and phone for the organization</li>
+      </ul>
+      <ul class="lang jp">
+        <li>デラウェア LLC 成立</li>
+        <li><strong>D-U-N-S Number 発行済 — Apple と同じものを再利用</strong></li>
+        <li>2 段階認証 有効化済の Google アカウント</li>
+        <li>アカウント所有者の政府発行 写真付き ID（パスポートまたは Emirates ID）</li>
+        <li>事業登録書類（デラウェア Certificate of Formation）</li>
+        <li>組織用の連絡可能メール・電話</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <span class="step-title lang en">Create / sign in with a dedicated company Google account</span>
+      <span class="step-title lang jp">専用会社 Google アカウントを作成／サインイン</span>
+      <div class="step-what lang en">Use a workspace-style email like balraj@peanut-esim.com if Google Workspace is set up; otherwise a fresh @gmail.com is fine. Enable 2-step verification.</div>
+      <div class="step-what lang jp">Google Workspace があれば balraj@peanut-esim.com 形式;なければ新規 @gmail.com で OK。2 段階認証を有効化。</div>
+      <a class="step-url" href="https://accounts.google.com/" target="_blank" rel="noopener">→ accounts.google.com</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">DO NOT use your personal Google account — once a Play Console account is locked to a Google account it's painful to migrate, and your personal apps/purchases can leak data into the org review.</span><span class="lang jp">個人 Google アカウントを使わない — Play Console アカウントが Google アカウントに紐付くと移行が困難、個人アプリ／購入履歴が組織レビューに混入。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <span class="step-title lang en">Start the Play Console signup</span>
+      <span class="step-title lang jp">Play Console 登録を開始</span>
+      <div class="step-what lang en">Choose "An organization" (not "Yourself"). Enter the org legal name (matching the LLC), org email, org website, org phone, developer (public-facing) name.</div>
+      <div class="step-what lang jp">「An organization」を選択（「Yourself」ではない）。組織法定名（LLC と一致）・組織メール・組織サイト・組織電話・デベロッパー（公開）名を入力。</div>
+      <a class="step-url" href="https://play.google.com/console/u/0/signup" target="_blank" rel="noopener">→ play.google.com/console/u/0/signup</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">The "developer name" is public on the Play Store listing — choose your brand ("Peanut eSIM"), not your legal entity name ("Peanut eSIM LLC").</span><span class="lang jp">「developer name」は Play Store リストで公開 — ブランド名（「Peanut eSIM」）を選び、法人名（「Peanut eSIM LLC」）ではない。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <span class="step-title lang en">Provide the D-U-N-S Number</span>
+      <span class="step-title lang jp">D-U-N-S Number を提供</span>
+      <div class="step-what lang en">Enter the same 9-digit D-U-N-S obtained for Apple. Google validates against the D&amp;B record — legal name and address must match exactly.</div>
+      <div class="step-what lang jp">Apple 用に取得した同じ 9 桁 D-U-N-S を入力。Google は D&amp;B レコードと照合 — 法定名と住所が完全一致必須。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Mismatch between D&amp;B record and what you type here is the #1 rejection reason. Google offers an "alternative verification" path if D-U-N-S is unavailable in your region — NOT needed for a US LLC.</span><span class="lang jp">D&amp;B レコードと入力内容の不一致が #1 却下理由。Google は地域で D-U-N-S が使えない場合の「alternative verification」経路を提供 — US LLC には不要。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <span class="step-title lang en">Verify identity (account owner)</span>
+      <span class="step-title lang jp">本人確認（アカウント所有者）</span>
+      <div class="step-what lang en">Upload a clear photo of passport or Emirates ID. Enter the founder's full legal name and residential address (UAE address is fine for the individual; the org address is the Delaware registered agent).</div>
+      <div class="step-what lang jp">パスポートまたは Emirates ID の鮮明写真をアップロード。創業者の完全法定名・住居住所を入力（個人住所は UAE で OK;組織住所はデラウェア登録代理人）。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">Google's ID verification is automated — blurry photo or glare = immediate fail. Use a flatbed scan or a well-lit phone photo.</span><span class="lang jp">Google の ID 認証は自動 — ぼやけや反射 = 即時失敗。フラットベッド スキャナーまたは光量充分の携帯写真を使用。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span>
+      <span class="step-title lang en">Pay the $25 one-time registration fee</span>
+      <span class="step-title lang jp">$25 の一回登録料を支払う</span>
+      <div class="step-what lang en">Pay with the Mercury virtual debit card. Receipt is emailed and stays on the org's Google payments profile.</div>
+      <div class="step-what lang jp">Mercury 仮想デビットカードで支払い。領収書がメールされ組織の Google payments profile に保存される。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">$25 ONE-TIME, not annual. If Google bills you twice, contact support — there is no recurring fee.</span><span class="lang jp">一回 $25、年会費ではない。Google から二重請求があればサポートに連絡 — 定期課金はない。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span>
+      <span class="step-title lang en">Complete the Business Payments Profile</span>
+      <span class="step-title lang jp">Business Payments Profile を完成</span>
+      <div class="step-what lang en">Set up the org-level payments profile: legal entity name, EIN (when available), Delaware registered agent address, bank account for payouts (Mercury). Upload Certificate of Formation if asked.</div>
+      <div class="step-what lang jp">組織レベルの payments profile を設定:法人名・EIN（取得後）・デラウェア登録代理人住所・入金先銀行口座（Mercury）。Certificate of Formation を要求されたらアップロード。</div>
+      <a class="step-url" href="https://payments.google.com/" target="_blank" rel="noopener">→ payments.google.com</a>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">The legal name + address in the Google payments profile MUST exactly match the D-U-N-S record. Any mismatch = email alert + deadline to fix or apps get pulled.</span><span class="lang jp">Google payments profile の法定名 + 住所は D-U-N-S レコードと完全一致必須。不一致 = メール警告 + 期限内修正、未対応ならアプリ削除。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span>
+      <span class="step-title lang en">Wait for Google verification</span>
+      <span class="step-title lang jp">Google 検証を待つ</span>
+      <div class="step-what lang en">Google reviews the documents and D&amp;B match. Typical: 2–7 business days. You can start building the app listing immediately, but you cannot publish until verification is complete.</div>
+      <div class="step-what lang jp">Google が書類と D&amp;B 一致を審査。通常営業日 2〜7 日。アプリリスト構築は即開始可能だが、検証完了まで公開不可。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">If Google asks for additional docs, respond within the deadline (usually 14 days) or the account is suspended.</span><span class="lang jp">Google が追加書類を要求したら期限内（通常 14 日）に対応、未対応ならアカウント停止。</span></div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">8</span>
+      <span class="step-title lang en">Test with closed testing before public launch</span>
+      <span class="step-title lang jp">公開前にクローズドテスト</span>
+      <div class="step-what lang en">New organization accounts (Aug-2023 policy) must run "closed testing" with at least 20 testers for 14 continuous days before they can apply for production access.</div>
+      <div class="step-what lang jp">新規法人アカウント（2023 年 8 月ポリシー）は本番アクセス申請前にクローズドテストを最低 20 名で 14 日連続実施必須。</div>
+      <div class="step-watch"><strong>⚠</strong> <span class="lang en">This is a HARD requirement and a hidden timeline gotcha. Plan a 2-week closed testing window in the project plan — most founders miss this.</span><span class="lang jp">HARD 要件かつ隠しタイムライン ボトルネック。プロジェクト計画に 2 週間のクローズドテスト ウィンドウを組み込む — ほとんどの創業者が見落とす。</span></div>
+    </div>
+
+    <div class="info-box">
+      <h4>eSIM-specific notes</h4>
+      <ul class="lang en">
+        <li>Google Play does NOT restrict eSIM resellers — both Airalo and Holafly ship Android apps on Play</li>
+        <li>Per Google Play policy, mobile data plans must be purchased via Google Play Billing for IAP routes (15/30% cut) OR via a web checkout that meets the "consumable physical / digital goods exemption" — eSIMs typically qualify for the latter (consumed off-device)</li>
+        <li>Closed-testing requirement (Aug 2023) DOES apply — 20 testers, 14 days. Plan it.</li>
+        <li>Reused D-U-N-S from Apple step works perfectly — no second application needed</li>
+      </ul>
+      <ul class="lang jp">
+        <li>Google Play は eSIM リセラーを制限していない — Airalo と Holafly の両方が Android アプリを Play で公開</li>
+        <li>Google Play ポリシーでは、モバイルデータプランは Google Play Billing（IAP 経路、15/30% 手数料）または「consumable physical / digital goods exemption」を満たす Web チェックアウト経由 — eSIM は通常後者に該当（端末外消費）</li>
+        <li>クローズドテスト要件（2023 年 8 月）は適用 — 20 名、14 日。計画する。</li>
+        <li>Apple 用に取得した D-U-N-S を再利用 — 二度目の申請不要</li>
+      </ul>
+    </div>
+
+    <div class="sources">
+      <strong>Sources:</strong>
+      <a href="https://support.google.com/googleplay/android-developer/answer/13628312?hl=en" target="_blank">support.google.com — Org verification</a>
+      <a href="https://play.google.com/console/u/0/signup" target="_blank">play.google.com/console/u/0/signup</a>
+      <a href="https://android-developers.googleblog.com/2023/07/boosting-trust-and-transparency-in-google-play.html" target="_blank">android-developers.googleblog.com — 2023 transparency</a>
+      <a href="https://support.google.com/googleplay/android-developer/answer/13634888" target="_blank">support.google.com — Closed testing</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    PEANUT ESIM · ACCOUNT SETUP HOW-TO · v1 · 2026-05-24
+    <a href="../../index.html#roadmap">← back to roadmap</a>
+    <a href="delaware-llc-how-to.html">→ Delaware LLC how-to</a>
+  </div>
+</div>
+
+<script>
+function setLang(l) {
+  document.body.setAttribute('data-lang', l);
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-toggle button[onclick*="\'' + l + '\'"]').classList.add('active');
+}
+
+// Sticky tab highlight on scroll
+const sections = ['mercury', 'stripe', 'apple-dev', 'google-play'];
+const tabs = document.querySelectorAll('.tab');
+function updateActiveTab() {
+  let active = sections[0];
+  for (const id of sections) {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 120) active = id;
+  }
+  tabs.forEach(t => t.classList.toggle('active', t.dataset.target === active));
+}
+window.addEventListener('scroll', updateActiveTab, { passive: true });
+updateActiveTab();
+</script>
+</body>
+</html>
