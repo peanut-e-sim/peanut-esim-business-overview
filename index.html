@@ -2541,6 +2541,84 @@
     text-underline-offset: 2px;
     cursor: help;
   }
+
+  /* ─── Updates tab ─── */
+  .updates-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .update-entry {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 18px;
+    align-items: start;
+    transition: all 0.15s ease;
+  }
+  .update-entry:hover {
+    border-color: var(--text-3);
+    border-left-color: var(--peanut);
+  }
+  .update-date {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+  }
+  .update-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .update-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.016em;
+  }
+  .update-desc {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+  .update-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .update-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+  .update-link {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .update-link:hover { text-decoration: underline; }
+  @media (max-width: 640px) {
+    .update-entry { grid-template-columns: 1fr; gap: 8px; }
+    .update-date { font-size: 11px; }
+  }
 </style>
 </head>
 <body>
@@ -2592,6 +2670,11 @@
       <button class="tab-btn" data-tab="cost">
         <span class="lang en">Cost</span>
         <span class="lang jp">コスト</span>
+      </button>
+      <button class="tab-btn" data-tab="updates">
+        <span class="lang en">📌 Updates</span>
+        <span class="lang jp">📌 アップデート</span>
+        <span class="count" id="updateCount"></span>
       </button>
       <a class="tab-btn" href="executive-summary.html" target="_blank" rel="noopener" style="text-decoration: none;">
         <span class="lang en">Exec Summary ↗</span>
@@ -8389,6 +8472,255 @@ Mercury（米国法人銀行口座）
 </div>
 </div>
 
+<!-- ============================================================ -->
+<!-- ─── TAB: UPDATES ─── -->
+<!-- ============================================================ -->
+<div class="tab-content" data-tab-content="updates">
+<div class="container">
+
+  <header class="hero">
+    <span class="doc-tag">PEANUT ESIM · LOCKED DECISIONS LOG</span>
+    <h1 class="lang en">What we've <em>locked in</em> — a running log.</h1>
+    <h1 class="lang jp">確定済み事項 — 進行ログ</h1>
+    <p class="lead lang en">Each entry is a decision Balraj and Akito have agreed on and committed to. Sorted newest-first. Click any entry's link to jump to the relevant roadmap section.</p>
+    <p class="lead lang jp">Balraj と Akito が合意・確定した事項のログ。新しい順。各項目のリンクをクリックすると関連ロードマップへ移動。</p>
+  </header>
+
+  <div class="updates-list">
+
+    <!-- Entry 1 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">LLC mailing address — Texas friend's home</span>
+          <span class="lang jp">LLC 郵送住所 — テキサスの友人宅</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Operational address for Mercury / Stripe / Apple / Google = Balraj's Texas-based friend's home address. Registered Agent stays Atlas Delaware (auto-included in $500 Atlas fee). Pending friend's written confirmation.</span>
+          <span class="lang jp">Mercury / Stripe / Apple / Google の運用住所 = Balraj のテキサス在住の友人の自宅住所。Registered Agent は Atlas Delaware のまま（Atlas $500 に含まれる）。友人からの書面確認待ち。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">ADDRESS / SETUP</span>
+          <a class="update-link" href="#phase-1-item-1">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 2 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Brand name — TBD (Peanut, Starnet, CrewLink all blocked or risky)</span>
+          <span class="lang jp">ブランド名 — 未定（Peanut・Starnet・CrewLink はブロック確認済みまたはリスク有）</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Working name 'Peanut eSIM' currently used. Starnet (Pathway Innovations Class 38 + Starnet UAE confusion) and CrewLink (Crewlink Ireland Ryanair partner + 4 existing App Store apps) both verified blocked. Next batch to verify: CrewRoam, RON, TOD, GroundControl, Tabi, Polaris.</span>
+          <span class="lang jp">ワーキング ネーム『Peanut eSIM』を継続使用中。Starnet（Pathway Innovations Class 38 + Starnet UAE 混同）および CrewLink（Crewlink Ireland Ryanair パートナー + App Store 既存アプリ 4 件）はいずれもブロック確認済み。次回検証候補: CrewRoam, RON, TOD, GroundControl, Tabi, Polaris。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">BRAND</span>
+          <a class="update-link" href="#phase-1-item-3">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 3 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Apple eSIM install — Universal Link, NOT Carrier Entitlement</span>
+          <span class="lang jp">Apple eSIM インストール — ユニバーサル リンク方式（キャリア エンタイトルメントではない）</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">v1 ships with esimsetup.apple.com Universal Link (iOS 17.4+, NO Apple approval needed). Airalo uses this. Apple Carrier Entitlement deferred to post-traction + MNO partnership stage.</span>
+          <span class="lang jp">v1 は esimsetup.apple.com ユニバーサル リンクで出荷（iOS 17.4+、Apple 承認不要）。Airalo も同方式採用。Apple キャリア エンタイトルメントはトラクション + MNO パートナーシップ確立後に延期。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">TECH</span>
+          <a class="update-link" href="#phase-1-item-16">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 4 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Equity split — 50/50 Balraj + Akito</span>
+          <span class="lang jp">持分比率 — Balraj + Akito の 50/50</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Clean 50/50 partnership confirmed in meeting. Hasegawa is OUT — founders are Balraj and Akito only. Founder Agreement (Phase 0 Item 5) to formalize.</span>
+          <span class="lang jp">ミーティングで 50/50 のクリーンなパートナーシップ確定。長谷川氏は離脱 — 創業者は Balraj と Akito の 2 名のみ。創業者合意書（Phase 0 Item 5）で正式化。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">STRUCTURE</span>
+          <a class="update-link" href="#phase-0-item-5">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 5 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">LLC structure — Multi-member (partnership, Form 1065)</span>
+          <span class="lang jp">LLC 構造 — マルチメンバー（パートナーシップ、Form 1065）</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Both founders are legal co-owners of the Delaware LLC. IRS treats as partnership — files Form 1065 + K-1s annually (NOT Form 5472 + 1120, which is single-member only). Both members need US ITIN.</span>
+          <span class="lang jp">両創業者がデラウェア LLC の正式な共同所有者。IRS はパートナーシップとして扱い、Form 1065 + K-1 を毎年提出（Form 5472 + 1120 はシングルメンバー専用のため不適用）。両メンバーとも米国 ITIN が必要。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">STRUCTURE</span>
+          <a class="update-link" href="#phase-1-item-1">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 6 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Pricing currency — USD only, no AED display</span>
+          <span class="lang jp">価格通貨 — USD のみ、AED 表示なし</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">App and website always display in USD, never AED. Reason: showing AED triggers UAE regulatory scrutiny (FTA, TDRA may see us as targeting UAE market officially). USD framing keeps us looking like an international product crew happen to use.</span>
+          <span class="lang jp">アプリ + ウェブは常に USD 表示、AED は使用しない。理由: AED 表示は UAE 規制機関（FTA、TDRA）の注意を喚起する可能性がある。USD 表示によりインターナショナル プロダクトの体裁を維持。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">PRICING</span>
+          <a class="update-link" href="#phase-2-item-1">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 7 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Plan portfolio — 30-day SIM with top-up model</span>
+          <span class="lang jp">プラン体系 — 30 日 SIM + トップアップ方式</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Primary plan format: 30-day eSIM with top-up capability (not per-day, not 1-year). Crew get fresh roster monthly → buy 30-day SIM → top up as needed. Matches crew lifestyle.</span>
+          <span class="lang jp">メイン プラン形式: 30 日 eSIM + トップアップ対応（1 日プランや 1 年プランではない）。クルーは月次でロスター取得 → 30 日 SIM 購入 → 必要に応じてトップアップ。クルーのライフスタイルに合致。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">PRICING</span>
+          <a class="update-link" href="#phase-0-item-11">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 8 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Customer support — Community + AI hybrid</span>
+          <span class="lang jp">カスタマーサポート — コミュニティ + AI ハイブリッド</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Year 1 support model: AI chat handles 80% of standard questions (install help, top-up, refunds). Community feature lets crew help crew (Akito's idea — users help users, gamified via Peanut Points). Founders monitor escalations via WhatsApp. No paid VA until volume justifies.</span>
+          <span class="lang jp">Year 1 サポート モデル: AI チャットが標準質問の 80% を処理（インストール支援、トップアップ、返金）。コミュニティ機能でクルー同士が助け合う（Akito 提案 — ユーザー間サポート + Peanut ポイントでゲーミフィケーション）。エスカレーションは創業者が WhatsApp で監視。ボリュームが許すまで有料 VA は不採用。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">SUPPORT</span>
+          <a class="update-link" href="#phase-3-item-14">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 9 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Beta launch — 30 friends as ambassadors</span>
+          <span class="lang jp">ベータ ローンチ — 30 名の友人アンバサダー</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Beta = 30 hand-picked Emirates crew from Akito's network. Demographic mix per recruitment brief (Indian/Subcontinent 9, UK/AU/EU 5-6, Egyptian/Arab 4, Filipino 3, etc.). Beta perk: ongoing discount + 'ambassador' status. Goal: turn each into a referral source.</span>
+          <span class="lang jp">ベータ = Akito のネットワークから手選した Emirates 乗務員 30 名。リクルートメント ブリーフに沿った人口構成（インド系・南アジア 9 名、英・豪・欧 5-6 名、エジプト・アラブ 4 名、フィリピン 3 名 等）。特典: 継続割引 + 『アンバサダー』ステータス。目標: 各人をリファラル源化。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">LAUNCH</span>
+          <a class="update-link" href="#phase-4-item-1">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 10 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Setup costs — 50/50 split, document, settle later</span>
+          <span class="lang jp">セットアップ費用 — 50/50 分担、記録し後精算</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">All setup expenses (Atlas $500, Delaware franchise $300, Apple $99, Google $25, domain, virtual mailbox if needed) split 50/50 between founders. Track in shared doc; settle once business cash flow stabilizes. Either founder may front payment in the interim.</span>
+          <span class="lang jp">セットアップ費用（Atlas $500、Delaware フランチャイズ税 $300、Apple $99、Google $25、ドメイン、必要に応じてバーチャル メールボックス）は創業者間で 50/50 分担。共有ドキュメントで追跡し、キャッシュフロー安定後に精算。中間期間中はいずれかの創業者が一時立て替え可能。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">FINANCIAL</span>
+          <a class="update-link" href="#phase-0-item-5">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 11 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">Upstream supplier — Billion Connect (NOT Vision Inc.)</span>
+          <span class="lang jp">上流サプライヤー — Billion Connect（Vision Inc. ではない）</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Samurai WiFi's actual eSIM upstream is Billion Connect (HK aggregator), not Vision Inc. as previously believed. Confirmed via 'Billion Connect Carrier' label on 5,294 rows of Samurai's price file. Direct-go target for margin recovery: Cecilia Hsin Cheng at Billion Connect Singapore.</span>
+          <span class="lang jp">Samurai WiFi の実際の eSIM 上流サプライヤーは Billion Connect（香港アグリゲーター）であり、これまで推定されていた Vision Inc. ではない。Samurai 価格ファイルの 5,294 行に『Billion Connect Carrier』ラベルが記載されていることで確認。マージン回復のための直接交渉対象: Billion Connect シンガポール オフィス Cecilia Hsin Cheng 氏。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">SUPPLY CHAIN</span>
+          <a class="update-link" href="#phase-0-item-2">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry 12 -->
+    <div class="update-entry">
+      <div class="update-date">2026-05-24</div>
+      <div class="update-body">
+        <div class="update-title">
+          <span class="lang en">TDRA blocking risk — stay below the radar</span>
+          <span class="lang jp">TDRA ブロック リスク — レーダー外を維持</span>
+        </div>
+        <div class="update-desc">
+          <span class="lang en">Airalo was network-blocked by TDRA in July 2024 (no announcement, no appeal). Mitigation: avoid UAE press, brand framing universal not 'UAE crew', supplier diversification, contingency plan. See Phase 0 Item 13 Sub-decision 6.</span>
+          <span class="lang jp">Airalo は 2024 年 7 月に TDRA によりネットワーク ブロックされた（事前告知なし、異議申し立て手段なし）。緩和策: UAE プレス露出を避ける、ブランド フレーミングは UAE クルー特化ではなく汎用、サプライヤー多様化、コンティンジェンシー プラン。Phase 0 Item 13 サブ判断 6 参照。</span>
+        </div>
+        <div class="update-meta">
+          <span class="update-tag">REGULATORY</span>
+          <a class="update-link" href="#phase-0-item-13">See roadmap →</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.updates-list -->
+
+</div>
+</div>
+
 <script>
   // ─── Language toggle ───
   const LANG_KEY = 'peanut-lang';
@@ -8445,7 +8777,7 @@ Mercury（米国法人銀行口座）
 
   // Restore tab from hash or storage
   const hashTab = window.location.hash.replace('#', '');
-  const validTabs = ['overview', 'open', 'balraj', 'akito', 'roadmap', 'delaware', 'docs', 'cost'];
+  const validTabs = ['overview', 'open', 'balraj', 'akito', 'roadmap', 'delaware', 'docs', 'cost', 'updates'];
   const initialTab = validTabs.includes(hashTab) ? hashTab : (localStorage.getItem('peanut-tab') || 'overview');
   switchTab(initialTab);
 
@@ -8870,6 +9202,20 @@ Mercury（米国法人銀行口座）
       document.addEventListener('DOMContentLoaded', wrapAcronyms);
     } else {
       wrapAcronyms();
+    }
+  })();
+
+  // ─── Updates tab count badge ───
+  (function() {
+    function setUpdateCount() {
+      const count = document.querySelectorAll('[data-tab-content="updates"] .update-entry').length;
+      const badge = document.getElementById('updateCount');
+      if (badge && count) badge.textContent = count;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setUpdateCount);
+    } else {
+      setUpdateCount();
     }
   })();
   </script>
