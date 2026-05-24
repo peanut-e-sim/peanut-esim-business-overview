@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM — P&L Scenarios 2026-05-24</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --peanut: #6B3F2A;
+    --peanut-light: #F5EDE0;
+    --peanut-mid: #C8895A;
+    --cream: #FAF6F1;
+    --text: #1A1A1A;
+    --muted: #6B7280;
+    --green: #1F7A4A;
+    --green-light: #E2EFDA;
+    --red: #B91C1C;
+    --red-light: #FEE2E2;
+    --yellow: #D97706;
+    --yellow-light: #FEF3C7;
+    --border: #E5DDD5;
+    --card-bg: #FFFFFF;
+    --shadow: 0 1px 3px rgba(107,63,42,0.08), 0 4px 16px rgba(107,63,42,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ─── Header ─────────────────────────────── */
+  .page-header {
+    background: var(--peanut);
+    color: white;
+    padding: 48px 40px 36px;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .brand-dot {
+    width: 36px; height: 36px;
+    background: var(--peanut-mid);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .brand-name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .page-header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .page-header .subtitle {
+    opacity: 0.72;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  /* ─── Main Content ────────────────────────── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ─── TL;DR Card ─────────────────────────── */
+  .tldr {
+    background: var(--peanut-light);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+
+  .tldr h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--peanut);
+    margin-bottom: 14px;
+  }
+
+  .tldr p {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .tldr strong { color: var(--peanut); }
+
+  /* ─── KPI Strip ──────────────────────────── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .kpi-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+  }
+
+  .kpi-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .kpi-value {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .kpi-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+
+  .kpi-card.green .kpi-value { color: var(--green); }
+  .kpi-card.warn .kpi-value { color: var(--yellow); }
+
+  /* ─── Section Headings ───────────────────── */
+  .section {
+    margin-bottom: 44px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--peanut-light);
+  }
+
+  .section-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .section-header .tag {
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--peanut-light);
+    color: var(--peanut);
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Tables ──────────────────────────────── */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    font-size: 13px;
+  }
+
+  thead tr {
+    background: var(--peanut);
+    color: white;
+  }
+
+  thead th {
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  tbody tr:nth-child(even) { background: #FAFAF9; }
+  tbody tr:hover { background: var(--peanut-light); transition: background 0.15s; }
+
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
+  td.our-price { background: #FFF7ED; font-weight: 700; color: var(--peanut); text-align: right; }
+  td.margin-good { color: var(--green); font-weight: 600; text-align: right; }
+  td.margin-warn { color: var(--yellow); font-weight: 600; text-align: right; }
+  td.margin-bad  { color: var(--red);    font-weight: 600; text-align: right; }
+  td.country { font-weight: 600; }
+  td.note { color: var(--muted); font-size: 12px; }
+
+  /* ─── Volume Scenarios ────────────────────── */
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+
+  .scenario-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .scenario-card-header {
+    padding: 16px 20px 12px;
+    background: var(--peanut-light);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .scenario-card-header .letter {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--peanut);
+    margin-bottom: 2px;
+  }
+
+  .scenario-card-header .title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .scenario-card-header .phase {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .scenario-card-body {
+    padding: 16px 20px;
+  }
+
+  .sc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px solid #F3EDE6;
+    font-size: 13px;
+  }
+
+  .sc-row:last-child { border-bottom: none; }
+
+  .sc-row .label { color: var(--muted); }
+  .sc-row .val { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .sc-row.profit .val { color: var(--green); font-size: 15px; }
+  .sc-row.profit .label { font-weight: 600; color: var(--text); }
+
+  /* ─── Pricing Rec Pills ──────────────────── */
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .price-pill {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 14px 12px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+
+  .price-pill .dest { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .price-pill .price { font-size: 22px; font-weight: 800; color: var(--peanut); letter-spacing: -0.02em; }
+  .price-pill .margin { font-size: 11px; color: var(--green); font-weight: 600; margin-top: 3px; }
+  .price-pill .airalo { font-size: 11px; color: var(--muted); }
+  .price-pill.warn .price { color: var(--yellow); }
+  .price-pill.danger .price { color: var(--red); }
+
+  /* ─── Risk Table ─────────────────────────── */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .risk-card {
+    border-radius: 10px;
+    padding: 16px 18px;
+    border: 1px solid;
+  }
+
+  .risk-card.high  { background: var(--red-light);    border-color: #FECACA; }
+  .risk-card.med   { background: var(--yellow-light);  border-color: #FDE68A; }
+  .risk-card.low   { background: var(--green-light);   border-color: #A7F3D0; }
+
+  .risk-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .high .risk-badge  { background: var(--red);    color: white; }
+  .med  .risk-badge  { background: var(--yellow); color: white; }
+  .low  .risk-badge  { background: var(--green);  color: white; }
+
+  .risk-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .risk-card p  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ─── Footnotes ─────────────────────────── */
+  .footnotes {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .footnotes p { margin-bottom: 4px; }
+
+  /* ─── Responsive ─────────────────────────── */
+  @media (max-width: 800px) {
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .scenarios-grid { grid-template-columns: 1fr; }
+    .price-grid { grid-template-columns: repeat(2, 1fr); }
+    .risk-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-dot">🥜</div>
+      <span class="brand-name">Peanut eSIM</span>
+    </div>
+    <h1>Unit Economics &amp; P&amp;L Scenarios</h1>
+    <p class="subtitle">Wholesale Supplier Analysis · 9,091 SKUs · CNY→USD @0.139 · Generated 2026-05-24</p>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <h2>TL;DR</h2>
+    <p>
+      Break-even lands at just <strong>~6 paying users</strong> — fixed costs are that low ($60/mo).
+      At <strong>1,000 users</strong> the business generates ~<strong>$10,400/mo net profit ($124K annualised)</strong> at a ~39% net margin.
+      At <strong>5,000 users</strong> that scales to ~<strong>$52,000/mo ($624K/yr)</strong>.
+      The wholesale supplier catalog has excellent wholesale pricing for most of the crew-relevant world — Europe, East Asia, SE Asia, Korea —
+      but <strong>South Africa, Philippines, and Mauritius</strong> have margin-crushing unit costs that require premium retail pricing.
+      The pay-per-activation model means unactivated subscriber GB is <em>pure retained margin</em>: every user who doesn't fill their pool is free money.
+    </p>
+  </div>
+
+  <!-- KPI Strip -->
+  <div class="kpi-strip">
+    <div class="kpi-card">
+      <div class="kpi-label">Break-Even</div>
+      <div class="kpi-value">~6</div>
+      <div class="kpi-sub">paying users (fixed costs only)</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Profit @ 1K Users</div>
+      <div class="kpi-value">$124K</div>
+      <div class="kpi-sub">annual run-rate · 39% net margin</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Profit @ 5K Users</div>
+      <div class="kpi-value">$624K</div>
+      <div class="kpi-sub">annual run-rate · 39% net margin</div>
+    </div>
+    <div class="kpi-card warn">
+      <div class="kpi-label">Avg Wholesale / GB</div>
+      <div class="kpi-value">$2.20</div>
+      <div class="kpi-sub">across top-20 crew destinations</div>
+    </div>
+  </div>
+
+  <!-- Top 20 Country Table -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Top 20 Crew Destinations — Cost vs. Retail</h2>
+      <span class="tag">Sheet 1</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Supplier SKU Type</th>
+            <th style="text-align:right">Wholesale CNY</th>
+            <th style="text-align:right">Cost USD</th>
+            <th style="text-align:right">Airalo 1GB/7d</th>
+            <th style="text-align:right">Our Price</th>
+            <th style="text-align:right">Margin $</th>
+            <th style="text-align:right">Net Margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Europe/Americas -->
+          <tr><td class="country">🇺🇸 USA</td><td>1GB/day direct</td><td class="num">¥17.0</td><td class="num">$2.36</td><td class="num">$4.00</td><td class="our-price">$4.99</td><td class="margin-good">$2.18</td><td class="margin-good">43.7%</td></tr>
+          <tr><td class="country">🇬🇧 UK</td><td>1GB/day (UK+Ireland)</td><td class="num">¥18.0</td><td class="num">$2.50</td><td class="num">$4.00</td><td class="our-price">$4.99</td><td class="margin-good">$2.03</td><td class="margin-good">40.6%</td></tr>
+          <tr><td class="country">🇫🇷 France</td><td>Europe 33 bundle</td><td class="num">¥11.0</td><td class="num">$1.53</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$2.05</td><td class="margin-good">51.4%</td></tr>
+          <tr><td class="country">🇩🇪 Germany</td><td>Europe 33 bundle</td><td class="num">¥11.0</td><td class="num">$1.53</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$2.05</td><td class="margin-good">51.4%</td></tr>
+          <tr><td class="country">🇮🇹 Italy</td><td>Europe 33 bundle</td><td class="num">¥11.0</td><td class="num">$1.53</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$2.05</td><td class="margin-good">51.4%</td></tr>
+          <tr><td class="country">🇪🇸 Spain</td><td>Europe 33 bundle</td><td class="num">¥11.0</td><td class="num">$1.53</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$2.05</td><td class="margin-good">51.4%</td></tr>
+          <tr><td class="country">🇹🇷 Turkey</td><td>Europe 33 bundle</td><td class="num">¥11.0</td><td class="num">$1.53</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$2.05</td><td class="margin-good">51.4%</td></tr>
+          <tr><td class="country">🇧🇷 Brazil</td><td>10GB fixed (÷10)</td><td class="num">¥8.7</td><td class="num">$1.21</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$2.36</td><td class="margin-good">59.1%</td></tr>
+          <!-- Asia-Pacific -->
+          <tr><td class="country">🇯🇵 Japan</td><td>1GB/day (SoftBank)</td><td class="num">¥18.0</td><td class="num">$2.50</td><td class="num">$4.00</td><td class="our-price">$4.99</td><td class="margin-good">$2.03</td><td class="margin-good">40.6%</td></tr>
+          <tr><td class="country">🇹🇭 Thailand</td><td>15GB/7d (÷15)</td><td class="num">¥1.9</td><td class="num">$0.26</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$3.57</td><td class="margin-good">89.5%</td></tr>
+          <tr><td class="country">🇸🇬 Singapore</td><td>1GB/day regional</td><td class="num">¥17.0</td><td class="num">$2.36</td><td class="num">$4.00</td><td class="our-price">$4.99</td><td class="margin-good">$2.18</td><td class="margin-good">43.7%</td></tr>
+          <tr><td class="country">🇭🇰 Hong Kong</td><td>China/HK/Macao multi</td><td class="num">¥8.5</td><td class="num">$1.18</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$2.40</td><td class="margin-good">60.1%</td></tr>
+          <tr><td class="country">🇨🇳 China</td><td>China/HK/Macao multi</td><td class="num">¥8.5</td><td class="num">$1.18</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$2.40</td><td class="margin-good">60.1%</td></tr>
+          <tr><td class="country">🇰🇷 South Korea</td><td>10GB (÷10)</td><td class="num">¥1.9</td><td class="num">$0.26</td><td class="num">$4.00</td><td class="our-price">$3.99</td><td class="margin-good">$3.57</td><td class="margin-good">89.5%</td></tr>
+          <tr><td class="country">🇦🇺 Australia</td><td>1GB/day ANZ bundle</td><td class="num">¥21.0</td><td class="num">$2.92</td><td class="num">$4.00</td><td class="our-price">$4.99</td><td class="margin-good">$1.62</td><td class="margin-good">32.4%</td></tr>
+          <!-- Expensive destinations -->
+          <tr><td class="country">🇮🇳 India</td><td>1GB/day (daily SKU)</td><td class="num">¥25.5</td><td class="num">$3.54</td><td class="num">$4.00</td><td class="our-price">$5.99</td><td class="margin-warn">$2.01</td><td class="margin-warn">33.5%</td></tr>
+          <tr><td class="country">🇵🇭 Philippines</td><td>Asia 14 regional</td><td class="num">¥45.5</td><td class="num">$6.32</td><td class="num">$4.00</td><td class="our-price">$6.99</td><td class="margin-warn">$0.16</td><td class="margin-warn">2.3%</td></tr>
+          <tr><td class="country">🇿🇦 South Africa</td><td>1GB/day only</td><td class="num">¥39.3</td><td class="num">$5.46</td><td class="num">$4.00</td><td class="our-price">$6.99</td><td class="margin-warn">$1.07</td><td class="margin-warn">15.3%</td></tr>
+          <tr><td class="country">🇲🇺 Mauritius</td><td>Global156 (÷5)</td><td class="num">¥46.0</td><td class="num">$6.39</td><td class="num">$6.00</td><td class="our-price">$7.99</td><td class="margin-warn">$1.06</td><td class="margin-warn">13.3%</td></tr>
+          <tr><td class="country">🇦🇪 UAE (inbound)</td><td>UAE direct 1GB</td><td class="num">¥18.0</td><td class="num">$2.50</td><td class="num">$4.00</td><td class="our-price">$4.99</td><td class="margin-good">$2.03</td><td class="margin-good">40.6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px; font-size:12px; color:var(--muted)">
+      * Margins net of wholesale cost and Stripe fees (2.9% + $0.30). No Apple/Google platform fee assumed (web checkout model).
+      Philippines margin is technically viable but tight — consider $7.99 retail or bundle-only for PH.
+    </p>
+  </div>
+
+  <!-- Volume Scenarios -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Volume Scenarios</h2>
+      <span class="tag">Sheet 3</span>
+    </div>
+    <p style="margin-bottom:18px; color:var(--muted); font-size:13px">
+      User mix: 10% T1 (PPD), 10% T2 (Bundle), 30% T3A ($24), 30% T3B ($34), 10% T3C ($44), 10% T4 Annual ($249/yr).
+      Avg GB consumed: T1=0.8GB, T2=4GB, T3A=6GB, T3B=9GB, T3C=12GB, T4=7.2GB/mo.
+    </p>
+    <div class="scenarios-grid">
+      <div class="scenario-card">
+        <div class="scenario-card-header">
+          <div class="letter">Scenario A</div>
+          <div class="title">100 Users</div>
+          <div class="phase">Beta / soft launch</div>
+        </div>
+        <div class="scenario-card-body">
+          <div class="sc-row"><span class="label">Monthly Revenue</span><span class="val">$2,637</span></div>
+          <div class="sc-row"><span class="label">Wholesale Costs</span><span class="val">($1,518)</span></div>
+          <div class="sc-row"><span class="label">Stripe Fees</span><span class="val">($76)</span></div>
+          <div class="sc-row"><span class="label">Fixed/Infra</span><span class="val">($60)</span></div>
+          <div class="sc-row profit"><span class="label">Net Monthly Profit</span><span class="val">$983</span></div>
+          <div class="sc-row"><span class="label">Annual Run-Rate</span><span class="val">$11,800</span></div>
+          <div class="sc-row"><span class="label">Net Margin</span><span class="val">37.3%</span></div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="scenario-card-header">
+          <div class="letter">Scenario B</div>
+          <div class="title">1,000 Users</div>
+          <div class="phase">Post-launch · month 6–12</div>
+        </div>
+        <div class="scenario-card-body">
+          <div class="sc-row"><span class="label">Monthly Revenue</span><span class="val">$26,373</span></div>
+          <div class="sc-row"><span class="label">Wholesale Costs</span><span class="val">($15,180)</span></div>
+          <div class="sc-row"><span class="label">Stripe Fees</span><span class="val">($765)</span></div>
+          <div class="sc-row"><span class="label">Fixed/Infra</span><span class="val">($75)</span></div>
+          <div class="sc-row profit"><span class="label">Net Monthly Profit</span><span class="val">$10,353</span></div>
+          <div class="sc-row"><span class="label">Annual Run-Rate</span><span class="val">$124,237</span></div>
+          <div class="sc-row"><span class="label">Net Margin</span><span class="val">39.3%</span></div>
+        </div>
+      </div>
+
+      <div class="scenario-card">
+        <div class="scenario-card-header">
+          <div class="letter">Scenario C</div>
+          <div class="title">5,000 Users</div>
+          <div class="phase">Year 2 stretch goal</div>
+        </div>
+        <div class="scenario-card-body">
+          <div class="sc-row"><span class="label">Monthly Revenue</span><span class="val">$131,865</span></div>
+          <div class="sc-row"><span class="label">Wholesale Costs</span><span class="val">($75,900)</span></div>
+          <div class="sc-row"><span class="label">Stripe Fees</span><span class="val">($3,824)</span></div>
+          <div class="sc-row"><span class="label">Fixed/Infra</span><span class="val">($135)</span></div>
+          <div class="sc-row profit"><span class="label">Net Monthly Profit</span><span class="val">$52,006</span></div>
+          <div class="sc-row"><span class="label">Annual Run-Rate</span><span class="val">$624,070</span></div>
+          <div class="sc-row"><span class="label">Net Margin</span><span class="val">39.4%</span></div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px; color:var(--muted); margin-top:10px">
+      Note: No marketing costs included. These are pure product economics. Wholesale activation cost only occurs when crew actually activates — unactivated pool GB = $0 cost to Peanut.
+    </p>
+  </div>
+
+  <!-- Recommended Tier 1 Prices -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Recommended Tier 1 Prices — Top 10 Destinations</h2>
+      <span class="tag">Action items</span>
+    </div>
+    <div class="price-grid">
+      <div class="price-pill">
+        <div class="dest">Japan</div>
+        <div class="price">$4.99</div>
+        <div class="margin">40.6% margin</div>
+        <div class="airalo">Airalo: $4.00</div>
+      </div>
+      <div class="price-pill">
+        <div class="dest">Thailand</div>
+        <div class="price">$3.99</div>
+        <div class="margin">89.5% margin</div>
+        <div class="airalo">Airalo: $4.00 ✓ cheaper</div>
+      </div>
+      <div class="price-pill">
+        <div class="dest">Europe</div>
+        <div class="price">$3.99</div>
+        <div class="margin">51.4% margin</div>
+        <div class="airalo">Airalo: $4.00 ✓ cheaper</div>
+      </div>
+      <div class="price-pill">
+        <div class="dest">USA</div>
+        <div class="price">$4.99</div>
+        <div class="margin">43.7% margin</div>
+        <div class="airalo">Airalo: $4.00</div>
+      </div>
+      <div class="price-pill">
+        <div class="dest">Korea</div>
+        <div class="price">$3.99</div>
+        <div class="margin">89.5% margin</div>
+        <div class="airalo">Airalo: $4.00 ✓ cheaper</div>
+      </div>
+      <div class="price-pill">
+        <div class="dest">HK / China</div>
+        <div class="price">$3.99</div>
+        <div class="margin">60.1% margin</div>
+        <div class="airalo">Airalo: $4.00 ✓ cheaper</div>
+      </div>
+      <div class="price-pill">
+        <div class="dest">Singapore</div>
+        <div class="price">$4.99</div>
+        <div class="margin">43.7% margin</div>
+        <div class="airalo">Airalo: $4.00</div>
+      </div>
+      <div class="price-pill">
+        <div class="dest">Australia</div>
+        <div class="price">$4.99</div>
+        <div class="margin">32.4% margin</div>
+        <div class="airalo">Airalo: $4.00</div>
+      </div>
+      <div class="price-pill warn">
+        <div class="dest">Philippines</div>
+        <div class="price">$7.99</div>
+        <div class="margin">~20% margin</div>
+        <div class="airalo">Suggest bundle-only</div>
+      </div>
+      <div class="price-pill warn">
+        <div class="dest">Mauritius</div>
+        <div class="price">$7.99</div>
+        <div class="margin">~14% margin</div>
+        <div class="airalo">Airalo: $6.00 (we're higher)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Risks -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Key Risks &amp; Variables</h2>
+      <span class="tag">Decision factors</span>
+    </div>
+    <div class="risk-grid">
+      <div class="risk-card high">
+        <span class="risk-badge">High</span>
+        <h4>Philippines / S. Africa / Mauritius margins</h4>
+        <p>These 3 destinations are margin-thin or negative at competitive pricing. Only viable at $7–8 retail vs Airalo's $4–6. Strong argument for bundle-only (no PPD) at these destinations.</p>
+      </div>
+      <div class="risk-card high">
+        <span class="risk-badge">High</span>
+        <h4>India — no fixed-GB SKU in catalog</h4>
+        <p>Wholesale supplier only offers India as 1GB/day daily-billing. A 7-day trip costs $24.78 wholesale — pricing at $5.99 loses money. Must price India at $7.99+ or avoid India Tier 1 entirely.</p>
+      </div>
+      <div class="risk-card med">
+        <span class="risk-badge">Medium</span>
+        <h4>Average GB consumption assumption</h4>
+        <p>Model assumes avg 60% pool utilisation. If crew uses 90%+ routinely, wholesale costs rise ~50% and monthly tier margins compress from ~40% to ~20%. Monitor actual usage tightly post-launch.</p>
+      </div>
+      <div class="risk-card med">
+        <span class="risk-badge">Medium</span>
+        <h4>Wholesale 40% markup confirmed; direct not yet secured</h4>
+        <p>Moving to a direct Tier-1 supplier relationship would 3.5× net profit on every plan. This is the highest-leverage single action in the entire roadmap. Priority for Phase 2.</p>
+      </div>
+      <div class="risk-card low">
+        <span class="risk-badge">Opportunity</span>
+        <h4>Thailand &amp; Korea: extraordinary wholesale rates</h4>
+        <p>Both destinations have sub-$0.30/GB wholesale cost. Peanut can price well below Airalo ($4) while retaining 85%+ margins. These are loss-leader pricing opportunities to win early users.</p>
+      </div>
+      <div class="risk-card low">
+        <span class="risk-badge">Opportunity</span>
+        <h4>Pool carryover = free profit on light users</h4>
+        <p>A T3A user who only uses 3GB of their 10GB pool costs $6.60 in wholesale fees but pays $24. That's $17.40 gross margin ($14.10 net). Encourage subscriptions — discourage PPD for light users.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Quality Notes -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Supplier File — Data Quality Issues</h2>
+      <span class="tag">Due diligence</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Issue</th>
+            <th>Affected Countries</th>
+            <th>Impact</th>
+            <th>Workaround Used</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>No 1GB fixed SKU</td>
+            <td>India, South Africa</td>
+            <td>Cost shown is 1-day daily plan (1GB/day × 1). Real 7-day trip costs 7× more.</td>
+            <td>Used 1-day unit cost; flagged in sheet notes</td>
+          </tr>
+          <tr>
+            <td>No single-country Europe SKUs</td>
+            <td>France, Germany, Italy, Spain, Turkey</td>
+            <td>Must sell Europe 33 bundle; can't offer France-only or Germany-only. May confuse some users.</td>
+            <td>Used Europe 33 bundle cost (¥11/GB); competitive advantage still holds</td>
+          </tr>
+          <tr>
+            <td>Philippines no direct SKU</td>
+            <td>Philippines</td>
+            <td>Asia 14 bundle (¥45.5/7d) is 3× more expensive than typical single-country rates</td>
+            <td>Priced at $6.99–7.99; or consider bundle-only PH offering</td>
+          </tr>
+          <tr>
+            <td>Mauritius no dedicated SKU</td>
+            <td>Mauritius</td>
+            <td>Only Global156 (156 countries) available — expensive per-GB, CNY 46 vs typical CNY 11–18</td>
+            <td>Derived per-GB cost from 5GB bundle; pricing premium required</td>
+          </tr>
+          <tr>
+            <td>Thailand no 1GB SKU</td>
+            <td>Thailand</td>
+            <td>Minimum bundle is 15GB/7d — wholesale locked to larger quantity. Actually works in our favour (¥1.87/GB implied)</td>
+            <td>Used 15GB/7d ÷15 for per-GB cost; model valid</td>
+          </tr>
+          <tr>
+            <td>Brazil no 1GB SKU</td>
+            <td>Brazil</td>
+            <td>Minimum is 10GB fixed. Per-GB cost derived (¥8.70). Net margin surprisingly strong.</td>
+            <td>Used 10GB÷10 per-GB cost; verified reasonable</td>
+          </tr>
+          <tr>
+            <td>Matching Carrier column empty</td>
+            <td>All 9,091 rows</td>
+            <td>Cannot verify network carrier quality for most SKUs. alternative supplier listed in brief but absent in data.</td>
+            <td>Flag for supplier clarification before launch</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footnotes">
+    <p><strong>Sources:</strong> Wholesale-Supplier-Pricing.xlsx (9,091 SKUs, analysed 2026-05-24) · pricing-benchmark-2026-05-24.json · Peanut plan structure doc · Stripe pricing 2026</p>
+    <p><strong>FX:</strong> CNY→USD at 0.139 (spot rate 2026-05-24). All prices in USD unless noted.</p>
+    <p><strong>Assumptions:</strong> 60% average pool utilisation, $2.20/GB blended wholesale, 2.9%+$0.30 Stripe fees, no Apple/Google platform fees (web checkout), $60/mo fixed infrastructure at small scale.</p>
+    <p><strong>Not included:</strong> Marketing costs, customer acquisition costs, salary/contractor costs, legal/compliance, App Store IAP (0% assumed for web checkout model).</p>
+    <p>Workbook: <code>/Users/a44/Downloads/peanut esim/peanut-pl-scenarios-2026-05-24.xlsx</code> · 6 sheets · 394 live formulas</p>
+  </div>
+
+</main>
+
+</body>
+</html>
