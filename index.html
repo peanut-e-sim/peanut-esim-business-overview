@@ -1717,6 +1717,128 @@
     color: var(--text-3);
   }
 
+  /* ─── EXPANDABLE PHASE LIST ─── */
+  .phase-list {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .phase-row {
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .phase-row:last-child { border-bottom: none; }
+  .phase-head {
+    display: grid;
+    grid-template-columns: 60px 1fr 220px 28px;
+    align-items: center;
+    padding: 14px 18px;
+    cursor: pointer;
+    background: var(--surface);
+    transition: background 0.15s ease;
+    user-select: none;
+  }
+  .phase-head:hover { background: var(--line-soft); }
+  .phase-row.current .phase-head { background: var(--accent-soft); }
+  .phase-row.current .phase-head:hover { background: rgba(45, 140, 126, 0.16); }
+  .phase-row.expanded .phase-head { background: var(--line-soft); border-bottom: 1px solid var(--line); }
+  .phase-row.expanded.current .phase-head { background: var(--accent-soft); }
+  .phase-head .ph-no {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 13.5px;
+  }
+  .phase-head .ph-name {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 14px;
+  }
+  .phase-head .ph-stat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    text-align: right;
+  }
+  .phase-head .ph-chev {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-3);
+    transition: transform 0.2s ease;
+    font-size: 14px;
+  }
+  .phase-row.expanded .ph-chev { transform: rotate(180deg); }
+
+  .phase-items {
+    display: none;
+    background: var(--bg);
+    padding: 6px 0;
+  }
+  .phase-row.expanded .phase-items { display: block; }
+  .item-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 130px 110px;
+    align-items: center;
+    padding: 9px 18px;
+    gap: 10px;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 13px;
+  }
+  .item-row:last-child { border-bottom: none; }
+  .item-row .it-no {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-3);
+    font-size: 11px;
+    text-align: center;
+  }
+  .item-row .it-name {
+    color: var(--text);
+    text-decoration: none;
+    line-height: 1.45;
+  }
+  .item-row .it-name:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .item-row .it-name.no-link {
+    color: var(--text-3);
+    cursor: default;
+  }
+  .it-select {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    padding: 5px 8px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--surface);
+    color: var(--text-2);
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%238B92A3' stroke-width='3' stroke-linecap='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 22px;
+  }
+  .it-select:hover { border-color: var(--text-3); }
+  .it-select.s-done { background-color: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft); }
+  .it-select.s-progress { background-color: var(--warning-soft); color: var(--warning); border-color: var(--warning-soft); }
+  .it-select.s-hold { background-color: var(--line-soft); color: var(--text-3); border-color: var(--line); }
+  .it-select.o-balraj { background-color: rgba(45, 140, 126, 0.10); color: var(--accent); border-color: rgba(45, 140, 126, 0.18); }
+  .it-select.o-akito { background-color: var(--peanut-soft); color: var(--peanut); border-color: var(--peanut-soft); }
+  .it-select.o-both { background-color: var(--violet-soft, #EFEAF5); color: var(--violet, #6B5BBD); border-color: var(--violet-soft, #EFEAF5); }
+
+  @media (max-width: 640px) {
+    .phase-head { grid-template-columns: 40px 1fr 28px; }
+    .phase-head .ph-stat { display: none; }
+    .item-row { grid-template-columns: 1fr; gap: 6px; padding: 12px 14px; }
+    .item-row .it-no { text-align: left; }
+  }
+
   .phase-detail-section {
     border-bottom: none;
     padding: 36px 0 24px;
@@ -3804,22 +3926,316 @@ Akito</div>
     <h2 class="lang en">All <em>8 phases</em>, status snapshot.</h2>
     <h2 class="lang jp">全<em>8フェーズ</em>のステータス。</h2>
 
-    <table class="phase-overview-table">
-      <thead>
-        <tr><th>#</th><th><span class="lang en">PHASE</span><span class="lang jp">フェーズ</span></th><th><span class="lang en">STATUS</span><span class="lang jp">状況</span></th></tr>
-      </thead>
-      <tbody>
-        <tr class="current"><td class="phase-no">0</td><td class="phase-name"><span class="lang en">Research &amp; Validation</span><span class="lang jp">リサーチ＆検証</span></td><td class="phase-stat">🟡 <span class="lang en">In progress (5/10)</span><span class="lang jp">進行中（5/10）</span></td></tr>
-        <tr class="current"><td class="phase-no">1</td><td class="phase-name"><span class="lang en">Legal &amp; Corporate</span><span class="lang jp">法務・法人設立</span></td><td class="phase-stat">▶ <span class="lang en">Starting now (0/18)</span><span class="lang jp">開始中（0/18）</span></td></tr>
-        <tr class="current"><td class="phase-no">2</td><td class="phase-name"><span class="lang en">Brand &amp; Product Design</span><span class="lang jp">ブランド・プロダクトデザイン</span></td><td class="phase-stat">▶ <span class="lang en">Starting now (0/14)</span><span class="lang jp">開始中（0/14）</span></td></tr>
-        <tr><td class="phase-no">3</td><td class="phase-name"><span class="lang en">Tech Build</span><span class="lang jp">技術開発</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
-        <tr><td class="phase-no">4</td><td class="phase-name"><span class="lang en">Beta &amp; Pre-launch</span><span class="lang jp">ベータ・ローンチ準備</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
-        <tr><td class="phase-no">5</td><td class="phase-name"><span class="lang en">Soft Launch</span><span class="lang jp">ソフトローンチ</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
-        <tr><td class="phase-no">6</td><td class="phase-name"><span class="lang en">Public Launch &amp; Growth</span><span class="lang jp">本格ローンチ・成長</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
-        <tr><td class="phase-no">7</td><td class="phase-name"><span class="lang en">Scale &amp; Strategic</span><span class="lang jp">スケール・戦略</span></td><td class="phase-stat">⚪ <span class="lang en">Not started</span><span class="lang jp">未着手</span></td></tr>
-      </tbody>
-    </table>
+    <p style="margin: -6px 0 14px; font-size: 12.5px; color: var(--text-3); line-height: 1.6;"><span class="lang en">Click a phase to expand its items. Each item links to its detail section. Set status + owner per item — saved locally on this device.</span><span class="lang jp">フェーズをクリックすると項目が展開されます。各項目は詳細セクションへリンク。ステータスと担当者は端末にローカル保存されます。</span></p>
+
+    <div class="phase-list" id="phaseList"></div>
   </section>
+
+  <script>
+  (function() {
+    const PHASES = [
+      { num: 0, en: 'Research & Validation', jp: 'リサーチ＆検証', stat: 'progress', items: [
+        { n: 1, en: 'UAE Regulatory', jp: 'UAE 規制関連', def: 'done' },
+        { n: 2, en: 'Aggregator Diligence (Provider Pipeline)', jp: 'アグリゲーター精査（プロバイダー候補一覧）', def: 'progress' },
+        { n: 3, en: 'Competitive Pricing Benchmark', jp: '競合価格ベンチマーク', def: 'done' },
+        { n: 4, en: 'Emirates Crew Interviews', jp: 'エミレーツ航空乗務員インタビュー', def: 'progress', owner: 'akito' },
+        { n: 5, en: 'Founder Agreement (you + Akito)', jp: '共同創業者合意書（あなた + Akito）', owner: 'both' },
+        { n: 6, en: 'Crew SIM competitive deep-dive', jp: 'Crew SIM 詳細競合分析', def: 'done' },
+        { n: 7, en: 'Market sizing (TAM / SAM / SOM)', jp: '市場規模試算（TAM / SAM / SOM）', def: 'done' },
+        { n: 8, en: 'Unit economics model', jp: 'ユニットエコノミクスモデル', def: 'done' },
+        { n: 9, en: 'Financial runway model', jp: '資金繰り（ランウェイ）モデル', def: 'done' },
+        { n: 10, en: 'Risk register', jp: 'リスク登録簿', def: 'done' }
+      ]},
+      { num: 1, en: 'Legal & Corporate', jp: '法務・法人設立', stat: 'starting', items: [
+        { n: 1, en: 'Incorporate Delaware LLC (Stripe Atlas)', jp: 'デラウェア LLC 設立（Stripe Atlas）', owner: 'balraj' },
+        { n: 2, en: 'Trademark "Peanut eSIM" (USPTO + Madrid)', jp: '商標登録「Peanut eSIM」（USPTO + マドリッド）', owner: 'balraj' },
+        { n: 3, en: 'Domains + social handles', jp: 'ドメイン + SNSアカウント', owner: 'akito' },
+        { n: 4, en: 'Terms / Privacy / Refund policy', jp: '利用規約 / プライバシー / 返金ポリシー', owner: 'balraj' },
+        { n: 5, en: 'Data protection compliance (PDPL + GDPR)', jp: 'データ保護準拠（PDPL + GDPR）', owner: 'balraj' },
+        { n: 6, en: 'Mercury US business bank (auto via Atlas)', jp: 'Mercury 米国法人銀行口座（Atlas 経由）', owner: 'balraj' },
+        { n: 7, en: 'Stripe US merchant account', jp: 'Stripe US 加盟店アカウント', owner: 'balraj' },
+        { n: 8, en: 'Apple Developer account', jp: 'Apple Developer アカウント', owner: 'balraj' },
+        { n: 9, en: 'Google Play Console', jp: 'Google Play Console', owner: 'balraj' },
+        { n: 10, en: 'Aggregator MSA (Samurai or alt)', jp: 'アグリゲーター MSA（Samurai または代替）', def: 'hold', owner: 'both' },
+        { n: 11, en: 'Business insurance (E&O + cyber)', jp: '事業保険（E&O + サイバー）', def: 'hold', owner: 'balraj' },
+        { n: 12, en: 'EIN registration confirmation', jp: 'EIN（連邦雇用主番号）取得確認', owner: 'balraj' },
+        { n: 13, en: 'Delaware annual franchise tax + report', jp: 'デラウェア州 年次フランチャイズ税＋報告書', owner: 'balraj' },
+        { n: 14, en: 'US CPA engagement', jp: '米国 CPA 契約', owner: 'balraj' },
+        { n: 15, en: 'Bookkeeping system', jp: '経理（ブックキーピング）システム', owner: 'balraj' },
+        { n: 16, en: 'Apple Carrier Entitlement application', jp: 'Apple キャリア権限の申請', owner: 'balraj' },
+        { n: 17, en: 'NDA + contractor agreement templates', jp: 'NDA・業務委託契約のテンプレート', owner: 'balraj' },
+        { n: 18, en: 'Crew verification legal framework', jp: '乗務員身分確認の法的フレームワーク', owner: 'both' }
+      ]},
+      { num: 2, en: 'Brand & Product Design', jp: 'ブランド・プロダクトデザイン', stat: 'starting', items: [
+        { n: 1, en: 'Brand strategy (positioning, audience, voice, tone)', jp: 'ブランド戦略（ポジショニング・ターゲット・声・トーン）', owner: 'akito' },
+        { n: 2, en: 'Logo, wordmark, app icon', jp: 'ロゴ・ワードマーク・アプリアイコン', owner: 'akito' },
+        { n: 3, en: 'Color palette & typography system', jp: 'カラーパレット・タイポグラフィシステム', owner: 'akito' },
+        { n: 4, en: 'UI design system (Figma library)', jp: 'UI デザインシステム（Figma ライブラリ）', owner: 'balraj' },
+        { n: 5, en: 'Key app screens (onboarding, browse, checkout, my eSIM)', jp: '主要アプリ画面（オンボーディング・プラン閲覧・決済・マイ eSIM）', owner: 'balraj' },
+        { n: 6, en: 'Marketing website design', jp: 'マーケティング Web サイトデザイン', owner: 'balraj' },
+        { n: 7, en: 'App Store + Play Store assets', jp: 'App Store + Play Store 素材（スクショ・コピー・プレビュー動画）', owner: 'akito' },
+        { n: 8, en: 'Email + receipt templates', jp: 'メール・領収書テンプレート', owner: 'akito' },
+        { n: 9, en: 'Social media kit + brand guidelines', jp: 'SNS キット + ブランドガイドライン', owner: 'akito' }
+      ]},
+      { num: 3, en: 'Tech Build', jp: '技術開発', stat: 'upcoming', items: [
+        { n: 1, en: 'Backend architecture (Supabase / Firebase / custom Node)', jp: 'バックエンド アーキテクチャ判断', owner: 'balraj' },
+        { n: 2, en: 'Auth + crew verification system', jp: '認証 + 乗務員認証システム', owner: 'balraj' },
+        { n: 3, en: 'eSIM provisioning API integration', jp: 'eSIM プロビジョニング API 連携', owner: 'balraj' },
+        { n: 4, en: 'Stripe checkout (card + Apple Pay + Google Pay)', jp: 'Stripe 決済（カード + Apple Pay + Google Pay）', owner: 'balraj' },
+        { n: 5, en: 'Schedule-upload OCR + parser (the wedge)', jp: 'ロスター OCR + パーサ（差別化軸）', owner: 'balraj' },
+        { n: 6, en: 'Smart-pricing engine', jp: 'スマート価格エンジン', owner: 'balraj' },
+        { n: 7, en: 'Plan catalog admin tool', jp: 'プラン カタログ管理ツール', owner: 'balraj' },
+        { n: 8, en: 'iOS app (React Native + Expo)', jp: 'iOS アプリ（React Native + Expo）', owner: 'balraj' },
+        { n: 9, en: 'Android app (same codebase)', jp: 'Android アプリ（同一コードベース）', owner: 'balraj' },
+        { n: 10, en: 'Marketing website (peanutesim.com)', jp: 'マーケサイト（peanutesim.com）', owner: 'balraj' },
+        { n: 11, en: 'Push notifications (Expo)', jp: 'プッシュ通知（Expo）', owner: 'balraj' },
+        { n: 12, en: 'Transactional email (Resend / Postmark / SendGrid)', jp: 'トランザクションメール', owner: 'balraj' },
+        { n: 13, en: 'Analytics (PostHog or Mixpanel)', jp: 'アナリティクス（PostHog または Mixpanel）', owner: 'balraj' },
+        { n: 14, en: 'Customer support tool (Intercom / Crisp / HelpScout)', jp: 'サポートツール', owner: 'balraj' },
+        { n: 15, en: 'Admin dashboard (users, refunds, KPIs)', jp: '管理ダッシュボード（ユーザー・返金・KPI）', owner: 'balraj' },
+        { n: 16, en: 'Error monitoring (Sentry)', jp: 'エラー監視（Sentry）', owner: 'balraj' },
+        { n: 17, en: 'Backup + disaster recovery', jp: 'バックアップ + 障害復旧', owner: 'balraj' },
+        { n: 18, en: 'Security review / pen test', jp: 'セキュリティ レビュー / ペネトレーション テスト', owner: 'balraj' }
+      ]},
+      { num: 4, en: 'Beta & Pre-launch', jp: 'ベータ・ローンチ準備', stat: 'upcoming', items: [
+        { n: 1, en: 'Beta tester recruitment (20–50 crew)', jp: 'ベータテスター募集（クルー 20〜50 名）', owner: 'akito' },
+        { n: 2, en: 'Beta NDA + feedback agreement', jp: 'ベータ NDA + フィードバック合意書', owner: 'balraj' },
+        { n: 3, en: 'TestFlight + Play Internal setup', jp: 'TestFlight + Play Internal 配信設定', owner: 'balraj' },
+        { n: 4, en: 'Bug-bash sprints (weekly)', jp: 'バグ バッシュ スプリント（週次）', owner: 'both' },
+        { n: 5, en: 'Pricing validation', jp: '価格検証', owner: 'both' },
+        { n: 6, en: 'Schedule-upload accuracy testing', jp: 'ロスター OCR 精度テスト', owner: 'balraj' },
+        { n: 7, en: 'Customer support runbook', jp: 'サポート ランブック', owner: 'both' },
+        { n: 8, en: 'Support staffing decision (Balraj / Akito / VA)', jp: 'サポート担当判断', owner: 'both' },
+        { n: 9, en: 'Refund process testing (edge cases)', jp: '返金プロセス テスト（エッジケース）', owner: 'balraj' },
+        { n: 10, en: 'App Store + Play Store submission', jp: 'App Store + Play Store 申請', owner: 'balraj' },
+        { n: 11, en: 'Launch checklist', jp: 'ローンチ チェックリスト', owner: 'both' },
+        { n: 12, en: 'Crisis playbook', jp: 'クライシス プレイブック', owner: 'both' }
+      ]},
+      { num: 5, en: 'Soft Launch (invite-only)', jp: 'ソフトローンチ（招待制）', stat: 'upcoming', items: [
+        { n: 1, en: 'Invite waitlist / queue infrastructure', jp: '招待ウェイトリスト / キュー基盤', owner: 'balraj' },
+        { n: 2, en: 'First 100 invites (hand-selected)', jp: '最初の 100 招待（手動選定）', owner: 'akito' },
+        { n: 3, en: 'Onboarding flow monitoring', jp: 'オンボーディング フロー監視', owner: 'balraj' },
+        { n: 4, en: 'Sales analytics', jp: '売上アナリティクス', owner: 'balraj' },
+        { n: 5, en: 'Conversion funnel optimization', jp: 'コンバージョン ファネル最適化', owner: 'both' },
+        { n: 6, en: 'Word-of-mouth amplification (referrals)', jp: '口コミ拡散（リファラル）', owner: 'akito' },
+        { n: 7, en: 'Crew lounge poster + QR campaign (DXB T3)', jp: 'クルーラウンジ ポスター + QR キャンペーン（DXB T3）', owner: 'akito' },
+        { n: 8, en: 'NPS + structured feedback', jp: 'NPS + 構造化フィードバック', owner: 'balraj' },
+        { n: 9, en: 'Press / media outreach', jp: 'プレス / メディア露出', owner: 'akito' },
+        { n: 10, en: 'Pricing iteration on real demand', jp: '実需に基づく価格反復', owner: 'both' }
+      ]},
+      { num: 6, en: 'Public Launch & Growth', jp: '本格ローンチ・成長', stat: 'upcoming', items: [
+        { n: 1, en: 'Open the gates (remove invite-only)', jp: 'ゲート開放（招待制を解除）', owner: 'both' },
+        { n: 2, en: 'Paid ad campaigns (Instagram + TikTok + Meta)', jp: '有料広告（Instagram + TikTok + Meta）', owner: 'akito' },
+        { n: 3, en: 'ASO optimization', jp: 'ASO 最適化', owner: 'akito' },
+        { n: 4, en: 'SEO content engine (per-country pages)', jp: 'SEO コンテンツ生産（国別ページ）', owner: 'akito' },
+        { n: 5, en: 'Influencer / crew creator partnerships', jp: 'インフルエンサー / クルー クリエイター提携', owner: 'akito' },
+        { n: 6, en: 'Referral programme (public, gamified)', jp: 'リファラル プログラム（公開・ゲーミフィケーション）', owner: 'balraj' },
+        { n: 7, en: 'Etihad outreach (next airline)', jp: 'Etihad へのアプローチ（2 社目）', owner: 'akito' },
+        { n: 8, en: 'PR push (Khaleej Times, The National)', jp: 'PR 活動（Khaleej Times、The National）', owner: 'akito' },
+        { n: 9, en: 'Loyalty / subscription unlock (yearly plan)', jp: 'ロイヤルティ / サブスク開放（年額プラン）', owner: 'both' },
+        { n: 10, en: 'Revenue dashboard (real KPIs)', jp: '売上ダッシュボード（実 KPI）', owner: 'balraj' }
+      ]},
+      { num: 7, en: 'Scale & Strategic', jp: 'スケール・戦略', stat: 'upcoming', items: [
+        { n: 1, en: 'Multi-airline expansion (JAL, ANA, Singapore, Qatar)', jp: '複数航空会社展開（JAL・ANA・Singapore・Qatar）', owner: 'akito' },
+        { n: 2, en: 'Michelin recs layer launch (the moat)', jp: 'ミシュラン式レコメンド層（参入障壁）', owner: 'both' },
+        { n: 3, en: 'B2B partnership conversations (Emirates HR)', jp: 'B2B 提携協議（Emirates HR）', owner: 'akito' },
+        { n: 4, en: 'International base expansion (JFK, LHR)', jp: '海外ベース拡張（JFK、ロンドン LHR）', owner: 'both' },
+        { n: 5, en: 'Series A fundraise (optional)', jp: 'シリーズ A 調達（任意）', owner: 'balraj' },
+        { n: 6, en: 'First team hires (support → eng → marketing)', jp: '初期チーム採用', owner: 'both' },
+        { n: 7, en: 'Office + ops structure (when team > 5)', jp: 'オフィス + 運営体制（5 名超で検討）', owner: 'balraj' },
+        { n: 8, en: 'Adjacent product lines (data API, consumer brand)', jp: '隣接プロダクト', owner: 'both' },
+        { n: 9, en: 'Acquisition / exit options (Airalo, Holafly)', jp: '買収 / イグジット', owner: 'both' },
+        { n: 10, en: 'Series B+ / IPO path', jp: 'シリーズ B 以降 / IPO 経路', owner: 'both' }
+      ]}
+    ];
+
+    const STATUS_OPTS = [
+      { v: '', en: '— Status', jp: '— ステータス' },
+      { v: 'hold', en: 'Hold', jp: '保留' },
+      { v: 'progress', en: 'In progress', jp: '進行中' },
+      { v: 'done', en: 'Done', jp: '完了' }
+    ];
+    const OWNER_OPTS = [
+      { v: '', en: '— Owner', jp: '— 担当' },
+      { v: 'balraj', en: 'Balraj', jp: 'Balraj' },
+      { v: 'akito', en: 'Akito', jp: 'Akito' },
+      { v: 'both', en: 'Both', jp: '両者' }
+    ];
+
+    const STATUS_LABEL = { hold: 'HOLD', progress: 'IN PROGRESS', done: 'DONE' };
+    const STATUS_LABEL_JP = { hold: '保留', progress: '進行中', done: '完了' };
+
+    function statKey(p, i) { return 'peanut.phase.' + p + '.item.' + i + '.status'; }
+    function ownKey(p, i)  { return 'peanut.phase.' + p + '.item.' + i + '.owner'; }
+    function getLS(k, fallback) {
+      try { const v = localStorage.getItem(k); return v == null ? fallback : v; } catch (e) { return fallback; }
+    }
+    function setLS(k, v) {
+      try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) {}
+    }
+
+    function phaseSummary(p) {
+      let done = 0, hold = 0, prog = 0;
+      const total = p.items.length;
+      p.items.forEach(it => {
+        const cur = getLS(statKey(p.num, it.n), it.def || '');
+        if (cur === 'done') done++;
+        else if (cur === 'progress') prog++;
+        else if (cur === 'hold') hold++;
+      });
+      return { done, prog, hold, total };
+    }
+
+    function renderSummary(p) {
+      const s = phaseSummary(p);
+      if (s.done === s.total) return { en: '✅ Done (' + s.total + '/' + s.total + ')', jp: '✅ 完了（' + s.total + '/' + s.total + '）' };
+      if (s.done > 0 || s.prog > 0) return { en: '🟡 ' + s.done + '/' + s.total + ' done · ' + s.prog + ' in progress', jp: '🟡 ' + s.done + '/' + s.total + ' 完了 ・ ' + s.prog + ' 進行中' };
+      if (p.stat === 'starting') return { en: '▶ Starting now (0/' + s.total + ')', jp: '▶ 開始中（0/' + s.total + '）' };
+      return { en: '⚪ Not started (' + s.total + ')', jp: '⚪ 未着手（' + s.total + '）' };
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function buildSelect(cls, opts, value, dataAttrs) {
+      let html = '<select class="it-select ' + cls + '"';
+      for (const [k, v] of Object.entries(dataAttrs)) html += ' data-' + k + '="' + escapeHtml(v) + '"';
+      html += '>';
+      opts.forEach(o => {
+        const sel = (o.v === value) ? ' selected' : '';
+        html += '<option value="' + o.v + '"' + sel + '>';
+        html += '<span class="lang en">' + escapeHtml(o.en) + '</span><span class="lang jp">' + escapeHtml(o.jp) + '</span>';
+        html += '</option>';
+      });
+      html += '</select>';
+      return html;
+    }
+
+    function buildSelectPlain(opts, value, dataAttrs, baseCls) {
+      const colorCls = (baseCls === 'status' && value) ? ' s-' + value : (baseCls === 'owner' && value) ? ' o-' + value : '';
+      let html = '<select class="it-select' + colorCls + '"';
+      for (const [k, v] of Object.entries(dataAttrs)) html += ' data-' + k + '="' + escapeHtml(v) + '"';
+      html += '>';
+      opts.forEach(o => {
+        const sel = (o.v === value) ? ' selected' : '';
+        const label = (document.documentElement.getAttribute('data-lang') === 'jp') ? o.jp : o.en;
+        html += '<option value="' + escapeHtml(o.v) + '"' + sel + '>' + escapeHtml(label) + '</option>';
+      });
+      html += '</select>';
+      return html;
+    }
+
+    function render() {
+      const root = document.getElementById('phaseList');
+      if (!root) return;
+      const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+
+      const html = PHASES.map(p => {
+        const sum = renderSummary(p);
+        const isCurrent = (p.num === 0 || p.num === 1 || p.num === 2);
+        const itemsHtml = p.items.map(it => {
+          const stat = getLS(statKey(p.num, it.n), it.def || '');
+          const own  = getLS(ownKey(p.num, it.n), it.owner || '');
+          const anchorId = 'phase-' + p.num + '-item-' + it.n;
+          const linkExists = !!document.getElementById(anchorId);
+          const href = '#' + anchorId;
+          const labelInner =
+            '<span class="lang en">Item ' + it.n + ' — ' + escapeHtml(it.en) + '</span>' +
+            '<span class="lang jp">Item ' + it.n + ' — ' + escapeHtml(it.jp) + '</span>';
+          const nameHtml = linkExists
+            ? '<a class="it-name" href="' + href + '" data-phase="' + p.num + '" data-item="' + it.n + '">' + labelInner + '</a>'
+            : '<span class="it-name no-link" data-phase="' + p.num + '" data-item="' + it.n + '">' + labelInner + '</span>';
+          const statSel = buildSelectPlain(STATUS_OPTS, stat, { kind: 'status', phase: p.num, item: it.n }, 'status');
+          const ownSel  = buildSelectPlain(OWNER_OPTS,  own,  { kind: 'owner',  phase: p.num, item: it.n }, 'owner');
+          return '<div class="item-row">' +
+            '<div class="it-no">P' + p.num + '·I' + it.n + '</div>' +
+            nameHtml + statSel + ownSel +
+            '</div>';
+        }).join('');
+
+        return '<div class="phase-row' + (isCurrent ? ' current' : '') + '" data-phase="' + p.num + '">' +
+          '<div class="phase-head" data-toggle="' + p.num + '">' +
+            '<div class="ph-no">' + p.num + '</div>' +
+            '<div class="ph-name"><span class="lang en">' + escapeHtml(p.en) + '</span><span class="lang jp">' + escapeHtml(p.jp) + '</span></div>' +
+            '<div class="ph-stat"><span class="lang en">' + sum.en + '</span><span class="lang jp">' + sum.jp + '</span></div>' +
+            '<div class="ph-chev">▾</div>' +
+          '</div>' +
+          '<div class="phase-items">' + itemsHtml + '</div>' +
+        '</div>';
+      }).join('');
+
+      root.innerHTML = html;
+
+      root.querySelectorAll('.phase-head').forEach(head => {
+        head.addEventListener('click', function(e) {
+          if (e.target.closest('.it-select') || e.target.closest('a')) return;
+          this.parentElement.classList.toggle('expanded');
+        });
+      });
+
+      root.querySelectorAll('.it-select').forEach(sel => {
+        sel.addEventListener('click', e => e.stopPropagation());
+        sel.addEventListener('change', function() {
+          const kind = this.getAttribute('data-kind');
+          const phase = this.getAttribute('data-phase');
+          const item = this.getAttribute('data-item');
+          const v = this.value;
+          if (kind === 'status') {
+            setLS(statKey(phase, item), v);
+            this.className = 'it-select' + (v ? ' s-' + v : '');
+            const row = this.closest('.phase-row');
+            if (row) {
+              const p = PHASES.find(pp => pp.num === parseInt(phase, 10));
+              if (p) {
+                const sum = renderSummary(p);
+                const stEl = row.querySelector('.ph-stat');
+                if (stEl) stEl.innerHTML = '<span class="lang en">' + sum.en + '</span><span class="lang jp">' + sum.jp + '</span>';
+              }
+            }
+          } else if (kind === 'owner') {
+            setLS(ownKey(phase, item), v);
+            this.className = 'it-select' + (v ? ' o-' + v : '');
+          }
+        });
+      });
+
+      root.querySelectorAll('a.it-name').forEach(a => {
+        a.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (!href) return;
+          const target = document.querySelector(href);
+          if (target) {
+            const roadmapTab = document.querySelector('[data-tab="roadmap"]');
+            if (roadmapTab && !roadmapTab.classList.contains('active')) roadmapTab.click();
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', render);
+    } else {
+      render();
+    }
+
+    document.addEventListener('langchange', render);
+    // The page's language toggle uses `.lang-btn[data-lang="en|jp"]`. The dropdown
+    // <option> elements need to be re-rendered with the active language because the
+    // option text is set as plain text at render time (browsers ignore HTML inside
+    // <option>, so .lang spans don't work there).
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.addEventListener('click', () => setTimeout(render, 10));
+    });
+    // Also observe data-lang attribute changes (covers initial hydration + future paths).
+    const langObserver = new MutationObserver(muts => {
+      for (const m of muts) {
+        if (m.type === 'attributes' && m.attributeName === 'data-lang') { render(); break; }
+      }
+    });
+    langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+  })();
+  </script>
 
   <!-- Phase 0 Detail -->
   <section class="phase-detail-section">
