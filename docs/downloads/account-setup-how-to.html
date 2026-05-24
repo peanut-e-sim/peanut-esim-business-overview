@@ -371,6 +371,13 @@
   }
   .foot a { color: var(--peanut); text-decoration: none; margin-left: 12px; }
   .foot a:hover { text-decoration: underline; }
+
+  /* Acronym tooltips */
+  abbr[title] {
+    text-decoration: underline dotted currentColor;
+    text-underline-offset: 2px;
+    cursor: help;
+  }
 </style>
 </head>
 <body data-lang="en">
@@ -1016,5 +1023,124 @@ function updateActiveTab() {
 window.addEventListener('scroll', updateActiveTab, { passive: true });
 updateActiveTab();
 </script>
+  <script>
+  // Site-wide acronym tooltips — wraps known acronyms in <abbr>
+  (function() {
+    const ACRONYMS = {
+      'USPTO': 'United States Patent and Trademark Office',
+      'TDRA': 'Telecommunications and Digital Government Regulatory Authority (UAE telecom regulator)',
+      'PDPL': 'Personal Data Protection Law (UAE Federal Decree-Law No. 45 of 2021)',
+      'GDPR': 'General Data Protection Regulation (EU)',
+      'FTA': 'Federal Tax Authority (UAE)',
+      'EIN': 'Employer Identification Number (US business tax ID)',
+      'MCC': 'Merchant Category Code',
+      'DUNS': 'Data Universal Numbering System (Dun & Bradstreet business ID, required for Apple Developer)',
+      'NDA': 'Non-Disclosure Agreement',
+      'MSA': 'Master Services Agreement',
+      'MNO': 'Mobile Network Operator',
+      'IRS': 'Internal Revenue Service (US tax authority)',
+      'LLC': 'Limited Liability Company',
+      'CPA': 'Certified Public Accountant',
+      'K-1': 'IRS Schedule K-1 — partnership income statement per member',
+      'KYC': 'Know Your Customer (identity verification)',
+      'SLA': 'Service Level Agreement',
+      'NPS': 'Net Promoter Score (customer satisfaction metric)',
+      'CAC': 'Customer Acquisition Cost',
+      'LTV': 'Lifetime Value (customer lifetime revenue)',
+      'ASO': 'App Store Optimization',
+      'MRR': 'Monthly Recurring Revenue',
+      'ARR': 'Annual Recurring Revenue',
+      'ARPU': 'Average Revenue Per User',
+      'OCR': 'Optical Character Recognition (reading text from images)',
+      'eSIM': 'Embedded SIM — digital SIM card downloaded onto phone',
+      'SIM': 'Subscriber Identity Module',
+      'IAP': 'In-App Purchase',
+      'ITIN': 'Individual Taxpayer Identification Number (US, for non-SSN holders)',
+      'PE': 'Permanent Establishment (tax term)',
+      'AML': 'Anti-Money Laundering',
+      'CFT': 'Counter-Financing of Terrorism',
+      'SOF': 'Source of Funds (banking compliance term)',
+      'FIU': 'Financial Intelligence Unit',
+      'DPO': 'Data Protection Officer',
+      'DPIA': 'Data Protection Impact Assessment',
+      'TSE': 'Tokyo Stock Exchange',
+      'B2B': 'Business-to-Business',
+      'B2C': 'Business-to-Consumer',
+      'WIPO': 'World Intellectual Property Organization',
+      'ToS': 'Terms of Service',
+      'TAM': 'Total Addressable Market',
+      'SAM': 'Serviceable Addressable Market',
+      'SOM': 'Serviceable Obtainable Market',
+      'JAL': 'Japan Airlines',
+      'ANA': 'All Nippon Airways',
+      'DXB': 'Dubai International Airport (IATA code)',
+      'LHR': 'London Heathrow Airport (IATA code)',
+      'JFK': 'John F. Kennedy International Airport, New York (IATA code)',
+      'UAE': 'United Arab Emirates',
+      'AED': 'United Arab Emirates Dirham (currency)',
+      'CNY': 'Chinese Yuan (currency)',
+      'JPY': 'Japanese Yen (currency)',
+      'USD': 'United States Dollar (currency)',
+      'GCC': 'Gulf Cooperation Council'
+    };
+
+    function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+    function wrapAcronyms() {
+      if (!document.body) return;
+      const skipTags = new Set(['SCRIPT','STYLE','ABBR','CODE','PRE','INPUT','TEXTAREA','BUTTON','OPTION','SELECT','NOSCRIPT']);
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode: function(node) {
+          let parent = node.parentNode;
+          while (parent && parent !== document.body) {
+            if (parent.tagName && skipTags.has(parent.tagName)) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            parent = parent.parentNode;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      const keys = Object.keys(ACRONYMS).sort(function(a,b){ return b.length - a.length; });
+      const pattern = new RegExp('\\b(' + keys.map(escapeRe).join('|') + ')\\b', 'g');
+      const nodes = [];
+      let n;
+      while ((n = walker.nextNode())) {
+        if (n.nodeValue && pattern.test(n.nodeValue)) {
+          pattern.lastIndex = 0;
+          nodes.push(n);
+        }
+      }
+      nodes.forEach(function(node) {
+        const frag = document.createDocumentFragment();
+        const text = node.nodeValue;
+        let lastIdx = 0;
+        pattern.lastIndex = 0;
+        let m;
+        while ((m = pattern.exec(text)) !== null) {
+          if (m.index > lastIdx) {
+            frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
+          }
+          const abbr = document.createElement('abbr');
+          abbr.setAttribute('title', ACRONYMS[m[1]]);
+          abbr.textContent = m[1];
+          frag.appendChild(abbr);
+          lastIdx = m.index + m[1].length;
+        }
+        if (lastIdx < text.length) {
+          frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+        }
+        if (node.parentNode) node.parentNode.replaceChild(frag, node);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wrapAcronyms);
+    } else {
+      wrapAcronyms();
+    }
+  })();
+  </script>
+
 </body>
 </html>

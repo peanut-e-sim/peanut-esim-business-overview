@@ -2533,6 +2533,13 @@
     .money-row .desc { grid-column: 1 / -1; }
     .market-quad { padding: 32px 28px 24px; }
   }
+
+  /* Acronym tooltips */
+  abbr[title] {
+    text-decoration: underline dotted var(--accent);
+    text-underline-offset: 2px;
+    cursor: help;
+  }
 </style>
 </head>
 <body>
@@ -4281,7 +4288,8 @@ Akito</div>
         { n: 9, en: 'Financial runway model', jp: '資金繰り（ランウェイ）モデル', def: 'done' },
         { n: 10, en: 'Risk register', jp: 'リスク登録簿', def: 'done' },
         { n: 11, en: 'Plan portfolio design', jp: 'プラン ポートフォリオ設計', owner: 'both' },
-        { n: 12, en: 'Live financial workbook', jp: '財務シミュレーション（継続更新型）', owner: 'balraj' }
+        { n: 12, en: 'Live financial workbook', jp: '財務シミュレーション（継続更新型）', owner: 'balraj' },
+        { n: 13, en: 'Residual UAE compliance', jp: 'UAE 残余コンプライアンス', owner: 'both' }
       ]},
       { num: 1, en: 'Legal & Corporate', jp: '法務・法人設立', stat: 'starting', items: [
         { n: 1, en: 'Incorporate Delaware LLC (Stripe Atlas)', jp: 'デラウェア LLC 設立（Stripe Atlas）', owner: 'balraj' },
@@ -4579,7 +4587,7 @@ Akito</div>
     <div class="phase-detail-header p0">
       <div class="phase-detail-num">0</div>
       <div>
-        <span class="phase-status-pill progress"><span class="lang en">IN PROGRESS · 7 / 12 CLOSED</span><span class="lang jp">進行中 ・ 12項目中7項目完了</span></span>
+        <span class="phase-status-pill progress"><span class="lang en">IN PROGRESS · 7 / 13 CLOSED</span><span class="lang jp">進行中 ・ 13項目中7項目完了</span></span>
         <h2><span class="lang en">Phase 0 — Research &amp; Validation</span><span class="lang jp">フェーズ0 — リサーチ＆検証</span></h2>
       </div>
     
@@ -5302,6 +5310,311 @@ Mercury（米国法人銀行口座）
         </div>
       </div>
     </div>
+
+    <!-- ITEM 13 — Residual UAE compliance -->
+    <div class="roadmap-item" id="phase-0-item-13">
+      <div class="ri-head">
+        <span class="ri-status progress"><span class="lang en">🟡 IN PROGRESS · 0 / 5 RESOLVED · OWNER: BOTH</span><span class="lang jp">🟡 進行中 ・ 5項目中0項目決着 ・ 担当:Both</span></span>
+        <h3><span class="lang en">Item 13 — Residual UAE compliance (operating from UAE without a UAE entity)</span><span class="lang jp">Item 13 — UAE 残余コンプライアンス（UAE 法人なしで UAE から運営する場合）</span></h3>
+      </div>
+      <p class="ri-desc">
+        <span class="lang en">Going Delaware-only kills 95% of the UAE regulatory burden — but 5 things still apply because of where the founders sit (UAE), not where the LLC is incorporated. Each is documented as a sub-decision below.</span>
+        <span class="lang jp">デラウェア法人のみで UAE 規制負担の 95% を回避できる — ただし、法人の所在地ではなく創業者が UAE に居住している事実に基づき、5 項目は依然適用される。以下、それぞれサブ判断として記載。</span>
+      </p>
+      <div class="ri-explainer">
+        <div class="ri-explainer-tag"><span class="lang en">📖 What is this &amp; why we need it</span><span class="lang jp">📖 これは何で、なぜ必要なのか</span></div>
+        <p class="lang en">Think of this as the residual compliance list we have to manage because of where we sit, not because of where the company is filed. Five items — PDPL (data protection), Permanent Establishment tax risk, Consumer Protection, Banking source-of-funds, and UAE Trademark. None of them are dragons, but ignoring any one of them can become an expensive surprise later.</p>
+        <p class="lang jp">創業者が UAE に居住している事実に起因する、避けられない残余コンプライアンス項目の一覧。5 項目 — PDPL（データ保護）、恒久的施設税リスク、消費者保護、銀行ソース・オブ・ファンド、UAE 商標。いずれも致命的ではないが、無視すれば後で高くつく。</p>
+      </div>
+
+      <!-- SUB-DECISION 1 — PDPL -->
+      <div class="ri-subdecision">
+        <div class="ri-subdecision-tag">
+          <span class="lang en">⚖ Sub-decision 1 · PDPL (UAE Personal Data Protection Law)</span>
+          <span class="lang jp">⚖ サブ判断 1 ・ PDPL（UAE 個人情報保護法）</span>
+        </div>
+        <p class="ri-subdecision-verdict lang en"><strong>Verdict:</strong> Comply via privacy-by-design — process roster screenshots ON-DEVICE so PDPL-triggering data never reaches our servers.</p>
+        <p class="ri-subdecision-verdict lang jp"><strong>判断:</strong>プライバシー・バイ・デザインで準拠 — ロスター画像は端末内処理し、PDPL 対象データをサーバーに送らない。</p>
+
+        <p class="lang en"><strong>The hook:</strong> Federal Decree-Law No. 45 of 2021. Applies extraterritorially (Article 2) to anyone processing UAE residents' personal data, even Delaware-incorporated. Penalties: AED 50K–5M ($13K–$1.4M).</p>
+        <p class="lang jp"><strong>根拠:</strong>連邦法令第 45 号 (2021)。第 2 条により域外適用 — デラウェア法人であっても、UAE 居住者の個人データを処理する事業者に適用される。罰金:AED 50K〜5M（$13K〜$1.4M）。</p>
+
+        <h4 class="lang en">What we collect that triggers it</h4>
+        <h4 class="lang jp">PDPL を発動させる収集データ</h4>
+        <table class="mini-table">
+          <thead><tr>
+            <th><span class="lang en">Data type</span><span class="lang jp">データ種別</span></th>
+            <th><span class="lang en">Sensitivity</span><span class="lang jp">機密度</span></th>
+            <th><span class="lang en">Our handling</span><span class="lang jp">取り扱い</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="lang en">Name + email</span><span class="lang jp">氏名 + メール</span></td><td><span class="lang en">Basic</span><span class="lang jp">基本</span></td><td><span class="lang en">Encrypted at rest on our backend</span><span class="lang jp">バックエンドで保管時暗号化</span></td></tr>
+            <tr><td><span class="lang en">Crew base + airline</span><span class="lang jp">乗務員ベース + 航空会社</span></td><td><span class="lang en">Employment data (sensitive)</span><span class="lang jp">雇用情報（機微）</span></td><td><span class="lang en">Encrypted at rest, minimal retention</span><span class="lang jp">暗号化保管・最小限保持</span></td></tr>
+            <tr class="pick"><td><span class="lang en">Roster screenshots</span><span class="lang jp">ロスター画像</span></td><td><span class="lang en">Employment + schedule (highly sensitive)</span><span class="lang jp">雇用＋シフト（高機密）</span></td><td><strong><span class="lang en">PROCESS ON-DEVICE ONLY — never leaves the user's phone</span><span class="lang jp">端末内処理のみ — ユーザーの端末から出ない</span></strong></td></tr>
+            <tr><td><span class="lang en">Plan/purchase history</span><span class="lang jp">プラン購入履歴</span></td><td><span class="lang en">Financial transactional</span><span class="lang jp">金融取引</span></td><td><span class="lang en">Standard merchant compliance</span><span class="lang jp">標準的な加盟店準拠</span></td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="lang en">Our approach</h4>
+        <h4 class="lang jp">対応方針</h4>
+        <ul class="lang en">
+          <li>Parse roster ON-DEVICE using Apple Vision Framework (iOS) + Google ML Kit (Android). Only parsed text (destinations + dates) sent to backend.</li>
+          <li>Explicit consent at signup (no pre-ticked boxes)</li>
+          <li>Encrypt data at rest + in transit</li>
+          <li>In-app account deletion, completes &lt;30 days</li>
+          <li>PDPL-aligned Privacy Policy (Phase 1 Item 4 covers)</li>
+          <li>Host on AWS Bahrain region (<code>me-south-1</code>) or Supabase EU — reduces latency + signals we take UAE data seriously</li>
+          <li>DPO not required until &gt;10K UAE residents</li>
+        </ul>
+        <ul class="lang jp">
+          <li>ロスター解析は端末内（iOS:Apple Vision Framework / Android:Google ML Kit）。解析結果（行き先＋日付）のみバックエンド送信。</li>
+          <li>登録時の明示的同意（プリチェック禁止）</li>
+          <li>保管・通信ともに暗号化</li>
+          <li>アプリ内でアカウント削除可（30 日以内に完了）</li>
+          <li>PDPL 準拠プライバシーポリシー（Phase 1 Item 4 で対応）</li>
+          <li>AWS バーレーン（<code>me-south-1</code>）または Supabase EU でホスティング — レイテンシ短縮＋ UAE データを真剣に扱う姿勢の表明</li>
+          <li>DPO は UAE 居住者 10,000 名超まで不要</li>
+        </ul>
+
+        <div class="ri-callout">
+          <strong><span class="lang en">Workaround:</span><span class="lang jp">回避策:</span></strong>
+          <span class="lang en">On-device OCR eliminates ~80% of PDPL exposure. Even if our entire backend is hacked tomorrow, no roster screenshots leak. Also a marketable differentiator vs Crew SIM ("privacy-first").</span>
+          <span class="lang jp">端末内 OCR で PDPL リスクの約 80% を排除。万一バックエンドが侵害されてもロスター画像は流出しない。Crew SIM に対する「プライバシー優先」訴求にも転用可能。</span>
+        </div>
+      </div>
+
+      <!-- SUB-DECISION 2 — Permanent Establishment -->
+      <div class="ri-subdecision">
+        <div class="ri-subdecision-tag">
+          <span class="lang en">⚖ Sub-decision 2 · Permanent Establishment tax risk</span>
+          <span class="lang jp">⚖ サブ判断 2 ・ 恒久的施設（PE）課税リスク</span>
+        </div>
+        <p class="ri-subdecision-verdict lang en"><strong>Verdict:</strong> Use the Airalo/Nomad pattern — keep all structural artifacts (bank, contracts, payment processor, registered agent) in the US. Founder activity classified as "remote work for a foreign entity."</p>
+        <p class="ri-subdecision-verdict lang jp"><strong>判断:</strong>Airalo / Nomad モデルを踏襲 — 銀行・契約・決済・登録代理人など構造的痕跡をすべて米国に置く。創業者の活動は「外国法人へのリモート勤務」と整理。</p>
+
+        <p class="lang en"><strong>The hook:</strong> UAE Federal Decree-Law No. 47 of 2022 (Corporate Tax). 9% on profits &gt;AED 375K. If FTA decides Delaware LLC has "permanent establishment" in UAE because founders work from here, they tax UAE-attributable profits at 9%.</p>
+        <p class="lang jp"><strong>根拠:</strong>連邦法令第 47 号 (2022)（法人税）。利益 AED 375K 超は 9%。FTA が「創業者が UAE で稼働している＝恒久的施設あり」と判断すれば、UAE 帰属利益に 9% 課税。</p>
+
+        <h4 class="lang en">What FTA sees vs what we want them to see</h4>
+        <h4 class="lang jp">FTA が見るもの vs 我々が見せたいもの</h4>
+        <table class="mini-table">
+          <thead><tr>
+            <th><span class="lang en">What FTA might check</span><span class="lang jp">FTA の確認項目</span></th>
+            <th><span class="lang en">Our answer</span><span class="lang jp">我々の回答</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="lang en">Where is the LLC registered?</span><span class="lang jp">LLC 登記地は?</span></td><td><span class="lang en">Delaware</span><span class="lang jp">デラウェア</span></td></tr>
+            <tr><td><span class="lang en">Where is the operational bank account?</span><span class="lang jp">事業用銀行口座は?</span></td><td><span class="lang en">Mercury (US) — NEVER open UAE LLC account</span><span class="lang jp">Mercury（米国） — UAE LLC 口座は絶対に開設しない</span></td></tr>
+            <tr><td><span class="lang en">Who processes payments?</span><span class="lang jp">決済処理は?</span></td><td><span class="lang en">Stripe US</span><span class="lang jp">Stripe US</span></td></tr>
+            <tr><td><span class="lang en">Where are contracts signed?</span><span class="lang jp">契約締結地は?</span></td><td><span class="lang en">US address (Atlas registered agent)</span><span class="lang jp">米国住所（Atlas 登録代理人）</span></td></tr>
+            <tr><td><span class="lang en">Where do founders live?</span><span class="lang jp">創業者の居住地は?</span></td><td><span class="lang en">UAE — same as millions of UAE residents working remotely for Google/Meta/Stripe</span><span class="lang jp">UAE — Google / Meta / Stripe に UAE からリモート勤務する数百万人と同じ立場</span></td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="lang en">Our approach</h4>
+        <h4 class="lang jp">対応方針</h4>
+        <ul class="lang en">
+          <li>Mercury US as primary operational bank</li>
+          <li>Stripe US as payment processor</li>
+          <li>Atlas US registered agent (~$100/yr Year 2+)</li>
+          <li>App Store / Play Store registered to LLC at US address</li>
+          <li>1–2 short US trips/yr documented as "management meetings"</li>
+          <li>Annual CPA review ($1,000–2,500/yr — Phase 1 Item 14)</li>
+          <li>Trigger restructure if UAE-attributable profit &gt;AED 375K (~$100K) — add US-resident contracted officer</li>
+        </ul>
+        <ul class="lang jp">
+          <li>Mercury US を主要事業口座とする</li>
+          <li>Stripe US を決済プロセッサとする</li>
+          <li>Atlas 米国登録代理人（2 年目以降 約 $100 / 年）</li>
+          <li>App Store / Play Store は LLC（米国住所）名義で登録</li>
+          <li>年 1〜2 回の短期米国出張を「経営会議」として記録</li>
+          <li>年次 CPA レビュー（年 $1,000〜2,500、Phase 1 Item 14）</li>
+          <li>UAE 帰属利益が AED 375K（約 $100K）を超えたら再編 — 米国居住の契約役員を追加</li>
+        </ul>
+
+        <div class="ri-callout">
+          <strong><span class="lang en">Workaround:</span><span class="lang jp">回避策:</span></strong>
+          <span class="lang en">Plausible deniability via structural artifacts. FTA's test isn't "where did the founder type the email?" — it's "where is the operational substance?" Substance follows artifacts. Same playbook Airalo + Nomad use without enforcement issues.</span>
+          <span class="lang jp">構造的痕跡による合理的説明可能性。FTA の判定基準は「どこでメールを打ったか」ではなく「実質的な事業実体がどこにあるか」。実体は痕跡に従う。Airalo・Nomad と同じ手法で、これまで執行上の問題は発生していない。</span>
+        </div>
+      </div>
+
+      <!-- SUB-DECISION 3 — Consumer Protection -->
+      <div class="ri-subdecision">
+        <div class="ri-subdecision-tag">
+          <span class="lang en">⚖ Sub-decision 3 · UAE Consumer Protection</span>
+          <span class="lang jp">⚖ サブ判断 3 ・ UAE 消費者保護</span>
+        </div>
+        <p class="ri-subdecision-verdict lang en"><strong>Verdict:</strong> Follow industry-standard digital service compliance — Stripe US + Apple/Google dispute mechanisms handle most of the work.</p>
+        <p class="ri-subdecision-verdict lang jp"><strong>判断:</strong>業界標準のデジタルサービス準拠で対応 — Stripe US ＋ Apple / Google の係争解決メカニズムが大部分を処理。</p>
+
+        <p class="lang en"><strong>The hook:</strong> Federal Law No. 15 of 2020 + Cabinet Resolution No. 66 of 2023. Applies to anyone selling to UAE consumers, foreign-incorporated or not. Penalties: AED 10K–2M + business closure for repeat.</p>
+        <p class="lang jp"><strong>根拠:</strong>連邦法第 15 号 (2020) ＋ 内閣決議第 66 号 (2023)。UAE 消費者向けに販売する事業者すべてに適用（外国法人含む）。罰金:AED 10K〜2M、再犯時は事業停止。</p>
+
+        <h4 class="lang en">What the law requires for digital services</h4>
+        <h4 class="lang jp">デジタルサービスに対する要件</h4>
+        <table class="mini-table">
+          <thead><tr>
+            <th><span class="lang en">Requirement</span><span class="lang jp">要件</span></th>
+            <th><span class="lang en">What it means for us</span><span class="lang jp">我々への意味</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="lang en">Clear pricing display</span><span class="lang jp">価格の明示</span></td><td><span class="lang en">USD primary, AED equivalent at checkout (Stripe handles via locale detection)</span><span class="lang jp">USD を基本表示、決済時に AED 換算（Stripe のロケール検知で対応）</span></td></tr>
+            <tr><td><span class="lang en">Refund policy</span><span class="lang jp">返金ポリシー</span></td><td><span class="lang en">Pre-activation = full refund. Post-activation = no refund (data already provisioned, irreversible — industry standard)</span><span class="lang jp">アクティベート前=全額返金、後=返金不可（データ提供済みで不可逆 — 業界標準）</span></td></tr>
+            <tr><td><span class="lang en">Truthful advertising</span><span class="lang jp">不当広告の禁止</span></td><td><span class="lang en">No "fastest," "unlimited" (if throttled), "best" unless substantiated</span><span class="lang jp">「最速」「無制限」（実際は速度制限）「最高」等の根拠なき表現禁止</span></td></tr>
+            <tr><td><span class="lang en">Language</span><span class="lang jp">言語</span></td><td><span class="lang en">English accepted for digital products with global audience; add Arabic Phase 5+</span><span class="lang jp">グローバル対象のデジタル商品は英語で可、アラビア語は Phase 5 以降で追加</span></td></tr>
+            <tr><td><span class="lang en">Complaint response</span><span class="lang jp">苦情対応</span></td><td><span class="lang en">&lt;7 days statutory; we'll do &lt;5 days via in-app chat + email</span><span class="lang jp">法定 7 日以内、当社目標 5 日以内（アプリ内チャット＋メール）</span></td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="lang en">Our approach</h4>
+        <h4 class="lang jp">対応方針</h4>
+        <ul class="lang en">
+          <li>Refund Policy mirrors Airalo's (5+ years operating in UAE, zero enforcement)</li>
+          <li>Marketing claims all substantiated, no exaggeration</li>
+          <li>24-hour first-response SLA on support</li>
+          <li>Full audit trail (auto-logged via support tool)</li>
+          <li>Arabic translation added in Phase 5</li>
+        </ul>
+        <ul class="lang jp">
+          <li>返金ポリシーは Airalo（UAE で 5 年以上運営、執行ゼロ）と同水準</li>
+          <li>マーケ表現はすべて根拠あり、誇張なし</li>
+          <li>初回応答 24 時間以内の SLA</li>
+          <li>監査証跡の完全保存（サポートツールで自動記録）</li>
+          <li>アラビア語版は Phase 5 で追加</li>
+        </ul>
+
+        <div class="ri-callout">
+          <strong><span class="lang en">Workaround:</span><span class="lang jp">回避策:</span></strong>
+          <span class="lang en">Three structural facts already protect us — (1) Stripe handles half the compliance automatically, (2) Apple/Google dispute mechanisms intercept complaints before they reach UAE Consumer Protection Dept, (3) UAE enforcement focus is physical-goods fraud, not foreign digital services. Total marginal cost to handle: ~$500 one-time + $50/mo.</span>
+          <span class="lang jp">3 つの構造的事実が既に防御層 — (1) Stripe が半分を自動処理、(2) Apple / Google の係争解決メカニズムが UAE 消費者保護局到達前に苦情を捌く、(3) UAE 側の執行は物理商品詐欺中心で外国デジタルサービスは優先度低。追加対応コスト約 $500（一時）＋ $50 / 月。</span>
+        </div>
+      </div>
+
+      <!-- SUB-DECISION 4 — Banking SOF -->
+      <div class="ri-subdecision">
+        <div class="ri-subdecision-tag">
+          <span class="lang en">⚖ Sub-decision 4 · Banking source-of-funds</span>
+          <span class="lang jp">⚖ サブ判断 4 ・ 銀行ソース・オブ・ファンド（SOF）</span>
+        </div>
+        <p class="ri-subdecision-verdict lang en"><strong>Verdict:</strong> Use Mercury debit card directly for 60–70% of personal spending. Structure remaining transfers (~AED 35K/mo) as documented founder draws, never anomalous lumps.</p>
+        <p class="ri-subdecision-verdict lang jp"><strong>判断:</strong>個人支出の 60〜70% は Mercury デビットで直接決済。残り（月 AED 35K 程度）は文書化された創業者ドロー（draws）として送金し、不自然な一括送金は避ける。</p>
+
+        <p class="lang en"><strong>The hook:</strong> When Delaware LLC money flows to founder's UAE personal account, UAE banks treat it as "foreign income" and apply AML scrutiny. Single transfers &gt;AED 55K (~$15K) or monthly inflows &gt;AED 200K (~$54K) trigger Source-of-Funds questions. Failed SOF review = account freeze, possible reporting to UAE Financial Intelligence Unit.</p>
+        <p class="lang jp"><strong>根拠:</strong>デラウェア LLC から創業者の UAE 個人口座への送金は「海外収入」扱いとなり AML 審査の対象。単発 AED 55K（約 $15K）超、または月間流入 AED 200K（約 $54K）超で SOF 質問が発生。SOF 不合格 = 口座凍結＋ UAE FIU 報告の可能性。</p>
+
+        <h4 class="lang en">Spending channel by category</h4>
+        <h4 class="lang jp">支出カテゴリ別チャネル</h4>
+        <table class="mini-table">
+          <thead><tr>
+            <th><span class="lang en">Spending category</span><span class="lang jp">支出カテゴリ</span></th>
+            <th><span class="lang en">Channel</span><span class="lang jp">チャネル</span></th>
+            <th><span class="lang en">Frequency</span><span class="lang jp">頻度</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="lang en">Online + global (Apple, Amazon, ads, software)</span><span class="lang jp">オンライン・海外（Apple / Amazon / 広告 / ソフトウェア）</span></td><td><span class="lang en">Mercury debit card directly (USD)</span><span class="lang jp">Mercury デビット直接（USD）</span></td><td><span class="lang en">Daily</span><span class="lang jp">日次</span></td></tr>
+            <tr><td><span class="lang en">In-person UAE via Apple Pay/Google Pay</span><span class="lang jp">UAE 店頭（Apple Pay / Google Pay）</span></td><td><span class="lang en">Mercury debit card in Apple Wallet</span><span class="lang jp">Mercury デビット（Apple Wallet 登録）</span></td><td><span class="lang en">Daily</span><span class="lang jp">日次</span></td></tr>
+            <tr><td><span class="lang en">ATM cash (groceries, taxis)</span><span class="lang jp">ATM 引出（食料品・タクシー）</span></td><td><span class="lang en">Mercury ATM withdrawal</span><span class="lang jp">Mercury ATM 引出</span></td><td><span class="lang en">Weekly</span><span class="lang jp">週次</span></td></tr>
+            <tr><td><span class="lang en">Rent + big bills</span><span class="lang jp">家賃・高額固定費</span></td><td><span class="lang en">Wise transfer Mercury → UAE personal account, AED 30–40K, with "founder draw" memo</span><span class="lang jp">Wise 送金 Mercury → UAE 個人口座、AED 30〜40K、「founder draw」摘要</span></td><td><span class="lang en">Monthly</span><span class="lang jp">月次</span></td></tr>
+            <tr><td><span class="lang en">UAE business expenses (paid in AED)</span><span class="lang jp">UAE 事業経費（AED 支払）</span></td><td><span class="lang en">Reimburse from LLC via Wise with "expense reimbursement" memo + receipts</span><span class="lang jp">LLC から Wise で立替清算「expense reimbursement」摘要＋領収書</span></td><td><span class="lang en">As incurred</span><span class="lang jp">発生都度</span></td></tr>
+            <tr><td><span class="lang en">Quarterly distributions</span><span class="lang jp">四半期分配</span></td><td><span class="lang en">Larger transfer (~AED 80–150K), pre-arranged with bank SOF docs ready</span><span class="lang jp">大型送金（AED 80〜150K）、事前に銀行へ SOF 書類準備</span></td><td><span class="lang en">Quarterly</span><span class="lang jp">四半期</span></td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="lang en">Our approach</h4>
+        <h4 class="lang jp">対応方針</h4>
+        <ul class="lang en">
+          <li>Keep each transfer under AED 50K</li>
+          <li>Document every transfer (LLC invoice, purpose memo, supporting docs)</li>
+          <li>Maintain LLC paper trail uploadable on demand (Cert of Formation, Operating Agreement, EIN, Form 1065)</li>
+          <li>File UAE personal tax disclosure even though 0% tax — creates paper trail</li>
+          <li>Use foreign-income-friendly UAE bank: HSBC Premier, Mashreq Neo, Emirates NBD</li>
+        </ul>
+        <ul class="lang jp">
+          <li>1 件あたりの送金は AED 50K 未満に維持</li>
+          <li>全送金を文書化（LLC 請求書・摘要・補助資料）</li>
+          <li>LLC 書類一式（Certificate of Formation、Operating Agreement、EIN、Form 1065）を即時提示可能に保管</li>
+          <li>UAE 個人税申告は 0% でも提出 — 書類痕跡を残す</li>
+          <li>海外収入に寛容な UAE 銀行を選択:HSBC Premier、Mashreq Neo、Emirates NBD</li>
+        </ul>
+
+        <div class="ri-callout">
+          <strong><span class="lang en">Workaround:</span><span class="lang jp">回避策:</span></strong>
+          <span class="lang en">Mercury debit card eliminates the need for ~60-70% of UAE bank transfers. Works at any Visa merchant, adds to Apple Pay, ATM withdrawals supported. Total annual cost ~$550 (Mercury 1% foreign tx + Wise 0.5% transfer fees).</span>
+          <span class="lang jp">Mercury デビットで UAE 銀行送金の 60〜70% を不要化。Visa 加盟店すべてで利用可、Apple Pay 登録可、ATM 引出対応。年間コスト約 $550（Mercury 海外決済手数料 1% ＋ Wise 送金手数料 0.5%）。</span>
+        </div>
+      </div>
+
+      <!-- SUB-DECISION 5 — UAE Trademark -->
+      <div class="ri-subdecision">
+        <div class="ri-subdecision-tag">
+          <span class="lang en">⚖ Sub-decision 5 · UAE Trademark filing</span>
+          <span class="lang jp">⚖ サブ判断 5 ・ UAE 商標出願</span>
+        </div>
+        <p class="ri-subdecision-verdict lang en"><strong>Verdict:</strong> File via Madrid Protocol with UAE in the designation list — covers UAE alongside US/EU/Japan in one application. Already in Phase 1 Item 2.</p>
+        <p class="ri-subdecision-verdict lang jp"><strong>判断:</strong>マドリッド条約経由で UAE を指定国に含めて出願 — 1 件で US / EU / Japan と同時にカバー。Phase 1 Item 2 に組み込み済み。</p>
+
+        <p class="lang en"><strong>The hook:</strong> UAE Federal Decree-Law No. 36 of 2021. Cybersquatter risk in UAE is real — foreign brands routinely lose marks to squatters who then ransom them back (AED 50K–500K typical buyback).</p>
+        <p class="lang jp"><strong>根拠:</strong>UAE 連邦法令第 36 号 (2021)。UAE のサイバースクワッター リスクは現実 — 外国ブランドが商標を先取りされ、買い戻し相場 AED 50K〜500K で取り戻すケースが頻発。</p>
+
+        <h4 class="lang en">Filing options compared</h4>
+        <h4 class="lang jp">出願オプション比較</h4>
+        <table class="mini-table">
+          <thead><tr>
+            <th><span class="lang en">Option</span><span class="lang jp">オプション</span></th>
+            <th><span class="lang en">Cost</span><span class="lang jp">費用</span></th>
+            <th><span class="lang en">Coverage</span><span class="lang jp">範囲</span></th>
+            <th><span class="lang en">Recommendation</span><span class="lang jp">推奨度</span></th>
+          </tr></thead>
+          <tbody>
+            <tr><td><span class="lang en">USPTO only</span><span class="lang jp">USPTO のみ</span></td><td>$500–700</td><td><span class="lang en">US only</span><span class="lang jp">米国のみ</span></td><td><span class="cross">❌</span> <span class="lang en">leaves UAE squatter risk wide open</span><span class="lang jp">UAE スクワッター リスク放置</span></td></tr>
+            <tr><td><span class="lang en">Direct UAE Trademark Office filing</span><span class="lang jp">UAE 商標庁へ直接出願</span></td><td><span class="lang en">~$3K per class + UAE agent fees</span><span class="lang jp">クラスあたり約 $3K ＋ UAE 代理人費用</span></td><td><span class="lang en">UAE only</span><span class="lang jp">UAE のみ</span></td><td><span class="cross">❌</span> <span class="lang en">expensive, doesn't help expansion markets</span><span class="lang jp">高コスト、拡大市場をカバーせず</span></td></tr>
+            <tr class="pick"><td><strong><span class="lang en">Madrid Protocol via USPTO + UAE designation ⭐</span><span class="lang jp">USPTO 基礎＋マドリッド議定書 UAE 指定 ⭐</span></strong></td><td><strong>~$2.5–4K</strong></td><td><strong><span class="lang en">US + UAE + Singapore + Japan + UK + EU</span><span class="lang jp">US + UAE + Singapore + Japan + UK + EU</span></strong></td><td><span class="check">✅</span> <strong><span class="lang en">our approach</span><span class="lang jp">採用方針</span></strong></td></tr>
+            <tr><td><span class="lang en">Wait until revenue</span><span class="lang jp">売上発生まで待機</span></td><td>$0</td><td><span class="lang en">Nothing</span><span class="lang jp">なし</span></td><td><span class="cross">❌</span> <span class="lang en">squatter risk grows daily</span><span class="lang jp">スクワッター リスクは日々増大</span></td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="lang en">Our approach</h4>
+        <h4 class="lang jp">対応方針</h4>
+        <ul class="lang en">
+          <li>USPTO base filing in Class 38 (telecommunications) PRIMARY + Class 9 (downloadable software) SECONDARY</li>
+          <li>Madrid Protocol designation including UAE + Singapore + Japan + UK + EU</li>
+          <li>File BEFORE any UAE-targeted Phase 2 marketing</li>
+          <li>File wordmark first ("Peanut eSIM"), then logo separately after Phase 2 Item 2 finalizes design</li>
+          <li>Total: ~$2,500–4,000 one-time</li>
+        </ul>
+        <ul class="lang jp">
+          <li>USPTO 基礎出願 — クラス 38（電気通信）主、クラス 9（ダウンロード可能ソフトウェア）副</li>
+          <li>マドリッド議定書指定:UAE + シンガポール + 日本 + 英国 + EU</li>
+          <li>Phase 2 の UAE 向けマーケ着手前に出願完了</li>
+          <li>ワードマーク（「Peanut eSIM」）先行、ロゴは Phase 2 Item 2 のデザイン確定後に別途出願</li>
+          <li>合計:約 $2,500〜4,000（一時費用）</li>
+        </ul>
+
+        <div class="ri-callout">
+          <strong><span class="lang en">Workaround:</span><span class="lang jp">回避策:</span></strong>
+          <span class="lang en">Madrid Protocol IS the workaround. No UAE-licensed agent needed, no Arabic document translation, no separate UAE prosecution. UAE Trademark Office is treaty-bound to process designations on USPTO basis.</span>
+          <span class="lang jp">マドリッド議定書そのものが回避策。UAE 認可代理人不要、アラビア語翻訳不要、UAE 個別審査も不要。UAE 商標庁は条約上、USPTO 基礎の指定を処理する義務を負う。</span>
+        </div>
+      </div>
+
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="13" type="button">
+          <span class="lang en">💬 Discussion</span>
+          <span class="lang jp">💬 議論</span>
+          <span class="note-count" data-phase="0" data-item="13"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- Phase 1 Detail -->
@@ -5503,6 +5816,16 @@ Mercury（米国法人銀行口座）
         <h3><span class="lang en">Item 2 — Trademark "Peanut eSIM"</span><span class="lang jp">Item 2 — 商標出願「Peanut eSIM」</span></h3>
       </div>
       <p class="ri-desc"><span class="lang en">Legal protection of the brand name in specific business categories. Without it, anyone could register "Peanut eSIM" and force us to rebrand.</span><span class="lang jp">特定の事業カテゴリーにおけるブランド名の法的保護。出願しなければ、他社が「Peanut eSIM」を登録し、我々のリブランドを強要できる状態。</span></p>
+      <ul class="ri-bullets">
+        <li class="decided"><strong><span class="lang en">Madrid Protocol designation list:</span><span class="lang jp">マドリッド議定書 指定国:</span></strong> <span class="lang en">UAE, Singapore, Japan, UK, EU + US base</span><span class="lang jp">UAE・シンガポール・日本・英国・EU ＋ US 基礎出願</span></li>
+        <li class="decided"><strong><span class="lang en">Classes filed:</span><span class="lang jp">出願クラス:</span></strong> <span class="lang en">Class 38 (Telecommunications) PRIMARY + Class 9 (Downloadable software) SECONDARY</span><span class="lang jp">クラス 38（電気通信）主 ＋ クラス 9（ダウンロード可能ソフトウェア）副</span></li>
+        <li class="decided"><strong><span class="lang en">Wordmark first, logo separately:</span><span class="lang jp">ワードマーク先行、ロゴ別途:</span></strong> <span class="lang en">"Peanut eSIM" wordmark filed immediately; logo filed after Phase 2 Item 2 finalizes design</span><span class="lang jp">「Peanut eSIM」ワードマークを即時出願、ロゴは Phase 2 Item 2 でデザイン確定後に別途出願</span></li>
+        <li class="decided"><strong><span class="lang en">Total estimated cost:</span><span class="lang jp">総費用見込:</span></strong> <span class="lang en">$2,500–4,000 one-time</span><span class="lang jp">$2,500〜4,000（一時費用）</span></li>
+      </ul>
+      <div class="ri-callout">
+        <strong><span class="lang en">Full rationale:</span><span class="lang jp">詳細根拠:</span></strong>
+        <a href="#phase-0-item-13"><span class="lang en">See Phase 0 Item 13 — Sub-decision 5 for full rationale</span><span class="lang jp">Phase 0 Item 13 ・ サブ判断 5 を参照</span></a>
+      </div>
       <div class="ri-explainer">
         <div class="ri-explainer-tag"><span class="lang en">📖 What is this &amp; why we need it</span><span class="lang jp">📖 これは何で、なぜ必要なのか</span></div>
         <p class="lang en">Think of this as planting a flag on the name. Once registered with USPTO (US) and Madrid Protocol (international), nobody else can launch a competing eSIM brand called 'Peanut' — and if they try, we can legally force them to stop. Without trademark, a bigger competitor could copy our name and outspend us into oblivion.</p>
@@ -8317,6 +8640,125 @@ Mercury（米国法人銀行口座）
   }
 })();
 </script>
+
+  <script>
+  // Site-wide acronym tooltips — wraps known acronyms in <abbr>
+  (function() {
+    const ACRONYMS = {
+      'USPTO': 'United States Patent and Trademark Office',
+      'TDRA': 'Telecommunications and Digital Government Regulatory Authority (UAE telecom regulator)',
+      'PDPL': 'Personal Data Protection Law (UAE Federal Decree-Law No. 45 of 2021)',
+      'GDPR': 'General Data Protection Regulation (EU)',
+      'FTA': 'Federal Tax Authority (UAE)',
+      'EIN': 'Employer Identification Number (US business tax ID)',
+      'MCC': 'Merchant Category Code',
+      'DUNS': 'Data Universal Numbering System (Dun & Bradstreet business ID, required for Apple Developer)',
+      'NDA': 'Non-Disclosure Agreement',
+      'MSA': 'Master Services Agreement',
+      'MNO': 'Mobile Network Operator',
+      'IRS': 'Internal Revenue Service (US tax authority)',
+      'LLC': 'Limited Liability Company',
+      'CPA': 'Certified Public Accountant',
+      'K-1': 'IRS Schedule K-1 — partnership income statement per member',
+      'KYC': 'Know Your Customer (identity verification)',
+      'SLA': 'Service Level Agreement',
+      'NPS': 'Net Promoter Score (customer satisfaction metric)',
+      'CAC': 'Customer Acquisition Cost',
+      'LTV': 'Lifetime Value (customer lifetime revenue)',
+      'ASO': 'App Store Optimization',
+      'MRR': 'Monthly Recurring Revenue',
+      'ARR': 'Annual Recurring Revenue',
+      'ARPU': 'Average Revenue Per User',
+      'OCR': 'Optical Character Recognition (reading text from images)',
+      'eSIM': 'Embedded SIM — digital SIM card downloaded onto phone',
+      'SIM': 'Subscriber Identity Module',
+      'IAP': 'In-App Purchase',
+      'ITIN': 'Individual Taxpayer Identification Number (US, for non-SSN holders)',
+      'PE': 'Permanent Establishment (tax term)',
+      'AML': 'Anti-Money Laundering',
+      'CFT': 'Counter-Financing of Terrorism',
+      'SOF': 'Source of Funds (banking compliance term)',
+      'FIU': 'Financial Intelligence Unit',
+      'DPO': 'Data Protection Officer',
+      'DPIA': 'Data Protection Impact Assessment',
+      'TSE': 'Tokyo Stock Exchange',
+      'B2B': 'Business-to-Business',
+      'B2C': 'Business-to-Consumer',
+      'WIPO': 'World Intellectual Property Organization',
+      'ToS': 'Terms of Service',
+      'TAM': 'Total Addressable Market',
+      'SAM': 'Serviceable Addressable Market',
+      'SOM': 'Serviceable Obtainable Market',
+      'JAL': 'Japan Airlines',
+      'ANA': 'All Nippon Airways',
+      'DXB': 'Dubai International Airport (IATA code)',
+      'LHR': 'London Heathrow Airport (IATA code)',
+      'JFK': 'John F. Kennedy International Airport, New York (IATA code)',
+      'UAE': 'United Arab Emirates',
+      'AED': 'United Arab Emirates Dirham (currency)',
+      'CNY': 'Chinese Yuan (currency)',
+      'JPY': 'Japanese Yen (currency)',
+      'USD': 'United States Dollar (currency)',
+      'GCC': 'Gulf Cooperation Council'
+    };
+
+    function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+    function wrapAcronyms() {
+      if (!document.body) return;
+      const skipTags = new Set(['SCRIPT','STYLE','ABBR','CODE','PRE','INPUT','TEXTAREA','BUTTON','OPTION','SELECT','NOSCRIPT']);
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode: function(node) {
+          let parent = node.parentNode;
+          while (parent && parent !== document.body) {
+            if (parent.tagName && skipTags.has(parent.tagName)) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            parent = parent.parentNode;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      const keys = Object.keys(ACRONYMS).sort(function(a,b){ return b.length - a.length; });
+      const pattern = new RegExp('\\b(' + keys.map(escapeRe).join('|') + ')\\b', 'g');
+      const nodes = [];
+      let n;
+      while ((n = walker.nextNode())) {
+        if (n.nodeValue && pattern.test(n.nodeValue)) {
+          pattern.lastIndex = 0;
+          nodes.push(n);
+        }
+      }
+      nodes.forEach(function(node) {
+        const frag = document.createDocumentFragment();
+        const text = node.nodeValue;
+        let lastIdx = 0;
+        pattern.lastIndex = 0;
+        let m;
+        while ((m = pattern.exec(text)) !== null) {
+          if (m.index > lastIdx) {
+            frag.appendChild(document.createTextNode(text.slice(lastIdx, m.index)));
+          }
+          const abbr = document.createElement('abbr');
+          abbr.setAttribute('title', ACRONYMS[m[1]]);
+          abbr.textContent = m[1];
+          frag.appendChild(abbr);
+          lastIdx = m.index + m[1].length;
+        }
+        if (lastIdx < text.length) {
+          frag.appendChild(document.createTextNode(text.slice(lastIdx)));
+        }
+        if (node.parentNode) node.parentNode.replaceChild(frag, node);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wrapAcronyms);
+    } else {
+      wrapAcronyms();
+    }
+  })();
+  </script>
 
 </body>
 </html>
