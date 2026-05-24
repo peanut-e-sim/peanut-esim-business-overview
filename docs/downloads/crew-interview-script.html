@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM — Emirates Crew Interview Script</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning-soft: #FFF8EE;
+    --warning: #C97E22;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.65;
+    padding: 50px 5vw;
+  }
+  body[data-lang="jp"] { font-family: 'Noto Sans JP', sans-serif; line-height: 1.85; font-feature-settings: "palt"; }
+  .lang { display: none; }
+  body[data-lang="en"] .lang.en, body[data-lang="jp"] .lang.jp { display: inline; }
+  body[data-lang="en"] div.lang.en, body[data-lang="jp"] div.lang.jp,
+  body[data-lang="en"] p.lang.en, body[data-lang="jp"] p.lang.jp,
+  body[data-lang="en"] li.lang.en, body[data-lang="jp"] li.lang.jp { display: block; }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .doc-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 3px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .lang-toggle button.active { background: var(--text); color: #fff; }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  body[data-lang="jp"] h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  h1 em { color: var(--peanut); font-style: normal; }
+  .lead {
+    color: var(--text-2);
+    font-size: 16px;
+    max-width: 64ch;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--text);
+    margin: 48px 0 18px;
+    font-weight: 400;
+  }
+  body[data-lang="jp"] h2 { font-family: 'Noto Sans JP', sans-serif; font-style: normal; font-weight: 600; font-size: 22px; }
+  h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    color: var(--peanut);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+  h3 {
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+  .pre-block {
+    background: var(--warning-soft);
+    border-left: 3px solid var(--warning);
+    border-radius: 8px;
+    padding: 22px 24px;
+    margin-bottom: 36px;
+    font-size: 14.5px;
+    color: var(--text-2);
+    line-height: 1.75;
+  }
+  .pre-block strong { color: var(--warning); }
+  .pre-block ul { margin: 10px 0 0 22px; }
+  .pre-block li { margin-bottom: 6px; }
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .section-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .q {
+    margin: 0 0 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .q:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .q-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--peanut);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .q-text {
+    font-size: 16px;
+    color: var(--text);
+    margin: 6px 0;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+  .q-probe {
+    font-size: 13.5px;
+    color: var(--text-3);
+    font-style: italic;
+    line-height: 1.55;
+    margin-top: 4px;
+  }
+  .q-probe::before { content: '↳ '; font-style: normal; }
+  .q-listen {
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: var(--accent-soft);
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: var(--accent);
+    line-height: 1.55;
+  }
+  .q-listen strong { color: var(--accent); }
+  .copy-bar {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 36px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .copy-bar .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--peanut);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .copy-btn:hover { background: #9A6738; }
+  .copy-btn.copied { background: var(--accent); }
+  .copy-btn .check { display: none; }
+  .copy-btn.copied .check { display: inline; }
+  .copy-btn.copied .text-default { display: none; }
+  .post {
+    background: var(--accent-soft);
+    border-radius: 14px;
+    padding: 26px 28px;
+    margin-top: 36px;
+    font-size: 14.5px;
+    color: var(--text-2);
+    line-height: 1.7;
+  }
+  .post strong { color: var(--accent); }
+  .post h3 { color: var(--accent); margin-top: 0; }
+  .foot {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  .foot a { color: var(--peanut); text-decoration: none; margin-left: 12px; }
+  .foot a:hover { text-decoration: underline; }
+</style>
+</head>
+<body data-lang="en">
+<div class="wrap">
+  <div class="top">
+    <span class="doc-tag">PEANUT ESIM · CREW INTERVIEW SCRIPT · 2026-05-24</span>
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('en')">EN</button>
+      <button onclick="setLang('jp')">日本語</button>
+    </div>
+  </div>
+
+  <h1 class="lang en"><em>Emirates crew</em> — 20-minute interview script</h1>
+  <h1 class="lang jp"><em>エミレーツ乗務員</em> — 20分インタビュー スクリプト</h1>
+
+  <p class="lead lang en">For Akito to use when interviewing 5–10 Emirates cabin crew or pilots. The goal is <strong>not</strong> to pitch Peanut. The goal is to listen, capture pain points in their own words, and validate whether the schedule-upload feature, Crew Recs feature, and crew-specific positioning resonate with real users before we build them.</p>
+  <p class="lead lang jp">Akito がエミレーツ航空のキャビンクルー・パイロット 5〜10 名にインタビューする際の台本。目的は <strong>Peanut を売り込むことではない</strong>。乗務員の生の言葉でペインポイントを聞き取り、ロスター アップロード機能・Crew Recs 機能・乗務員特化ポジショニングが実ユーザーに刺さるかを構築前に検証する。</p>
+
+  <div class="pre-block">
+    <strong class="lang en">📋 Before the interview — ground rules</strong>
+    <strong class="lang jp">📋 インタビュー前 — 基本ルール</strong>
+    <ul>
+      <li class="lang en"><strong>20 minutes maximum.</strong> Crew are tired; respect their time.</li>
+      <li class="lang jp"><strong>最長 20 分。</strong>乗務員は疲れている — 時間を尊重。</li>
+      <li class="lang en"><strong>Ask permission to record.</strong> "Can I record this so I capture your exact words? Just for us — not shared." If they say no, take notes only.</li>
+      <li class="lang jp"><strong>録音許可を必ず取る。</strong>「あなたの言葉を正確に残したいので録音してもいいですか？社内のみで共有しません」NO なら手書きメモのみ。</li>
+      <li class="lang en"><strong>Don't pitch.</strong> Do not say "we're building X." If they ask what we're building, say "we're exploring an idea and want to understand the problem first."</li>
+      <li class="lang jp"><strong>売り込まない。</strong>「X を作っています」と言わない。聞かれたら「アイデアを検討中で、まず課題を理解したい」と返す。</li>
+      <li class="lang en"><strong>Don't lead.</strong> Avoid "wouldn't it be great if..." Ask open questions and shut up.</li>
+      <li class="lang jp"><strong>誘導しない。</strong>「〜だったら最高じゃないですか？」を避ける。オープン クエスチョン → 沈黙して待つ。</li>
+      <li class="lang en"><strong>Promised reward:</strong> $20 Amazon gift card OR a future free month of Peanut. Mention this when scheduling, not at the start.</li>
+      <li class="lang jp"><strong>謝礼の約束:</strong>Amazon ギフトカード $20 か、将来 Peanut 1 ヶ月無料。日程調整時に伝える（インタビュー冒頭ではない）。</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <span class="section-tag">Section 1 · Warm-up &amp; current behaviour</span>
+
+    <div class="q">
+      <div class="q-num lang en">Q1 · WARM-UP</div>
+      <div class="q-num lang jp">Q1 · ウォームアップ</div>
+      <p class="q-text lang en">How long have you been flying with Emirates, and what bases or routes do you fly most?</p>
+      <p class="q-text lang jp">エミレーツでの勤続年数と、よく飛ぶベース・路線を教えてください。</p>
+      <p class="q-listen lang en"><strong>Why we ask:</strong> establishes context (junior vs senior crew have different needs) and warms them up.</p>
+      <p class="q-listen lang jp"><strong>聞く理由:</strong> ジュニアとシニアでニーズが違うので背景を把握。同時にアイスブレイク。</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q2 · CURRENT BEHAVIOUR</div>
+      <div class="q-num lang jp">Q2 · 現状の行動</div>
+      <p class="q-text lang en">When you land in a new country, how do you usually get data on your phone? Walk me through what you actually do.</p>
+      <p class="q-text lang jp">海外に到着したとき、いつもどうやって携帯のデータ通信を確保していますか？実際の流れを教えてください。</p>
+      <p class="q-probe lang en">Probe: Roaming from Etisalat/du? Hotel WiFi only? Buy a local SIM? Buy an eSIM? Use Emirates lounge WiFi only?</p>
+      <p class="q-probe lang jp">深掘り: Etisalat/du のローミング？ ホテル WiFi だけ？ 現地 SIM 購入？ eSIM 購入？ Emirates ラウンジ WiFi のみ？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q3 · BRAND USED TODAY</div>
+      <div class="q-num lang jp">Q3 · 現在使用しているブランド</div>
+      <p class="q-text lang en">If you use an eSIM today — which one, and why did you originally pick it?</p>
+      <p class="q-text lang jp">今 eSIM を使っているなら — どのブランドで、最初に選んだ理由は？</p>
+      <p class="q-probe lang en">Probe: Airalo, Holafly, Crew SIM, Nomad, Saily, other? Was it price, brand awareness, recommendation from another crew, first one they saw on App Store?</p>
+      <p class="q-probe lang jp">深掘り: Airalo, Holafly, Crew SIM, Nomad, Saily, その他？ 決め手は価格・知名度・他クルーの紹介・App Store で最初に目に入った？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q4 · SPEND</div>
+      <div class="q-num lang jp">Q4 · 月間支出</div>
+      <p class="q-text lang en">In a typical month, roughly how much do you spend on mobile data across all your trips?</p>
+      <p class="q-text lang jp">通常の月、全フライト合わせて携帯データ通信にいくらくらい使っていますか？</p>
+      <p class="q-listen lang en"><strong>Why we ask:</strong> calibrates pricing. If crew say "$5/month" we have a different pricing problem than if they say "$80/month."</p>
+      <p class="q-listen lang jp"><strong>聞く理由:</strong> 価格設定のキャリブレーション。「月 $5」と「月 $80」では商品設計が全く違う。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <span class="section-tag">Section 2 · Pain points</span>
+
+    <div class="q">
+      <div class="q-num lang en">Q5 · WORST MEMORY</div>
+      <div class="q-num lang jp">Q5 · 最悪のエピソード</div>
+      <p class="q-text lang en">Tell me about a time recently when getting data on a layover went badly. What happened?</p>
+      <p class="q-text lang jp">最近、レイオーバー先でデータ通信がうまくいかなかった経験を一つ教えてください。何が起きました？</p>
+      <p class="q-listen lang en"><strong>This is the gold question.</strong> Specific stories &gt; generic complaints. Let them talk. Don't interrupt.</p>
+      <p class="q-listen lang jp"><strong>この質問が一番重要。</strong> 一般論より具体的なエピソードを聞き出す。途中で口を挟まず、最後まで話させる。</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q6 · ACTIVATION FAILURE</div>
+      <div class="q-num lang jp">Q6 · アクティベーション失敗</div>
+      <p class="q-text lang en">Has an eSIM ever failed to activate when you landed, or stopped working mid-trip? What did you do?</p>
+      <p class="q-text lang jp">到着時に eSIM がアクティベートできなかったり、滞在中に止まったことは？そのとき何をしましたか？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q7 · DIVERSION / SCHEDULE CHANGE</div>
+      <div class="q-num lang jp">Q7 · ダイバート / スケジュール変更</div>
+      <p class="q-text lang en">Have you ever bought an eSIM for a destination, then your flight got diverted or your roster changed, and the eSIM didn't cover where you ended up?</p>
+      <p class="q-text lang jp">eSIM を買った後にフライトがダイバート、ロスター変更で、実際の到着地が eSIM の対象外だった経験は？</p>
+      <p class="q-listen lang en"><strong>Why we ask:</strong> validates whether "auto-coverage for actual roster" is a real pain or hypothetical.</p>
+      <p class="q-listen lang jp"><strong>聞く理由:</strong> 「実ロスターに自動対応」というニーズが実在するか仮想かを検証。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <span class="section-tag">Section 3 · Schedule-upload feature (our wedge)</span>
+
+    <div class="q">
+      <div class="q-num lang en">Q8 · ROSTER PREP</div>
+      <div class="q-num lang jp">Q8 · ロスター準備</div>
+      <p class="q-text lang en">When you get your monthly roster from Crew Pulse, what's your routine for preparing for connectivity that month?</p>
+      <p class="q-text lang jp">Crew Pulse で月間ロスターを受け取ったら、その月の通信準備のルーティンを教えてください。</p>
+      <p class="q-probe lang en">Probe: Do they look at each destination one by one and buy an eSIM each time? Or buy one big regional pack? Or just wing it?</p>
+      <p class="q-probe lang jp">深掘り: 各到着地を一つずつ調べて毎回 eSIM 購入？ 大きめのリージョン パック一発？ ぶっつけ本番？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q9 · THE WEDGE (open ended first)</div>
+      <div class="q-num lang jp">Q9 · ウェッジ機能（まずオープン）</div>
+      <p class="q-text lang en">If preparing connectivity for the month could be 90% easier, what would that look like for you?</p>
+      <p class="q-text lang jp">もし月の通信準備が 90% 楽になるとしたら、どんな形が理想ですか？</p>
+      <p class="q-listen lang en"><strong>Why open first:</strong> we want to hear if they spontaneously describe something like our schedule-upload feature, vs us suggesting it.</p>
+      <p class="q-listen lang jp"><strong>先にオープン質問の理由:</strong> 我々が提案する前に、彼らが自発的にロスター アップロード的な発想を口にするか観察。</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q10 · THE WEDGE (specific test)</div>
+      <div class="q-num lang jp">Q10 · ウェッジ機能（具体テスト）</div>
+      <p class="q-text lang en">Imagine an app where you screenshot your roster, the app reads every destination, and instantly builds the cheapest possible eSIM bundle for that exact month. Would you use it? Why or why not?</p>
+      <p class="q-text lang jp">ロスターのスクリーンショットを送ると、アプリが全到着地を読み取り、その月に最安の eSIM プランを瞬時に組んでくれるとしたら — 使いますか？理由は？</p>
+      <p class="q-probe lang en">Probe: What would make you NOT trust it? Privacy? Accuracy? Price?</p>
+      <p class="q-probe lang jp">深掘り: 何があったら信用できない？ プライバシー？ 精度？ 価格？</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <span class="section-tag">Section 4 · Crew Recs feature (the moat)</span>
+
+    <div class="q">
+      <div class="q-num lang en">Q11 · DISCOVERY HABIT</div>
+      <div class="q-num lang jp">Q11 · 情報収集の癖</div>
+      <p class="q-text lang en">When you arrive in a new layover city, how do you find good places to eat or things to do?</p>
+      <p class="q-text lang jp">レイオーバー先の知らない街で、良い食事処や行く場所をどうやって見つけていますか？</p>
+      <p class="q-probe lang en">Probe: WhatsApp groups with other crew? Instagram? TripAdvisor? Hotel concierge? Just walk and explore?</p>
+      <p class="q-probe lang jp">深掘り: クルーの WhatsApp グループ？ Instagram？ TripAdvisor？ ホテルのコンシェルジュ？ 歩いて発掘？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q12 · CREW RECS REACTION</div>
+      <div class="q-num lang jp">Q12 · Crew Recs への反応</div>
+      <p class="q-text lang en">If there was a private app where only verified Emirates crew shared their favorite spots in every layover city — would you use it? Would you contribute your own?</p>
+      <p class="q-text lang jp">エミレーツのクルーだけが本人確認済みで、各レイオーバー先のお気に入りスポットを共有する非公開アプリ — 使いますか？自分でも投稿しますか？</p>
+      <p class="q-probe lang en">Probe: What would make you contribute? (points? recognition? helping juniors?) What would stop you?</p>
+      <p class="q-probe lang jp">深掘り: 投稿する動機は？（ポイント？評価？後輩を助ける？）投稿しない理由は？</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <span class="section-tag">Section 5 · Crew Accommodation feature</span>
+
+    <div class="q">
+      <div class="q-num lang en">Q13 · WORST HOTEL</div>
+      <div class="q-num lang jp">Q13 · 最悪のホテル</div>
+      <p class="q-text lang en">Tell me about the worst hotel Emirates has put you in recently. What made it bad?</p>
+      <p class="q-text lang jp">最近エミレーツに割り当てられたホテルで一番最悪だったところは？何がダメでした？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q14 · HOTEL INTEL</div>
+      <div class="q-num lang jp">Q14 · ホテル事前情報</div>
+      <p class="q-text lang en">If before each trip you could see notes from 10+ other crew about that exact hotel — "bring extra hangers, gym closes at 11pm, ask for the high floor for quiet" — would you read it?</p>
+      <p class="q-text lang jp">出発前に、その指定ホテルについて他のクルー 10 人以上のメモが見られたら — 「ハンガー余分に、ジムは 23 時まで、静かな部屋なら上層階を依頼」など — 読みますか？</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <span class="section-tag">Section 6 · Brand &amp; willingness to pay</span>
+
+    <div class="q">
+      <div class="q-num lang en">Q15 · CREW-SPECIFIC BRAND</div>
+      <div class="q-num lang jp">Q15 · クルー特化ブランド</div>
+      <p class="q-text lang en">If two eSIM brands had similar prices — one is general (like Airalo) and one is built specifically for crew (by crew, for crew) — which would you pick? Why?</p>
+      <p class="q-text lang jp">同じくらいの価格の eSIM ブランドが二つ — 一方は一般向け（Airalo 等）、もう一方はクルー特化（クルーがクルーのために作った）— どちらを選びますか？理由は？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q16 · TRUST</div>
+      <div class="q-num lang jp">Q16 · 信頼</div>
+      <p class="q-text lang en">What would have to be true for you to trust a brand-new eSIM brand over Airalo or Holafly that you already use?</p>
+      <p class="q-text lang jp">既に使っている Airalo・Holafly より、できたばかりの eSIM ブランドを信用するには、何が必要ですか？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q17 · WTP CEILING</div>
+      <div class="q-num lang jp">Q17 · 価格上限</div>
+      <p class="q-text lang en">For an eSIM service that solved all the problems we've talked about today — what's the maximum you'd pay per month?</p>
+      <p class="q-text lang jp">今日話した問題を全部解決する eSIM サービスがあるとして — 月いくらまで払いますか？</p>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section">
+    <span class="section-tag">Section 7 · Close &amp; referral</span>
+
+    <div class="q">
+      <div class="q-num lang en">Q18 · BETA</div>
+      <div class="q-num lang jp">Q18 · ベータ募集</div>
+      <p class="q-text lang en">We're going to build a closed beta later this year — would you be open to trying it in exchange for feedback and free credit?</p>
+      <p class="q-text lang jp">今年後半にクローズド ベータを予定しています。フィードバックと無料クレジットと引き換えに、試していただけますか？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q19 · REFERRAL</div>
+      <div class="q-num lang jp">Q19 · リファラル</div>
+      <p class="q-text lang en">Do you know 2 or 3 other crew who'd be curious to chat with us too?</p>
+      <p class="q-text lang jp">同じように話してくれそうなクルー仲間を 2〜3 人ご紹介いただけますか？</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num lang en">Q20 · ANYTHING ELSE</div>
+      <div class="q-num lang jp">Q20 · 最後に</div>
+      <p class="q-text lang en">Last one — is there anything I should have asked but didn't?</p>
+      <p class="q-text lang jp">最後の質問 — 私が聞き忘れた大事なことはありますか？</p>
+      <p class="q-listen lang en"><strong>This often surfaces the most important insight</strong> — what they wanted to tell us but we didn't make space for.</p>
+      <p class="q-listen lang jp"><strong>この質問が一番重要な発見を引き出す</strong> — 彼らが伝えたかったのに我々が場を作らなかったこと。</p>
+    </div>
+  </div>
+
+  <div class="post">
+    <h3 class="lang en">After each interview — within 24 hours</h3>
+    <h3 class="lang jp">各インタビュー後 — 24時間以内</h3>
+    <ul class="lang en">
+      <li>Send a thank-you message + the promised gift card / credit.</li>
+      <li>Write up 5–7 bullets of what stood out, in their words (verbatim quotes).</li>
+      <li>Score gut reactions to the wedge (Q10) and Crew Recs (Q12): 1 = "meh," 5 = "shut up and take my money."</li>
+      <li>Note any unexpected feature requests or pain points.</li>
+      <li>Add the crew member to a "beta-interested" list (Q18 yes), with name, contact, base.</li>
+      <li>Share notes with Balraj in our shared folder.</li>
+    </ul>
+    <ul class="lang jp">
+      <li>御礼メッセージ＋約束したギフトカード／クレジットを送付。</li>
+      <li>印象に残った点を 5〜7 項目、本人の言葉そのまま（引用で）記録。</li>
+      <li>ウェッジ機能（Q10）と Crew Recs（Q12）への直感反応をスコア化:1 =「ふーん」、5 =「お願い、今すぐ売って」。</li>
+      <li>予想外の要望・ペインを必ずメモ。</li>
+      <li>Q18 で YES の人を「ベータ参加希望者」リストに追加（氏名・連絡先・ベース）。</li>
+      <li>共有フォルダ経由で Balraj に共有。</li>
+    </ul>
+  </div>
+
+  <div class="copy-bar">
+    <span class="label">📋 <span class="lang en">COPY ALL 20 QUESTIONS (PLAIN TEXT)</span><span class="lang jp">全20問をプレーンテキストでコピー</span></span>
+    <button class="copy-btn" onclick="copyAll(this)">
+      <span class="text-default lang en">📋 Copy questions</span>
+      <span class="text-default lang jp">📋 質問をコピー</span>
+      <span class="check">✓ Copied</span>
+    </button>
+  </div>
+
+  <div class="foot">
+    PEANUT ESIM · CREW INTERVIEW SCRIPT · v1 · 2026-05-24
+    <a href="../../index.html#roadmap">← back to roadmap</a>
+  </div>
+</div>
+
+<script>
+function setLang(l) {
+  document.body.setAttribute('data-lang', l);
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-toggle button[onclick*="\'' + l + '\'"]').classList.add('active');
+}
+function copyAll(btn) {
+  const lang = document.body.getAttribute('data-lang');
+  const questions = [];
+  document.querySelectorAll('.section').forEach(sec => {
+    const tag = sec.querySelector('.section-tag').innerText;
+    questions.push('\n=== ' + tag + ' ===\n');
+    sec.querySelectorAll('.q').forEach(q => {
+      const num = q.querySelector('.q-num.' + lang)?.innerText || q.querySelector('.q-num.en').innerText;
+      const text = q.querySelector('.q-text.' + lang)?.innerText || q.querySelector('.q-text.en').innerText;
+      const probe = q.querySelector('.q-probe.' + lang)?.innerText || '';
+      questions.push(num + '\n' + text + (probe ? '\n' + probe : '') + '\n');
+    });
+  });
+  navigator.clipboard.writeText(questions.join('\n')).then(() => {
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+  });
+}
+</script>
+</body>
+</html>

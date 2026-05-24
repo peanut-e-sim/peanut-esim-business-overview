@@ -2106,6 +2106,230 @@
   }
   .ri-callout strong { color: var(--warning); }
 
+  /* Pill CTA button for "open external doc / script" links inside roadmap items */
+  .ri-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    border: 1px solid var(--peanut);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 100px;
+    margin: 4px 6px 4px 0;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .ri-cta:hover {
+    background: var(--peanut);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .ri-cta.accent {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .ri-cta.accent:hover { background: var(--accent); color: #fff; }
+
+  /* Phase 0 Item 4-style "ready" pill — green-ish, distinct from done */
+  .ri-status.ready {
+    background: var(--accent-soft);
+    color: var(--accent);
+    box-shadow: inset 0 0 0 1px var(--accent);
+  }
+
+  /* Per-item private discussion notes widget */
+  .ri-notes {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+  }
+  .ri-notes-toggle {
+    background: transparent;
+    border: 1px dashed var(--line);
+    color: var(--text-3);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .ri-notes-toggle:hover {
+    border-color: var(--peanut);
+    color: var(--peanut);
+    background: var(--peanut-soft);
+  }
+  .ri-notes-toggle .note-count {
+    background: var(--peanut);
+    color: #fff;
+    border-radius: 100px;
+    padding: 1px 7px;
+    font-size: 10px;
+    min-width: 18px;
+    text-align: center;
+    display: none;
+  }
+  .ri-notes-toggle .note-count.has { display: inline-block; }
+  .ri-notes-toggle.open {
+    border-style: solid;
+    border-color: var(--peanut);
+    color: var(--peanut);
+    background: var(--peanut-soft);
+  }
+  .ri-notes-panel {
+    background: var(--warning-soft);
+    border: 1px solid var(--warning);
+    border-left: 3px solid var(--warning);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 12px;
+  }
+  .ri-notes-panel::before {
+    content: '🔒 INTERNAL · Akito discussion notes (stored locally)';
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    color: var(--warning);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .ri-notes-panel textarea {
+    width: 100%;
+    min-height: 70px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.55;
+    background: #fff;
+    color: var(--text);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .ri-notes-panel textarea:focus {
+    outline: none;
+    border-color: var(--peanut);
+    box-shadow: 0 0 0 3px var(--peanut-soft);
+  }
+  .ri-notes-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .ri-notes-save {
+    background: var(--peanut);
+    color: #fff;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .ri-notes-save:hover { background: #94633b; }
+  .ri-notes-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .ri-notes-status.show { opacity: 1; }
+  .ri-notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+  }
+  .ri-notes-list li {
+    background: #fff;
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .ri-notes-list .nl-body { flex: 1; min-width: 0; }
+  .ri-notes-list .nl-ts {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+  .ri-notes-list .nl-text { white-space: pre-wrap; word-wrap: break-word; }
+  .ri-notes-list .nl-del {
+    background: transparent;
+    border: none;
+    color: var(--text-3);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .ri-notes-list .nl-del:hover { background: rgba(217, 70, 70, 0.08); color: #c0392b; }
+
+  /* Master "Export all notes" button at top of roadmap section */
+  .notes-export-btn {
+    background: var(--peanut);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    cursor: pointer;
+    margin: -2px 0 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .notes-export-btn:hover { background: #94633b; transform: translateY(-1px); }
+  .notes-export-btn .ne-count {
+    background: rgba(255,255,255,0.25);
+    border-radius: 100px;
+    padding: 1px 7px;
+    font-size: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .ri-notes-panel { padding: 12px 12px; }
+    .ri-notes-panel textarea { font-size: 13px; }
+    .ri-notes-actions { gap: 8px; }
+    .ri-notes-save { padding: 7px 12px; font-size: 10.5px; }
+    .ri-notes-toggle { font-size: 10px; padding: 6px 10px; }
+    .ri-notes-list li { padding: 9px 10px; font-size: 12.5px; }
+    .notes-export-btn { font-size: 10.5px; padding: 7px 12px; }
+  }
+
   /* Upcoming phase chips */
   .upcoming-grid {
     display: grid;
@@ -3838,6 +4062,10 @@ Akito</div>
         <span class="lang jp">20分の通話。検証内容: 乗務員は現在 travel eSIM を購入しているか、どのブランド、その理由、不満点、専用ブランドに乗り換えるか。メモは入力中にブラウザに自動保存。</span>
       </p>
 
+      <p style="margin: 6px 0 14px;">
+        <a class="ri-cta accent" href="docs/downloads/crew-interview-script.html" target="_blank" rel="noopener">📋 <span class="lang en">Open standalone interview script (printable) &rarr;</span><span class="lang jp">独立版インタビュースクリプトを開く（印刷用）&rarr;</span></a>
+      </p>
+
       <div class="interview-script">
         <div class="q-block">
           <span class="q-num">Q1</span>
@@ -3942,6 +4170,11 @@ Akito</div>
     <h2 class="lang jp">全<em>8フェーズ</em>のステータス。</h2>
 
     <p style="margin: -6px 0 14px; font-size: 12.5px; color: var(--text-3); line-height: 1.6;"><span class="lang en">Click a phase to expand its items. Each item links to its detail section. Set status + owner per item — saved locally on this device.</span><span class="lang jp">フェーズをクリックすると項目が展開されます。各項目は詳細セクションへリンク。ステータスと担当者は端末にローカル保存されます。</span></p>
+
+    <button type="button" id="exportNotesBtn" class="notes-export-btn" title="Download all per-item discussion notes as JSON">
+      ⬇ <span class="lang en">Export all discussion notes</span><span class="lang jp">議論メモを全件エクスポート</span>
+      <span class="ne-count" id="exportNotesCount">0</span>
+    </button>
 
     <div class="phase-list" id="phaseList"></div>
   </section>
@@ -4332,6 +4565,21 @@ Mercury（米国法人銀行口座）
         <span class="lang en"> If UAE Corporate Tax authorities decide the LLC has a "permanent establishment" in UAE, they could try to tax it at 9%. Mitigations: Mercury as primary operational account (not UAE bank), US registered agent, US payment processor. Same pattern Airalo and Nomad use without issue.</span>
         <span class="lang jp">UAE 法人税当局が、LLC が UAE 内に「恒久的施設」を持つと判断した場合、9% で課税しようとする可能性。対策:Mercury を主要運用口座（UAE 銀行ではなく）、米国登録代理人、米国決済代行。Airalo・Nomad が問題なく使うパターン。</span>
       </div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="1" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="1"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 2 -->
@@ -4341,9 +4589,15 @@ Mercury（米国法人銀行口座）
         <h3><span class="lang en">Item 2 — Aggregator Diligence (Provider Pipeline)</span><span class="lang jp">Item 2 — アグリゲーター精査（プロバイダー候補一覧）</span></h3>
       </div>
       <p class="ri-desc">
-        <span class="lang en">Originally just Samurai Wifi. Expanded into a multi-provider benchmark after the price-list analysis raised flags. Goal: parallel diligence on 8 candidates so we have 3+ real quotes to compare and use as leverage. <strong>Samurai's 9,091-SKU list still anchors the comparison</strong> (flat 40% margin + CNY pricing = likely Tier-3 sub-reseller). <strong>Important new pattern emerged today:</strong> 2 of the 8 providers (eSIM Go, BNESIM) explicitly block UAE end-user purchases — that's a real regulatory signal we need every candidate to answer (see Open Discussion · Decision 04).</span>
-        <span class="lang jp">当初は Samurai Wifi のみ対象。価格表分析で疑問点が出たため、複数プロバイダーのベンチマークに拡大。目的:並行して 8 社を精査し、3 社以上のリアルな見積もりで比較・交渉材料を確保。<strong>Samurai の 9,091 SKU 価格表は引き続き比較の基準</strong>（40% 固定マージン + CNY 表記 = Tier-3 サブリセラーの可能性）。<strong>本日判明した重要パターン:</strong> 8 社中 2 社（eSIM Go, BNESIM）が UAE 国内ユーザーへの販売を明示的にブロック — 規制シグナルとして全候補に確認必要（Open Discussion · 判断 04 参照）。</span>
+        <span class="lang en">Originally just Samurai Wifi. Expanded into a multi-provider benchmark after the price-list analysis raised flags. Goal: parallel diligence on 8 candidates so we have 3+ real quotes to compare and use as leverage. <strong>Samurai's 9,091-SKU list still anchors the comparison</strong> (flat 40% margin + CNY pricing = likely Tier-3 sub-reseller). <strong>Important new pattern emerged today:</strong> 2 of the 8 providers (eSIM Go, BNESIM) explicitly block UAE end-user purchases — that's a real regulatory signal we need every candidate to answer (see Open Discussion · Decision 04).<br><br><strong>Update 2026-05-24:</strong> Samurai's actual eSIM upstream is <strong>Billion Connect</strong> (HK), not Vision Inc. — confirmed by "Billion Connect Carrier" labels in 5,294 rows of Samurai's own price file. Vision Inc. is the upstream for Samurai's separate pocket-WiFi business only. Direct-go target for margin recovery is now Billion Connect.</span>
+        <span class="lang jp">当初は Samurai Wifi のみ対象。価格表分析で疑問点が出たため、複数プロバイダーのベンチマークに拡大。目的:並行して 8 社を精査し、3 社以上のリアルな見積もりで比較・交渉材料を確保。<strong>Samurai の 9,091 SKU 価格表は引き続き比較の基準</strong>（40% 固定マージン + CNY 表記 = Tier-3 サブリセラーの可能性）。<strong>本日判明した重要パターン:</strong> 8 社中 2 社（eSIM Go, BNESIM）が UAE 国内ユーザーへの販売を明示的にブロック — 規制シグナルとして全候補に確認必要（Open Discussion · 判断 04 参照）。<br><br><strong>更新 2026-05-24:</strong> Samurai の実際の eSIM 上流は Vision Inc. ではなく <strong>Billion Connect</strong>（香港）— Samurai 自身の価格ファイル内 5,294 行に「Billion Connect Carrier」とラベル付けされていることで確認。Vision Inc. は Samurai のポケット WiFi 事業の上流のみ。マージン回復のための直接交渉先は Billion Connect。</span>
       </p>
+
+      <div class="ri-callout">
+        <strong><span class="lang en">🔁 Upstream re-verified — 2026-05-24</span><span class="lang jp">🔁 上流再確認 — 2026-05-24</span></strong>
+        <span class="lang en"> Akito's earlier intel naming Vision Inc. as Samurai's eSIM upstream was REFUTED today. Real eSIM upstream = <strong>Billion Connect</strong> (HK aggregator, billionconnect.net). Direct contact: Cecilia Hsin Cheng (Singapore office). Source: Samurai price file "Matching Carrier" column. Full report at <code>/Downloads/Peanut eSIM/upstream-supplier-verification-2026-05-24.md</code>.</span>
+        <span class="lang jp"> Vision Inc. を Samurai の eSIM 上流とした Akito の以前の情報は、本日反証された。実際の eSIM 上流は <strong>Billion Connect</strong>（香港アグリゲーター、billionconnect.net）。直接窓口:Cecilia Hsin Cheng（シンガポール拠点）。情報源:Samurai 価格ファイルの「Matching Carrier」列。詳細レポート:<code>/Downloads/Peanut eSIM/upstream-supplier-verification-2026-05-24.md</code>。</span>
+      </div>
 
       <table class="mini-table" style="margin-top: 14px;">
         <thead>
@@ -4403,12 +4657,33 @@ Mercury（米国法人銀行口座）
             <td><span class="cross">⚠️</span> <span class="lang en">Manual intake · also blocks UAE buyers</span><span class="lang jp">手動申請のみ ・ UAE 顧客販売不可</span></td>
             <td><span class="lang en">Email / Calendly only. Same UAE block as eSIM Go — likely deal-breaker.</span><span class="lang jp">メール / Calendly のみ。eSIM Go と同じ UAE ブロックあり — 採用見送りの可能性大。</span></td>
           </tr>
+          <tr class="pick">
+            <td>9</td>
+            <td><strong>Billion Connect</strong> <span class="lang en">(Hong Kong — confirmed Samurai upstream)</span><span class="lang jp">（香港 ・ Samurai 上流として確認済）</span></td>
+            <td>🆕 <span class="lang en">REAL upstream · direct outreach queued</span><span class="lang jp">真の上流 ・ 直接コンタクト準備中</span></td>
+            <td><span class="lang en"><strong>REAL upstream</strong> — direct contact: Cecilia Hsin Cheng, Singapore office. Source: Samurai price file "Matching Carrier" column (5,294 rows labeled "Billion Connect Carrier"). Going direct = margin recovery vs Samurai's 40% flat markup.</span><span class="lang jp"><strong>真の上流</strong> — 直接窓口:Cecilia Hsin Cheng（シンガポール拠点）。情報源:Samurai 価格ファイル「Matching Carrier」列（5,294 行に「Billion Connect Carrier」と表記）。直接契約 = Samurai の 40% 固定マージン回避。</span></td>
+          </tr>
         </tbody>
       </table>
 
       <div class="verdict-box" style="margin-top: 14px;">
         <strong><span class="lang en">Next milestone</span><span class="lang jp">次のマイルストーン</span></strong>
         <p><span class="lang en">When 3+ providers come back with real net pricing, we can finally compare Samurai's CNY-flat-margin offer against actual wholesale rates and decide: stay with Samurai (Akito's relationship) or move to a direct provider. Decision 03 unblocks.</span><span class="lang jp">3 社以上から実際の純価格が出揃った時点で、Samurai の CNY 固定マージンと比較し、Samurai 継続（Akito の関係優先）か直接プロバイダーへの切替を判断可能に。Decision 03 のブロック解除。</span></p>
+      </div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="2" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="2"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
       </div>
     </div>
 
@@ -4422,18 +4697,51 @@ Mercury（米国法人銀行口座）
         <span class="lang en">22 destinations × 4 competitors × 2 plan profiles = 176 data points. Spreadsheet ready (see Documents tab). Headline findings: Airalo cheapest on Standard 5GB/7d; Nomad cheapest on Heavy 10GB/30d; Holafly is unlimited-only ($27 flat). Margin opportunities: Thailand, Spain/France, China.</span>
         <span class="lang jp">22 都市 × 4 競合 × 2 プラン = 176 データポイント。スプレッドシート完成（Documents タブ参照）。主な発見:Airalo が標準 5GB/7日プランで最安、Nomad が大容量 10GB/30日プランで最安、Holafly は無制限のみ（$27 固定）。マージン機会:タイ、スペイン／フランス、中国。</span>
       </p>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="3" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="3"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
-    <!-- Item 4 — skipped -->
+    <!-- Item 4 — ready, script drafted -->
     <div class="roadmap-item" id="phase-0-item-4">
       <div class="ri-head">
-        <span class="ri-status skipped"><span class="lang en">SKIPPED (for now)</span><span class="lang jp">保留中</span></span>
+        <span class="ri-status ready"><span class="lang en">READY · SCRIPT DRAFTED</span><span class="lang jp">準備完了 ・ スクリプト作成済</span></span>
         <h3><span class="lang en">Item 4 — Emirates Crew Interviews</span><span class="lang jp">Item 4 — エミレーツ航空乗務員インタビュー</span></h3>
       </div>
       <p class="ri-desc">
-        <span class="lang en">12-question interview script drafted (in pocket if we decide to do this later). Parked to keep momentum.</span>
-        <span class="lang jp">12項目のインタビュースクリプト作成済み（後で実施判断時に使用可能）。勢いを保つため保留。</span>
+        <span class="lang en">20-question interview script ready (EN/JP). Akito to run 5–10 interviews and capture findings. Script covers connectivity habits today, brand awareness, willingness to switch, and crew-network referral mechanics.</span>
+        <span class="lang jp">20問のインタビュースクリプトを準備完了（EN/JP 対応）。Akito が 5〜10 名のインタビューを実施し、結果を記録予定。現在の通信習慣・ブランド認知・乗換意向・クルーネットワーク経由の紹介メカニクスをカバー。</span>
       </p>
+      <p>
+        <a class="ri-cta" href="docs/downloads/crew-interview-script.html" target="_blank" rel="noopener">📋 <span class="lang en">Open interview script &rarr;</span><span class="lang jp">インタビュースクリプトを開く &rarr;</span></a>
+      </p>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="4" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="4"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 5 — skipped -->
@@ -4446,6 +4754,21 @@ Mercury（米国法人銀行口座）
         <span class="lang en">Critical before incorporation if multi-member LLC. Tactical workaround: start as single-member LLC (Balraj solo), formalize equity with Akito after the founder agreement is properly negotiated. Avoids blocking on this.</span>
         <span class="lang jp">マルチメンバー LLC の場合、設立前に必須。戦術的回避策:Balraj 単独のシングルメンバー LLC として開始、Akito との持分は合意書交渉後に正式化。これにより本項目がボトルネックにならない。</span>
       </p>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="5" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="5"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 6 — DONE — Crew SIM competitive deep-dive -->
@@ -4458,6 +4781,21 @@ Mercury（米国法人銀行口座）
         <span class="lang en">Full diligence pass completed 2026-05-22. <strong>Findings:</strong> Crew SIM is eSIM Mobile GmbH (Germany), founded by pilot Michael Schoepfer, likely solo / near-solo team, ~5K users, 30 App Store ratings (5.0★), v2.0.4. Pricing model: single global credit balance, pay-per-MB, no expiry, with referral mechanic baked in. Rates are already competitive with Airalo (~$1.50/GB on USA / UK / Thailand / Europe). They sell UAE eSIMs via du / Etisalat at €3.42/GB — somehow routed around the regulatory block that hit eSIM Go and BNESIM. <strong>Strategic conclusion:</strong> Decision 05 day-1 wedge revised — price is dead, schedule-upload smart-plan is the actual differentiator. Full profile in local file <code>/Users/a44/esim-uae/crewsim-competitive-profile.html</code> (NOT pushed to public site — Crew SIM can find anything we publish here).</span>
         <span class="lang jp">2026-05-22 に詳細調査完了。<strong>主な発見:</strong>Crew SIM は eSIM Mobile GmbH（ドイツ）、創業者は パイロット Michael Schoepfer、ほぼソロチーム、ユーザー約 5,000 名、App Store レビュー 30 件（5.0★）、v2.0.4。価格モデル:単一グローバル クレジット残高・MB 単位課金・無期限・紹介機能内蔵。価格は既に Airalo と同水準（USA / UK / タイ / 欧州で ~$1.50/GB）。UAE 向けは du / Etisalat 経由で €3.42/GB — eSIM Go と BNESIM が引っかかった規制ブロックを何らかの方法で回避している。<strong>戦略結論:</strong>Decision 05 の初日ウェッジを改訂 — 価格戦略は無効、ロスター連動自動プランが真の差別化軸。詳細プロファイルはローカルファイル <code>/Users/a44/esim-uae/crewsim-competitive-profile.html</code>（公開サイトには push しない — Crew SIM が公開サイトを発見できるため）。</span>
       </p>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="6" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="6"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 7 — CLOSED — Market sizing -->
@@ -4483,6 +4821,21 @@ Mercury（米国法人銀行口座）
         <span class="lang en"> ARPU $15–25 / month, ±20%. Capital-light structure (no inventory). SOM target lives in Open Discussion · Decision 13 so it stays a live conversation, not a buried number.</span>
         <span class="lang jp"> ARPU 月額 $15–25、±20% のレンジ。在庫を持たない資本効率の高い構造。SOM 目標は Open Discussion · Decision 13 で継続議論（数字を埋もれさせない運用）。</span>
       </div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="7" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="7"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 8 — NEW — Unit economics model -->
@@ -4495,6 +4848,21 @@ Mercury（米国法人銀行口座）
         <span class="lang en">Per-crew financial model: retail price − aggregator wholesale − Stripe fees − Apple cut (if IAP) − CAC = gross margin. Plus LTV assumptions (avg plans per crew per year × retention curve). Validates whether the whole thesis works mathematically before we burn cycles on it. Lives in the existing Cost tab as a deeper layer.</span>
         <span class="lang jp">乗務員一人あたりの財務モデル:小売価格 − 卸価格 − Stripe 手数料 − Apple 手数料（IAP の場合） − CAC = 粗利。加えて LTV 想定（年間プラン数 × リテンションカーブ）。ビジネス全体が数字で成立するかを工数投入前に検証。既存の Cost タブ内に深掘り層として配置。</span>
       </p>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="8" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="8"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 9 — NEW — Financial runway model -->
@@ -4507,6 +4875,21 @@ Mercury（米国法人銀行口座）
         <span class="lang en">How much capital do we need from $0 to break-even? Comes from Balraj + Akito personal contribution at first. Model assumes: incorporation + design + tech build + 6 months of operating costs before revenue ramps. Output: a single number we know we need to put in, plus the trigger for raising external capital (if ever).</span>
         <span class="lang jp">$0 から損益分岐点までに必要な資金は?当面は Balraj + Akito の個人出資が前提。モデル想定:設立 + デザイン + 技術開発 + 売上立ち上がり前の運転 6 ヶ月分。アウトプット:必要な投入額 1 つの数字 + 外部調達検討のトリガー条件（必要なら）。</span>
       </p>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="9" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="9"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 10 — CLOSED 2026-05-22 — Risk register -->
@@ -4625,6 +5008,21 @@ Mercury（米国法人銀行口座）
         <span class="lang en">See full register: <a href="docs/downloads/risk-register.html" target="_blank" style="color: var(--accent); text-decoration: underline;">risk-register.html</a></span>
         <span class="lang jp">完全版: <a href="docs/downloads/risk-register.html" target="_blank" style="color: var(--accent); text-decoration: underline;">risk-register.html</a></span>
       </p>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="0" data-item="10" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="0" data-item="10"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -4680,6 +5078,21 @@ Mercury（米国法人銀行口座）
         <li class="pending"><span class="lang en">Legal entity name → <strong>Open Discussion · Decision 00</strong></span><span class="lang jp">法人正式名称 → <strong>未決事項 ・ 判断 00</strong></span></li>
       </ul>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$500</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>2–3 weeks</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="1" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="1"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 2 — Trademark -->
@@ -4704,6 +5117,21 @@ Mercury（米国法人銀行口座）
         <li class="pending"><span class="lang en">Practical sequencing: file AFTER LLC (LLC owns the mark) OR in personal name then assign (~$100)</span><span class="lang jp">実務上の順序:LLC 設立後（LLC が商標保有者）または個人名出願→譲渡（約$100）</span></li>
       </ul>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$1.2K – $3.5K</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>8–12 months grant</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="2" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="2"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 3 — Domains + handles -->
@@ -4719,6 +5147,21 @@ Mercury（米国法人銀行口座）
         <li><span class="lang en">Lock backup variants (e.g., getpeanutesim.com) to prevent squatters</span><span class="lang jp">バックアップ名（例:getpeanutesim.com）も確保し、転売屋を防ぐ</span></li>
       </ul>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>~$100</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>30 min</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="3" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="3"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 4 — Terms / Privacy / Refund -->
@@ -4744,6 +5187,21 @@ Mercury（米国法人銀行口座）
         <li><a href="docs/refund-policy.html" target="_blank" style="color: var(--accent); text-decoration: underline;"><span class="lang en">→ refund-policy.html (2,198 words)</span><span class="lang jp">→ refund-policy.html（2,198語）</span></a></li>
       </ul>
       <div class="meta-row"><span><span class="lang en">LAWYER COST</span><span class="lang jp">弁護士費用</span><strong>$500 – $2K</strong></span><span><span class="lang en">REPLACE [LEGAL ENTITY] LLC AFTER ITEM 1</span><span class="lang jp">Item 1 後に [LEGAL ENTITY] LLC を置換</span></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="4" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="4"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 5 — Data protection -->
@@ -4766,6 +5224,21 @@ Mercury（米国法人銀行口座）
         <li><a href="docs/vendor-dpa-template.html" target="_blank" style="color: var(--accent); text-decoration: underline;"><span class="lang en">→ vendor-dpa-template.html (5,090 words · GDPR Art. 28 + UAE PDPL · 15 sections + 3 annexes)</span><span class="lang jp">→ vendor-dpa-template.html（5,090語 · GDPR 第28条 + UAE PDPL 準拠 · 15 セクション + 3 附属書）</span></a></li>
         <li><a href="docs/vendor-dpa-checklist.html" target="_blank" style="color: var(--accent); text-decoration: underline;"><span class="lang en">→ vendor-dpa-checklist.html (17 vendors enumerated across 8 categories)</span><span class="lang jp">→ vendor-dpa-checklist.html（8 カテゴリー、17 ベンダー網羅）</span></a></li>
       </ul>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="5" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="5"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 6 — Mercury (with the 3 bank options) -->
@@ -4800,6 +5273,21 @@ Mercury（米国法人銀行口座）
         <li class="decided"><strong><span class="lang en">Decision: Mercury</span><span class="lang jp">決定:Mercury</span></strong> <span class="lang en">— same pattern Airalo, Saily, and most Atlas-formed LLCs use. Brex/Relay/Wise are backups if Mercury denies us.</span><span class="lang jp">— Airalo、Saily、Atlas で設立された LLC の大多数と同じパターン。Brex/Relay/Wise は Mercury 拒否時のバックアップ。</span></li>
       </ul>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong><span class="lang en">Auto with Item 1</span><span class="lang jp">Item 1 と同時に自動</span></strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="6" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="6"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 7 — Stripe US -->
@@ -4817,6 +5305,21 @@ Mercury（米国法人銀行口座）
         <li class="pending"><strong><span class="lang en">In-app purchase vs web checkout</span><span class="lang jp">アプリ内課金 vs Web 決済</span></strong> <span class="lang en">→ Open Discussion · Decision 01</span><span class="lang jp">→ 未決事項 ・ 判断 01</span></li>
       </ul>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>2.9% + $0.30 per transaction</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong><span class="lang en">Auto with Item 1</span><span class="lang jp">Item 1 と同時に自動</span></strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="7" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="7"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEMS 8-11 — short cards -->
@@ -4830,6 +5333,21 @@ Mercury（米国法人銀行口座）
         <li><span class="lang en">Apple "carrier entitlement" (in-app eSIM install) is a SEPARATE later application — see <strong>Open Discussion · Decision 02</strong></span><span class="lang jp">Apple「キャリア権限」（アプリ内 eSIM インストール）は別途後で申請 → <strong>未決事項 ・ 判断 02</strong></span></li>
       </ul>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$99/year</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="8" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="8"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <div class="roadmap-item" id="phase-1-item-9">
@@ -4839,6 +5357,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Required to publish the Android app. Register under LLC name. Simpler than Apple Dev — no D-U-N-S required.</span><span class="lang jp">Android アプリ公開に必要。LLC 名義で登録。Apple Developer より簡単 — D-U-N-S 不要。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$25 one-time</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="9" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="9"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <div class="roadmap-item" id="phase-1-item-10">
@@ -4851,6 +5384,21 @@ Mercury（米国法人銀行口座）
         <li><span class="lang en">Vendor DPA template being drafted (Item 5 background agent) to attach to the MSA</span><span class="lang jp">MSA に添付する ベンダー DPA テンプレートを作成中（Item 5 のバックグラウンドエージェント）</span></li>
         <li class="pending"><span class="lang en">Samurai exclusive vs multi-aggregator → <strong>Open Discussion · Decision 03</strong></span><span class="lang jp">Samurai 独占 vs 複数アグリゲーター → <strong>未決事項 ・ 判断 03</strong></span></li>
       </ul>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="10" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="10"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <div class="roadmap-item" id="phase-1-item-11">
@@ -4860,6 +5408,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Errors &amp; Omissions + cyber-liability coverage. Defer until we have actual customers and revenue — there's nothing to insure pre-launch.</span><span class="lang jp">E&amp;O（業務過誤）+ サイバー責任保険。実際の顧客と売上が発生してから取得 — ローンチ前は保険対象がない。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$1–3K/year</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="11" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="11"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 12 — NEW — EIN registration confirmation -->
@@ -4870,6 +5433,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Employer Identification Number = the US federal tax ID for the LLC. Auto-issued by Stripe Atlas as part of the LLC filing, but should be tracked as a discrete item so it doesn't slip through the cracks. Required for Mercury, Stripe US, every contract.</span><span class="lang jp">EIN = LLC の連邦税務 ID 番号。Stripe Atlas が LLC 設立時に自動取得するが、抜け漏れ防止のため個別項目として管理。Mercury・Stripe US・全契約に必須。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong><span class="lang en">Auto with Item 1</span><span class="lang jp">Item 1 と同時</span></strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="12" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="12"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 13 — NEW — Delaware annual franchise tax + report -->
@@ -4880,6 +5458,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">$300/year flat for the LLC. Due 1 June every year. Easy to forget = $200 late penalty + loss of good standing (which freezes the bank account and Stripe). Calendar reminder + autopay through Stripe Atlas dashboard.</span><span class="lang jp">LLC につき年 $300 固定。毎年 6 月 1 日が期限。失念すると $200 延滞罰金 + 法人格の有効性失効（→ 銀行口座・Stripe が凍結）。Stripe Atlas ダッシュボード経由で自動引落 + カレンダー通知を設定。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$300/year</strong></span><span><span class="lang en">DUE</span><span class="lang jp">期限</span><strong>1 June annually</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="13" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="13"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 14 — NEW — US CPA engagement -->
@@ -4890,6 +5483,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Need a US Certified Public Accountant who knows non-resident-owned LLCs to file the annual Form 5472 + 1120 pro-forma. Penalties for missing or wrong filings start at $25K. Engage one before incorporation, not after. Recommended: someone Stripe Atlas-partnered (they have a vetted list) or international-tax specialists like Greenback / Bright!Tax.</span><span class="lang jp">米国非居住者オーナーの LLC に詳しい CPA（公認会計士）と契約し、年次の Form 5472 + 1120 プロフォーマを提出依頼。提出漏れ・誤りで $25K〜の罰金。設立前に確保。推奨:Stripe Atlas 提携先（審査済みリストあり） or 国際税務専門の Greenback / Bright!Tax など。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$400 – $1.2K/year</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="14" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="14"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 15 — NEW — Bookkeeping system -->
@@ -4900,6 +5508,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Pick one and stick with it from day 1: QuickBooks Online (industry standard), Xero (cleaner UX), Pilot (CPA-assisted), or Bench (CPA-assisted, cheaper). Clean books from transaction 1 save weeks of pain at tax time and at any future acquisition / fundraise. Connects directly to Mercury + Stripe.</span><span class="lang jp">初日からの選定が重要:QuickBooks Online（業界標準）、Xero（UX クリーン）、Pilot（CPA 込み）、Bench（CPA 込み・低価格）から 1 つ選択。最初の取引から綺麗な帳簿を保てば、税務申告時 + 将来の M&A / 資金調達時に数週間分の作業を節約。Mercury + Stripe と直接連携。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$15 – $250/month</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="15" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="15"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 16 — NEW — Apple Carrier Entitlement application -->
@@ -4910,6 +5533,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Apple's special permission for 1-tap in-app eSIM installation (the entitlement Airalo has). Separate application from the regular Apple Developer account. Deferred until post-launch per Decision 02 — but tracked here so it gets done. Application targets: 6–12 months after launch + ~10K active users.</span><span class="lang jp">Apple のアプリ内 1 タップ eSIM インストール特別権限（Airalo が取得済みのもの）。通常の Apple Developer アカウントとは別申請。Decision 02 によりローンチ後に延期 — ただし忘れないようここで追跡。申請目安:ローンチ後 6〜12 ヶ月 + アクティブユーザー約 10K 名。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (Apple application)</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>Post-launch</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="16" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="16"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 17 — NEW — NDA + contractor agreement templates -->
@@ -4920,6 +5558,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Mutual NDA template (for vendor conversations like Samurai/Airalo), contractor agreement template (for any designer/developer/marketer we hire short-term), and IP-assignment clause (so anything they make belongs to the LLC, not them personally). Cheap to set up now; expensive when something goes wrong without them.</span><span class="lang jp">相互 NDA テンプレート（Samurai / Airalo などベンダー協議用）、業務委託契約テンプレート（短期で雇うデザイナー / 開発者 / マーケター用）、IP 譲渡条項（成果物の所有権が個人ではなく LLC に帰属）。今作れば安価、トラブル時に無いと高くつく。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (template-only) – $500 (lawyer review)</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="17" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="17"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- Item 18 — NEW — Crew verification legal framework -->
@@ -4930,6 +5583,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Verifying that a user is actually Emirates crew has legal sensitivity. Options: (a) verify by airline email domain — risk: we're processing what Emirates may consider its corporate data; (b) ask for crew ID / badge upload — risk: identity-document handling = strict PDPL + GDPR obligations; (c) crew vouching system — minimal data risk but harder to enforce. Needs UAE-licensed counsel review before locking the v1 verification flow (Phase 2 Item 11). Could be the single decision that blocks launch if it triggers an Emirates objection.</span><span class="lang jp">「Emirates 乗務員かどうか」の確認は法的に機微。選択肢:(a) 航空会社メールドメインで確認 — リスク:Emirates が「自社データ」と見なす可能性。(b) クルー ID / バッジ画像アップロード — リスク:本人確認書類扱いとなり PDPL + GDPR の厳しい義務。(c) 既存クルーによる紹介認証 — データリスクは最小だが運用が難しい。v1 検証フロー（Phase 2 Item 11）確定前に UAE ライセンス取得済み弁護士のレビュー必要。Emirates が異議を唱えれば、ローンチを止めうる唯一の決定。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$500 – $1.5K (lawyer review)</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="1" data-item="18" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="1" data-item="18"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -4974,6 +5642,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">The foundation everything else inherits from. Before we draw any pixel, we lock: <strong>positioning</strong> (who we are vs Airalo/Holafly/Saily), <strong>primary audience</strong> (Emirates crew + UAE-based frequent travelers), <strong>voice &amp; tone</strong> (warm and confident, or playful, or premium-minimal?), <strong>brand promise</strong> (the single sentence we'd use to describe ourselves). This is a 1-hour conversation with you + Akito.</span><span class="lang jp">他の全項目が継承する土台。ピクセル一つ描く前に確定する:<strong>ポジショニング</strong>（Airalo / Holafly / Saily と何が違うか）、<strong>主要オーディエンス</strong>（エミレーツ航空乗務員 + UAE 拠点のフリークエントトラベラー）、<strong>声とトーン</strong>（温かく自信あり / 遊び心 / プレミアム・ミニマル?）、<strong>ブランド プロミス</strong>（自分たちを 1 文で説明するなら）。Balraj + Akito との 1 時間の会話。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (DIY) – $1.5K (workshop)</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>1 day</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="1" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="1"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 2 — Logo / wordmark / app icon -->
@@ -4993,6 +5676,21 @@ Mercury（米国法人銀行口座）
         </tbody>
       </table>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 – $1K</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>1–2 weeks</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="2" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="2"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 3 — Color / Type -->
@@ -5003,6 +5701,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Defines the brand's complete visual vocabulary: <strong>primary + secondary + neutral palette</strong>, <strong>type scale</strong> (headline / body / micro), <strong>type pairings</strong> (serif + sans for editorial feel, or all-sans for utility feel). Same designer from Item 2 usually delivers this together — at no extra cost — because the logo dictates them.</span><span class="lang jp">ブランドの完全な視覚語彙を定義:<strong>プライマリ + セカンダリ + ニュートラル パレット</strong>、<strong>タイポスケール</strong>（見出し / 本文 / 補足）、<strong>タイポペアリング</strong>（エディトリアル感ならセリフ + サンセリフ、ユーティリティ感ならオールサンセリフ）。通常 Item 2 と同じデザイナーが追加費用なしで一緒に納品（ロゴが規定するため）。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong><span class="lang en">bundled with Item 2</span><span class="lang jp">Item 2 に含む</span></strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="3" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="3"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 4 — UI design system -->
@@ -5018,6 +5731,21 @@ Mercury（米国法人銀行口座）
         <li><span class="lang en"><strong>Build from scratch</strong> with the same freelance designer — $1.5K–$3K, 2–3 weeks. More original but slower.</span><span class="lang jp"><strong>ゼロから構築</strong>（Item 2 と同じフリーランス） — $1.5K〜$3K、2〜3 週間。よりオリジナルだが遅い。</span></li>
       </ul>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$300 – $3K</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>1–3 weeks</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="4" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="4"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 5 — Key app screens -->
@@ -5028,6 +5756,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Using the Item 4 components, design the actual screens developers will build: <strong>onboarding</strong> (3-step intro + sign-in), <strong>plan browse</strong> (country list + filters), <strong>plan detail</strong> (the buy-now screen), <strong>checkout</strong> (Stripe payment flow), <strong>my eSIM</strong> (active eSIMs + data usage + top-up button), <strong>support</strong> (FAQ + contact). ~12–15 screens total to cover the primary user journey.</span><span class="lang jp">Item 4 のコンポーネントを使って、開発者が実装する実際の画面をデザイン:<strong>オンボーディング</strong>（3 ステップ説明 + サインイン）、<strong>プラン閲覧</strong>（国別リスト + フィルタ）、<strong>プラン詳細</strong>（購入画面）、<strong>決済</strong>（Stripe 決済フロー）、<strong>マイ eSIM</strong>（アクティブ eSIM + データ使用量 + トップアップボタン）、<strong>サポート</strong>（FAQ + 問い合わせ）。主要ユーザージャーニーを網羅するのに約 12〜15 画面。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong><span class="lang en">bundled with Item 4</span><span class="lang jp">Item 4 に含む</span></strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="5" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="5"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 6 — Marketing website -->
@@ -5038,6 +5781,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">The public-facing site at <code>peanutesim.com</code> — separate from this internal dashboard. Pages: home, country picker (anchor for SEO), individual country pages (~10 priority countries), help / FAQ, blog template. This is where most sales originate (per the Netflix Hybrid model from Decision 01). Can be built on Framer / Webflow / Next.js — design decision in this item, build decision in Phase 3.</span><span class="lang jp"><code>peanutesim.com</code> の公開向けサイト — このインターナルダッシュボードとは別物。ページ:ホーム、国セレクタ（SEO アンカー）、個別国ページ（優先 10 カ国程度）、ヘルプ / FAQ、ブログテンプレ。Decision 01 の Netflix ハイブリッドモデルにより、売上の大半がここから発生。Framer / Webflow / Next.js のいずれかで構築可能 — デザインは本項目で、構築は Phase 3 で判断。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$500 – $1.5K</strong></span><span><span class="lang en">TIMELINE</span><span class="lang jp">期間</span><strong>1–2 weeks</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="6" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="6"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 7 — App Store / Play Store assets -->
@@ -5048,6 +5806,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Apple and Google require very specific assets for store listings. <strong>Screenshots</strong> (3–10 per device size, with overlay copy showing key benefits), <strong>app preview video</strong> (15–30s, autoplay on App Store), <strong>icon variants</strong> (1024×1024 marketing), <strong>description copy</strong> (subtitle + 4,000-char long description, ASO-optimized), <strong>promotional text</strong>. These directly affect conversion from "browsing" to "installed."</span><span class="lang jp">Apple と Google はストア掲載用に細かい素材を要求:<strong>スクリーンショット</strong>（デバイスサイズごとに 3〜10 枚 + キーベネフィットを示すオーバーレイコピー）、<strong>アプリプレビュー動画</strong>（15〜30 秒 ・ App Store では自動再生）、<strong>アイコンバリエーション</strong>（1024×1024 マーケ用）、<strong>説明コピー</strong>（サブタイトル + 4,000 文字の本文 ・ ASO 最適化）、<strong>プロモーションテキスト</strong>。「閲覧」から「インストール」へのコンバージョン率に直結。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$500 – $1.5K</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="7" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="7"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 8 — Email + receipt templates -->
@@ -5058,6 +5831,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en">Every customer receives at minimum: <strong>welcome email</strong>, <strong>purchase confirmation + receipt</strong>, <strong>eSIM delivery</strong> (QR code + install instructions), <strong>data-low warning</strong>, <strong>top-up reminder</strong>, <strong>refund notification</strong>. Each must be on-brand and render across Gmail, Apple Mail, Outlook. Templates built once, populated by code in Phase 3.</span><span class="lang jp">全顧客が最低限受け取る:<strong>ウェルカムメール</strong>、<strong>購入確認 + 領収書</strong>、<strong>eSIM 配信</strong>（QR コード + インストール手順）、<strong>データ残量警告</strong>、<strong>トップアップ リマインダー</strong>、<strong>返金通知</strong>。各メールはブランドに準拠し、Gmail / Apple Mail / Outlook で正しく表示必要。テンプレを一度作成、Phase 3 でコードから差し込み。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$300 – $800</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="8" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="8"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 9 — Social kit + brand guidelines -->
@@ -5068,6 +5856,21 @@ Mercury（米国法人銀行口座）
       </div>
       <p class="ri-desc"><span class="lang en"><strong>Social kit:</strong> Instagram post / story templates, X card layouts, TikTok cover frames, LinkedIn banner. <strong>Brand guidelines doc:</strong> the single PDF anyone (us, a contractor, an agency) can read to produce on-brand work — logo do's/don'ts, color values, type, voice rules, photography style. This is what protects the brand from drift once we hand off to freelancers / agencies / influencers.</span><span class="lang jp"><strong>SNS キット:</strong>Instagram 投稿・ストーリーテンプレ、X カードレイアウト、TikTok カバーフレーム、LinkedIn バナー。<strong>ブランドガイドラインドキュメント:</strong>誰でも（自社・外注・エージェンシー）読めばオンブランドの成果を出せる単一 PDF — ロゴ Do/Don't、カラー値、タイポ、声のルール、写真スタイル。フリーランス・エージェンシー・インフルエンサーへ業務移管した際にブランドの逸脱を防ぐもの。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$300 – $800</strong></span></div>
+      <div class="ri-notes">
+        <button class="ri-notes-toggle" data-phase="2" data-item="9" type="button">
+          <span class="lang en">💬 Add Akito discussion note</span>
+          <span class="lang jp">💬 Akito との議論メモ追加</span>
+          <span class="note-count" data-phase="2" data-item="9"></span>
+        </button>
+        <div class="ri-notes-panel" hidden>
+          <textarea placeholder="What did you and Akito discuss/decide about this item?"></textarea>
+          <div class="ri-notes-actions">
+            <button class="ri-notes-save" type="button">Save note</button>
+            <span class="ri-notes-status"></span>
+          </div>
+          <ul class="ri-notes-list"></ul>
+        </div>
+      </div>
     </div>
 
     <!-- ITEM 10 — NEW — Plan & pricing strategy -->
@@ -6746,6 +7549,200 @@ Mercury（米国法人銀行口座）
   const akitoTotal = document.querySelectorAll('[data-tab-content="akito"] .task-card').length;
   document.getElementById('balrajCount').textContent = balrajTotal;
   document.getElementById('akitoCount').textContent = akitoTotal;
+</script>
+
+<!-- ============================================================ -->
+<!-- Per-item Akito discussion notes (localStorage) + master export -->
+<!-- ============================================================ -->
+<script>
+(function () {
+  const NOTE_PREFIX = 'peanut.notes.phase.';
+  const noteKey = (p, i) => NOTE_PREFIX + p + '.item.' + i;
+
+  function readNotes(p, i) {
+    try {
+      const raw = localStorage.getItem(noteKey(p, i));
+      if (!raw) return [];
+      const arr = JSON.parse(raw);
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) { return []; }
+  }
+  function writeNotes(p, i, arr) {
+    try {
+      if (!arr || !arr.length) { localStorage.removeItem(noteKey(p, i)); }
+      else { localStorage.setItem(noteKey(p, i), JSON.stringify(arr)); }
+    } catch (e) {}
+  }
+  function fmtTs(iso) {
+    try {
+      const d = new Date(iso);
+      const pad = n => String(n).padStart(2, '0');
+      return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()) +
+             ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    } catch (e) { return iso; }
+  }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function refreshCount(toggleBtn, p, i) {
+    const span = toggleBtn.querySelector('.note-count');
+    const arr = readNotes(p, i);
+    if (arr.length) {
+      span.textContent = arr.length;
+      span.classList.add('has');
+    } else {
+      span.textContent = '';
+      span.classList.remove('has');
+    }
+  }
+
+  function renderList(panel, p, i) {
+    const ul = panel.querySelector('.ri-notes-list');
+    if (!ul) return;
+    const arr = readNotes(p, i);
+    if (!arr.length) { ul.innerHTML = ''; return; }
+    ul.innerHTML = arr.map((n, idx) =>
+      '<li>' +
+        '<div class="nl-body">' +
+          '<span class="nl-ts">' + escapeHtml(fmtTs(n.ts)) + '</span>' +
+          '<span class="nl-text">' + escapeHtml(n.text) + '</span>' +
+        '</div>' +
+        '<button type="button" class="nl-del" data-idx="' + idx + '" title="Delete note">🗑</button>' +
+      '</li>'
+    ).join('');
+    ul.querySelectorAll('.nl-del').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const idx = parseInt(this.getAttribute('data-idx'), 10);
+        const cur = readNotes(p, i);
+        cur.splice(idx, 1);
+        writeNotes(p, i, cur);
+        renderList(panel, p, i);
+        const toggle = document.querySelector('.ri-notes-toggle[data-phase="'+p+'"][data-item="'+i+'"]');
+        if (toggle) refreshCount(toggle, p, i);
+        updateExportCount();
+      });
+    });
+  }
+
+  function initWidget(wrap) {
+    const toggle = wrap.querySelector('.ri-notes-toggle');
+    const panel = wrap.querySelector('.ri-notes-panel');
+    if (!toggle || !panel) return;
+    const p = toggle.getAttribute('data-phase');
+    const i = toggle.getAttribute('data-item');
+
+    refreshCount(toggle, p, i);
+    renderList(panel, p, i);
+
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      const isHidden = panel.hasAttribute('hidden');
+      if (isHidden) {
+        panel.removeAttribute('hidden');
+        toggle.classList.add('open');
+      } else {
+        panel.setAttribute('hidden', '');
+        toggle.classList.remove('open');
+      }
+    });
+
+    const saveBtn = panel.querySelector('.ri-notes-save');
+    const ta = panel.querySelector('textarea');
+    const status = panel.querySelector('.ri-notes-status');
+    saveBtn.addEventListener('click', function () {
+      const text = (ta.value || '').trim();
+      if (!text) {
+        status.textContent = '↳ empty';
+        status.classList.add('show');
+        setTimeout(() => status.classList.remove('show'), 1500);
+        return;
+      }
+      const cur = readNotes(p, i);
+      cur.push({ ts: new Date().toISOString(), text: text });
+      writeNotes(p, i, cur);
+      ta.value = '';
+      renderList(panel, p, i);
+      refreshCount(toggle, p, i);
+      status.textContent = '✓ saved';
+      status.classList.add('show');
+      setTimeout(() => status.classList.remove('show'), 1800);
+      updateExportCount();
+    });
+  }
+
+  function initAll() {
+    document.querySelectorAll('.ri-notes').forEach(initWidget);
+    updateExportCount();
+  }
+
+  function collectAllNotes() {
+    const out = {};
+    let total = 0;
+    try {
+      for (let k = 0; k < localStorage.length; k++) {
+        const key = localStorage.key(k);
+        if (!key || key.indexOf(NOTE_PREFIX) !== 0) continue;
+        // key format: peanut.notes.phase.X.item.Y
+        const m = key.match(/^peanut\.notes\.phase\.(\d+)\.item\.(\d+)$/);
+        if (!m) continue;
+        try {
+          const arr = JSON.parse(localStorage.getItem(key));
+          if (Array.isArray(arr) && arr.length) {
+            out['phase-' + m[1] + '-item-' + m[2]] = arr;
+            total += arr.length;
+          }
+        } catch (e) {}
+      }
+    } catch (e) {}
+    return { notes: out, total: total };
+  }
+
+  function updateExportCount() {
+    const el = document.getElementById('exportNotesCount');
+    if (!el) return;
+    const { total } = collectAllNotes();
+    el.textContent = total;
+  }
+
+  function dateStamp() {
+    const d = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+  }
+
+  function exportAll() {
+    const { notes, total } = collectAllNotes();
+    const payload = {
+      exported: new Date().toISOString(),
+      total_notes: total,
+      notes: notes
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'peanut-discussion-notes-' + dateStamp() + '.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initAll();
+    const btn = document.getElementById('exportNotesBtn');
+    if (btn) btn.addEventListener('click', exportAll);
+  });
+  // If DOM already loaded, init immediately
+  if (document.readyState !== 'loading') {
+    initAll();
+    const btn = document.getElementById('exportNotesBtn');
+    if (btn && !btn._wired) {
+      btn._wired = true;
+      btn.addEventListener('click', exportAll);
+    }
+  }
+})();
 </script>
 
 </body>
