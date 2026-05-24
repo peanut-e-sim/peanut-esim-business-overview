@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stitch Update Prompt — New Tier Names</title>
+<style>
+  :root {
+    --bg: #FBF6EC; --surface: #FFFFFF; --text: #1A1411; --text-2: #6B6259;
+    --line: #E8E1D2; --accent: #4A7C59; --peanut: #D71921; --gold: #C9A03B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, "SF Pro Text", sans-serif; line-height: 1.65; padding: 40px 5vw; }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  .doc-tag { display: inline-block; padding: 6px 14px; background: rgba(215,25,33,0.1); color: var(--peanut); font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; border-radius: 100px; margin-bottom: 20px; }
+  h1 { font-family: -apple-system, "SF Pro Display", sans-serif; font-weight: 700; font-size: clamp(28px, 5vw, 42px); line-height: 1.05; letter-spacing: -0.022em; margin-bottom: 16px; }
+  h1 em { color: var(--peanut); font-style: normal; }
+  .lead { color: var(--text-2); font-size: 15px; max-width: 60ch; margin-bottom: 28px; }
+  .copy-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px 14px 0 0; border-bottom: none; flex-wrap: wrap; gap: 10px; }
+  .copy-bar .label { font-family: ui-monospace, monospace; font-size: 11px; color: var(--text-2); letter-spacing: 0.08em; font-weight: 600; }
+  .copy-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--peanut); color: #FFFFFF; border: none; border-radius: 100px; font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+  .copy-btn:hover { opacity: 0.9; }
+  .copy-btn.copied { background: var(--accent); }
+  .copy-btn .check { display: none; }
+  .copy-btn.copied .check { display: inline; }
+  .copy-btn.copied .text-default { display: none; }
+  .msg { background: var(--surface); border: 1px solid var(--line); border-radius: 0 0 14px 14px; padding: 28px 32px; font-size: 13px; line-height: 1.75; white-space: pre-wrap; font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--text); }
+  .foot { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-family: ui-monospace, monospace; font-size: 11px; color: var(--text-2); letter-spacing: 0.08em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="doc-tag">PEANUT ESIM · STITCH UPDATE PROMPT · 2026-05-24</span>
+  <h1>Update all screens — <em>new cabin-class tier names</em></h1>
+  <p class="lead">Single prompt to paste into your existing Stitch conversation. Updates all 7 previously-generated screen designs with the new tier naming + cabin-metaphor marketing copy.</p>
+
+  <div class="copy-bar">
+    <span class="label">UPDATE PROMPT · paste into Stitch</span>
+    <button class="copy-btn" onclick="copyMsg('update', this)"><span class="text-default">📋 Copy prompt</span><span class="check">✓ Copied</span></button>
+  </div>
+  <div class="msg" id="update">UPDATE all the app screens you've designed so far with the new tier naming system. The plan structure hasn't changed — only the names + marketing copy. Apply across every screen that references tiers (Plans Home, Tier Comparison, Subscription detail, eSIM Library, Top-up, Refund flows, etc.).
+
+═══════════════════════════════
+NEW TIER NAMING (replace everywhere)
+═══════════════════════════════
+
+OLD NAME                          →  NEW NAME
+─────────────────────────────────────────────────
+"Pay-Per-Destination"             →  "Economy"
+"Smart Roster Bundle"             →  "Roster Bundle"
+"Monthly Pass — Light" (Tier 3A)  →  "Premium Economy"
+"Monthly Pass — Standard" (3B)    →  "Business"
+"Monthly Pass — Heavy" (3C)       →  "First"
+"Annual Pass" (Tier 4)            →  "Cockpit"
+"Top-up"                          →  "Refuel"
+
+═══════════════════════════════
+CABIN-METAPHOR DESCRIPTIONS
+═══════════════════════════════
+
+Each tier now has an intuitive cabin-experience analogy:
+
+ECONOMY ($3–7 / single destination)
+- Tagline: "One trip, done."
+- Sub: "1 GB · 3-day validity · top-up anytime"
+- Persona: "🌱 The casual traveler — flies once or twice a month"
+- Use simple plane icon
+
+ROSTER BUNDLE (auto-priced bundle from uploaded roster)
+- Tagline: "Upload. We plan it."
+- Sub: "1 GB per destination · 30-day validity · 15-20% off vs Economy"
+- Persona: "🚀 The roster planner — wants every destination auto-handled"
+- Use calendar + plane icon
+
+PREMIUM ECONOMY ($24/mo · 10 GB pool · 50% carryover)
+- Tagline: "You travel often. Lock in your month, save on every destination."
+- Sub: "Stepped up from Economy. Secured for a month. Hotel WiFi tips included."
+- Persona: "📱 The regular crew — WhatsApp + maps + light social"
+- Use plane + small star icon
+
+BUSINESS ($34/mo · 15 GB pool · 75% carryover)
+- Tagline: "You work on the move."
+- Sub: "WhatsApp, email, social, news — covered. Hotel WiFi tips included."
+- Persona: "💼 The Business cabin user — works while traveling"
+- Use plane + chevron pattern icon
+- Highlight as "RECOMMENDED" badge
+
+FIRST ($44/mo · 20 GB pool · 100% carryover)
+- Tagline: "Stream Netflix from Bangkok. Video-call home from Tokyo. Watch matches in Mauritius."
+- Sub: "Bigger screen, more data. Auto Wi-Fi Save mode included."
+- Persona: "🍿 The First-class user — Netflix + video calls + heavy streaming"
+- Use plane + champagne flute icon
+
+COCKPIT ($249/yr · 12 GB/mo · 100% carryover for 2 months · 12 GB emergency bank · $1.99/GB refuel)
+- Tagline: "Take the Cockpit. Fly your own plan."
+- Sub: "You're in control — your data, your plan, your year. Save $50/yr vs monthly."
+- Persona: "💎 The Cockpit member — long-term loyal crew, in control"
+- Use gold pilot wings icon
+- Position as the premium tier above all monthly subscriptions
+
+REFUEL ($1.99–2.99/GB)
+- Tagline: "Out of data? Refuel."
+- Sub: "Add 1 GB to any active eSIM. Done in seconds."
+- Used as add-on across all tiers
+- Use fuel pump or plane-refueling icon
+
+═══════════════════════════════
+MARKETING COPY UPDATES (in-app)
+═══════════════════════════════
+
+PLANS HOME SCREEN
+Old: "Choose your plan"
+New: "Pick your cabin"
+
+Sub: "Every cabin maps to how you actually use data. No comparison table needed."
+
+TIER COMPARISON SCREEN
+Old: "Compare Monthly Tiers"
+New: "Pick your cabin — Premium Economy, Business, or First"
+
+Banner: "💎 Take the Cockpit — save $50/yr"
+
+UPSELL NUDGES (across the app)
+- After 3 months on Business: "You've been flying Business 3 months. Step into the Cockpit — same data, $50 off the year."
+- After 90% pool usage on Premium Economy: "Pool running low? Upgrade to Business for more headroom — or Refuel for $2.99."
+- On Cockpit confirmation: "Welcome to the Cockpit. You're flying this for the year."
+
+EMPTY POOL WARNING (per tier)
+- Premium Economy: "Premium Economy is great for messaging — heavy streaming might leave you stranded. Upgrade to Business or Refuel anytime."
+- Business: "Business cabin handles work — Netflix is more of a First-class thing. Refuel or upgrade?"
+- First: "First is built to handle this — Refuel if you really need more."
+- Cockpit: "You're in the Cockpit — you have the emergency bank to dip into."
+
+═══════════════════════════════
+STATUS BADGES (profile screen)
+═══════════════════════════════
+
+Show user's tier as a badge with cabin-class style:
+
+ECONOMY     ✈ Plane icon (outline)
+ROSTER      📅 Calendar + plane icon
+PREMIUM ECON ✈ Plane + small star (filled)
+BUSINESS    ✈ Plane + chevron stripes
+FIRST       ✈ Plane + champagne flute
+COCKPIT     ⭐ Gold pilot wings (premium)
+
+═══════════════════════════════
+COLOR PALETTE REMINDER
+═══════════════════════════════
+
+Keep the Emirates-inspired palette already locked in:
+- Primary Red: #D71921 (sparingly — CTAs, brand moments)
+- Champagne Gold: #C9A03B (Cockpit + First tier accents, premium badges)
+- Cream background: #FBF6EC
+- Deep Espresso text: #1A1411
+
+═══════════════════════════════
+APPLY ALL THESE UPDATES
+═══════════════════════════════
+
+Go through each screen you've designed for Peanut eSIM and apply:
+1. New tier name replacements
+2. New marketing copy + taglines
+3. New persona descriptions
+4. New status badges + icons
+5. Cabin-class progression hierarchy visible in the UI
+
+Confirm "✓ All screens updated with cabin-class naming" before I review.</div>
+
+  <div class="foot">PEANUT ESIM · STITCH UPDATE PROMPT · 1 PROMPT · 2026-05-24</div>
+</div>
+
+<script>
+function copyMsg(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+  });
+}
+</script>
+</body>
+</html>

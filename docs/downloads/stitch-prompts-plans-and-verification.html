@@ -134,12 +134,12 @@
 </head>
 <body>
 <div class="wrap">
-  <span class="doc-tag">PEANUT ESIM · STITCH PROMPTS · PLANS + VERIFICATION · 2026-05-24</span>
+  <span class="doc-tag">PEANUT ESIM · STITCH PROMPTS · PLANS + VERIFICATION · 2026-05-24 · CABIN-CLASS NAMING</span>
   <h1>Stitch prompts — <em>plans + verification flow</em></h1>
-  <p class="lead">7 prompts to paste into stitch.withgoogle.com — one per screen flow. Use placeholder numbers (we'll swap real pricing later). Stitch will generate the visual UI per each prompt.</p>
+  <p class="lead">7 prompts to paste into stitch.withgoogle.com — one per screen flow. Uses cabin-class naming (Economy / Roster Bundle / Premium Economy / Business / First / Cockpit / Refuel) with Emirates palette. Stitch will generate the visual UI per each prompt.</p>
 
   <div class="intro-note">
-    <strong>How to use:</strong> Open <a href="https://stitch.withgoogle.com" target="_blank">stitch.withgoogle.com</a> in another tab. For each prompt below, click Copy → paste into Stitch → wait for generation. Use the same design system / style guide as before for visual consistency. Each prompt is self-contained.
+    <strong>How to use:</strong> Open <a href="https://stitch.withgoogle.com" target="_blank">stitch.withgoogle.com</a> in another tab. For each prompt below, click Copy → paste into Stitch → wait for generation. Use the same design system / style guide as before for visual consistency. Each prompt is self-contained. <strong>Naming note:</strong> Tiers now use cabin-class names crew instantly recognise — Economy, Roster Bundle, Premium Economy, Business, First, Cockpit, Refuel.
   </div>
 
   <!-- PROMPT 1 — Onboarding & Verification -->
@@ -188,7 +188,7 @@ Style: clean Apple-like, SF Pro Display font, peanut-brown accent (#B47A48), acc
   <!-- PROMPT 2 — Plans Home -->
   <div class="prompt-card">
     <div class="prompt-head">
-      <div class="prompt-title">Prompt 2 · Plans Home Screen</div>
+      <div class="prompt-title">Prompt 2 · Plans Home Screen (Cabin-Class Naming)</div>
       <button class="copy-btn" onclick="copyPrompt('p2', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="prompt-body" id="p2">Design the main "Plans" screen of an iOS app called "Peanut eSIM".
@@ -199,109 +199,135 @@ Layout:
 - Page title: "Choose your plan"
 - Subtitle: "Pick what fits your roster"
 
-5 plan cards stacked vertically (scrollable), each as a tappable card:
+7 plan cards stacked vertically (scrollable), each as a tappable card using cabin-class names:
 
-CARD 1 — Pay-Per-Destination
+CARD 1 — Economy
 - Icon: airplane departing
 - Tag pill: "ONE-TIME"
-- Title: "Pay-Per-Destination"
+- Title: "Economy"
+- Tagline: "One trip, done."
 - Price: "$3–7" + small text "per country"
-- Bullet: "1 GB · 3-day validity · top-up anytime"
+- Bullet: "1 GB · 3-day validity · Refuel anytime"
 - Tap CTA: "Choose country →"
 
-CARD 2 — Smart Roster Bundle
+CARD 2 — Roster Bundle
 - Icon: calendar with airplanes
 - Tag pill: "MOST POPULAR" (peanut color)
-- Title: "Smart Roster Bundle"
+- Title: "Roster Bundle"
+- Tagline: "Upload. We plan it."
 - Price: "~15-20% off" + small text "vs individual"
 - Bullet: "Upload roster → auto bundle for the month"
 - Tap CTA: "Upload roster →"
 
-CARD 3 — Monthly Pass (with 3 sub-tier preview)
+CARD 3 — Premium Economy
 - Icon: refresh / cycle
 - Tag pill: "SUBSCRIPTION"
-- Title: "Crew Monthly Pass"
-- Price: "$24–44/mo" + small text "3 tiers"
-- Bullet: "10-20 GB pool · carries over · cancel anytime"
-- Tap CTA: "Compare tiers →"
+- Title: "Premium Economy"
+- Tagline: "You travel often. Lock in your month."
+- Price: "$24/mo" + small text "10 GB · 50% carryover"
+- Bullet: "Hotel WiFi tips included"
+- Tap CTA: "Get Premium Economy →"
 
-CARD 4 — Annual Pass
+CARD 4 — Business
+- Icon: briefcase
+- Tag pill: "SUBSCRIPTION"
+- Title: "Business"
+- Tagline: "You work on the move."
+- Price: "$34/mo" + small text "15 GB · 75% carryover"
+- Bullet: "WhatsApp, email, social — covered"
+- Tap CTA: "Get Business →"
+
+CARD 5 — First
+- Icon: film / streaming
+- Tag pill: "SUBSCRIPTION · RECOMMENDED"
+- Title: "First"
+- Tagline: "Stream Netflix from Bangkok."
+- Price: "$44/mo" + small text "20 GB · 100% carryover"
+- Bullet: "Auto Wi-Fi Save mode included"
+- Tap CTA: "Get First →"
+
+CARD 6 — Cockpit
 - Icon: medallion / star
 - Tag pill: "BEST VALUE — save $50"
-- Title: "Crew Annual Pass"
+- Title: "Cockpit"
+- Tagline: "Take the Cockpit. Fly your own plan."
 - Price: "$249/yr" + small text "= $20.75/mo"
-- Bullet: "12 GB pool/mo · 2-month carryover · bonus emergency bank"
-- Tap CTA: "Get annual →"
+- Bullet: "12 GB/mo + 12 GB emergency bank · Refuel at $1.99/GB"
+- Tap CTA: "Take the Cockpit →"
 
-CARD 5 — Top-up
-- Icon: + plus
+CARD 7 — Refuel
+- Icon: + plus / fuel drop
 - Tag pill: "ADD-ON"
-- Title: "Top up any eSIM"
+- Title: "Refuel"
+- Tagline: "Out of data? Refuel."
 - Price: "$1.99–2.99/GB"
-- Bullet: "Add data to an active eSIM in seconds"
-- Tap CTA: "Top up →"
+- Bullet: "Add 1 GB to any active eSIM in seconds"
+- Tap CTA: "Refuel →"
 
 Style: warm peanut palette (background #FAFAF7, accent #B47A48), SF Pro Display headings, generous whitespace, rounded 14px cards, soft shadows. Mobile-first design (393×852 iPhone size).</div>
-    <div class="meta">Screen: 1 (main Plans home) · 5 plan tier cards</div>
+    <div class="meta">Screen: 1 (main Plans home) · 7 cabin-class plan cards</div>
   </div>
 
   <!-- PROMPT 3 — Monthly Tier Selector -->
   <div class="prompt-card">
     <div class="prompt-head">
-      <div class="prompt-title">Prompt 3 · Monthly Tier Selector (A/B/C)</div>
+      <div class="prompt-title">Prompt 3 · Monthly Cabin Selector (Premium Economy / Business / First)</div>
       <button class="copy-btn" onclick="copyPrompt('p3', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
     </div>
-    <div class="prompt-body" id="p3">Design the "Compare Monthly Tiers" screen for an iOS app called "Peanut eSIM".
+    <div class="prompt-body" id="p3">Design the "Pick your cabin" screen for an iOS app called "Peanut eSIM". Uses cabin-class naming that Emirates crew instantly recognise.
 
 Layout:
 - Back arrow top-left
-- Title: "Pick your monthly tier"
-- Subtitle: "Match your data usage. Switch anytime."
+- Title: "Pick your cabin"
+- Subtitle: "Match your data lifestyle. Switch anytime."
 
 Top banner (small, dismissible):
-"💎 Save $50/yr — upgrade to annual after picking your tier"
+"💎 Save $50/yr — upgrade to Cockpit after picking your cabin"
 
-3 tier cards side-by-side (horizontal scroll on mobile, or stacked):
+3 cabin cards side-by-side (horizontal scroll on mobile, or stacked):
 
-TIER A — LIGHT
+PREMIUM ECONOMY
 - Color accent: soft blue
-- Label: "LIGHT"
+- Label: "PREMIUM ECONOMY"
+- Tagline: "You travel often. Lock in your month, save on every destination."
 - Price: "$24/mo"
 - Data: "10 GB pool"
 - Features:
   ✓ Carryover: 50% to next month
-  ✓ Top-up: $2.99/GB
+  ✓ Refuel: $2.99/GB
   ✓ Hotel WiFi tips
-- Persona: "🌱 Hotel WiFi user · light social"
-- CTA: "Choose Light"
+- Persona: "🌱 Regular crew · light social"
+- CTA: "Choose Premium Economy"
 
-TIER B — STANDARD (highlighted as recommended)
+BUSINESS (highlighted as recommended)
 - Color accent: peanut-brown
-- Label: "STANDARD" + "RECOMMENDED" pill
+- Label: "BUSINESS" + "RECOMMENDED" pill
+- Tagline: "You work on the move."
 - Price: "$34/mo"
 - Data: "15 GB pool"
 - Features:
   ✓ Carryover: 75% to next month
-  ✓ Top-up: $2.99/GB
+  ✓ Refuel: $2.99/GB
   ✓ Hotel WiFi tips
 - Persona: "📱 Social + WhatsApp · moderate streaming"
-- CTA: "Choose Standard"
+- CTA: "Choose Business"
 
-TIER C — HEAVY
+FIRST
 - Color accent: deeper accent-green
-- Label: "HEAVY"
+- Label: "FIRST"
+- Tagline: "Stream Netflix from Bangkok. Video-call home from Tokyo."
 - Price: "$44/mo"
 - Data: "20 GB pool"
 - Features:
   ✓ Carryover: 100% to next month
-  ✓ Top-up: $2.99/GB
+  ✓ Refuel: $2.99/GB
   ✓ Auto Wi-Fi Save mode
 - Persona: "🍿 Netflix + video calls · heavy usage"
 - CTA: "Choose Heavy"
 
 Below cards:
 - "Not sure? Take the 30-second usage quiz →"
-- "All tiers include: smart roster bundle, 6 refund scenarios, crew-only support"
+- "All cabins include: Roster Bundle, 6 refund scenarios, crew-only support"
 
 Style: same as Plans Home. Use clean comparison-table feel. Highlight the recommended tier with a subtle border glow + slight scale-up.</div>
     <div class="meta">Screen: 1 (tier comparison) · A/B/C side-by-side</div>
@@ -310,10 +336,10 @@ Style: same as Plans Home. Use clean comparison-table feel. Highlight the recomm
   <!-- PROMPT 4 — Smart Roster Bundle Flow -->
   <div class="prompt-card">
     <div class="prompt-head">
-      <div class="prompt-title">Prompt 4 · Smart Roster Bundle (3 screens)</div>
+      <div class="prompt-title">Prompt 4 · Roster Bundle Flow (3 screens)</div>
       <button class="copy-btn" onclick="copyPrompt('p4', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
     </div>
-    <div class="prompt-body" id="p4">Design 3 screens for the "Smart Roster Bundle" flow in an iOS app called "Peanut eSIM".
+    <div class="prompt-body" id="p4">Design 3 screens for the "Roster Bundle" flow in an iOS app called "Peanut eSIM". Tagline: "Upload. We plan it."
 
 SCREEN 1 — Upload Roster
 - Title: "Upload your roster"
@@ -349,7 +375,7 @@ SCREEN 3 — Bundle Confirmed
 - Secondary: "Pre-install all to phone now" or "Install on demand"
 
 Style: warm peanut palette, friendly tone, the OCR/AI moment should feel magical. Mobile size 393×852.</div>
-    <div class="meta">Screens: 3 (upload → detected → confirmed) · The "wedge" feature flow</div>
+    <div class="meta">Screens: 3 (upload → detected → confirmed) · Roster Bundle · The "wedge" feature flow</div>
   </div>
 
   <!-- PROMPT 5 — My eSIMs / Pool Dashboard -->
@@ -358,11 +384,11 @@ Style: warm peanut palette, friendly tone, the OCR/AI moment should feel magical
       <div class="prompt-title">Prompt 5 · My eSIMs + Pool Dashboard</div>
       <button class="copy-btn" onclick="copyPrompt('p5', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
     </div>
-    <div class="prompt-body" id="p5">Design the "My eSIMs" screen for an iOS app called "Peanut eSIM" — for a user on Monthly Pass Standard ($34/mo, 15 GB pool).
+    <div class="prompt-body" id="p5">Design the "My eSIMs" screen for an iOS app called "Peanut eSIM" — for a user on Business cabin ($34/mo, 15 GB pool).
 
 Layout:
 - Title: "My eSIMs"
-- Subtitle: "Active subscription: Monthly Standard"
+- Subtitle: "Active subscription: Business"
 
 Top section — Pool meter:
 - Visual circular progress: "9.5 GB left of 15 GB"
@@ -402,7 +428,7 @@ CARD 4 (Expired):
 
 Bottom of screen:
 - "Delete all expired" button (subtle)
-- "💡 You're a Standard user — hotel WiFi tip: Hilton Tokyo Bay has free reliable WiFi"
+- "💡 You're on Business — hotel WiFi tip: Hilton Tokyo Bay has free reliable WiFi"
 
 Style: clean, scannable. Active eSIM gets visual prominence (slight glow / border). Dormant ones lighter. Expired greyed out.</div>
     <div class="meta">Screen: 1 (eSIM library + pool dashboard)</div>
@@ -411,19 +437,19 @@ Style: clean, scannable. Active eSIM gets visual prominence (slight glow / borde
   <!-- PROMPT 6 — Top-up + Activation -->
   <div class="prompt-card">
     <div class="prompt-head">
-      <div class="prompt-title">Prompt 6 · Top-up + Activation Flow</div>
+      <div class="prompt-title">Prompt 6 · Refuel + Activation Flow</div>
       <button class="copy-btn" onclick="copyPrompt('p6', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
     </div>
-    <div class="prompt-body" id="p6">Design 3 screens for top-up + activation flows in "Peanut eSIM" iOS app.
+    <div class="prompt-body" id="p6">Design 3 screens for Refuel + activation flows in "Peanut eSIM" iOS app. "Refuel" is the brand name for top-ups — tagline: "Out of data? Refuel."
 
-SCREEN 1 — Top-up modal
+SCREEN 1 — Refuel modal
 - Sheet style (slides up from bottom, doesn't take full screen)
-- Title: "Top up Japan eSIM"
-- Subtitle: "Running low on data? Add more anytime."
+- Title: "Refuel Japan eSIM"
+- Subtitle: "Out of data? Refuel anytime."
 - Slider or stepper: "1 GB" / "2 GB" / "5 GB" choice
 - Price update live: "1 GB = $2.99" or "free from your pool (9.5 GB left)" if subscriber
-- For subscriber: nice toggle "Use pool data (free)" vs "Top up with new charge"
-- CTA: "Top up 1 GB" (peanut filled)
+- For subscriber: nice toggle "Use pool data (free)" vs "Refuel with new charge"
+- CTA: "Refuel 1 GB" (peanut filled)
 
 SCREEN 2 — Activation confirmation (the "oops" moment)
 - Modal: "Activate Japan eSIM?"
@@ -440,7 +466,7 @@ SCREEN 3 — Activation success
 - Bottom: "Need help? Tap to chat with Crew AI Support"
 
 Style: friendly, warm, clear consequence-disclosure on activation (no surprises).</div>
-    <div class="meta">Screens: 3 (top-up modal → activation confirm → success)</div>
+    <div class="meta">Screens: 3 (Refuel modal → activation confirm → success)</div>
   </div>
 
   <!-- PROMPT 7 — Refund Flow -->
@@ -490,7 +516,7 @@ Style: empathetic copy. Credit-default visuals (peanut-brown, larger). Cash alwa
     <div class="meta">Screens: 4 (not-activated → oops → bundle → failed) · Credit-first UX</div>
   </div>
 
-  <div class="foot">PEANUT ESIM · STITCH PROMPTS · 7 PROMPTS · 2026-05-24</div>
+  <div class="foot">PEANUT ESIM · STITCH PROMPTS · 7 PROMPTS · CABIN-CLASS NAMING · 2026-05-24</div>
 </div>
 
 <script>
