@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stitch Prompts — Plans + Verification Flow</title>
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    padding: 50px 5vw;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  .doc-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-family: -apple-system, "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    margin-bottom: 16px;
+  }
+  h1 em { color: var(--peanut); font-style: normal; }
+  .lead { color: var(--text-2); font-size: 16px; max-width: 64ch; margin-bottom: 32px; line-height: 1.7; }
+  .prompt-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .prompt-head {
+    padding: 18px 22px;
+    background: var(--accent-soft);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .prompt-title {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--accent);
+    letter-spacing: -0.016em;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--peanut);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .copy-btn:hover { background: #9A6738; }
+  .copy-btn.copied { background: var(--accent); }
+  .copy-btn .check { display: none; }
+  .copy-btn.copied .check { display: inline; }
+  .copy-btn.copied .text-default { display: none; }
+  .prompt-body {
+    padding: 24px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+    white-space: pre-wrap;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 12.5px;
+    background: var(--bg);
+  }
+  .meta {
+    padding: 12px 24px;
+    background: var(--surface);
+    color: var(--text-3);
+    font-size: 12px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .intro-note {
+    background: var(--peanut-soft);
+    border-left: 3px solid var(--peanut);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 36px;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+  .intro-note strong { color: var(--peanut); }
+  .foot {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="doc-tag">PEANUT ESIM · STITCH PROMPTS · PLANS + VERIFICATION · 2026-05-24</span>
+  <h1>Stitch prompts — <em>plans + verification flow</em></h1>
+  <p class="lead">7 prompts to paste into stitch.withgoogle.com — one per screen flow. Use placeholder numbers (we'll swap real pricing later). Stitch will generate the visual UI per each prompt.</p>
+
+  <div class="intro-note">
+    <strong>How to use:</strong> Open <a href="https://stitch.withgoogle.com" target="_blank">stitch.withgoogle.com</a> in another tab. For each prompt below, click Copy → paste into Stitch → wait for generation. Use the same design system / style guide as before for visual consistency. Each prompt is self-contained.
+  </div>
+
+  <!-- PROMPT 1 — Onboarding & Verification -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-title">Prompt 1 · Onboarding + Crew Verification (3 screens)</div>
+      <button class="copy-btn" onclick="copyPrompt('p1', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="prompt-body" id="p1">Design 3 onboarding screens for an iOS app called "Peanut eSIM" — a travel eSIM service for airline crew (Emirates, JAL, ANA).
+
+SCREEN 1 — Signup
+- App logo at top (peanut icon, warm earthy peanut-brown #B47A48)
+- Headline: "Travel data, made for crew."
+- Subheadline: "1 SIM, every roster, every country."
+- Fields: Full name, Personal email, Password (with eye toggle)
+- Primary button: "Create account" (peanut-brown filled)
+- Secondary text link below: "Already have an account? Sign in"
+- Bottom microcopy: "We never store your employer's data. By signing up you agree to our Terms + Privacy."
+
+SCREEN 2 — Email sent (interstitial)
+- Centered, calm
+- Small icon: paper plane animating to envelope
+- Headline: "Check your inbox"
+- Subheadline: "We sent a verification link to youname@gmail.com. Tap it to activate your account."
+- Primary button: "Open Mail app"
+- Secondary link: "Resend email"
+
+SCREEN 3 — Verify as Crew
+- After signup, in main app
+- Top: small banner "✓ Account active"
+- Card with peanut-soft background:
+  - Title: "Unlock crew-only features"
+  - Body: "Verify you're airline crew to unlock: Crew Recs, layover hotel intel, exclusive crew pricing"
+  - Field: "Your work email (e.g. you@emirates.com)"
+  - Microcopy under field: "We send an OTP. We never store this email."
+  - Primary button: "Send OTP"
+- Below: another screen state after OTP sent:
+  - "Enter 6-digit code" with 6 boxes for code entry
+  - "Verify" button
+- Final state: "✓ Verified as Emirates crew" success card with subtle confetti animation
+
+Style: clean Apple-like, SF Pro Display font, peanut-brown accent (#B47A48), accent-green (#2D8C7E) for verify states, lots of whitespace, soft rounded corners (12-14px radius).</div>
+    <div class="meta">Screens: 3 (signup → email sent → verify as crew) · Privacy-by-design: Emirates email NOT stored</div>
+  </div>
+
+  <!-- PROMPT 2 — Plans Home -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-title">Prompt 2 · Plans Home Screen</div>
+      <button class="copy-btn" onclick="copyPrompt('p2', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="prompt-body" id="p2">Design the main "Plans" screen of an iOS app called "Peanut eSIM".
+
+Layout:
+- Top: nav bar with logo + profile icon
+- Sub-nav tabs: Home · Plans · My eSIMs · Hotels · Crew Recs
+- Page title: "Choose your plan"
+- Subtitle: "Pick what fits your roster"
+
+5 plan cards stacked vertically (scrollable), each as a tappable card:
+
+CARD 1 — Pay-Per-Destination
+- Icon: airplane departing
+- Tag pill: "ONE-TIME"
+- Title: "Pay-Per-Destination"
+- Price: "$3–7" + small text "per country"
+- Bullet: "1 GB · 3-day validity · top-up anytime"
+- Tap CTA: "Choose country →"
+
+CARD 2 — Smart Roster Bundle
+- Icon: calendar with airplanes
+- Tag pill: "MOST POPULAR" (peanut color)
+- Title: "Smart Roster Bundle"
+- Price: "~15-20% off" + small text "vs individual"
+- Bullet: "Upload roster → auto bundle for the month"
+- Tap CTA: "Upload roster →"
+
+CARD 3 — Monthly Pass (with 3 sub-tier preview)
+- Icon: refresh / cycle
+- Tag pill: "SUBSCRIPTION"
+- Title: "Crew Monthly Pass"
+- Price: "$24–44/mo" + small text "3 tiers"
+- Bullet: "10-20 GB pool · carries over · cancel anytime"
+- Tap CTA: "Compare tiers →"
+
+CARD 4 — Annual Pass
+- Icon: medallion / star
+- Tag pill: "BEST VALUE — save $50"
+- Title: "Crew Annual Pass"
+- Price: "$249/yr" + small text "= $20.75/mo"
+- Bullet: "12 GB pool/mo · 2-month carryover · bonus emergency bank"
+- Tap CTA: "Get annual →"
+
+CARD 5 — Top-up
+- Icon: + plus
+- Tag pill: "ADD-ON"
+- Title: "Top up any eSIM"
+- Price: "$1.99–2.99/GB"
+- Bullet: "Add data to an active eSIM in seconds"
+- Tap CTA: "Top up →"
+
+Style: warm peanut palette (background #FAFAF7, accent #B47A48), SF Pro Display headings, generous whitespace, rounded 14px cards, soft shadows. Mobile-first design (393×852 iPhone size).</div>
+    <div class="meta">Screen: 1 (main Plans home) · 5 plan tier cards</div>
+  </div>
+
+  <!-- PROMPT 3 — Monthly Tier Selector -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-title">Prompt 3 · Monthly Tier Selector (A/B/C)</div>
+      <button class="copy-btn" onclick="copyPrompt('p3', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="prompt-body" id="p3">Design the "Compare Monthly Tiers" screen for an iOS app called "Peanut eSIM".
+
+Layout:
+- Back arrow top-left
+- Title: "Pick your monthly tier"
+- Subtitle: "Match your data usage. Switch anytime."
+
+Top banner (small, dismissible):
+"💎 Save $50/yr — upgrade to annual after picking your tier"
+
+3 tier cards side-by-side (horizontal scroll on mobile, or stacked):
+
+TIER A — LIGHT
+- Color accent: soft blue
+- Label: "LIGHT"
+- Price: "$24/mo"
+- Data: "10 GB pool"
+- Features:
+  ✓ Carryover: 50% to next month
+  ✓ Top-up: $2.99/GB
+  ✓ Hotel WiFi tips
+- Persona: "🌱 Hotel WiFi user · light social"
+- CTA: "Choose Light"
+
+TIER B — STANDARD (highlighted as recommended)
+- Color accent: peanut-brown
+- Label: "STANDARD" + "RECOMMENDED" pill
+- Price: "$34/mo"
+- Data: "15 GB pool"
+- Features:
+  ✓ Carryover: 75% to next month
+  ✓ Top-up: $2.99/GB
+  ✓ Hotel WiFi tips
+- Persona: "📱 Social + WhatsApp · moderate streaming"
+- CTA: "Choose Standard"
+
+TIER C — HEAVY
+- Color accent: deeper accent-green
+- Label: "HEAVY"
+- Price: "$44/mo"
+- Data: "20 GB pool"
+- Features:
+  ✓ Carryover: 100% to next month
+  ✓ Top-up: $2.99/GB
+  ✓ Auto Wi-Fi Save mode
+- Persona: "🍿 Netflix + video calls · heavy usage"
+- CTA: "Choose Heavy"
+
+Below cards:
+- "Not sure? Take the 30-second usage quiz →"
+- "All tiers include: smart roster bundle, 6 refund scenarios, crew-only support"
+
+Style: same as Plans Home. Use clean comparison-table feel. Highlight the recommended tier with a subtle border glow + slight scale-up.</div>
+    <div class="meta">Screen: 1 (tier comparison) · A/B/C side-by-side</div>
+  </div>
+
+  <!-- PROMPT 4 — Smart Roster Bundle Flow -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-title">Prompt 4 · Smart Roster Bundle (3 screens)</div>
+      <button class="copy-btn" onclick="copyPrompt('p4', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="prompt-body" id="p4">Design 3 screens for the "Smart Roster Bundle" flow in an iOS app called "Peanut eSIM".
+
+SCREEN 1 — Upload Roster
+- Title: "Upload your roster"
+- Subtitle: "Screenshot your monthly schedule. We'll do the rest."
+- Big dashed-border drop zone in center with icon (image upload)
+- Microcopy under: "Roster image is processed on your phone. Never sent to our servers."
+- Two buttons:
+  - "📸 Take screenshot" (peanut filled)
+  - "🖼️ Choose from library" (outlined)
+- Bottom: example image thumbnail showing what a Crew Pulse roster looks like
+
+SCREEN 2 — Detected Destinations
+- After upload, show parsing in progress (1-2 sec spinner) then results
+- Title: "We found 5 destinations"
+- Subtitle: "For the period: Mar 1 — Mar 31"
+- List of destinations as cards (one per line):
+  🇯🇵 Japan · Mar 3-5 · "1 GB suggested"
+  🇬🇧 UK · Mar 10-12 · "1 GB suggested"
+  🇹🇭 Thailand · Mar 17-19 · "1 GB suggested"
+  🇲🇺 Mauritius · Mar 23-25 · "1 GB suggested"
+  🇺🇸 USA · Mar 28-30 · "2 GB suggested" (long layover)
+- Each card has a + / – button to adjust GB
+- Total at bottom: "Total: 6 GB · $X.XX"
+- Comparison row: "Saves ~$X vs buying individually"
+- CTA: "Confirm bundle"
+
+SCREEN 3 — Bundle Confirmed
+- Success screen with checkmark animation
+- Title: "Bundle ready!"
+- Subtitle: "5 eSIMs are now in your Library."
+- List: brief preview of installed eSIMs with toggle state
+- CTA: "Open my eSIMs"
+- Secondary: "Pre-install all to phone now" or "Install on demand"
+
+Style: warm peanut palette, friendly tone, the OCR/AI moment should feel magical. Mobile size 393×852.</div>
+    <div class="meta">Screens: 3 (upload → detected → confirmed) · The "wedge" feature flow</div>
+  </div>
+
+  <!-- PROMPT 5 — My eSIMs / Pool Dashboard -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-title">Prompt 5 · My eSIMs + Pool Dashboard</div>
+      <button class="copy-btn" onclick="copyPrompt('p5', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="prompt-body" id="p5">Design the "My eSIMs" screen for an iOS app called "Peanut eSIM" — for a user on Monthly Pass Standard ($34/mo, 15 GB pool).
+
+Layout:
+- Title: "My eSIMs"
+- Subtitle: "Active subscription: Monthly Standard"
+
+Top section — Pool meter:
+- Visual circular progress: "9.5 GB left of 15 GB"
+- Below: "Resets in 12 days"
+- Small text: "Carryover: 75% of unused"
+
+eSIM Library section — list of cards (each card represents one installed eSIM):
+
+CARD 1 (Active):
+- Flag emoji: 🇯🇵
+- Title: "Japan · Peanut"
+- Last 4: "...6780"
+- Status pill: "✅ Active"
+- Usage bar: "0.4 / 1 GB"
+- Buttons row: "Top up (0.3 GB used in pool)" + "Turn off"
+
+CARD 2 (Dormant):
+- Flag: 🇬🇧
+- Title: "UK · Peanut"
+- Last 4: "...4521"
+- Status pill: "💤 Dormant"
+- Buttons: "Turn on" + "Delete"
+
+CARD 3 (Dormant):
+- Flag: 🇹🇭
+- Title: "Bangkok · Peanut"
+- Last 4: "...9013"
+- Status pill: "💤 Dormant"
+- Buttons: "Turn on" + "Delete"
+
+CARD 4 (Expired):
+- Flag: 🇲🇺
+- Title: "Mauritius · Peanut"
+- Last 4: "...3144"
+- Status pill: "⌛ Expired"
+- Button: "Delete"
+
+Bottom of screen:
+- "Delete all expired" button (subtle)
+- "💡 You're a Standard user — hotel WiFi tip: Hilton Tokyo Bay has free reliable WiFi"
+
+Style: clean, scannable. Active eSIM gets visual prominence (slight glow / border). Dormant ones lighter. Expired greyed out.</div>
+    <div class="meta">Screen: 1 (eSIM library + pool dashboard)</div>
+  </div>
+
+  <!-- PROMPT 6 — Top-up + Activation -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-title">Prompt 6 · Top-up + Activation Flow</div>
+      <button class="copy-btn" onclick="copyPrompt('p6', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="prompt-body" id="p6">Design 3 screens for top-up + activation flows in "Peanut eSIM" iOS app.
+
+SCREEN 1 — Top-up modal
+- Sheet style (slides up from bottom, doesn't take full screen)
+- Title: "Top up Japan eSIM"
+- Subtitle: "Running low on data? Add more anytime."
+- Slider or stepper: "1 GB" / "2 GB" / "5 GB" choice
+- Price update live: "1 GB = $2.99" or "free from your pool (9.5 GB left)" if subscriber
+- For subscriber: nice toggle "Use pool data (free)" vs "Top up with new charge"
+- CTA: "Top up 1 GB" (peanut filled)
+
+SCREEN 2 — Activation confirmation (the "oops" moment)
+- Modal: "Activate Japan eSIM?"
+- Body: "This uses 1 GB from your plan. Make sure you're in Japan or your data won't work."
+- Smaller text: "If you tap by mistake, you can use 'Refund my activation' once it's activated (3 left this year)."
+- Two buttons: "Activate" (filled) and "Cancel" (text)
+
+SCREEN 3 — Activation success
+- Big checkmark animation
+- "Japan eSIM is active"
+- "0 GB / 1 GB used"
+- "Welcome to Japan 🇯🇵 — your data is ready"
+- Small button: "View signal status"
+- Bottom: "Need help? Tap to chat with Crew AI Support"
+
+Style: friendly, warm, clear consequence-disclosure on activation (no surprises).</div>
+    <div class="meta">Screens: 3 (top-up modal → activation confirm → success)</div>
+  </div>
+
+  <!-- PROMPT 7 — Refund Flow -->
+  <div class="prompt-card">
+    <div class="prompt-head">
+      <div class="prompt-title">Prompt 7 · Refund Flow (4 scenarios)</div>
+      <button class="copy-btn" onclick="copyPrompt('p7', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="prompt-body" id="p7">Design 4 refund-related screens for "Peanut eSIM" iOS app. Each should make the credit option feel more attractive than cash (nudge users toward credit).
+
+SCREEN 1 — Refund picker (eSIM not activated yet)
+- Title: "Refund Japan eSIM"
+- Subtitle: "Not activated yet — full refund available"
+- Two options as cards:
+  - 🎁 "Convert to credit" (peanut-brown filled, highlighted as RECOMMENDED)
+    "$5.99 credit · use anytime · valid 12 months"
+  - 💵 "Cash refund" (outlined, smaller)
+    "$5.99 to your card · arrives in 5-10 days"
+- Below: "Most crew choose credit — they spend it on top-ups within weeks."
+
+SCREEN 2 — Oops button (just activated by mistake)
+- Title: "Refund my activation"
+- Subtitle: "Tapped activate by mistake? We give 50% of the GB back."
+- Note: "You have 2 oops refunds left this year."
+- Visual: 1 GB icon → 0.5 GB back to pool
+- CTA: "Yes, refund 0.5 GB to my pool"
+
+SCREEN 3 — Bundle partial refund
+- Title: "Refund unused destinations"
+- Bundle summary:
+  - Used: 🇯🇵 Japan · 🇬🇧 UK · 🇹🇭 Bangkok (3 of 5)
+  - Unused: 🇲🇺 Mauritius · 🇿🇦 Cape Town (2 of 5)
+- Math line: "Bundle = $39.99 · 2 unused × $8 = $16 refund value"
+- CTA: "Refund $16 as credit" (only option — no cash on bundles)
+- Microcopy: "Credit valid 12 months, applies to any future purchase"
+
+SCREEN 4 — Failed eSIM
+- Title: "Sorry — your Japan eSIM isn't working"
+- Subtitle: "We're refunding you immediately + sending a free replacement."
+- 3 actions shown:
+  ✓ "Your $5.99 is being refunded (cash)"
+  ✓ "Bonus: 2 GB credit added for the inconvenience"
+  ✓ "New eSIM is installing now (3 of 3 attempts available this month)"
+- CTA: "Got it"
+
+Style: empathetic copy. Credit-default visuals (peanut-brown, larger). Cash always available but visually smaller. Failed-eSIM screen extra warm/apologetic.</div>
+    <div class="meta">Screens: 4 (not-activated → oops → bundle → failed) · Credit-first UX</div>
+  </div>
+
+  <div class="foot">PEANUT ESIM · STITCH PROMPTS · 7 PROMPTS · 2026-05-24</div>
+</div>
+
+<script>
+function copyPrompt(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 2000);
+  });
+}
+</script>
+</body>
+</html>
