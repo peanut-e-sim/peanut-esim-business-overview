@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewLink eSIM — Pricing Plan Structure</title>
+<style>
+  :root {
+    --bg: #FBF6EC; --surface: #FFFFFF; --text: #1A1411; --text-2: #6B6259;
+    --line: #E8E1D2; --peanut: #D71921; --gold: #C9A03B;
+
+    --eco: #A8C8E0; --eco-text: #1A1411;
+    --roster: #8FA68E; --roster-text: #FFFFFF;
+    --pe: #6B8A6F; --pe-text: #FFFFFF;
+    --biz: #1E2A4A; --biz-text: #C9A03B;
+    --first: #7A1F2B; --first-text: #C9A03B;
+    --cockpit: #2A2A4A; --cockpit-text: #D4AF37;
+    --refuel: #E89C42; --refuel-text: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, "SF Pro Text", sans-serif; line-height: 1.6; padding: 32px 4vw 80px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  .doc-tag { display: inline-block; padding: 6px 14px; background: rgba(215,25,33,0.1); color: var(--peanut); font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; border-radius: 100px; margin-bottom: 16px; }
+  h1 { font-family: -apple-system, "SF Pro Display", sans-serif; font-weight: 700; font-size: clamp(30px, 5vw, 46px); line-height: 1.05; letter-spacing: -0.022em; margin-bottom: 12px; }
+  h1 em { color: var(--peanut); font-style: normal; }
+  .lead { color: var(--text-2); font-size: 15px; max-width: 72ch; margin-bottom: 36px; }
+  h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin: 44px 0 16px; padding-top: 26px; border-top: 1px solid var(--line); }
+  h2.first { border-top: none; padding-top: 0; }
+  p { font-size: 14px; margin-bottom: 12px; }
+
+  /* Tier grid */
+  .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 16px 0 30px; }
+  .tier-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+  .tier-header { padding: 22px 22px 18px; }
+  .tier-pill { display: inline-block; padding: 5px 14px; border-radius: 100px; font-family: ui-monospace, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .tier-name { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; }
+  .tier-tagline { font-size: 13.5px; color: var(--text-2); font-style: italic; margin-bottom: 16px; }
+  .tier-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px; }
+  .tier-price .num { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+  .tier-price .unit { font-size: 13px; color: var(--text-2); }
+  .tier-body { padding: 0 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .tier-spec { display: grid; grid-template-columns: 100px 1fr; gap: 6px 12px; font-size: 12.5px; margin: 12px 0 16px; padding: 12px; background: rgba(0,0,0,0.025); border-radius: 8px; }
+  .tier-spec .label { color: var(--text-2); font-family: ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .tier-spec .val { font-weight: 600; }
+  .tier-persona { font-size: 12.5px; color: var(--text-2); margin-bottom: 14px; padding: 10px 12px; background: rgba(0,0,0,0.025); border-left: 3px solid currentColor; border-radius: 0 8px 8px 0; }
+  .tier-recommended { position: absolute; top: 14px; right: 14px; font-family: ui-monospace, monospace; font-size: 10px; font-weight: 700; padding: 4px 10px; background: var(--gold); color: #1A1411; border-radius: 100px; letter-spacing: 0.05em; }
+
+  /* Recommended border + position */
+  .tier-card.recommended { position: relative; box-shadow: 0 6px 22px rgba(201,160,59,0.18); border-color: var(--gold); }
+
+  /* Refund block */
+  .refund-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 14px; }
+  .refund-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .refund-num { display: inline-block; width: 28px; height: 28px; line-height: 28px; text-align: center; background: var(--peanut); color: #fff; font-weight: 700; border-radius: 50%; font-size: 13px; margin-bottom: 8px; }
+  .refund-rule { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+  .refund-detail { color: var(--text-2); font-size: 12.5px; line-height: 1.55; }
+
+  /* Cabin metaphor table */
+  table.compare { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 16px 0 30px; }
+  table.compare th, table.compare td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; }
+  table.compare th { background: rgba(0,0,0,0.03); font-weight: 600; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); }
+  table.compare tr:last-child td { border-bottom: none; }
+  table.compare .swatch { display: inline-block; width: 16px; height: 16px; border-radius: 4px; vertical-align: middle; margin-right: 6px; border: 1px solid rgba(0,0,0,0.1); }
+
+  .note { background: rgba(74,124,89,0.08); border-left: 3px solid #4A7C59; padding: 12px 16px; border-radius: 8px; margin: 16px 0; font-size: 13px; }
+  .foot { margin-top: 60px; padding-top: 18px; border-top: 1px solid var(--line); font-family: ui-monospace, monospace; font-size: 11px; color: var(--text-2); letter-spacing: 0.08em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="doc-tag">CREWLINK · PRICING PLAN STRUCTURE · LOCKED 2026-05-24</span>
+  <h1>The 7-cabin <em>pricing plan structure</em></h1>
+  <p class="lead">Every plan maps to a real cabin-class metaphor. Crew pick the cabin that matches how they use data — not a comparison table. The whole pricing surface fits on one page so a crew member can decide in 30 seconds. Refund rules are simple, predictable, and applied symmetrically across every tier.</p>
+
+  <h2 class="first">1 · The 7 cabins at a glance</h2>
+
+  <div class="tier-grid">
+    <!-- ECONOMY -->
+    <div class="tier-card">
+      <div class="tier-header" style="background: linear-gradient(180deg, var(--eco) 0%, transparent 100%);">
+        <span class="tier-pill" style="background: var(--eco); color: var(--eco-text);">ECONOMY</span>
+        <div class="tier-name">Economy</div>
+        <div class="tier-tagline">"One trip, done."</div>
+        <div class="tier-price"><span class="num">$3–7</span><span class="unit">/ destination</span></div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-spec">
+          <span class="label">Data</span><span class="val">1 GB</span>
+          <span class="label">Validity</span><span class="val">3 days</span>
+          <span class="label">Carryover</span><span class="val">—</span>
+          <span class="label">Top-up</span><span class="val">Refuel any time</span>
+        </div>
+        <div class="tier-persona" style="color: var(--eco-text);">🌱 <strong>Casual traveler</strong> — flies once or twice a month, doesn't want to commit</div>
+      </div>
+    </div>
+
+    <!-- ROSTER BUNDLE -->
+    <div class="tier-card">
+      <div class="tier-header" style="background: linear-gradient(180deg, var(--roster) 0%, transparent 100%);">
+        <span class="tier-pill" style="background: var(--roster); color: var(--roster-text);">ROSTER BUNDLE</span>
+        <div class="tier-name">Roster Bundle</div>
+        <div class="tier-tagline">"Upload. We plan it."</div>
+        <div class="tier-price"><span class="num">Auto</span><span class="unit">priced from roster · 15–20% off Economy</span></div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-spec">
+          <span class="label">Data</span><span class="val">1 GB per destination</span>
+          <span class="label">Validity</span><span class="val">30 days</span>
+          <span class="label">Carryover</span><span class="val">—</span>
+          <span class="label">Top-up</span><span class="val">Refuel any time</span>
+        </div>
+        <div class="tier-persona" style="color: var(--roster);">🚀 <strong>Roster planner</strong> — wants every destination in one tap, no thinking</div>
+      </div>
+    </div>
+
+    <!-- PREMIUM ECONOMY -->
+    <div class="tier-card">
+      <div class="tier-header" style="background: linear-gradient(180deg, var(--pe) 0%, transparent 100%);">
+        <span class="tier-pill" style="background: var(--pe); color: var(--pe-text);">PREMIUM ECONOMY</span>
+        <div class="tier-name">Premium Economy</div>
+        <div class="tier-tagline">"Lock in your month."</div>
+        <div class="tier-price"><span class="num">$24</span><span class="unit">/ month</span></div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-spec">
+          <span class="label">Data pool</span><span class="val">10 GB / mo</span>
+          <span class="label">Validity</span><span class="val">30 days</span>
+          <span class="label">Carryover</span><span class="val">50% unused → next month</span>
+          <span class="label">Top-up</span><span class="val">Refuel any time</span>
+        </div>
+        <div class="tier-persona" style="color: var(--pe);">📱 <strong>Regular crew</strong> — WhatsApp + maps + light social, flies 4-6 trips/mo</div>
+      </div>
+    </div>
+
+    <!-- BUSINESS (RECOMMENDED) -->
+    <div class="tier-card recommended">
+      <span class="tier-recommended">RECOMMENDED</span>
+      <div class="tier-header" style="background: linear-gradient(180deg, var(--biz) 0%, transparent 100%); color: #fff;">
+        <span class="tier-pill" style="background: var(--biz); color: var(--biz-text);">BUSINESS</span>
+        <div class="tier-name" style="color: #fff;">Business</div>
+        <div class="tier-tagline" style="color: #FBF6EC;">"You work on the move."</div>
+        <div class="tier-price" style="color: #fff;"><span class="num">$34</span><span class="unit" style="color: #FBF6EC;">/ month</span></div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-spec">
+          <span class="label">Data pool</span><span class="val">15 GB / mo</span>
+          <span class="label">Validity</span><span class="val">30 days</span>
+          <span class="label">Carryover</span><span class="val">75% unused → next month</span>
+          <span class="label">Top-up</span><span class="val">Refuel any time</span>
+        </div>
+        <div class="tier-persona" style="color: var(--biz);">💼 <strong>Business cabin user</strong> — works while traveling, WhatsApp + email + social + news</div>
+      </div>
+    </div>
+
+    <!-- FIRST -->
+    <div class="tier-card">
+      <div class="tier-header" style="background: linear-gradient(180deg, var(--first) 0%, transparent 100%); color: #fff;">
+        <span class="tier-pill" style="background: var(--first); color: var(--first-text);">FIRST</span>
+        <div class="tier-name" style="color: #fff;">First</div>
+        <div class="tier-tagline" style="color: #FBF6EC;">"Stream from Bangkok. Video-call from Tokyo."</div>
+        <div class="tier-price" style="color: #fff;"><span class="num">$44</span><span class="unit" style="color: #FBF6EC;">/ month</span></div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-spec">
+          <span class="label">Data pool</span><span class="val">20 GB / mo</span>
+          <span class="label">Validity</span><span class="val">30 days</span>
+          <span class="label">Carryover</span><span class="val">100% unused → next month</span>
+          <span class="label">Top-up</span><span class="val">Refuel any time</span>
+        </div>
+        <div class="tier-persona" style="color: var(--first);">🍿 <strong>First-class user</strong> — Netflix + video calls + heavy streaming on layovers</div>
+      </div>
+    </div>
+
+    <!-- COCKPIT -->
+    <div class="tier-card">
+      <div class="tier-header" style="background: linear-gradient(180deg, var(--cockpit) 0%, transparent 100%); color: #fff;">
+        <span class="tier-pill" style="background: var(--cockpit); color: var(--cockpit-text);">COCKPIT</span>
+        <div class="tier-name" style="color: #fff;">Cockpit</div>
+        <div class="tier-tagline" style="color: #FBF6EC;">"Fly your own plan."</div>
+        <div class="tier-price" style="color: #fff;"><span class="num">$249</span><span class="unit" style="color: #FBF6EC;">/ year · save $50</span></div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-spec">
+          <span class="label">Data pool</span><span class="val">12 GB / mo</span>
+          <span class="label">Validity</span><span class="val">12 months</span>
+          <span class="label">Carryover</span><span class="val">100% for 2 mo + 12 GB bank</span>
+          <span class="label">Top-up</span><span class="val">$1.99 / GB (cheapest)</span>
+        </div>
+        <div class="tier-persona" style="color: var(--cockpit);">💎 <strong>Cockpit member</strong> — long-term loyal crew, in control of their year</div>
+      </div>
+    </div>
+
+    <!-- REFUEL -->
+    <div class="tier-card">
+      <div class="tier-header" style="background: linear-gradient(180deg, var(--refuel) 0%, transparent 100%); color: #fff;">
+        <span class="tier-pill" style="background: var(--refuel); color: var(--refuel-text);">REFUEL · ADD-ON</span>
+        <div class="tier-name" style="color: #fff;">Refuel</div>
+        <div class="tier-tagline" style="color: #FBF6EC;">"Out of data? Refuel."</div>
+        <div class="tier-price" style="color: #fff;"><span class="num">$1.99–2.99</span><span class="unit" style="color: #FBF6EC;">/ GB</span></div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-spec">
+          <span class="label">Data</span><span class="val">+1 GB to any active eSIM</span>
+          <span class="label">Validity</span><span class="val">Inherits parent plan</span>
+          <span class="label">Available on</span><span class="val">All tiers (Cockpit gets cheapest rate)</span>
+          <span class="label">Activation</span><span class="val">Seconds</span>
+        </div>
+        <div class="tier-persona" style="color: var(--refuel);">⛽ <strong>Anyone running low</strong> — top up rather than upgrade for one-off trips</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>2 · Refund policy (6 scenarios — symmetric across all tiers)</h2>
+  <p>Math formula: <strong>bundle_price × (unused / total) = credit</strong>. Predictable, simple, always applied.</p>
+  <div class="refund-grid">
+    <div class="refund-card">
+      <span class="refund-num">1</span>
+      <div class="refund-rule">Unused pool → pro-rata refund</div>
+      <div class="refund-detail">Within 7 days of plan end. Unused GB × per-GB rate refunded back to original card.</div>
+    </div>
+    <div class="refund-card">
+      <span class="refund-num">2</span>
+      <div class="refund-rule">Install failed (Apple-side)</div>
+      <div class="refund-detail">Full refund, no questions. We log the failure for upstream debugging.</div>
+    </div>
+    <div class="refund-card">
+      <span class="refund-num">3</span>
+      <div class="refund-rule">Carrier connectivity failure</div>
+      <div class="refund-detail">Credit OR refund at user's choice. We verify the connectivity failure first.</div>
+    </div>
+    <div class="refund-card">
+      <span class="refund-num">4</span>
+      <div class="refund-rule">Cancel before activation</div>
+      <div class="refund-detail">Full refund, no questions. Most common refund reason — fastest path.</div>
+    </div>
+    <div class="refund-card">
+      <span class="refund-num">5</span>
+      <div class="refund-rule">First 24h, &lt;50 MB consumed</div>
+      <div class="refund-detail">Full refund, no questions. Generous trial-window — better than chargeback risk.</div>
+    </div>
+    <div class="refund-card">
+      <span class="refund-num">6</span>
+      <div class="refund-rule">Subscription downgrade mid-month</div>
+      <div class="refund-detail">Pro-rata credit toward next month. No cash refund needed for downgrades.</div>
+    </div>
+  </div>
+
+  <h2>3 · The cabin-class color system</h2>
+  <p>Every tier has a locked accent color. Used on cards, badges, status pills, hero illustrations, and the in-app status icons.</p>
+  <table class="compare">
+    <thead><tr><th style="width:160px;">Tier</th><th>Accent</th><th>Hex</th><th>Why this color</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Economy</strong></td><td><span class="swatch" style="background:var(--eco)"></span>Sky Blue</td><td><code>#A8C8E0</code></td><td>Open, casual, accessible — the entry point</td></tr>
+      <tr><td><strong>Roster Bundle</strong></td><td><span class="swatch" style="background:var(--roster)"></span>Soft Sage</td><td><code>#8FA68E</code></td><td>Calm, planned, organized — for the methodical crew</td></tr>
+      <tr><td><strong>Premium Economy</strong></td><td><span class="swatch" style="background:var(--pe)"></span>Deeper Sage</td><td><code>#6B8A6F</code></td><td>Stepped up from Economy without changing tribe</td></tr>
+      <tr><td><strong>Business</strong></td><td><span class="swatch" style="background:var(--biz)"></span>Emirates Navy + Gold</td><td><code>#1E2A4A</code> + <code>#C9A03B</code></td><td>The professional default — gold trim signals upgrade</td></tr>
+      <tr><td><strong>First</strong></td><td><span class="swatch" style="background:var(--first)"></span>Burgundy + Gold</td><td><code>#7A1F2B</code> + <code>#C9A03B</code></td><td>Velvet, champagne, suite-with-doors</td></tr>
+      <tr><td><strong>Cockpit</strong></td><td><span class="swatch" style="background:var(--cockpit)"></span>Indigo + Pilot Gold</td><td><code>#2A2A4A</code> + <code>#D4AF37</code></td><td>The earned badge — annual commitment, premium rate</td></tr>
+      <tr><td><strong>Refuel</strong></td><td><span class="swatch" style="background:var(--refuel)"></span>Warm Amber</td><td><code>#E89C42</code></td><td>Energy, top-up, golden-hour tarmac</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4 · Upgrade nudges (built into the app, fired automatically)</h2>
+  <ul style="padding-left: 22px; font-size: 14px;">
+    <li style="margin-bottom: 8px;"><strong>After 3 months on Business:</strong> "You've been flying Business 3 months. Step into the Cockpit — same data, $50 off the year."</li>
+    <li style="margin-bottom: 8px;"><strong>90% pool used on Premium Economy:</strong> "Pool running low? Upgrade to Business for more headroom — or Refuel for $2.99."</li>
+    <li style="margin-bottom: 8px;"><strong>Cockpit confirmation:</strong> "Welcome to the Cockpit. You're flying this for the year."</li>
+    <li style="margin-bottom: 8px;"><strong>Empty pool on Premium Economy:</strong> "Premium Economy is great for messaging — heavy streaming might leave you stranded. Upgrade to Business or Refuel anytime."</li>
+    <li style="margin-bottom: 8px;"><strong>Empty pool on First:</strong> "First is built to handle this — Refuel if you really need more."</li>
+    <li style="margin-bottom: 8px;"><strong>Empty pool on Cockpit:</strong> "You're in the Cockpit — you have the 12 GB emergency bank to dip into."</li>
+  </ul>
+
+  <div class="note">
+    <strong>Why this structure works:</strong> Crew don't compare data + carryover + minute counts in a spreadsheet. They identify with a cabin. Pick "Business" → done. Every nudge speaks the same metaphor. Refund rules are universal so nobody has to read tier-specific fine print. The 7 tiers fit on one screen.
+  </div>
+
+  <h2>5 · Where the related details live</h2>
+  <ul style="padding-left: 22px; font-size: 13px;">
+    <li><a href="plans-and-refunds.html">plans-and-refunds.html</a> — Full plans + bilingual refund policy + persona deep-dives</li>
+    <li><a href="plans-infographic.html">plans-infographic.html</a> — The visual one-pager</li>
+    <li><a href="plans-notebooklm-source.html">plans-notebooklm-source.md</a> — NotebookLM source for AI-generated audio overviews</li>
+    <li><a href="pl-scenarios-2026-05-24.html">pl-scenarios-2026-05-24.html</a> — P&amp;L scenarios at 3 plan-mix models</li>
+    <li><a href="stitch-prompts-plans-and-verification.html">stitch-prompts-plans-and-verification.html</a> — 7 Stitch prompts using the cabin-class naming</li>
+  </ul>
+
+  <div class="foot">CREWLINK · 7 CABINS · 6 REFUND RULES · 1 PAGE · 2026-05-25</div>
+</div>
+</body>
+</html>
