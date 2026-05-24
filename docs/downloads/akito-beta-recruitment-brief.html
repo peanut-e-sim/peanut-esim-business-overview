@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM — Akito Beta Crew Recruitment Brief</title>
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1F2E;
+    --text-2: #4A5366;
+    --text-3: #8B92A3;
+    --line: #E8E5DD;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning-soft: #FFF8EE;
+    --warning: #C97E22;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    padding: 50px 5vw;
+  }
+  body[data-lang="jp"] { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif; line-height: 1.85; font-feature-settings: "palt"; }
+  .lang { display: none; }
+  body[data-lang="en"] .lang.en, body[data-lang="jp"] .lang.jp { display: inline; }
+  body[data-lang="en"] div.lang.en, body[data-lang="jp"] div.lang.jp,
+  body[data-lang="en"] p.lang.en, body[data-lang="jp"] p.lang.jp,
+  body[data-lang="en"] li.lang.en, body[data-lang="jp"] li.lang.jp,
+  body[data-lang="en"] td.lang.en, body[data-lang="jp"] td.lang.jp { display: block; }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .doc-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--peanut-soft);
+    color: var(--peanut);
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+  }
+  .lang-toggle {
+    display: inline-flex;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 3px;
+  }
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    padding: 6px 14px;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-3);
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .lang-toggle button.active { background: var(--text); color: #fff; }
+  h1 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  body[data-lang="jp"] h1 {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    font-style: normal; font-weight: 700; letter-spacing: -0.02em;
+  }
+  h1 em { color: var(--peanut); font-style: normal; }
+  .lead { color: var(--text-2); font-size: 16px; max-width: 68ch; margin-bottom: 32px; line-height: 1.7; }
+  h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 26px; color: var(--text); margin: 44px 0 16px;
+    font-weight: 600; letter-spacing: -0.02em; line-height: 1.2;
+  }
+  body[data-lang="jp"] h2 { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif; font-size: 22px; }
+  h3 { font-size: 15px; font-weight: 600; margin: 24px 0 10px; }
+  p { margin-bottom: 14px; font-size: 15px; color: var(--text-2); }
+  .section { margin: 0 0 48px; }
+  .section-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--text-3); text-transform: uppercase;
+    margin-bottom: 16px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  /* TL;DR callout */
+  .tldr {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 0 0 32px;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .tldr strong { color: var(--accent); }
+  /* Mini table */
+  .matrix-table {
+    width: 100%; border-collapse: collapse; font-size: 13.5px;
+    margin: 0 0 24px; border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .matrix-table thead tr { background: var(--text); color: #fff; }
+  .matrix-table thead th { padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: 0.03em; }
+  .matrix-table tbody tr { border-bottom: 1px solid var(--line-soft); }
+  .matrix-table tbody tr:last-child { border-bottom: none; }
+  .matrix-table tbody td { padding: 10px 14px; vertical-align: top; color: var(--text-2); }
+  .matrix-table tbody td:first-child { font-weight: 700; color: var(--text); min-width: 30px; }
+  .matrix-table tbody td.bucket { font-weight: 600; color: var(--text); }
+  .matrix-table tbody td.count { font-weight: 700; color: var(--accent); text-align: center; min-width: 60px; }
+  .matrix-table tbody tr.total-row { background: var(--peanut-soft); font-weight: 700; }
+  .matrix-table tbody tr.total-row td { color: var(--peanut); }
+  /* Dimensions grid */
+  .dim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 0 0 32px; }
+  .dim-card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  .dim-card .dim-label { font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; color: var(--text-3); text-transform: uppercase; margin-bottom: 8px; }
+  .dim-card .dim-val { font-size: 15px; font-weight: 700; color: var(--text); }
+  .dim-card .dim-note { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li input[type="checkbox"] {
+    width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0;
+    accent-color: var(--accent); cursor: pointer;
+  }
+  .checklist li input[type="text"] {
+    flex: 1; border: 1px solid var(--line); border-radius: 6px;
+    padding: 6px 10px; font-size: 13px; color: var(--text);
+    background: var(--surface); font-family: inherit;
+    transition: border-color 0.15s;
+  }
+  .checklist li input[type="text"]:focus { outline: none; border-color: var(--accent); }
+  .checklist li .slot-num {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 11px; font-weight: 600; color: var(--text-3);
+    min-width: 28px; padding-top: 2px;
+  }
+  .checklist li .slot-bucket {
+    font-size: 12px; font-weight: 600; color: var(--peanut);
+    min-width: 120px; padding-top: 3px; flex-shrink: 0;
+  }
+  /* Progress bar */
+  .progress-wrap { margin: 0 0 24px; }
+  .progress-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: var(--text-3); }
+  .progress-bar { height: 8px; background: var(--line); border-radius: 100px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 100px; transition: width 0.3s ease; }
+  /* Template block */
+  .template-block {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 0 0 20px;
+  }
+  .template-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; background: var(--line-soft); border-bottom: 1px solid var(--line);
+  }
+  .template-header .t-label { font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: var(--text-3); text-transform: uppercase; }
+  .copy-btn {
+    padding: 5px 13px; border-radius: 100px; border: 1px solid var(--line);
+    background: var(--surface); font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    font-size: 11px; font-weight: 600; color: var(--text-2); cursor: pointer; transition: all 0.15s;
+  }
+  .copy-btn:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .copy-btn .check { display: none; }
+  .copy-btn.copied .text-default { display: none; }
+  .copy-btn.copied .check { display: inline; }
+  .copy-btn.copied { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .template-body { padding: 16px; }
+  .template-body pre {
+    white-space: pre-wrap; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13.5px; line-height: 1.7; color: var(--text-2); margin: 0;
+  }
+  /* Callout */
+  .callout { background: var(--peanut-soft); border-left: 3px solid var(--peanut); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 0 0 20px; font-size: 14px; color: var(--text-2); line-height: 1.65; }
+  .callout strong { color: var(--peanut); }
+  /* Save button */
+  .save-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px; background: var(--accent); color: #fff;
+    border: none; border-radius: 8px; font-family: inherit;
+    font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+  }
+  .save-btn:hover { background: #236e63; }
+  .save-status { font-size: 12px; color: var(--text-3); margin-left: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <span class="doc-tag">PEANUT ESIM · AKITO BRIEF</span>
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('en', this)">EN</button>
+      <button onclick="setLang('jp', this)">JP</button>
+    </div>
+  </div>
+
+  <h1>
+    <span class="lang en"><em>Akito's</em> Beta Crew Recruitment Brief</span>
+    <span class="lang jp"><em>Akito</em> 向けベータ クルー リクルートメント ブリーフ</span>
+  </h1>
+  <p class="lead lang en">Everything Akito needs to source, confirm, and track the 30 Emirates crew for the closed beta. Includes the corrected demographic matrix, a fillable slot tracker, and DM-ready messaging templates.</p>
+  <p class="lead lang jp">クローズド ベータ向けに 30 名のエミレーツ乗務員を確保・確認・管理するために Akito が必要とする全情報。修正済み人口統計マトリクス、記入式スロット トラッカー、DM 送信用メッセージ テンプレートを含む。</p>
+
+  <!-- ── SECTION 1: TL;DR ── -->
+  <div class="section">
+    <div class="section-label"><span class="lang en">01 / TL;DR</span><span class="lang jp">01 / 要点</span></div>
+    <div class="tldr">
+      <p class="lang en"><strong>Goal:</strong> Source <strong>30 Emirates crew</strong>, all DXB-based, using the corrected nationality matrix below. Aim for: ~20F / 10M, 25 cabin crew + 5 pilots/FOs, 15 junior (1–3 yrs) + 15 mid/senior. Use the DM templates at the bottom. Track each confirmed slot in the checklist. Done when 30 checkboxes are ticked.</p>
+      <p class="lang jp"><strong>目標：</strong>下記の修正済み国籍マトリクスを使用して、DXB 拠点の<strong>エミレーツ乗務員 30 名</strong>を確保。目安：~20F / 10M、客室乗務員 25 名 + パイロット / FO 5 名、ジュニア（1〜3 年）15 名 + ミッド / シニア 15 名。DM テンプレートは最下部。確認済みスロットをチェックリストで管理。30 個のチェックボックスが完了したら終了。</p>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: 30-crew matrix ── -->
+  <div class="section">
+    <div class="section-label"><span class="lang en">02 / CORRECTED 30-CREW MATRIX</span><span class="lang jp">02 / 修正済み 30 名マトリクス</span></div>
+    <p class="lang en">The previous assumption that Emirates crew is ~50% Japanese/Korean was wrong. The actual demographic breakdown (GCAA data + Emirates annual reports) changes the recruitment targets significantly. Use this matrix.</p>
+    <p class="lang jp">以前の「エミレーツ乗務員の約 50% が日系 / 韓国系」という前提は誤りだった。実際の人口統計（GCAA データ + エミレーツ年次報告書）により、リクルートメント目標が大幅に変わる。このマトリクスを使用すること。</p>
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><span class="lang en">Bucket</span><span class="lang jp">グループ</span></th>
+          <th><span class="lang en">Count</span><span class="lang jp">人数</span></th>
+          <th><span class="lang en">Notes for Akito</span><span class="lang jp">Akito へのメモ</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="bucket"><span class="lang en">Indian / South Asian</span><span class="lang jp">インド / 南アジア系</span></td>
+          <td class="count">9</td>
+          <td><span class="lang en">Largest demographic (~25–30%). Heavy WhatsApp users, price-sensitive</span><span class="lang jp">最大デモグラフィック（~25–30%）。WhatsApp ヘビーユーザー、価格感度高め</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="bucket"><span class="lang en">UK / Australian / European</span><span class="lang jp">英国 / 豪州 / 欧州系</span></td>
+          <td class="count">5–6</td>
+          <td><span class="lang en">~14–20% combined. Different home-data baselines, GDPR-aware</span><span class="lang jp">合計 ~14–20%。自国データベースラインが異なる、GDPR 意識あり</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="bucket"><span class="lang en">Egyptian / Arab</span><span class="lang jp">エジプト / アラブ系</span></td>
+          <td class="count">4</td>
+          <td><span class="lang en">Top-5 demographic — easy access via local crew lounges</span><span class="lang jp">上位 5 デモグラフィック — ローカル クルー ラウンジ経由でアクセス容易</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="bucket"><span class="lang en">Filipino</span><span class="lang jp">フィリピン系</span></td>
+          <td class="count">3</td>
+          <td><span class="lang en">~3.5% actual share, social/viral if they love it</span><span class="lang jp">実際の割合 ~3.5%、気に入ればソーシャル / バイラル拡散力高い</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td class="bucket"><span class="lang en">Other SE Asian (Sri Lanka, Thailand, Indonesia)</span><span class="lang jp">その他東南アジア系（スリランカ、タイ、インドネシア）</span></td>
+          <td class="count">2</td>
+          <td><span class="lang en">Often overlooked but present</span><span class="lang jp">見落とされがちだが存在する</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="bucket"><span class="lang en">East Asian (JP / KR / CN)</span><span class="lang jp">東アジア系（日 / 韓 / 中）</span></td>
+          <td class="count">2</td>
+          <td><span class="lang en">Akito's sweet spot. Tests JP-language need</span><span class="lang jp">Akito のスウィートスポット。日本語対応の必要性をテスト</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="bucket"><span class="lang en">Latin American (BR / AR / CO)</span><span class="lang jp">ラテンアメリカ系（ブラジル / アルゼンチン / コロンビア）</span></td>
+          <td class="count">2</td>
+          <td><span class="lang en">Engaged with travel apps, good Crew Recs contributors</span><span class="lang jp">トラベルアプリへのエンゲージメント高く、Crew Recs の貢献者として好適</span></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td class="bucket"><span class="lang en">African non-Egyptian (ZA / NG / KE)</span><span class="lang jp">エジプト以外のアフリカ系（南アフリカ / ナイジェリア / ケニア）</span></td>
+          <td class="count">2</td>
+          <td><span class="lang en">Tests data-reliability tolerance</span><span class="lang jp">データ信頼性の許容度をテスト</span></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td class="bucket"><span class="lang en">North American (US / CA)</span><span class="lang jp">北米系（米国 / カナダ）</span></td>
+          <td class="count">1</td>
+          <td><span class="lang en">Premium baseline tolerance</span><span class="lang jp">プレミアム価格の許容ベースラインを確認</span></td>
+        </tr>
+        <tr class="total-row">
+          <td></td>
+          <td class="bucket"><strong><span class="lang en">TOTAL</span><span class="lang jp">合計</span></strong></td>
+          <td class="count"><strong>30</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── SECTION 3: Other dimensions ── -->
+  <div class="section">
+    <div class="section-label"><span class="lang en">03 / OTHER DIMENSIONS TO ENFORCE</span><span class="lang jp">03 / 国籍以外に守るべき構成</span></div>
+    <p class="lang en">Alongside nationality, enforce these splits in your 30-slot selection:</p>
+    <p class="lang jp">国籍と合わせて、以下の構成も 30 名の選定に反映させること：</p>
+    <div class="dim-grid">
+      <div class="dim-card">
+        <div class="dim-label"><span class="lang en">Gender</span><span class="lang jp">性別</span></div>
+        <div class="dim-val">~20F / 10M</div>
+        <div class="dim-note"><span class="lang en">Matches Emirates ~67% / 33% split</span><span class="lang jp">エミレーツの ~67% / 33% 比率に一致</span></div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-label"><span class="lang en">Role</span><span class="lang jp">職種</span></div>
+        <div class="dim-val">25 CC + 5 Pilots</div>
+        <div class="dim-note"><span class="lang en">Cabin crew + pilots / first officers</span><span class="lang jp">客室乗務員 + パイロット / 副操縦士</span></div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-label"><span class="lang en">Seniority</span><span class="lang jp">経験年数</span></div>
+        <div class="dim-val">15 Junior + 15 Senior</div>
+        <div class="dim-note"><span class="lang en">1–3 yrs junior; 3+ yrs mid/senior</span><span class="lang jp">1〜3 年目ジュニア；3 年超ミッド / シニア</span></div>
+      </div>
+      <div class="dim-card">
+        <div class="dim-label"><span class="lang en">Base</span><span class="lang jp">ベース</span></div>
+        <div class="dim-val">100% DXB</div>
+        <div class="dim-note"><span class="lang en">Dubai-based only for v1 beta</span><span class="lang jp">v1 ベータはドバイ拠点のみ</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4: Checklist ── -->
+  <div class="section">
+    <div class="section-label"><span class="lang en">04 / SLOT TRACKER — 30 CHECKBOXES</span><span class="lang jp">04 / スロット トラッカー — 30 個のチェックボックス</span></div>
+    <p class="lang en">Tick each slot as you confirm the crew member. Enter their first name + nationality in the text field. Saves automatically in your browser.</p>
+    <p class="lang jp">乗務員が確定したらチェックを入れ、名前と国籍をテキストフィールドに記入。ブラウザに自動保存。</p>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span class="lang en">Confirmed crew</span><span class="lang jp">確定クルー</span>
+        <span id="progressCount">0 / 30</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%;"></div></div>
+    </div>
+    <ul class="checklist" id="checklist">
+      <!-- Bucket 1: Indian / South Asian (9 slots) -->
+      <li><input type="checkbox" class="slot-check" data-id="s1"><span class="slot-num">01</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s1" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s2"><span class="slot-num">02</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s2" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s3"><span class="slot-num">03</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s3" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s4"><span class="slot-num">04</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s4" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s5"><span class="slot-num">05</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s5" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s6"><span class="slot-num">06</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s6" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s7"><span class="slot-num">07</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s7" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s8"><span class="slot-num">08</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s8" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s9"><span class="slot-num">09</span><span class="slot-bucket lang en">🇮🇳 South Asian</span><span class="slot-bucket lang jp">南アジア系</span><input type="text" class="slot-name" data-id="s9" placeholder="Name · Nationality"></li>
+      <!-- Bucket 2: UK / AU / EU (5-6 slots, using 5) -->
+      <li><input type="checkbox" class="slot-check" data-id="s10"><span class="slot-num">10</span><span class="slot-bucket lang en">🇬🇧 UK / AU / EU</span><span class="slot-bucket lang jp">英国 / 豪州 / 欧州系</span><input type="text" class="slot-name" data-id="s10" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s11"><span class="slot-num">11</span><span class="slot-bucket lang en">🇬🇧 UK / AU / EU</span><span class="slot-bucket lang jp">英国 / 豪州 / 欧州系</span><input type="text" class="slot-name" data-id="s11" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s12"><span class="slot-num">12</span><span class="slot-bucket lang en">🇬🇧 UK / AU / EU</span><span class="slot-bucket lang jp">英国 / 豪州 / 欧州系</span><input type="text" class="slot-name" data-id="s12" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s13"><span class="slot-num">13</span><span class="slot-bucket lang en">🇬🇧 UK / AU / EU</span><span class="slot-bucket lang jp">英国 / 豪州 / 欧州系</span><input type="text" class="slot-name" data-id="s13" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s14"><span class="slot-num">14</span><span class="slot-bucket lang en">🇬🇧 UK / AU / EU</span><span class="slot-bucket lang jp">英国 / 豪州 / 欧州系</span><input type="text" class="slot-name" data-id="s14" placeholder="Name · Nationality"></li>
+      <!-- Bucket 3: Egyptian / Arab (4 slots) -->
+      <li><input type="checkbox" class="slot-check" data-id="s15"><span class="slot-num">15</span><span class="slot-bucket lang en">🇪🇬 Egyptian / Arab</span><span class="slot-bucket lang jp">エジプト / アラブ系</span><input type="text" class="slot-name" data-id="s15" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s16"><span class="slot-num">16</span><span class="slot-bucket lang en">🇪🇬 Egyptian / Arab</span><span class="slot-bucket lang jp">エジプト / アラブ系</span><input type="text" class="slot-name" data-id="s16" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s17"><span class="slot-num">17</span><span class="slot-bucket lang en">🇪🇬 Egyptian / Arab</span><span class="slot-bucket lang jp">エジプト / アラブ系</span><input type="text" class="slot-name" data-id="s17" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s18"><span class="slot-num">18</span><span class="slot-bucket lang en">🇪🇬 Egyptian / Arab</span><span class="slot-bucket lang jp">エジプト / アラブ系</span><input type="text" class="slot-name" data-id="s18" placeholder="Name · Nationality"></li>
+      <!-- Bucket 4: Filipino (3 slots) -->
+      <li><input type="checkbox" class="slot-check" data-id="s19"><span class="slot-num">19</span><span class="slot-bucket lang en">🇵🇭 Filipino</span><span class="slot-bucket lang jp">フィリピン系</span><input type="text" class="slot-name" data-id="s19" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s20"><span class="slot-num">20</span><span class="slot-bucket lang en">🇵🇭 Filipino</span><span class="slot-bucket lang jp">フィリピン系</span><input type="text" class="slot-name" data-id="s20" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s21"><span class="slot-num">21</span><span class="slot-bucket lang en">🇵🇭 Filipino</span><span class="slot-bucket lang jp">フィリピン系</span><input type="text" class="slot-name" data-id="s21" placeholder="Name · Nationality"></li>
+      <!-- Bucket 5: Other SE Asian (2 slots) -->
+      <li><input type="checkbox" class="slot-check" data-id="s22"><span class="slot-num">22</span><span class="slot-bucket lang en">🌏 SE Asian</span><span class="slot-bucket lang jp">東南アジア系</span><input type="text" class="slot-name" data-id="s22" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s23"><span class="slot-num">23</span><span class="slot-bucket lang en">🌏 SE Asian</span><span class="slot-bucket lang jp">東南アジア系</span><input type="text" class="slot-name" data-id="s23" placeholder="Name · Nationality"></li>
+      <!-- Bucket 6: East Asian (2 slots) -->
+      <li><input type="checkbox" class="slot-check" data-id="s24"><span class="slot-num">24</span><span class="slot-bucket lang en">🇯🇵 East Asian</span><span class="slot-bucket lang jp">東アジア系</span><input type="text" class="slot-name" data-id="s24" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s25"><span class="slot-num">25</span><span class="slot-bucket lang en">🇯🇵 East Asian</span><span class="slot-bucket lang jp">東アジア系</span><input type="text" class="slot-name" data-id="s25" placeholder="Name · Nationality"></li>
+      <!-- Bucket 7: Latin American (2 slots) -->
+      <li><input type="checkbox" class="slot-check" data-id="s26"><span class="slot-num">26</span><span class="slot-bucket lang en">🌎 Latin American</span><span class="slot-bucket lang jp">ラテンアメリカ系</span><input type="text" class="slot-name" data-id="s26" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s27"><span class="slot-num">27</span><span class="slot-bucket lang en">🌎 Latin American</span><span class="slot-bucket lang jp">ラテンアメリカ系</span><input type="text" class="slot-name" data-id="s27" placeholder="Name · Nationality"></li>
+      <!-- Bucket 8: African non-Egyptian (2 slots) -->
+      <li><input type="checkbox" class="slot-check" data-id="s28"><span class="slot-num">28</span><span class="slot-bucket lang en">🌍 African (non-EG)</span><span class="slot-bucket lang jp">アフリカ系（エジプト除く）</span><input type="text" class="slot-name" data-id="s28" placeholder="Name · Nationality"></li>
+      <li><input type="checkbox" class="slot-check" data-id="s29"><span class="slot-num">29</span><span class="slot-bucket lang en">🌍 African (non-EG)</span><span class="slot-bucket lang jp">アフリカ系（エジプト除く）</span><input type="text" class="slot-name" data-id="s29" placeholder="Name · Nationality"></li>
+      <!-- Bucket 9: North American (1 slot) -->
+      <li><input type="checkbox" class="slot-check" data-id="s30"><span class="slot-num">30</span><span class="slot-bucket lang en">🇺🇸 North American</span><span class="slot-bucket lang jp">北米系</span><input type="text" class="slot-name" data-id="s30" placeholder="Name · Nationality"></li>
+    </ul>
+    <div style="margin-top: 20px; display: flex; align-items: center; gap: 8px;">
+      <button class="save-btn" onclick="saveChecklist()">
+        <span class="lang en">💾 Save progress</span>
+        <span class="lang jp">💾 進捗を保存</span>
+      </button>
+      <span class="save-status" id="saveStatus"></span>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: Recruitment messaging templates ── -->
+  <div class="section">
+    <div class="section-label"><span class="lang en">05 / DM MESSAGING TEMPLATES</span><span class="lang jp">05 / DM メッセージ テンプレート</span></div>
+    <p class="lang en">Short copy to paste into WhatsApp / Instagram DMs / iMessage. Personalise [Name] and choose EN or JP based on the recipient.</p>
+    <p class="lang jp">WhatsApp / Instagram DM / iMessage に貼り付ける短いメッセージ。[Name] を置き換え、相手に合わせて EN / JP を選択。</p>
+
+    <div class="callout">
+      <strong><span class="lang en">Key messaging principle:</span><span class="lang jp">メッセージングの原則：</span></strong>
+      <span class="lang en"> This is a casual invite from Akito — not a corporate pitch. Warm tone. Emphasise it's free + we want their honest opinion, not a glowing testimonial.</span>
+      <span class="lang jp">これは Akito からのカジュアルな招待 — コーポレートの売り込みではない。温かいトーン。無料であること、正直な意見を求めていること（好意的なコメントが目的ではない）を強調。</span>
+    </div>
+
+    <!-- EN template -->
+    <div class="template-block" id="tpl-en-block">
+      <div class="template-header">
+        <span class="t-label">ENGLISH · SHORT DM</span>
+        <button class="copy-btn" onclick="copyTemplate('tpl-en', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      </div>
+      <div class="template-body">
+        <pre id="tpl-en">Hey [Name]! I'm building a travel eSIM app made specifically for Emirates crew — roster-aware, so it recommends your data plan based on your actual flight schedule. I'm lining up 30 crew for a closed beta before we launch. Would you be up for trying it? It's completely free (we'll credit your first plan), takes maybe 10 minutes to set up, and your feedback helps shape the final product. Zero pressure — just wanted to ask you first since you actually travel this route a lot. Let me know! 🥜</pre>
+      </div>
+    </div>
+
+    <!-- JP template -->
+    <div class="template-block" id="tpl-jp-block">
+      <div class="template-header">
+        <span class="t-label">JAPANESE · SHORT DM</span>
+        <button class="copy-btn" onclick="copyTemplate('tpl-jp', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      </div>
+      <div class="template-body">
+        <pre id="tpl-jp">[Name] さん、こんにちは！エミレーツ乗務員専用のトラベル eSIM アプリを作っています。ロスター連動型で、実際のフライトスケジュールに合わせてデータプランを提案してくれるやつです。ローンチ前にクローズドベータとして 30 名の乗務員に試してもらいたくて声をかけています。参加してみませんか？完全無料（最初のプランはこちらでクレジットします）、設定は 10 分くらいで、いただいたフィードバックが製品の仕上げに直結します。プレッシャーなし — [Name] さんはよく飛んでいるから、まず聞いてみたくて。よかったら教えてください！🥜</pre>
+      </div>
+    </div>
+
+    <!-- Follow-up EN -->
+    <h3><span class="lang en">Follow-up (if no reply after 3 days)</span><span class="lang jp">フォローアップ（3 日後に未返信の場合）</span></h3>
+    <div class="template-block" id="tpl-fu-block">
+      <div class="template-header">
+        <span class="t-label">FOLLOW-UP · ENGLISH</span>
+        <button class="copy-btn" onclick="copyTemplate('tpl-fu', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      </div>
+      <div class="template-body">
+        <pre id="tpl-fu">Hey [Name], just following up on the eSIM beta invite! We only have 30 spots and they're filling up — no worries if it's not for you, just let me know either way 🙂</pre>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+  // Language toggle
+  function setLang(lang, btn) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Checklist: load from localStorage, update progress
+  const STORAGE_KEY = 'peanut_beta_checklist_v1';
+
+  function loadChecklist() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      document.querySelectorAll('.slot-check').forEach(cb => {
+        const id = cb.dataset.id;
+        if (saved[id + '_checked']) cb.checked = true;
+      });
+      document.querySelectorAll('.slot-name').forEach(inp => {
+        const id = inp.dataset.id;
+        if (saved[id + '_name']) inp.value = saved[id + '_name'];
+      });
+    } catch(e) {}
+    updateProgress();
+  }
+
+  function saveChecklist() {
+    const data = {};
+    document.querySelectorAll('.slot-check').forEach(cb => { data[cb.dataset.id + '_checked'] = cb.checked; });
+    document.querySelectorAll('.slot-name').forEach(inp => { data[inp.dataset.id + '_name'] = inp.value; });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    const status = document.getElementById('saveStatus');
+    status.textContent = '✓ Saved';
+    setTimeout(() => { status.textContent = ''; }, 2000);
+  }
+
+  function updateProgress() {
+    const total = 30;
+    const checked = document.querySelectorAll('.slot-check:checked').length;
+    document.getElementById('progressCount').textContent = checked + ' / ' + total;
+    document.getElementById('progressFill').style.width = (checked / total * 100) + '%';
+  }
+
+  // Auto-save on change
+  document.addEventListener('DOMContentLoaded', () => {
+    loadChecklist();
+    document.querySelectorAll('.slot-check, .slot-name').forEach(el => {
+      el.addEventListener('change', () => { saveChecklist(); updateProgress(); });
+      el.addEventListener('input', () => { updateProgress(); });
+    });
+  });
+
+  // Copy template
+  function copyTemplate(id, btn) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    });
+  }
+</script>
+</body>
+</html>
