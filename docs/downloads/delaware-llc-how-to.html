@@ -4,9 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Peanut eSIM — How to set up your Delaware LLC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #FAFAF7;
@@ -29,11 +26,11 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.65;
     padding: 50px 5vw;
   }
-  body[data-lang="jp"] { font-family: 'Noto Sans JP', sans-serif; line-height: 1.85; font-feature-settings: "palt"; }
+  body[data-lang="jp"] { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif; line-height: 1.85; font-feature-settings: "palt"; }
   .lang { display: none; }
   body[data-lang="en"] .lang.en, body[data-lang="jp"] .lang.jp { display: inline; }
   body[data-lang="en"] div.lang.en, body[data-lang="jp"] div.lang.jp,
@@ -56,7 +53,7 @@
     padding: 6px 14px;
     background: var(--peanut-soft);
     color: var(--peanut);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -73,7 +70,7 @@
     background: transparent;
     border: none;
     padding: 6px 14px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 11px;
     font-weight: 600;
     color: var(--text-3);
@@ -83,18 +80,16 @@
   }
   .lang-toggle button.active { background: var(--text); color: #fff; }
   h1 {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 700;
     font-size: clamp(34px, 5vw, 54px);
     line-height: 1.05;
     letter-spacing: -0.01em;
     margin-bottom: 20px;
   }
   body[data-lang="jp"] h1 {
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.02em;
   }
   h1 em { color: var(--peanut); font-style: normal; }
@@ -106,14 +101,15 @@
     line-height: 1.7;
   }
   h2 {
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 28px;
     color: var(--text);
     margin: 48px 0 18px;
-    font-weight: 400;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.15;
   }
-  body[data-lang="jp"] h2 { font-family: 'Noto Sans JP', sans-serif; font-style: normal; font-weight: 600; font-size: 22px; }
+  body[data-lang="jp"] h2 { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif; font-style: normal; font-weight: 600; font-size: 22px; }
   h3 {
     font-family: inherit;
     font-size: 15px;
@@ -143,7 +139,7 @@
     padding: 3px 10px;
     background: var(--accent);
     color: #fff;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 10px;
     letter-spacing: 0.1em;
     border-radius: 100px;
@@ -179,7 +175,7 @@
     padding: 4px 12px;
     background: var(--peanut-soft);
     color: var(--peanut);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 10.5px;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -188,7 +184,7 @@
     margin-bottom: 6px;
   }
   .phase-meta {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 11px;
     color: var(--text-3);
     margin-top: 8px;
@@ -207,7 +203,7 @@
     display: inline-block;
     background: var(--peanut-soft);
     color: var(--peanut);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 11px;
     font-weight: 700;
     padding: 2px 9px;
@@ -230,7 +226,7 @@
   .step-url {
     display: inline-block;
     margin-top: 6px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 11.5px;
     color: var(--accent);
     text-decoration: none;
@@ -262,7 +258,7 @@
     padding: 3px 10px;
     background: var(--rose);
     color: #fff;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 10px;
     letter-spacing: 0.1em;
     border-radius: 100px;
@@ -284,12 +280,12 @@
     background: var(--line-soft);
     font-weight: 600;
     color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
-  td.num { font-family: 'JetBrains Mono', monospace; color: var(--text); font-weight: 600; text-align: right; }
+  td.num { font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace; color: var(--text); font-weight: 600; text-align: right; }
   tr.total td { background: var(--accent-soft); font-weight: 700; }
   tr.total td.num { color: var(--accent); }
 
@@ -310,7 +306,7 @@
     color: var(--accent);
     text-decoration: none;
     word-break: break-all;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 11.5px;
   }
   .sources a:hover { text-decoration: underline; }
@@ -320,7 +316,7 @@
     margin-top: 56px;
     padding-top: 24px;
     border-top: 1px solid var(--line);
-    font-family: 'JetBrains Mono', monospace;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 11px;
     color: var(--text-3);
     letter-spacing: 0.08em;
