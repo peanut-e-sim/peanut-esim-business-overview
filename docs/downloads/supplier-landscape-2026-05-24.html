@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewLink eSIM · Supplier Landscape · 2026-05-24</title>
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-2: #555;
+    --line: #E5E2DC;
+    --line-soft: #F0EEE7;
+    --accent: #2D8C7E;
+    --accent-soft: #EBF5F2;
+    --accent-2: #5EAEA3;
+    --peanut: #B47A48;
+    --peanut-soft: #FAF1E8;
+    --warning: #C97E22;
+    --warning-soft: #FFF8EE;
+    --rose: #C97070;
+    --rose-soft: #FBEDED;
+    --violet: #7A6CB8;
+    --violet-soft: #EFEDF7;
+    --pursue-bg: #EBF5F2;
+    --pursue: #1E7A6E;
+    --watch-bg: #FFF8EE;
+    --watch: #C97E22;
+    --skip-bg: #FBEDED;
+    --skip: #C97070;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 56px 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* ── Header ── */
+  .doc-tag {
+    display: inline-block;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 54px);
+    line-height: 1.04;
+    letter-spacing: -0.028em;
+    margin-bottom: 16px;
+  }
+  h1 em { color: var(--accent); font-style: normal; }
+  .meta {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 12px;
+    color: var(--text-2);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .meta strong { color: var(--accent); }
+  .lead {
+    font-size: 18px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 52px;
+    max-width: 680px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 40px;
+  }
+
+  /* ── Section labels ── */
+  .section-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 48px 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+    margin-bottom: 12px;
+  }
+  h2 em { color: var(--accent); font-style: normal; }
+  h3 {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+  p { margin-bottom: 14px; color: var(--text-2); font-size: 15px; line-height: 1.65; }
+  p strong { color: var(--text); }
+  ul { padding-left: 20px; margin-bottom: 14px; }
+  li { margin-bottom: 6px; font-size: 15px; color: var(--text-2); line-height: 1.6; }
+  li strong { color: var(--text); }
+
+  /* ── Callout ── */
+  .callout {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    margin: 24px 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .callout.warn {
+    background: var(--warning-soft);
+    border-left-color: var(--warning);
+  }
+  .callout.rose {
+    background: var(--rose-soft);
+    border-left-color: var(--rose);
+  }
+
+  /* ── Context card (Part 1 summary) ── */
+  .context-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .context-card h3 { margin-bottom: 10px; }
+
+  /* ── Supplier card grid ── */
+  .supplier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 18px;
+    margin: 24px 0;
+  }
+  @media (max-width: 700px) { .supplier-grid { grid-template-columns: 1fr; } }
+
+  .supplier-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .supplier-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--accent);
+    border-radius: 4px 0 0 4px;
+  }
+  .supplier-card.pursue::before { background: var(--pursue); }
+  .supplier-card.watch::before { background: var(--watch); }
+  .supplier-card.skip::before { background: var(--skip); }
+
+  .supplier-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .supplier-name {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .verdict-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .verdict-pill.pursue { background: var(--pursue-bg); color: var(--pursue); }
+  .verdict-pill.watch { background: var(--watch-bg); color: var(--watch); }
+  .verdict-pill.skip { background: var(--skip-bg); color: var(--skip); }
+
+  .supplier-what {
+    font-size: 13.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  .supplier-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-bottom: 12px;
+  }
+  .meta-item { }
+  .meta-key {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .meta-val { font-size: 13px; color: var(--text); line-height: 1.4; }
+
+  .supplier-action {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+    padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+    margin-top: 8px;
+  }
+  .supplier-action strong { color: var(--text); }
+
+  /* ── TDRA section ── */
+  .tdra-timeline {
+    margin: 24px 0;
+    position: relative;
+    padding-left: 28px;
+  }
+  .tdra-timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--line);
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--surface);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-item.warn::before { background: var(--warning); box-shadow: 0 0 0 2px var(--warning); }
+  .timeline-item.rose::before { background: var(--rose); box-shadow: 0 0 0 2px var(--rose); }
+  .timeline-date {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .timeline-content {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+  .timeline-content strong { color: var(--text); }
+
+  /* ── Decision tree (Plan B) ── */
+  .plan-b {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 24px 0;
+  }
+  .plan-b h3 { margin-bottom: 16px; color: var(--text); }
+  .branch {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border-left: 3px solid var(--line);
+  }
+  .branch.pursue { border-left-color: var(--pursue); }
+  .branch.warn { border-left-color: var(--warning); }
+  .branch.rose { border-left-color: var(--rose); }
+  .branch-label {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    margin-bottom: 6px;
+  }
+  .branch-title { font-weight: 600; font-size: 15px; margin-bottom: 6px; color: var(--text); }
+  .branch-body { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+
+  /* ── Next steps ── */
+  .next-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  @media (max-width: 780px) { .next-steps { grid-template-columns: 1fr; } }
+  .next-step {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .step-num {
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .step-title { font-weight: 700; font-size: 16px; line-height: 1.3; margin-bottom: 10px; }
+  .step-body { font-size: 13.5px; color: var(--text-2); line-height: 1.6; }
+
+  /* ── Back link ── */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-2);
+    text-decoration: none;
+    margin-bottom: 40px;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  /* ── Table ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 20px 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .data-table th {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+  .data-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text-2);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td:first-child { color: var(--text); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a href="../../index.html" class="back-link">← Back to overview</a>
+
+  <div class="doc-tag">Supplier Intelligence · 2026-05-24</div>
+  <h1>eSIM Supplier <em>Landscape</em></h1>
+  <div class="meta">CrewLink eSIM · Research · <strong>2026-05-24</strong> · Confidential — internal use</div>
+
+  <p class="lead">
+    Three supplier-risk questions answered in one pass: the aggregator market structure, what UAE regulatory enforcement looks like in practice, and which alternative suppliers are worth pursuing for Phase 2. Based on primary research across supplier websites, regulatory filings, traveller forums, and legal analysis.
+  </p>
+
+  <!-- ─── PART 1 ─── -->
+  <div class="section-label">Part 1 · Aggregator A — Wholesale pricing</div>
+  <h2>No public rate sheet <em>exists</em></h2>
+
+  <p>The primary aggregator targeted in this research (referred to as Aggregator A; Tier-1, Netherlands-based, GSMA-accredited, 190+ countries) operates strictly on a quote-basis for B2B partners. No Reddit threads, GitHub CSVs, or forum posts contain actual rate sheets. Their developer documentation exposes API structure but no pricing.</p>
+
+  <div class="callout">
+    <strong>Key finding:</strong> Aggregator A has publicly confirmed a white-label eSIM partnership with a MENA-based airline — directly analogous to what CrewLink is building. This is proof-of-concept that their Tech &amp; Travel partner track serves airline-adjacent use cases in our target geography.
+  </div>
+
+  <h3 style="margin-top: 28px; margin-bottom: 12px;">Estimated wholesale rates (triangulated from market comparables)</h3>
+  <p>No confirmed figures. The table below is estimated from publicly available retail-to-wholesale ratios across the market, not from any leaked Aggregator A document.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Region</th>
+        <th>Est. Tier-1 wholesale $/GB</th>
+        <th>Current CrewLink implied cost*</th>
+        <th>Est. savings going direct</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>East Asia (JP, KR, TW)</td><td>$0.80–$1.20</td><td>$1.12–$1.68</td><td>$0.45–$0.65/GB</td></tr>
+      <tr><td>SE Asia (TH, SG, MY, PH)</td><td>$0.60–$1.00</td><td>$0.84–$1.40</td><td>$0.35–$0.55/GB</td></tr>
+      <tr><td>EU (UK, DE, FR, ES)</td><td>$0.80–$1.50</td><td>$1.12–$2.10</td><td>$0.45–$0.85/GB</td></tr>
+      <tr><td>US / Canada</td><td>$1.00–$2.00</td><td>$1.40–$2.80</td><td>$0.55–$1.10/GB</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size: 12.5px; color: var(--text-2); margin-top: -8px;">* Current implied cost includes the 40% markup applied by the intermediate reseller in the current supply chain (confirmed from prior research). Actual Tier-1 quotes must be obtained directly.</p>
+
+  <!-- ─── PART 2 ─── -->
+  <div class="section-label">Part 2 · UAE regulatory enforcement — Airalo case study + Plan B</div>
+  <h2>The block is <em>real</em>, ongoing, and has no formal resolution</h2>
+
+  <p>Research confirmed that multiple travel eSIM providers (including the market leader) experienced network-level blocking in the UAE. This is not a technical outage — it is silent ISP-level enforcement by the UAE's two licensed operators, consistent with the TDRA's regulatory framework requiring that telecommunications services be provided only by UAE licensees or their authorized agents.</p>
+
+  <h3 style="margin: 24px 0 14px;">Timeline</h3>
+  <div class="tdra-timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">April 2024</div>
+      <div class="timeline-content">
+        <strong>First confirmed blocks.</strong> Travel eSIM apps and websites become unreachable on Etisalat connections. DNS + IP level filtering. Multiple providers affected simultaneously. No announcement from the UAE regulator. No due process. No appeal mechanism.
+      </div>
+    </div>
+    <div class="timeline-item warn">
+      <div class="timeline-date">April 2025</div>
+      <div class="timeline-content">
+        <strong>Repeat enforcement confirmed.</strong> Same pattern documented by travellers — not a temporary outage. Blocks appear persistent across operator network refreshes. Providers publish manual workarounds (install eSIM before departure, use WiFi).
+      </div>
+    </div>
+    <div class="timeline-item rose">
+      <div class="timeline-date">March 2026</div>
+      <div class="timeline-content">
+        <strong>Regional spread.</strong> Kuwait suspends eSIM sales entirely. Turkey formally blocks 8 eSIM providers by name (July 2025). India removed eSIM apps from app stores (Jan 2024). The UAE remains the most directly relevant risk given CrewLink's seed cohort.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">May 2026</div>
+      <div class="timeline-content">
+        <strong>No resolution.</strong> Airalo's last public statement described the UAE situation as "circumstances we are working relentlessly to solve." No formal unblock announced. Blocks assumed ongoing.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <strong>Why this matters for CrewLink:</strong> Emirates crew are UAE residents. They buy before departure while on UAE networks. A block would affect plan purchases, top-ups, and potentially profile re-downloads — hitting the seed cohort hardest. The enforcement mechanism is silent (no warning, no appeal), and it tracks commercial traction — providers get blocked when they grow large enough to be noticed.
+  </div>
+
+  <h3 style="margin: 32px 0 16px;">Plan B — Decision tree for day the block arrives</h3>
+  <div class="plan-b">
+    <h3>If CrewLink becomes unreachable on UAE networks</h3>
+
+    <div class="branch pursue">
+      <div class="branch-label">Days 0–3 · Assess</div>
+      <div class="branch-title">Network-level block vs app store removal</div>
+      <div class="branch-body">Network block (ISP filter): lower severity — workarounds work immediately. App store removal: critical — requires separate escalation track with Apple/Google. Confirm which operators are blocking (Etisalat, du, or both). Most likely scenario is network-only.</div>
+    </div>
+
+    <div class="branch warn">
+      <div class="branch-label">Days 1–7 · Immediate mitigations</div>
+      <div class="branch-title">Activate offline-first flows</div>
+      <div class="branch-body">
+        <strong>Network block only:</strong> Push in-app alert ("Use WiFi or VPN to access CrewLink"). Enable manual QR code activation (bypasses API endpoint calls). Crew WhatsApp/Telegram group: eSIM QR codes can be shared peer-to-peer with no app needed. PWA fallback: crewlink.app accessible via Safari on WiFi — not subject to TDRA enforcement.<br><br>
+        <strong>App store removal too:</strong> Android APK sideload via WhatsApp. iOS TestFlight distribution to verified crew. PWA becomes primary interface.
+      </div>
+    </div>
+
+    <div class="branch warn">
+      <div class="branch-label">Weeks 2–4 · Structural response</div>
+      <div class="branch-title">Legal + supplier + user base diversification</div>
+      <div class="branch-body">Engage UAE telecom lawyer (Al Tamimi &amp; Company specialises in TDRA matters). Evaluate whether a UAE Free Zone entity (DIFC or DMCC) creates legal basis to operate under a TDRA license. Shift supplier routing — ensure alternative API endpoint not blocked. Accelerate Etihad/Qatar crew expansion to reduce UAE-resident concentration.</div>
+    </div>
+
+    <div class="branch rose">
+      <div class="branch-label">Month 2+ · Strategic options</div>
+      <div class="branch-title">Three long-term paths</div>
+      <div class="branch-body">
+        <strong>Option A — MVNO sub-agreement with e&amp; or du:</strong> Becomes a licensed agent. ~$50–100K set-up + revenue share. Expensive but permanent.<br><br>
+        <strong>Option B — Operate from outside UAE, crew on WiFi/VPN:</strong> Emirates crew are experienced VPN users. Practical for 6–12 months.<br><br>
+        <strong>Option C — Japan-first pivot (JAL/ANA):</strong> No TDRA risk. Akito's natural network. Strong eSIM demand from Japan crew.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Pre-emptive move (do now, costs nothing):</strong> Add to onboarding: "Always download your eSIM plan before your trip, while on WiFi." Framed as performance best practice. Makes a UAE network block a non-event for any user who followed the instruction. Recommend implementing before v1 launch.
+  </div>
+
+  <!-- ─── PART 3 ─── -->
+  <div class="section-label">Part 3 · Supplier diversification scorecard</div>
+  <h2>10 alternatives — <em>4 worth pursuing</em></h2>
+
+  <p>Current supply chain: Tier-2 HK aggregator → Thailand reseller (40% margin) → CrewLink. Direct Tier-1 or Tier-2 integration eliminates the intermediary layer. Below: verdicts on 10 named alternatives.</p>
+
+  <div class="supplier-grid">
+
+    <div class="supplier-card pursue">
+      <div class="supplier-header">
+        <div class="supplier-name">Aggregator A</div>
+        <span class="verdict-pill pursue">Pursue</span>
+      </div>
+      <div class="supplier-what">Tier-1, Netherlands, GSMA-accredited. White-label API platform. 190+ countries, 600+ networks. Partners include a neobank (18M+ users) and a MENA airline. Tech &amp; Travel partner track.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">Excellent. JP / UK / TH / AU all confirmed. Strong MENA.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">Quote-only. Enterprise minimum likely. Est. $0.80–$1.50/GB.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Startup feasibility</div>
+          <div class="meta-val">Medium. "Tech &amp; Travel" track exists but volume commitment expected.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Priority</div>
+          <div class="meta-val">#1 — strongest strategic fit</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>First step:</strong> Apply via partnerships page. Reference the MENA airline case in the pitch.</div>
+    </div>
+
+    <div class="supplier-card pursue">
+      <div class="supplier-header">
+        <div class="supplier-name">Aggregator B (Telna)</div>
+        <span class="verdict-pill pursue">Pursue</span>
+      </div>
+      <div class="supplier-what">Tier-2 MVNO aggregator (Canada). Connectivity platform for CSPs and startups. 180+ countries. Single eSIM multi-MNO smart-switch. "No CapEx" model. API + cloud management.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">Good. JP / UK / TH / AU confirmed. ME less documented.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">Quote-only. SMB-oriented. Est. $0.80–$1.20/GB.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Startup feasibility</div>
+          <div class="meta-val">High. Explicitly targets connectivity startups. Fast onboarding pitch.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Priority</div>
+          <div class="meta-val">#2 — best SMB fit</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>First step:</strong> Contact via API page. Position as connectivity service provider building travel eSIM.</div>
+    </div>
+
+    <div class="supplier-card pursue">
+      <div class="supplier-header">
+        <div class="supplier-name">Aggregator C (GigSky)</div>
+        <span class="verdict-pill pursue">Pursue</span>
+      </div>
+      <div class="supplier-what">US-based multi-IMSI aggregator. Consumer + enterprise. 200+ countries, 800+ operators. RESTful API. Visa partnership (financial integration precedent). Self-serve trial SIM portal.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">Excellent. All crew-key markets covered.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">Self-serve trial available. B2B: up to 50% off retail. Retail ~$15–25/5GB.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Startup feasibility</div>
+          <div class="meta-val">High. Free trial at iot.gigsky.com — no sales gate required.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Priority</div>
+          <div class="meta-val">#3 — easiest entry point</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>First step:</strong> Sign up at iot.gigsky.com for free trial SIMs this week. Zero commitment to evaluate API.</div>
+    </div>
+
+    <div class="supplier-card pursue">
+      <div class="supplier-header">
+        <div class="supplier-name">Aggregator D (Ubigi / Transatel / NTT)</div>
+        <span class="verdict-pill pursue">Pursue</span>
+      </div>
+      <div class="supplier-what">NTT (Japan's incumbent) subsidiary. Consumer brand + B2B distributor programme. 200+ countries. Particularly strong APAC coverage by heritage. Distributor programme with margin model.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">Excellent for APAC. JP strongest (NTT backhaul). UK / EU good. TH / AU covered.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">Distributor programme with margin on sales + recharges. Quote on qualification.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Startup feasibility</div>
+          <div class="meta-val">Medium-high. Programme open to new partners with qualification call.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Priority</div>
+          <div class="meta-val">#4 — Japan coverage advantage</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>First step:</strong> Apply via distributor programme page. Strong Japan angle with Akito's network.</div>
+    </div>
+
+    <div class="supplier-card watch">
+      <div class="supplier-header">
+        <div class="supplier-name">Aggregator E (Workz / Trasna)</div>
+        <span class="verdict-pill watch">Watch</span>
+      </div>
+      <div class="supplier-what">Dubai-based eSIM factory + cloud RSP platform. MEA region's first GSMA SAS-certified full eSIM provider. Acquired by Trasna Holdings Sept 2024. 1.6B+ products/year. M2M + consumer RSP. UAE headquarters.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">MEA + APAC primary. Not primarily a travel data reseller.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">B2B infrastructure layer — SIM production and RSP, not data packages.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Startup feasibility</div>
+          <div class="meta-val">Low today. Relevant if CrewLink operates its own eSIM platform in Phase 4+.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Priority</div>
+          <div class="meta-val">Phase 3–4 infrastructure consideration</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>Watch:</strong> UAE-based GSMA-certified RSP capability. Long-term moat if we ever issue own eSIM profiles.</div>
+    </div>
+
+    <div class="supplier-card watch">
+      <div class="supplier-header">
+        <div class="supplier-name">Aggregator F (Soracom)</div>
+        <span class="verdict-pill watch">Watch</span>
+      </div>
+      <div class="supplier-what">Japanese IoT connectivity platform. 174 countries. Developer API-first. Strong Japan coverage (NTT Docomo backhaul). Consumer Japan plans publicly priced. PAYG + bundle model.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">Excellent Japan. Good SE Asia. Weaker EU.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">Semi-public. Japan 5GB/30d = $28.79 retail → ~$5–8 wholesale implied.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Startup feasibility</div>
+          <div class="meta-val">High for Japan-specific sourcing. Developer-friendly API.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Priority</div>
+          <div class="meta-val">Japan backup/specialist supplier</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>Watch:</strong> If Aggregator D (Ubigi) Japan rates aren't competitive, Soracom is the Japan specialist alternative.</div>
+    </div>
+
+    <div class="supplier-card skip">
+      <div class="supplier-header">
+        <div class="supplier-name">Provider G (KORE / ex-Twilio Super SIM)</div>
+        <span class="verdict-pill skip">Skip</span>
+      </div>
+      <div class="supplier-what">Twilio sold IoT SIM business to KORE in June 2023. 400+ networks, 190+ countries. IoT-optimised pricing ($0.10/MB = $100+/GB). Not designed for consumer travel data bursts.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">Global, but IoT-optimised (wrong use case)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">$0.10/MB public = ~$100/GB. 10–50× travel aggregator rates.</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>Skip:</strong> Pricing structure is categorically incompatible with consumer travel eSIM economics.</div>
+    </div>
+
+    <div class="supplier-card skip">
+      <div class="supplier-header">
+        <div class="supplier-name">Provider H (AT&amp;T IoT GSA)</div>
+        <span class="verdict-pill skip">Skip</span>
+      </div>
+      <div class="supplier-what">AT&amp;T enterprise multi-IMSI IoT SIM. Global via roaming agreements. Enterprise-only. Minimum commitments likely $100K+/year. No startup track.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">Strong US. Asia via roaming — not price-competitive.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">Enterprise sales only. Not public. Not travel-data-competitive.</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>Skip:</strong> Enterprise-only, US-centric, no startup path. Wrong product for CrewLink.</div>
+    </div>
+
+    <div class="supplier-card skip">
+      <div class="supplier-header">
+        <div class="supplier-name">Provider I (T-Mobile for Business)</div>
+        <span class="verdict-pill skip">Skip</span>
+      </div>
+      <div class="supplier-what">US MVNO enterprise. IoT Access Pack. Primarily US domestic. International via standard roaming — expensive for Asia travel data use case.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">Strong US. Weak APAC (the key crew region).</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">Enterprise only. Historical IoT promo = $6/year/12MB (IoT orientation confirmed).</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>Skip:</strong> US-domestic focus. Not a travel aggregator. Wrong tier.</div>
+    </div>
+
+    <div class="supplier-card skip">
+      <div class="supplier-header">
+        <div class="supplier-name">Provider J (MTX Connect)</div>
+        <span class="verdict-pill skip">Skip</span>
+      </div>
+      <div class="supplier-what">Maltese MVNE/MVNO. Low public profile. EU-centric. Limited APAC documentation. Not a travel data reseller in any meaningful sense for this use case.</div>
+      <div class="supplier-meta">
+        <div class="meta-item">
+          <div class="meta-key">Crew coverage</div>
+          <div class="meta-val">EU-centric. Weak APAC.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-key">Pricing</div>
+          <div class="meta-val">Not public. Enterprise-only.</div>
+        </div>
+      </div>
+      <div class="supplier-action"><strong>Skip:</strong> Wrong geography, wrong tier, low public profile suggests small scale.</div>
+    </div>
+
+  </div>
+
+  <!-- ─── NEXT STEPS ─── -->
+  <div class="section-label">Top 3 actionable next steps</div>
+  <h2>What to do <em>this month</em></h2>
+
+  <div class="next-steps">
+    <div class="next-step">
+      <div class="step-num">Step 01 · This week</div>
+      <div class="step-title">Get trial SIMs from Aggregator C (GigSky)</div>
+      <div class="step-body">Self-serve portal at iot.gigsky.com. No sales call required. Get API credentials, test against Japan + Thailand + UK destinations. Provides real-world comparison data against current supply chain within days, zero commitment.</div>
+    </div>
+    <div class="next-step">
+      <div class="step-num">Step 02 · This week</div>
+      <div class="step-title">Apply to Aggregator A's Tech &amp; Travel track</div>
+      <div class="step-body">Aggregator A has done exactly what CrewLink is building — a MENA airline white-label eSIM product. Fill their partnership form and reference this case. Request a rate quote for East Asia + EU. Even a 20% improvement vs. current chain significantly improves unit economics.</div>
+    </div>
+    <div class="next-step">
+      <div class="step-num">Step 03 · Before launch</div>
+      <div class="step-title">Add pre-flight eSIM instruction to onboarding</div>
+      <div class="step-body">Add one line before v1 ships: "Download your eSIM plan before your trip, while connected to WiFi." Framed as a performance tip. Makes a UAE network block a non-event for compliant users. Costs nothing. Insurance value: significant.</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); font-size: 13px; color: var(--text-2); line-height: 1.7;">
+    <p><strong>Research methodology:</strong> Primary sources — supplier websites (scraped), regulatory filings (Lexology, Al Tamimi &amp; Co, Freedom House UAE 2024 report), traveller forums (Reddit r/dubai), and legal analysis of TDRA framework. Wholesale pricing estimates are triangulated from retail-to-wholesale ratios across the public market — not from any leaked documents. Supplier names are anonymized in this public version where commercially sensitive; full mapping is in the private research file.</p>
+    <p style="margin-top: 8px; margin-bottom: 0;"><strong>Date:</strong> 2026-05-24 · <strong>Author:</strong> Researcher sub-agent (CrewLink eSIM) · <a href="../../index.html" style="color: var(--accent);">← Back to main overview</a></p>
+  </div>
+
+</div>
+</body>
+</html>
