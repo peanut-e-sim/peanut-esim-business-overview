@@ -654,7 +654,8 @@ body.shell { background: var(--bg-shell); color: var(--text-shell); font-family:
 .shell-stage { background: var(--bg-shell); position: relative; display: flex; align-items: center; justify-content: center; overflow: auto; padding: 30px; }
 .phone-frame { position: relative; width: 390px; height: 844px; background: #000; border-radius: 54px; padding: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 8px #1a1a1a, 0 0 0 9px rgba(255,255,255,0.06); flex-shrink: 0; }
 .phone-frame::before { content: ""; position: absolute; top: 26px; left: 50%; transform: translateX(-50%); width: 120px; height: 36px; background: #000; border-radius: 24px; z-index: 50; pointer-events: none; }
-.screen-wrap { width: 100%; height: 100%; background: #FBF6EC; border-radius: 40px; overflow: hidden; position: relative; cursor: pointer; }
+.screen-wrap { width: 100%; height: 100%; background: #FBF6EC; border-radius: 40px; overflow: hidden; position: relative; }
+.screen-wrap button, .screen-wrap a[href], .screen-wrap [role="button"] { cursor: pointer; }
 /* Screen sections: only active is visible, occupy whole frame */
 .screen { display: none; width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
 .screen.is-active { display: block; }
@@ -3937,19 +3938,99 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') go(1);
 });
 
-// Click handler INSIDE the phone — intercept buttons + anchors, route to next screen
-screenWrap.addEventListener('click', (e) => {
-  const target = e.target.closest('button, a, [role="button"]');
-  if (!target) return;
-  e.preventDefault();
-  e.stopPropagation();
-  const cur = findScreen(location.hash);
-  const label = (target.textContent || '').trim();
-  for (const r of TEXT_ROUTES) {
-    if (r.m.test(label)) { goTo(r.t); return; }
+// Map material-symbol names → screen slugs for bottom nav routing
+const NAV_ICON_ROUTES = {
+  'home': 'home',
+  'house': 'home',
+  'public': 'plans',
+  'language': 'plans',
+  'category': 'plans',
+  'featured_seasonal_and_gifts': 'plans',
+  'sim_card': 'esim-library',
+  'list_alt': 'esim-library',
+  'inventory_2': 'esim-library',
+  'hotel': 'hotels',
+  'bed': 'hotels',
+  'travel': 'hotels',
+  'apartment': 'hotels',
+  'person': 'points',
+  'account_circle': 'points',
+  'settings': 'points',
+  'workspace_premium': 'points',
+};
+
+// Heuristic: which elements should advance the prototype?
+// 1. Red-filled primary CTAs (bg-primary, bg-primary-container, bg-red)
+// 2. Bottom-nav icons in a footer/nav-like container
+// 3. Elements with explicit data-go attribute (manual overrides)
+function isPrimaryCTA(el) {
+  if (!el) return false;
+  if (el.dataset.go) return true;
+  const cls = (el.className && el.className.baseVal) || el.className || '';
+  if (typeof cls !== 'string') return false;
+  return /bg-primary(-container)?|bg-red-?\d|bg-\[#[Dd]71921\]|bg-\[#[Aa][Ee]0012\]/.test(cls);
+}
+
+function findNavAnchor(target) {
+  // Walk up looking for a footer/nav-like container that holds icon links
+  let el = target;
+  while (el && el !== document.body) {
+    const cls = (el.className && (el.className.baseVal || el.className)) || '';
+    if (typeof cls === 'string') {
+      if (/(?:^|\s)(?:bottom-nav|footer|nav)(?:\s|$)/i.test(cls) ||
+          el.tagName === 'NAV' ||
+          el.tagName === 'FOOTER' ||
+          /sticky\s+bottom-?0|fixed\s+bottom-?0/.test(cls)) {
+        return target.closest('a, button');
+      }
+    }
+    el = el.parentElement;
   }
-  const linearNext = NEXT_MAP[cur.slug];
-  if (linearNext) goTo(linearNext);
+  return null;
+}
+
+// Click handler INSIDE the phone
+screenWrap.addEventListener('click', (e) => {
+  const cur = findScreen(location.hash);
+  const interactive = e.target.closest('button, a, [role="button"]');
+  if (!interactive) return;
+
+  // 1. Explicit data-go (manual override on a button)
+  if (interactive.dataset.go) {
+    e.preventDefault();
+    e.stopPropagation();
+    goTo(interactive.dataset.go);
+    return;
+  }
+
+  // 2. Bottom-nav anchor — route by material icon name
+  const navItem = findNavAnchor(interactive);
+  if (navItem) {
+    e.preventDefault();
+    e.stopPropagation();
+    const icon = navItem.querySelector('.material-symbols-outlined, [class*="material-symbols"]');
+    const iconText = icon ? (icon.textContent || '').trim().toLowerCase() : '';
+    const dest = NAV_ICON_ROUTES[iconText];
+    if (dest) { goTo(dest); return; }
+    // Unknown nav icon — do nothing rather than send the user to the wrong screen
+    return;
+  }
+
+  // 3. Primary red-filled CTA — advance via text match or linear next
+  if (isPrimaryCTA(interactive)) {
+    e.preventDefault();
+    e.stopPropagation();
+    const label = (interactive.textContent || '').trim();
+    for (const r of TEXT_ROUTES) {
+      if (r.m.test(label)) { goTo(r.t); return; }
+    }
+    const linearNext = NEXT_MAP[cur.slug];
+    if (linearNext) goTo(linearNext);
+    return;
+  }
+
+  // Otherwise: do nothing. Don't intercept back-chevrons, decorative icons, etc.
+  // Allow native behavior (which is harmless for href="#" anchors).
 });
 
 if (!location.hash) location.hash = '#/splash';
