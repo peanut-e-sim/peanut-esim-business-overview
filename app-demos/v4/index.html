@@ -655,9 +655,55 @@ body.shell { background: var(--bg-shell); color: var(--text-shell); font-family:
 .phone-frame::before { content: ""; position: absolute; top: 26px; left: 50%; transform: translateX(-50%); width: 120px; height: 36px; background: #000; border-radius: 24px; z-index: 50; pointer-events: none; }
 .screen-wrap { width: 100%; height: 100%; background: #FBF6EC; border-radius: 40px; overflow: hidden; position: relative; }
 .screen-wrap [data-go] { cursor: pointer; }
-/* Screen sections: only active visible, fill the frame */
-.screen { display: none !important; width: 100%; height: 100%; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+
+/* Screen sections: only active visible, fill the frame, scroll independently.
+   transform creates a containing block so descendant `position:fixed` elements
+   position relative to the screen (not the viewport). Required for bottom
+   navs and sticky CTAs to render inside the phone frame. */
+.screen {
+  display: none !important;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  transform: translateZ(0);
+  contain: layout style;
+}
 .screen.is-active { display: block !important; }
+
+/* Neutralize viewport-sized utilities. Stitch screens use min-h-screen /
+   h-screen / 100vh assuming the viewport IS the phone. Here they need to
+   mean "fill the screen container". */
+.screen.min-h-screen,
+.screen [class*="min-h-screen"] { min-height: 100% !important; }
+.screen.h-screen,
+.screen [class*="h-screen"] { height: 100% !important; }
+.screen [style*="100vh"] { height: auto !important; min-height: 100% !important; }
+
+/* Pin floating navs / sticky CTAs to the phone-frame bottom */
+.screen .fixed.bottom-0,
+.screen .sticky.bottom-0,
+.screen [class*="fixed"][class*="bottom-0"],
+.screen nav.fixed,
+.screen footer.fixed {
+  position: sticky !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 30 !important;
+}
+
+/* Modal / bottom-sheet overlays — constrain to phone frame */
+.screen .fixed.inset-0,
+.screen [class*="fixed"][class*="inset-"] {
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+/* Hide Stitch's mock status bars — phone frame already has the notch */
+.screen [class*="status-bar"]:not([data-keep]) { display: none !important; }
 .shell-stage-caption { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--text-2); letter-spacing: 0.08em; text-transform: uppercase; pointer-events: none; }
 .shell-stage-caption .hint { color: var(--gold-light); }
 @media (max-width: 900px) {
