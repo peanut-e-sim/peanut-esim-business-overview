@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crew AI Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-container": "#765900",
+                        "outline-variant": "#e6bdb8",
+                        "surface-container-high": "#f3e5e0",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface": "#fff8f6",
+                        "tertiary": "#525274",
+                        "on-secondary-fixed": "#251a00",
+                        "primary": "#ae0012",
+                        "on-secondary": "#ffffff",
+                        "outline": "#916f6b",
+                        "primary-container": "#d71921",
+                        "secondary": "#785a00",
+                        "inverse-surface": "#362f2b",
+                        "surface-tint": "#c00015",
+                        "on-surface": "#211a17",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-tertiary-fixed": "#181837",
+                        "on-primary-fixed": "#410002",
+                        "primary-fixed": "#ffdad6",
+                        "on-background": "#211a17",
+                        "surface-container-highest": "#ede0da",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "tertiary-fixed": "#e2dfff",
+                        "secondary-container": "#ffd167",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-primary-container": "#ffecea",
+                        "inverse-on-surface": "#fceee8",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "inverse-primary": "#ffb4ac",
+                        "secondary-fixed-dim": "#edc158",
+                        "on-primary-fixed-variant": "#93000e",
+                        "surface-variant": "#ede0da",
+                        "surface-dim": "#e4d7d2",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f9ebe6",
+                        "surface-container-low": "#fff1eb",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fff8f6",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "tertiary-container": "#6a6a8e",
+                        "surface-bright": "#fff8f6",
+                        "on-tertiary-container": "#f2eeff",
+                        "on-error": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "unit": "4px",
+                        "section_gap": "32px",
+                        "container_padding": "24px",
+                        "stack_gap": "16px",
+                        "gutter": "12px"
+                    },
+                    fontFamily: {
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "numeric-data": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    fontSize: {
+                        "label-caps": ["11px", { lineHeight: "16px", letterSpacing: "0.08em", fontWeight: "500" }],
+                        "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }],
+                        "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+                        "numeric-data": ["16px", { lineHeight: "16px", fontWeight: "700" }],
+                        "display-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .watermark-bg {
+            background-image: url('https://lh3.googleusercontent.com/aida/ADBb0ugDP9XpxnrOJthYwEfQGuxsqZbJvuDU_xCTdJku1BNsBUXZpvbbgGdDUQST1vMqz9Aey4fBUCW5QnGRMdSf8TVMXye8sBCWrE7sfExR0N1GnvDFTgEPye5YbkZP1xFRjsc55O7xf7KzjfhbvQqxw9F1Ikn64k5YcdGnO4MVx-XUeKA1y5SM0hTtx6-3pkqFaU-YKv9gzyBfZTa0iwgzSxvZgNSWI4GhQj7a1rc_PPCwetWMRS7hHcxuHfE');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            opacity: 0.06;
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .chat-content {
+            position: relative;
+            z-index: 1;
+        }
+        .bubble-user {
+            border-radius: 14px 14px 0px 14px;
+        }
+        .bubble-ai {
+            border-radius: 0px 14px 14px 14px;
+            border-left: 2px solid #C9A03B;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-[#FBF6EC] font-body-md text-on-surface h-screen flex flex-col overflow-hidden">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container_padding py-4 w-full bg-background dark:bg-background z-10 sticky top-0">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">arrow_back</button>
+<h1 class="text-headline-md font-headline-md text-on-background" style="color: #0A192F;">Crew AI Support</h1>
+</div>
+<button class="bg-[#C9A03B] text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-full hover:opacity-80 transition-opacity">
+            ESCALATE TO HUMAN
+        </button>
+</header>
+<!-- Chat Thread Container -->
+<main class="flex-1 overflow-y-auto relative px-container_padding py-stack_gap hide-scrollbar pb-32">
+<div class="watermark-bg"></div>
+<div class="chat-content flex flex-col gap-6 max-w-3xl mx-auto w-full">
+<!-- USER BUBBLE 1 -->
+<div class="flex flex-col items-end w-full">
+<div class="bg-primary-container text-on-primary bubble-user px-4 py-3 max-w-[80%] shadow-[0_2px_8px_rgba(26,20,17,0.06)]">
+<p class="font-body-lg text-body-lg" style="font-size: 15px; line-height: 1.4;">My Tokyo eSIM won't activate — keeps saying 'no signal'</p>
+</div>
+<span class="font-label-caps text-label-caps text-[#6B6259] mt-1 mr-1">10:32</span>
+</div>
+<!-- AI BUBBLE 1 -->
+<div class="flex flex-col items-start w-full">
+<div class="flex items-end gap-2 max-w-[80%]">
+<div class="w-6 h-6 rounded-full bg-[#C9A03B] text-on-primary flex items-center justify-center font-bold text-xs flex-shrink-0 shadow-[0_2px_8px_rgba(26,20,17,0.06)]">C</div>
+<div class="bg-[#FFFDFB] text-on-background bubble-ai px-4 py-3 shadow-[0_2px_8px_rgba(26,20,17,0.06)]">
+<p class="font-body-lg text-body-lg" style="font-size: 15px; line-height: 1.4; color: #0A192F;">Sorry about that. Let me check… I can see your Japan eSIM is installed but not toggled on in iOS Settings. Try: Settings → Mobile Data → Japan eSIM → Turn on. If still no signal after 2 minutes, I'll refund and reissue automatically.</p>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-[#6B6259] mt-1 ml-8">10:32</span>
+</div>
+<!-- USER BUBBLE 2 -->
+<div class="flex flex-col items-end w-full">
+<div class="bg-primary-container text-on-primary bubble-user px-4 py-3 max-w-[80%] shadow-[0_2px_8px_rgba(26,20,17,0.06)]">
+<p class="font-body-lg text-body-lg" style="font-size: 15px; line-height: 1.4;">Did that, still nothing</p>
+</div>
+<span class="font-label-caps text-label-caps text-[#6B6259] mt-1 mr-1">10:35</span>
+</div>
+<!-- AI BUBBLE 2 -->
+<div class="flex flex-col items-start w-full">
+<div class="flex items-end gap-2 max-w-[80%]">
+<div class="w-6 h-6 rounded-full bg-[#C9A03B] text-on-primary flex items-center justify-center font-bold text-xs flex-shrink-0 shadow-[0_2px_8px_rgba(26,20,17,0.06)]">C</div>
+<div class="bg-[#FFFDFB] text-on-background bubble-ai px-4 py-3 shadow-[0_2px_8px_rgba(26,20,17,0.06)] flex flex-col gap-4">
+<p class="font-body-lg text-body-lg whitespace-pre-wrap" style="font-size: 15px; line-height: 1.4; color: #0A192F;">Got it. I'm taking action now:
+
+✓ Refunding $4.99 to your Apple Pay
+✓ Adding 2 GB bonus credit (sorry for the trouble)
+✓ Installing a new Japan eSIM</p>
+<div class="flex flex-col gap-2 mt-2">
+<button class="bg-primary-container text-on-primary font-body-md text-body-md px-6 py-2 rounded-full hover:opacity-90 transition-opacity w-fit shadow-sm">Yes, fix it</button>
+<button class="bg-transparent border border-[#C9A03B] text-on-background font-body-md text-body-md px-6 py-2 rounded-full hover:bg-surface-container-high transition-colors w-fit">Talk to human</button>
+</div>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-[#6B6259] mt-1 ml-8">10:35</span>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Input Bar -->
+<div class="fixed bottom-0 left-0 right-0 p-container_padding bg-gradient-to-t from-[#FBF6EC] via-[#FBF6EC] to-transparent z-20 pb-8 flex flex-col items-center">
+<div class="w-full max-w-3xl flex flex-col items-center gap-3">
+<div class="flex items-center bg-surface-container-lowest h-[56px] w-full rounded-xl px-4 shadow-[0_2px_8px_rgba(26,20,17,0.06)] border border-outline-variant">
+<button class="material-symbols-outlined text-[#C9A03B] mr-3 hover:opacity-80">add</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-background font-body-md text-body-md placeholder:text-on-surface-variant/50 placeholder:font-body-lg" placeholder="Type your question…" style="font-size: 14px;" type="text"/>
+<button class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center ml-2 hover:opacity-90 transition-opacity shadow-sm">
+<span class="material-symbols-outlined text-on-primary" style="font-size: 20px;">send</span>
+</button>
+</div>
+<p class="font-label-caps text-label-caps text-[#6B6259]" style="font-size: 11px;">Powered by AI · escalates to human if needed</p>
+</div>
+</div>
+</body></html>

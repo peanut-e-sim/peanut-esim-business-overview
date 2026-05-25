@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crew AI Support</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&amp;family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#edc158",
+                        "secondary": "#785a00",
+                        "outline": "#916f6b",
+                        "tertiary": "#525274",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-tertiary-fixed": "#181837",
+                        "on-primary-container": "#ffecea",
+                        "inverse-on-surface": "#fceee8",
+                        "surface-container-high": "#f3e5e0",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#410002",
+                        "surface-container-highest": "#ede0da",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#362f2b",
+                        "outline-variant": "#e6bdb8",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5d3f3c",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "surface-dim": "#e4d7d2",
+                        "surface-variant": "#ede0da",
+                        "on-tertiary-container": "#f2eeff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdad6",
+                        "on-secondary-container": "#765900",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#fff1eb",
+                        "surface-bright": "#fff8f6",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#6a6a8e",
+                        "surface": "#fff8f6",
+                        "on-surface": "#211a17",
+                        "on-background": "#211a17",
+                        "surface-tint": "#c00015",
+                        "secondary-container": "#ffd167",
+                        "on-primary-fixed-variant": "#93000e",
+                        "surface-container": "#f9ebe6",
+                        "on-secondary-fixed": "#251a00",
+                        "background": "#fff8f6",
+                        "inverse-primary": "#ffb4ac",
+                        "primary": "#ae0012",
+                        "tertiary-fixed": "#e2dfff",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "primary-container": "#d71921"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "gutter": "12px",
+                        "stack_gap": "16px",
+                        "unit": "4px",
+                        "section_gap": "32px",
+                        "container_padding": "24px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "numeric-data": ["Manrope"],
+                        "body-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "numeric-data": ["16px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #FBF6EC; }
+        .text-navy { color: #2A2A4A; }
+        .text-gold { color: #C9A03B; }
+        .border-gold { border-color: #C9A03B; }
+        .bg-cream-tint { background-color: rgba(251, 246, 236, 0.8); }
+        .text-secondary-light { color: #6B6259; }
+        
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .glow-effect { box-shadow: 0 0 40px rgba(251, 246, 236, 0.6); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative font-body-lg text-body-lg text-on-background">
+<!-- TOP BAR -->
+<header class="flex justify-between items-center w-full px-container_padding py-4 bg-surface/90 backdrop-blur-md sticky top-0 z-50">
+<h1 class="font-headline-sm text-headline-sm text-navy tracking-tight">Crew AI Support</h1>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="font-label-caps text-label-caps text-gold">ONLINE · 24/7</span>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="flex-1 px-container_padding py-section_gap flex flex-col pb-32">
+<!-- HERO LOGO -->
+<div class="flex justify-center mb-8">
+<div class="w-[120px] h-[120px] rounded-full overflow-hidden glow-effect border-2 border-surface-container-highest">
+<img alt="Crew AI Support Monogram" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzHMqhDh_ebNWFLf0AcYnIfB9qBYv4jzyNeiqNKh2wcfNTuFVXeme0oVzFxTOkVJEa7tphyMstExLMbErMndbQzsfxLXHg4YFht4DRkbLtCPScO5SiwrHtXP06_Wd7wOewELnNiEtF7VQb7lbKSN9lx0jWQvlcZVK8IqPuVH7Ky2phnaUbrtZjhjSQ-ou8AQ5Vvl1Bjw33BjwCYwGSSctCw6peIeUhTwwIxcnP-OowX6xiHmZzR2XGs7EAhhIZKJXjK7BvZa4H1gc"/>
+</div>
+</div>
+<!-- MESSAGE AREA -->
+<div class="flex flex-col mb-section_gap">
+<div class="flex items-start gap-3 w-4/5">
+<!-- Avatar -->
+<div class="w-8 h-8 rounded-full bg-surface-container-low border border-gold flex-shrink-0 flex items-center justify-center overflow-hidden">
+<span class="font-display-lg text-[14px] text-primary-container font-bold">C</span>
+</div>
+<!-- Bubble -->
+<div class="bg-surface-container-lowest shadow-[0_2px_8px_rgba(26,20,17,0.06)] rounded-[14px] rounded-tl-sm p-4 border-l-2 border-gold flex flex-col gap-1">
+<p class="font-body-md text-body-md text-navy">Hi Akito — what can I help with today?</p>
+</div>
+</div>
+<!-- Sub-text -->
+<div class="pl-11 mt-2">
+<span class="font-label-caps text-label-caps text-gold">TYPICAL REPLY &lt; 30 SEC</span>
+</div>
+</div>
+<!-- QUICK ACTIONS -->
+<div class="w-full overflow-x-auto hide-scrollbar -mx-container_padding px-container_padding pb-4">
+<div class="flex gap-3 whitespace-nowrap w-max">
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md hover:bg-surface-container transition-colors">How do I install my eSIM?</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md hover:bg-surface-container transition-colors">Top-up not working</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md hover:bg-surface-container transition-colors">I want a refund</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md hover:bg-surface-container transition-colors">Change my plan</button>
+</div>
+</div>
+</main>
+<!-- BOTTOM INPUT AREA -->
+<div class="fixed bottom-0 left-0 w-full bg-gradient-to-t from-[#FBF6EC] via-[#FBF6EC]/90 to-transparent pt-12 pb-8 px-container_padding z-40">
+<div class="max-w-md mx-auto w-full bg-surface-container-lowest rounded-[14px] h-[56px] flex items-center px-2 shadow-[0_2px_8px_rgba(26,20,17,0.06)] border border-outline-variant/30 relative">
+<button class="w-10 h-10 flex items-center justify-center text-outline-variant hover:text-on-surface transition-colors flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-body-md text-on-surface placeholder-on-surface-variant/50 h-full px-2" placeholder="Type your question..." type="text"/>
+<div class="flex items-center gap-1 flex-shrink-0 pr-1">
+<button class="w-10 h-10 flex items-center justify-center text-outline-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">mic</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px] -rotate-45 ml-1 mb-1" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<!-- FOOTER -->
+<div class="text-center mt-4 pb-safe">
+<span class="font-body-md text-[11px] text-secondary-light">Powered by AI · escalates to human if needed</span>
+</div>
+</div>
+</body></html>

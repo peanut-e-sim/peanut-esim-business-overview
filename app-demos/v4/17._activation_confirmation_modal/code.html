@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Emirates Crew - Activation Confirmation Modal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#765900",
+                        "surface-dim": "#e4d7d2",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "surface-variant": "#ede0da",
+                        "primary-container": "#d71921",
+                        "tertiary": "#525274",
+                        "inverse-primary": "#ffb4ac",
+                        "surface-bright": "#fff8f6",
+                        "on-secondary-fixed": "#251a00",
+                        "surface-container": "#f9ebe6",
+                        "surface": "#fff8f6",
+                        "secondary": "#785a00",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "outline-variant": "#e6bdb8",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#fceee8",
+                        "tertiary-fixed": "#e2dfff",
+                        "on-tertiary-fixed": "#181837",
+                        "on-primary-fixed-variant": "#93000e",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#6a6a8e",
+                        "surface-container-low": "#fff1eb",
+                        "inverse-surface": "#362f2b",
+                        "outline": "#916f6b",
+                        "error-container": "#ffdad6",
+                        "background": "#fff8f6",
+                        "on-surface-variant": "#5d3f3c",
+                        "primary-fixed": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#f3e5e0",
+                        "on-surface": "#211a17",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#edc158",
+                        "secondary-container": "#ffd167",
+                        "on-tertiary-container": "#f2eeff",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "on-primary-fixed": "#410002",
+                        "primary": "#ae0012",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-primary-container": "#ffecea",
+                        "on-primary": "#ffffff",
+                        "on-background": "#211a17",
+                        "surface-tint": "#c00015",
+                        "surface-container-highest": "#ede0da"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "modal": "14px"
+                    },
+                    "spacing": {
+                        "container_padding": "24px",
+                        "stack_gap": "16px",
+                        "unit": "4px",
+                        "gutter": "12px",
+                        "section_gap": "32px",
+                        "modal_w": "280px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "numeric-data": ["Manrope"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "numeric-data": ["16px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "modal-title": ["20px", { "lineHeight": "28px", "fontWeight": "700" }],
+                        "modal-body": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "mono-note": ["13px", { "lineHeight": "18px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-shadow {
+            box-shadow: 0 2px 8px rgba(26,20,17,0.06);
+        }
+        .backdrop-overlay {
+            background-color: rgba(251, 246, 236, 0.6); /* Cream FBF6EC at 60% */
+            backdrop-filter: blur(4px);
+        }
+        .note-border {
+            border-left: 3px solid #C9A03B;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased h-screen w-screen overflow-hidden flex items-center justify-center relative">
+<!-- Faded Background Mockup (eSIM Library) -->
+<div class="absolute inset-0 z-0 p-container_padding flex flex-col gap-stack_gap opacity-30 select-none pointer-events-none">
+<div class="w-full h-32 bg-surface-container rounded-xl custom-shadow flex items-center p-container_padding">
+<div class="w-16 h-16 bg-surface-container-high rounded-full"></div>
+<div class="ml-stack_gap flex-1 space-y-2">
+<div class="h-6 w-3/4 bg-surface-container-high rounded"></div>
+<div class="h-4 w-1/2 bg-surface-container-high rounded"></div>
+</div>
+</div>
+<div class="w-full h-32 bg-surface-container rounded-xl custom-shadow flex items-center p-container_padding">
+<div class="w-16 h-16 bg-surface-container-high rounded-full"></div>
+<div class="ml-stack_gap flex-1 space-y-2">
+<div class="h-6 w-1/2 bg-surface-container-high rounded"></div>
+<div class="h-4 w-1/3 bg-surface-container-high rounded"></div>
+</div>
+</div>
+</div>
+<!-- Modal Overlay -->
+<div class="absolute inset-0 z-40 backdrop-overlay flex items-center justify-center p-container_padding">
+<!-- Modal Card -->
+<div class="bg-surface-container-lowest w-modal_w rounded-modal custom-shadow p-container_padding flex flex-col items-center animate-[popIn_0.3s_ease-out_forwards]">
+<!-- Illustration -->
+<img alt="" class="w-[80px] h-[80px] object-cover rounded-full mb-stack_gap" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo1CEDWO9Kk_VTu2YoLfEZQNXevKNo65blezMh-ZmEjVZck137XHPbfj-CrhDq1orG9fOZekP0LPeXNDPlG_K0ZIoWetKleRA9rOSoJIZsIds8-W72FdNRclbwW7MyMBxeaRHtJpUpaAq9yXyUdnAWOC2cIwBvwEYPLwodQUhORia63FgPOebUTfiFcoK9Jr6nugG1iKGGvcwipf0Xpltz8IAsRl8SuS2sTqGBety1MN7wnBb8FdZIB-in-ls0hMnNP4GLaZnLYC4"/>
+<!-- Text Content -->
+<h2 class="font-display-lg text-modal-title text-on-surface text-center mb-unit">Activate Japan eSIM?</h2>
+<p class="font-body-md text-modal-body text-[#6B6259] text-center mb-container_padding">This will use 1 GB from your plan.</p>
+<!-- Note Strip -->
+<div class="w-full bg-[#FCF8F2] note-border p-3 mb-container_padding rounded-r flex items-center">
+<span class="font-label-caps text-mono-note text-[#C9A03B] uppercase tracking-wider">You have 2 oops refunds left this year</span>
+</div>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-3">
+<button class="w-full bg-[#D71921] hover:bg-primary-container/90 text-white font-headline-sm text-body-md rounded-full py-3 transition-colors active:scale-95 duration-200">
+                    Yes, activate
+                </button>
+<button class="w-full text-[#2A2A4A] font-body-md hover:opacity-70 transition-opacity py-2 active:scale-95 duration-200">
+                    Cancel
+                </button>
+</div>
+</div>
+</div>
+<style>
+        @keyframes popIn {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</body></html>

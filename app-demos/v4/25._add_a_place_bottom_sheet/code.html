@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add a Place</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#f2eeff",
+                        "outline": "#916f6b",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#6a6a8e",
+                        "surface-container-highest": "#ede0da",
+                        "on-surface": "#211a17",
+                        "surface": "#fff8f6",
+                        "surface-bright": "#fff8f6",
+                        "surface-container-high": "#f3e5e0",
+                        "on-secondary-container": "#765900",
+                        "inverse-surface": "#362f2b",
+                        "on-primary-container": "#ffecea",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#410002",
+                        "outline-variant": "#e6bdb8",
+                        "on-background": "#211a17",
+                        "error": "#ba1a1a",
+                        "background": "#fff8f6",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#fff1eb",
+                        "secondary-fixed-dim": "#edc158",
+                        "tertiary": "#525274",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-secondary-fixed": "#251a00",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#ffdf9b",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "inverse-on-surface": "#fceee8",
+                        "tertiary-fixed": "#e2dfff",
+                        "surface-variant": "#ede0da",
+                        "secondary": "#785a00",
+                        "surface-dim": "#e4d7d2",
+                        "secondary-container": "#ffd167",
+                        "primary": "#ae0012",
+                        "on-tertiary-fixed": "#181837",
+                        "on-primary-fixed-variant": "#93000e",
+                        "primary-fixed": "#ffdad6",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "surface-tint": "#c00015",
+                        "surface-container": "#f9ebe6",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb4ac",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#d71921",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "section_gap": "32px",
+                        "container_padding": "24px",
+                        "gutter": "12px",
+                        "stack_gap": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "numeric-data": ["Manrope"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "numeric-data": ["16px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md m-0 p-0 h-screen overflow-hidden flex flex-col relative">
+<!-- Dimmed Background Context (Tokyo Crew Picks) -->
+<div class="absolute inset-0 z-0 bg-surface-container opacity-50 flex flex-col">
+<header class="bg-surface-bright dark:bg-surface text-primary dark:text-inverse-primary font-headline-sm text-headline-sm flex justify-between items-center w-full px-section_gap h-16 opacity-30">
+<span class="material-symbols-outlined">menu</span>
+<h1 class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed-dim">CrewLink</h1>
+<span class="material-symbols-outlined">notifications</span>
+</header>
+<main class="flex-1 p-container_padding opacity-30">
+<h2 class="font-headline-md text-headline-md mb-stack_gap text-on-surface">Tokyo Crew Picks</h2>
+<div class="h-64 bg-surface-variant rounded-xl mb-stack_gap"></div>
+<div class="h-64 bg-surface-variant rounded-xl"></div>
+</main>
+</div>
+<!-- Modals Backdrop Blur -->
+<div class="absolute inset-0 z-10 bg-surface/80 backdrop-blur-sm transition-opacity duration-300"></div>
+<!-- Bottom Sheet -->
+<div class="absolute bottom-0 w-full h-[80vh] bg-surface-container-lowest z-20 rounded-t-[24px] shadow-[0_-2px_8px_rgba(26,20,17,0.06)] flex flex-col transition-transform duration-300 translate-y-0">
+<!-- Pull Handle -->
+<div class="w-full flex justify-center pt-unit pb-3">
+<div class="w-12 h-1.5 bg-secondary-fixed-dim rounded-full opacity-60"></div>
+</div>
+<div class="px-section_gap flex-1 overflow-y-auto pb-24">
+<!-- Header -->
+<div class="flex justify-between items-center mb-stack_gap">
+<h2 class="font-headline-md text-headline-md text-on-surface">Share your spot</h2>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-low">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+</div>
+<!-- Detected Card -->
+<div class="bg-surface-container-low border-l-[3px] border-secondary-fixed-dim rounded-lg p-stack_gap flex items-center gap-4 mb-section_gap shadow-sm">
+<img alt="Detected Map Pin" class="w-8 h-8 rounded-full object-cover shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzzFGZk_5bI6kN2UIYBi_eMxfRnhIG7gO0EhcYz-phV8ohsnvd3tVyDktE8k7YmDS4KaedtJqSN0Wp9ezCzt0dxbviAbDWks5Mi0O1zPJf-_q5NcA6lUynDTLn7kGOwzVZXU8gDc1uRxpQ4U0vVkrt5r4haiYiax3nvOIw3TtQP20hJbh9SdXs0HCFXLNv-2jLHJrHljaRIyL5BoxSD936HCRiqTpFbIUOT_ru75qYOfI7kv2knMs9LbClKENZloZojejvutB_HDg"/>
+<div class="flex-1">
+<p class="font-label-caps text-label-caps text-secondary uppercase mb-1">Detected from Share Sheet</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">Tatemichiya Diner · Tokyo</p>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">edit</span>
+</button>
+</div>
+<!-- Photos Row -->
+<div class="mb-section_gap">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2 block uppercase">Photos</label>
+<div class="flex gap-4 overflow-x-auto pb-2">
+<!-- Image Preview -->
+<div class="w-24 h-24 rounded-[14px] shrink-0 border border-outline-variant overflow-hidden relative">
+<img alt="Okonomiyaki preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8kzVtbgIfA1jEp9FCc6PDtOpgkBthAG87B92HyBUNvdsTte_rx0L772bQWt0cC8H2nVsUXHoW4rt1Bl9zCXuk6ePRCJcLVOghwXjfW6Qtr7DlVEISe0QyuI_yLV53rTlD6HmqT7Ra0fsVnWT8FF37uApxcMjUtWlaY4THVmMXDyxDD8N_HqRZa02mMjTH8axn_GwlG31unVnMkxts0mweT84lciVskIncb6geVw7Iijqosr6JOAw56x78mBy8yAG4zOX-iuMkUPY"/>
+<button class="absolute top-1 right-1 bg-surface/80 rounded-full w-6 h-6 flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">cancel</span>
+</button>
+</div>
+<!-- Empty Upload Slots -->
+<button class="w-24 h-24 rounded-[14px] shrink-0 border-2 border-dashed border-outline-variant bg-surface-bright flex items-center justify-center text-secondary-fixed-dim hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<button class="w-24 h-24 rounded-[14px] shrink-0 border-2 border-dashed border-outline-variant bg-surface-bright flex items-center justify-center text-secondary-fixed-dim hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+</div>
+</div>
+<!-- Category Dropdown -->
+<div class="mb-stack_gap">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2 block uppercase">Category</label>
+<button class="w-full flex justify-between items-center px-4 py-3 border border-outline-variant rounded-full text-on-surface font-body-md text-body-md bg-surface-bright hover:bg-surface-container-lowest transition-colors">
+<span>Restaurant</span>
+<span class="material-symbols-outlined text-on-surface-variant">arrow_drop_down</span>
+</button>
+</div>
+<!-- Notes Textarea -->
+<div class="mb-section_gap">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2 block uppercase">Notes</label>
+<textarea class="w-full bg-surface-bright border border-outline-variant rounded-xl p-4 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-secondary-fixed-dim resize-none shadow-sm" placeholder="What makes this special for crew?" rows="4"></textarea>
+</div>
+<!-- Tag Chips -->
+<div class="mb-section_gap">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2 block uppercase">Tags</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border border-outline-variant font-body-md text-body-md text-on-surface bg-surface-bright hover:bg-surface-container-low transition-colors">Late-night</button>
+<button class="px-4 py-2 rounded-full border border-secondary-fixed-dim bg-secondary-container text-on-secondary-container font-body-md text-body-md transition-colors">Quiet</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant font-body-md text-body-md text-on-surface bg-surface-bright hover:bg-surface-container-low transition-colors">Near hotel</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant font-body-md text-body-md text-on-surface bg-surface-bright hover:bg-surface-container-low transition-colors">Free WiFi</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant font-body-md text-body-md text-on-surface bg-surface-bright hover:bg-surface-container-low transition-colors">Vegan</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant font-body-md text-body-md text-on-surface bg-surface-bright hover:bg-surface-container-low transition-colors">Cash-only</button>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom CTA -->
+<div class="absolute bottom-0 left-0 w-full p-4 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_-4px_16px_rgba(26,20,17,0.04)] pb-safe">
+<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 rounded-full hover:bg-primary transition-colors shadow-sm">
+                Post to Crew Recs
+            </button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrewLink - Detected Destinations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#e4d7d2",
+                        "surface-container-low": "#fff1eb",
+                        "on-primary-container": "#ffecea",
+                        "outline-variant": "#e6bdb8",
+                        "on-tertiary-fixed": "#181837",
+                        "primary-container": "#d71921",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "surface-container-high": "#f3e5e0",
+                        "on-primary-fixed": "#410002",
+                        "on-error": "#ffffff",
+                        "outline": "#916f6b",
+                        "inverse-primary": "#ffb4ac",
+                        "surface-variant": "#ede0da",
+                        "error": "#ba1a1a",
+                        "surface-container": "#f9ebe6",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "background": "#fff8f6",
+                        "secondary": "#785a00",
+                        "tertiary": "#525274",
+                        "primary": "#ae0012",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "tertiary-container": "#6a6a8e",
+                        "inverse-on-surface": "#fceee8",
+                        "tertiary-fixed": "#e2dfff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#ffd167",
+                        "on-tertiary-container": "#f2eeff",
+                        "inverse-surface": "#362f2b",
+                        "error-container": "#ffdad6",
+                        "surface": "#fff8f6",
+                        "surface-bright": "#fff8f6",
+                        "surface-tint": "#c00015",
+                        "on-secondary-container": "#765900",
+                        "primary-fixed": "#ffdad6",
+                        "on-primary-fixed-variant": "#93000e",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#ede0da",
+                        "secondary-fixed-dim": "#edc158",
+                        "on-surface": "#211a17",
+                        "on-secondary-fixed": "#251a00",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-background": "#211a17",
+                        "brand-gold": "#C9A03B",
+                        "brand-cream": "#FBF6EC"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "14px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack_gap": "16px",
+                        "section_gap": "32px",
+                        "gutter": "12px",
+                        "container_padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "numeric-data": ["Manrope"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                        "numeric-data": ["16px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FBF6EC;
+            color: #211a17;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shadow {
+            shadow: 0 2px 8px rgba(26,20,17,0.06);
+        }
+        .watercolor-crop {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .mask-circle {
+            clip-path: circle(50% at 50% 50%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md">
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 bg-brand-cream/80 backdrop-blur-md px-container_padding py-6">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest transition-transform active:scale-95">
+<span class="material-symbols-outlined text-on-surface">chevron_left</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-md text-[22px] leading-tight text-on-surface">We found 5 destinations</h1>
+<p class="font-label-caps text-label-caps text-brand-gold mt-1">DXB · JUN 2026</p>
+</div>
+</div>
+</nav>
+<!-- Main Content: Vertical List of Destinations -->
+<main class="flex-grow px-container_padding pb-40 space-y-4">
+<!-- Destination 1: Tokyo -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-[0_2px_8px_rgba(26,20,17,0.06)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant">
+<!-- Japan Flag - First from the left in original image -->
+<div class="w-full h-full relative overflow-hidden" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAho5FRbqvcDf506TitnV88twutSZ24JuOttNmpjcmWSrRtFa78x-54rZSDzb8EBiGMQzLcZYBjKID--3n8zB6nI0-0_6dNP2wget7OvmABKcwden7Dx4kQQYoWRH2be7njamlm0puXRF-g4ZBFL0w5dNmbA4LU1L-H6XutjQQEdF30iBd6w5HfiqafbJ9mD2mYqeJ6-zmRU4SrLpRnMJ6X3q-aRarSG9eeck05aBxCVKEWS6kAc2lGDjnynKBBFvj3l6EO4UdKbEI'); background-size: 500% 100%; background-position: 0% 0%;"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Tokyo</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Jun 4–6</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full">1 GB SUGGESTED</span>
+<div class="flex items-center bg-surface-container rounded-full p-1 border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-6 text-center font-numeric-data text-numeric-data">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Destination 2: London -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-[0_2px_8px_rgba(26,20,17,0.06)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant">
+<!-- UK Flag - Second from the left -->
+<div class="w-full h-full relative overflow-hidden" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAho5FRbqvcDf506TitnV88twutSZ24JuOttNmpjcmWSrRtFa78x-54rZSDzb8EBiGMQzLcZYBjKID--3n8zB6nI0-0_6dNP2wget7OvmABKcwden7Dx4kQQYoWRH2be7njamlm0puXRF-g4ZBFL0w5dNmbA4LU1L-H6XutjQQEdF30iBd6w5HfiqafbJ9mD2mYqeJ6-zmRU4SrLpRnMJ6X3q-aRarSG9eeck05aBxCVKEWS6kAc2lGDjnynKBBFvj3l6EO4UdKbEI'); background-size: 500% 100%; background-position: 25% 0%;"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">London</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Jun 7–10</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full">1 GB SUGGESTED</span>
+<div class="flex items-center bg-surface-container rounded-full p-1 border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-6 text-center font-numeric-data text-numeric-data">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Destination 3: Bangkok -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-[0_2px_8px_rgba(26,20,17,0.06)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant">
+<!-- Thailand Flag - Third from the left -->
+<div class="w-full h-full relative overflow-hidden" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAho5FRbqvcDf506TitnV88twutSZ24JuOttNmpjcmWSrRtFa78x-54rZSDzb8EBiGMQzLcZYBjKID--3n8zB6nI0-0_6dNP2wget7OvmABKcwden7Dx4kQQYoWRH2be7njamlm0puXRF-g4ZBFL0w5dNmbA4LU1L-H6XutjQQEdF30iBd6w5HfiqafbJ9mD2mYqeJ6-zmRU4SrLpRnMJ6X3q-aRarSG9eeck05aBxCVKEWS6kAc2lGDjnynKBBFvj3l6EO4UdKbEI'); background-size: 500% 100%; background-position: 50% 0%;"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Bangkok</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Jun 11–14</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full">1 GB SUGGESTED</span>
+<div class="flex items-center bg-surface-container rounded-full p-1 border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-6 text-center font-numeric-data text-numeric-data">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Destination 4: Mauritius -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-[0_2px_8px_rgba(26,20,17,0.06)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant">
+<!-- Mauritius Flag - Fourth from the left -->
+<div class="w-full h-full relative overflow-hidden" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAho5FRbqvcDf506TitnV88twutSZ24JuOttNmpjcmWSrRtFa78x-54rZSDzb8EBiGMQzLcZYBjKID--3n8zB6nI0-0_6dNP2wget7OvmABKcwden7Dx4kQQYoWRH2be7njamlm0puXRF-g4ZBFL0w5dNmbA4LU1L-H6XutjQQEdF30iBd6w5HfiqafbJ9mD2mYqeJ6-zmRU4SrLpRnMJ6X3q-aRarSG9eeck05aBxCVKEWS6kAc2lGDjnynKBBFvj3l6EO4UdKbEI'); background-size: 500% 100%; background-position: 75% 0%;"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Mauritius</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Jun 15–18</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full">1 GB SUGGESTED</span>
+<div class="flex items-center bg-surface-container rounded-full p-1 border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-6 text-center font-numeric-data text-numeric-data">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Destination 5: Cape Town -->
+<div class="bg-surface-container-lowest rounded-2xl p-4 shadow-[0_2px_8px_rgba(26,20,17,0.06)] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant">
+<!-- South Africa Flag - Fifth from the left -->
+<div class="w-full h-full relative overflow-hidden" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAho5FRbqvcDf506TitnV88twutSZ24JuOttNmpjcmWSrRtFa78x-54rZSDzb8EBiGMQzLcZYBjKID--3n8zB6nI0-0_6dNP2wget7OvmABKcwden7Dx4kQQYoWRH2be7njamlm0puXRF-g4ZBFL0w5dNmbA4LU1L-H6XutjQQEdF30iBd6w5HfiqafbJ9mD2mYqeJ6-zmRU4SrLpRnMJ6X3q-aRarSG9eeck05aBxCVKEWS6kAc2lGDjnynKBBFvj3l6EO4UdKbEI'); background-size: 500% 100%; background-position: 100% 0%;"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Cape Town</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Jun 19–22</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full">1 GB SUGGESTED</span>
+<div class="flex items-center bg-surface-container rounded-full p-1 border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-6 text-center font-numeric-data text-numeric-data">1</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-dim transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Container -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 bg-brand-cream/95 backdrop-blur-xl border-t border-outline-variant/30 px-container_padding pt-6 pb-10">
+<div class="max-w-screen-md mx-auto">
+<!-- Price Summary -->
+<div class="border-l-[6px] border-brand-gold pl-4 py-2 mb-6 flex justify-between items-end">
+<div>
+<h2 class="font-numeric-data text-[24px] text-on-surface">Total: 5 GB · $39.99</h2>
+<div class="flex items-center mt-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-[11px] font-bold font-label-caps tracking-wider">
+                            SAVES $14.96 VS INDIVIDUAL
+                        </span>
+</div>
+</div>
+</div>
+<!-- Confirm Button -->
+<button class="w-full bg-primary-container text-white font-headline-sm py-5 rounded-full shadow-lg shadow-primary-container/20 transition-all active:scale-[0.98] hover:brightness-110">
+                Confirm bundle
+            </button>
+</div>
+</footer>
+<!-- Visual Polish: Soft Ambient Watercolor Overlay -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] z-[1]">
+<img alt="" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB3mLe2R-I4m2ktuvWjVY7sgXQvVza-KKbcm6A8rXko3Z2Tnlu5dY1xFa9MagAHx4qOL7uvPOGiY55v2BUfPqkmpaieFCHwoijRLmAoqdDzH8I7NobtkqEzuB-fRkwg4HcNB_eOOOBlhxUQgDq1J0zWnbFx6vj6_OeV0k-gFcz_nCGoBhBEOC-1DkLuWxDdLLRe6Chv-D2nhjNEdMM4U8gpgd_wo3Sb30McPPY7qHh3se4XArNEmh7eWnsvCvLqJOzanqA3UBfC3A"/>
+</div>
+<script>
+        // Micro-interaction for quantity buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const target = e.currentTarget;
+                const icon = target.querySelector('.material-symbols-outlined');
+                if (icon && (icon.innerText === 'add' || icon.innerText === 'remove')) {
+                    const span = target.parentElement.querySelector('span:not(.material-symbols-outlined)');
+                    let val = parseInt(span.innerText);
+                    if (icon.innerText === 'add') val++;
+                    if (icon.innerText === 'remove' && val > 0) val--;
+                    span.innerText = val;
+                }
+            });
+        });
+    </script>
+</body></html>

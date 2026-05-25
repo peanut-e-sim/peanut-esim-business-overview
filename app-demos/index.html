@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewLink — App Demo Versions (compare side-by-side)</title>
+<style>
+  :root {
+    --red: #D71921; --red-dark: #6E0D14; --red-deep: #B81621;
+    --gold: #C9A03B; --gold-light: #E5C77B;
+    --bg: #FFFFFF; --bg-alt: #F4F4F4;
+    --text: #1A1A1A; --text-2: #595959; --line: #E0E0E0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.55; }
+
+  .ek-header { background: var(--red); color: #fff; padding: 18px 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .ek-logo { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
+  .ek-logo span { color: var(--gold-light); font-weight: 400; margin-left: 8px; font-size: 14px; letter-spacing: 0.04em; }
+  .ek-nav { display: flex; gap: 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .ek-nav a { color: #fff; text-decoration: none; opacity: 0.95; }
+  .ek-stripe { height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+  .ek-subheader { background: #fff; padding: 14px 5vw; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-2); }
+  .ek-subheader span { color: var(--red); font-weight: 700; }
+
+  .hero { background: linear-gradient(135deg, #fff 60%, #faf5e8); padding: 56px 5vw 40px; border-bottom: 1px solid var(--line); }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; color: var(--red); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; display: inline-block; padding-bottom: 6px; border-bottom: 2px solid var(--red); }
+  h1 { font-weight: 700; font-size: clamp(30px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.012em; margin-bottom: 16px; }
+  h1 em { color: var(--red); font-style: normal; }
+  .lead { color: var(--text-2); font-size: 16px; max-width: 64ch; margin-bottom: 0; line-height: 1.6; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 48px 5vw 60px; }
+
+  .version-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+  .v-card { background: #fff; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.2s; }
+  .v-card:hover { border-color: var(--red); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(215,25,33,0.10); }
+  .v-card.current { border: 2px solid var(--red); }
+  .v-tag { padding: 16px 22px; background: var(--bg-alt); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+  .v-name { font-size: 11px; color: var(--red); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .v-status { font-size: 10px; color: var(--text-2); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; background: var(--gold-light); color: var(--red-dark); border-radius: 100px; }
+  .v-status.draft { background: rgba(0,0,0,0.06); color: var(--text-2); }
+  .v-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+  .v-title { font-size: 22px; font-weight: 700; letter-spacing: -0.012em; margin-bottom: 8px; }
+  .v-desc { font-size: 14px; color: var(--text-2); line-height: 1.55; margin-bottom: 18px; flex: 1; }
+  .v-meta { font-size: 11px; color: var(--text-2); margin-bottom: 18px; padding-top: 14px; border-top: 1px dashed var(--line); }
+  .v-meta b { color: var(--text); font-weight: 600; }
+  .v-cta { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; background: var(--red); color: #fff; border: none; border-radius: 4px; font-family: inherit; font-weight: 700; font-size: 12px; cursor: pointer; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.03em; text-decoration: none; align-self: flex-start; }
+  .v-cta:hover { background: var(--red-deep); transform: translateY(-1px); }
+  .v-cta.disabled { background: var(--bg-alt); color: var(--text-2); pointer-events: none; }
+  .v-cta::after { content: " ›"; font-size: 16px; font-weight: 400; margin-left: 2px; }
+
+  .ek-footer { background: var(--red-dark); color: #fff; padding: 32px 5vw 24px; margin-top: 56px; }
+  .ek-footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .ek-footer .left { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+  .ek-footer .gold { color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<header class="ek-header">
+  <div class="ek-logo">CrewLink<span>· APP DEMO VERSIONS</span></div>
+  <nav class="ek-nav">
+    <a href="../index.html">Roadmap</a>
+    <a href="../docs/downloads/stitch-prompts-crewlink-6batches.html">Source Prompts</a>
+  </nav>
+</header>
+<div class="ek-stripe"></div>
+
+<div class="ek-subheader">
+  App Demos <span>›</span> <span>Compare All Versions</span>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Visual Direction · Comparison · 2026-05-25</span>
+    <h1>App demos — <em>compare versions side-by-side</em></h1>
+    <p class="lead">All previous app design attempts kept live so you can flip between them and pick a direction. Each link opens the live demo gallery.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="version-grid">
+
+    <a class="v-card" href="../app-demo/" target="_blank" style="text-decoration:none;color:inherit;">
+      <div class="v-tag">
+        <span class="v-name">V1–V3 · Legacy</span>
+        <span class="v-status draft">Older Direction</span>
+      </div>
+      <div class="v-body">
+        <div class="v-title">app-demo (legacy)</div>
+        <div class="v-desc">Earlier hand-built CrewLink mockup. Different illustration style + layout choices from the current Cabin-Class Editorial direction.</div>
+        <div class="v-meta"><b>Path:</b> /app-demo/<br><b>Source:</b> hand-coded HTML/JS</div>
+        <span class="v-cta">Open legacy demo</span>
+      </div>
+    </a>
+
+    <a class="v-card current" href="v4/" target="_blank" style="text-decoration:none;color:inherit;">
+      <div class="v-tag">
+        <span class="v-name">V4 · Current</span>
+        <span class="v-status">Stitch · Cabin-Class</span>
+      </div>
+      <div class="v-body">
+        <div class="v-title">Cabin-Class Editorial</div>
+        <div class="v-desc">29 screens generated by Stitch from the 6-batch prompt set. Painterly watercolor illustrations, Emirates-red + cream + gold palette, Manrope/Inter typography.</div>
+        <div class="v-meta"><b>Path:</b> /app-demos/v4/<br><b>Source:</b> Stitch · Cabin-Class Editorial · 2026-05-25</div>
+        <span class="v-cta">Open V4 gallery</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer class="ek-footer">
+  <div class="ek-footer-inner">
+    <div class="left">CrewLink <span class="gold">·</span> App Demo Versions <span class="gold">·</span> 2026-05-25</div>
+  </div>
+</footer>
+
+</body>
+</html>

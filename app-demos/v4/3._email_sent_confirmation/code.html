@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Manrope:wght@700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-tint": "#c00015",
+                        "secondary-fixed-dim": "#edc158",
+                        "inverse-surface": "#362f2b",
+                        "background": "#fff8f6",
+                        "surface-variant": "#ede0da",
+                        "outline-variant": "#e6bdb8",
+                        "secondary-container": "#ffd167",
+                        "on-secondary-fixed": "#251a00",
+                        "error": "#ba1a1a",
+                        "outline": "#916f6b",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#f3e5e0",
+                        "inverse-on-surface": "#fceee8",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "tertiary": "#525274",
+                        "on-surface": "#211a17",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fff8f6",
+                        "primary": "#ae0012",
+                        "on-primary-container": "#ffecea",
+                        "on-primary-fixed": "#410002",
+                        "primary-fixed": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "on-primary-fixed-variant": "#93000e",
+                        "secondary": "#785a00",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#e4d7d2",
+                        "on-tertiary-container": "#f2eeff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#ede0da",
+                        "tertiary-container": "#6a6a8e",
+                        "surface": "#fff8f6",
+                        "tertiary-fixed": "#e2dfff",
+                        "primary-container": "#d71921",
+                        "on-background": "#211a17",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-surface-variant": "#5d3f3c",
+                        "inverse-primary": "#ffb4ac",
+                        "surface-container-low": "#fff1eb",
+                        "on-tertiary-fixed": "#181837",
+                        "on-secondary-container": "#765900",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f9ebe6",
+                        "espresso": "#1A1411",
+                        "brand-red": "#D71921",
+                        "brand-gold": "#C9A03B",
+                        "brand-cream": "#FBF6EC",
+                        "secondary-text": "#6B6259",
+                        "deep-navy": "#2A2A4A"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack_gap": "16px",
+                        "gutter": "12px",
+                        "container_padding": "24px",
+                        "section_gap": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "numeric-data": ["Manrope"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-confirm": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-confirm-sub": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "numeric-data": ["16px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FBF6EC;
+            color: #1A1411;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 2px 8px rgba(26, 20, 17, 0.06);
+        }
+        .gold-underline {
+            box-shadow: inset 0 -4px 0 0 #C9A03B;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Top AppBar (Simplified for Confirmation) -->
+<header class="flex justify-between items-center w-full px-container_padding py-unit h-16 bg-transparent">
+<button class="material-symbols-outlined text-espresso hover:opacity-80 transition-opacity active:scale-95 duration-150 ease-in-out">
+            arrow_back
+        </button>
+<span class="font-display-lg text-[20px] text-primary tracking-tight font-bold">CrewLink</span>
+<div class="w-6"></div> <!-- Spacer for symmetry -->
+</header>
+<main class="flex-1 flex flex-col items-center px-container_padding pt-section_gap pb-12">
+<!-- Hero Illustration Section -->
+<section class="w-full flex flex-col items-center justify-center mb-section_gap fade-in-up" style="animation-delay: 0.1s;">
+<div class="relative mb-10">
+<div class="w-[140px] h-[140px] rounded-full border-2 border-brand-gold editorial-shadow overflow-hidden bg-white flex items-center justify-center">
+<img alt="Watercolor Paper Airplane Illustration" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQUUPyvxc_jNJ3-_RXeml-oailj_hd1LYGSz1e7Mr5aGCOUWtUSKmUk7SO5yX3yjDFveotX8Nmb-XslrI_O3ZTFpAyok0BP6Ro-I7IlSrCr_yqpGQn52C8-0lW2xrfDLizOqF5f_rsz_4GnJkBc8Stq_vjSK38eRhW7QxIYnEqP_uibJqJy4h1NXIvS2T_eOIJcBm-_4jFOQMpESudoKRQJVcaYgVNX3A9VO5FKRUKhj-tqKE9Ps8qMGF-rH0WaRnVmgAvZhbejyc"/>
+</div>
+<!-- Subtle ambient glow -->
+<div class="absolute -z-10 inset-0 bg-brand-gold opacity-10 blur-2xl rounded-full"></div>
+</div>
+<div class="text-center max-w-xs mx-auto">
+<h1 class="font-display-lg text-headline-confirm text-espresso mb-unit">
+                    Check your inbox
+                </h1>
+<p class="font-body-md text-body-confirm-sub text-secondary-text mb-2">
+                    We sent a confirmation link to
+                </p>
+<div class="inline-block">
+<span class="font-label-caps text-[14px] text-espresso gold-underline px-1">
+                        akito.tanaka@gmail.com
+                    </span>
+</div>
+</div>
+</section>
+<!-- Instruction Card -->
+<section class="w-full max-w-sm fade-in-up" style="animation-delay: 0.3s;">
+<div class="bg-white rounded-xl p-container_padding editorial-shadow border border-outline-variant/30">
+<div class="space-y-stack_gap">
+<div>
+<span class="font-label-caps text-label-caps text-brand-gold block mb-2">DIDN'T RECEIVE IT?</span>
+<p class="font-body-md text-body-confirm-sub text-on-surface">
+                            Check your spam folder, or:
+                        </p>
+</div>
+<div class="flex flex-col items-start gap-2 pt-2 border-t border-outline-variant/20">
+<button class="font-body-md text-brand-red font-semibold hover:opacity-70 transition-opacity active:scale-95 duration-150" id="resend-btn">
+                            Resend email
+                        </button>
+<p class="font-body-md text-[12px] text-secondary-text italic" id="timer-text">
+                            You can resend in 0:45
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Action -->
+<footer class="mt-auto w-full pt-section_gap fade-in-up" style="animation-delay: 0.5s;">
+<div class="flex justify-center pb-8">
+<a class="font-body-md text-body-confirm-sub text-deep-navy font-medium hover:underline underline-offset-4 decoration-outline-variant" href="#">
+                    Use a different email
+                </a>
+</div>
+</footer>
+</main>
+<script>
+        // Simple countdown logic for the timer
+        let seconds = 45;
+        const timerText = document.getElementById('timer-text');
+        const resendBtn = document.getElementById('resend-btn');
+
+        const countdown = setInterval(() => {
+            seconds--;
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                timerText.textContent = 'You can resend now';
+                resendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                const displaySec = seconds < 10 ? `0${seconds}` : seconds;
+                timerText.textContent = `You can resend in 0:${displaySec}`;
+            }
+        }, 1000);
+
+        // Interaction for resend
+        resendBtn.addEventListener('click', () => {
+            if (seconds <= 0) {
+                // Mock resend action
+                resendBtn.textContent = 'Sending...';
+                setTimeout(() => {
+                    resendBtn.textContent = 'Resent!';
+                    setTimeout(() => {
+                        resendBtn.textContent = 'Resend email';
+                        seconds = 60;
+                        // Reset would go here in a real app
+                    }, 2000);
+                }, 1000);
+            }
+        });
+    </script>
+</body></html>

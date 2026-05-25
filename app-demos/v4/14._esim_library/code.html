@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My eSIMs - Emirates Crew</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdad6",
+                        "on-secondary-container": "#765900",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#fff8f6",
+                        "surface-container-low": "#fff1eb",
+                        "tertiary-container": "#6a6a8e",
+                        "error": "#ba1a1a",
+                        "surface": "#FBF6EC",
+                        "on-surface": "#211a17",
+                        "surface-tint": "#c00015",
+                        "on-background": "#211a17",
+                        "surface-container": "#f9ebe6",
+                        "secondary-container": "#ffd167",
+                        "on-primary-fixed-variant": "#93000e",
+                        "on-secondary-fixed": "#251a00",
+                        "background": "#FBF6EC",
+                        "inverse-primary": "#ffb4ac",
+                        "primary": "#D71921",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "primary-container": "#D71921",
+                        "tertiary-fixed": "#e2dfff",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "secondary-fixed-dim": "#edc158",
+                        "on-error": "#ffffff",
+                        "secondary": "#785a00",
+                        "outline": "#E6BDB8",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "tertiary": "#525274",
+                        "on-tertiary-fixed": "#181837",
+                        "on-primary-container": "#ffecea",
+                        "inverse-on-surface": "#fceee8",
+                        "surface-container-high": "#f3e5e0",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#410002",
+                        "surface-container-highest": "#ede0da",
+                        "outline-variant": "#E6BDB8",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#362f2b",
+                        "on-surface-variant": "#6B6259",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "surface-dim": "#e4d7d2",
+                        "surface-variant": "#ede0da",
+                        "on-tertiary-container": "#f2eeff",
+                        "gold": "#ffd167",
+                        "navy": "#181837"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "14px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "section_gap": "32px",
+                        "container_padding": "24px",
+                        "gutter": "12px",
+                        "stack_gap": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-sm": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "numeric-data": ["Manrope"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "numeric-data": ["16px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "meter-large": ["36px", {"lineHeight": "40px", "fontWeight": "700", "fontFamily": "Manrope"}],
+                        "caption-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400", "fontFamily": "Inter"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-shadow { box-shadow: 0 2px 8px rgba(26,20,17,0.06); }
+        .toggle-checkbox:checked { right: 0; border-color: #D71921; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #D71921; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface flex justify-between items-center px-container_padding py-unit h-16">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform text-primary hover:opacity-80">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">My eSIMs</h1>
+</div>
+<button class="active:scale-95 transition-transform text-on-surface-variant hover:opacity-80">
+<span class="material-symbols-outlined text-2xl">tune</span>
+</button>
+</header>
+<main class="px-[20px] max-w-md mx-auto mt-6 flex flex-col gap-section_gap">
+<!-- Main Pool Meter Card -->
+<section class="bg-surface-container-lowest rounded-xl p-[32px] custom-shadow flex flex-col items-center">
+<div class="relative w-[180px] h-[180px] flex items-center justify-center mb-4">
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Track -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#181837" stroke-width="8"></circle>
+<!-- Remainder (Gold) -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#ffd167" stroke-dasharray="283" stroke-dashoffset="0" stroke-width="8"></circle>
+<!-- Used (Red, ~33%) -->
+<circle cx="50" cy="50" fill="none" r="45" stroke="#D71921" stroke-dasharray="283" stroke-dashoffset="190" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="flex flex-col items-center text-center">
+<span class="text-[36px] font-bold font-['Manrope'] leading-none">9.5 <span class="text-[20px]">GB</span></span>
+</div>
+</div>
+<p class="text-[13px] text-on-surface-variant text-center mt-2">left of 15 GB · Resets in 12 days</p>
+</section>
+<!-- eSIM List -->
+<section class="flex flex-col gap-stack_gap">
+<!-- Japan eSIM -->
+<div class="bg-surface-container-lowest rounded-xl p-[24px] custom-shadow relative">
+<button class="absolute top-4 right-4 text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="A stylized watercolor illustration of the Japanese flag, featuring a distinct red circle centered on a textured white background. The painting style is loose and expressive, giving an artistic, premium editorial feel suitable for a modern travel application. Soft, organic edges blend into a bright, light-mode palette. Calm, sophisticated mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACdYFeZjSNNulSxpSBs3_4y6B6iwyi6sXGyGhXeRTNoB0BLwRU6OyPH2Tc0DDCpwL92k_dxeXt8I7MlH6bCTO17-MoAWuECsaQ8jtxh5D0Cp7SO5bKbW7yRd457RarW5n9xUHPxHoBM8dghBuROtMooFQZmClpOU0L3i_OPWz19T94SZNGIQKUwnYz9N0VMnQKQvvetn5LZfGNwQsZlKLDl8Wt-Jr2xwOy3hb4bsRx0haQWcR4N6hlHvzdvgpOZdO1ChyYnGw4BsM"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Japan</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">····3492</span>
+<span class="px-2 py-0.5 rounded-full bg-green-100 border border-green-600 text-green-700 font-label-caps text-[9px]">ACTIVE</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="w-2/3">
+<div class="flex justify-between text-xs text-on-surface-variant mb-1 font-body-md">
+<span>0.4 GB used</span>
+<span>1 GB</span>
+</div>
+<div class="w-full bg-surface-dim h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[40%] rounded-full"></div>
+</div>
+</div>
+<!-- Toggle -->
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out border-primary right-0" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-primary cursor-pointer transition-colors duration-200 ease-in-out" for="toggle1"></label>
+</div>
+</div>
+</div>
+<!-- UK eSIM -->
+<div class="bg-surface-container-lowest rounded-xl p-[24px] custom-shadow relative">
+<button class="absolute top-4 right-4 text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="A stylized watercolor illustration of the United Kingdom Union Jack flag. The brushstrokes are fluid and painterly, utilizing classic red, white, and blue hues on a slightly textured background. It evokes a premium, tactile stationery aesthetic within a bright, minimalist interface. Sophisticated and well-traveled mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn3hAVEiJT_YkRLgRv_1pxQo8t0YMp6pGdPSq-4GKRQwBL9AZ2dlwwIsrjnZPB40lyIhx9kL1QlU5fiG_jqBPLcl4cgvxW7TI0PvbXdSVwiRy5BEYSu6gU_OG_yflzFj84eF5huPfc3K8K00zGvx2eStZlVRz6LHQ9IDTUZf7D0Kbkuv3DOj7cnFnf2EiUypvBQpXcsbX_PTlDsYaof6-Aymekf7-j-Jb2TGbgb_9idan4fOgvLP5aKwjpbj2CvAhHhwJFta_BU1E"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">United Kingdom</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">····8821</span>
+<span class="px-2 py-0.5 rounded-full bg-gray-100 border border-gray-400 text-gray-600 font-label-caps text-[9px]">DORMANT</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<button class="px-4 py-1.5 rounded-full border border-outline text-on-surface font-body-md text-sm hover:bg-surface transition-colors">Install</button>
+<!-- Toggle Off -->
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in opacity-50">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out border-gray-300 left-0" disabled="" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-200 ease-in-out" for="toggle2"></label>
+</div>
+</div>
+</div>
+<!-- Thailand eSIM -->
+<div class="bg-surface-container-lowest rounded-xl p-[24px] custom-shadow relative">
+<button class="absolute top-4 right-4 text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="A subtle watercolor rendering of the Thailand flag, showcasing horizontal bands of red, white, and blue. The artwork is soft, organic, and intentionally imperfect to suggest high-end editorial illustration. The palette fits a warm, light-mode design system. The mood is calm and culturally rich." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArnmPyrvh_rbC2aNTo5YCY3peEXOWb7nAn4k8FCVUc1rYlPDyV_Mt0mmeUMjJSWAdZo_7Dv5wvkCIxbkGSceB6jIOLRoymefj0G5fa28lVw1qbX_Iqwtqyi-p8SlrwMrH6vClOakfDo2rIn617ONwBOgf0HJo1Vgwi8FwuID4Budd9cUL3yxuffc8-kewpqDSy0lw0k5MPG6JwAtUoZ-OD4-0LMmw7PWQd6qFhSl0l8RFJNHW_AzKbRwcziXcEHiLOTsZLJr7oGcY"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">Thailand</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">····1144</span>
+<span class="px-2 py-0.5 rounded-full bg-green-100 border border-green-600 text-green-700 font-label-caps text-[9px]">ACTIVE</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="w-2/3">
+<div class="flex justify-between text-xs text-on-surface-variant mb-1 font-body-md">
+<span>2.1 GB used</span>
+<span>3 GB</span>
+</div>
+<div class="w-full bg-surface-dim h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[70%] rounded-full"></div>
+</div>
+</div>
+<!-- Toggle -->
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 transition-transform duration-200 ease-in-out border-primary right-0" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-primary cursor-pointer transition-colors duration-200 ease-in-out" for="toggle3"></label>
+</div>
+</div>
+</div>
+<!-- Cape Town eSIM -->
+<div class="bg-surface-container-lowest rounded-xl p-[24px] custom-shadow relative opacity-75">
+<button class="absolute top-4 right-4 text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-dim grayscale">
+<img class="w-full h-full object-cover" data-alt="A faded, watercolor-style interpretation of the South African flag. The colors are muted and slightly desaturated, emphasizing the organic texture of the digital paint. It sits within a minimalist, cream-colored UI context, feeling like an archived or historic travel document. Quiet and nostalgic mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0OLh5C8z1mSJv8mENDhqKKyP4ZoVdHz2OExOFMs7N9e49YM5QqMeNWYK-Ed0gWG8193nMt_MjdmOGu0yJtRUCJGJuZostbfbYhoxPGNzu5FHGmiyucf4RZnc2D3-pNHS31niYhmL4Z_x0sBk_Id1ZEny6zDyge5ZGYVGSZ_B02W_n9hSWDbN0z3BCxsDBMwYJw0ekRHOZ2v12JdWjgPwZcI6QC1fbzBhxc_CWu566D7UZnpnMf3AjhWooq3THEB5PEZBXSsIH4dI"/>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant">Cape Town</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">····3398</span>
+<span class="px-2 py-0.5 rounded-full bg-red-100 border border-error text-error font-label-caps text-[9px]">EXPIRED</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<button class="w-8 h-8 rounded-full flex items-center justify-center border border-outline text-on-surface-variant hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<!-- Delete All -->
+<div class="flex justify-center mt-4">
+<button class="px-6 py-3 rounded-full border border-outline text-on-surface font-body-md hover:bg-surface-container-high transition-colors active:scale-95">
+                    Delete all expired (1)
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-md rounded-full bg-white/80 dark:bg-inverse-surface/80 backdrop-blur-md shadow-[0_2px_8px_rgba(26,20,17,0.06)] z-50 flex justify-around items-center px-4 py-2 md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high rounded-full active:scale-90 duration-200 ease-out">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-[10px] mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high rounded-full active:scale-90 duration-200 ease-out">
+<span class="material-symbols-outlined">language</span>
+<span class="font-label-caps text-[10px] mt-1">Plans</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary text-white rounded-full p-3 active:scale-90 duration-200 ease-out shadow-sm">
+<span class="material-symbols-outlined">sim_card</span>
+<span class="font-label-caps text-[10px] mt-1">eSIMs</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high rounded-full active:scale-90 duration-200 ease-out">
+<span class="material-symbols-outlined">hotel</span>
+<span class="font-label-caps text-[10px] mt-1">Hotels</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high rounded-full active:scale-90 duration-200 ease-out">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

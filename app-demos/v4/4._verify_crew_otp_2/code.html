@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verify as Crew - CrewLink</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#fceee8",
+                        "surface-variant": "#ede0da",
+                        "surface-dim": "#e4d7d2",
+                        "on-tertiary-fixed": "#181837",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "on-primary-fixed": "#410002",
+                        "error-container": "#ffdad6",
+                        "secondary": "#785a00",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "outline": "#916f6b",
+                        "inverse-primary": "#ffb4ac",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f9ebe6",
+                        "inverse-surface": "#362f2b",
+                        "primary-fixed": "#ffdad6",
+                        "secondary-fixed-dim": "#edc158",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#525274",
+                        "surface-bright": "#fff8f6",
+                        "on-background": "#211a17",
+                        "tertiary-container": "#6a6a8e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000e",
+                        "surface-container-low": "#fff1eb",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e2dfff",
+                        "surface-container-high": "#f3e5e0",
+                        "on-secondary": "#ffffff",
+                        "primary": "#ae0012",
+                        "on-tertiary-container": "#f2eeff",
+                        "surface-tint": "#c00015",
+                        "surface-container-highest": "#ede0da",
+                        "on-secondary-container": "#765900",
+                        "background": "#fff8f6",
+                        "on-primary-container": "#ffecea",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-surface": "#211a17",
+                        "surface": "#fff8f6",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "secondary-container": "#ffd167",
+                        "primary-container": "#d71921",
+                        "outline-variant": "#e6bdb8",
+                        "on-secondary-fixed": "#251a00",
+                        "error": "#ba1a1a",
+                        "brand-espresso": "#1A1411",
+                        "brand-gold": "#C9A03B",
+                        "brand-cream": "#FBF6EC",
+                        "brand-green-soft": "#E1F1E8",
+                        "brand-green-text": "#2D6A4F"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "14": "14px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack_gap": "16px",
+                        "section_gap": "32px",
+                        "unit": "4px",
+                        "gutter": "12px",
+                        "container_padding": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "numeric-data": ["Manrope"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "numeric-data": ["16px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .blob-mask {
+            clip-path: url(#blob-shape);
+        }
+        .otp-input:focus {
+            outline: none;
+            border-color: #ae0012;
+            box-shadow: 0 0 0 2px rgba(174, 0, 18, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-brand-cream text-on-surface min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Top Navigation Anchor (Simulated based on JSON structure but modified for transactional screen suppression) -->
+<header class="w-full flex justify-between items-center px-gutter py-4">
+<div class="font-headline-md text-headline-md font-bold text-primary">CrewLink</div>
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border-2 border-white shadow-sm">
+<img alt="Profile" data-alt="A professional close-up portrait of a cabin crew member with a friendly smile, styled in high-end editorial lighting. The aesthetic is clean and modern, featuring soft focus backgrounds that suggest a premium aviation environment. The color palette is warm with subtle cream and gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu6V4XsnzXEx6pv4buHI0R5skzcLRQnfcPNNeCUDVThuzAZXBEgEndRF691J7nGNxYQ348o3-fNx6JpuAQNVCkn1Pa0UWugXdEMa2gIxW_UWWUIw0-8G9CAD5cIlPEUEKXqyNae9_ZeYV6CjF7j4YsYkDuTURzZs41cFYmJwJ7Ddr3lhFsT9VxlVG2UEWYjem0LlVYOo7qyEDyl6XJYKvhNae1U3jETct-W38sLTIVpp4_M2IN_H6va0H5y_9imRK1T9QveWC7J0o"/>
+</div>
+</header>
+<main class="flex-grow px-gutter pt-4 pb-24 flex flex-col items-center">
+<!-- Status Pills Cluster -->
+<div class="flex flex-col items-center space-y-3 mb-6">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white border border-outline-variant shadow-sm">
+<span class="font-label-caps text-[11px] text-brand-gold uppercase tracking-widest flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                    Welcome aboard, Akito
+                </span>
+</div>
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-brand-green-soft">
+<span class="font-label-caps text-[11px] text-brand-green-text uppercase">
+                    ✓ Account active
+                </span>
+</div>
+</div>
+<!-- Headline & Subhead -->
+<div class="text-center max-w-xs mb-8">
+<h1 class="font-headline-md text-[28px] text-brand-espresso leading-tight mb-3">
+                Unlock crew-only features
+            </h1>
+<p class="font-body-md text-[15px] text-on-surface-variant leading-relaxed">
+                Verify with your work email — we send a one-time code and forget the address.
+            </p>
+</div>
+<!-- Illustration: Organic Blob Shape -->
+<div class="relative w-[120px] h-[80px] mb-8 group overflow-hidden">
+<!-- Using an SVG Mask for the Organic Blob Shape -->
+<svg height="0" width="0">
+<defs>
+<clippath clippathunits="objectBoundingBox" id="blob-shape">
+<path d="M0.91,0.341c0.12,0.301,-0.117,0.612,-0.407,0.648c-0.29,0.036,-0.518,-0.222,-0.493,-0.522c0.025,-0.3,0.334,-0.494,0.569,-0.457c0.235,0.037,0.211,0.03,0.331,0.331Z"></path>
+</clippath>
+</defs>
+</svg>
+<img alt="Crew Member Illustration" class="w-full h-full object-cover blob-mask transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUjx7KLgLJebAHf57LT0Hw_B2qrW7B8WY29qXK8hZQkWz5teZsKrTnxcuj7AFLJlDLPEjm4MJMzKQEq3JOiNhS19mjtJq61DI5l6IISOpFw1et3GTmmPnbYSdyW9yidOn-sYZVVGXqU_-gpf39n9ZHBEfSvkTdZ53_2C55PdJnEm0yGNEHITCuuJ0ntBw2stdAjP8GDo8G9FBcXLIozAX5WY0hIj7oQnXbMMsfT3vXXbNltnglTKvM3oTjpwPKWvZ82voL6xSVPu0"/>
+</div>
+<!-- Main Verification Card -->
+<div class="w-full max-w-md bg-white rounded-14 p-container_padding shadow-[0_2px_8px_rgba(26,20,17,0.06)] border border-outline-variant/30">
+<!-- Email Input Group -->
+<div class="mb-8">
+<label class="block font-label-caps text-[11px] text-brand-gold mb-3 tracking-widest">WORK EMAIL</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-low border border-brand-gold rounded-full py-4 px-6 font-body-md text-brand-espresso focus:ring-0 focus:outline-none pr-12 cursor-not-allowed" readonly="" type="email" value="you@emirates.com"/>
+<div class="absolute right-5 text-brand-gold">
+<span class="material-symbols-outlined">enhanced_encryption</span>
+</div>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">shield</span>
+<span class="text-[12px] font-body-md text-on-surface-variant">Used once for verification, then deleted. Never stored.</span>
+</div>
+</div>
+<!-- OTP Input Grid -->
+<div class="mb-8">
+<div class="flex justify-between items-center gap-2">
+<!-- Standard Box -->
+<input class="otp-input w-[48px] h-[56px] text-center font-headline-md text-brand-espresso bg-white border border-brand-gold rounded-14 transition-all duration-200" maxlength="1" placeholder="-" type="text"/>
+<!-- Focused State (Red Border) -->
+<input autofocus="" class="otp-input w-[48px] h-[56px] text-center font-headline-md text-brand-espresso bg-white border-primary border-2 rounded-14 transition-all duration-200" maxlength="1" placeholder="-" type="text"/>
+<input class="otp-input w-[48px] h-[56px] text-center font-headline-md text-brand-espresso bg-white border border-brand-gold rounded-14 transition-all duration-200" maxlength="1" placeholder="-" type="text"/>
+<input class="otp-input w-[48px] h-[56px] text-center font-headline-md text-brand-espresso bg-white border border-brand-gold rounded-14 transition-all duration-200" maxlength="1" placeholder="-" type="text"/>
+<input class="otp-input w-[48px] h-[56px] text-center font-headline-md text-brand-espresso bg-white border border-brand-gold rounded-14 transition-all duration-200" maxlength="1" placeholder="-" type="text"/>
+<input class="otp-input w-[48px] h-[56px] text-center font-headline-md text-brand-espresso bg-white border border-brand-gold rounded-14 transition-all duration-200" maxlength="1" placeholder="-" type="text"/>
+</div>
+</div>
+<!-- CTA Button -->
+<button class="w-full bg-primary hover:bg-primary-container text-white font-body-lg font-semibold py-4 rounded-full transition-all duration-300 active:scale-[0.98] shadow-sm">
+                Verify &amp; continue
+            </button>
+<!-- Tertiary Link -->
+<div class="mt-6 text-center">
+<button class="text-brand-espresso font-body-md hover:opacity-70 transition-opacity">
+                    Resend code <span class="font-numeric-data text-brand-gold ml-1">(0:42)</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Suppression Logic: Hiding standard Nav for transactional flow -->
+<!-- Instead, we provide a subtle footer if needed, but per mandate, we suppress global navigation shell on transactional screens -->
+<script>
+        // Subtle interaction for the OTP boxes
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Atmospheric micro-interaction: Subtle parallax on the blob image
+        document.addEventListener('mousemove', (e) => {
+            const blob = document.querySelector('.blob-mask');
+            if(blob) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+                blob.style.transform = `translate(${xAxis}px, ${yAxis}px) scale(1.05)`;
+            }
+        });
+    </script>
+</body></html>

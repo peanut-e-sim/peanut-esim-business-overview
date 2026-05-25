@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html class="antialiased text-on-surface bg-background dark:bg-surface-dim" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrewLink - Refund Activation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#fff1eb",
+                        "on-primary-container": "#ffecea",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#6a6a8e",
+                        "on-secondary-fixed": "#251a00",
+                        "primary-container": "#d71921",
+                        "on-tertiary-container": "#f2eeff",
+                        "surface-dim": "#e4d7d2",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#765900",
+                        "inverse-on-surface": "#fceee8",
+                        "on-background": "#211a17",
+                        "background": "#fff8f6",
+                        "on-primary-fixed-variant": "#93000e",
+                        "tertiary": "#525274",
+                        "secondary-fixed-dim": "#edc158",
+                        "tertiary-fixed": "#e2dfff",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "surface-tint": "#c00015",
+                        "secondary": "#785a00",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "outline-variant": "#e6bdb8",
+                        "surface-bright": "#fff8f6",
+                        "outline": "#916f6b",
+                        "surface-variant": "#ede0da",
+                        "secondary-fixed": "#ffdf9b",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "surface": "#fff8f6",
+                        "secondary-container": "#ffd167",
+                        "inverse-primary": "#ffb4ac",
+                        "surface-container-highest": "#ede0da",
+                        "on-surface": "#211a17",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffdad6",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#181837",
+                        "on-primary-fixed": "#410002",
+                        "surface-container-high": "#f3e5e0",
+                        "surface-container": "#f9ebe6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#ae0012",
+                        "inverse-surface": "#362f2b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "12px",
+                        "container_padding": "24px",
+                        "section_gap": "32px",
+                        "stack_gap": "16px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "numeric-data": ["Manrope"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "numeric-data": ["16px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .tactile-shadow {
+                box-shadow: 0 2px 8px rgba(26,20,17,0.06);
+            }
+        }
+        body {
+            background-color: #FBF6EC; /* Cream base */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md">
+<!-- Top App Bar -->
+<header class="w-full sticky top-0 bg-[#FBF6EC] dark:bg-surface-dim z-40">
+<div class="flex items-center justify-between px-container_padding h-16 max-w-md mx-auto">
+<button aria-label="Go back" class="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" style="font-variation-settings: 'FILL' 0;">arrow_back_ios</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight" style="font-size: 22px;">Refund my activation</h1>
+<div class="w-10"></div> <!-- Spacer for center alignment -->
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-md mx-auto px-[20px] pb-8 flex flex-col pt-4">
+<!-- Subheader -->
+<div class="mb-6 px-1">
+<h2 class="font-label-caps text-label-caps uppercase tracking-[0.08em] text-[#C9A03B]">OOPS REFUND</h2>
+</div>
+<!-- Hero Illustration Card -->
+<div class="bg-[#FBF6EC] rounded-t-2xl border border-[#C9A03B]/30 overflow-hidden mb-6 flex justify-center items-center py-8">
+<img alt="Watercolor diagram showing 1 GB recycling into 0.5 GB" class="w-full max-w-[280px] h-auto mix-blend-multiply object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHyZYgNMEfg2fP2IAFS8xtldHSsBwMYT4K68ceI_KhoG4KuvvWczZgHSV3Lra4-UAkPy671AUyjMMNLBCyvsPIkGD91qe81W_AtZvY2XbvA-498MAJxjG-2gYpTORrTYO7neC3Bd1Yke7x3ScMgGtUX5AJ6B86EVTI6kWYaJvc0o1Y8jCjJ7BRCEFJnzIav2_pdmm1FHSMd9MkMwN3DUIE79IZxA0LjUJG3WCAofb0dPHXOPvv_KfEllQI8iLNVzmX6lJFXXIu_IM"/>
+</div>
+<!-- Content Card -->
+<div class="bg-surface-container-lowest rounded-xl tactile-shadow p-container_padding mb-8 relative z-10 -mt-10">
+<p class="font-body-lg text-body-lg text-on-surface mb-6 leading-relaxed" style="font-size: 15px;">
+                Tapped activate by mistake? We give 50% of GB back, no questions.
+            </p>
+<!-- Note Strip -->
+<div class="bg-[#FBF6EC] border-l-4 border-[#C9A03B] p-3 rounded-r-lg">
+<p class="font-label-caps text-label-caps text-[#C9A03B] uppercase">
+                    You have 2 oops refunds left this year
+                </p>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-auto pt-6 flex flex-col gap-4">
+<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 px-6 rounded-full hover:opacity-90 active:scale-[0.98] transition-all duration-200">
+                Yes, refund 0.5 GB
+            </button>
+<button class="w-full text-center text-on-surface-variant font-body-md text-body-md py-3 hover:text-on-surface transition-colors">
+                Never mind
+            </button>
+</div>
+</main>
+<!-- Navigation Suppressed: Transactional/Focused Journey -->
+</body></html>

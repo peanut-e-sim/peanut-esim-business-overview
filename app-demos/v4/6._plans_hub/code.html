@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrewLink Plans Hub</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#edc158",
+                      "on-primary": "#ffffff",
+                      "primary-fixed": "#ffdad6",
+                      "primary-container": "#d71921",
+                      "on-primary-container": "#ffecea",
+                      "tertiary-fixed-dim": "#c4c3eb",
+                      "on-tertiary-fixed": "#181837",
+                      "on-secondary-container": "#765900",
+                      "inverse-primary": "#ffb4ac",
+                      "on-error": "#ffffff",
+                      "tertiary": "#525274",
+                      "primary-fixed-dim": "#ffb4ac",
+                      "surface-dim": "#e4d7d2",
+                      "inverse-on-surface": "#fceee8",
+                      "error-container": "#ffdad6",
+                      "on-error-container": "#93000a",
+                      "secondary": "#785a00",
+                      "on-tertiary-fixed-variant": "#444465",
+                      "surface": "#fff8f6",
+                      "surface-variant": "#ede0da",
+                      "tertiary-container": "#6a6a8e",
+                      "surface-container-low": "#fff1eb",
+                      "secondary-fixed": "#ffdf9b",
+                      "on-background": "#211a17",
+                      "background": "#fff8f6",
+                      "surface-container-high": "#f3e5e0",
+                      "surface-bright": "#fff8f6",
+                      "outline-variant": "#e6bdb8",
+                      "surface-container": "#f9ebe6",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#c00015",
+                      "on-primary-fixed-variant": "#93000e",
+                      "surface-container-highest": "#ede0da",
+                      "on-secondary-fixed": "#251a00",
+                      "primary": "#ae0012",
+                      "on-primary-fixed": "#410002",
+                      "secondary-container": "#ffd167",
+                      "on-secondary": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#211a17",
+                      "on-secondary-fixed-variant": "#5b4300",
+                      "outline": "#916f6b",
+                      "on-tertiary-container": "#f2eeff",
+                      "inverse-surface": "#362f2b",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#5d3f3c",
+                      "tertiary-fixed": "#e2dfff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section_gap": "32px",
+                      "gutter": "12px",
+                      "container_padding": "24px",
+                      "unit": "4px",
+                      "stack_gap": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": ["Manrope"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Manrope"],
+                      "label-caps": ["JetBrains Mono"],
+                      "numeric-data": ["Manrope"],
+                      "headline-sm": ["Manrope"]
+              },
+              "fontSize": {
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                      "numeric-data": ["16px", {"lineHeight": "16px", "fontWeight": "700"}],
+                      "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #FBF6EC; /* Cream Background as requested */
+            color: #211a17;
+            -webkit-font-smoothing: antialiased;
+        }
+        .tonal-shadow {
+            box-shadow: 0 2px 8px rgba(26,20,17,0.06);
+        }
+        .glass-overlay {
+            backdrop-filter: blur(8px);
+            background-color: rgba(251, 246, 236, 0.8);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#FBF6EC] px-gutter flex justify-between items-center h-16 transition-all duration-300">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant rounded-full active:scale-90 transition-all">
+<span class="material-symbols-outlined text-on-surface">chevron_left</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">Pick your cabin</h1>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant rounded-full active:scale-90 transition-all">
+<span class="material-symbols-outlined text-on-surface">filter_list</span>
+</button>
+</header>
+<main class="mt-20 px-gutter max-w-lg mx-auto">
+<!-- Subhead -->
+<div class="mb-8 px-4 text-center">
+<p class="text-[15px] leading-relaxed text-[#6B6259] font-body-md">
+                Every cabin maps to how you actually use data
+            </p>
+</div>
+<!-- Plans Stack -->
+<div class="space-y-4">
+<!-- 1. ECONOMY -->
+<article class="bg-white rounded-[14px] overflow-hidden tonal-shadow border border-outline-variant/30 active:scale-[0.98] transition-transform duration-200">
+<div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPzMfgRAs1h0nnD2b9f--23ln7k8Xk3AVSJKvAbixg1wvsOHlf4gub8fOhRWTjeswUoadg2ifhPrWIRE6vmV0WsOapEghQrA7txRUag1PbyVusSHVlSJjxjHaLf_9hPgqe5_KVPsOD-dH9oONXMq3HZNdE8hH0YwOmErZZY9jUDoc3Da2oekoD-p9fXXzCf0mhyL4a7a16_CQIyDLSmCrvVCkapQRIVrbzVp4Kb1c0HmsDoiJtvaxNvb_7vDLCyPlnWc97jKKT-AU');"></div>
+<div class="p-6">
+<span class="inline-block bg-[#E0F2FE] text-[#0369A1] px-3 py-1 rounded-full font-label-caps text-label-caps mb-3">ECONOMY</span>
+<h2 class="font-headline-md text-headline-md mb-1">$3–7 <span class="text-sm font-medium uppercase text-on-surface-variant">One-time</span></h2>
+<p class="text-on-surface-variant mb-6 text-[14px]">Pay only for the country you visit</p>
+<button class="w-full bg-primary text-on-primary py-3 rounded-full font-bold active:scale-95 transition-all">See countries</button>
+</div>
+</article>
+<!-- 2. ROSTER BUNDLE -->
+<article class="bg-primary-container text-white rounded-[14px] overflow-hidden tonal-shadow relative active:scale-[0.98] transition-transform duration-200">
+<div class="absolute top-4 right-[-30px] bg-secondary-container text-on-secondary-container px-10 py-1 rotate-45 font-label-caps text-[10px] shadow-sm">MOST POPULAR</div>
+<div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuPeQYx6JDK_hnEm08ZayuA6oirLlCYznLmm6UymAJSJPrdwM-I8E7ovXqOsk6pCRo0XdBjaXZJbwJattwwBAhfy78kzSJNUXXW05nIJ8NtsdP26GZ0FG5jnnmcqh749aVe4f8iuUjg7n9RCfXNKicCg6kCZdwTfsM5dVDjIfy6G2FHVEhd9HEhDCf4ApfeOPASalIym-4c9RTAaoi8XT5t2J0mzg19yBYCCVpg59zzESD1LqBqVYl7YVfOZcvY0yLUZiCcpoAlaE');"></div>
+<div class="p-6">
+<span class="inline-block bg-white/20 text-white px-3 py-1 rounded-full font-label-caps text-label-caps mb-3">ROSTER BUNDLE</span>
+<h2 class="font-headline-md text-headline-md mb-1">$39.99 <span class="text-sm font-medium uppercase opacity-80">/ month flat</span></h2>
+<p class="opacity-90 mb-6 text-[14px]">Up to 5 destinations, auto-detected from your roster</p>
+<button class="w-full bg-white text-primary py-3 rounded-full font-bold active:scale-95 transition-all">Upload roster</button>
+</div>
+</article>
+<!-- 3. PREMIUM ECONOMY -->
+<article class="bg-white rounded-[14px] overflow-hidden tonal-shadow border border-outline-variant/30 active:scale-[0.98] transition-transform duration-200">
+<div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATN2DxrYtV3X8GWb1hJm8yKVGqUmLmp_GH0cq-KuPrg4x4u77HL15tclr2FyiGY0gsws4mDgzS-PtrYvAn7PXT-Isxgsb1gqC0GHXHkSETycnmVWFriBHUGzB56Ur7rHmH3ngGlJjIqrhjZYWKi8n3Oh8LL4rR67n_xg1UhpOHscA2yMWu_3YEzITyTbVLlNsOIQUqEoFTKA5rdGZZU7VZyUqPHPrfBtfhNJMaWo902dHBSM_3c9ogiXrYrIVuEg7kUXbP8K25OIA');"></div>
+<div class="p-6">
+<span class="inline-block bg-[#FFEDD5] text-[#9A3412] px-3 py-1 rounded-full font-label-caps text-label-caps mb-3">PREMIUM ECONOMY</span>
+<h2 class="font-headline-md text-headline-md mb-1">$12.99 <span class="text-sm font-medium uppercase text-on-surface-variant">/ month</span></h2>
+<p class="text-on-surface-variant text-[14px]">3 GB pool · carries 30% forward</p>
+</div>
+</article>
+<!-- 4. BUSINESS -->
+<article class="bg-white rounded-[14px] overflow-hidden tonal-shadow border border-outline-variant/30 relative active:scale-[0.98] transition-transform duration-200">
+<div class="absolute top-4 right-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-[10px]">RECOMMENDED</div>
+<div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCNdZS0Qi1eIxgnK3YiOzrcgLeI9Z2nMPjQ0lDzCWK_Wjjms4eYgAkuuAXEUNL7pqJziaUivgwvVWjuwGZ5JYEZ1MxtlS0Wb2fPYN4M9tzpyAQ5kMmiNlefi9DZQbXrLaC7nOguQHe4qac2gEeDy855N3hx8zVTI5TJDzLOm38_uFRv-EXqOFOZK8WKWvfyqJBVBbPqQ3wIsmu0jpUlCTkKtb5oBsWE8ekV-nSpYuP-ZVezHqymNlbTw678i0pZkRy_hMRGy-6TruM');"></div>
+<div class="p-6">
+<span class="inline-block bg-[#1E293B] text-[#FCD34D] px-3 py-1 rounded-full font-label-caps text-label-caps mb-3">BUSINESS</span>
+<h2 class="font-headline-md text-headline-md mb-1">$24.99 <span class="text-sm font-medium uppercase text-on-surface-variant">/ month</span></h2>
+<p class="text-on-surface-variant text-[14px]">8 GB pool · 50% carry · 1 oops refund/mo</p>
+</div>
+</article>
+<!-- 5. FIRST -->
+<article class="bg-white rounded-[14px] overflow-hidden tonal-shadow border border-outline-variant/30 active:scale-[0.98] transition-transform duration-200">
+<div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCaAyWoIAedqgDfoVEyoj5A4eVIuZclwspaNIyjLkxzczBE1J05SNBe1Z3yk5R05f_11Rr8L6rQTnPYKrJw3dO6etxlEPyxGbCC04TV3wTNDI-6DQSTmg0-qxCHsCkyCZn9RODBySFPNMRQPUd_NE1hJsP5t9asSM5TE1O4cWUQ5ztoVb_DjMTv7oJpHQnN8g-9GYX4rEZuwpEnzqqKIvrBknXb6c-JywyuHi16jX49sGu5alrubtjvXfiyJmx-yN0YRBwvWMgiAEU');"></div>
+<div class="p-6">
+<span class="inline-block bg-[#450a0a] text-[#fde047] px-3 py-1 rounded-full font-label-caps text-label-caps mb-3">FIRST</span>
+<h2 class="font-headline-md text-headline-md mb-1">$49.99 <span class="text-sm font-medium uppercase text-on-surface-variant">/ month</span></h2>
+<p class="text-on-surface-variant text-[14px]">20 GB pool · 80% carry · 2 oops · priority</p>
+</div>
+</article>
+<!-- 6. COCKPIT ANNUAL -->
+<article class="bg-white rounded-[14px] overflow-hidden tonal-shadow border border-outline-variant/30 active:scale-[0.98] transition-transform duration-200">
+<div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBw2yCWNrgaCOvSgnMnAOCAtLqiWWl4cLMXE9MGH3VtorwuJk_GSXPJbMXx0KwooW9WZMu7p-y3FfujOVgps_DbgmRma2IGcG_N6T8eb2GVr_bYhi2OjRdEEUqrUgQtiKS43yF-KG2UFpNd17cyMq0ffRupL4rW8qWo0tMLGrHDilGopdB3PisVHKahYnciOWCEPBFiFhWCMZj05yCR_5l4TWI0_pmKI0roUshYNqTaGSVUuvD6C1rhZFSrEBxMWomUVnfAFHNaS8M');"></div>
+<div class="p-6">
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="inline-block bg-[#312e81] text-[#fde047] px-3 py-1 rounded-full font-label-caps text-label-caps">COCKPIT ANNUAL</span>
+<span class="inline-block bg-[#fde047] text-[#450a0a] px-3 py-1 rounded-full font-label-caps text-label-caps">BEST VALUE · SAVE $50</span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-1">$299 <span class="text-sm font-medium uppercase text-on-surface-variant">/ year</span></h2>
+<p class="text-on-surface-variant text-[14px]">Unlimited oops · all-tier carryover · founders perks</p>
+</div>
+</article>
+<!-- 7. REFUEL ADD-ON -->
+<article class="bg-white/60 rounded-[14px] overflow-hidden border border-dashed border-outline-variant active:scale-[0.98] transition-transform duration-200">
+<div class="h-32 bg-cover bg-center opacity-70" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwgI39RE4ir3Q06NZskH_dXG5Ss9IVb0GyjeJL926oY6APLNckY4te6vCRvUYsHRc3IKmOkMmoWLMCTrK09xQrP5OVRiCnSEe9LMMO78dpCvFBqc0tQKTFdWSJROs8JiXPhA9OwvTYwoPhzaZU-2mjwwwucC_4a1OZK5gZrL6f566_ytLYVfYXCbstG9sigH1LeQ0biW2BdMjQmua-Ewd3bqiz3z-32tmDLSxoCNBpKG4xxQDykUAZjpNCwrwGi8wH2yhTupN7TUw');"></div>
+<div class="p-6 flex items-center justify-between">
+<div>
+<span class="inline-block bg-on-surface-variant/10 text-on-surface-variant px-3 py-1 rounded-full font-label-caps text-label-caps mb-2">ADD-ON</span>
+<h2 class="font-headline-sm text-headline-sm">Top up any eSIM 1/2/5 GB</h2>
+</div>
+<button class="border-2 border-outline-variant text-on-surface-variant px-6 py-2 rounded-full font-bold hover:bg-surface-variant active:scale-95 transition-all">Refuel</button>
+</div>
+</article>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-4 pb-safe bg-surface shadow-sm rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors active:scale-90 duration-150 w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<!-- ACTIVE TAB: PLANS -->
+<a class="flex flex-col items-center justify-center text-primary font-bold hover:bg-surface-variant transition-colors active:scale-90 duration-150 w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="language" style="font-variation-settings: 'FILL' 1;">language</span>
+<span class="font-label-caps text-label-caps">Plans</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors active:scale-90 duration-150 w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="sim_card">sim_card</span>
+<span class="font-label-caps text-label-caps">SIM</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors active:scale-90 duration-150 w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="hotel">hotel</span>
+<span class="font-label-caps text-label-caps">Hotel</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors active:scale-90 duration-150 w-full h-full" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Subtle scroll effect for the top bar
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-sm', 'bg-white/95', 'backdrop-blur-md');
+                header.classList.remove('bg-[#FBF6EC]');
+            } else {
+                header.classList.remove('shadow-sm', 'bg-white/95', 'backdrop-blur-md');
+                header.classList.add('bg-[#FBF6EC]');
+            }
+        });
+
+        // Interactive hover states for cards
+        const cards = document.querySelectorAll('article');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,247 @@
+[
+  {
+    "num": 1,
+    "folder": "1._splash_screen_1",
+    "label": "Splash Screen (Variant 1)",
+    "png": true,
+    "html": false
+  },
+  {
+    "num": 1,
+    "folder": "1._splash_screen_2",
+    "label": "Splash Screen (Variant 2)",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 2,
+    "folder": "2._signup_1",
+    "label": "Signup (Variant 1)",
+    "png": true,
+    "html": false
+  },
+  {
+    "num": 2,
+    "folder": "2._signup_2",
+    "label": "Signup (Variant 2)",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 3,
+    "folder": "3._email_sent",
+    "label": "Email Sent",
+    "png": true,
+    "html": false
+  },
+  {
+    "num": 3,
+    "folder": "3._email_sent_confirmation",
+    "label": "Email Sent Confirmation",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 4,
+    "folder": "4._verify_crew_otp_1",
+    "label": "Verify Crew Otp (Variant 1)",
+    "png": true,
+    "html": false
+  },
+  {
+    "num": 4,
+    "folder": "4._verify_crew_otp_2",
+    "label": "Verify Crew Otp (Variant 2)",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 5,
+    "folder": "5._home_dashboard_1",
+    "label": "Home Dashboard (Variant 1)",
+    "png": true,
+    "html": false
+  },
+  {
+    "num": 5,
+    "folder": "5._home_dashboard_2",
+    "label": "Home Dashboard (Variant 2)",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 6,
+    "folder": "6._plans_hub",
+    "label": "Plans Hub",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 7,
+    "folder": "7._compare_monthly_tiers",
+    "label": "Compare Monthly Tiers",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 8,
+    "folder": "8._upload_roster",
+    "label": "Upload Roster",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 9,
+    "folder": "9._detected_destinations",
+    "label": "Detected Destinations",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 10,
+    "folder": "10._bundle_confirmed_1",
+    "label": "Bundle Confirmed (Variant 1)",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 10,
+    "folder": "10._bundle_confirmed_2",
+    "label": "Bundle Confirmed (Variant 2)",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 11,
+    "folder": "11._plan_detail_japan",
+    "label": "Plan Detail Japan",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 12,
+    "folder": "12._checkout",
+    "label": "Checkout",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 13,
+    "folder": "13._purchase_success",
+    "label": "Purchase Success",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 14,
+    "folder": "14._esim_library",
+    "label": "Esim Library",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 15,
+    "folder": "15._esim_detail_japan",
+    "label": "Esim Detail Japan",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 16,
+    "folder": "16._top_up_bottom_sheet",
+    "label": "Top Up Bottom Sheet",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 17,
+    "folder": "17._activation_confirmation_modal",
+    "label": "Activation Confirmation Modal",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 18,
+    "folder": "18._refund_japan_esim",
+    "label": "Refund Japan Esim",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 19,
+    "folder": "19._oops_refund",
+    "label": "Oops Refund",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 20,
+    "folder": "20._refund_unused_destinations",
+    "label": "Refund Unused Destinations",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 21,
+    "folder": "21._failed_esim_recovery",
+    "label": "Failed Esim Recovery",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 22,
+    "folder": "22._hotels_list",
+    "label": "Hotels List",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 23,
+    "folder": "23._hotel_detail_tokyo_marriott",
+    "label": "Hotel Detail Tokyo Marriott",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 24,
+    "folder": "24._tokyo_crew_picks",
+    "label": "Tokyo Crew Picks",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 25,
+    "folder": "25._add_a_place_bottom_sheet",
+    "label": "Add A Place Bottom Sheet",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 26,
+    "folder": "26._place_detail_tatemichiya_diner",
+    "label": "Place Detail Tatemichiya Diner",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 27,
+    "folder": "27._crew_points_rewards",
+    "label": "Crew Points Rewards",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 28,
+    "folder": "28._crew_ai_support",
+    "label": "Crew Ai Support",
+    "png": true,
+    "html": true
+  },
+  {
+    "num": 29,
+    "folder": "29._crew_ai_support_active",
+    "label": "Crew Ai Support Active",
+    "png": true,
+    "html": true
+  }
+]

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compare Cabins - CrewLink</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Manrope:wght@700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#525274",
+                    "inverse-primary": "#ffb4ac",
+                    "surface-bright": "#fff8f6",
+                    "on-secondary-fixed": "#251a00",
+                    "surface-container": "#f9ebe6",
+                    "surface": "#fff8f6",
+                    "secondary": "#785a00",
+                    "surface-dim": "#e4d7d2",
+                    "on-secondary-container": "#765900",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#ffdf9b",
+                    "tertiary-fixed-dim": "#c4c3eb",
+                    "primary-container": "#d71921",
+                    "surface-variant": "#ede0da",
+                    "tertiary-container": "#6a6a8e",
+                    "error": "#ba1a1a",
+                    "outline": "#916f6b",
+                    "surface-container-low": "#fff1eb",
+                    "inverse-surface": "#362f2b",
+                    "error-container": "#ffdad6",
+                    "background": "#fff8f6",
+                    "primary-fixed-dim": "#ffb4ac",
+                    "outline-variant": "#e6bdb8",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#fceee8",
+                    "tertiary-fixed": "#e2dfff",
+                    "on-tertiary-fixed": "#181837",
+                    "on-primary-fixed-variant": "#93000e",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#f3e5e0",
+                    "on-surface": "#211a17",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#5d3f3c",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#ffdad6",
+                    "on-primary-container": "#ffecea",
+                    "on-primary": "#ffffff",
+                    "on-background": "#211a17",
+                    "surface-tint": "#c00015",
+                    "surface-container-highest": "#ede0da",
+                    "on-tertiary-fixed-variant": "#444465",
+                    "secondary-fixed-dim": "#edc158",
+                    "secondary-container": "#ffd167",
+                    "on-tertiary-container": "#f2eeff",
+                    "primary": "#ae0012",
+                    "on-primary-fixed": "#410002",
+                    "on-secondary-fixed-variant": "#5b4300"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container_padding": "24px",
+                    "stack_gap": "16px",
+                    "unit": "4px",
+                    "gutter": "12px",
+                    "section_gap": "32px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "numeric-data": ["Manrope"],
+                    "headline-sm": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "label-caps": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "numeric-data": ["16px", {"lineHeight": "16px", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #FBF6EC; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-effect { backdrop-filter: blur(8px); background-color: rgba(251, 246, 236, 0.8); }
+        .tonal-shadow { shadow-[0_2px_8px_rgba(26,20,17,0.06)]; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen text-on-surface font-body-md overflow-x-hidden">
+<!-- Header Section -->
+<header class="sticky top-0 z-40 flex items-center px-container_padding py-6 w-full glass-effect">
+<button class="mr-4 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-on-surface">chevron_left</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">Compare cabins</h1>
+</header>
+<main class="pb-32">
+<!-- Promo Banner -->
+<div class="px-container_padding mb-8">
+<div class="flex items-center justify-between bg-surface-container-lowest border-l-4 border-secondary rounded-xl p-4 shadow-[0_2px_8px_rgba(26,20,17,0.06)]">
+<div class="flex items-center gap-3">
+<span class="text-xl">💎</span>
+<p class="font-body-md text-on-surface font-medium">Save $50/yr — go Cockpit Annual</p>
+</div>
+<button class="bg-secondary rounded-full w-8 h-8 flex items-center justify-center text-white active:scale-90 transition-all">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Comparison Carousel -->
+<div class="no-scrollbar overflow-x-auto flex items-center snap-x snap-mandatory gap-4 px-container_padding py-4">
+<!-- Card 1: Premium Economy -->
+<section class="min-w-[280px] snap-center bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30 shadow-[0_2px_8px_rgba(26,20,17,0.06)] flex flex-col h-[520px]">
+<div class="mb-4">
+<div class="w-10 h-10 mb-3 bg-[#FFF1F0] rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Peach Blossom" class="w-6 h-6 object-contain" data-alt="A delicate, minimalist watercolor illustration of a peach blossom with soft pink petals and subtle green leaves. The style is airy and editorial, set against a pristine white background with a painterly texture that suggests high-quality stationery and premium aviation lounge aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADP874_u_S-Z07hYNPeFH1ASE1TQEUjXH-rVpUlVFvMZEJrzBWOsKh07VTYmLVn7ONE-Urt0VPo23rZHVTYqejpg8KKDKvp6BvfjSFvhzyow3N2Zjt40-0QNuhTKkpMUTqOoV0h236nO3cfCVmquTOGy-WhAr6oj9EwUeHInc2sU4GWJ1uWItC4NZybxRlNdTFJn7N04IuS2KCeQlVeLIZL8lFSgkpoFWsVk84uhjyGFo7sHjLuSsBnva3dAGD_zMK0PGlxuK4L7U"/>
+</div>
+<span class="inline-block px-3 py-1 bg-[#FFE4E1] text-[#D71921] font-label-caps text-label-caps rounded-full mb-4">PREMIUM ECONOMY</span>
+<div class="flex items-baseline gap-1 mb-1">
+<span class="font-numeric-data text-display-lg text-on-surface">$12.99</span>
+<span class="font-body-md text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-md font-bold text-on-surface">3 GB pool</p>
+</div>
+<div class="space-y-3 mb-6 pt-4 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Carryover</span>
+<span class="font-numeric-data text-on-surface">30%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Oops protection</span>
+<span class="font-numeric-data text-on-surface">0/mo</span>
+</div>
+</div>
+<ul class="space-y-4 mb-auto">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Priority boarding</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Extra legroom</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-sm">remove</span>
+<span class="font-body-md text-outline">Lounge access</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-sm">remove</span>
+<span class="font-body-md text-outline">Gourmet dining</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-sm">remove</span>
+<span class="font-body-md text-outline">Chauffeur drive</span>
+</li>
+</ul>
+<button class="mt-6 w-full py-3 border border-outline-variant text-on-surface font-bold rounded-full active:scale-95 transition-all">
+                    Choose Premium
+                </button>
+</section>
+<!-- Card 2: Business (Middle, Scaled) -->
+<section class="min-w-[300px] snap-center bg-surface-container-lowest rounded-2xl p-6 border-2 border-secondary/30 shadow-[0_4px_16px_rgba(26,20,17,0.1)] flex flex-col h-[546px] scale-105 relative z-10">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-secondary text-white px-4 py-1 rounded-full font-label-caps text-[10px] tracking-widest shadow-sm">RECOMMENDED</div>
+<div class="mb-4">
+<div class="w-10 h-10 mb-3 bg-[#E0E7FF] rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Navy Compass" class="w-6 h-6 object-contain" data-alt="A minimalist watercolor painting of a classic nautical compass in deep navy blue and metallic gold accents. The artistic style is restrained and sophisticated, featuring soft edge bleeds on textured ivory paper, reflecting an elite traveler editorial aesthetic with luxury lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDl3aWV-53tRMhlJK3ZrmVQFIZYOGGWUhW3tbQ8HcGb93bC2PF7N56ExtmD_THAjFBptGeX8L8GFXDWZbyKYl2p3uCd1E0s0nmaw46rZEKcmexMtqfCQ4wO3JtiTFcFNVJ5cK20jYmf9OzOx2xhXqVxfFPfJ6xsubd2olxJ0h2WnKu_jNzlaOcnI_RJTqEeUhK19oKv27bLrUMmB8DuHfQs4CFBmdZauOFXdys2neGzhS8PW34xndjnd7tqXrRxK-UHyzuyq0lCRQ"/>
+</div>
+<span class="inline-block px-3 py-1 bg-secondary text-white font-label-caps text-label-caps rounded-full mb-4">BUSINESS</span>
+<div class="flex items-baseline gap-1 mb-1">
+<span class="font-numeric-data text-display-lg text-on-surface">$24.99</span>
+<span class="font-body-md text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-md font-bold text-on-surface">8 GB pool</p>
+</div>
+<div class="space-y-3 mb-6 pt-4 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Carryover</span>
+<span class="font-numeric-data text-on-surface">50%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Oops protection</span>
+<span class="font-numeric-data text-on-surface">1/mo</span>
+</div>
+</div>
+<ul class="space-y-4 mb-auto">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Priority boarding</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Extra legroom</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Lounge access</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Gourmet dining</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline-variant text-sm">remove</span>
+<span class="font-body-md text-outline">Chauffeur drive</span>
+</li>
+</ul>
+<button class="mt-6 w-full py-3 border border-secondary text-secondary font-bold rounded-full bg-secondary/5 active:scale-95 transition-all">
+                    Choose Business
+                </button>
+</section>
+<!-- Card 3: First -->
+<section class="min-w-[280px] snap-center bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30 shadow-[0_2px_8px_rgba(26,20,17,0.06)] flex flex-col h-[520px]">
+<div class="mb-4">
+<div class="w-10 h-10 mb-3 bg-[#FEF2F2] rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Burgundy Globe" class="w-6 h-6 object-contain" data-alt="A refined watercolor illustration of a globe in deep burgundy and muted rose tones. The artwork uses a wet-on-wet technique with soft, feathered edges on a cream background, conveying global connectivity and high-end aviation prestige through a minimalist, editorial lens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATA3LSjag1XuJ8d3iONairFzi9r0TyXDpWarL_CYYLAFrdfZ5pLXzREmXaBIifjWVonfe92-w1HvO1IoXJXfgR9jXQ1Y3zm5uMSFC9-9f40kPL7SQJK9r7PYt0C3mANBernxaSLHn7h477VJ40gmcFHqIca3jocA8_L5g4t1wDz6H6I5Ck1CCeZBRdBzuaan7tlzvQp-3UnIf9b8NmzIZM9YYxvq0gP_2JyG9YlUGAQuP0AeQIKYasitge_ZQAZRP_hHUL4ibGwjs"/>
+</div>
+<span class="inline-block px-3 py-1 bg-primary-container text-white font-label-caps text-label-caps rounded-full mb-4">FIRST</span>
+<div class="flex items-baseline gap-1 mb-1">
+<span class="font-numeric-data text-display-lg text-on-surface">$49.99</span>
+<span class="font-body-md text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-md font-bold text-on-surface">20 GB pool</p>
+</div>
+<div class="space-y-3 mb-6 pt-4 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Carryover</span>
+<span class="font-numeric-data text-on-surface">80%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Oops protection</span>
+<span class="font-numeric-data text-on-surface">2/mo</span>
+</div>
+</div>
+<ul class="space-y-4 mb-auto">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Priority boarding</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Extra legroom</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Lounge access</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Gourmet dining</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-600 text-sm">check</span>
+<span class="font-body-md text-on-surface-variant">Chauffeur drive</span>
+</li>
+</ul>
+<button class="mt-6 w-full py-3 border border-primary text-primary font-bold rounded-full active:scale-95 transition-all">
+                    Choose First
+                </button>
+</section>
+</div>
+<!-- Footer Help Text -->
+<div class="px-container_padding mt-8 text-center">
+<p class="text-on-surface-variant font-body-md leading-relaxed">
+                All cabin tiers include standard CrewLink benefits like worldwide roaming and 24/7 priority support.
+            </p>
+</div>
+</main>
+<!-- Navigation Shell (BottomNavBar) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex justify-between items-center px-4 py-2 w-[90%] max-w-md bg-surface dark:bg-surface-container-highest shadow-[0_2px_8px_rgba(26,20,17,0.06)] rounded-full border-none">
+<a class="flex items-center justify-center text-on-surface-variant dark:text-outline w-12 h-12 hover:bg-surface-variant/50 rounded-full active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">home</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant dark:text-outline w-12 h-12 hover:bg-surface-variant/50 rounded-full active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">language</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant dark:text-outline w-12 h-12 hover:bg-surface-variant/50 rounded-full active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">sim_card</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant dark:text-outline w-12 h-12 hover:bg-surface-variant/50 rounded-full active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">hotel</span>
+</a>
+<a class="flex items-center justify-center bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-full w-12 h-12 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</nav>
+<script>
+        // Subtle micro-interaction for the carousel
+        const carousel = document.querySelector('.no-scrollbar');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+        carousel.addEventListener('mouseleave', () => { isDown = false; });
+        carousel.addEventListener('mouseup', () => { isDown = false; });
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Auto-center the middle card on load
+        window.addEventListener('load', () => {
+            const containerWidth = carousel.offsetWidth;
+            const middleCard = carousel.children[1];
+            const middleOffset = middleCard.offsetLeft - (containerWidth / 2) + (middleCard.offsetWidth / 2);
+            carousel.scrollTo({ left: middleOffset, behavior: 'smooth' });
+        });
+    </script>
+</body></html>

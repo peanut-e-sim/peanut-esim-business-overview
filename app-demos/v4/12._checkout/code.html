@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrewLink - Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#fff1eb",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#e4d7d2",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#251a00",
+                        "outline": "#916f6b",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "on-primary-container": "#ffecea",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#ede0da",
+                        "surface-container-high": "#f3e5e0",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "on-tertiary-fixed": "#181837",
+                        "on-secondary-container": "#765900",
+                        "on-primary-fixed": "#410002",
+                        "secondary-fixed": "#ffdf9b",
+                        "primary-container": "#d71921",
+                        "surface": "#fff8f6",
+                        "tertiary-container": "#6a6a8e",
+                        "surface-container": "#f9ebe6",
+                        "secondary-fixed-dim": "#edc158",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "surface-tint": "#c00015",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffdad6",
+                        "on-surface": "#211a17",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#e6bdb8",
+                        "error-container": "#ffdad6",
+                        "background": "#FBF6EC", /* Overridden per requirement */
+                        "secondary-container": "#ffd167",
+                        "tertiary-fixed": "#e2dfff",
+                        "on-tertiary-container": "#f2eeff",
+                        "secondary": "#785a00",
+                        "on-surface-variant": "#5d3f3c",
+                        "tertiary": "#525274",
+                        "primary": "#d71921",
+                        "inverse-surface": "#362f2b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#211a17",
+                        "surface-bright": "#fff8f6",
+                        "inverse-primary": "#ffb4ac",
+                        "surface-variant": "#ede0da",
+                        "on-primary-fixed-variant": "#93000e",
+                        "inverse-on-surface": "#fceee8",
+                        "brand-gold": "#C9A03B"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "unit": "4px",
+                        "stack_gap": "16px",
+                        "section_gap": "32px",
+                        "gutter": "12px",
+                        "container_padding": "24px",
+                        "safe": "env(safe-area-inset-bottom)"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "numeric-data": ["Manrope"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-sm": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"]
+                    },
+                    fontSize: {
+                        "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+                        "numeric-data": ["16px", { lineHeight: "16px", fontWeight: "700" }],
+                        "label-caps": ["11px", { lineHeight: "16px", letterSpacing: "0.08em", fontWeight: "500" }],
+                        "headline-sm": ["18px", { lineHeight: "24px", fontWeight: "700" }],
+                        "body-lg": ["16px", { lineHeight: "26px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "display-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Watermark Background -->
+<div class="fixed inset-0 z-0 pointer-events-none flex items-center justify-center opacity-[0.08]">
+<img alt="Stylized gold watercolor padlock outline" class="w-full max-w-lg object-contain mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmqwFsxTg3IpH05_qY4WSrvn7xDtBCx-0FMQ409Hzy-RxdQNty0xFADmdW63sUiMMF3NKHM6JtHsLEEXPmoMULt4gGIQ-ztG8QP50uUrMJuMt34wadQnkfVNAGU0zOBeZfRl84zw9drkQDpRWDOYuhq_1o6rdjXw35tvfzKzuRQHgGzELQwVx5r2_433TZ6KUMvAYq3Cg5VitHycot_Mp-ifm6celIDaKMxlbKiWIQeZ1VTSsGWZK0J06TZrhn-h5NSzleAsDEq5o"/>
+</div>
+<!-- Main Container -->
+<div class="relative z-10 w-full max-w-md mx-auto flex flex-col h-full min-h-screen">
+<!-- TopAppBar (From JSON, modified for transaction) -->
+<header class="fixed top-0 w-full max-w-md z-50 bg-background flex items-center justify-between px-gutter h-16">
+<button aria-label="Go back" class="text-on-surface hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-[28px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface absolute left-1/2 -translate-x-1/2">Checkout</h1>
+<div class="w-7 h-7"></div> <!-- Spacer for centering -->
+</header>
+<!-- Sub-header -->
+<div class="pt-[80px] pb-4 px-container_padding text-center">
+<p class="font-label-caps text-label-caps text-brand-gold uppercase">WEB CHECKOUT · NO IAP TAX</p>
+</div>
+<!-- Scrollable Content -->
+<main class="flex-1 px-container_padding pb-32 flex flex-col gap-section_gap">
+<!-- ORDER SUMMARY card -->
+<div class="bg-surface-container-lowest rounded-[14px] p-container_padding shadow-[0_2px_8px_rgba(26,20,17,0.06)]">
+<p class="font-label-caps text-label-caps text-brand-gold mb-6">ORDER SUMMARY</p>
+<div class="flex justify-between items-center mb-6">
+<span class="font-body-lg text-body-lg text-on-surface">Japan 3 GB</span>
+<span class="font-numeric-data text-numeric-data text-on-surface">$9.99</span>
+</div>
+<div class="h-px bg-outline-variant w-full mb-6"></div>
+<div class="flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface">Total</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">$9.99</span>
+</div>
+</div>
+<!-- PAYMENT METHODS stack -->
+<div class="flex flex-col gap-stack_gap">
+<button class="w-full h-[56px] bg-black text-white rounded-full flex items-center justify-center gap-2 hover:bg-gray-900 active:scale-95 transition-all">
+<!-- Apple Logo SVG -->
+<svg aria-hidden="true" class="w-5 h-5 fill-current" viewbox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.3 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.3zM34.4 0C22.2 0 12 10.2 12 22.4v467.2c0 12.2 10.2 22.4 22.4 22.4h339.2c12.2 0 22.4-10.2 22.4-22.4V22.4c0-12.2-10.2-22.4-22.4-22.4H34.4z" style="display:none;"></path><path d="M252.3 84.1c11.9-15.1 20-36.1 17.8-57.1-18.1 1-40.3 12.8-52.9 27.6-10.8 12.7-20.2 34.2-17.4 54.8 20.2 1.4 40.5-10.2 52.5-25.3zM318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.3 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.3z"></path></svg>
+<span class="font-headline-sm text-headline-sm">Pay</span>
+</button>
+<button class="w-full h-[56px] border border-outline-variant text-on-surface rounded-full flex items-center justify-center gap-2 hover:bg-surface-container-highest active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="credit_card">credit_card</span>
+<span class="font-body-lg text-body-lg">Add credit card</span>
+</button>
+</div>
+<!-- EMAIL RECEIPT row -->
+<div class="flex items-center justify-between py-2 border-b border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface-variant normal-case text-[13px]">Receipt to akito.tanaka@gmail.com</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+</div>
+<!-- PRIVACY STRIP -->
+<div class="bg-surface-container-high border-l-[4px] border-brand-gold p-4 rounded-r-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-brand-gold text-[20px]" data-icon="lock">lock</span>
+<span class="font-body-md text-[12px] text-on-surface leading-snug">Hosted by Stripe. We never see card numbers.</span>
+</div>
+</main>
+<!-- Sticky Footer CTA -->
+<div class="fixed bottom-0 w-full max-w-md bg-gradient-to-t from-background via-background to-transparent pt-12 pb-safe px-container_padding z-40">
+<button class="w-full h-[56px] bg-primary text-on-primary rounded-full flex items-center justify-center font-headline-sm text-headline-sm shadow-[0_4px_12px_rgba(215,25,33,0.3)] hover:opacity-90 active:scale-95 transition-all mb-4">
+                Pay $9.99 with Apple Pay
+            </button>
+</div>
+</div>
+</body></html>

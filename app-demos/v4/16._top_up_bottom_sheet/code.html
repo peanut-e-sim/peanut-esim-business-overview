@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Top-Up / Refuel Bottom Sheet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e2dfff",
+                        "surface-container": "#f9ebe6",
+                        "surface-container-high": "#f3e5e0",
+                        "on-surface": "#211a17",
+                        "on-primary-fixed-variant": "#93000e",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "outline": "#916f6b",
+                        "secondary-container": "#ffd167",
+                        "on-tertiary-container": "#f2eeff",
+                        "primary-fixed": "#ffdad6",
+                        "on-primary-container": "#ffecea",
+                        "secondary-fixed-dim": "#edc158",
+                        "outline-variant": "#e6bdb8",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "surface-tint": "#c00015",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#ffdf9b",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#fff1eb",
+                        "tertiary": "#525274",
+                        "on-error-container": "#93000a",
+                        "on-background": "#211a17",
+                        "on-tertiary-fixed": "#181837",
+                        "surface-dim": "#e4d7d2",
+                        "tertiary-container": "#6a6a8e",
+                        "surface-bright": "#fff8f6",
+                        "surface-variant": "#ede0da",
+                        "on-secondary-container": "#765900",
+                        "surface-container-highest": "#ede0da",
+                        "surface": "#fff8f6",
+                        "primary-container": "#d71921",
+                        "on-secondary-fixed": "#251a00",
+                        "inverse-primary": "#ffb4ac",
+                        "primary": "#ae0012",
+                        "secondary": "#785a00",
+                        "on-primary-fixed": "#410002",
+                        "inverse-surface": "#362f2b",
+                        "background": "#fff8f6",
+                        "inverse-on-surface": "#fceee8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "12px",
+                        "stack_gap": "16px",
+                        "section_gap": "32px",
+                        "container_padding": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "numeric-data": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-sm": ["Manrope"],
+                        "display-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "numeric-data": ["16px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .bottom-sheet-shadow {
+            box-shadow: 0 -4px 24px rgba(26,20,17,0.1);
+        }
+        .card-shadow {
+            box-shadow: 0 2px 8px rgba(26,20,17,0.06);
+        }
+        /* Toggle Switch Styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #d71921;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #d71921;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen relative overflow-hidden flex flex-col items-center justify-center">
+<!-- Mock Background (Screen 15 representation) -->
+<div class="absolute inset-0 z-0 w-full max-w-md mx-auto bg-surface flex flex-col p-container_padding pointer-events-none opacity-50">
+<header class="flex justify-between items-center mb-section_gap">
+<span class="material-symbols-outlined text-on-surface" data-icon="arrow_back">arrow_back</span>
+<div class="font-headline-md text-headline-md text-on-surface">Japan</div>
+<span class="material-symbols-outlined text-on-surface" data-icon="more_vert">more_vert</span>
+</header>
+<div class="bg-surface-container rounded-3xl p-container_padding mb-section_gap flex flex-col items-center card-shadow">
+<img alt="Japan Flag" class="w-20 h-20 rounded-full object-cover mb-stack_gap border-4 border-surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv1gsDpxYRf32AljzTbfFA-Z1f1VzOqehfhiVnDC3tjaA5CEl2v9YPnnf6rfmvHuaSjCPz22Au44tpy39nw02MEh0dsxONeMiKwcJnn6CHa4yf4LsPkps01j-3pgJR3b4vs5EZYe65-Ziq-7M42xZXG7TGhDqAr5k9PqUaUEVHca3vn2dfZhkUkaPamxJWmHFCOQGtz_7gj7__qJNpHnUKr3Rc-4jmRZTq5XoalOYBVTQXcoN-1LDcVcR-vtEvnnqxBEKwZoSGOks"/>
+<div class="w-full bg-outline-variant rounded-full h-3 mb-2 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full w-3/4"></div>
+</div>
+<div class="w-full flex justify-between font-label-caps text-label-caps text-on-surface-variant">
+<span>3.2 GB USED</span>
+<span>5 GB TOTAL</span>
+</div>
+</div>
+<div class="flex items-center space-x-unit">
+<span class="material-symbols-outlined text-secondary" data-icon="cell_tower">cell_tower</span>
+<span class="font-body-md text-body-md">Connected: NTT Docomo</span>
+</div>
+</div>
+<!-- Backdrop Dimmer -->
+<div class="absolute inset-0 z-10 bg-[#FBF6EC]/60 backdrop-blur-sm w-full max-w-md mx-auto"></div>
+<!-- Bottom Sheet -->
+<div class="absolute bottom-0 z-20 w-full max-w-md mx-auto bg-surface-container-lowest rounded-t-[24px] bottom-sheet-shadow flex flex-col pt-4 pb-8 px-container_padding transform translate-y-0 transition-transform duration-300">
+<!-- Grab Handle -->
+<div class="w-full flex justify-center mb-6">
+<div class="w-10 h-1 rounded-full bg-secondary opacity-50"></div>
+</div>
+<!-- Header -->
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center space-x-3">
+<h2 class="font-headline-md text-[22px] font-bold text-on-surface leading-tight">Refuel Japan eSIM</h2>
+<div class="w-6 h-6 rounded-full overflow-hidden border border-outline-variant flex-shrink-0">
+<img alt="Japan Flag Chip" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG4xfr26MNq-AGyZWnOyhCOW2T-aHVWbKYqReUe1pF0VvUZCD_E1RLdTB36oWvORqR-YeQmLegrnncd-omfbTipcE6M26G-gLh2-y8YxgFL8uAr-VWQg3-GGwyQ_zyCYdst-PROz3Hs3aVr-uGodk7HchezNst33RrYgP1aWtDYcAXO9chLcoTKEn99fd88B5cifM9w0AqPH7m3FFG88e_pTtYKcQE4pjFADD1uiiSwLI-6zCDgiTUx1WP2Ar4YGHJjuqLegyBmxU"/>
+</div>
+</div>
+</div>
+<!-- Illustration Area -->
+<div class="w-full flex justify-center mb-8">
+<div class="w-[140px] h-[80px] bg-surface-container rounded-xl flex items-center justify-center relative overflow-hidden card-shadow">
+<!-- Placeholder for Watercolor Illustration -->
+<div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiAvPgo8cGF0aCBkPSJNMCAwbDhfOHpNOCAwTDBfOHoiIHN0cm9rZT0iI2U2YmRiOCIgc3Ryb2tlLXdpZHRoPSIwLjUiIC8+Cjwvc3ZnPg==')]"></div>
+<span class="material-symbols-outlined text-4xl text-secondary z-10" data-icon="local_gas_station" style="font-variation-settings: 'FILL' 1;">local_gas_station</span>
+<span class="material-symbols-outlined text-xl text-primary z-10 absolute bottom-2 right-6" data-icon="sim_card" style="font-variation-settings: 'FILL' 1;">sim_card</span>
+</div>
+</div>
+<!-- Slider / Selector -->
+<div class="flex bg-surface-container-highest rounded-full p-1 mb-6">
+<button class="flex-1 py-2 rounded-full font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors">1 GB</button>
+<button class="flex-1 py-2 rounded-full font-label-caps text-label-caps bg-primary-container text-on-primary shadow-sm transition-colors">2 GB</button>
+<button class="flex-1 py-2 rounded-full font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface transition-colors">5 GB</button>
+</div>
+<!-- Price Display -->
+<div class="text-center mb-section_gap">
+<div class="font-display-lg text-display-lg text-on-surface">$3.99</div>
+</div>
+<!-- Toggle Section -->
+<div class="bg-surface rounded-2xl p-4 card-shadow mb-8 flex items-center justify-between border border-surface-variant">
+<div class="flex flex-col">
+<span class="font-body-lg text-body-lg text-on-surface">Use pool (free)</span>
+<span class="font-body-md text-[12px] text-on-surface-variant">Saves 1 GB from your 15 GB pool</span>
+</div>
+<!-- Toggle Switch -->
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-surface-variant appearance-none cursor-pointer z-10 top-0 left-0 transition-all duration-200" id="toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200" for="toggle"></label>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col items-center space-y-4">
+<button class="w-full py-4 rounded-full bg-primary-container text-on-primary font-body-lg text-body-lg font-bold shadow-md hover:bg-primary transition-colors flex items-center justify-center space-x-2">
+<span>Refuel 2 GB · $3.99</span>
+</button>
+<button class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors">
+                Maybe later
+            </button>
+</div>
+</div>
+</body></html>

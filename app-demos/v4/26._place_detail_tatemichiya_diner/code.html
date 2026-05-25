@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Place Detail - Tatemichiya Diner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "tertiary-fixed": "#e2dfff",
+                            "on-error": "#ffffff",
+                            "surface-tint": "#c00015",
+                            "tertiary-fixed-dim": "#c4c3eb",
+                            "inverse-on-surface": "#fceee8",
+                            "outline-variant": "#e6bdb8",
+                            "surface-bright": "#fff8f6",
+                            "primary-fixed": "#ffdad6",
+                            "tertiary": "#525274",
+                            "surface-container-lowest": "#ffffff",
+                            "on-tertiary-container": "#f2eeff",
+                            "on-primary-fixed": "#410002",
+                            "on-surface-variant": "#5d3f3c",
+                            "primary-fixed-dim": "#ffb4ac",
+                            "on-tertiary": "#ffffff",
+                            "on-tertiary-fixed": "#181837",
+                            "on-secondary": "#ffffff",
+                            "tertiary-container": "#6a6a8e",
+                            "surface-container": "#f9ebe6",
+                            "error": "#ba1a1a",
+                            "on-primary-fixed-variant": "#93000e",
+                            "surface-dim": "#e4d7d2",
+                            "on-secondary-fixed-variant": "#5b4300",
+                            "inverse-surface": "#362f2b",
+                            "on-secondary-container": "#765900",
+                            "error-container": "#ffdad6",
+                            "outline": "#916f6b",
+                            "secondary": "#785a00",
+                            "primary": "#ae0012",
+                            "surface-container-high": "#f3e5e0",
+                            "on-background": "#211a17",
+                            "background": "#fff8f6",
+                            "on-tertiary-fixed-variant": "#444465",
+                            "surface-container-highest": "#ede0da",
+                            "surface": "#fff8f6",
+                            "secondary-fixed-dim": "#edc158",
+                            "primary-container": "#d71921",
+                            "on-error-container": "#93000a",
+                            "secondary-container": "#ffd167",
+                            "on-secondary-fixed": "#251a00",
+                            "on-primary": "#ffffff",
+                            "secondary-fixed": "#ffdf9b",
+                            "on-surface": "#211a17",
+                            "on-primary-container": "#ffecea",
+                            "inverse-primary": "#ffb4ac",
+                            "surface-container-low": "#fff1eb",
+                            "surface-variant": "#ede0da"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "container_padding": "24px",
+                            "gutter": "12px",
+                            "section_gap": "32px",
+                            "stack_gap": "16px",
+                            "unit": "4px"
+                    },
+                    "fontFamily": {
+                            "headline-sm": [
+                                    "Manrope"
+                            ],
+                            "headline-md": [
+                                    "Manrope"
+                            ],
+                            "body-lg": [
+                                    "Inter"
+                            ],
+                            "body-md": [
+                                    "Inter"
+                            ],
+                            "numeric-data": [
+                                    "Manrope"
+                            ],
+                            "label-caps": [
+                                    "JetBrains Mono"
+                            ],
+                            "display-lg": [
+                                    "Manrope"
+                            ]
+                    },
+                    "fontSize": {
+                            "headline-sm": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "26px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "body-md": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "22px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "numeric-data": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "label-caps": [
+                                    "11px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.08em",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "display-lg": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ]
+                    }
+            },
+                },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FBF6EC; /* Cream background */
+        }
+        .editorial-shadow {
+            box-shadow: 0 2px 8px rgba(26, 20, 17, 0.06);
+        }
+        .organic-crop-1 {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        .organic-crop-2 {
+            border-radius: 50% 40% 60% 40% / 50% 50% 50% 40%;
+        }
+    </style>
+</head>
+<body class="text-on-surface antialiased min-h-screen pb-[100px]">
+<!-- TOP BAR -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-container_padding py-4 w-full bg-[#FBF6EC]/90 backdrop-blur-md">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-center rounded-full bg-white editorial-shadow text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 300;">arrow_back_ios_new</span>
+</button>
+<div class="flex items-center gap-3">
+<button aria-label="Share" class="w-10 h-10 flex items-center justify-center rounded-full bg-white editorial-shadow text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 300;">ios_share</span>
+</button>
+<button aria-label="Bookmark" class="w-10 h-10 flex items-center justify-center rounded-full bg-white editorial-shadow text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 300;">bookmark_border</span>
+</button>
+</div>
+</header>
+<main class="px-5">
+<!-- HERO CAROUSEL -->
+<section class="mt-2 mb-6">
+<div class="relative w-full h-[280px] organic-crop-1 overflow-hidden editorial-shadow bg-surface-container-high">
+<img alt="Okonomiyaki" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNK9uXiWjbm3K-gGNjcCesiXFsQuoxSduVvkO8GvUfm8NgWygIy7166_1u4VIUFvcy77aDYhozn_JwfNKhtQzMSJx07PVwRhdT3imyFK2WdqEZ8xTzw9lu30pG1L62NlXSgLQpaXRC_eWxaxdQ50nsH6uq72QXZ-0mVUrgJb0FSP5YeAF7ovVunU1zYwgUysDTSrK4pGKQOQAuzOJIHvlpwI_sSlxfxUxRAUIR32eV8-BDacKIRJoz2M0U6Iazg9i8C5QC8bU7AaY"/>
+</div>
+<!-- Carousel Dots -->
+<div class="flex justify-center gap-2 mt-4">
+<div class="w-2 h-2 rounded-full bg-on-surface-variant"></div>
+<div class="w-2 h-2 rounded-full bg-on-surface-variant/30"></div>
+<div class="w-2 h-2 rounded-full bg-on-surface-variant/30"></div>
+</div>
+</section>
+<!-- HEADER CONTENT -->
+<section class="mb-section_gap">
+<h1 class="font-headline-md text-headline-md text-on-surface mb-3 tracking-tight">Tatemichiya Diner</h1>
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center px-3 py-1 bg-surface-container rounded-full font-label-caps text-label-caps text-on-surface-variant uppercase">
+                    Restaurant
+                </span>
+<div class="flex items-center gap-1 text-secondary-fixed-dim">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">flight</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">flight</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">flight</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">flight</span>
+<span class="material-symbols-outlined text-[16px] text-surface-variant" style="font-variation-settings: 'FILL' 1;">flight</span>
+</div>
+</div>
+</section>
+<!-- CREW DESCRIPTION CARD -->
+<section class="mb-section_gap">
+<div class="bg-white rounded-xl p-container_padding editorial-shadow relative overflow-hidden">
+<!-- Decorative quote mark background -->
+<span class="material-symbols-outlined absolute -top-4 -left-2 text-[80px] text-surface-container opacity-50 z-0 select-none">format_quote</span>
+<div class="relative z-10">
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed mb-4" style="font-size: 15px;">
+                        "Stand-up okonomiyaki spot, opens 5am, perfect after a late ULH landing. Ask for the modan. Pay cash."
+                    </p>
+<div class="flex justify-end">
+<span class="font-label-caps text-label-caps text-secondary-container tracking-wider uppercase">— @captain_reyes</span>
+</div>
+</div>
+</div>
+</section>
+<!-- MAP SECTION -->
+<section class="mb-section_gap">
+<div class="bg-surface-container rounded-xl p-4 editorial-shadow flex items-center gap-4">
+<div class="w-20 h-20 shrink-0 organic-crop-2 overflow-hidden bg-white shadow-sm border border-outline-variant/30">
+<img alt="Mini map of Ebisu" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDExDB-QPIx74Yi35TpiOCCQvyOHqRtIrJItcWGDI4HrKq7RIDRTeWiBbH-eEpGdUlfxgvlZpH0MdCIhKorxS8WZnz2k24H_bsRktUvHk_BimP5B2OS-3dkeUQXwvOwYGNuMjrMY4EA3tZ5v7I7icbKN2QcJCC8Ls7S2KbeOFGORrDjLC1va7i_dDBhPpmqYDMVh375S-FZmUJxWvGewwsKq0IPsObGaiWWbLm72m7o0kBtSUzvedhS4nt7_F2QJwhaQyjU2HK-qUg"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium leading-tight mb-1" style="font-size: 13px;">1-23-5 Ebisu, Shibuya</p>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1" style="font-size: 12px;">
+<span class="material-symbols-outlined text-[14px]">directions_walk</span>
+                        6 min walk from hotel
+                    </p>
+</div>
+</div>
+</section>
+<!-- STATS ROW -->
+<section class="mb-section_gap flex flex-wrap gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-outline-variant/40 rounded-full text-secondary-fixed-dim editorial-shadow">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">24 crew liked</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-outline-variant/40 rounded-full text-secondary-fixed-dim editorial-shadow">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">12 comments</span>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-outline-variant/40 rounded-full text-secondary-fixed-dim editorial-shadow">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">8 saved</span>
+</div>
+</section>
+<!-- COMMENTS LIST -->
+<section class="mb-section_gap">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-4 tracking-tight">Crew Comments</h2>
+<div class="flex flex-col gap-0 bg-white rounded-xl editorial-shadow overflow-hidden">
+<!-- Comment 1 -->
+<div class="p-4 border-b border-outline-variant/30 flex gap-3 last:border-b-0">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">SM</span>
+</div>
+<div class="flex-1">
+<div class="flex items-baseline justify-between mb-1">
+<span class="font-label-caps text-label-caps text-on-surface font-bold">@sara_m</span>
+<span class="font-body-md text-body-md text-on-surface-variant" style="font-size: 11px;">1d ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Tried it post-CDG. Worth the queue.</p>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="p-4 border-b border-outline-variant/30 flex gap-3 last:border-b-0">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">AT</span>
+</div>
+<div class="flex-1">
+<div class="flex items-baseline justify-between mb-1">
+<span class="font-label-caps text-label-caps text-on-surface font-bold">@akito_t</span>
+<span class="font-body-md text-body-md text-on-surface-variant" style="font-size: 11px;">3d ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Order the modan with cheese.</p>
+</div>
+</div>
+<!-- Comment 3 -->
+<div class="p-4 border-b border-outline-variant/30 flex gap-3 last:border-b-0">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">FO</span>
+</div>
+<div class="flex-1">
+<div class="flex items-baseline justify-between mb-1">
+<span class="font-label-caps text-label-caps text-on-surface font-bold">@first_officer</span>
+<span class="font-body-md text-body-md text-on-surface-variant" style="font-size: 11px;">5d ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Cash only, ATM next door.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BOTTOM ACTION BAR -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white rounded-full px-6 py-3 shadow-sm editorial-shadow z-50 flex items-center justify-between border border-outline-variant/20">
+<button class="flex items-center gap-1.5 text-secondary-fixed-dim hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="font-numeric-data text-numeric-data text-on-surface">24</span>
+</button>
+<button class="flex items-center justify-center text-secondary-fixed-dim hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 300;">chat_bubble_outline</span>
+</button>
+<button class="flex items-center justify-center text-secondary-fixed-dim hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 300;">bookmark_border</span>
+</button>
+<button class="flex items-center justify-center text-secondary-fixed-dim hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 300;">ios_share</span>
+</button>
+</div>
+</body></html>

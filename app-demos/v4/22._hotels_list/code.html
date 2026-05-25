@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Emirates Crew - Hotels</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e2dfff",
+                        "tertiary-container": "#6a6a8e",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fff8f6",
+                        "surface-tint": "#c00015",
+                        "primary-container": "#d71921",
+                        "primary-fixed": "#ffdad6",
+                        "outline": "#916f6b",
+                        "inverse-on-surface": "#fceee8",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f6",
+                        "on-surface-variant": "#5d3f3c",
+                        "secondary": "#785a00",
+                        "on-tertiary-container": "#f2eeff",
+                        "on-secondary-container": "#765900",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#ffdf9b",
+                        "secondary-container": "#ffd167",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb4ac",
+                        "on-background": "#211a17",
+                        "on-secondary-fixed": "#251a00",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "on-surface": "#211a17",
+                        "on-primary-container": "#ffecea",
+                        "on-primary-fixed": "#410002",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000e",
+                        "background": "#FBF6EC", // Cream bg
+                        "surface-container-highest": "#ede0da",
+                        "primary": "#ae0012",
+                        "outline-variant": "#e6bdb8",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#ede0da",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "surface-dim": "#e4d7d2",
+                        "tertiary": "#525274",
+                        "on-tertiary-fixed": "#181837",
+                        "inverse-surface": "#362f2b",
+                        "secondary-fixed-dim": "#edc158",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "surface-container-low": "#fff1eb",
+                        "surface-container-high": "#f3e5e0",
+                        "surface-container": "#f9ebe6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "14px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container_padding": "24px",
+                        "gutter": "12px",
+                        "section_gap": "32px",
+                        "stack_gap": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "numeric-data": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "numeric-data": ["16px", { "lineHeight": "16px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #FBF6EC; }
+        .blob-crop { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; overflow: hidden; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased min-h-screen pb-32">
+<!-- Top App Bar (Web & Mobile Hybrid Approach as per JSON) -->
+<header class="w-full top-0 sticky bg-surface dark:bg-surface-dim z-40">
+<div class="flex justify-between items-center px-container_padding py-unit w-full max-w-full mx-auto h-16">
+<div class="flex items-center gap-4">
+<button aria-label="Menu" class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md tracking-tight text-on-surface">Crew Hotels</h1>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Search" class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="Filter" class="text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-2xl mx-auto">
+<!-- Caption Strip -->
+<div class="px-5 py-4">
+<p class="font-label-caps text-label-caps text-[#C9A03B] uppercase">SHOWING DXB-BASED CREW STAYS</p>
+</div>
+<!-- City Filter Row -->
+<div class="px-5 mb-6 overflow-x-auto hide-scrollbar flex gap-3 whitespace-nowrap snap-x">
+<button class="snap-start shrink-0 px-6 py-2 rounded-full bg-primary-container text-white font-label-caps text-label-caps uppercase active:scale-95 transition-transform shadow-sm">Tokyo</button>
+<button class="snap-start shrink-0 px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps uppercase hover:bg-surface-variant transition-colors active:scale-95 transition-transform">London</button>
+<button class="snap-start shrink-0 px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps uppercase hover:bg-surface-variant transition-colors active:scale-95 transition-transform">Bangkok</button>
+<button class="snap-start shrink-0 px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps uppercase hover:bg-surface-variant transition-colors active:scale-95 transition-transform">Sydney</button>
+<button class="snap-start shrink-0 px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps uppercase hover:bg-surface-variant transition-colors active:scale-95 transition-transform">NYC</button>
+<button class="snap-start shrink-0 px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps uppercase hover:bg-surface-variant transition-colors active:scale-95 transition-transform">Mauritius</button>
+</div>
+<!-- Hotel Cards List -->
+<div class="px-5 flex flex-col gap-6">
+<!-- Card 1 -->
+<article class="bg-white rounded-2xl p-6 shadow-[0_2px_8px_rgba(26,20,17,0.06)] relative overflow-hidden">
+<div class="flex gap-6 items-start">
+<div class="w-24 h-24 shrink-0 blob-crop bg-surface-variant">
+<img alt="Tokyo Marriott Akasaka" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe_yfJgGbKmbFWYyE7ajrcmLaTs2nJmV03ef4l2o-L01_5_l3Ytg7VtCD32pfhjPvDsevLxSqJ7gAWIMUzpfELorA3tgY00-P9i7fF7tFGMOXTtbuokeIeKAYqKuQLaXC29-JGAhKj1J95zvkA00x62uSiayNAyaAufK40PB2nQCFDKgNYrJHqORsihYVuU1r-80sIvJ0Sg14QvAGLJTyFygPYdQaKGYBP0pn2tviB6sPwjmHLpgdz6reTVSicNJucnEbWBgq4MLE"/>
+</div>
+<div class="flex-1 min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1 truncate">Tokyo Marriott Akasaka</h2>
+<div class="flex items-center gap-1 mb-3">
+<div class="flex text-[#C9A03B]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined text-outline-variant" style="font-variation-settings: 'FILL' 0; font-size: 16px;">star</span>
+</div>
+<span class="font-body-md text-[13px] text-on-surface-variant ml-1">4.2/5 (124 crew ratings)</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface px-2 py-1 rounded text-on-surface-variant font-label-caps text-[10px]">IRON ✓</span>
+<span class="bg-surface px-2 py-1 rounded text-on-surface-variant font-label-caps text-[10px]">DRYER ✓</span>
+<span class="bg-surface px-2 py-1 rounded text-on-surface-variant font-label-caps text-[10px]">GYM ✓</span>
+<span class="bg-surface px-2 py-1 rounded text-outline font-label-caps text-[10px] opacity-70">QUIET ✗</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-6 right-6">
+<span class="bg-[#FBF6EC] border border-[#C9A03B] text-[#765900] px-3 py-1 rounded-full font-label-caps text-[10px]">AIRLINE-ASSIGNED</span>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-white rounded-2xl p-6 shadow-[0_2px_8px_rgba(26,20,17,0.06)] relative overflow-hidden">
+<div class="flex gap-6 items-start">
+<div class="w-24 h-24 shrink-0 blob-crop bg-surface-variant">
+<img alt="Park Hotel Tokyo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOKrEiD2TvUhDsRbo5Wo7O7iGJX9od6TgnJT_ubS9rbdOBvhx7ZAJMZvVUl-ZITqDKT67LjaQ7kdtb-5tUu2qnEOtKeHLUsxTmUz8fgNmFau-QdnX5VGMB3ziyRHe5rtL_d7NLA8ni-5NdWO_O6NahyHQMlq1M1pYBA7OVUDkEmoQZEDD7oEnr6-VX3EWx8rX8YhU7fgi5rYySl39LofKVcO2ot_VqvBhV6doZ0Kx_x_ux6NwDJ9tvqKQA3HBfBLdq2gxdv3KGzYk"/>
+</div>
+<div class="flex-1 min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1 truncate">Park Hotel Tokyo</h2>
+<div class="flex items-center gap-1 mb-3">
+<div class="flex text-[#C9A03B]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star_half</span>
+</div>
+<span class="font-body-md text-[13px] text-on-surface-variant ml-1">4.5/5 (89 crew ratings)</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface px-2 py-1 rounded text-on-surface-variant font-label-caps text-[10px]">IRON ✓</span>
+<span class="bg-surface px-2 py-1 rounded text-outline font-label-caps text-[10px] opacity-70">DRYER ✗</span>
+<span class="bg-surface px-2 py-1 rounded text-on-surface-variant font-label-caps text-[10px]">GYM ✓</span>
+<span class="bg-surface px-2 py-1 rounded text-on-surface-variant font-label-caps text-[10px]">QUIET ✓</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-white rounded-2xl p-6 shadow-[0_2px_8px_rgba(26,20,17,0.06)] relative overflow-hidden">
+<div class="flex gap-6 items-start">
+<div class="w-24 h-24 shrink-0 blob-crop bg-surface-variant">
+<img alt="Shinjuku Granbell" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgMUiHU1Zj4fV0SdonpKDUEvFgaGYp20i31gnwl_y7i9KYXcnAJrJ8BxE7OMr2dwBRD3rH0m7A5hVYhtSscOOaE1YnPTF9Dyw0jlpOftTCmEWeeysKA2DurumZ00CnaibIuCYT08AWHIh6FExy6LUWQwi34nidiKReTQS90mObtDQESQygLXAjRZvXwo-wibzFnkIU41QGmdXMbml8_K9VEIp6xd6KyJYExZ2dC-35BAqAOKgBKOWvVzQV1kpwNVDvXhb1DcoVJe4"/>
+</div>
+<div class="flex-1 min-w-0">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-1 truncate">Shinjuku Granbell</h2>
+<div class="flex items-center gap-1 mb-3">
+<div class="flex text-[#C9A03B]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1; font-size: 16px;">star_half</span>
+<span class="material-symbols-outlined text-outline-variant" style="font-variation-settings: 'FILL' 0; font-size: 16px;">star</span>
+</div>
+<span class="font-body-md text-[13px] text-on-surface-variant ml-1">3.8/5 (211 crew ratings)</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface px-2 py-1 rounded text-on-surface-variant font-label-caps text-[10px]">IRON ✓</span>
+<span class="bg-surface px-2 py-1 rounded text-on-surface-variant font-label-caps text-[10px]">DRYER ✓</span>
+<span class="bg-surface px-2 py-1 rounded text-outline font-label-caps text-[10px] opacity-70">GYM ✗</span>
+<span class="bg-surface px-2 py-1 rounded text-outline font-label-caps text-[10px] opacity-70">QUIET ✗</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-md rounded-full bg-white/80 dark:bg-inverse-surface/80 backdrop-blur-md shadow-sm shadow-[0_2px_8px_rgba(26,20,17,0.06)] z-50">
+<div class="flex justify-around items-center px-4 py-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">home</span>
+<span class="font-label-caps text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">language</span>
+<span class="font-label-caps text-[10px]">Plans</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">sim_card</span>
+<span class="font-label-caps text-[10px]">eSIMs</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary dark:bg-primary-container text-white dark:text-on-primary-container rounded-full p-3 active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">hotel</span>
+<span class="font-label-caps text-[10px]">Hotels</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full active:scale-90 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">person</span>
+<span class="font-label-caps text-[10px]">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

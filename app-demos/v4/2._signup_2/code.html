@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CrewLink - Join the Crew</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#ede0da",
+                        "surface-container": "#f9ebe6",
+                        "on-tertiary-fixed": "#181837",
+                        "surface-bright": "#fff8f6",
+                        "inverse-on-surface": "#fceee8",
+                        "inverse-surface": "#362f2b",
+                        "primary-fixed": "#ffdad6",
+                        "on-surface": "#211a17",
+                        "secondary": "#785a00",
+                        "secondary-fixed-dim": "#edc158",
+                        "on-secondary-fixed-variant": "#5b4300",
+                        "on-primary-container": "#ffecea",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#e4d7d2",
+                        "secondary-fixed": "#ffdf9b",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#525274",
+                        "on-background": "#211a17",
+                        "tertiary-container": "#6a6a8e",
+                        "surface-container-high": "#f3e5e0",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "primary-container": "#d71921",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#93000e",
+                        "on-primary-fixed": "#410002",
+                        "surface-variant": "#ede0da",
+                        "secondary-container": "#ffd167",
+                        "surface-tint": "#c00015",
+                        "outline": "#916f6b",
+                        "primary": "#ae0012",
+                        "on-tertiary-fixed-variant": "#444465",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#765900",
+                        "background": "#fff8f6",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#e6bdb8",
+                        "tertiary-fixed-dim": "#c4c3eb",
+                        "tertiary-fixed": "#e2dfff",
+                        "surface-container-low": "#fff1eb",
+                        "surface": "#fff8f6",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#f2eeff",
+                        "on-secondary-fixed": "#251a00",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#ffb4ac"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "card": "14px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "section_gap": "32px",
+                        "container_padding": "24px",
+                        "unit": "4px",
+                        "stack_gap": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["JetBrains Mono"],
+                        "numeric-data": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                        "numeric-data": ["16px", {"lineHeight": "16px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #FBF6EC;
+            color: #211a17;
+            -webkit-font-smoothing: antialiased;
+        }
+        .watercolor-blob {
+            mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
+        }
+        .tonal-shadow {
+            box-shadow: 0 2px 8px rgba(26, 20, 17, 0.06);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Top Right Watermark -->
+<div class="absolute top-0 right-0 p-4 opacity-40 watercolor-blob select-none pointer-events-none">
+<div class="w-20 h-20 bg-gradient-to-br from-[#D71921] to-[#C9A03B] rounded-full flex items-center justify-center rotate-12 overflow-hidden blur-xl absolute -z-10"></div>
+<img alt="Paper airplane watermark" class="w-20 h-20 object-contain mix-blend-multiply" data-alt="A delicate, artistic watercolor illustration of a folded paper airplane rendered in soft shades of deep red and metallic gold. The style is loose and painterly, with organic bleed edges and subtle textures typical of high-end stationery. The airplane floats against a warm cream background, embodying a sense of travel, luxury, and professional aviation heritage. The lighting is soft and diffused, creating a serene, editorial atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfBeedX8H7rorL0MOVPQ2J-HT2yz7qdgZUk25TX7BrmEzWxrsOCw5NvaQCJtMGdSwTe5A0HGwjecJ0HcoDrYPGFO26yXbXjvs0ZKkMjOSa4sB6PUjfS_p2XWhs4bwIxCTN7JnKPQ7NQBkwBPIoSZtSn5uW5uZ1xsP01Eq9-6sBxfvtk9gDn4KYlF0ktkjXozhESc9fJyJxu0-CsST6SPJl87blI6dRoo61b-rTk1MxzcvJWGALQjwuAh211ddbpjGL-sLcYL7CfQ8"/>
+</div>
+<!-- Header Section -->
+<header class="pt-8 px-gutter flex flex-col items-start w-full max-w-lg mx-auto">
+<button class="mb-6 p-2 -ml-2 transition-transform active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#6B6259]" style="font-size: 24px;">chevron_left</span>
+</button>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-1">Create your account</h1>
+<p class="font-body-md text-[#6B6259] text-[15px]">Join the crew.</p>
+</header>
+<!-- Main Content Card -->
+<main class="mt-8 px-gutter w-full max-w-lg mx-auto flex-grow">
+<div class="bg-white rounded-card p-container_padding tonal-shadow">
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- Input 1: Full Name -->
+<div class="space-y-2">
+<label class="block font-label-caps text-label-caps text-[#C9A03B]">FULL NAME</label>
+<input class="w-full h-14 px-4 bg-white border border-outline-variant rounded-card focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/40 font-body-md" placeholder="Akito Tanaka" type="text"/>
+</div>
+<!-- Input 2: Personal Email -->
+<div class="space-y-2">
+<label class="block font-label-caps text-label-caps text-[#C9A03B]">PERSONAL EMAIL</label>
+<input class="w-full h-14 px-4 bg-white border border-outline-variant rounded-card focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/40 font-body-md" placeholder="you@gmail.com" type="email"/>
+<p class="text-[12px] leading-tight text-[#6B6259] px-1 font-body-md">
+                        Use any personal email — we'll verify your crew status separately.
+                    </p>
+</div>
+<!-- Input 3: Password -->
+<div class="space-y-2">
+<label class="block font-label-caps text-label-caps text-[#C9A03B]">PASSWORD</label>
+<div class="relative">
+<input class="w-full h-14 px-4 pr-12 bg-white border border-outline-variant rounded-card focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-on-surface-variant/40 font-body-md" id="password-input" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant/60" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined" id="password-icon">visibility</span>
+</button>
+</div>
+<p class="text-[12px] text-[#6B6259] px-1 font-body-md">8+ characters</p>
+</div>
+<!-- CTA Button -->
+<div class="pt-2">
+<button class="w-full h-[56px] bg-[#D71921] hover:bg-[#ae0012] text-white font-semibold text-[16px] rounded-full transition-all active:scale-[0.98] duration-200 tonal-shadow">
+                        Create account
+                    </button>
+</div>
+</form>
+</div>
+<!-- Sign In Link -->
+<div class="mt-8 text-center">
+<p class="text-[14px] text-on-surface-variant font-body-md">
+                Already have an account? 
+                <a class="text-[#2A2A4A] font-semibold hover:underline decoration-2 underline-offset-4 ml-1" href="#">Sign in</a>
+</p>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto py-8 px-gutter w-full max-w-lg mx-auto">
+<p class="text-[11px] leading-relaxed text-[#6B6259] text-center max-w-[280px] mx-auto font-body-md">
+            By signing up you agree to our <a class="underline" href="#">Terms</a> and <a class="underline" href="#">Privacy Policy</a>.
+        </p>
+<!-- Safe Area Spacer -->
+<div class="h-6"></div>
+</footer>
+<script>
+        function togglePassword() {
+            const input = document.getElementById('password-input');
+            const icon = document.getElementById('password-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.innerText = 'visibility_off';
+            } else {
+                input.type = 'password';
+                icon.innerText = 'visibility';
+            }
+        }
+
+        // Suppression of Shell Components as per "The Destination Rule"
+        // Since this is a Transactional/Signup page, no navigation shells are rendered.
+    </script>
+</body></html>
