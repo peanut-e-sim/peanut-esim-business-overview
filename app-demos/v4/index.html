@@ -3,376 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CrewLink — Stitch App Demo v4 (29 screens · Cabin-Class Editorial)</title>
+<title>CrewLink — App Demo v4 (clickable prototype)</title>
 <style>
   :root {
     --red: #D71921; --red-dark: #6E0D14; --red-deep: #B81621;
     --gold: #C9A03B; --gold-light: #E5C77B;
-    --bg: #FFFFFF; --bg-alt: #F4F4F4;
-    --text: #1A1A1A; --text-2: #595959; --line: #E0E0E0;
+    --bg: #1A1A1A; --panel: #232323; --panel-2: #2B2B2B;
+    --text: #F0F0F0; --text-2: #8C8C8C; --line: #383838;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.55; }
-  .ek-header { background: var(--red); color: #fff; padding: 18px 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-  .ek-logo { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
-  .ek-logo span { color: var(--gold-light); font-weight: 400; margin-left: 8px; font-size: 14px; letter-spacing: 0.04em; }
-  .ek-nav { display: flex; gap: 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
-  .ek-nav a { color: #fff; text-decoration: none; opacity: 0.95; }
-  .ek-stripe { height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
-  .ek-subheader { background: #fff; padding: 14px 5vw; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-2); }
-  .ek-subheader span { color: var(--red); font-weight: 700; }
-  .hero { background: linear-gradient(135deg, #fff 60%, #faf5e8); padding: 56px 5vw 40px; border-bottom: 1px solid var(--line); }
-  .hero-inner { max-width: 1280px; margin: 0 auto; }
-  .eyebrow { font-size: 11px; color: var(--red); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; display: inline-block; padding-bottom: 6px; border-bottom: 2px solid var(--red); }
-  h1 { font-weight: 700; font-size: clamp(30px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.012em; margin-bottom: 16px; }
-  h1 em { color: var(--red); font-style: normal; }
-  .lead { color: var(--text-2); font-size: 16px; max-width: 64ch; margin-bottom: 24px; line-height: 1.6; }
-  .stat-row { display: flex; gap: 0; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
-  .stat-row span { flex: 1; min-width: 130px; padding: 14px 14px; background: #fff; border-right: 1px solid var(--line); font-size: 10px; color: var(--text-2); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
-  .stat-row span:last-child { border-right: none; }
-  .stat-row span strong { display: block; font-size: 18px; color: var(--red); font-weight: 800; margin-bottom: 2px; text-transform: none; }
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 40px 5vw 60px; }
-  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
-  .card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; text-decoration: none; color: var(--text); transition: all 0.2s; }
-  .card:hover { border-color: var(--red); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(215,25,33,0.10); }
-  .thumb { aspect-ratio: 9/19.5; background: var(--bg-alt); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .meta { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; }
-  .meta .num { font-size: 10px; color: var(--red); font-weight: 700; letter-spacing: 0.12em; }
-  .meta .title { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .meta .badge { display: inline-block; margin-top: 4px; padding: 2px 8px; background: var(--bg-alt); color: var(--text-2); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; border-radius: 100px; align-self: flex-start; }
-  .ek-footer { background: var(--red-dark); color: #fff; padding: 32px 5vw 24px; margin-top: 56px; }
-  .ek-footer-inner { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-  .ek-footer .left { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
-  .ek-footer a.alt-link { display: inline-block; padding: 10px 18px; background: rgba(255,255,255,0.08); color: #fff; font-size: 12px; text-decoration: none; border-radius: 4px; border: 1px solid rgba(255,255,255,0.18); margin-left: 8px; transition: all 0.18s; }
-  .ek-footer a.alt-link:hover { background: var(--red); border-color: var(--red); }
+  html, body { height: 100%; overflow: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.5; display: grid; grid-template-rows: auto 1fr; }
+
+  .topbar { background: var(--red); color: #fff; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; gap: 14px; border-bottom: 1px solid var(--gold); }
+  .brand { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+  .brand span { color: var(--gold-light); font-weight: 400; margin-left: 6px; font-size: 12px; letter-spacing: 0.04em; }
+  .nav-controls { display: flex; align-items: center; gap: 12px; }
+  .ctrl-btn { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.18); padding: 8px 14px; border-radius: 4px; font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; }
+  .ctrl-btn:hover:not(:disabled) { background: rgba(255,255,255,0.22); }
+  .ctrl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .ctrl-btn .arrow { font-size: 14px; }
+  .screen-indicator { font-family: "SF Mono", Consolas, monospace; font-size: 11px; color: var(--gold-light); letter-spacing: 0.08em; padding: 0 8px; }
+  .topbar-right { display: flex; align-items: center; gap: 16px; font-size: 11px; }
+  .topbar-right a { color: rgba(255,255,255,0.85); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+  .topbar-right a:hover { color: #fff; }
+
+  .layout { display: grid; grid-template-columns: 280px 1fr; height: 100%; overflow: hidden; }
+
+  .sidebar { background: var(--panel); border-right: 1px solid var(--line); overflow-y: auto; padding: 16px 0; }
+  .sidebar h3 { font-size: 9px; color: var(--gold); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 14px 20px 8px; }
+  .sidebar a { display: flex; align-items: center; gap: 10px; padding: 8px 20px; color: var(--text-2); text-decoration: none; font-size: 13px; transition: all 0.12s; border-left: 3px solid transparent; }
+  .sidebar a:hover { color: var(--text); background: var(--panel-2); }
+  .sidebar a.active { color: #fff; background: var(--panel-2); border-left-color: var(--red); }
+  .sidebar a .num { font-family: "SF Mono", monospace; font-size: 10px; color: var(--gold); width: 22px; flex-shrink: 0; font-weight: 700; }
+  .sidebar a .name { flex: 1; }
+
+  .stage { background: var(--bg); position: relative; display: flex; align-items: center; justify-content: center; overflow: auto; padding: 30px; }
+  .phone-frame { position: relative; width: 390px; height: 844px; background: #000; border-radius: 54px; padding: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 8px #1a1a1a, 0 0 0 9px rgba(255,255,255,0.06); flex-shrink: 0; }
+  .phone-frame::before { content: ""; position: absolute; top: 26px; left: 50%; transform: translateX(-50%); width: 120px; height: 36px; background: #000; border-radius: 24px; z-index: 5; }
+  .screen-iframe { width: 100%; height: 100%; border: none; border-radius: 40px; background: #FBF6EC; display: block; overflow: hidden; }
+
+  .stage-caption { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--text-2); letter-spacing: 0.08em; text-transform: uppercase; }
+  .stage-caption .hint { color: var(--gold-light); }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+  }
 </style>
 </head>
 <body>
 
-<header class="ek-header">
-  <div class="ek-logo">CrewLink<span>· APP DEMO V4</span></div>
-  <nav class="ek-nav">
-    <a href="../">All Versions</a>
-    <a href="../../app-demo/">/app-demo (legacy)</a>
-    <a href="../../docs/downloads/stitch-prompts-crewlink-6batches.html">Source prompts</a>
-  </nav>
-</header>
-<div class="ek-stripe"></div>
-
-<div class="ek-subheader">
-  App Demos <span>›</span> <span>Version 4 — Cabin-Class Editorial (Stitch)</span>
-</div>
-
-<section class="hero">
-  <div class="hero-inner">
-    <span class="eyebrow">Generated by Stitch · 2026-05-25 · Cabin-Class Editorial</span>
-    <h1>App demo <em>Version 4</em></h1>
-    <p class="lead">Full 29-screen CrewLink mockup generated by Stitch from the 6-batch prompt set. Click any screen to view the generated HTML render. Use the gallery to compare flow + visual rhythm before committing to a direction.</p>
-    <div class="stat-row">
-      <span><strong>29</strong>Screens</span>
-      <span><strong>35</strong>Variants</span>
-      <span><strong>Watercolor</strong>Illustration style</span>
-      <span><strong>Cream + Red</strong>Palette</span>
-      <span><strong>Manrope</strong>Headlines</span>
-    </div>
+<div class="topbar">
+  <div class="brand">CrewLink<span>· App Demo v4 · Cabin-Class Editorial</span></div>
+  <div class="nav-controls">
+    <button class="ctrl-btn" id="prevBtn"><span class="arrow">‹</span> Prev</button>
+    <div class="screen-indicator" id="indicator">SCREEN 01 / 29</div>
+    <button class="ctrl-btn" id="nextBtn">Next <span class="arrow">›</span></button>
   </div>
-</section>
-
-<div class="wrap">
-  <div class="gallery">
-      <a class="card" href="1._splash_screen_1/screen.png" target="_blank">
-        <div class="thumb"><img loading="lazy" src="1._splash_screen_1/screen.png" alt="Splash Screen (Variant 1)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 01</span>
-          <span class="title">Splash Screen (Variant 1)</span>
-          
-        </div>
-      </a>
-      <a class="card" href="1._splash_screen_2/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="1._splash_screen_2/screen.png" alt="Splash Screen (Variant 2)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 01</span>
-          <span class="title">Splash Screen (Variant 2)</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="2._signup_1/screen.png" target="_blank">
-        <div class="thumb"><img loading="lazy" src="2._signup_1/screen.png" alt="Signup (Variant 1)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 02</span>
-          <span class="title">Signup (Variant 1)</span>
-          
-        </div>
-      </a>
-      <a class="card" href="2._signup_2/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="2._signup_2/screen.png" alt="Signup (Variant 2)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 02</span>
-          <span class="title">Signup (Variant 2)</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="3._email_sent/screen.png" target="_blank">
-        <div class="thumb"><img loading="lazy" src="3._email_sent/screen.png" alt="Email Sent"></div>
-        <div class="meta">
-          <span class="num">SCREEN 03</span>
-          <span class="title">Email Sent</span>
-          
-        </div>
-      </a>
-      <a class="card" href="3._email_sent_confirmation/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="3._email_sent_confirmation/screen.png" alt="Email Sent Confirmation"></div>
-        <div class="meta">
-          <span class="num">SCREEN 03</span>
-          <span class="title">Email Sent Confirmation</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="4._verify_crew_otp_1/screen.png" target="_blank">
-        <div class="thumb"><img loading="lazy" src="4._verify_crew_otp_1/screen.png" alt="Verify Crew Otp (Variant 1)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 04</span>
-          <span class="title">Verify Crew Otp (Variant 1)</span>
-          
-        </div>
-      </a>
-      <a class="card" href="4._verify_crew_otp_2/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="4._verify_crew_otp_2/screen.png" alt="Verify Crew Otp (Variant 2)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 04</span>
-          <span class="title">Verify Crew Otp (Variant 2)</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="5._home_dashboard_1/screen.png" target="_blank">
-        <div class="thumb"><img loading="lazy" src="5._home_dashboard_1/screen.png" alt="Home Dashboard (Variant 1)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 05</span>
-          <span class="title">Home Dashboard (Variant 1)</span>
-          
-        </div>
-      </a>
-      <a class="card" href="5._home_dashboard_2/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="5._home_dashboard_2/screen.png" alt="Home Dashboard (Variant 2)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 05</span>
-          <span class="title">Home Dashboard (Variant 2)</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="6._plans_hub/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="6._plans_hub/screen.png" alt="Plans Hub"></div>
-        <div class="meta">
-          <span class="num">SCREEN 06</span>
-          <span class="title">Plans Hub</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="7._compare_monthly_tiers/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="7._compare_monthly_tiers/screen.png" alt="Compare Monthly Tiers"></div>
-        <div class="meta">
-          <span class="num">SCREEN 07</span>
-          <span class="title">Compare Monthly Tiers</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="8._upload_roster/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="8._upload_roster/screen.png" alt="Upload Roster"></div>
-        <div class="meta">
-          <span class="num">SCREEN 08</span>
-          <span class="title">Upload Roster</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="9._detected_destinations/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="9._detected_destinations/screen.png" alt="Detected Destinations"></div>
-        <div class="meta">
-          <span class="num">SCREEN 09</span>
-          <span class="title">Detected Destinations</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="10._bundle_confirmed_1/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="10._bundle_confirmed_1/screen.png" alt="Bundle Confirmed (Variant 1)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 10</span>
-          <span class="title">Bundle Confirmed (Variant 1)</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="10._bundle_confirmed_2/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="10._bundle_confirmed_2/screen.png" alt="Bundle Confirmed (Variant 2)"></div>
-        <div class="meta">
-          <span class="num">SCREEN 10</span>
-          <span class="title">Bundle Confirmed (Variant 2)</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="11._plan_detail_japan/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="11._plan_detail_japan/screen.png" alt="Plan Detail Japan"></div>
-        <div class="meta">
-          <span class="num">SCREEN 11</span>
-          <span class="title">Plan Detail Japan</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="12._checkout/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="12._checkout/screen.png" alt="Checkout"></div>
-        <div class="meta">
-          <span class="num">SCREEN 12</span>
-          <span class="title">Checkout</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="13._purchase_success/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="13._purchase_success/screen.png" alt="Purchase Success"></div>
-        <div class="meta">
-          <span class="num">SCREEN 13</span>
-          <span class="title">Purchase Success</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="14._esim_library/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="14._esim_library/screen.png" alt="Esim Library"></div>
-        <div class="meta">
-          <span class="num">SCREEN 14</span>
-          <span class="title">Esim Library</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="15._esim_detail_japan/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="15._esim_detail_japan/screen.png" alt="Esim Detail Japan"></div>
-        <div class="meta">
-          <span class="num">SCREEN 15</span>
-          <span class="title">Esim Detail Japan</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="16._top_up_bottom_sheet/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="16._top_up_bottom_sheet/screen.png" alt="Top Up Bottom Sheet"></div>
-        <div class="meta">
-          <span class="num">SCREEN 16</span>
-          <span class="title">Top Up Bottom Sheet</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="17._activation_confirmation_modal/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="17._activation_confirmation_modal/screen.png" alt="Activation Confirmation Modal"></div>
-        <div class="meta">
-          <span class="num">SCREEN 17</span>
-          <span class="title">Activation Confirmation Modal</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="18._refund_japan_esim/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="18._refund_japan_esim/screen.png" alt="Refund Japan Esim"></div>
-        <div class="meta">
-          <span class="num">SCREEN 18</span>
-          <span class="title">Refund Japan Esim</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="19._oops_refund/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="19._oops_refund/screen.png" alt="Oops Refund"></div>
-        <div class="meta">
-          <span class="num">SCREEN 19</span>
-          <span class="title">Oops Refund</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="20._refund_unused_destinations/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="20._refund_unused_destinations/screen.png" alt="Refund Unused Destinations"></div>
-        <div class="meta">
-          <span class="num">SCREEN 20</span>
-          <span class="title">Refund Unused Destinations</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="21._failed_esim_recovery/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="21._failed_esim_recovery/screen.png" alt="Failed Esim Recovery"></div>
-        <div class="meta">
-          <span class="num">SCREEN 21</span>
-          <span class="title">Failed Esim Recovery</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="22._hotels_list/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="22._hotels_list/screen.png" alt="Hotels List"></div>
-        <div class="meta">
-          <span class="num">SCREEN 22</span>
-          <span class="title">Hotels List</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="23._hotel_detail_tokyo_marriott/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="23._hotel_detail_tokyo_marriott/screen.png" alt="Hotel Detail Tokyo Marriott"></div>
-        <div class="meta">
-          <span class="num">SCREEN 23</span>
-          <span class="title">Hotel Detail Tokyo Marriott</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="24._tokyo_crew_picks/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="24._tokyo_crew_picks/screen.png" alt="Tokyo Crew Picks"></div>
-        <div class="meta">
-          <span class="num">SCREEN 24</span>
-          <span class="title">Tokyo Crew Picks</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="25._add_a_place_bottom_sheet/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="25._add_a_place_bottom_sheet/screen.png" alt="Add A Place Bottom Sheet"></div>
-        <div class="meta">
-          <span class="num">SCREEN 25</span>
-          <span class="title">Add A Place Bottom Sheet</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="26._place_detail_tatemichiya_diner/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="26._place_detail_tatemichiya_diner/screen.png" alt="Place Detail Tatemichiya Diner"></div>
-        <div class="meta">
-          <span class="num">SCREEN 26</span>
-          <span class="title">Place Detail Tatemichiya Diner</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="27._crew_points_rewards/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="27._crew_points_rewards/screen.png" alt="Crew Points Rewards"></div>
-        <div class="meta">
-          <span class="num">SCREEN 27</span>
-          <span class="title">Crew Points Rewards</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="28._crew_ai_support/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="28._crew_ai_support/screen.png" alt="Crew Ai Support"></div>
-        <div class="meta">
-          <span class="num">SCREEN 28</span>
-          <span class="title">Crew Ai Support</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
-      <a class="card" href="29._crew_ai_support_active/code.html" target="_blank">
-        <div class="thumb"><img loading="lazy" src="29._crew_ai_support_active/screen.png" alt="Crew Ai Support Active"></div>
-        <div class="meta">
-          <span class="num">SCREEN 29</span>
-          <span class="title">Crew Ai Support Active</span>
-          <span class="badge">CODE</span>
-        </div>
-      </a>
+  <div class="topbar-right">
+    <a href="gallery.html">Gallery view</a>
+    <a href="../">All versions</a>
   </div>
 </div>
 
-<footer class="ek-footer">
-  <div class="ek-footer-inner">
-    <div class="left">CrewLink <span style="color:var(--gold-light)">·</span> App Demo v4 <span style="color:var(--gold-light)">·</span> Stitch-generated <span style="color:var(--gold-light)">·</span> 2026-05-25</div>
-    <div>
-      <a href="../" class="alt-link">→ All versions</a>
-      <a href="../../docs/downloads/stitch-prompts-crewlink-6batches.html" class="alt-link">→ Source prompts</a>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="stage">
+    <div class="phone-frame">
+      <iframe class="screen-iframe" id="screenFrame" src="" title="CrewLink screen preview"></iframe>
     </div>
-  </div>
-</footer>
+    <div class="stage-caption">Use <span class="hint">◀ ▶</span> arrow keys or sidebar to navigate · Click inside the phone to interact</div>
+  </main>
+</div>
+
+<script>
+const SCREENS = [
+  { num: 1, slug: 'splash',        title: 'Splash',                          folder: '1._splash_screen_2', flow: 'Onboarding' },
+  { num: 2, slug: 'signup',        title: 'Signup',                          folder: '2._signup_2', flow: 'Onboarding' },
+  { num: 3, slug: 'email-sent',    title: 'Email sent',                      folder: '3._email_sent_confirmation', flow: 'Onboarding' },
+  { num: 4, slug: 'verify-otp',    title: 'Verify crew · OTP',               folder: '4._verify_crew_otp_2', flow: 'Onboarding' },
+  { num: 5, slug: 'home',          title: 'Home dashboard',                  folder: '5._home_dashboard_2', flow: 'Home & Plans' },
+  { num: 6, slug: 'plans',         title: 'Plans hub',                       folder: '6._plans_hub', flow: 'Home & Plans' },
+  { num: 7, slug: 'compare',       title: 'Compare cabins',                  folder: '7._compare_monthly_tiers', flow: 'Home & Plans' },
+  { num: 8, slug: 'upload-roster', title: 'Upload roster',                   folder: '8._upload_roster', flow: 'Bundle + Buy' },
+  { num: 9, slug: 'detected',      title: 'Detected destinations',           folder: '9._detected_destinations', flow: 'Bundle + Buy' },
+  { num:10, slug: 'bundle-confirmed', title: 'Bundle confirmed',             folder: '10._bundle_confirmed_1', flow: 'Bundle + Buy' },
+  { num:11, slug: 'plan-detail',   title: 'Plan detail · Japan',             folder: '11._plan_detail_japan', flow: 'Bundle + Buy' },
+  { num:12, slug: 'checkout',      title: 'Checkout',                        folder: '12._checkout', flow: 'Bundle + Buy' },
+  { num:13, slug: 'purchase-success', title: 'Purchase success',             folder: '13._purchase_success', flow: 'Bundle + Buy' },
+  { num:14, slug: 'esim-library',  title: 'eSIM library',                    folder: '14._esim_library', flow: 'eSIMs + Activation' },
+  { num:15, slug: 'esim-detail',   title: 'eSIM detail · Japan',             folder: '15._esim_detail_japan', flow: 'eSIMs + Activation' },
+  { num:16, slug: 'topup-sheet',   title: 'Top-up bottom sheet',             folder: '16._top_up_bottom_sheet', flow: 'eSIMs + Activation' },
+  { num:17, slug: 'activate-modal', title: 'Activation modal',               folder: '17._activation_confirmation_modal', flow: 'eSIMs + Activation' },
+  { num:18, slug: 'refund-esim',   title: 'Refund eSIM',                     folder: '18._refund_japan_esim', flow: 'Refunds' },
+  { num:19, slug: 'oops-refund',   title: 'Oops refund',                     folder: '19._oops_refund', flow: 'Refunds' },
+  { num:20, slug: 'refund-unused', title: 'Refund unused bundle',            folder: '20._refund_unused_destinations', flow: 'Refunds' },
+  { num:21, slug: 'failed-recovery', title: 'Failed eSIM recovery',          folder: '21._failed_esim_recovery', flow: 'Refunds' },
+  { num:22, slug: 'hotels',        title: 'Hotels list',                     folder: '22._hotels_list', flow: 'Hotels' },
+  { num:23, slug: 'hotel-detail',  title: 'Hotel detail',                    folder: '23._hotel_detail_tokyo_marriott', flow: 'Hotels' },
+  { num:24, slug: 'crew-picks',    title: 'Tokyo crew picks',                folder: '24._tokyo_crew_picks', flow: 'Crew Recs' },
+  { num:25, slug: 'add-place',     title: 'Add a place',                     folder: '25._add_a_place_bottom_sheet', flow: 'Crew Recs' },
+  { num:26, slug: 'place-detail',  title: 'Place detail · Tatemichiya',      folder: '26._place_detail_tatemichiya_diner', flow: 'Crew Recs' },
+  { num:27, slug: 'points',        title: 'Crew Points & rewards',           folder: '27._crew_points_rewards', flow: 'Points + AI' },
+  { num:28, slug: 'ai-support',    title: 'AI Support · starter',            folder: '28._crew_ai_support', flow: 'Points + AI' },
+  { num:29, slug: 'ai-active',     title: 'AI Support · active chat',        folder: '29._crew_ai_support_active', flow: 'Points + AI' },
+];
+
+const sidebar = document.getElementById('sidebar');
+const frame = document.getElementById('screenFrame');
+const indicator = document.getElementById('indicator');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+// Build sidebar via DOM methods (safe — no innerHTML, no user input)
+const flowsSeen = new Set();
+SCREENS.forEach(s => { flowsSeen.add(s.flow); });
+const flows = Array.from(flowsSeen);
+flows.forEach(flow => {
+  const h = document.createElement('h3');
+  h.textContent = flow;
+  sidebar.appendChild(h);
+  SCREENS.filter(s => s.flow === flow).forEach(s => {
+    const a = document.createElement('a');
+    a.href = '#/' + s.slug;
+    a.dataset.num = s.num;
+    const numSpan = document.createElement('span');
+    numSpan.className = 'num';
+    numSpan.textContent = String(s.num).padStart(2, '0');
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'name';
+    nameSpan.textContent = s.title;
+    a.appendChild(numSpan);
+    a.appendChild(nameSpan);
+    sidebar.appendChild(a);
+  });
+});
+
+function findScreen(hash) {
+  const slug = (hash || '').replace(/^#\/?/, '').toLowerCase();
+  if (!slug) return SCREENS[0];
+  const numMatch = SCREENS.find(s => String(s.num) === slug);
+  if (numMatch) return numMatch;
+  return SCREENS.find(s => s.slug === slug) || SCREENS[0];
+}
+
+function setScreen(s) {
+  frame.src = s.folder + '/code.html';
+  indicator.textContent = 'SCREEN ' + String(s.num).padStart(2, '0') + ' / 29 · ' + s.title.toUpperCase();
+  document.querySelectorAll('.sidebar a').forEach(a => {
+    a.classList.toggle('active', parseInt(a.dataset.num) === s.num);
+  });
+  prevBtn.disabled = s.num === 1;
+  nextBtn.disabled = s.num === SCREENS.length;
+  const activeLink = document.querySelector('.sidebar a[data-num="' + s.num + '"]');
+  if (activeLink) activeLink.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function go(delta) {
+  const current = findScreen(location.hash);
+  const idx = SCREENS.findIndex(s => s.num === current.num);
+  const next = SCREENS[idx + delta];
+  if (next) location.hash = '#/' + next.slug;
+}
+
+prevBtn.addEventListener('click', () => go(-1));
+nextBtn.addEventListener('click', () => go(1));
+window.addEventListener('hashchange', () => setScreen(findScreen(location.hash)));
+window.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowLeft')  go(-1);
+  if (e.key === 'ArrowRight') go(1);
+});
+
+if (!location.hash) location.hash = '#/splash';
+setScreen(findScreen(location.hash));
+</script>
 
 </body>
 </html>
