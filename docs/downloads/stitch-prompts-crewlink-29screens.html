@@ -5,54 +5,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CrewLink — Stitch Master Prompts (29 screens, paste-ready)</title>
 <style>
+  /* Emirates.com-inspired styling */
   :root {
-    --bg: #FBF6EC; --surface: #FFFFFF; --text: #1A1411; --text-2: #6B6259;
-    --line: #E6BDB8; --red: #D71921; --red-dark: #AE0012; --gold: #C9A03B;
-    --navy: #2A2A4A; --success: #2D8C7E;
+    --red: #D71921;
+    --red-dark: #6E0D14;
+    --red-deep: #B81621;
+    --gold: #C9A03B;
+    --gold-light: #E5C77B;
+    --bg: #FFFFFF;
+    --bg-alt: #F4F4F4;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-2: #595959;
+    --line: #E0E0E0;
+    --success: #2D8C7E;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, "SF Pro Text", "Inter", sans-serif; line-height: 1.6; padding: 40px 5vw 80px; }
-  .wrap { max-width: 960px; margin: 0 auto; }
-  .doc-tag { display: inline-block; padding: 6px 14px; background: rgba(215,25,33,0.10); color: var(--red); font-family: ui-monospace, "SF Mono", monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; border-radius: 100px; margin-bottom: 20px; }
-  h1 { font-family: -apple-system, "SF Pro Display", "Manrope", sans-serif; font-weight: 700; font-size: clamp(28px, 5vw, 44px); line-height: 1.05; letter-spacing: -0.022em; margin-bottom: 14px; }
+  body { background: var(--bg); color: var(--text); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.55; }
+
+  .ek-header { background: var(--red); color: #fff; padding: 18px 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .ek-logo { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
+  .ek-logo span { color: var(--gold-light); font-weight: 400; margin-left: 8px; font-size: 14px; letter-spacing: 0.04em; }
+  .ek-nav { display: flex; gap: 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.95; }
+  .ek-nav a { color: #fff; text-decoration: none; }
+  .ek-stripe { height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+  .ek-subheader { background: #fff; padding: 14px 5vw; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-2); }
+  .ek-subheader span { color: var(--red); font-weight: 700; }
+
+  .hero { background: linear-gradient(135deg, #fff 60%, #faf5e8); padding: 56px 5vw 40px; border-bottom: 1px solid var(--line); }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; color: var(--red); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; display: inline-block; padding-bottom: 6px; border-bottom: 2px solid var(--red); }
+  h1 { font-weight: 700; font-size: clamp(30px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.012em; margin-bottom: 16px; }
   h1 em { color: var(--red); font-style: normal; }
-  .lead { color: var(--text-2); font-size: 15px; max-width: 64ch; margin-bottom: 28px; }
-  .intro { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--red); border-radius: 14px; padding: 20px 24px; margin-bottom: 40px; font-size: 14px; color: var(--text-2); }
-  .intro strong { color: var(--red); }
-  .intro ol { padding-left: 18px; margin-top: 8px; }
-  .intro li { margin-bottom: 4px; }
+  .lead { color: var(--text-2); font-size: 16px; max-width: 64ch; margin-bottom: 0; line-height: 1.6; }
 
-  .group-tag { display: inline-block; margin: 40px 0 14px; padding: 4px 12px; background: rgba(42,42,74,0.08); color: var(--navy); font-family: ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; border-radius: 100px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 5vw 60px; }
 
-  .prompt-block { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 1px 6px rgba(26,20,17,0.04); }
-  .bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 22px; border-bottom: 1px solid var(--line); flex-wrap: wrap; gap: 10px; background: linear-gradient(0deg, #fff 90%, #fffaf0); }
-  .which-label { font-family: ui-monospace, monospace; font-size: 10px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; }
-  .which-title { font-family: -apple-system, "SF Pro Display", sans-serif; font-size: 17px; font-weight: 700; color: var(--text); margin-top: 2px; letter-spacing: -0.012em; }
+  .intro { background: var(--bg-alt); border-left: 4px solid var(--red); padding: 22px 28px; margin-bottom: 36px; font-size: 14px; color: var(--text); border-radius: 0; }
+  .intro strong { color: var(--red); font-weight: 700; }
+  .intro ol { padding-left: 18px; margin-top: 10px; }
+  .intro li { margin-bottom: 6px; line-height: 1.6; }
+  .intro a { color: var(--red); font-weight: 600; }
+
+  .group-tag { display: block; margin: 44px 0 16px; padding: 10px 16px; background: var(--red); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 4px 4px 0 0; }
+
+  .prompt-block { background: #fff; border: 1px solid var(--line); border-radius: 4px; margin-bottom: 14px; overflow: hidden; }
+  .bar { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-bottom: 1px solid var(--line); flex-wrap: wrap; gap: 10px; background: #fff; }
+  .which-label { font-size: 10px; color: var(--red); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+  .which-title { font-size: 17px; font-weight: 700; color: var(--text); margin-top: 3px; letter-spacing: -0.01em; }
   .which-sub { font-size: 12px; color: var(--text-2); margin-top: 3px; }
-  .copy-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; background: var(--red); color: #fff; border: none; border-radius: 100px; font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
-  .copy-btn:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+  .copy-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; background: var(--red); color: #fff; border: none; border-radius: 4px; font-family: inherit; font-weight: 700; font-size: 12px; cursor: pointer; transition: all 0.18s; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.03em; }
+  .copy-btn:hover { background: var(--red-deep); transform: translateY(-1px); }
   .copy-btn.copied { background: var(--success); }
+  .copy-btn .arrow::after { content: " ›"; font-size: 16px; font-weight: 400; }
   .copy-btn .check { display: none; }
   .copy-btn.copied .check { display: inline; }
   .copy-btn.copied .text-default { display: none; }
-  .msg { padding: 22px 26px; font-size: 12.5px; line-height: 1.7; white-space: pre-wrap; font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--text); max-height: 360px; overflow-y: auto; }
-  .msg::-webkit-scrollbar { width: 6px; }
-  .msg::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-  .setup-block { border: 2px solid var(--gold); }
-  .setup-block .bar { background: linear-gradient(135deg, rgba(201,160,59,0.10), rgba(201,160,59,0.02)); }
-  .setup-block .which-label { color: var(--red); }
-  details { margin-top: 8px; }
-  details summary { font-size: 12px; color: var(--text-2); cursor: pointer; user-select: none; }
-  details summary:hover { color: var(--red); }
-  .foot { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-family: ui-monospace, monospace; font-size: 11px; color: var(--text-2); letter-spacing: 0.08em; text-align: center; }
+
+  .msg { padding: 22px 26px; font-size: 12px; line-height: 1.7; white-space: pre-wrap; font-family: "SF Mono", Consolas, Monaco, monospace; color: var(--text); max-height: 360px; overflow-y: auto; background: #fafafa; }
+  .msg::-webkit-scrollbar { width: 8px; }
+  .msg::-webkit-scrollbar-track { background: #eee; }
+  .msg::-webkit-scrollbar-thumb { background: var(--red); border-radius: 4px; }
+
+  .setup-block { border: 2px solid var(--red); }
+  .setup-block .bar { background: linear-gradient(135deg, rgba(215,25,33,0.06), rgba(201,160,59,0.04)); }
+
+  .ek-footer { background: var(--red-dark); color: #fff; padding: 32px 5vw 24px; margin-top: 56px; }
+  .ek-footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .ek-footer .left { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+  .ek-footer .gold { color: var(--gold-light); }
+  .ek-footer a.alt-link { display: inline-block; padding: 10px 18px; background: rgba(255,255,255,0.08); color: #fff; font-size: 12px; text-decoration: none; border-radius: 4px; border: 1px solid rgba(255,255,255,0.18); transition: all 0.18s; }
+  .ek-footer a.alt-link:hover { background: var(--red); border-color: var(--red); }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <span class="doc-tag">CREWLINK · STITCH AGENT · 29 SCREENS · 2026-05-25</span>
-  <h1>Stitch master prompts — <em>paste each into Stitch web</em></h1>
-  <p class="lead">One setup paste that locks the Cabin-Class Editorial design system, then 29 screen prompts (each with illustration spec baked in). All copy-paste into stitch.withgoogle.com → the agent generates each screen against the design system.</p>
 
+<header class="ek-header">
+  <div class="ek-logo">CrewLink<span>· STITCH PROMPT LIBRARY</span></div>
+  <nav class="ek-nav">
+    <a href="../../index.html">Roadmap</a>
+    <a href="stitch-prompts-crewlink-mega.html">Mega Prompt</a>
+  </nav>
+</header>
+<div class="ek-stripe"></div>
+
+<div class="ek-subheader">
+  Resources <span>›</span> Downloads <span>›</span> <span>Stitch Prompts — 30 Paste Version</span>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Stitch Agent · 29 Screens · 2026-05-25</span>
+    <h1>Stitch master prompts — <em>paste each into Stitch web</em></h1>
+    <p class="lead">One setup paste that locks the Cabin-Class Editorial design system, then 29 screen prompts (each with illustration spec baked in). Copy-paste into stitch.withgoogle.com → the agent generates each screen against the design system.</p>
+  </div>
+</section>
+
+<div class="wrap">
   <div class="intro">
     <strong>How to use:</strong>
     <ol>
@@ -64,7 +114,7 @@
   </div>
 
   <!-- ===== SETUP ===== -->
-  <span class="group-tag">PASTE FIRST · DESIGN SYSTEM LOCK</span>
+  <div class="group-tag">Paste First — Design System Lock</div>
 
   <div class="prompt-block setup-block">
     <div class="bar">
@@ -144,7 +194,7 @@ CONFIRM: respond with "Design system locked. Ready for screen 1." and DO NOT gen
   </div>
 
   <!-- ===== ONBOARDING (4 screens) ===== -->
-  <span class="group-tag">SCREENS 1–4 · ONBOARDING & VERIFICATION</span>
+  <div class="group-tag">SCREENS 1–4 · ONBOARDING & VERIFICATION</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -152,7 +202,7 @@ CONFIRM: respond with "Design system locked. Ready for screen 1." and DO NOT gen
         <div class="which-label">SCREEN 1 / 29</div>
         <div class="which-title">Splash</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s1', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s1', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s1">Generate Screen 1: SPLASH.
 
@@ -178,7 +228,7 @@ Premium, restrained, airline-app feel.</div>
         <div class="which-label">SCREEN 2 / 29</div>
         <div class="which-title">Signup</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s2', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s2', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s2">Generate Screen 2: SIGNUP.
 
@@ -208,7 +258,7 @@ No social login.</div>
         <div class="which-label">SCREEN 3 / 29</div>
         <div class="which-title">Email sent</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s3', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s3', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s3">Generate Screen 3: EMAIL SENT confirmation.
 
@@ -237,7 +287,7 @@ Footer above safe area: link "Use a different email" deep navy #2A2A4A 14pt cent
         <div class="which-label">SCREEN 4 / 29</div>
         <div class="which-title">Verify as crew + OTP</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s4', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s4', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s4">Generate Screen 4: VERIFY AS CREW (with OTP entry inline).
 
@@ -264,7 +314,7 @@ At the very top of screen above app bar: subtle gold confetti banner that says "
   </div>
 
   <!-- ===== HOME ===== -->
-  <span class="group-tag">SCREEN 5 · HOME DASHBOARD</span>
+  <div class="group-tag">SCREEN 5 · HOME DASHBOARD</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -272,7 +322,7 @@ At the very top of screen above app bar: subtle gold confetti banner that says "
         <div class="which-label">SCREEN 5 / 29</div>
         <div class="which-title">Home dashboard</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s5', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s5', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s5">Generate Screen 5: HOME DASHBOARD.
 
@@ -309,7 +359,7 @@ BOTTOM NAV: floating white pill, 5 icons. Home active (red pill behind icon).</d
   </div>
 
   <!-- ===== PLANS ===== -->
-  <span class="group-tag">SCREENS 6–7 · PLANS HUB & COMPARISON</span>
+  <div class="group-tag">SCREENS 6–7 · PLANS HUB & COMPARISON</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -317,7 +367,7 @@ BOTTOM NAV: floating white pill, 5 icons. Home active (red pill behind icon).</d
         <div class="which-label">SCREEN 6 / 29</div>
         <div class="which-title">Plans hub — 7 cabin cards</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s6', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s6', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s6">Generate Screen 6: PLANS HUB.
 
@@ -363,7 +413,7 @@ Bottom nav present, Plans tab active.</div>
         <div class="which-label">SCREEN 7 / 29</div>
         <div class="which-title">Tier comparison</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s7', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s7', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s7">Generate Screen 7: COMPARE MONTHLY TIERS.
 
@@ -385,7 +435,7 @@ Each card has:
   </div>
 
   <!-- ===== ROSTER BUNDLE ===== -->
-  <span class="group-tag">SCREENS 8–10 · ROSTER BUNDLE FLOW</span>
+  <div class="group-tag">SCREENS 8–10 · ROSTER BUNDLE FLOW</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -393,7 +443,7 @@ Each card has:
         <div class="which-label">SCREEN 8 / 29</div>
         <div class="which-title">Upload roster</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s8', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s8', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s8">Generate Screen 8: UPLOAD ROSTER.
 
@@ -419,7 +469,7 @@ Shield-lock SVG icon (gold) + "Roster image is processed entirely on your phone.
         <div class="which-label">SCREEN 9 / 29</div>
         <div class="which-title">Detected destinations</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s9', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s9', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s9">Generate Screen 9: DETECTED DESTINATIONS.
 
@@ -446,7 +496,7 @@ STICKY BOTTOM cream-tinted card (gold left border):
         <div class="which-label">SCREEN 10 / 29</div>
         <div class="which-title">Bundle confirmed</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s10', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s10', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s10">Generate Screen 10: BUNDLE CONFIRMED.
 
@@ -471,7 +521,7 @@ Tip card at bottom (cream-tinted, gold left border):
   </div>
 
   <!-- ===== PURCHASE ===== -->
-  <span class="group-tag">SCREENS 11–13 · PURCHASE FLOW</span>
+  <div class="group-tag">SCREENS 11–13 · PURCHASE FLOW</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -479,7 +529,7 @@ Tip card at bottom (cream-tinted, gold left border):
         <div class="which-label">SCREEN 11 / 29</div>
         <div class="which-title">Plan detail — Japan</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s11', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s11', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s11">Generate Screen 11: PLAN DETAIL (Japan Economy).
 
@@ -509,7 +559,7 @@ Bottom sticky red pill CTA "Buy 3 GB · $9.99".</div>
         <div class="which-label">SCREEN 12 / 29</div>
         <div class="which-title">Checkout</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s12', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s12', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s12">Generate Screen 12: CHECKOUT.
 
@@ -544,7 +594,7 @@ Bottom sticky red pill CTA "Pay $9.99 with Apple Pay".</div>
         <div class="which-label">SCREEN 13 / 29</div>
         <div class="which-title">Purchase success</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s13', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s13', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s13">Generate Screen 13: PURCHASE SUCCESS.
 
@@ -569,7 +619,7 @@ NEXT STEPS card (white, 14px, 24px padding):
   </div>
 
   <!-- ===== MY ESIMS ===== -->
-  <span class="group-tag">SCREENS 14–17 · MY eSIMs + ACTIVATION</span>
+  <div class="group-tag">SCREENS 14–17 · MY eSIMs + ACTIVATION</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -577,7 +627,7 @@ NEXT STEPS card (white, 14px, 24px padding):
         <div class="which-label">SCREEN 14 / 29</div>
         <div class="which-title">eSIM library</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s14', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s14', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s14">Generate Screen 14: eSIM LIBRARY.
 
@@ -607,7 +657,7 @@ Bottom nav present, eSIMs tab active.</div>
         <div class="which-label">SCREEN 15 / 29</div>
         <div class="which-title">eSIM detail — Japan</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s15', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s15', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s15">Generate Screen 15: eSIM DETAIL (Japan).
 
@@ -637,7 +687,7 @@ Tertiary red text "Remove eSIM" centered.</div>
         <div class="which-label">SCREEN 16 / 29</div>
         <div class="which-title">Refuel bottom sheet</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s16', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s16', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s16">Generate Screen 16: TOP-UP / REFUEL BOTTOM SHEET (modal over a faded eSIM Detail).
 
@@ -667,7 +717,7 @@ Tertiary text "Maybe later" centered below.</div>
         <div class="which-label">SCREEN 17 / 29</div>
         <div class="which-title">Activation confirmation modal</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s17', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s17', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s17">Generate Screen 17: ACTIVATION CONFIRMATION MODAL.
 
@@ -689,7 +739,7 @@ Two stacked CTAs:
   </div>
 
   <!-- ===== REFUNDS ===== -->
-  <span class="group-tag">SCREENS 18–21 · REFUND FLOWS</span>
+  <div class="group-tag">SCREENS 18–21 · REFUND FLOWS</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -697,7 +747,7 @@ Two stacked CTAs:
         <div class="which-label">SCREEN 18 / 29</div>
         <div class="which-title">Refund — not yet activated</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s18', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s18', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s18">Generate Screen 18: REFUND ESIM (not yet activated).
 
@@ -726,7 +776,7 @@ Helper text bottom (centered): "Most crew choose credit — it stacks across tri
         <div class="which-label">SCREEN 19 / 29</div>
         <div class="which-title">Oops refund — 50% GB back</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s19', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s19', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s19">Generate Screen 19: OOPS REFUND.
 
@@ -751,7 +801,7 @@ Tertiary "Never mind" centered.</div>
         <div class="which-label">SCREEN 20 / 29</div>
         <div class="which-title">Refund unused bundle destinations</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s20', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s20', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s20">Generate Screen 20: REFUND UNUSED DESTINATIONS (bundle).
 
@@ -780,7 +830,7 @@ Below tertiary: "Or cash refund (3–5 days)" centered.</div>
         <div class="which-label">SCREEN 21 / 29</div>
         <div class="which-title">Failed eSIM recovery</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s21', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s21', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s21">Generate Screen 21: FAILED ESIM RECOVERY.
 
@@ -804,7 +854,7 @@ HELP CARD bottom (cream-toned):
   </div>
 
   <!-- ===== HOTELS ===== -->
-  <span class="group-tag">SCREENS 22–23 · CREW HOTELS</span>
+  <div class="group-tag">SCREENS 22–23 · CREW HOTELS</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -812,7 +862,7 @@ HELP CARD bottom (cream-toned):
         <div class="which-label">SCREEN 22 / 29</div>
         <div class="which-title">Hotels list</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s22', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s22', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s22">Generate Screen 22: HOTELS LIST (by city).
 
@@ -848,7 +898,7 @@ Bottom nav, Hotels tab active.</div>
         <div class="which-label">SCREEN 23 / 29</div>
         <div class="which-title">Hotel detail</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s23', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s23', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s23">Generate Screen 23: HOTEL DETAIL (Tokyo Marriott Akasaka).
 
@@ -886,7 +936,7 @@ Bottom red pill "Open in Google Maps".</div>
   </div>
 
   <!-- ===== CREW RECS ===== -->
-  <span class="group-tag">SCREENS 24–26 · CREW RECS (community)</span>
+  <div class="group-tag">SCREENS 24–26 · CREW RECS (community)</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -894,7 +944,7 @@ Bottom red pill "Open in Google Maps".</div>
         <div class="which-label">SCREEN 24 / 29</div>
         <div class="which-title">Tokyo crew picks</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s24', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s24', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s24">Generate Screen 24: TOKYO CREW PICKS.
 
@@ -936,7 +986,7 @@ Bottom nav, dedicated tab if there's room.</div>
         <div class="which-label">SCREEN 25 / 29</div>
         <div class="which-title">Add a place — bottom sheet</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s25', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s25', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s25">Generate Screen 25: ADD A PLACE bottom sheet.
 
@@ -972,7 +1022,7 @@ Bottom red pill CTA "Post to Crew Recs".</div>
         <div class="which-label">SCREEN 26 / 29</div>
         <div class="which-title">Place detail — Tatemichiya</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s26', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s26', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s26">Generate Screen 26: PLACE DETAIL (Tatemichiya Diner).
 
@@ -1006,7 +1056,7 @@ BOTTOM ACTION BAR (sticky, white card, 5 icons):
   </div>
 
   <!-- ===== POINTS ===== -->
-  <span class="group-tag">SCREEN 27 · POINTS & REWARDS</span>
+  <div class="group-tag">SCREEN 27 · POINTS & REWARDS</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -1014,7 +1064,7 @@ BOTTOM ACTION BAR (sticky, white card, 5 icons):
         <div class="which-label">SCREEN 27 / 29</div>
         <div class="which-title">Crew Points & rewards</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s27', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s27', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s27">Generate Screen 27: CREW POINTS & REWARDS.
 
@@ -1044,7 +1094,7 @@ ILLUSTRATION small (24px): gold pilot wings outline.
   </div>
 
   <!-- ===== AI SUPPORT ===== -->
-  <span class="group-tag">SCREENS 28–29 · AI SUPPORT</span>
+  <div class="group-tag">SCREENS 28–29 · AI SUPPORT</div>
 
   <div class="prompt-block">
     <div class="bar">
@@ -1052,7 +1102,7 @@ ILLUSTRATION small (24px): gold pilot wings outline.
         <div class="which-label">SCREEN 28 / 29</div>
         <div class="which-title">AI Support — starter</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s28', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s28', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s28">Generate Screen 28: CREW AI SUPPORT (idle/starter state).
 
@@ -1084,7 +1134,7 @@ HELPER (above safe area): "Powered by AI · escalates to human if needed" 11pt #
         <div class="which-label">SCREEN 29 / 29</div>
         <div class="which-title">AI Support — active chat</div>
       </div>
-      <button class="copy-btn" onclick="copyMsg('s29', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+      <button class="copy-btn" onclick="copyMsg('s29', this)"><span class="text-default arrow">Copy</span><span class="check">✓ Copied</span></button>
     </div>
     <div class="msg" id="s29">Generate Screen 29: CREW AI SUPPORT (active conversation).
 
@@ -1121,8 +1171,14 @@ ILLUSTRATION subtle (background, very low opacity 6%): a watercolor airplane sil
 INPUT BAR same as Screen 28 (sticky bottom).</div>
   </div>
 
-  <p class="foot">CREWLINK · 29 SCREENS · CABIN-CLASS EDITORIAL · 2026-05-25</p>
 </div>
+
+<footer class="ek-footer">
+  <div class="ek-footer-inner">
+    <div class="left">CrewLink <span class="gold">·</span> 29 Screens <span class="gold">·</span> Cabin-Class Editorial <span class="gold">·</span> 2026-05-25</div>
+    <a href="stitch-prompts-crewlink-mega.html" class="alt-link">→ Switch to one mega-prompt version</a>
+  </div>
+</footer>
 
 <script>
 function copyMsg(id, btn) {
