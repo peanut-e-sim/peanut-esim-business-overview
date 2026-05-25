@@ -704,6 +704,42 @@ body.shell { background: var(--bg-shell); color: var(--text-shell); font-family:
 
 /* Hide Stitch's mock status bars — phone frame already has the notch */
 .screen [class*="status-bar"]:not([data-keep]) { display: none !important; }
+
+/* === Audit-driven layout patches ============================================ */
+
+/* Catch ALL fixed positioning, not just bottom-0. Convert to absolute so they
+   stay pinned inside the phone frame's screen container. */
+.screen .fixed,
+.screen [class*="fixed"] {
+  position: absolute !important;
+}
+.screen [class*="bottom-0"] { bottom: 0 !important; }
+.screen [class*="top-0"]    { top: 0 !important; }
+.screen [class*="left-0"]   { left: 0 !important; }
+.screen [class*="right-0"]  { right: 0 !important; }
+
+/* Neutralize w-screen (screen 17) and arbitrary h-[Nvh] / max-h-[Nvh] values */
+.screen.w-screen,
+.screen [class*="w-screen"] { width: 100% !important; max-width: 100% !important; }
+.screen [class*="h-["][class*="vh]"],
+.screen [class*="min-h-["][class*="vh]"],
+.screen [class*="max-h-["][class*="vh]"] {
+  height: auto !important;
+  max-height: 100% !important;
+}
+
+/* Prevent flex-center clipping when content > frame height (screens 13, 16) */
+.screen.justify-center,
+.screen.items-center,
+.screen[class*="min-h-screen"][class*="justify-center"],
+.screen[class*="min-h-screen"][class*="items-center"] {
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+}
+
+/* Default safety bottom padding so floating CTAs never cover content.
+   Stitch often forgets sufficient pb-* on main when there's a fixed footer. */
+.screen > main { padding-bottom: 140px !important; }
 .shell-stage-caption { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--text-2); letter-spacing: 0.08em; text-transform: uppercase; pointer-events: none; }
 .shell-stage-caption .hint { color: var(--gold-light); }
 @media (max-width: 900px) {
