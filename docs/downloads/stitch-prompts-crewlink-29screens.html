@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrewLink — Stitch Master Prompts (29 screens, paste-ready)</title>
+<style>
+  :root {
+    --bg: #FBF6EC; --surface: #FFFFFF; --text: #1A1411; --text-2: #6B6259;
+    --line: #E6BDB8; --red: #D71921; --red-dark: #AE0012; --gold: #C9A03B;
+    --navy: #2A2A4A; --success: #2D8C7E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, "SF Pro Text", "Inter", sans-serif; line-height: 1.6; padding: 40px 5vw 80px; }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  .doc-tag { display: inline-block; padding: 6px 14px; background: rgba(215,25,33,0.10); color: var(--red); font-family: ui-monospace, "SF Mono", monospace; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; border-radius: 100px; margin-bottom: 20px; }
+  h1 { font-family: -apple-system, "SF Pro Display", "Manrope", sans-serif; font-weight: 700; font-size: clamp(28px, 5vw, 44px); line-height: 1.05; letter-spacing: -0.022em; margin-bottom: 14px; }
+  h1 em { color: var(--red); font-style: normal; }
+  .lead { color: var(--text-2); font-size: 15px; max-width: 64ch; margin-bottom: 28px; }
+  .intro { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--red); border-radius: 14px; padding: 20px 24px; margin-bottom: 40px; font-size: 14px; color: var(--text-2); }
+  .intro strong { color: var(--red); }
+  .intro ol { padding-left: 18px; margin-top: 8px; }
+  .intro li { margin-bottom: 4px; }
+
+  .group-tag { display: inline-block; margin: 40px 0 14px; padding: 4px 12px; background: rgba(42,42,74,0.08); color: var(--navy); font-family: ui-monospace, monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; border-radius: 100px; }
+
+  .prompt-block { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 1px 6px rgba(26,20,17,0.04); }
+  .bar { display: flex; justify-content: space-between; align-items: center; padding: 16px 22px; border-bottom: 1px solid var(--line); flex-wrap: wrap; gap: 10px; background: linear-gradient(0deg, #fff 90%, #fffaf0); }
+  .which-label { font-family: ui-monospace, monospace; font-size: 10px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; }
+  .which-title { font-family: -apple-system, "SF Pro Display", sans-serif; font-size: 17px; font-weight: 700; color: var(--text); margin-top: 2px; letter-spacing: -0.012em; }
+  .which-sub { font-size: 12px; color: var(--text-2); margin-top: 3px; }
+  .copy-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; background: var(--red); color: #fff; border: none; border-radius: 100px; font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
+  .copy-btn:hover { background: var(--red-dark); transform: translateY(-1px); }
+  .copy-btn.copied { background: var(--success); }
+  .copy-btn .check { display: none; }
+  .copy-btn.copied .check { display: inline; }
+  .copy-btn.copied .text-default { display: none; }
+  .msg { padding: 22px 26px; font-size: 12.5px; line-height: 1.7; white-space: pre-wrap; font-family: ui-monospace, "SF Mono", Menlo, monospace; color: var(--text); max-height: 360px; overflow-y: auto; }
+  .msg::-webkit-scrollbar { width: 6px; }
+  .msg::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .setup-block { border: 2px solid var(--gold); }
+  .setup-block .bar { background: linear-gradient(135deg, rgba(201,160,59,0.10), rgba(201,160,59,0.02)); }
+  .setup-block .which-label { color: var(--red); }
+  details { margin-top: 8px; }
+  details summary { font-size: 12px; color: var(--text-2); cursor: pointer; user-select: none; }
+  details summary:hover { color: var(--red); }
+  .foot { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-family: ui-monospace, monospace; font-size: 11px; color: var(--text-2); letter-spacing: 0.08em; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="doc-tag">CREWLINK · STITCH AGENT · 29 SCREENS · 2026-05-25</span>
+  <h1>Stitch master prompts — <em>paste each into Stitch web</em></h1>
+  <p class="lead">One setup paste that locks the Cabin-Class Editorial design system, then 29 screen prompts (each with illustration spec baked in). All copy-paste into stitch.withgoogle.com → the agent generates each screen against the design system.</p>
+
+  <div class="intro">
+    <strong>How to use:</strong>
+    <ol>
+      <li>Open a fresh session at <strong>stitch.withgoogle.com</strong></li>
+      <li>Copy the <strong>SETUP</strong> prompt first → paste → wait for Stitch to confirm the design system is locked</li>
+      <li>Then copy <strong>SCREEN 1</strong> → paste → it generates. Repeat for 2 through 29 in the same session so Stitch carries context.</li>
+      <li>Each screen prompt includes a hero illustration spec (organic blob crops, painterly watercolor accents, red-pillbox crew silhouettes where relevant).</li>
+    </ol>
+  </div>
+
+  <!-- ===== SETUP ===== -->
+  <span class="group-tag">PASTE FIRST · DESIGN SYSTEM LOCK</span>
+
+  <div class="prompt-block setup-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SETUP · LOCK BRAND & PALETTE</div>
+        <div class="which-title">CrewLink Cabin-Class Editorial system</div>
+        <div class="which-sub">Paste this first. Stitch will confirm the design system is set.</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('setup', this)"><span class="text-default">📋 Copy Setup</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="setup">You are designing an iOS mobile app called "CrewLink" — a travel eSIM service for airline cabin crew. Initial user: Emirates Airline crew based in Dubai (DXB). The visual language must feel like a premium airline app (Emirates app, Air France Play, Singapore KrisFlyer) — editorial, restrained, warm. Lock this design system for every screen I ask you to generate next.
+
+═══════════════════════════════════════
+DESIGN SYSTEM — "CABIN-CLASS EDITORIAL"
+═══════════════════════════════════════
+
+PALETTE
+- Surface (background): #FBF6EC (warm cream — like high-end stationery)
+- Surface bright (cards): #FFFFFF
+- Primary CTA + brand: #D71921 (Emirates red)
+- Primary dark hover: #AE0012
+- Gold accent (prestige tiers, RECOMMENDED ribbons): #C9A03B
+- Pilot-gold (Cockpit tier only): #D4AF37
+- Deep navy (Business tier + technical chrome): #2A2A4A
+- Burgundy (First tier only): #7A1F2B
+- Sky blue (Economy tier only): #A8C8E0
+- Espresso (primary text): #1A1411
+- Soft gray-brown (secondary text): #6B6259
+- Outline-variant (borders): #E6BDB8
+- Success green: #2D8C7E
+- Soft gray (DORMANT state): #E0DCD3
+
+TYPOGRAPHY
+- Headlines (Display): Manrope 700, mobile 24–28pt, line-height 1.08, letter-spacing -0.022em
+- Body: Inter 400, 14–16pt, line-height 1.55
+- Labels & status pills: JetBrains Mono 11pt UPPERCASE, letter-spacing 0.08em (often gold)
+- Numerics (prices, GB): Manrope 700, 28–48pt, letter-spacing -0.02em
+
+SHAPES
+- All cards: 14px corner radius, 24px internal padding
+- Hero containers + bottom sheets: 24px top corner radius
+- All buttons + status pills: fully pill-shaped (9999px)
+- Never use sharp 0px corners
+
+ELEVATION
+- No hard drop shadows. Use soft tonal shadows tinted with on-surface color: 0 2px 8px rgba(26,20,17,0.06)
+- Modals + sheets use cream-tinted backdrop blur (glassmorphism)
+
+COMPONENTS
+- Primary button: solid red #D71921, white text, Inter 600, 16pt, 56px tall, pill
+- Secondary: outline red or gold, pill, same dimensions
+- Tertiary: text-only red or navy
+- Input fields: white bg, 1px #E6BDB8 border, 14px radius. Label ABOVE field in JetBrains Mono caps gold
+- Bottom nav: floating white pill, 5 icons. Active icon = red pill behind icon (Home, Plans, eSIMs, Hotels, Profile)
+- Tier pills: small caps mono with cabin-specific colors:
+  · Economy → sky blue background
+  · Premium Economy → soft peach #F4C8A8
+  · Business → navy bg + gold text
+  · First → burgundy #7A1F2B bg + gold text
+  · Cockpit → indigo #2A2A4A bg + pilot-gold #D4AF37 text
+- Status pills: ACTIVE soft green, DORMANT soft gray, EXPIRED soft red
+
+ILLUSTRATION STYLE
+- Painterly watercolor + soft cream backgrounds
+- Use organic shapes (blob crops, circles, asymmetric polygons) NOT plain rectangles
+- Red accents for highlights, gold for prestige, navy for technical
+- Optional: small crew silhouette (back-view, red pillbox hat, camel-tan uniform) — only when relevant
+- No stock photos, no flat tech illustrations, no gradients-for-gradient's-sake
+
+VOICE & COPY
+- Warm, crew-insider, confident-not-pretentious — like a Senior Cabin Crew friend
+- Use "you" framing, never "we"
+- Aviation idioms when natural: "welcome aboard", "fly your own plan", "out of data? refuel"
+- Never use the word "Emirates" in user-facing copy — it's "your airline"
+
+CONFIRM: respond with "Design system locked. Ready for screen 1." and DO NOT generate any screens yet. Wait for my next prompt.</div>
+  </div>
+
+  <!-- ===== ONBOARDING (4 screens) ===== -->
+  <span class="group-tag">SCREENS 1–4 · ONBOARDING & VERIFICATION</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 1 / 29</div>
+        <div class="which-title">Splash</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s1', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s1">Generate Screen 1: SPLASH.
+
+Full-bleed background: Emirates red #D71921 with a subtle cream-tinted grain noise texture overlay (5% opacity).
+
+ILLUSTRATION layer (very subtle, behind text): a faint gold outline of a stylized cloud formation at the top third, like an embossed watermark — not photographic, painterly suggestion only.
+
+Centered vertically:
+- Wordmark "CrewLink" in Manrope 700, 56pt, pure white, letter-spacing -0.022em
+- 1px gold rule (#C9A03B) 48px wide, centered, 16px below wordmark
+- Tagline "Travel data, made for crew." in Inter 400, 17pt, cream #FBF6EC at 80% opacity
+
+Bottom 48px from safe area: 3-dot pulse loader in gold #C9A03B.
+
+Status bar: white text.
+No buttons, no illustrations beyond the subtle cloud watermark, no shadows.
+Premium, restrained, airline-app feel.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 2 / 29</div>
+        <div class="which-title">Signup</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s2', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s2">Generate Screen 2: SIGNUP.
+
+Cream bg #FBF6EC.
+
+Top right corner ILLUSTRATION: a small painterly watercolor mark — a folded paper airplane in red + gold, organic blob crop ~80x80px, low opacity (40%) as a brand watermark.
+
+Header: small back chevron espresso top-left. Headline "Create your account" Manrope 700 28pt. Subhead "Join the crew." Inter 400 15pt #6B6259.
+
+Main card: white bg, 14px radius, 24px padding, soft cream shadow.
+- Field 1: label "FULL NAME" mono caps gold above. Input white, 1px #E6BDB8 border, 14px radius. Placeholder "Akito Tanaka".
+- Field 2: label "PERSONAL EMAIL". Placeholder "you@gmail.com". Microcopy below in 12pt #6B6259: "Use any personal email — we'll verify your crew status separately."
+- Field 3: label "PASSWORD". Eye toggle icon right. Helper "8+ characters".
+
+CTA: full-width red pill "Create account" Inter 600 16pt, 56px tall.
+
+Below: "Already have an account? Sign in" 14pt with "Sign in" in deep navy #2A2A4A.
+
+Footer (above safe area): "By signing up you agree to our Terms and Privacy Policy." 11pt #6B6259 centered.
+
+No social login.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 3 / 29</div>
+        <div class="which-title">Email sent</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s3', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s3">Generate Screen 3: EMAIL SENT confirmation.
+
+Cream bg.
+
+HERO ILLUSTRATION (centered, takes top half of screen):
+A 140px circle with gold-trim outline (#C9A03B 2px stroke). Inside the circle: a painterly watercolor paper airplane in red #D71921, mid-flight tilt, with a faint gold motion-trail curve behind it (suggesting flight path). Soft cream-tinted shadow under the circle.
+
+Below illustration:
+- Headline "Check your inbox" Manrope 700 28pt espresso.
+- Sub "We sent a confirmation link to" Inter 400 15pt #6B6259.
+- Email line "akito.tanaka@gmail.com" JetBrains Mono 14pt espresso with gold underline.
+
+White card 14px radius below (24px padding, 32px gap):
+- Label "DIDN'T RECEIVE IT?" mono 11pt caps gold.
+- Body "Check your spam folder, or:" 14pt.
+- Tertiary text button "Resend email" red.
+- Timer microcopy "You can resend in 0:45" 12pt #6B6259.
+
+Footer above safe area: link "Use a different email" deep navy #2A2A4A 14pt centered.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 4 / 29</div>
+        <div class="which-title">Verify as crew + OTP</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s4', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s4">Generate Screen 4: VERIFY AS CREW (with OTP entry inline).
+
+Cream bg.
+
+Top: thin green-tinted banner pill "✓ Account active" 12pt JetBrains Mono caps, soft green bg.
+
+Headline "Unlock crew-only features" Manrope 700 28pt.
+Sub: "Verify with your work email — we send a one-time code and forget the address." Inter 400 15pt #6B6259.
+
+ILLUSTRATION strip (between subhead and card, organic blob crop ~120x80px aligned center): a painterly silhouette of a crew member from behind, red pillbox hat + camel-tan uniform, walking toward a stylized terminal window with soft gold morning light spilling through. Watercolor style, dreamy.
+
+White card 14px radius:
+- Label "WORK EMAIL" mono caps gold.
+- Input "you@emirates.com" with a tiny shield-lock icon at right (gold stroke).
+- Microcopy: "🔒 Used once for verification, then deleted. Never stored." (use real shield icon SVG not emoji).
+
+Below card: 6-box OTP entry row. Each box 48x56px, white bg, 1px gold border, 14px radius. Focus state: red border.
+
+Below OTP: full-width red pill CTA "Verify & continue".
+Below: tertiary "Resend code (0:42)" centered.
+
+At the very top of screen above app bar: subtle gold confetti banner that says "✓ Welcome aboard, Akito" — show this as a tiny cream pill at the top, suggesting the success state.</div>
+  </div>
+
+  <!-- ===== HOME ===== -->
+  <span class="group-tag">SCREEN 5 · HOME DASHBOARD</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 5 / 29</div>
+        <div class="which-title">Home dashboard</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s5', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s5">Generate Screen 5: HOME DASHBOARD.
+
+Cream bg.
+
+Top app bar: "CrewLink" wordmark left Manrope 700 18pt. Right: avatar (initial "A" white on red circle 40px).
+
+GREETING CARD (white, 14px radius, 24px padding):
+- "Welcome back, Akito" Manrope 700 24pt espresso.
+- Below: "DXB → BKK in 6 days" 13pt #6B6259 with tiny gold airplane icon.
+
+STATS ROW (3 chips horizontal, each white 14px radius pill):
+- "2" big numeric + "eSIMs active" caption mono caps
+- "8.5 GB" + "remaining"
+- "Cockpit" + "your tier" — this chip has indigo-gold border accent
+
+FEATURED CTA CARD (24px top radius, takes ~30% screen):
+HERO ILLUSTRATION (top half of card): painterly watercolor of a folded paper roster sheet with airline route arcs in gold, an Emirates-style crew silhouette beside it (red pillbox, back-view). Organic asymmetric crop.
+Below illustration on white card body:
+- Gold "MOST POPULAR" pill ribbon top.
+- "Your June roster is ready" Manrope 700 20pt.
+- "Bundle 5 destinations for $39.99 — saves $15 vs individual" 14pt.
+- Red pill button "See bundle".
+
+RECENT ACTIVITY (3 rows, each thin divider between):
+- "Refueled Japan +1 GB · 2h ago" with red arrow-up icon
+- "Activated Thailand eSIM · yesterday" with green check
+- "Liked 'Mingles, Seoul' rec · 2d ago" with gold heart
+
+CREW TIP card (cream-toned, gold left border):
+"💡 Tip: install Thailand eSIM before takeoff — Bangkok airport WiFi is slow." (use actual lightbulb SVG icon)
+
+BOTTOM NAV: floating white pill, 5 icons. Home active (red pill behind icon).</div>
+  </div>
+
+  <!-- ===== PLANS ===== -->
+  <span class="group-tag">SCREENS 6–7 · PLANS HUB & COMPARISON</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 6 / 29</div>
+        <div class="which-title">Plans hub — 7 cabin cards</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s6', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s6">Generate Screen 6: PLANS HUB.
+
+Cream bg. App bar with back chevron + "Pick your cabin" Manrope 700 24pt + filter icon. Subhead "Every cabin maps to how you actually use data" Inter 15pt #6B6259.
+
+7 stacked plan cards (each white card 14px radius unless noted). Every card has a HERO ILLUSTRATION strip at top — painterly watercolor, organic crop, tier-themed:
+
+1. ECONOMY card — sky-blue pill top left
+   ILLUSTRATION: soft watercolor clouds with a small distant airplane, sky blue + cream
+   "$3–7 ONE-TIME" big numeric, "Pay only for the country you visit" 14pt, red pill "See countries"
+
+2. ROSTER BUNDLE card — FULL RED #D71921 bg, white text
+   ILLUSTRATION (top): folded paper roster with route arcs in gold (white outlines on red)
+   Gold "MOST POPULAR" ribbon top-right
+   "$39.99 / month flat" big numeric white, "Up to 5 destinations, auto-detected from your roster" 14pt white, white pill "Upload roster" button
+
+3. PREMIUM ECONOMY — peach pill
+   ILLUSTRATION: soft peach blossom branch with petals falling, watercolor
+   "$12.99 / month", "3 GB pool · carries 30% forward"
+
+4. BUSINESS — navy + gold pill, gold RECOMMENDED ribbon top-right
+   ILLUSTRATION: navy compass rose with gold cardinal points, watercolor
+   "$24.99 / month", "8 GB pool · 50% carry · 1 oops refund/mo"
+
+5. FIRST — burgundy #7A1F2B + gold pill
+   ILLUSTRATION: burgundy globe outline with gold longitude lines, watercolor
+   "$49.99 / month", "20 GB pool · 80% carry · 2 oops · priority"
+
+6. COCKPIT ANNUAL — indigo + pilot-gold pill, gold BEST VALUE pill (save $50)
+   ILLUSTRATION: aviation instrument panel — altimeter dial in indigo + pilot-gold, watercolor
+   "$299 / year", "Unlimited oops · all-tier carryover · founders perks"
+
+7. REFUEL ADD-ON — smaller card, gray ADD-ON pill
+   ILLUSTRATION: stylized fuel pump nozzle with gold drop, watercolor
+   "Top up any eSIM 1/2/5 GB", outline pill "Refuel"
+
+Bottom nav present, Plans tab active.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 7 / 29</div>
+        <div class="which-title">Tier comparison</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s7', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s7">Generate Screen 7: COMPARE MONTHLY TIERS.
+
+Cream bg. Back chevron + "Compare cabins" Manrope 700 24pt.
+
+Banner top (cream + gold border-left): "💎 Save $50/yr — go Cockpit Annual →" with gold pill arrow. (Use real diamond SVG.)
+
+3 side-by-side cards (horizontal layout, Business in middle scaled up 5% with gold RECOMMENDED ribbon):
+
+Each card has:
+- Mini ILLUSTRATION at top (24x24 watercolor blob): Premium Economy = peach blossom; Business = navy compass; First = burgundy globe
+- Tier pill in tier color
+- Price big numeric ($12.99 / $24.99 / $49.99)
+- "X GB pool" caption
+- "Y% carryover"
+- "Z oops/mo"
+- Checklist 5 features (✓ green / — gray) — Premium has 2 ✓, Business has 4 ✓, First has 5 ✓
+- Bottom outline pill "Choose [tier]"</div>
+  </div>
+
+  <!-- ===== ROSTER BUNDLE ===== -->
+  <span class="group-tag">SCREENS 8–10 · ROSTER BUNDLE FLOW</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 8 / 29</div>
+        <div class="which-title">Upload roster</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s8', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s8">Generate Screen 8: UPLOAD ROSTER.
+
+Cream bg. Back chevron + "Bundle your trip" Manrope 700 24pt + "(Step 1 of 3)" mono caps gold.
+
+Headline "Upload your Crew Pulse screenshot" Manrope 700 22pt.
+Sub "We'll detect destinations and suggest data per country." 14pt #6B6259.
+
+Big DROPZONE (white card, 24px radius, dashed 2px #E6BDB8 border, 280x320px centered):
+ILLUSTRATION inside dropzone: painterly watercolor of an iPhone tilted slightly, screen showing a stylized Crew Pulse roster grid (monthly calendar with red highlight squares for trip dates). Organic asymmetric crop. Below illustration: "Drop image here, or tap to browse" 15pt centered.
+
+Two CTAs below dropzone (side by side):
+- Red pill "📸 Take screenshot" (use real camera SVG icon)
+- Outline pill "🖼️ Choose from library" (use real photo-library SVG icon)
+
+PRIVACY CARD bottom (cream-tinted, gold left border, 24px padding):
+Shield-lock SVG icon (gold) + "Roster image is processed entirely on your phone. Never sent to our servers." 13pt navy.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 9 / 29</div>
+        <div class="which-title">Detected destinations</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s9', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s9">Generate Screen 9: DETECTED DESTINATIONS.
+
+Cream bg. Back + "We found 5 destinations" Manrope 700 22pt. Caption "DXB · JUN 2026" mono caps gold.
+
+5 white cards 14px radius stacked, each row:
+- Country FLAG ILLUSTRATION (32px circle, painterly watercolor of the flag stripes — not emoji)
+- Country name Manrope 700 18pt
+- Date range "Jun 4–6" 13pt #6B6259
+- "1 GB suggested" navy chip mono caps
+- ± buttons (outline pill 32px) to adjust GB
+
+Cards: 1) Tokyo (red sun + white watercolor) 2) London (red+blue cross watercolor) 3) Bangkok (red+white+blue stripes) 4) Mauritius (red+blue+yellow+green stripes) 5) Cape Town (green+gold+red+white South Africa watercolor)
+
+STICKY BOTTOM cream-tinted card (gold left border):
+- "Total: 5 GB · $39.99" big numeric
+- Green pill "Saves $14.96 vs individual"
+- Full-width red CTA "Confirm bundle"</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 10 / 29</div>
+        <div class="which-title">Bundle confirmed</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s10', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s10">Generate Screen 10: BUNDLE CONFIRMED.
+
+Cream bg.
+
+HERO ILLUSTRATION (centered, 200x200px):
+A 140px gold-trim circle with red watercolor checkmark inside. Around the circle: 5 small watercolor passport-stamp circles in an arc, each with a tiny country marker (red sun for Japan, blue cross for UK, etc.). Soft gold confetti dots scattered behind.
+
+Headline "Welcome aboard." Manrope 700 28pt espresso (period included).
+Sub "5 eSIMs are ready in your Library — install whenever you arrive." Inter 400 15pt #6B6259.
+
+White card 14px radius:
+- Row of 5 small flag chips with country code mono caps
+- Label "TAP TO INSTALL" mono caps gold
+
+Two stacked CTAs:
+- Red pill "Install Tokyo now" (top of trip)
+- Outline pill "Install all later"
+
+Tip card at bottom (cream-tinted, gold left border):
+"Tip: install on takeoff. eSIMs activate the first time you land + toggle them on." 13pt.</div>
+  </div>
+
+  <!-- ===== PURCHASE ===== -->
+  <span class="group-tag">SCREENS 11–13 · PURCHASE FLOW</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 11 / 29</div>
+        <div class="which-title">Plan detail — Japan</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s11', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s11">Generate Screen 11: PLAN DETAIL (Japan Economy).
+
+Cream bg. Back + "Japan" Manrope 700 24pt + Japan flag chip (watercolor sun on white).
+
+HERO CARD (24px top radius, takes 35% of screen):
+ILLUSTRATION: painterly watercolor scene — stylized Tokyo Tower silhouette in red against a cream sky with soft gold morning glow, watercolor cherry blossom branch (peach #F4C8A8) drifting in foreground. Organic asymmetric crop.
+
+White card body below:
+- Tier pill "Economy" sky-blue
+- "1 GB" big Manrope 700 32pt
+- "Valid 7 days · $4.99" mono 13pt
+- Features list (each row check + text):
+  · ✓ 4G/5G speeds
+  · ✓ Hotspot enabled
+  · ✓ One-time activation
+
+GB selector segmented control (3 pill segments): [1 GB] [3 GB] [5 GB] — 3 GB selected (red bg, white text)
+Price below updates: "$9.99 for 3 GB" Manrope 700 24pt.
+
+Bottom sticky red pill CTA "Buy 3 GB · $9.99".</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 12 / 29</div>
+        <div class="which-title">Checkout</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s12', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s12">Generate Screen 12: CHECKOUT.
+
+Cream bg. Back + "Checkout" Manrope 700 24pt.
+
+Top thin strip: "WEB CHECKOUT · NO IAP TAX" mono 11pt caps gold, centered.
+
+ORDER SUMMARY card (white, 14px):
+- Label "ORDER SUMMARY" mono caps gold
+- Row: "Japan 3 GB" + price right "$9.99"
+- Divider
+- Total bold "Total: $9.99" Manrope 700 18pt
+
+PAYMENT METHODS stack:
+1. Apple Pay button — black pill, white Apple logo + "Pay" text. PRIMARY size 56px.
+2. Outline pill below "Add credit card" with card SVG icon.
+
+EMAIL RECEIPT row:
+"Receipt to akito.tanaka@gmail.com" 13pt mono with edit pencil icon.
+
+PRIVACY STRIP cream-tinted (gold left border):
+Lock SVG icon + "Hosted by Stripe. We never see card numbers." 12pt navy.
+
+ILLUSTRATION watermark (background, very low opacity 8%): a stylized gold watercolor padlock outline behind the entire screen — security feel.
+
+Bottom sticky red pill CTA "Pay $9.99 with Apple Pay".</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 13 / 29</div>
+        <div class="which-title">Purchase success</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s13', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s13">Generate Screen 13: PURCHASE SUCCESS.
+
+Cream bg.
+
+HERO ILLUSTRATION (centered, 220px):
+A 160px circle with gold-trim outline, animated red checkmark inside (stroke style). Around the circle: a faint gold sparkle radial burst (8 short rays). Behind everything: a watercolor wash of soft cream + peach, organic blob shape suggesting "lift off".
+
+Headline "Your Japan eSIM is ready" Manrope 700 28pt.
+Sub "Install now or save for later." Inter 400 15pt #6B6259.
+
+Two CTAs:
+- Red pill "Install now (1 tap)"
+- Outline pill "Install later"
+
+NEXT STEPS card (white, 14px, 24px padding):
+- Label "WHAT HAPPENS NEXT" mono caps gold
+- 3 numbered rows with thin gold icons:
+  1. Install eSIM (gold download icon)
+  2. Land in Japan (gold airplane icon)
+  3. Toggle on in Settings (gold switch icon)</div>
+  </div>
+
+  <!-- ===== MY ESIMS ===== -->
+  <span class="group-tag">SCREENS 14–17 · MY eSIMs + ACTIVATION</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 14 / 29</div>
+        <div class="which-title">eSIM library</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s14', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s14">Generate Screen 14: eSIM LIBRARY.
+
+Cream bg. Top: "My eSIMs" Manrope 700 24pt + filter icon.
+
+POOL METER CARD (white, prominent, 14px radius, 32px padding):
+ILLUSTRATION: large circular progress ring — red stroke for used (33%), gold remainder, navy track. 180px diameter. Center: big numeric "9.5 GB" Manrope 700 36pt. Below: "left of 15 GB · Resets in 12 days" 13pt #6B6259.
+
+List of eSIM cards below (each 14px radius white card with country flag illustration 32px circle as identity):
+
+1. Japan eSIM — JP watercolor flag · "····3492" mono · ACTIVE pill (soft green) · usage bar 0.4/1 GB · switch on (red)
+2. UK eSIM — UK watercolor flag · "····8821" · DORMANT pill (soft gray) · outline pill "Install" · switch off
+3. Thailand — TH watercolor · "····1144" · ACTIVE · 2.1/3 GB bar · switch on
+4. Mauritius — MU watercolor · "····7732" · DORMANT · outline "Install"
+5. Cape Town — ZA watercolor · "····3398" · EXPIRED pill (soft red) · X delete button
+
+Each card has overflow ⋯ menu (3-dot, top-right).
+
+Bottom: outline pill "Delete all expired (1)" centered.
+
+Bottom nav present, eSIMs tab active.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 15 / 29</div>
+        <div class="which-title">eSIM detail — Japan</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s15', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s15">Generate Screen 15: eSIM DETAIL (Japan).
+
+Cream bg. Back + "Japan eSIM" + JP watercolor flag chip.
+
+HERO CARD (24px top radius):
+ILLUSTRATION: large painterly watercolor JP flag (red sun on cream) 96px circle, "····3492" mono gold below.
+
+DETAIL CARD (white, 14px):
+- Usage bar 0.4/1 GB with red fill, mono caps labels "USED 0.4" / "TOTAL 1 GB"
+- Signal strength ILLUSTRATION: 4/5 bars graphic in gold (5 vertical bars)
+- "Connected to NTT Docomo" 13pt navy with green dot
+- Action row: red pill "Refuel +1 GB" + outline pill "Turn off"
+
+SETTINGS LIST (white card rows, dividers between):
+- "Label: Japan trip" with edit pencil
+- "APN: peanut.iot · auto"
+- "Low data notification" with toggle (red when on)
+
+DANGER ZONE bottom:
+Tertiary red text "Remove eSIM" centered.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 16 / 29</div>
+        <div class="which-title">Refuel bottom sheet</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s16', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s16">Generate Screen 16: TOP-UP / REFUEL BOTTOM SHEET (modal over a faded eSIM Detail).
+
+Dim cream-tinted overlay (60% opacity) over the eSIM Detail screen behind. Bottom sheet slides up:
+
+BOTTOM SHEET (white, 24px top radius, 32px padding):
+- Pull handle: 40x4px gold pill centered top
+- Title: "Refuel Japan eSIM" Manrope 700 22pt + JP watercolor flag chip right
+
+ILLUSTRATION at top of sheet (140x80px organic crop): painterly watercolor of a stylized gold fuel pump nozzle dripping a gold drop into a small red eSIM card icon. Whimsical.
+
+SLIDER component:
+- 3 segmented pill stops: [1 GB] [2 GB] [5 GB] — 2 GB selected (red bg white text)
+- Big price "$3.99" Manrope 700 32pt updates live
+
+SUBSCRIBER TOGGLE row (white card):
+- "Use pool (free)" + red switch off
+- Microcopy "Saves 1 GB from your 15 GB pool" 12pt #6B6259
+
+Sticky red pill CTA "Refuel 2 GB · $3.99".
+Tertiary text "Maybe later" centered below.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 17 / 29</div>
+        <div class="which-title">Activation confirmation modal</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s17', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s17">Generate Screen 17: ACTIVATION CONFIRMATION MODAL.
+
+Dim cream overlay over a faded eSIM Library screen behind.
+
+CENTER MODAL CARD (white, 14px radius, 280px wide, 24px padding):
+
+ILLUSTRATION at top (80x80 circle centered, painterly watercolor): a stylized aviation warning triangle in soft gold with a tiny eSIM card icon inside. Restrained.
+
+- Title "Activate Japan eSIM?" Manrope 700 20pt
+- Body "This will use 1 GB from your plan." Inter 400 14pt
+
+CREAM NOTE STRIP (gold left border, 12px padding):
+"You have 2 oops refunds left this year" 13pt mono caps gold.
+
+Two stacked CTAs:
+- Red pill "Yes, activate"
+- Tertiary text "Cancel" centered</div>
+  </div>
+
+  <!-- ===== REFUNDS ===== -->
+  <span class="group-tag">SCREENS 18–21 · REFUND FLOWS</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 18 / 29</div>
+        <div class="which-title">Refund — not yet activated</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s18', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s18">Generate Screen 18: REFUND ESIM (not yet activated).
+
+Cream bg. Back + "Refund Japan eSIM" Manrope 700 22pt. Caption "NOT YET ACTIVATED — FULLY REFUNDABLE" mono caps gold.
+
+Two option cards stacked:
+
+CARD 1 — RED FILLED with gold RECOMMENDED ribbon top-right:
+ILLUSTRATION at top: painterly watercolor of a gold gift box with red bow, organic crop. White outlines on red bg.
+- "🎁 Convert to credit" Manrope 700 22pt white (use real gift SVG)
+- White body "+$4.99 to your credit balance — use on any future eSIM. Never expires." 14pt white.
+- White pill button "Convert to credit"
+
+CARD 2 — White outlined, smaller (60% size of card 1):
+ILLUSTRATION: small painterly watercolor of a green-cream dollar bill folded, organic crop.
+- "💵 Cash refund" Manrope 700 18pt (use real dollar SVG)
+- "Back to your Apple Pay / card. 3–5 business days." 13pt #6B6259
+- Outline pill "Refund cash"
+
+Helper text bottom (centered): "Most crew choose credit — it stacks across trips and never expires." 12pt #6B6259.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 19 / 29</div>
+        <div class="which-title">Oops refund — 50% GB back</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s19', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s19">Generate Screen 19: OOPS REFUND.
+
+Cream bg. Back + "Refund my activation" Manrope 700 22pt. Caption "OOPS REFUND" mono caps gold.
+
+HERO ILLUSTRATION CARD (cream-toned, gold border, 24px top radius):
+A painterly watercolor diagram: a 1 GB cylinder (red filled) on the left → curved gold arrow (recycling style) → a 0.5 GB cylinder (red half-filled) going back into a stylized pool icon on the right. Whimsical aviation feel.
+
+Body card (white, 14px):
+"Tapped activate by mistake? We give 50% of GB back, no questions." Inter 400 15pt.
+
+CREAM NOTE STRIP (gold left border, 12px padding):
+"You have 2 oops refunds left this year" 13pt mono caps gold.
+
+Big red pill CTA "Yes, refund 0.5 GB".
+Tertiary "Never mind" centered.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 20 / 29</div>
+        <div class="which-title">Refund unused bundle destinations</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s20', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s20">Generate Screen 20: REFUND UNUSED DESTINATIONS (bundle).
+
+Cream bg. Back + "Refund Unused Destinations" Manrope 700 22pt.
+
+ILLUSTRATION at top: a painterly watercolor passport open with 5 small country stamps visible (3 marked USED with green check overlays, 2 marked UNUSED with red dotted outline). Organic asymmetric crop.
+
+5 COUNTRY ROWS (grid 2 per row, last row 1):
+- Japan — flag chip + USED pill (soft green) + ✓
+- UK — flag + USED ✓
+- Thailand — flag + USED ✓
+- Mauritius — flag + UNUSED pill (cream) + checkbox selected (red)
+- Cape Town — flag + UNUSED + checkbox selected
+
+MATH CARD (cream-tone, gold left border):
+- "$39.99 × 2/5 = $16.00" big numeric Manrope 700 28pt
+- Caption "Refunding 2 unused destinations" 12pt #6B6259
+
+Red pill CTA "Refund $16.00 as credit".
+Below tertiary: "Or cash refund (3–5 days)" centered.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 21 / 29</div>
+        <div class="which-title">Failed eSIM recovery</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s21', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s21">Generate Screen 21: FAILED ESIM RECOVERY.
+
+Cream bg.
+
+APOLOGY HEADER (red soft-tone strip, 24px top radius):
+ILLUSTRATION: small painterly watercolor of an airplane with a slightly tilted/sad expression (subtle), red+cream tones.
+- "Sorry — your Japan eSIM isn't working." Manrope 700 22pt white
+- Sub "We're making it right automatically." 14pt cream
+
+3 STEP CARDS (each white, 14px radius, with green checkmark left, gold step number):
+
+STEP 1: ✅ "Refunding $5.99 to your Apple Pay"
+STEP 2: ✅ "Adding 2 GB bonus credit (sorry for the mess)"
+STEP 3: ✅ "Installing a new Japan eSIM now"
+  Subtext: "Attempt 3 of 3 available this month" mono caps gold
+
+HELP CARD bottom (cream-toned):
+- "Still need help? Tap Crew AI Support."
+- Outline pill "Open chat"</div>
+  </div>
+
+  <!-- ===== HOTELS ===== -->
+  <span class="group-tag">SCREENS 22–23 · CREW HOTELS</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 22 / 29</div>
+        <div class="which-title">Hotels list</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s22', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s22">Generate Screen 22: HOTELS LIST (by city).
+
+Cream bg. Top: "Crew Hotels" Manrope 700 24pt + search icon + filter icon.
+
+Caption strip: "SHOWING DXB-BASED CREW STAYS" mono 11pt caps gold.
+
+CITY CHIPS (horizontal scroll pill row): Tokyo (active red pill) · London · Bangkok · Sydney · NYC · Mauritius
+
+HOTEL CARDS (white, 14px radius, each with HERO ILLUSTRATION):
+
+CARD 1 — Tokyo Marriott Akasaka:
+Hero illustration strip (organic blob crop): watercolor of a hotel building silhouette in cream + navy + gold accents, Tokyo skyline hint behind.
+- "Tokyo Marriott Akasaka" Manrope 700 18pt
+- "⭐⭐⭐⭐ 4.2/5 (124 crew ratings)" — use real star SVGs not emoji
+- Amenity preview chips (small mono caps): "IRON ✓" "DRYER ✓" "GYM ✓" "QUIET ✗"
+- "EMIRATES-ASSIGNED" gold pill bottom-right (use neutral "AIRLINE-ASSIGNED" copy actually)
+
+CARD 2 — Park Hotel Tokyo:
+Hero blob: watercolor of windows with city lights at night, navy + gold.
+- 4.5/5 (89), "IRON ✓" "DRYER ✗" "GYM ✓" "QUIET ✓"
+
+CARD 3 — Shinjuku Granbell:
+Hero blob: watercolor of a streetside lantern + cherry blossom, cream + peach.
+- 3.8/5 (211), "IRON ✓" "DRYER ✓" "GYM ✗" "QUIET ✗"
+
+Bottom nav, Hotels tab active.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 23 / 29</div>
+        <div class="which-title">Hotel detail</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s23', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s23">Generate Screen 23: HOTEL DETAIL (Tokyo Marriott Akasaka).
+
+Cream bg. Back chevron + share icon top-right.
+
+HERO PHOTO CAROUSEL (240px tall, 24px top radius, full-bleed):
+ILLUSTRATION: painterly watercolor render of the hotel exterior at golden hour — warm cream + navy + gold tones. Asymmetric crop. Dots indicator below for carousel.
+
+CONTENT CARD (white below hero):
+- "Tokyo Marriott Akasaka" Manrope 700 22pt
+- "Akasaka, Tokyo" 13pt #6B6259 with gold map pin SVG (clickable link)
+- Rating row: 4 gold stars + "4.2 (124 crew)" 13pt
+- "EMIRATES-ASSIGNED" gold pill (or "AIRLINE-ASSIGNED")
+
+AMENITY CHECKLIST CARD (white, 14px, 24px padding):
+Label "CREW AMENITY CHECKLIST" mono caps gold.
+10 rows, each with green ✓ or red ✗ + text + small italic detail:
+- ✅ Dryer in room
+- ✅ Iron + ironing board
+- ✅ Closet space (full-size)
+- ❌ Quiet rooms (street-side noisy)
+- ✅ Blackout curtains
+- ✅ 24h gym
+- ❌ Pool
+- ✅ Late-night restaurant
+- ✅ WiFi (reliable · 100 mbps tested)
+- ⏱ Airport transit: 45 min via Limousine Bus (gold clock icon)
+
+CREW TIPS section (3 quote cards, cream-tinted, gold left border):
+"First time? Ask for high-floor non-street room." — Captain Reyes
+"Breakfast buffet is excellent — 6am open." — Akito T.
+"Iron is in the closet, not the wardrobe." — Sara M.
+
+Bottom red pill "Open in Google Maps".</div>
+  </div>
+
+  <!-- ===== CREW RECS ===== -->
+  <span class="group-tag">SCREENS 24–26 · CREW RECS (community)</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 24 / 29</div>
+        <div class="which-title">Tokyo crew picks</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s24', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s24">Generate Screen 24: TOKYO CREW PICKS.
+
+Cream bg. Top: "Tokyo Crew Picks" Manrope 700 24pt + Tokyo flag chip + sort/filter icons.
+
+Caption strip: "84 PICKS BY EMIRATES CREW · UPDATED 2H AGO" mono caps gold.
+
+FILTER CHIPS (horizontal scroll pill row): All (active) · Cafe · Restaurant · Sightseeing · Late-night · Free
+
+REC CARDS (white, 14px radius, each):
+
+CARD 1: Tatemichiya Diner
+- Thumbnail ILLUSTRATION (organic blob crop ~80px): watercolor of okonomiyaki on a teppan with steam, warm cream + red tones
+- Category pill "Restaurant" + airplane rating "✈️✈️✈️✈️" (use real airplane SVGs not emoji) "4/5"
+- "Stand-up okonomiyaki spot, open 5am — perfect after late landing"
+- "Liked by 24 crew · 12 comments" 12pt mono
+- "@captain_reyes · 2d" mono caps gold
+
+CARD 2: Blue Bottle Aoyama
+- Blob: watercolor coffee cup with steam, cream + soft blue
+- "Cafe" · 5 airplanes 5/5
+- "Best espresso, opens 8am, near layover hotels"
+- 18 likes · 4 comments · @sara_m · 5d
+
+CARD 3: TeamLab Borderless
+- Blob: watercolor of glowing geometric lights, indigo + gold
+- "Sightseeing" · 3 airplanes 3/5
+- "Worth it once. Crowded weekends, book ahead"
+- 9 likes · 2 comments · @akito_t · 1w
+
+FLOATING FAB bottom-right: red pill "+ Add a place" with plus SVG icon.
+
+Bottom nav, dedicated tab if there's room.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 25 / 29</div>
+        <div class="which-title">Add a place — bottom sheet</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s25', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s25">Generate Screen 25: ADD A PLACE bottom sheet.
+
+Dim cream overlay over Tokyo Crew Picks behind.
+
+BOTTOM SHEET (white, 24px top radius, 32px padding, takes 80% of screen height):
+- Pull handle gold pill top center
+- Title "Share your spot" Manrope 700 22pt + close X right
+
+DETECTED CARD (cream-tinted, gold left border):
+ILLUSTRATION 32px: watercolor map pin in red + gold.
+"Detected from Share Sheet: Tatemichiya Diner · Tokyo" 14pt
+Edit pencil icon right.
+
+PHOTOS ROW (3 upload slots):
+Each 96x96 dashed cream-brown border, 14px radius. Empty state: gold "+" centered. (One slot can show a small watercolor okonomiyaki preview to suggest already uploaded.)
+
+NOTES TEXTAREA (white, 14px, 4 lines):
+Placeholder "What makes this special for crew?"
+
+CATEGORY DROPDOWN (outline pill):
+"Restaurant ▼"
+
+TAG CHIPS (wrap, selectable):
+Late-night · Quiet · Near hotel · Free WiFi · Vegan · Cash-only
+
+Bottom red pill CTA "Post to Crew Recs".</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 26 / 29</div>
+        <div class="which-title">Place detail — Tatemichiya</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s26', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s26">Generate Screen 26: PLACE DETAIL (Tatemichiya Diner).
+
+Cream bg. Back + share icon + save bookmark icon top-right.
+
+HERO PHOTO CAROUSEL (280px tall, organic asymmetric crop top — not a clean rectangle):
+ILLUSTRATION: painterly watercolor of okonomiyaki on a teppan, steam rising, soft red + cream lantern light. Carousel dots below.
+
+CONTENT:
+- Title "Tatemichiya Diner" Manrope 700 24pt
+- Category pill "Restaurant" + 4 airplane rating "4/5"
+
+CREW DESCRIPTION CARD (white, 14px, 24px padding):
+"Stand-up okonomiyaki spot, opens 5am, perfect after a late ULH landing. Ask for the modan. Pay cash." 15pt.
+Below: "— @captain_reyes" mono caps gold.
+
+MAP CARD (cream-tinted):
+ILLUSTRATION: stylized watercolor mini-map of Ebisu/Shibuya with a red+gold pin marker. Organic crop.
+Address "1-23-5 Ebisu, Shibuya · 6 min walk from hotel" 13pt.
+
+STATS ROW (3 chips):
+"24 crew liked" · "12 comments" · "8 saved" — each with gold heart/comment/bookmark SVG
+
+COMMENTS LIST (3 visible, each row):
+- Avatar circle (initial) + "@sara_m" + "Tried it post-CDG. Worth the queue." + "1d ago"
+- Avatar + "@akito_t" + "Order the modan with cheese." + "3d ago"
+- Avatar + "@first_officer" + "Cash only, ATM next door." + "5d ago"
+
+BOTTOM ACTION BAR (sticky, white card, 5 icons):
+❤️ Like (24) · 💬 Comment · 🔖 Save · ↗ Share — use real SVGs, no emoji.</div>
+  </div>
+
+  <!-- ===== POINTS ===== -->
+  <span class="group-tag">SCREEN 27 · POINTS & REWARDS</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 27 / 29</div>
+        <div class="which-title">Crew Points & rewards</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s27', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s27">Generate Screen 27: CREW POINTS & REWARDS.
+
+Cream bg. Top: "Crew Points" Manrope 700 24pt + balance chip "342 pts" gold pill right.
+
+HERO BALANCE CARD (white, 14px, 32px padding):
+ILLUSTRATION: a painterly watercolor of stacked gold coins with a small airplane-stamp pattern on top coin, organic crop. 100x100px.
+- "342 pts" Manrope 700 48pt centered, gold gradient text
+- "≈ 3 GB free data" mono caps gold
+- Progress bar: "58 pts to next reward (400)" with red fill
+
+3-TAB BAR (pill segments, top): Routine · History · Redeem (REDEEM ACTIVE red bg white text)
+
+REDEEM CONTENT:
+HERO CARD (white): "Redeem points for free data" Manrope 700 20pt
+- Segmented slider: [100 / 1 GB] [300 / 3 GB] [500 / 5 GB]
+- Red pill CTA "Redeem 100 pts for 1 GB"
+
+EARN ROWS (3 small cards stacked, each white):
+- ILLUSTRATION 32px gold watercolor heart + "Like a rec → +1 pt"
+- ILLUSTRATION 32px gold pencil + "Post a rec → +5 pts"
+- ILLUSTRATION 32px gold present + "Refer a crew member → +50 pts"
+
+COCKPIT PERK card (cream-toned, gold left border, indigo accent):
+ILLUSTRATION small (24px): gold pilot wings outline.
+"Cockpit members earn 2× points on everything" mono caps gold.</div>
+  </div>
+
+  <!-- ===== AI SUPPORT ===== -->
+  <span class="group-tag">SCREENS 28–29 · AI SUPPORT</span>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 28 / 29</div>
+        <div class="which-title">AI Support — starter</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s28', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s28">Generate Screen 28: CREW AI SUPPORT (idle/starter state).
+
+Cream bg. Top: "Crew AI Support" Manrope 700 20pt + status dot green "Online · 24/7" mono caps right.
+
+HERO ILLUSTRATION (~120px circle, top centered above first message):
+A gold-trim circle containing a watercolor letter "C" in red + gold gradient — the CrewLink mark. Soft cream glow behind.
+
+WELCOME BUBBLE (left aligned, cream-tinted bubble with gold left border, 14px radius, no avatar but gold C avatar circle inside the bubble):
+- "Hi Akito — what can I help with today?" 15pt
+- Below in mono caps gold: "TYPICAL REPLY < 30 SEC"
+
+QUICK ACTION CHIPS (wrap, 4 chips, scrollable, each pill outline):
+- "How do I install my eSIM?"
+- "Top-up not working"
+- "I want a refund"
+- "Change my plan"
+
+INPUT BAR (sticky bottom, white 14px radius pill, 56px tall):
+- Plus icon left (attach), microphone icon mid, send icon (red circle, white airplane SVG) right
+- Placeholder "Type your question…"
+
+HELPER (above safe area): "Powered by AI · escalates to human if needed" 11pt #6B6259 centered.</div>
+  </div>
+
+  <div class="prompt-block">
+    <div class="bar">
+      <div>
+        <div class="which-label">SCREEN 29 / 29</div>
+        <div class="which-title">AI Support — active chat</div>
+      </div>
+      <button class="copy-btn" onclick="copyMsg('s29', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
+    </div>
+    <div class="msg" id="s29">Generate Screen 29: CREW AI SUPPORT (active conversation).
+
+Cream bg. Top: "Crew AI Support" Manrope 700 20pt + gold pill button right "ESCALATE TO HUMAN" mono caps.
+
+CHAT THREAD (scrolling content):
+
+USER BUBBLE 1 (right, red #D71921 bg, white text, 14px radius):
+"My Tokyo eSIM won't activate — keeps saying 'no signal'"
+Time stamp below right: "10:32" mono caps 10pt #6B6259
+
+AI BUBBLE 1 (left, cream-tinted, gold left border, 14px radius, small gold C avatar circle):
+"Sorry about that. Let me check… I can see your Japan eSIM is installed but not toggled on in iOS Settings. Try: Settings → Mobile Data → Japan eSIM → Turn on. If still no signal after 2 minutes, I'll refund and reissue automatically."
+"10:32" left timestamp.
+
+USER BUBBLE 2 (right):
+"Did that, still nothing"
+"10:35"
+
+AI BUBBLE 2 (left, with two inline action buttons embedded):
+"Got it. I'm taking action now:
+✓ Refunding $4.99 to your Apple Pay
+✓ Adding 2 GB bonus credit (sorry for the trouble)
+✓ Installing a new Japan eSIM"
+
+Inline buttons row below bubble:
+- Red pill "Yes, fix it"
+- Outline pill "Talk to human"
+
+"10:35"
+
+ILLUSTRATION subtle (background, very low opacity 6%): a watercolor airplane silhouette behind the chat thread — feels lived-in.
+
+INPUT BAR same as Screen 28 (sticky bottom).</div>
+  </div>
+
+  <p class="foot">CREWLINK · 29 SCREENS · CABIN-CLASS EDITORIAL · 2026-05-25</p>
+</div>
+
+<script>
+function copyMsg(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    setTimeout(() => btn.classList.remove('copied'), 1800);
+  });
+}
+</script>
+</body>
+</html>
