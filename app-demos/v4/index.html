@@ -148,7 +148,75 @@ function findScreen(hash) {
   return SCREENS.find(s => s.slug === slug) || SCREENS[0];
 }
 
+// Per-screen logical "next" route. If a screen has multiple CTAs we map them
+// by text match below. Otherwise any button click defaults to the linear next.
+const NEXT_MAP = {
+  'splash':            'signup',
+  'signup':            'email-sent',
+  'email-sent':        'verify-otp',
+  'verify-otp':        'home',
+  'home':              'plans',
+  'plans':             'plan-detail',
+  'compare':           'plan-detail',
+  'upload-roster':     'detected',
+  'detected':          'bundle-confirmed',
+  'bundle-confirmed':  'esim-library',
+  'plan-detail':       'checkout',
+  'checkout':          'purchase-success',
+  'purchase-success':  'esim-library',
+  'esim-library':      'esim-detail',
+  'esim-detail':       'topup-sheet',
+  'topup-sheet':       'esim-detail',
+  'activate-modal':    'esim-detail',
+  'refund-esim':       'esim-library',
+  'oops-refund':       'esim-library',
+  'refund-unused':     'esim-library',
+  'failed-recovery':   'ai-support',
+  'hotels':            'hotel-detail',
+  'hotel-detail':      'hotels',
+  'crew-picks':        'place-detail',
+  'add-place':         'crew-picks',
+  'place-detail':      'crew-picks',
+  'points':            'home',
+  'ai-support':        'ai-active',
+  'ai-active':         'esim-library',
+};
+
+// Text-match shortcuts: if a button's text contains these (case-insensitive),
+// route directly to the matching slug instead of using NEXT_MAP.
+const TEXT_ROUTES = [
+  // Bottom nav
+  { match: /^home$/i,                    to: 'home' },
+  { match: /^plans?$/i,                  to: 'plans' },
+  { match: /^esims?$|^my esims?$/i,      to: 'esim-library' },
+  { match: /^hotels?$/i,                 to: 'hotels' },
+  { match: /^profile$/i,                 to: 'points' },
+  // Common CTA labels
+  { match: /upload roster|see bundle|bundle/i, to: 'upload-roster' },
+  { match: /take screenshot|choose from library/i, to: 'detected' },
+  { match: /confirm bundle/i,            to: 'bundle-confirmed' },
+  { match: /install (tokyo|all)/i,       to: 'esim-library' },
+  { match: /refuel/i,                    to: 'topup-sheet' },
+  { match: /turn off|toggle/i,           to: 'esim-detail' },
+  { match: /yes, activate|activate/i,    to: 'esim-detail' },
+  { match: /escalate to human|talk to human/i, to: 'ai-active' },
+  { match: /open chat|crew ai support/i, to: 'ai-support' },
+  { match: /convert to credit|refund cash/i, to: 'esim-library' },
+  { match: /add a place/i,               to: 'add-place' },
+  { match: /post to crew recs/i,         to: 'crew-picks' },
+  { match: /open in google maps/i,       to: 'hotel-detail' },
+  { match: /redeem/i,                    to: 'points' },
+  // Auth flow
+  { match: /create account|sign ?up/i,   to: 'email-sent' },
+  { match: /resend email|use a different email/i, to: 'signup' },
+  { match: /verify.*continue/i,          to: 'home' },
+  // Purchase
+  { match: /buy|pay (with )?apple|continue to pay/i, to: 'checkout' },
+  { match: /install now|install later/i, to: 'esim-library' },
+];
+
 function setScreen(s) {
+  // Set iframe src; the load handler will wire its buttons
   frame.src = s.folder + '/code.html';
   indicator.textContent = 'SCREEN ' + String(s.num).padStart(2, '0') + ' / 29 · ' + s.title.toUpperCase();
   document.querySelectorAll('.sidebar a').forEach(a => {
@@ -166,6 +234,43 @@ function go(delta) {
   const next = SCREENS[idx + delta];
   if (next) location.hash = '#/' + next.slug;
 }
+
+function goTo(slug) {
+  const target = SCREENS.find(s => s.slug === slug);
+  if (target) location.hash = '#/' + target.slug;
+}
+
+// Wire iframe interactivity each time a screen loads
+frame.addEventListener('load', () => {
+  let doc;
+  try { doc = frame.contentDocument; } catch (err) { return; }
+  if (!doc) return;
+  const current = findScreen(location.hash);
+  const linearNext = NEXT_MAP[current.slug] || SCREENS[Math.min(current.num, SCREENS.length - 1)]?.slug;
+
+  // Intercept clicks on any button-ish element inside the iframe
+  doc.addEventListener('click', (e) => {
+    // Find the closest interactive element
+    const target = e.target.closest('button, a, [role="button"]');
+    if (!target) return;
+    // Skip if it's a native form submit on an actual form (let it submit nothing then advance)
+    e.preventDefault();
+    e.stopPropagation();
+    const label = (target.textContent || '').trim();
+    // Text-based routing first
+    for (const route of TEXT_ROUTES) {
+      if (route.match.test(label)) {
+        goTo(route.to);
+        return;
+      }
+    }
+    // Fall back to linear next
+    if (linearNext) goTo(linearNext);
+  }, true);
+
+  // Make the iframe body cursor-pointer to hint interactivity
+  if (doc.body) doc.body.style.cursor = 'pointer';
+});
 
 prevBtn.addEventListener('click', () => go(-1));
 nextBtn.addEventListener('click', () => go(1));
