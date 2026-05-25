@@ -188,12 +188,12 @@
 </div>
 </div>
 <!-- CTA Button -->
-<button class="w-full bg-primary hover:bg-primary-container text-white font-body-lg font-semibold py-4 rounded-full transition-all duration-300 active:scale-[0.98] shadow-sm">
+<button class="w-full bg-primary hover:bg-primary-container text-white font-body-lg font-semibold py-4 rounded-full transition-all duration-300 active:scale-[0.98] shadow-sm" data-go="home">
                 Verify &amp; continue
             </button>
 <!-- Tertiary Link -->
 <div class="mt-6 text-center">
-<button class="text-brand-espresso font-body-md hover:opacity-70 transition-opacity">
+<button class="text-brand-espresso font-body-md hover:opacity-70 transition-opacity" data-go="verify-otp">
                     Resend code <span class="font-numeric-data text-brand-gold ml-1">(0:42)</span>
 </button>
 </div>
@@ -227,4 +227,23 @@
             }
         });
     </script>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

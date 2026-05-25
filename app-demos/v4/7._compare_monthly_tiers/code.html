@@ -110,7 +110,7 @@
       min-height: max(884px, 100dvh);
     }
   </style>
-  </head>
+</head>
 <body class="min-h-screen text-on-surface font-body-md overflow-x-hidden">
 <!-- Header Section -->
 <header class="sticky top-0 z-40 flex items-center px-container_padding py-6 w-full glass-effect">
@@ -179,7 +179,7 @@
 <span class="font-body-md text-outline">Chauffeur drive</span>
 </li>
 </ul>
-<button class="mt-6 w-full py-3 border border-outline-variant text-on-surface font-bold rounded-full active:scale-95 transition-all">
+<button class="mt-6 w-full py-3 border border-outline-variant text-on-surface font-bold rounded-full active:scale-95 transition-all" data-go="plan-detail">
                     Choose Premium
                 </button>
 </section>
@@ -229,7 +229,7 @@
 <span class="font-body-md text-outline">Chauffeur drive</span>
 </li>
 </ul>
-<button class="mt-6 w-full py-3 border border-secondary text-secondary font-bold rounded-full bg-secondary/5 active:scale-95 transition-all">
+<button class="mt-6 w-full py-3 border border-secondary text-secondary font-bold rounded-full bg-secondary/5 active:scale-95 transition-all" data-go="plan-detail">
                     Choose Business
                 </button>
 </section>
@@ -278,7 +278,7 @@
 <span class="font-body-md text-on-surface-variant">Chauffeur drive</span>
 </li>
 </ul>
-<button class="mt-6 w-full py-3 border border-primary text-primary font-bold rounded-full active:scale-95 transition-all">
+<button class="mt-6 w-full py-3 border border-primary text-primary font-bold rounded-full active:scale-95 transition-all" data-go="plan-detail">
                     Choose First
                 </button>
 </section>
@@ -292,7 +292,7 @@
 </main>
 <!-- Navigation Shell (BottomNavBar) -->
 <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex justify-between items-center px-4 py-2 w-[90%] max-w-md bg-surface dark:bg-surface-container-highest shadow-[0_2px_8px_rgba(26,20,17,0.06)] rounded-full border-none">
-<a class="flex items-center justify-center text-on-surface-variant dark:text-outline w-12 h-12 hover:bg-surface-variant/50 rounded-full active:scale-90 transition-all duration-300" href="#">
+<a class="flex items-center justify-center text-on-surface-variant dark:text-outline w-12 h-12 hover:bg-surface-variant/50 rounded-full active:scale-90 transition-all duration-300" data-go="home" href="#">
 <span class="material-symbols-outlined">home</span>
 </a>
 <a class="flex items-center justify-center text-on-surface-variant dark:text-outline w-12 h-12 hover:bg-surface-variant/50 rounded-full active:scale-90 transition-all duration-300" href="#">
@@ -338,4 +338,23 @@
             carousel.scrollTo({ left: middleOffset, behavior: 'smooth' });
         });
     </script>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

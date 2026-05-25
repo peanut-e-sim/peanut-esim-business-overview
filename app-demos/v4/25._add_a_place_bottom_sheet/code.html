@@ -146,7 +146,7 @@
 <!-- Image Preview -->
 <div class="w-24 h-24 rounded-[14px] shrink-0 border border-outline-variant overflow-hidden relative">
 <img alt="Okonomiyaki preview" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8kzVtbgIfA1jEp9FCc6PDtOpgkBthAG87B92HyBUNvdsTte_rx0L772bQWt0cC8H2nVsUXHoW4rt1Bl9zCXuk6ePRCJcLVOghwXjfW6Qtr7DlVEISe0QyuI_yLV53rTlD6HmqT7Ra0fsVnWT8FF37uApxcMjUtWlaY4THVmMXDyxDD8N_HqRZa02mMjTH8axn_GwlG31unVnMkxts0mweT84lciVskIncb6geVw7Iijqosr6JOAw56x78mBy8yAG4zOX-iuMkUPY"/>
-<button class="absolute top-1 right-1 bg-surface/80 rounded-full w-6 h-6 flex items-center justify-center text-on-surface">
+<button class="absolute top-1 right-1 bg-surface/80 rounded-full w-6 h-6 flex items-center justify-center text-on-surface" data-go="crew-picks">
 <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">cancel</span>
 </button>
 </div>
@@ -187,9 +187,28 @@
 </div>
 <!-- Sticky Bottom CTA -->
 <div class="absolute bottom-0 left-0 w-full p-4 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_-4px_16px_rgba(26,20,17,0.04)] pb-safe">
-<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 rounded-full hover:bg-primary transition-colors shadow-sm">
+<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 rounded-full hover:bg-primary transition-colors shadow-sm" data-go="crew-picks">
                 Post to Crew Recs
             </button>
 </div>
 </div>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

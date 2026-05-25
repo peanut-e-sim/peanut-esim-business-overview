@@ -148,10 +148,10 @@
 </div>
 <!-- Actions -->
 <div class="w-full flex flex-col gap-3">
-<button class="w-full bg-[#D71921] hover:bg-primary-container/90 text-white font-headline-sm text-body-md rounded-full py-3 transition-colors active:scale-95 duration-200">
+<button class="w-full bg-[#D71921] hover:bg-primary-container/90 text-white font-headline-sm text-body-md rounded-full py-3 transition-colors active:scale-95 duration-200" data-go="esim-detail">
                     Yes, activate
                 </button>
-<button class="w-full text-[#2A2A4A] font-body-md hover:opacity-70 transition-opacity py-2 active:scale-95 duration-200">
+<button class="w-full text-[#2A2A4A] font-body-md hover:opacity-70 transition-opacity py-2 active:scale-95 duration-200" data-go="esim-library">
                     Cancel
                 </button>
 </div>
@@ -163,4 +163,23 @@
             100% { transform: scale(1); opacity: 1; }
         }
     </style>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

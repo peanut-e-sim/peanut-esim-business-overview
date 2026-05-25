@@ -154,7 +154,7 @@
       min-height: max(884px, 100dvh);
     }
   </style>
-  </head>
+</head>
 <body class="bg-primary-container min-h-screen flex flex-col items-center justify-center overflow-hidden selection:bg-white/20 grain-overlay">
 <!-- Status Bar Simulation (White Text) -->
 <div class="fixed top-0 left-0 w-full px-6 py-3 flex justify-between items-center z-50">
@@ -220,4 +220,23 @@
             }, 300);
         });
     </script>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

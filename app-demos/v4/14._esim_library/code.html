@@ -111,7 +111,7 @@
       min-height: max(884px, 100dvh);
     }
   </style>
-  </head>
+</head>
 <body class="bg-surface text-on-surface font-body-md antialiased pb-32">
 <!-- TopAppBar -->
 <header class="w-full top-0 sticky z-40 bg-surface flex justify-between items-center px-container_padding py-unit h-16">
@@ -264,7 +264,7 @@
 </div>
 <!-- Delete All -->
 <div class="flex justify-center mt-4">
-<button class="px-6 py-3 rounded-full border border-outline text-on-surface font-body-md hover:bg-surface-container-high transition-colors active:scale-95">
+<button class="px-6 py-3 rounded-full border border-outline text-on-surface font-body-md hover:bg-surface-container-high transition-colors active:scale-95" data-go="esim-library">
                     Delete all expired (1)
                 </button>
 </div>
@@ -293,4 +293,23 @@
 <span class="font-label-caps text-[10px] mt-1">Profile</span>
 </button>
 </nav>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

@@ -198,13 +198,32 @@
 </div>
 <!-- CTA Actions -->
 <div class="mt-4 flex flex-col gap-4">
-<button class="w-full bg-[#D71921] text-white py-4 px-6 rounded-full font-headline-sm text-base text-center transition-transform active:scale-95 hover:bg-[#b5141b] shadow-sm">
+<button class="w-full bg-[#D71921] text-white py-4 px-6 rounded-full font-headline-sm text-base text-center transition-transform active:scale-95 hover:bg-[#b5141b] shadow-sm" data-go="esim-library">
                     Refund $16.00 as credit
                 </button>
-<button class="w-full text-center py-2 text-[#6B6259] font-body-md text-[14px] hover:opacity-80 transition-opacity">
+<button class="w-full text-center py-2 text-[#6B6259] font-body-md text-[14px] hover:opacity-80 transition-opacity" data-go="esim-library">
                     Or cash refund (3–5 days)
                 </button>
 </div>
 </div>
 </main>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

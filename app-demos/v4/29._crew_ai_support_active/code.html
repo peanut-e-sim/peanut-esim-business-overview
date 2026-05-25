@@ -136,7 +136,7 @@
 <button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">arrow_back</button>
 <h1 class="text-headline-md font-headline-md text-on-background" style="color: #0A192F;">Crew AI Support</h1>
 </div>
-<button class="bg-[#C9A03B] text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-full hover:opacity-80 transition-opacity">
+<button class="bg-[#C9A03B] text-on-primary font-label-caps text-label-caps px-4 py-2 rounded-full hover:opacity-80 transition-opacity" data-go="ai-support">
             ESCALATE TO HUMAN
         </button>
 </header>
@@ -179,8 +179,8 @@
 ✓ Adding 2 GB bonus credit (sorry for the trouble)
 ✓ Installing a new Japan eSIM</p>
 <div class="flex flex-col gap-2 mt-2">
-<button class="bg-primary-container text-on-primary font-body-md text-body-md px-6 py-2 rounded-full hover:opacity-90 transition-opacity w-fit shadow-sm">Yes, fix it</button>
-<button class="bg-transparent border border-[#C9A03B] text-on-background font-body-md text-body-md px-6 py-2 rounded-full hover:bg-surface-container-high transition-colors w-fit">Talk to human</button>
+<button class="bg-primary-container text-on-primary font-body-md text-body-md px-6 py-2 rounded-full hover:opacity-90 transition-opacity w-fit shadow-sm" data-go="esim-library">Yes, fix it</button>
+<button class="bg-transparent border border-[#C9A03B] text-on-background font-body-md text-body-md px-6 py-2 rounded-full hover:bg-surface-container-high transition-colors w-fit" data-go="ai-support">Talk to human</button>
 </div>
 </div>
 </div>
@@ -194,11 +194,30 @@
 <div class="flex items-center bg-surface-container-lowest h-[56px] w-full rounded-xl px-4 shadow-[0_2px_8px_rgba(26,20,17,0.06)] border border-outline-variant">
 <button class="material-symbols-outlined text-[#C9A03B] mr-3 hover:opacity-80">add</button>
 <input class="flex-1 bg-transparent border-none focus:ring-0 text-on-background font-body-md text-body-md placeholder:text-on-surface-variant/50 placeholder:font-body-lg" placeholder="Type your question…" style="font-size: 14px;" type="text"/>
-<button class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center ml-2 hover:opacity-90 transition-opacity shadow-sm">
+<button class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center ml-2 hover:opacity-90 transition-opacity shadow-sm" data-go="ai-active">
 <span class="material-symbols-outlined text-on-primary" style="font-size: 20px;">send</span>
 </button>
 </div>
 <p class="font-label-caps text-label-caps text-[#6B6259]" style="font-size: 11px;">Powered by AI · escalates to human if needed</p>
 </div>
 </div>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

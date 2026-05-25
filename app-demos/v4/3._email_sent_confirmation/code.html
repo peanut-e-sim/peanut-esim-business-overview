@@ -171,7 +171,7 @@
                         </p>
 </div>
 <div class="flex flex-col items-start gap-2 pt-2 border-t border-outline-variant/20">
-<button class="font-body-md text-brand-red font-semibold hover:opacity-70 transition-opacity active:scale-95 duration-150" id="resend-btn">
+<button class="font-body-md text-brand-red font-semibold hover:opacity-70 transition-opacity active:scale-95 duration-150" data-go="email-sent" id="resend-btn">
                             Resend email
                         </button>
 <p class="font-body-md text-[12px] text-secondary-text italic" id="timer-text">
@@ -184,7 +184,7 @@
 <!-- Footer Action -->
 <footer class="mt-auto w-full pt-section_gap fade-in-up" style="animation-delay: 0.5s;">
 <div class="flex justify-center pb-8">
-<a class="font-body-md text-body-confirm-sub text-deep-navy font-medium hover:underline underline-offset-4 decoration-outline-variant" href="#">
+<a class="font-body-md text-body-confirm-sub text-deep-navy font-medium hover:underline underline-offset-4 decoration-outline-variant" data-go="signup" href="#">
                     Use a different email
                 </a>
 </div>
@@ -224,4 +224,23 @@
             }
         });
     </script>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

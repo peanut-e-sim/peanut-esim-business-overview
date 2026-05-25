@@ -236,7 +236,7 @@
 </div>
 </main>
 <!-- Floating Action Button -->
-<button class="fixed bottom-28 right-container_padding z-50 bg-primary-container text-on-primary rounded-full px-6 py-4 shadow-[0_4px_12px_rgba(26,20,17,0.12)] flex items-center gap-2 hover:scale-95 transition-transform">
+<button class="fixed bottom-28 right-container_padding z-50 bg-primary-container text-on-primary rounded-full px-6 py-4 shadow-[0_4px_12px_rgba(26,20,17,0.12)] flex items-center gap-2 hover:scale-95 transition-transform" data-go="add-place">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add</span>
 <span class="font-headline-sm text-headline-sm">Add a place</span>
 </button>
@@ -263,4 +263,23 @@
 <span class="font-label-caps text-label-caps mt-1">Profile</span>
 </button>
 </nav>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

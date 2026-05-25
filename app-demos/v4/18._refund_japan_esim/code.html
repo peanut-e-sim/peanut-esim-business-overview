@@ -156,7 +156,7 @@
         </p>
 </div>
 <!-- CTA -->
-<button class="w-full bg-surface-container-lowest text-brand-red font-body-md font-bold py-4 rounded-full shadow-sm hover:opacity-95 active:scale-95 transition-all text-center">
+<button class="w-full bg-surface-container-lowest text-brand-red font-body-md font-bold py-4 rounded-full shadow-sm hover:opacity-95 active:scale-95 transition-all text-center" data-go="esim-library">
         Convert to credit
       </button>
 </div>
@@ -174,7 +174,7 @@
         </p>
 </div>
 <!-- CTA -->
-<button class="w-full bg-transparent border border-outline-variant text-brand-text-secondary font-body-md font-semibold py-3.5 rounded-full hover:bg-surface-bright active:scale-95 transition-all text-center">
+<button class="w-full bg-transparent border border-outline-variant text-brand-text-secondary font-body-md font-semibold py-3.5 rounded-full hover:bg-surface-bright active:scale-95 transition-all text-center" data-go="esim-library">
         Refund cash
       </button>
 </div>
@@ -186,4 +186,23 @@
 </div>
 </main>
 <!-- Navigation Suppressed as per instructions for linear/transactional screen -->
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

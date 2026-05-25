@@ -147,7 +147,7 @@
 </div>
 <!-- Action Buttons -->
 <div class="flex items-center gap-4 w-full">
-<button class="flex-1 h-14 bg-primary-container text-on-primary-container rounded-full font-headline-sm flex items-center justify-center gap-2 shadow-sm hover:opacity-90 active:scale-95 transition-all duration-200">
+<button class="flex-1 h-14 bg-primary-container text-on-primary-container rounded-full font-headline-sm flex items-center justify-center gap-2 shadow-sm hover:opacity-90 active:scale-95 transition-all duration-200" data-go="detected">
 <span class="material-symbols-outlined text-[20px]">photo_camera</span>
 <span>Take screenshot</span>
 </button>
@@ -207,4 +207,23 @@
             }
         }
     </script>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

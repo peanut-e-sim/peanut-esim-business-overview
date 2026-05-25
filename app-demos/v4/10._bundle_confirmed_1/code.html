@@ -216,10 +216,10 @@
 </div>
 <!-- CTA Buttons -->
 <div class="w-full flex flex-col gap-unit mb-section_gap">
-<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 rounded-full shadow-sm hover:opacity-90 active:scale-[0.98] transition-all duration-200">
+<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 rounded-full shadow-sm hover:opacity-90 active:scale-[0.98] transition-all duration-200" data-go="esim-library">
                 Install Tokyo now
             </button>
-<button class="w-full border border-outline-variant text-[#211a17] bg-transparent font-headline-sm text-headline-sm py-4 rounded-full hover:bg-surface-variant/30 active:scale-[0.98] transition-all duration-200">
+<button class="w-full border border-outline-variant text-[#211a17] bg-transparent font-headline-sm text-headline-sm py-4 rounded-full hover:bg-surface-variant/30 active:scale-[0.98] transition-all duration-200" data-go="esim-library">
                 Install all later
             </button>
 </div>
@@ -264,9 +264,9 @@
          </div>
 <div class="flex gap-8 items-center">
 <a class="text-on-surface-variant font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">Explore</a>
-<a class="text-primary font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">My eSIMs</a>
+<a class="text-primary font-label-caps text-label-caps hover:opacity-80 transition-opacity" data-go="esim-library" href="#">My eSIMs</a>
 <a class="text-on-surface-variant font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">Roster</a>
-<a class="text-on-surface-variant font-label-caps text-label-caps hover:opacity-80 transition-opacity" href="#">Account</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:opacity-80 transition-opacity" data-go="points" href="#">Account</a>
 <div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant overflow-hidden flex items-center justify-center text-on-surface-variant">
 <span class="material-symbols-outlined text-sm" data-icon="person">person</span>
 </div>
@@ -288,4 +288,23 @@
             });
         });
     </script>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

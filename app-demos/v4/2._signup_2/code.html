@@ -119,7 +119,7 @@
       min-height: max(884px, 100dvh);
     }
   </style>
-  </head>
+</head>
 <body class="min-h-screen flex flex-col font-body-md overflow-x-hidden">
 <!-- Top Right Watermark -->
 <div class="absolute top-0 right-0 p-4 opacity-40 watercolor-blob select-none pointer-events-none">
@@ -164,7 +164,7 @@
 </div>
 <!-- CTA Button -->
 <div class="pt-2">
-<button class="w-full h-[56px] bg-[#D71921] hover:bg-[#ae0012] text-white font-semibold text-[16px] rounded-full transition-all active:scale-[0.98] duration-200 tonal-shadow">
+<button class="w-full h-[56px] bg-[#D71921] hover:bg-[#ae0012] text-white font-semibold text-[16px] rounded-full transition-all active:scale-[0.98] duration-200 tonal-shadow" data-go="email-sent">
                         Create account
                     </button>
 </div>
@@ -174,7 +174,7 @@
 <div class="mt-8 text-center">
 <p class="text-[14px] text-on-surface-variant font-body-md">
                 Already have an account? 
-                <a class="text-[#2A2A4A] font-semibold hover:underline decoration-2 underline-offset-4 ml-1" href="#">Sign in</a>
+                <a class="text-[#2A2A4A] font-semibold hover:underline decoration-2 underline-offset-4 ml-1" data-go="home" href="#">Sign in</a>
 </p>
 </div>
 </main>
@@ -202,4 +202,23 @@
         // Suppression of Shell Components as per "The Destination Rule"
         // Since this is a Transactional/Signup page, no navigation shells are rendered.
     </script>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

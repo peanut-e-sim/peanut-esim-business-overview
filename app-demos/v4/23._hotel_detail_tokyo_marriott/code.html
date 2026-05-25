@@ -209,7 +209,7 @@
 </div>
 </div>
 <!-- Bottom Action CTA -->
-<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 rounded-full flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-[0.98]">
+<button class="w-full bg-primary-container text-on-primary font-headline-sm text-headline-sm py-4 rounded-full flex items-center justify-center gap-2 hover:opacity-90 transition-opacity active:scale-[0.98]" data-go="hotel-detail">
 <span class="material-symbols-outlined text-[20px]">map</span>
             Open in Google Maps
         </button>
@@ -243,4 +243,23 @@
 <span class="font-label-caps text-label-caps mt-1">Profile</span>
 </div>
 </nav>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

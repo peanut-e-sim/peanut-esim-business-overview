@@ -224,10 +224,29 @@
                         Still need help? Tap Crew AI Support.
                     </p>
 </div>
-<button class="self-end px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-sm hover:bg-surface-container-highest transition-colors active:scale-95 duration-200">
+<button class="self-end px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-sm hover:bg-surface-container-highest transition-colors active:scale-95 duration-200" data-go="ai-support">
                     Open chat
                 </button>
 </div>
 </section>
 </main>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

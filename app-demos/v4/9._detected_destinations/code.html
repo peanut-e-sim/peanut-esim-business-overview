@@ -278,7 +278,7 @@
 </div>
 </div>
 <!-- Confirm Button -->
-<button class="w-full bg-primary-container text-white font-headline-sm py-5 rounded-full shadow-lg shadow-primary-container/20 transition-all active:scale-[0.98] hover:brightness-110">
+<button class="w-full bg-primary-container text-white font-headline-sm py-5 rounded-full shadow-lg shadow-primary-container/20 transition-all active:scale-[0.98] hover:brightness-110" data-go="bundle-confirmed">
                 Confirm bundle
             </button>
 </div>
@@ -303,4 +303,23 @@
             });
         });
     </script>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>

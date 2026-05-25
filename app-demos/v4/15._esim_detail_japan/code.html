@@ -169,7 +169,7 @@
       min-height: max(884px, 100dvh);
     }
   </style>
-  </head>
+</head>
 <body class="antialiased text-on-surface pb-24">
 <!-- TopAppBar -->
 <header class="w-full top-0 sticky bg-[#FBF6EC] z-40">
@@ -227,10 +227,10 @@
 </div>
 <!-- Action Row -->
 <div class="flex gap-4 pt-2">
-<button class="flex-1 bg-primary-container text-white font-body-md text-body-md font-medium rounded-full py-3 px-4 hover:opacity-90 active:scale-95 transition-all shadow-sm">
+<button class="flex-1 bg-primary-container text-white font-body-md text-body-md font-medium rounded-full py-3 px-4 hover:opacity-90 active:scale-95 transition-all shadow-sm" data-go="topup-sheet">
                     Refuel +1 GB
                 </button>
-<button class="flex-1 bg-transparent border border-outline-variant text-on-surface font-body-md text-body-md font-medium rounded-full py-3 px-4 hover:bg-surface-container-low active:scale-95 transition-all">
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface font-body-md text-body-md font-medium rounded-full py-3 px-4 hover:bg-surface-container-low active:scale-95 transition-all" data-go="esim-library">
                     Turn off
                 </button>
 </div>
@@ -262,9 +262,28 @@
 </section>
 <!-- DANGER ZONE -->
 <div class="flex justify-center pt-8 pb-12">
-<button class="font-body-md text-body-md text-error font-medium hover:opacity-80 active:scale-95 transition-all underline decoration-error/30 underline-offset-4">
+<button class="font-body-md text-body-md text-error font-medium hover:opacity-80 active:scale-95 transition-all underline decoration-error/30 underline-offset-4" data-go="esim-library">
                 Remove eSIM
             </button>
 </div>
 </main>
+
+<script>
+/* Bridge: forward clicks on [data-go] to parent shell via postMessage */
+document.addEventListener('click', function(e) {
+  var el = e.target && e.target.closest && e.target.closest('[data-go]');
+  if (!el) return;
+  e.preventDefault();
+  e.stopPropagation();
+  var dest = el.getAttribute('data-go');
+  try { window.parent.postMessage({type: 'crewlink-go', dest: dest}, '*'); }
+  catch(_) {}
+}, true);
+/* Pointer cursor for any data-go element */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = '[data-go]{cursor:pointer !important;}';
+  document.head && document.head.appendChild(style);
+})();
+</script>
 </body></html>
