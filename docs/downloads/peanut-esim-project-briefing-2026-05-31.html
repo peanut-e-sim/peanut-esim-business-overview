@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Master Project Briefing — 2026-05-31</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --red: #D71921;
+    --red-dark: #A01218;
+    --cream: #FAF6F0;
+    --gold: #C9A03B;
+    --ink: #1A1A1A;
+    --ink-soft: #4A4A4A;
+    --line: #E5DDD0;
+    --green: #2D7A4F;
+    --amber: #B07A1F;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.55; }
+  .copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+  .copy-bar .title { font-weight: 600; letter-spacing: .02em; }
+  .copy-bar button { background: white; color: var(--red); border: 0; padding: 10px 18px; font-weight: 600; font-size: 14px; border-radius: 4px; cursor: pointer; }
+  .copy-bar button:hover { background: var(--cream); }
+  .container { max-width: 920px; margin: 0 auto; padding: 40px 32px 120px; }
+  h1 { font-size: 38px; margin: 0 0 8px; letter-spacing: -.01em; }
+  h2 { font-size: 26px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+  h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+  h4 { font-size: 16px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+  p, li { font-size: 15px; }
+  .meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+  .lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+  th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:nth-child(even) td { background: #FCFAF5; }
+  .locked { color: var(--green); font-weight: 600; }
+  .open { color: var(--amber); font-weight: 600; }
+  .killed { color: var(--red); font-weight: 600; text-decoration: line-through; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .pill.locked { background: #E0F2E7; color: var(--green); text-decoration: none; }
+  .pill.open { background: #FBEFD9; color: var(--amber); text-decoration: none; }
+  .pill.killed { background: #FBE0E0; color: var(--red); text-decoration: none; }
+  .pill.research { background: #E0E8F4; color: #2A4A8A; text-decoration: none; }
+  blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--ink-soft); font-style: italic; color: var(--ink-soft); }
+  .debate { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+  .debate h4 { margin-top: 0; color: var(--red-dark); }
+  .debate .speaker { font-weight: 600; color: var(--ink); }
+  a { color: var(--red-dark); }
+  code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+  .toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+  .toc ul { margin: 0; padding-left: 20px; }
+  .toc li { margin: 4px 0; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+  .copy-textarea { position: absolute; left: -9999px; }
+  .footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">PEANUT eSIM — MASTER PROJECT BRIEFING (2026-05-31)</span>
+  <button onclick="copyAll()">Copy Full Document</button>
+</div>
+
+<div class="container">
+
+<h1>Peanut eSIM — Master Project Briefing</h1>
+<div class="meta">Prepared 2026-05-31 · For upload to Claude.ai Project so iOS app inherits full context · Owners: Balraj (tech/ops/finance) + Akito (brand/marketing/UX)</div>
+
+<div class="lede">
+This document is the single source of truth for everything we've decided, debated, and built on the Peanut eSIM venture as of <strong>2026-05-31</strong>. Paste the full text into a Claude.ai Project, drop in the linked artifacts as project files, and any future Claude session — desktop, web, or iPhone — will inherit the entire thinking trail without re-explaining.
+</div>
+
+<div class="toc">
+<strong>Table of Contents</strong>
+<ul>
+  <li><a href="#about">1. About this doc & how to use it</a></li>
+  <li><a href="#elevator">2. Elevator pitch & business model</a></li>
+  <li><a href="#team">3. Team, roles, working agreements</a></li>
+  <li><a href="#locked">4. LOCKED decisions (do not re-litigate)</a></li>
+  <li><a href="#open">5. OPEN debates (live tradeoffs & my thinking)</a></li>
+  <li><a href="#killed">6. KILLED ideas (and why)</a></li>
+  <li><a href="#wholesale">7. Wholesale supplier intelligence</a></li>
+  <li><a href="#pl">8. P&amp;L model overview (12 tabs)</a></li>
+  <li><a href="#research">9. Research findings & benchmarks</a></li>
+  <li><a href="#competitors">10. Competitor map</a></li>
+  <li><a href="#features">11. Feature backlog</a></li>
+  <li><a href="#artifacts">12. All artifacts (HTML / xlsx / JSON)</a></li>
+  <li><a href="#thinking">13. The thinking process (rejected paths)</a></li>
+  <li><a href="#next">14. Immediate next steps</a></li>
+</ul>
+</div>
+
+<h2 id="about">1. About this doc &amp; how to use it</h2>
+<p>I (Balraj) am Claude-Code-pilling a venture with my co-founder Akito. We've been in deep sessions on Claude Code on macOS but I want continuity on the iPhone. The play is: dump this entire briefing into a Claude.ai Project, attach the xlsx/HTML artifacts, and any future session — including the iOS app — gets the full context without me retyping.</p>
+<p><strong>What this doc captures:</strong> (a) every locked decision, (b) every open debate with the tradeoffs I'm weighing, (c) every killed idea with the reason, (d) every artifact built so far with its GitHub Pages URL, (e) the underlying thinking and rejected paths that don't show up in the final artifacts.</p>
+<p><strong>What this doc deliberately omits:</strong> raw chat transcripts, code snippets, line-by-line debugging logs. Those live in the repo and in my Claude Code conversation history.</p>
+
+<h2 id="elevator">2. Elevator pitch &amp; business model</h2>
+<p><strong>Peanut eSIM</strong> (working name; brand still TBD from a 3-finalist shortlist) is a travel eSIM service built <em>vertical-first</em> for cabin crew, starting with Emirates and expanding to Etihad → JAL → ANA. The wedge is a schedule-upload feature: crew screenshot their monthly Crew Pulse roster, our OCR pipeline reads the legs, and the app pre-arms the right local data plan at every layover. The Michelin-style crew-curated recommendations layer is the long-term moat — eSIM is just the wedge to acquire crew users.</p>
+<p><strong>Why crew first:</strong> they're high-frequency international travelers (8–12 layovers/month), they share rosters with each other (built-in viral loop), they congregate in WhatsApp groups, and their layover patterns are deterministic (we know exactly which countries and how many GB before they land). Emirates DXB-based crew = ~22,000 people; addressable seed market.</p>
+<p><strong>Revenue model:</strong> SaaS-style subscription with a cabin-class tier ladder (Economy / Roster Bundle / Premium / Business / First / Cockpit) where higher tiers buy data pools + carryover + perks. Wholesale is via a Tier-3 sub-reseller (currently Samurai WiFi, soon directly via eSIM Access or eSIM Go). Our gross margin engine is the gap between $1.50–4.00/GB wholesale and $5–9/GB retail, amplified by <strong>breakage</strong> (users buy a 10 GB pool, consume 6 GB → we pocket the 4 GB not consumed) and pool carryover progression.</p>
+
+<h3>The business model in one table</h3>
+<table>
+<tr><th>Layer</th><th>What it is</th><th>Status</th></tr>
+<tr><td>Wedge</td><td>Schedule-upload OCR + per-layover auto-provisioning</td><td><span class="pill locked">Locked</span></td></tr>
+<tr><td>Acquisition channel</td><td>Closed crew WhatsApp groups, Emirates DXB-based</td><td><span class="pill locked">Locked</span></td></tr>
+<tr><td>Pricing</td><td>6 cabin-class tiers, monthly subscription + PAYG Economy</td><td><span class="pill locked">Locked</span></td></tr>
+<tr><td>Gross margin engine</td><td>Wholesale–retail spread + breakage + carryover progression</td><td><span class="pill locked">Locked</span></td></tr>
+<tr><td>Long-term moat</td><td>Crew-curated recs database (Michelin layer)</td><td><span class="pill locked">Locked</span></td></tr>
+<tr><td>Geographic expansion</td><td>Emirates → Etihad → JAL → ANA → general travel</td><td><span class="pill locked">Locked</span> (sequenced)</td></tr>
+<tr><td>Holding company</td><td>Moonlight Holdings LLC (Delaware)</td><td><span class="pill locked">Locked 2026-05-25</span></td></tr>
+<tr><td>Service brand</td><td>SORU / ROMU / DRIFTO — pick 1 of 3 GREEN candidates</td><td><span class="pill open">Open</span></td></tr>
+</table>
+
+<h2 id="team">3. Team, roles, working agreements</h2>
+<table>
+<tr><th>Person</th><th>Role</th><th>Owns</th></tr>
+<tr><td><strong>Balraj</strong> (me)</td><td>Co-founder, mastermind</td><td>System architecture, finance modeling, ops, legal entity, supplier negotiation, code, P&amp;L</td></tr>
+<tr><td><strong>Akito</strong></td><td>Co-founder, face of the company</td><td>Brand, marketing, UX copy, crew interviews, plan design (user-facing), JP-language assets</td></tr>
+<tr><td><strong>Vivek Badu</strong></td><td>Texas LLC anchor</td><td>23839 Via Camino Ln, New Caney TX 77357 — registered agent / address for Mercury / Stripe / Apple</td></tr>
+<tr><td><strong>Harikai</strong> (@crew_illust)</td><td>Illustrator partnership</td><td>Free assets + cross-promotion (Akito-driven, not contracted)</td></tr>
+</table>
+
+<h3>Working agreements</h3>
+<ul>
+  <li><strong>Sonnet for sub-agents, Opus on main thread.</strong> I delegate research, code, image-gen, and briefings to background Sonnet 4.6 sub-agents (Researcher, Coder, Banana Coder, GitHub Coder, Akito's Assistant, Baru's Assistant, Lead Finder). Main thread stays unblocked.</li>
+  <li><strong>GitHub is source of truth.</strong> I don't scroll chat. Every decision must land in <code>peanut-esim-business-overview</code> repo same day. Sub-agents do this automatically.</li>
+  <li><strong>Sanitize supplier names</strong> before public push. Samurai → "wholesale supplier" in any externally-visible doc.</li>
+  <li><strong>HTML deliverables, not Markdown.</strong> Anything I might want to share or paste needs to be an HTML page with a one-click Copy button.</li>
+  <li><strong>Continuous research.</strong> Sub-agents pull from a rolling backlog while I'm online. Surface only material findings.</li>
+</ul>
+
+<h2 id="locked">4. LOCKED decisions (do not re-litigate)</h2>
+
+<h3>4.1 Holding company &amp; legal entity</h3>
+<table>
+<tr><th>Item</th><th>Decision</th><th>Rationale</th></tr>
+<tr><td>Holding company name</td><td><strong>Moonlight Holdings LLC</strong></td><td>Class 35 clear, USPTO + Delaware ICIS searches done. Brooklyn "Moonlight Ventures" crypto firm owns the VENTURES mark — we use HOLDINGS, different scope.</td></tr>
+<tr><td>State of formation</td><td>Delaware</td><td>Standard for multi-member LLC, investor-friendly.</td></tr>
+<tr><td>Tax classification</td><td>Multi-member LLC, Form 1065 partnership</td><td>Pass-through, avoids C-corp double tax until growth-stage round.</td></tr>
+<tr><td>US address</td><td>23839 Via Camino Ln, New Caney TX 77357 (Vivek's)</td><td>Real residential address beats virtual mailbox for Mercury, Stripe, Apple, and UAE PE defense.</td></tr>
+<tr><td>Domain</td><td><strong>moonlight.ventures</strong> (to register)</td><td>Verified available 2026-05-25. Action: lock for 5 years at Porkbun/Namecheap (~$25/yr).</td></tr>
+<tr><td>Backup names</td><td>Moonlight International LLC, Moonlight Global LLC</td><td>If Delaware filing reveals "Moonlight Holdings LLC" is taken.</td></tr>
+</table>
+
+<h3>4.2 Cabin-class tier ladder</h3>
+<table>
+<tr><th>Tier</th><th>Monthly</th><th>Pool</th><th>Carryover</th><th>Perks</th></tr>
+<tr><td>Economy (PAYG)</td><td>$0 base</td><td>1 GB per top-up</td><td>None</td><td>Refuel-when-needed only</td></tr>
+<tr><td>Roster Bundle ("Porter Plan"?)</td><td>$X / month</td><td>Per-layover provisioning from uploaded roster</td><td>None</td><td>Auto-arm at every airport</td></tr>
+<tr><td>Premium Economy</td><td>$X / month</td><td>10 GB</td><td>50% × 2 months</td><td>Lounge guides</td></tr>
+<tr><td>Business</td><td>$X / month</td><td>15 GB</td><td>70% × 2 months</td><td>Priority support, crew recs unlocked</td></tr>
+<tr><td>First</td><td>$X / month</td><td>25 GB</td><td>100% × 2 months</td><td>Concierge layer</td></tr>
+<tr><td>Cockpit</td><td>$X / month</td><td>12 GB + 12 GB lifetime emergency bank</td><td>100% × 2 months</td><td>Pilots only — verified</td></tr>
+</table>
+<p><em>Pricing tiers ($X) are modeled in the P&amp;L; final retail prices land after Samurai negotiation.</em></p>
+
+<h3>4.3 Refund logic — 6 named scenarios</h3>
+<p>Akito + I locked these on 2026-05-24. Every refund request maps to one of the six:</p>
+<ol>
+  <li><strong>Activation failed</strong> — full refund, no questions</li>
+  <li><strong>Coverage gap</strong> (country not actually served despite map) — full refund</li>
+  <li><strong>Wrong cabin tier purchased</strong> — upgrade/downgrade, prorated</li>
+  <li><strong>Unused before expiry</strong> — credit, not cash (preserves breakage P&amp;L)</li>
+  <li><strong>Pilot/crew schedule cancelled</strong> — credit toward next month</li>
+  <li><strong>Force majeure</strong> (illness, airline strike) — case-by-case, document required</li>
+</ol>
+
+<h3>4.4 Naming &amp; brand strategy</h3>
+<ul>
+  <li><strong>Holding co + service brand are separate.</strong> Apple Inc. owns iPhone. Moonlight Holdings will own [SORU/ROMU/DRIFTO]. Different USPTO classes (35 vs 9/38).</li>
+  <li><strong>Apple-style taglines.</strong> "It just works." "The eSIM that knows where you're going." Akito-driven copywriting.</li>
+  <li><strong>Backdoor strategy.</strong> Public launch positions us as general travel eSIM. Closed crew gating is internal — we don't advertise "crew only" externally because that limits enterprise sales optionality.</li>
+</ul>
+
+<h3>4.5 Technical stack</h3>
+<table>
+<tr><th>Layer</th><th>Decision</th></tr>
+<tr><td>Wholesale supplier (v1)</td><td>Samurai WiFi (Tier-3 sub-reseller of eSIM Access). Moving direct to eSIM Access by month 6.</td></tr>
+<tr><td>iOS provisioning</td><td>Apple eSIM Universal Link. Skip Carrier Entitlement — adds 4–6 months of MNO negotiation we don't need at v1.</td></tr>
+<tr><td>Android provisioning</td><td>Standard eSIM activation flow.</td></tr>
+<tr><td>Roster OCR</td><td>Custom pipeline for Emirates Crew Pulse format (monthly calendar grid, multi-leg pairings).</td></tr>
+<tr><td>Backend</td><td>Firebase (auth, Firestore, Cloud Functions) — leveraging existing Exceed Portal stack experience.</td></tr>
+<tr><td>Payments</td><td>Stripe (US LLC) + Apple In-App Purchase fallback.</td></tr>
+</table>
+
+<h2 id="open">5. OPEN debates (live tradeoffs &amp; my thinking)</h2>
+
+<div class="debate">
+<h4>5.1 "Porter Plan" rename for Roster Bundle</h4>
+<p><span class="speaker">Balraj:</span> Akito proposed renaming Roster Bundle → "Porter Plan" — metaphor is the airport porter who handles your luggage end-to-end. <em>"You upload, we handle every leg, you don't think about it."</em></p>
+<p><strong>Why I like it:</strong> "Roster Bundle" is internal jargon. "Porter Plan" reads as a service promise. It also bridges to non-crew users (anyone with a multi-stop trip).</p>
+<p><strong>Concern:</strong> Porter is a common English word, USPTO Class 38 may be crowded. Need to verify.</p>
+<p><strong>My current lean:</strong> Rename, but block the TM clearance first. If Porter is dirty, fall back to: "Pairing Plan" (crew lingo for a multi-leg trip) or "Roster Plan".</p>
+<p><strong>Status:</strong> <span class="pill open">Awaiting TM check</span></p>
+</div>
+
+<div class="debate">
+<h4>5.2 Service brand: SORU vs ROMU vs DRIFTO</h4>
+<p>All three are GREEN on USPTO Class 9+38, .com, @instagram, @tiktok, and App Store handles. Verified 2026-05-24 by Researcher.</p>
+<table>
+<tr><th>Name</th><th>Feel</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>SORU</td><td>Crisp, JP-coded, 4 letters</td><td>Maximally available, short URL, Akito's frontrunner</td><td>Meaningless to non-JP audiences</td></tr>
+<tr><td>ROMU</td><td>Soft, JP-coded</td><td>Feels like "roam" without being a Roam Mobility clone</td><td>Closer to existing "Roam" eSIM brands than I'd like</td></tr>
+<tr><td>DRIFTO</td><td>Travel verb, English-readable</td><td>Self-explanatory ("drift across borders"), works in EN markets</td><td>Slight playfulness might undermine the high-end cabin-class metaphor</td></tr>
+</table>
+<p><strong>My current lean:</strong> SORU. It's the most defensible (least likely to be confused with anything), feels premium, and the JP-coding aligns with the Asia-air-crew expansion (JAL/ANA phase 3).</p>
+<p><strong>Status:</strong> <span class="pill open">Decision Akito's call</span></p>
+</div>
+
+<div class="debate">
+<h4>5.3 Pool sizing for Business tier</h4>
+<p><span class="speaker">Balraj:</span> I had Business at 8 GB. <span class="speaker">Akito:</span> "How come 8 GB pool? Premium is already 10."</p>
+<p>He was right — tier progression broke. I fixed to <strong>15 GB</strong>. The math: Premium 10 → Business 15 → First 25 maintains ~1.5× steps without exploding into pure breakage territory.</p>
+<p><strong>Cockpit pool was also wrong:</strong> had 30 GB, actual is <strong>12 GB monthly + 12 GB lifetime emergency bank</strong>. The emergency bank handles diverted flights / unexpected layovers without forcing pilots to top up mid-trip. Lifetime cap prevents abuse.</p>
+<p><strong>Status:</strong> <span class="pill locked">Fixed in xlsx</span></p>
+</div>
+
+<div class="debate">
+<h4>5.4 Carryover percentages</h4>
+<p>I had 30 / 50 / 80% Premium / Business / First. <span class="speaker">Akito:</span> "wrong."</p>
+<p>Actual locked: <strong>50% / 70% / 100% × 2 months</strong>. The 100% × 2 months for First creates real "deposit account" feel — users see the value of staying subscribed even in low-travel months.</p>
+<p><strong>P&amp;L implication:</strong> higher carryover = lower breakage = thinner gross margin on premium tiers, offset by lower churn.</p>
+<p><strong>Status:</strong> <span class="pill locked">Fixed in xlsx</span></p>
+</div>
+
+<div class="debate">
+<h4>5.5 Should we model PAYG (Economy) users?</h4>
+<p><span class="speaker">Akito:</span> "We have basic plan pay for 1 GB and then refuel when needed — no subscription. Are we considering those users as well?"</p>
+<p>I had been modeling Economy too simplistically (1 GB/month, flat). That undersells the PAYG cohort. Revised model: <strong>2.5 GB/month per active PAYG user + 20% refuel attach rate</strong> = ~$13.68 monthly revenue per PAYG user. PAYG is now a real revenue line, not a rounding error.</p>
+<p><strong>Why this matters strategically:</strong> PAYG is the on-ramp. A crew member who's skeptical of subscriptions tries Economy, sees it works, upgrades to Roster Bundle. PAYG conversion rate to subscription = a metric I should track.</p>
+<p><strong>Status:</strong> <span class="pill locked">Fixed in xlsx</span></p>
+</div>
+
+<div class="debate">
+<h4>5.6 Wholesale: Samurai vs direct eSIM Access vs eSIM Go</h4>
+<p>Discovered Samurai's actual markup is <strong>67–75%</strong>, not the claimed 40%. Audit doc (linked below) shows per-country breakdown.</p>
+<p><strong>Three paths:</strong></p>
+<table>
+<tr><th>Path</th><th>Pros</th><th>Cons</th></tr>
+<tr><td>Stay with Samurai</td><td>Already onboarded, JP-language support, single account</td><td>Bleeding 30% margin we don't need to</td></tr>
+<tr><td>Direct via eSIM Access</td><td>True wholesale, ~3.5× net profit at our volume</td><td>Need 5,000+ activations/month commitment, English-only ops, $50K setup</td></tr>
+<tr><td>eSIM Go</td><td>Better coverage map, transparent pricing</td><td>Smaller catalog, higher per-GB on tier-2 countries</td></tr>
+</table>
+<p><strong>My current lean:</strong> Use Samurai for v1 launch (months 1–6) to validate demand without supplier risk. Move direct to eSIM Access at month 6 when we hit 5K monthly activations. Email to Samurai pending — final questions list still being drafted.</p>
+<p><strong>Status:</strong> <span class="pill open">Samurai email TBD</span></p>
+</div>
+
+<div class="debate">
+<h4>5.7 Direct Carrier Entitlement vs Universal Link for iOS</h4>
+<p>Apple Carrier Entitlement = the "real" way: your eSIM brand appears as a Carrier in iOS Settings, with full integration. Requires 4–6 months of MNO partnership negotiation and per-MNO certification.</p>
+<p>Universal Link = the workaround: tap a link, iOS provisions the eSIM via standard flow.</p>
+<p><strong>My call:</strong> Universal Link for v1. Carrier Entitlement is a v2+ project once we have leverage with MNOs. Skipping it shaves 4–6 months off our launch timeline.</p>
+<p><strong>Status:</strong> <span class="pill locked">Decided 2026-05-24</span></p>
+</div>
+
+<div class="debate">
+<h4>5.8 Closed gating vs open public launch</h4>
+<p>Crew SIM (our direct competitor) gates via pilot-founder vouching + crew ID verification. That's their moat AND their bottleneck.</p>
+<p><strong>My thinking:</strong> we go closed-by-default for v1 (crew WhatsApp invite-only, no public sign-ups) but public-positioned. Public site says "premium travel eSIM" — only crew get the deep features (roster upload, crew recs). When we expand to general travel users in phase 4, the closed crew layer becomes the loyalty/status layer, not the entire product.</p>
+<p>This is the <strong>backdoor strategy</strong> in 4.4.</p>
+<p><strong>Status:</strong> <span class="pill locked">Decided</span></p>
+</div>
+
+<h2 id="killed">6. KILLED ideas (and why)</h2>
+<table>
+<tr><th>Idea</th><th>Why killed</th><th>Date</th></tr>
+<tr><td><span class="killed">"Starlight" as holding co</span></td><td>USPTO Class 35 live mark by Starlight Ventures Management LLC (Miami VC) + Starlight Children's Foundation + Delaware namespace exhausted + Starlink dilution exposure</td><td>2026-05-25</td></tr>
+<tr><td><span class="killed">"Lighthouse" as holding co</span></td><td>Namespace exhausted (Lighthouse Investment Partners, Lighthouse Global Holdings publicly traded, lighthouse.ventures live) + Google Lighthouse association</td><td>2026-05-25</td></tr>
+<tr><td><span class="killed">"Peanut eSIM" as final brand</span></td><td>Working name only. .com taken, USPTO issues, doesn't carry premium feel for cabin-class metaphor</td><td>Early sessions</td></tr>
+<tr><td><span class="killed">"Starnet", "Vision", "CrewLink"</span></td><td>All failed verification (App Store dupes, USPTO conflicts, or @handle squatters)</td><td>2026-05-24</td></tr>
+<tr><td><span class="killed">v4 interactive Stitch prototype</span></td><td>Tried 5 architectures (iframe + JS routing, inlined sections, BeautifulSoup injection, postMessage bridge). Each fix uncovered new CSS edge cases. Stitch HTMLs aren't designed to be wrapped — viewport-relative positioning + per-screen Tailwind configs collide. <strong>Rule:</strong> rebuild from scratch or use gallery view. Don't retrofit.</td><td>2026-05-25</td></tr>
+<tr><td><span class="killed">Carrier Entitlement for iOS v1</span></td><td>Adds 4–6 months of MNO negotiation. Universal Link gets us 80% of the value at 0% of the time cost.</td><td>2026-05-24</td></tr>
+<tr><td><span class="killed">Modeling Economy as 1 GB flat</span></td><td>Undersold PAYG revenue line. Replaced with 2.5 GB/mo + 20% refuel attach.</td><td>2026-05-31</td></tr>
+</table>
+
+<h2 id="wholesale">7. Wholesale supplier intelligence</h2>
+<p><strong>Headline finding:</strong> Samurai's claimed 40% markup is actually <strong>67–75%</strong> on the destinations we care about (audit covers our top 50 layover countries). Going direct to eSIM Access at 5K+ monthly activations recovers ~$1.6M/year at 100K activations.</p>
+<p><strong>Source data:</strong></p>
+<ul>
+  <li><code>/Users/a44/Downloads/peanut esim /Samurai-Wifi-Wholesale-CNY.xlsx</code> — 9,091 rows of Samurai's wholesale price list</li>
+  <li><code>/Users/a44/Downloads/peanut esim /eSIM-Access-Price.csv</code> — 2,808 SKUs at the true wholesale layer (Tier-2)</li>
+  <li><code>/Users/a44/Downloads/peanut esim /eSIM-Go-Rate-Sheet-Standard-CONFIDENTIAL.xlsx</code> — alternative Tier-2 supplier</li>
+</ul>
+<p><strong>Key country findings:</strong></p>
+<table>
+<tr><th>Country</th><th>Samurai price (USD/GB)</th><th>eSIM Access wholesale</th><th>Markup</th></tr>
+<tr><td>UK</td><td>~$3.20</td><td>$1.80</td><td>78%</td></tr>
+<tr><td>USA</td><td>~$4.80</td><td>$2.90</td><td>66%</td></tr>
+<tr><td>Japan</td><td>~$5.50</td><td>$3.10</td><td>77%</td></tr>
+<tr><td>Australia</td><td>~$4.40</td><td>$2.50</td><td>76%</td></tr>
+<tr><td>UAE (outbound)</td><td>~$3.60</td><td>$2.10</td><td>71%</td></tr>
+</table>
+<p>(Full audit in <code>wholesale-markup-audit-2026-05-31.html</code>.)</p>
+<p><strong>12 destinations missing from Samurai catalog</strong> that Emirates crew actively layover in (Maldives, Seychelles, Mauritius, several African routes). This forces local SIM purchases and creates friction we need to fix before launch. Going direct to eSIM Access covers all 12.</p>
+
+<h2 id="pl">8. P&amp;L model overview (12 tabs)</h2>
+<p>File: <code>Peanut-eSIM-PL-Model-2026-05-31.xlsx</code></p>
+<table>
+<tr><th>#</th><th>Tab</th><th>Purpose</th></tr>
+<tr><td>1</td><td>README &amp; Assumptions</td><td>Master assumption sheet, color-coded inputs vs formulas. All scenarios driven from here.</td></tr>
+<tr><td>2</td><td>User Behavior</td><td>Tier mix, consumption per tier, refuel attach, churn by tier. Research-backed.</td></tr>
+<tr><td>3</td><td>Per-Tier Unit Economics</td><td>Wholesale cost, retail price, gross margin, breakage by tier.</td></tr>
+<tr><td>4</td><td>Volume Scenarios</td><td>1K / 5K / 10K / 50K / 100K monthly activation scenarios.</td></tr>
+<tr><td>5</td><td>Procurement Options</td><td>Pay-per-order vs bulk-prepay impact on margins.</td></tr>
+<tr><td>6</td><td>24-Month Rollout</td><td>Monthly P&amp;L from launch through month 24.</td></tr>
+<tr><td>7</td><td>Behavior Sensitivity</td><td>What happens if consumption +20% / -20% / refuel attach moves?</td></tr>
+<tr><td>8</td><td>LTV-CAC + Churn</td><td>By tier and blended. Tracks our acquisition payback period.</td></tr>
+<tr><td>9</td><td>Per-Tier Geo Mix</td><td>Where each tier's data is consumed (cockpit ≠ economy geo profile).</td></tr>
+<tr><td>10</td><td>Carryover Liability</td><td>Deferred revenue / GB-owed balance month-over-month.</td></tr>
+<tr><td>11</td><td>Strategic Scenarios</td><td>Samurai-only vs hybrid vs direct eSIM Access P&amp;L compare.</td></tr>
+<tr><td>12</td><td>Cash + Sensitivity</td><td>Cash runway under each scenario, key sensitivity tornado chart.</td></tr>
+</table>
+
+<h3>P&amp;L model — assumption highlights</h3>
+<ul>
+  <li><strong>Tier mix (researched):</strong> Economy 50%, Roster Bundle 18%, Premium 13%, Business 8%, First 5%, Cockpit 3%. Pulled from Airalo cohort data + Holafly + RevenueCat travel-app benchmarks.</li>
+  <li><strong>Refuel attach rate:</strong> 30% of Economy users top up at least once per month.</li>
+  <li><strong>Churn by tier:</strong> Economy 18%/mo → Roster 9% → Premium 6% → Business 3% → First 1.5% → Cockpit 0.6%/mo. Higher tiers have lower churn (stickiness from carryover banks).</li>
+  <li><strong>Consumption per tier:</strong> Economy 2.5 GB/mo PAYG, Roster ~variable by route, Premium ~7 GB/mo (breakage on 10 GB pool), Business ~10 GB/mo (5 GB breakage on 15 GB pool), First ~15 GB/mo, Cockpit ~9 GB/mo + emergency bank rarely tapped.</li>
+  <li><strong>CAC:</strong> ~$0 organic via crew WhatsApp groups for first 5,000 users. Builds to $8–12 blended CAC at general-public launch in phase 4.</li>
+</ul>
+
+<h2 id="research">9. Research findings &amp; benchmarks</h2>
+<table>
+<tr><th>Source</th><th>Finding</th><th>How we use it</th></tr>
+<tr><td>Airalo public ARPU</td><td>$16.55 ARPU/user/month</td><td>Floor for our blended ARPU expectation</td></tr>
+<tr><td>Holafly public ARPU</td><td>$13.33 ARPU/user/month</td><td>Comparison — they're flat-rate, we're tiered</td></tr>
+<tr><td>RevenueCat travel app benchmarks</td><td>~7–8% blended monthly churn for travel SaaS</td><td>Floor for our model; we expect lower due to crew lock-in</td></tr>
+<tr><td>Firsty (free + ads model)</td><td>Doesn't work for high-data users</td><td>Validates we shouldn't try freemium</td></tr>
+<tr><td>Crew SIM</td><td>~5,000 users, 41-country rate map, pilot-founder, eSIM Mobile GmbH (Germany)</td><td>Direct competitor — we compete on schedule upload, recs, and cabin-class tiers</td></tr>
+<tr><td>Emirates crew GB consumption</td><td>3–5 GB / month per active crew (from interviews)</td><td>Sizes Premium tier (10 GB) correctly</td></tr>
+</table>
+
+<h2 id="competitors">10. Competitor map</h2>
+<table>
+<tr><th>Competitor</th><th>Model</th><th>Differentiator</th><th>Our wedge</th></tr>
+<tr><td>Crew SIM</td><td>Crew-only, flat-rate, gated</td><td>Pilot-founder credibility</td><td>Schedule upload + cabin tiers + recs</td></tr>
+<tr><td>Airalo</td><td>General travel, country-by-country</td><td>Massive catalog, brand</td><td>Crew-specific UX + carryover + recs</td></tr>
+<tr><td>Holafly</td><td>Flat-rate unlimited</td><td>Simplicity</td><td>Lower price for high-frequency travelers via tier ladder</td></tr>
+<tr><td>Firsty</td><td>Free with ads</td><td>Free tier</td><td>We don't compete here — different user</td></tr>
+<tr><td>Nomad</td><td>Travel eSIM with rewards</td><td>Crypto-native</td><td>Crew-vertical depth</td></tr>
+</table>
+
+<h2 id="features">11. Feature backlog</h2>
+<h3>v1.0 (launch)</h3>
+<ul>
+  <li>iOS + Android + web checkout</li>
+  <li>Schedule upload (Emirates Crew Pulse OCR)</li>
+  <li>6 cabin-class tiers with pool + carryover</li>
+  <li>Economy PAYG flow</li>
+  <li>Apple Universal Link provisioning</li>
+  <li>Stripe + Apple IAP</li>
+  <li>6-scenario refund logic</li>
+</ul>
+<h3>v1.1 (post-launch, queued)</h3>
+<ul>
+  <li><strong>Manual Flight Builder</strong> — dropdown EK# + date for crew who won't upload roster. Captures the bounce.</li>
+  <li><strong>AI Support</strong> — in-app chat (Claude/OpenAI API). Custom GPT for v1, Intercom Fin at scale.</li>
+  <li><strong>Crew Recs</strong> — iOS Share Sheet → capture place + photos + notes. Community-curated rec database. Like-only + Peanut Points → free data redemption.</li>
+  <li><strong>Crew Accommodation</strong> — crew-curated layover hotel intel (dryer / iron / closet / WiFi checklist + insights).</li>
+</ul>
+<h3>v2.0+</h3>
+<ul>
+  <li>Apple Carrier Entitlement (proper iOS Settings integration)</li>
+  <li>Etihad expansion</li>
+  <li>JAL + ANA expansion</li>
+  <li>Enterprise sales (airline-paid crew connectivity)</li>
+  <li>General public launch (backdoor strategy activates)</li>
+</ul>
+
+<h2 id="artifacts">12. All artifacts (HTML / xlsx / JSON)</h2>
+<p>Live repo: <a href="https://github.com/peanut-e-sim/peanut-esim-business-overview">github.com/peanut-e-sim/peanut-esim-business-overview</a> → GitHub Pages at <a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/">peanut-e-sim.github.io/peanut-esim-business-overview/</a></p>
+
+<h3>Core docs</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/index.html">index.html</a></td><td>Master roadmap — 9 phases, all tabs, the "what we're doing" overview</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/executive-summary.html">executive-summary.html</a></td><td>One-pager for outside readers (investors, advisors)</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/peanut-esim-project-briefing-2026-05-31.html">peanut-esim-project-briefing-2026-05-31.html</a></td><td>This document</td></tr>
+</table>
+
+<h3>P&amp;L &amp; financial models</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/Peanut-eSIM-PL-Model-2026-05-31.xlsx">Peanut-eSIM-PL-Model-2026-05-31.xlsx</a></td><td>12-tab P&amp;L model (current source of truth)</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/pl-scenarios-2026-05-24.html">pl-scenarios-2026-05-24.html</a></td><td>Earlier P&amp;L scenario writeup (superseded by xlsx)</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/wholesale-markup-audit-2026-05-31.html">wholesale-markup-audit-2026-05-31.html</a></td><td>Samurai vs eSIM Access markup audit, 68% finding, $1.6M/yr savings calc</td></tr>
+</table>
+
+<h3>Tab 1 deliverables (background-agent generated 2026-05-31)</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/notebooklm-tab1-readme-2026-05-31.html">notebooklm-tab1-readme-2026-05-31.html</a></td><td>~2,000-word narrative for NotebookLM audio overview. Reflects research-backed numbers. Sources cited.</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/tab1-slides-2026-05-31.html">tab1-slides-2026-05-31.html</a></td><td>12-slide HTML deck (Canva MCP fallback). Includes Research Basis slide + churn pill table.</td></tr>
+</table>
+
+<h3>Pricing &amp; plans</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/pricing-mockup.html">pricing-mockup.html</a></td><td>Visual pricing card mockup</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/pricing-plan-structure.html">pricing-plan-structure.html</a></td><td>Tier structure rationale doc</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/plans-and-refunds.html">plans-and-refunds.html</a></td><td>6-scenario refund logic + plan rules</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/plans-infographic.html">plans-infographic.html</a></td><td>Plan infographic for marketing</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/pricing-benchmark-2026-05-24.md">pricing-benchmark-2026-05-24.md</a></td><td>Competitor pricing benchmark (raw)</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/Competitor_Pricing_Benchmark.xlsx">Competitor_Pricing_Benchmark.xlsx</a></td><td>Competitor pricing benchmark (xlsx)</td></tr>
+</table>
+
+<h3>Brand &amp; naming</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/brand-name-candidates-2026-05-24.html">brand-name-candidates-2026-05-24.html</a></td><td>27 candidates verified across USPTO Class 9+38, .com, social handles, App Store. SORU/ROMU/DRIFTO finalists.</td></tr>
+</table>
+
+<h3>Crew layer (recs / souvenirs / interviews)</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/crew-recs-and-souvenirs.html">crew-recs-and-souvenirs.html</a></td><td>Crew recs feature + souvenir guide spec</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/crew-recs-starter-db.json">crew-recs-starter-db.json</a></td><td>Starter dataset for recs</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/crew-souvenirs-guide.json">crew-souvenirs-guide.json</a></td><td>Souvenirs starter dataset</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/crew-interview-script.html">crew-interview-script.html</a></td><td>Akito's crew interview script</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/akito-beta-recruitment-brief.html">akito-beta-recruitment-brief.html</a></td><td>Beta crew recruitment brief</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/akito-crew-questionnaire-builder.html">akito-crew-questionnaire-builder.html</a></td><td>Akito's questionnaire builder tool</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/Emirates_Crew_Layover_Countries.xlsx">Emirates_Crew_Layover_Countries.xlsx</a></td><td>Layover country list for tier coverage planning</td></tr>
+</table>
+
+<h3>How-to &amp; ops</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/delaware-llc-how-to.html">delaware-llc-how-to.html</a></td><td>Delaware LLC formation walkthrough</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/account-setup-how-to.html">account-setup-how-to.html</a></td><td>Mercury / Stripe / Apple account setup steps</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/ios-access-setup.html">ios-access-setup.html</a></td><td>iOS provisioning setup notes</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/supplier-landscape-2026-05-24.html">supplier-landscape-2026-05-24.html</a></td><td>Wholesale supplier landscape map</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/risk-register.html">risk-register.html</a></td><td>Risk register</td></tr>
+</table>
+
+<h3>Stitch design prompts</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/stitch-prompts-crewlink-29screens.html">stitch-prompts-crewlink-29screens.html</a></td><td>29-screen Stitch prompt set</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/stitch-prompts-crewlink-6batches.html">stitch-prompts-crewlink-6batches.html</a></td><td>6-batch breakdown</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/stitch-prompts-crewlink-mega.html">stitch-prompts-crewlink-mega.html</a></td><td>Single mega prompt</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/stitch-prompts-plans-and-verification.html">stitch-prompts-plans-and-verification.html</a></td><td>Plans + verification screens prompts</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/stitch-prompt-update-naming.html">stitch-prompt-update-naming.html</a></td><td>Naming update prompt</td></tr>
+</table>
+
+<h3>Discussion summaries</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/crewlink-full-discussion-summary.html">crewlink-full-discussion-summary.html</a></td><td>Earlier full-session discussion summary (HTML)</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/crewlink-full-discussion-summary.md">crewlink-full-discussion-summary.md</a></td><td>Same, Markdown</td></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/docs/downloads/plans-notebooklm-source.md">plans-notebooklm-source.md</a></td><td>Earlier NotebookLM source (Markdown)</td></tr>
+</table>
+
+<h3>App demos (parked)</h3>
+<table>
+<tr><th>File</th><th>What it is</th></tr>
+<tr><td><a href="https://peanut-e-sim.github.io/peanut-esim-business-overview/app-demos/v4/">app-demos/v4/</a></td><td>v4 Stitch-based interactive prototype attempts. PARKED — Stitch can't be retrofitted to v3-quality clickability without hand-rebuild.</td></tr>
+</table>
+
+<h2 id="thinking">13. The thinking process (rejected paths)</h2>
+
+<h3>Why crew-vertical instead of "general travel eSIM"</h3>
+<p>I considered going broad like Airalo or Holafly — wide catalog, paid acquisition, scale on SEO. <strong>Killed because:</strong> CAC at general-travel scale is $8–25 per user, payback period 4–8 months, and we'd be competing on brand recognition where Airalo has 5+ year head start. Crew-vertical has $0 organic CAC for the first 5K via WhatsApp groups, and the deep-feature moat (roster upload + crew recs) is uncopiable by general players.</p>
+
+<h3>Why Emirates first instead of all Middle East crew</h3>
+<p>Emirates is the largest crew base in the world (~22,000 cabin crew + 4,000 pilots DXB-based). Etihad is ~6,000. Qatar is ~13,000 but DOH-based crew have different telecom regulations. Starting Emirates means our OCR pipeline only has to handle one roster format (Crew Pulse) and one base airport (DXB). Etihad expansion is phase 2 because their roster format is different and the v2 pipeline lift is incremental.</p>
+
+<h3>Why not freemium</h3>
+<p>Firsty's free-with-ads model exists and gets users — but breaks at high-data usage. Crew use 3–5 GB/month minimum. A free tier funded by ads would lose money on every crew user. Economy PAYG is our "near-free" entry point — $1 GB top-ups feel cheap, but every top-up is gross margin positive.</p>
+
+<h3>Why not flat-rate unlimited like Holafly</h3>
+<p>Tested in the model: at crew consumption levels, flat-rate at competitive price points would break our gross margin within 30 days. The cabin-class tier ladder captures the same "I want to know what I pay" simplicity for users while preserving breakage and tier upgrade revenue.</p>
+
+<h3>Why we ditched the Stitch v4 prototype</h3>
+<p>Two hours spent across 5 architectures. Each iframe/CSS fix uncovered new edge cases. Lesson burned in: <strong>Stitch outputs are visual mockups, not interaction-wired UI.</strong> Each generated HTML has its own Tailwind config and viewport-relative positioning. Wrapping them retroactively into a clickable prototype matching v3 quality is a CSS treadmill. Path forward when we revisit: hand-rebuild from scratch using Stitch as visual reference only, or use gallery view and stop trying to make it clickable.</p>
+
+<h3>Why a separate holding company at all</h3>
+<p>Apple Inc. owns iPhone. Moonlight Holdings will own [service brand]. This separates: (a) USPTO classes (35 for Moonlight vs 9/38 for service brand) — different filing strategies; (b) future M&amp;A optionality — we can sell the service brand without unwinding the holding entity; (c) personal liability — Balraj and Akito are insulated by an extra corporate layer; (d) UAE tax exposure — Moonlight is the US tax entity, UAE operations sit underneath.</p>
+
+<h3>Why Vivek's residential address instead of a virtual mailbox</h3>
+<p>Mercury Bank flags virtual mailboxes during onboarding. Stripe Atlas works with them but slower. Apple Developer Program may reject them. UAE Permanent Establishment defense is stronger with a real US residence. Vivek lives in Texas — no state income tax — and is already a trusted partner from TQHB. Trade-off accepted: we pay him a small monthly stipend for mail handling.</p>
+
+<h3>Why I chose Sonnet for sub-agents instead of Opus</h3>
+<p>Researcher / Coder / Banana Coder / GitHub Coder / Akito's Assistant / Baru's Assistant / Lead Finder all run mechanical work (web scraping, code generation, image gen, summarization, repo commits). Sonnet 4.6 is 3–5× faster and ~5× cheaper for this work. Opus stays on the main thread where judgment and architectural decisions live. This split lets me run 1–2 background Researchers continuously while we talk.</p>
+
+<h2 id="next">14. Immediate next steps</h2>
+
+<h3>Today (2026-05-31)</h3>
+<ol>
+  <li>Register <strong>moonlight.ventures</strong> at Porkbun/Namecheap — 5-year lock</li>
+  <li>Secure social handles: @moonlight_ventures, @moonlightholdings, @moonlight.ventures on IG / X / TikTok / LinkedIn</li>
+  <li>Verify "Moonlight Holdings LLC" available via Delaware ICIS search</li>
+  <li>WhatsApp Vivek confirming his address use for the entity</li>
+  <li>Upload <em>this doc</em> + the linked xlsx/HTML files to a fresh Claude.ai Project for iOS continuity</li>
+</ol>
+
+<h3>This week</h3>
+<ol>
+  <li>Pick service brand from SORU / ROMU / DRIFTO (Akito's call)</li>
+  <li>TM clearance check on "Porter Plan" (or "Pairing Plan" / "Roster Plan" fallback)</li>
+  <li>Brief US TM attorney for Class 35 search on Moonlight Holdings (~$800–1.5K)</li>
+  <li>Finalize Samurai questions list, send email</li>
+  <li>Walk through P&amp;L Tab 3 (Per-Tier Unit Economics) with Akito</li>
+</ol>
+
+<h3>Next 30 days</h3>
+<ol>
+  <li>File Delaware LLC formation</li>
+  <li>Open Mercury bank account</li>
+  <li>Apple Developer Program enrollment (with new LLC)</li>
+  <li>Build the iOS app skeleton + roster OCR prototype</li>
+  <li>Recruit 20 crew beta users from Akito's WhatsApp network</li>
+  <li>UAE DED trade name search</li>
+</ol>
+
+<div class="footer-note">
+<strong>How to use this doc with Claude.ai Projects:</strong> Create a new Project at claude.ai/projects. Paste this entire document into the Project description or as a project file. Attach the linked xlsx/HTML artifacts as additional project files. Any new conversation in that Project — including from the iOS app — will inherit this full briefing as context. Update this doc whenever a decision changes; bump the date in the filename.
+<br><br>
+<strong>This briefing reflects state as of 2026-05-31.</strong> Memory is point-in-time. Verify any specific number or claim against the linked artifacts (especially the xlsx) before acting on it.
+</div>
+
+</div>
+
+<textarea id="copy-source" class="copy-textarea" readonly></textarea>
+
+<script>
+function copyAll() {
+  const container = document.querySelector('.container');
+  let text = '';
+  function walk(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      text += node.textContent;
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const tag = node.tagName.toLowerCase();
+      if (tag === 'h1') { text += '\n\n# '; }
+      else if (tag === 'h2') { text += '\n\n## '; }
+      else if (tag === 'h3') { text += '\n\n### '; }
+      else if (tag === 'h4') { text += '\n\n#### '; }
+      else if (tag === 'p' || tag === 'li' || tag === 'tr') { text += '\n'; }
+      else if (tag === 'td' || tag === 'th') { text += ' | '; }
+      else if (tag === 'br') { text += '\n'; }
+      for (const child of node.childNodes) walk(child);
+    }
+  }
+  walk(container);
+  text = text.replace(/\n{3,}/g, '\n\n').trim();
+  const ta = document.getElementById('copy-source');
+  ta.value = text;
+  ta.select();
+  document.execCommand('copy');
+  const btn = document.querySelector('.copy-bar button');
+  const original = btn.textContent;
+  btn.textContent = 'Copied!';
+  setTimeout(() => { btn.textContent = original; }, 2000);
+}
+</script>
+
+</body>
+</html>
