@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wholesale Supplier Markup Audit — Peanut eSIM (2026-05-31)</title>
+<style>
+  :root {
+    --red: #D71921; --red-dark: #6E0D14; --red-deep: #B81621;
+    --gold: #C9A03B; --gold-light: #E5C77B;
+    --bg: #FFFFFF; --bg-alt: #F4F4F4; --bg-warn: #FFF6E5; --bg-good: #F0F9F4;
+    --text: #1A1A1A; --text-2: #595959; --line: #E0E0E0;
+    --green: #2D8C7E; --amber: #C9A03B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.55; }
+
+  .ek-header { background: var(--red); color: #fff; padding: 18px 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .ek-logo { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
+  .ek-logo span { color: var(--gold-light); font-weight: 400; margin-left: 8px; font-size: 14px; }
+  .ek-nav { display: flex; gap: 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .ek-nav a { color: #fff; text-decoration: none; opacity: 0.95; }
+  .ek-stripe { height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+  .ek-subheader { background: #fff; padding: 14px 5vw; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-2); }
+  .ek-subheader span { color: var(--red); font-weight: 700; }
+
+  .hero { background: linear-gradient(135deg, #fff 60%, #faf5e8); padding: 56px 5vw 40px; border-bottom: 1px solid var(--line); }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow { font-size: 11px; color: var(--red); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; display: inline-block; padding-bottom: 6px; border-bottom: 2px solid var(--red); }
+  h1 { font-weight: 700; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.1; letter-spacing: -0.012em; margin-bottom: 16px; }
+  h1 em { color: var(--red); font-style: normal; }
+  .lead { color: var(--text-2); font-size: 16px; max-width: 64ch; margin-bottom: 0; line-height: 1.6; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 5vw 60px; }
+
+  .punchline { background: var(--bg-warn); border-left: 4px solid var(--gold); padding: 22px 28px; margin-bottom: 32px; border-radius: 0; }
+  .punchline h2 { font-size: 18px; font-weight: 700; color: var(--red); margin-bottom: 8px; }
+  .punchline p { font-size: 15px; line-height: 1.6; color: var(--text); }
+
+  h2 { font-size: 22px; font-weight: 700; margin: 36px 0 16px; letter-spacing: -0.01em; }
+  h3 { font-size: 16px; font-weight: 700; margin: 22px 0 10px; color: var(--text); }
+  p { margin-bottom: 14px; line-height: 1.6; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0; margin-bottom: 32px; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .stat-row div { padding: 18px 18px; background: #fff; border-right: 1px solid var(--line); text-align: center; }
+  .stat-row div:last-child { border-right: none; }
+  .stat-row strong { display: block; font-size: 28px; color: var(--red); font-weight: 800; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .stat-row span { font-size: 11px; color: var(--text-2); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  table.audit { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 13px; }
+  table.audit thead { background: var(--red); color: #fff; }
+  table.audit th { padding: 12px 14px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+  table.audit th.num { text-align: right; }
+  table.audit tbody td { padding: 11px 14px; border-bottom: 1px solid var(--line); }
+  table.audit tbody td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: "SF Mono", Consolas, monospace; }
+  table.audit tbody tr:hover { background: var(--bg-alt); }
+  table.audit .country { font-weight: 600; }
+  .pct-bad { color: var(--red); font-weight: 700; }
+  .pct-warn { color: var(--amber); font-weight: 700; }
+  .pct-good { color: var(--green); font-weight: 700; }
+  .savings { background: var(--bg-good); color: var(--green); font-weight: 700; padding: 3px 8px; border-radius: 100px; font-size: 12px; }
+
+  .gap-list { background: var(--bg-alt); padding: 18px 22px; border-radius: 4px; margin: 16px 0 24px; }
+  .gap-list strong { color: var(--red); display: block; margin-bottom: 8px; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .gap-list span { display: inline-block; padding: 6px 12px; margin: 4px 4px 0 0; background: #fff; border: 1px solid var(--line); border-radius: 100px; font-size: 13px; font-weight: 600; }
+
+  .negotiation { background: linear-gradient(135deg, rgba(45,140,126,0.08), rgba(201,160,59,0.06)); border-left: 4px solid var(--green); padding: 22px 28px; margin: 32px 0; border-radius: 0; }
+  .negotiation h2 { color: var(--green); margin-top: 0; margin-bottom: 14px; }
+  .negotiation ol { padding-left: 22px; }
+  .negotiation li { margin-bottom: 10px; font-size: 14px; line-height: 1.6; }
+  .negotiation li strong { color: var(--text); }
+
+  .methodology { background: #fafafa; border: 1px solid var(--line); padding: 18px 22px; border-radius: 4px; margin-top: 32px; font-size: 12px; color: var(--text-2); line-height: 1.6; }
+  .methodology strong { color: var(--text); }
+
+  .ek-footer { background: var(--red-dark); color: #fff; padding: 32px 5vw 24px; margin-top: 56px; }
+  .ek-footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .ek-footer .left { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+  .ek-footer .gold { color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<header class="ek-header">
+  <div class="ek-logo">Peanut eSIM<span>· Wholesale Markup Audit</span></div>
+  <nav class="ek-nav">
+    <a href="../../index.html">Roadmap</a>
+    <a href="pricing-mockup.html">Cabin pricing</a>
+  </nav>
+</header>
+<div class="ek-stripe"></div>
+
+<div class="ek-subheader">
+  Resources <span>›</span> Downloads <span>›</span> <span>Wholesale Markup Audit · 2026-05-31</span>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Pricing Intelligence · Phase 1 negotiation prep · 2026-05-31</span>
+    <h1>Wholesale supplier markup audit — <em>the 40% number is a lie</em></h1>
+    <p class="lead">Per-country audit of the current wholesale supplier's actual markup on the 1GB / 1-day pay-per-order SKU across 30 top crew destinations. Three findings emerge: actual markup is ~70% (not the claimed 40%), 12 of 30 destinations are missing from their 1-day catalog, and bypassing them via direct API saves $0.17–$7.59 per activation.</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="punchline">
+    <h2>The punchline</h2>
+    <p>Across 18 matched crew destinations, the wholesale supplier's actual markup over their own cost averages <strong>68% (median 70%)</strong>. Their public "40% margin" framing doesn't match what's in the rate sheet. The cash-impact countries — South Africa, India, UK, Saudi Arabia — show <strong>$1.17 to $7.59 in savings per activation</strong> if Peanut eSIM contracts direct with the upstream supplier instead.</p>
+  </div>
+
+  <div class="stat-row">
+    <div><strong>68%</strong><span>Avg markup</span></div>
+    <div><strong>70%</strong><span>Median markup</span></div>
+    <div><strong>75%</strong><span>Worst (Japan, MY, SG, HK)</span></div>
+    <div><strong>12 / 30</strong><span>Destinations missing</span></div>
+    <div><strong>$7.59</strong><span>Max save/unit (ZA)</span></div>
+  </div>
+
+  <h2>Per-country audit — 18 matched destinations</h2>
+  <p>Sorted by markup percentage (worst on top). All prices for the cheapest 1GB / 1-day SKU available. CNY converted at ¥7.25 / USD.</p>
+
+  <table class="audit">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th class="num">Supplier cost (CNY)</th>
+        <th class="num">You pay (CNY)</th>
+        <th class="num">You pay (USD)</th>
+        <th class="num">Direct (USD)</th>
+        <th class="num">Save/unit</th>
+        <th class="num">Markup %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="country">Japan</td><td class="num">4.0</td><td class="num">7.0</td><td class="num">$0.97</td><td class="num">$0.80</td><td class="num"><span class="savings">$0.17</span></td><td class="num pct-bad">75%</td></tr>
+      <tr><td class="country">Malaysia</td><td class="num">4.0</td><td class="num">7.0</td><td class="num">$0.97</td><td class="num">$0.70</td><td class="num"><span class="savings">$0.27</span></td><td class="num pct-bad">75%</td></tr>
+      <tr><td class="country">Indonesia</td><td class="num">4.0</td><td class="num">7.0</td><td class="num">$0.97</td><td class="num">$0.83</td><td class="num"><span class="savings">$0.14</span></td><td class="num pct-bad">75%</td></tr>
+      <tr><td class="country">South Korea</td><td class="num">4.0</td><td class="num">7.0</td><td class="num">$0.97</td><td class="num">$0.80</td><td class="num"><span class="savings">$0.17</span></td><td class="num pct-bad">75%</td></tr>
+      <tr><td class="country">Singapore</td><td class="num">4.0</td><td class="num">7.0</td><td class="num">$0.97</td><td class="num">$0.50</td><td class="num"><span class="savings">$0.47</span></td><td class="num pct-bad">75%</td></tr>
+      <tr><td class="country">Hong Kong</td><td class="num">4.0</td><td class="num">7.0</td><td class="num">$0.97</td><td class="num">$0.80</td><td class="num"><span class="savings">$0.17</span></td><td class="num pct-bad">75%</td></tr>
+      <tr><td class="country">China</td><td class="num">3.5</td><td class="num">6.0</td><td class="num">$0.83</td><td class="num">$0.60</td><td class="num"><span class="savings">$0.23</span></td><td class="num pct-bad">71%</td></tr>
+      <tr><td class="country">Australia</td><td class="num">5.0</td><td class="num">8.5</td><td class="num">$1.17</td><td class="num">$0.80</td><td class="num"><span class="savings">$0.37</span></td><td class="num pct-bad">70%</td></tr>
+      <tr><td class="country">Vietnam</td><td class="num">5.0</td><td class="num">8.5</td><td class="num">$1.17</td><td class="num">$0.80</td><td class="num"><span class="savings">$0.37</span></td><td class="num pct-bad">70%</td></tr>
+      <tr><td class="country">New Zealand</td><td class="num">5.0</td><td class="num">8.5</td><td class="num">$1.17</td><td class="num">$0.84</td><td class="num"><span class="savings">$0.33</span></td><td class="num pct-bad">70%</td></tr>
+      <tr><td class="country">UAE</td><td class="num">12.5</td><td class="num">21.0</td><td class="num">$2.90</td><td class="num">—</td><td class="num">—</td><td class="num pct-bad">68%</td></tr>
+      <tr><td class="country">South Africa 🚨</td><td class="num">39.3</td><td class="num">65.5</td><td class="num">$9.03</td><td class="num">$1.44</td><td class="num"><span class="savings">$7.59</span></td><td class="num pct-bad">67%</td></tr>
+      <tr><td class="country">India</td><td class="num">25.5</td><td class="num">42.5</td><td class="num">$5.86</td><td class="num">$1.82</td><td class="num"><span class="savings">$4.04</span></td><td class="num pct-bad">67%</td></tr>
+      <tr><td class="country">United States</td><td class="num">4.2</td><td class="num">7.0</td><td class="num">$0.97</td><td class="num">$0.78</td><td class="num"><span class="savings">$0.19</span></td><td class="num pct-bad">67%</td></tr>
+      <tr><td class="country">Canada</td><td class="num">9.0</td><td class="num">15.0</td><td class="num">$2.07</td><td class="num">$1.38</td><td class="num"><span class="savings">$0.69</span></td><td class="num pct-bad">67%</td></tr>
+      <tr><td class="country">United Kingdom</td><td class="num">7.5</td><td class="num">12.5</td><td class="num">$1.72</td><td class="num">$0.55</td><td class="num"><span class="savings">$1.17</span></td><td class="num pct-bad">67%</td></tr>
+      <tr><td class="country">Saudi Arabia</td><td class="num">16.5</td><td class="num">27.5</td><td class="num">$3.79</td><td class="num">$1.62</td><td class="num"><span class="savings">$2.17</span></td><td class="num pct-bad">67%</td></tr>
+      <tr><td class="country">Brazil</td><td class="num">26.4</td><td class="num">33.2</td><td class="num">$4.58</td><td class="num">$1.84</td><td class="num"><span class="savings">$2.74</span></td><td class="num pct-good">26%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="gap-list">
+    <strong>⚠️ Destinations missing from the supplier's 1-day catalog (12)</strong>
+    <span>Thailand</span>
+    <span>Mauritius</span>
+    <span>Sri Lanka</span>
+    <span>France</span>
+    <span>Germany</span>
+    <span>Italy</span>
+    <span>Spain</span>
+    <span>Philippines</span>
+    <span>Greece</span>
+    <span>Turkey</span>
+    <span>Netherlands</span>
+    <span>Switzerland</span>
+    <p style="margin-top: 12px; font-size: 13px; color: var(--text-2);">These are major Emirates crew layover destinations. The 1-day pay-per-order SKU shelf is structurally incomplete, forcing crew users into multi-day or larger-GB bundles that drive up per-trip cost.</p>
+  </div>
+
+  <div class="negotiation">
+    <h2>Negotiation arsenal — 3 specific asks</h2>
+    <ol>
+      <li><strong>Drop markup from ~70% to flat 40% (their public number).</strong> Across 30K activations/month at current mix, this saves Peanut ~$15–25K/month. Their own pitch materials state 40% — hold them to it.</li>
+      <li><strong>Fill the 12 missing 1-day SKUs.</strong> Specifically Thailand, Mauritius, France, Germany, Italy, Spain. Without these, every crew layover in these countries costs us a multi-day plan we don't need.</li>
+      <li><strong>Match direct-supplier rate on top 5 cash-impact countries.</strong> South Africa, India, UK, Saudi Arabia, Brazil. If supplier won't go below 40% markup here, we route these countries to a different wholesaler — they keep the easy markets, we cherry-pick the expensive ones.</li>
+    </ol>
+  </div>
+
+  <h2>Volume math — what this saves at scale</h2>
+  <p>Assumes 30% of activations concentrate in the top 5 cash-impact countries (South Africa, India, UK, Saudi Arabia, Brazil) where avg savings = ~$3.50/unit. Remaining 70% of activations averages ~$0.40/unit savings.</p>
+
+  <table class="audit">
+    <thead>
+      <tr><th>Activations / month</th><th class="num">Top-5 savings</th><th class="num">Other savings</th><th class="num">Total monthly</th><th class="num">Annual</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1,000</td><td class="num">$1,050</td><td class="num">$280</td><td class="num">$1,330</td><td class="num">$16K</td></tr>
+      <tr><td>10,000</td><td class="num">$10,500</td><td class="num">$2,800</td><td class="num">$13,300</td><td class="num">$160K</td></tr>
+      <tr><td>50,000</td><td class="num">$52,500</td><td class="num">$14,000</td><td class="num">$66,500</td><td class="num">$798K</td></tr>
+      <tr><td>100,000</td><td class="num">$105,000</td><td class="num">$28,000</td><td class="num">$133,000</td><td class="num">$1.6M</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size: 13px; color: var(--text-2);">Even at the conservative 10K/month scale, the bypass arithmetic justifies a direct relationship with the upstream supplier within 12–18 months of launch.</p>
+
+  <div class="methodology">
+    <strong>Methodology.</strong> Comparison set: 30 top Emirates crew layover destinations. SKU anchor: 1 GB total data / 1 day validity / pay-per-order (no recurring commitment). For each country, picked the cheapest matching SKU from the wholesale supplier's CNY rate sheet (excluding throttled-only and brand-specific app passes). Direct-supplier rate sourced from upstream supplier USD price list (2,808 SKUs). 12 destinations not matched in the supplier's 1-day catalog — likely sold only as multi-day or larger-GB SKUs. Exchange rate: ¥7.25 / USD applied uniformly. <strong>Data sources:</strong> Samurai wholesale CNY rate sheet (2026-05-21), eSIM Access price list (2026-05-21).
+  </div>
+</div>
+
+<footer class="ek-footer">
+  <div class="ek-footer-inner">
+    <div class="left">Peanut eSIM <span class="gold">·</span> Wholesale Markup Audit <span class="gold">·</span> 2026-05-31</div>
+    <a href="../../index.html" style="color: #fff; padding: 10px 18px; background: rgba(255,255,255,0.08); text-decoration: none; border-radius: 4px; border: 1px solid rgba(255,255,255,0.18); font-size: 12px;">← Back to roadmap</a>
+  </div>
+</footer>
+
+</body>
+</html>
