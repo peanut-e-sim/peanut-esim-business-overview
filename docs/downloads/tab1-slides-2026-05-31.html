@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peanut eSIM · P&L Model · Tab 1 — README & Assumptions</title>
+<style>
+  :root {
+    --red:    #D71921;
+    --cream:  #FBF6EC;
+    --gold:   #C9A03B;
+    --navy:   #2A2A4A;
+    --navy2:  #1A1A32;
+    --white:  #FFFFFF;
+    --blue:   #1A6EBD;
+    --green:  #1A8A4A;
+    --yellow: #F5E642;
+    --gray:   #6B6B8A;
+    --light:  #F0EBE0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Manrope', system-ui, -apple-system, sans-serif;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 8px;
+  }
+
+  /* ── Navigation ──────────────────────────────────────── */
+  #nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navy2);
+    padding: 10px 24px;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+  #nav .brand { color: var(--gold); font-weight: 700; font-size: 13px; letter-spacing: 1px; }
+  #nav .controls { display: flex; gap: 10px; align-items: center; }
+  #nav button {
+    background: var(--navy);
+    color: var(--cream);
+    border: 1px solid var(--gold);
+    padding: 5px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    transition: background .15s;
+  }
+  #nav button:hover { background: var(--gold); color: var(--navy2); }
+  #nav .slide-counter { color: var(--gray); font-size: 12px; min-width: 60px; text-align: center; }
+
+  /* ── Slide wrapper ───────────────────────────────────── */
+  .deck { margin-top: 60px; width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 6px; }
+
+  .slide {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 0 8px 40px rgba(0,0,0,.55);
+    display: none;
+  }
+  .slide.active { display: block; }
+
+  /* ── SLIDE 1 · Title ─────────────────────────────────── */
+  #s1 {
+    background: var(--navy2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8% 10%;
+  }
+  #s1 .pre {
+    font-size: clamp(10px, 1.3vw, 14px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2%;
+  }
+  #s1 h1 {
+    font-size: clamp(22px, 3.5vw, 42px);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 3%;
+    max-width: 80%;
+  }
+  #s1 h1 span { color: var(--red); }
+  #s1 .sub {
+    font-size: clamp(11px, 1.4vw, 16px);
+    color: var(--cream);
+    opacity: .75;
+    margin-bottom: 1.5%;
+  }
+  #s1 .date {
+    font-size: clamp(10px, 1.1vw, 13px);
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-top: 4%;
+    padding-top: 2%;
+    border-top: 1px solid rgba(201,160,59,.3);
+    width: 40%;
+  }
+  #s1 .stripe {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--red);
+  }
+  #s1 .dot {
+    position: absolute;
+    bottom: 8%; right: 8%;
+    width: clamp(50px, 8vw, 80px);
+    height: clamp(50px, 8vw, 80px);
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    opacity: .2;
+  }
+
+  /* ── SLIDE 2 · Color Key ─────────────────────────────── */
+  #s2 {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    padding: 7% 9%;
+  }
+  .slide-title {
+    font-size: clamp(14px, 2vw, 22px);
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 4%;
+    padding-bottom: 2%;
+    border-bottom: 3px solid var(--red);
+    display: inline-block;
+  }
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3%;
+    flex: 1;
+  }
+  .color-card {
+    border-radius: 8px;
+    padding: 5% 6%;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+  }
+  .cc-blue  { background: #E8F0FA; border: 2px solid var(--blue); }
+  .cc-black { background: #F0F0F0; border: 2px solid #222; }
+  .cc-green { background: #E8F5ED; border: 2px solid var(--green); }
+  .cc-yellow { background: #FFFBE6; border: 2px solid #C8A000; }
+  .color-swatch {
+    width: clamp(24px, 3.5vw, 40px);
+    height: clamp(24px, 3.5vw, 40px);
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .color-card .label {
+    font-size: clamp(9px, 1.2vw, 13px);
+    font-weight: 700;
+  }
+  .color-card .desc {
+    font-size: clamp(8px, 1vw, 11px);
+    opacity: .7;
+    margin-top: 2px;
+  }
+
+  /* ── SLIDE 3 · Cabin Tiers Table ─────────────────────── */
+  #s3 {
+    background: var(--navy2);
+    display: flex;
+    flex-direction: column;
+    padding: 5% 6%;
+  }
+  #s3 .slide-title { color: var(--gold); border-bottom-color: var(--red); }
+  table.tiers {
+    width: 100%;
+    border-collapse: collapse;
+    flex: 1;
+    font-size: clamp(7px, 1vw, 11px);
+  }
+  table.tiers th {
+    background: var(--navy);
+    color: var(--gold);
+    padding: 2.5% 2%;
+    text-align: left;
+    font-weight: 700;
+    letter-spacing: .5px;
+    font-size: clamp(7px, .9vw, 10px);
+    text-transform: uppercase;
+  }
+  table.tiers td {
+    padding: 2% 2%;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    color: var(--cream);
+    vertical-align: middle;
+  }
+  table.tiers tr:hover td { background: rgba(255,255,255,.04); }
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 20px;
+    font-size: clamp(6px, .8vw, 9px);
+    font-weight: 700;
+    letter-spacing: .5px;
+  }
+  .badge-pop  { background: var(--red);  color: #fff; }
+  .badge-rec  { background: var(--gold); color: var(--navy2); }
+  .badge-add  { background: #333; color: #aaa; border: 1px solid #555; }
+  .tier-icon  { font-size: clamp(10px, 1.4vw, 16px); margin-right: 4px; }
+
+  /* ── SLIDE 4 · Carryover ─────────────────────────────── */
+  #s4 {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    padding: 6% 8%;
+  }
+  .carry-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    margin: 5% 0;
+    flex: 1;
+  }
+  .carry-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 4% 5%;
+    flex: 1;
+    max-width: 22%;
+    text-align: center;
+  }
+  .carry-node .pct {
+    font-size: clamp(18px, 3vw, 36px);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .carry-node .tier-name {
+    font-size: clamp(7px, 1vw, 11px);
+    font-weight: 700;
+    margin-top: 6%;
+    color: var(--cream);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  .carry-arrow {
+    font-size: clamp(16px, 2vw, 24px);
+    color: var(--red);
+    font-weight: 900;
+  }
+  .carry-note {
+    font-size: clamp(8px, 1.1vw, 12px);
+    color: var(--navy);
+    background: rgba(201,160,59,.12);
+    border-left: 3px solid var(--gold);
+    padding: 2.5% 4%;
+    border-radius: 4px;
+    margin-top: 2%;
+  }
+
+  /* ── SLIDE 5 · Geo Cost Buckets ──────────────────────── */
+  #s5 {
+    background: var(--navy2);
+    display: flex;
+    flex-direction: column;
+    padding: 5% 7%;
+  }
+  #s5 .slide-title { color: var(--gold); border-bottom-color: var(--red); }
+  .geo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3%;
+    flex: 1;
+    align-items: start;
+  }
+  .geo-card {
+    border-radius: 8px;
+    padding: 5% 5%;
+  }
+  .geo-a { background: rgba(26,110,189,.15); border: 1.5px solid #1A6EBD; }
+  .geo-b { background: rgba(201,160,59,.1);  border: 1.5px solid var(--gold); }
+  .geo-c { background: rgba(215,25,33,.12);  border: 1.5px solid var(--red); }
+  .geo-card .label {
+    font-size: clamp(8px, 1vw, 11px);
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4%;
+  }
+  .geo-a .label { color: #6AABF5; }
+  .geo-b .label { color: var(--gold); }
+  .geo-c .label { color: #F06070; }
+  .geo-card .cost {
+    font-size: clamp(20px, 3vw, 36px);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 4%;
+    line-height: 1;
+  }
+  .geo-card .mix {
+    font-size: clamp(8px, 1vw, 11px);
+    color: rgba(255,255,255,.5);
+    margin-bottom: 4%;
+  }
+  .geo-card .countries {
+    font-size: clamp(7px, .85vw, 10px);
+    color: rgba(255,255,255,.6);
+    line-height: 1.5;
+  }
+  .blended-row {
+    background: rgba(201,160,59,.08);
+    border: 1.5px solid var(--gold);
+    border-radius: 6px;
+    padding: 2.5% 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2%;
+  }
+  .blended-row .lbl { font-size: clamp(9px, 1.1vw, 13px); color: var(--cream); font-weight: 600; }
+  .blended-row .val { font-size: clamp(14px, 2vw, 22px); font-weight: 900; color: var(--gold); }
+
+  /* ── SLIDE 6 · Cabin Mix ─────────────────────────────── */
+  #s6 {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    padding: 6% 8%;
+  }
+  .mix-bars { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4%; }
+  .mix-row {
+    display: grid;
+    grid-template-columns: 28% 1fr 10%;
+    align-items: center;
+    gap: 3%;
+  }
+  .mix-row .tier-lbl {
+    font-size: clamp(8px, 1.1vw, 12px);
+    font-weight: 600;
+    color: var(--navy);
+    text-align: right;
+  }
+  .bar-track {
+    background: rgba(42,42,74,.1);
+    border-radius: 20px;
+    height: clamp(12px, 1.8vw, 20px);
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 20px;
+    transition: width .4s;
+  }
+  .mix-row .pct-lbl {
+    font-size: clamp(8px, 1.1vw, 12px);
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .mix-note {
+    font-size: clamp(8px, 1vw, 11px);
+    color: var(--gray);
+    margin-top: 3%;
+    border-top: 1px solid rgba(42,42,74,.15);
+    padding-top: 2%;
+  }
+
+  /* ── SLIDE 7 · Opex per User ─────────────────────────── */
+  #s7 {
+    background: var(--navy2);
+    display: flex;
+    padding: 5% 7%;
+    gap: 5%;
+  }
+  .opex-left { flex: 1.2; display: flex; flex-direction: column; justify-content: center; }
+  .opex-left .slide-title { color: var(--gold); border-bottom-color: var(--red); }
+  .opex-total {
+    font-size: clamp(40px, 7vw, 80px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    margin: 4% 0 2%;
+  }
+  .opex-total span { color: var(--gold); }
+  .opex-label { font-size: clamp(8px, 1.1vw, 12px); color: rgba(255,255,255,.5); letter-spacing: 1px; text-transform: uppercase; }
+  .opex-right { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4%; }
+  .opex-item {
+    display: flex;
+    align-items: center;
+    gap: 4%;
+    background: rgba(255,255,255,.04);
+    border-radius: 6px;
+    padding: 3% 4%;
+  }
+  .opex-item .icon { font-size: clamp(14px, 1.8vw, 20px); }
+  .opex-item .desc { flex: 1; font-size: clamp(8px, 1vw, 11px); color: var(--cream); }
+  .opex-item .amt  { font-size: clamp(10px, 1.3vw, 14px); font-weight: 700; color: var(--gold); white-space: nowrap; }
+
+  /* ── SLIDE 8 · What's NOT in Opex ───────────────────── */
+  #s8 {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    padding: 6% 8%;
+  }
+  .exclusion-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3%;
+    flex: 1;
+    align-content: center;
+  }
+  .excl-card {
+    background: var(--white);
+    border: 2px dashed rgba(215,25,33,.4);
+    border-radius: 10px;
+    padding: 5% 6%;
+    display: flex;
+    align-items: flex-start;
+    gap: 5%;
+  }
+  .excl-icon { font-size: clamp(18px, 2.5vw, 28px); line-height: 1; }
+  .excl-card h3 { font-size: clamp(9px, 1.2vw, 13px); font-weight: 700; color: var(--navy); margin-bottom: 3%; }
+  .excl-card p  { font-size: clamp(7px, .9vw, 10px); color: var(--gray); line-height: 1.5; }
+  .not-label {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: clamp(7px, .9vw, 10px);
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    margin-bottom: 3%;
+  }
+
+  /* ── SLIDE 9 · Tab 1 Cascades ────────────────────────── */
+  #s9 {
+    background: var(--navy2);
+    display: flex;
+    flex-direction: column;
+    padding: 5% 7%;
+  }
+  #s9 .slide-title { color: var(--gold); border-bottom-color: var(--red); }
+  .cascade-diagram {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  .cascade-source {
+    background: var(--red);
+    border-radius: 10px;
+    padding: 4% 4%;
+    text-align: center;
+    min-width: 14%;
+  }
+  .cascade-source .cs-label {
+    font-size: clamp(8px, 1vw, 11px);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .cascade-source .cs-name {
+    font-size: clamp(12px, 1.8vw, 20px);
+    font-weight: 900;
+    color: #fff;
+    margin: 4% 0;
+  }
+  .cascade-source .cs-sub {
+    font-size: clamp(6px, .8vw, 9px);
+    color: rgba(255,255,255,.7);
+  }
+  .cascade-arrow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    flex: 0 0 auto;
+  }
+  .h-arrow {
+    width: clamp(20px, 3vw, 40px);
+    height: 2px;
+    background: var(--gold);
+    position: relative;
+    margin: 0 4px;
+  }
+  .h-arrow::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: -4px;
+    border: 5px solid transparent;
+    border-left: 7px solid var(--gold);
+  }
+  .cascade-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
+    flex: 1;
+    max-width: 68%;
+  }
+  .tab-pill {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(201,160,59,.3);
+    border-radius: 6px;
+    padding: 3% 3%;
+    text-align: center;
+    font-size: clamp(7px, .9vw, 10px);
+    color: var(--cream);
+    line-height: 1.4;
+  }
+  .tab-pill .tab-num {
+    display: block;
+    font-weight: 800;
+    color: var(--gold);
+    font-size: clamp(8px, 1.1vw, 12px);
+    margin-bottom: 2px;
+  }
+
+  /* ── SLIDE 10 · Quarterly Watchlist ──────────────────── */
+  #s10 {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    padding: 6% 8%;
+  }
+  .watch-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3%;
+    align-content: center;
+  }
+  .watch-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 4%;
+    background: var(--white);
+    border-radius: 10px;
+    padding: 4% 5%;
+    border-top: 3px solid var(--red);
+  }
+  .watch-num {
+    font-size: clamp(24px, 4vw, 44px);
+    font-weight: 900;
+    color: rgba(215,25,33,.12);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 15%;
+    text-align: right;
+  }
+  .watch-content h3 { font-size: clamp(9px, 1.2vw, 13px); font-weight: 700; color: var(--navy); margin-bottom: 3%; }
+  .watch-content p  { font-size: clamp(7px, .9vw, 10px); color: var(--gray); line-height: 1.5; }
+
+  /* ── SLIDE 11 · Close ────────────────────────────────── */
+  #s11 {
+    background: var(--navy2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8% 12%;
+    position: relative;
+    overflow: hidden;
+  }
+  #s11 .tagline {
+    font-size: clamp(20px, 3.5vw, 44px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 4%;
+  }
+  #s11 .tagline span { color: var(--gold); }
+  #s11 .sub-tagline {
+    font-size: clamp(10px, 1.4vw, 16px);
+    color: rgba(255,255,255,.55);
+    margin-bottom: 7%;
+    max-width: 65%;
+  }
+  #s11 .xlsx-link {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(10px, 1.3vw, 14px);
+    padding: 3% 7%;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: .5px;
+  }
+  #s11 .xlsx-link:hover { background: #b5141a; }
+  #s11 .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(201,160,59,.15);
+    pointer-events: none;
+  }
+
+  /* ── Slide number badge ──────────────────────────────── */
+  .slide-num-badge {
+    position: absolute;
+    bottom: 4%;
+    right: 4%;
+    font-size: clamp(8px, 1vw, 11px);
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: .35;
+  }
+  .light-badge { color: var(--navy); }
+  .dark-badge  { color: var(--cream); }
+
+  /* ── Keyboard hint ───────────────────────────────────── */
+  #hint {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,.6);
+    color: rgba(255,255,255,.5);
+    font-size: 11px;
+    padding: 5px 16px;
+    border-radius: 20px;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+    letter-spacing: .5px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<div id="nav">
+  <div class="brand">PEANUT eSIM · TAB 1 README</div>
+  <div class="controls">
+    <button onclick="goTo(0)">◀◀ First</button>
+    <button onclick="prev()">◀ Prev</button>
+    <span class="slide-counter" id="counter">1 / 11</span>
+    <button onclick="next()">Next ▶</button>
+    <button onclick="goTo(10)">Last ▶▶</button>
+  </div>
+</div>
+
+<div class="deck">
+
+<!-- ── S1 · Title ─────────────────────────────────────── -->
+<div class="slide active" id="s1">
+  <div class="pre">Peanut eSIM · Internal Finance</div>
+  <h1>P&amp;L Model<br><span>Tab 1 — README<br>&amp; Assumptions</span></h1>
+  <div class="sub">Single source of truth for every number in the model</div>
+  <div class="date">2026-05-31</div>
+  <div class="stripe"></div>
+  <div class="dot"></div>
+  <div class="slide-num-badge dark-badge">01 / 11</div>
+</div>
+
+<!-- ── S2 · Color Key ─────────────────────────────────── -->
+<div class="slide" id="s2">
+  <div class="slide-title">Color Key — How to Read the Spreadsheet</div>
+  <div class="color-grid">
+    <div class="color-card cc-blue">
+      <div class="color-swatch" style="background:#1A6EBD;"></div>
+      <div>
+        <div class="label" style="color:#1A6EBD;">Blue Text</div>
+        <div class="desc">Hardcoded inputs — the dials you can turn.<br>Change these cells to run scenarios.</div>
+      </div>
+    </div>
+    <div class="color-card cc-black">
+      <div class="color-swatch" style="background:#222;"></div>
+      <div>
+        <div class="label" style="color:#222;">Black Text</div>
+        <div class="desc">Formulas — auto-calculated, do not edit.<br>These derive from blue inputs above them.</div>
+      </div>
+    </div>
+    <div class="color-card cc-green">
+      <div class="color-swatch" style="background:#1A8A4A;"></div>
+      <div>
+        <div class="label" style="color:#1A8A4A;">Green Text</div>
+        <div class="desc">Cross-sheet references — pulling values<br>from other tabs. Trace with Ctrl+[.</div>
+      </div>
+    </div>
+    <div class="color-card cc-yellow">
+      <div class="color-swatch" style="background:#F5E642; border: 1px solid #C8A000;"></div>
+      <div>
+        <div class="label" style="color:#8A7000;">Yellow Background</div>
+        <div class="desc">Key assumptions — highest-impact inputs.<br>Change these first when stress-testing.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num-badge light-badge">02 / 11</div>
+</div>
+
+<!-- ── S3 · Cabin Tiers Table ─────────────────────────── -->
+<div class="slide" id="s3">
+  <div class="slide-title">7 Cabin Tiers — Pricing &amp; Carryover</div>
+  <table class="tiers">
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Price</th>
+        <th>Data</th>
+        <th>Carryover</th>
+        <th>Badge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tier-icon">🌱</span>Economy</td>
+        <td>$4.99</td>
+        <td>1 GB</td>
+        <td>0%</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="tier-icon">📋</span>Roster Bundle</td>
+        <td>$39.99</td>
+        <td>5 GB</td>
+        <td>0%</td>
+        <td><span class="badge badge-pop">MOST POPULAR</span></td>
+      </tr>
+      <tr>
+        <td><span class="tier-icon">✈️</span>Premium Economy</td>
+        <td>$12.99</td>
+        <td>10 GB</td>
+        <td>50%</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="tier-icon">💺</span>Business</td>
+        <td>$24.99</td>
+        <td>8 GB</td>
+        <td>70%</td>
+        <td><span class="badge badge-rec">RECOMMENDED</span></td>
+      </tr>
+      <tr>
+        <td><span class="tier-icon">👑</span>First</td>
+        <td>$49.99</td>
+        <td>20 GB</td>
+        <td>100% × 2 mo</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="tier-icon">🛩️</span>Cockpit (annual)</td>
+        <td>$299 / yr</td>
+        <td>30 GB</td>
+        <td>100%</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="tier-icon">⛽</span>Refuel (add-on)</td>
+        <td>$5.99</td>
+        <td>1 GB</td>
+        <td>—</td>
+        <td><span class="badge badge-add">ADD-ON</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="slide-num-badge dark-badge">03 / 11</div>
+</div>
+
+<!-- ── S4 · Carryover Progression ────────────────────── -->
+<div class="slide" id="s4">
+  <div class="slide-title">Carryover Progression — Rewarding Loyalty</div>
+  <div class="carry-flow">
+    <div class="carry-node">
+      <div class="pct">0%</div>
+      <div class="tier-name">Economy &amp;<br>Roster</div>
+    </div>
+    <div class="carry-arrow">→</div>
+    <div class="carry-node">
+      <div class="pct">50%</div>
+      <div class="tier-name">Premium<br>Economy</div>
+    </div>
+    <div class="carry-arrow">→</div>
+    <div class="carry-node">
+      <div class="pct">70%</div>
+      <div class="tier-name">Business</div>
+    </div>
+    <div class="carry-arrow">→</div>
+    <div class="carry-node">
+      <div class="pct">100%</div>
+      <div class="tier-name">First &amp;<br>Cockpit</div>
+    </div>
+  </div>
+  <div class="carry-note">
+    <strong>Design intent:</strong> Carryover is the primary loyalty lever — it rewards upgrade without creating infinite data liability. First-class carries for 2 months; Cockpit is unlimited rollover for pilots on annual billing. Economy and Roster Bundle carry nothing, anchoring entry-tier revenue.
+  </div>
+  <div class="slide-num-badge light-badge">04 / 11</div>
+</div>
+
+<!-- ── S5 · Geo Cost Buckets ──────────────────────────── -->
+<div class="slide" id="s5">
+  <div class="slide-title">Geo Cost Buckets — Wholesale Data Cost by Region</div>
+  <div class="geo-grid">
+    <div class="geo-card geo-a">
+      <div class="label">Tier A · 60% mix</div>
+      <div class="cost">$0.97<span style="font-size:40%;font-weight:400;color:rgba(255,255,255,.5)">/GB</span></div>
+      <div class="mix">Low-cost routes · Majority of crew travel</div>
+      <div class="countries">JP · UK · SG · MY · HK · KR · US</div>
+    </div>
+    <div class="geo-card geo-b">
+      <div class="label">Tier B · 25% mix</div>
+      <div class="cost">$1.50<span style="font-size:40%;font-weight:400;color:rgba(255,255,255,.5)">/GB</span></div>
+      <div class="mix">Mid-cost routes · Secondary corridors</div>
+      <div class="countries">CA · AU · NZ · VN · UAE</div>
+    </div>
+    <div class="geo-card geo-c">
+      <div class="label">Tier C · 15% mix</div>
+      <div class="cost">$5.80<span style="font-size:40%;font-weight:400;color:rgba(255,255,255,.5)">/GB</span></div>
+      <div class="mix">High-cost routes · Low-infra markets</div>
+      <div class="countries">IN · BR · SA · ZA</div>
+    </div>
+  </div>
+  <div class="blended-row">
+    <span class="lbl">Blended cost (60/25/15 mix)</span>
+    <span class="val">$1.83 / GB</span>
+  </div>
+  <div class="slide-num-badge dark-badge">05 / 11</div>
+</div>
+
+<!-- ── S6 · Cabin Class Mix ───────────────────────────── -->
+<div class="slide" id="s6">
+  <div class="slide-title">Cabin Class Mix — Assumed User Distribution</div>
+  <div class="mix-bars">
+    <div class="mix-row">
+      <div class="tier-lbl">Economy</div>
+      <div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--navy);"></div></div>
+      <div class="pct-lbl">30%</div>
+    </div>
+    <div class="mix-row">
+      <div class="tier-lbl">Roster Bundle</div>
+      <div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--red);"></div></div>
+      <div class="pct-lbl">35%</div>
+    </div>
+    <div class="mix-row">
+      <div class="tier-lbl">Premium Economy</div>
+      <div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--gold);"></div></div>
+      <div class="pct-lbl">15%</div>
+    </div>
+    <div class="mix-row">
+      <div class="tier-lbl">Business</div>
+      <div class="bar-track"><div class="bar-fill" style="width:12%;background:#2A8ABF;"></div></div>
+      <div class="pct-lbl">12%</div>
+    </div>
+    <div class="mix-row">
+      <div class="tier-lbl">First</div>
+      <div class="bar-track"><div class="bar-fill" style="width:5%;background:#8A3ABF;"></div></div>
+      <div class="pct-lbl">5%</div>
+    </div>
+    <div class="mix-row">
+      <div class="tier-lbl">Cockpit (annual)</div>
+      <div class="bar-track"><div class="bar-fill" style="width:2%;background:#3ABF6A;"></div></div>
+      <div class="pct-lbl">2%</div>
+    </div>
+    <div class="mix-row">
+      <div class="tier-lbl">Refuel attach</div>
+      <div class="bar-track"><div class="bar-fill" style="width:10%;background:rgba(42,42,74,.35);"></div></div>
+      <div class="pct-lbl">10% attach</div>
+    </div>
+  </div>
+  <div class="mix-note">Roster Bundle (35%) anchors the model — it's the scheduler-upload reward tier. Refuel is an attach rate against active subscribers, not a standalone cohort.</div>
+  <div class="slide-num-badge light-badge">06 / 11</div>
+</div>
+
+<!-- ── S7 · Opex per User ─────────────────────────────── -->
+<div class="slide" id="s7">
+  <div class="opex-left">
+    <div class="slide-title">Opex per User / Month</div>
+    <div class="opex-total">$<span>1.10</span></div>
+    <div class="opex-label">per active subscriber · per month</div>
+  </div>
+  <div class="opex-right">
+    <div class="opex-item">
+      <span class="icon">☁️</span>
+      <span class="desc">Cloud &amp; API (AWS/Firebase/eSIM API calls)</span>
+      <span class="amt">$0.15</span>
+    </div>
+    <div class="opex-item">
+      <span class="icon">💳</span>
+      <span class="desc">Payment processing (Stripe ~2–3% blended)</span>
+      <span class="amt">$0.50</span>
+    </div>
+    <div class="opex-item">
+      <span class="icon">💬</span>
+      <span class="desc">Customer support (AI-first + escalation)</span>
+      <span class="amt">$0.30</span>
+    </div>
+    <div class="opex-item">
+      <span class="icon">📱</span>
+      <span class="desc">SMS / OTP verification</span>
+      <span class="amt">$0.05</span>
+    </div>
+    <div class="opex-item">
+      <span class="icon">🛠</span>
+      <span class="desc">Hosting, monitoring &amp; tooling</span>
+      <span class="amt">$0.10</span>
+    </div>
+  </div>
+  <div class="slide-num-badge dark-badge">07 / 11</div>
+</div>
+
+<!-- ── S8 · What's NOT in Opex ────────────────────────── -->
+<div class="slide" id="s8">
+  <div class="slide-title">What's NOT in the $1.10 Opex Figure</div>
+  <div class="exclusion-grid">
+    <div class="excl-card">
+      <div class="excl-icon">👤</div>
+      <div>
+        <div class="not-label">NOT INCLUDED</div>
+        <h3>Founder Salaries</h3>
+        <p>Balraj + Akito compensation is tracked separately in the cap table / compensation model. Not a per-user cost until payroll is initiated post-Series A.</p>
+      </div>
+    </div>
+    <div class="excl-card">
+      <div class="excl-icon">📣</div>
+      <div>
+        <div class="not-label">NOT INCLUDED</div>
+        <h3>Marketing / CAC</h3>
+        <p>Customer acquisition cost is modeled in Tab 8 (CAC &amp; LTV). Kept separate to isolate unit economics from growth-spend decisions.</p>
+      </div>
+    </div>
+    <div class="excl-card">
+      <div class="excl-icon">🏢</div>
+      <div>
+        <div class="not-label">NOT INCLUDED</div>
+        <h3>Office / Legal / Accounting</h3>
+        <p>Delaware LLC maintenance, UAE commercial presence, CPA fees — these are fixed overheads in Tab 3 (Fixed Costs), not per-user variables.</p>
+      </div>
+    </div>
+    <div class="excl-card">
+      <div class="excl-icon">🔁</div>
+      <div>
+        <div class="not-label">NOT INCLUDED</div>
+        <h3>Failed-eSIM Goodwill</h3>
+        <p>Compensation for failed installs / provisioning errors is modeled in Tab 12 (Risk &amp; Goodwill) at an assumed 0.8% failure rate.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num-badge light-badge">08 / 11</div>
+</div>
+
+<!-- ── S9 · Tab 1 Cascades ────────────────────────────── -->
+<div class="slide" id="s9">
+  <div class="slide-title">Tab 1 is the Source — It Cascades Through Everything</div>
+  <div class="cascade-diagram">
+    <div class="cascade-source">
+      <div class="cs-label">Source</div>
+      <div class="cs-name">Tab 1</div>
+      <div class="cs-sub">README &amp;<br>Assumptions</div>
+    </div>
+    <div style="display:flex;align-items:center;margin:0 2%;">
+      <div class="h-arrow" style="width:clamp(20px,3vw,40px);"></div>
+    </div>
+    <div class="cascade-tabs">
+      <div class="tab-pill"><span class="tab-num">Tab 2</span>User Growth &amp; Cohorts</div>
+      <div class="tab-pill"><span class="tab-num">Tab 3</span>Fixed Costs</div>
+      <div class="tab-pill"><span class="tab-num">Tab 4</span>Revenue Build</div>
+      <div class="tab-pill"><span class="tab-num">Tab 5</span>COGS &amp; Gross Margin</div>
+      <div class="tab-pill"><span class="tab-num">Tab 6</span>Monthly P&amp;L</div>
+      <div class="tab-pill"><span class="tab-num">Tab 7</span>Cash Flow</div>
+      <div class="tab-pill"><span class="tab-num">Tab 8</span>CAC &amp; LTV</div>
+      <div class="tab-pill"><span class="tab-num">Tab 9</span>Runway</div>
+      <div class="tab-pill"><span class="tab-num">Tab 10</span>Scenarios</div>
+      <div class="tab-pill"><span class="tab-num">Tab 11</span>Investor Summary</div>
+      <div class="tab-pill"><span class="tab-num">Tab 12</span>Risk &amp; Goodwill</div>
+    </div>
+  </div>
+  <div class="slide-num-badge dark-badge">09 / 11</div>
+</div>
+
+<!-- ── S10 · Quarterly Watchlist ─────────────────────── -->
+<div class="slide" id="s10">
+  <div class="slide-title">Quarterly Watchlist — Revisit These 4</div>
+  <div class="watch-list">
+    <div class="watch-item">
+      <div class="watch-num">01</div>
+      <div class="watch-content">
+        <h3>Geo Mix Calibration</h3>
+        <p>Actual crew route distribution (EK network) vs. assumed 60/25/15. A 5-pt shift to Tier C costs ~$0.40/GB blended. Review after first 500 activations.</p>
+      </div>
+    </div>
+    <div class="watch-item">
+      <div class="watch-num">02</div>
+      <div class="watch-content">
+        <h3>Refuel Attach Rate (Akito's lever)</h3>
+        <p>Currently assumed at 10% of active subs. Akito's in-app push &amp; Crew Recs gamification could move this to 18–22%. Every 1-pt move = ~$0.06/user/mo revenue lift.</p>
+      </div>
+    </div>
+    <div class="watch-item">
+      <div class="watch-num">03</div>
+      <div class="watch-content">
+        <h3>Support Cost at 5K-User Inflection</h3>
+        <p>$0.30/user is modeled on AI-first support + low escalation. At 5K users the support queue may require a part-time human. Watch ticket-to-user ratio.</p>
+      </div>
+    </div>
+    <div class="watch-item">
+      <div class="watch-num">04</div>
+      <div class="watch-content">
+        <h3>Wholesale Cost (Direct Supplier Path)</h3>
+        <p>Current model uses Samurai sub-reseller rates (40% flat margin). Signing direct would yield 3.5× net on data COGS. Trigger: 2K active users or $10K MRR.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num-badge light-badge">10 / 11</div>
+</div>
+
+<!-- ── S11 · Close ────────────────────────────────────── -->
+<div class="slide" id="s11">
+  <!-- decorative rings -->
+  <div class="ring" style="width:70%;padding-top:70%;top:-10%;right:-15%;"></div>
+  <div class="ring" style="width:40%;padding-top:40%;bottom:-15%;left:-5%;"></div>
+
+  <div class="tagline">Change any <span>yellow cell,</span><br>watch it cascade.</div>
+  <div class="sub-tagline">All 11 tabs derive from the assumptions on this sheet. Tab 1 is the only place you should ever override a number by hand.</div>
+  <a class="xlsx-link" href="Peanut-eSIM-PL-Model-2026-05-31.xlsx">
+    📊 &nbsp;Open P&amp;L Model (.xlsx)
+  </a>
+  <div class="slide-num-badge dark-badge">11 / 11</div>
+</div>
+
+</div><!-- /deck -->
+
+<div id="hint">← → arrow keys to navigate · click buttons above</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+
+function show(n) {
+  slides[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(n, slides.length - 1));
+  slides[cur].classList.add('active');
+  document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
+}
+function next()  { show(cur + 1); }
+function prev()  { show(cur - 1); }
+function goTo(n) { show(n); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  next();
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    prev();
+  if (e.key === 'Home') goTo(0);
+  if (e.key === 'End')  goTo(slides.length - 1);
+});
+
+// Hide hint after 5s
+setTimeout(() => {
+  const h = document.getElementById('hint');
+  h.style.transition = 'opacity 1s';
+  h.style.opacity = '0';
+}, 5000);
+</script>
+</body>
+</html>
