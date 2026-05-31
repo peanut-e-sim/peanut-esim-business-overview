@@ -106,6 +106,19 @@
     opacity: .75;
     margin-bottom: 1.5%;
   }
+  #s1 .rev-badge {
+    display: inline-block;
+    background: rgba(201,160,59,.15);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: clamp(8px, 1vw, 11px);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 2%;
+    text-transform: uppercase;
+  }
   #s1 .date {
     font-size: clamp(10px, 1.1vw, 13px);
     color: var(--gold);
@@ -342,17 +355,17 @@
   .blended-row .lbl { font-size: clamp(9px, 1.1vw, 13px); color: var(--cream); font-weight: 600; }
   .blended-row .val { font-size: clamp(14px, 2vw, 22px); font-weight: 900; color: var(--gold); }
 
-  /* ── SLIDE 6 · Cabin Mix ─────────────────────────────── */
+  /* ── SLIDE 6 · Cabin Mix (UPDATED) ───────────────────── */
   #s6 {
     background: var(--cream);
     display: flex;
     flex-direction: column;
     padding: 6% 8%;
   }
-  .mix-bars { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 4%; }
+  .mix-bars { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 3.2%; }
   .mix-row {
     display: grid;
-    grid-template-columns: 28% 1fr 10%;
+    grid-template-columns: 28% 1fr 18%;
     align-items: center;
     gap: 3%;
   }
@@ -378,6 +391,17 @@
     font-weight: 700;
     color: var(--navy);
   }
+  .changed-tag {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #1a6a2a;
+    font-size: clamp(6px, .75vw, 8px);
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-left: 4px;
+    letter-spacing: .5px;
+  }
   .mix-note {
     font-size: clamp(8px, 1vw, 11px);
     color: var(--gray);
@@ -386,8 +410,61 @@
     padding-top: 2%;
   }
 
-  /* ── SLIDE 7 · Opex per User ─────────────────────────── */
+  /* ── SLIDE 7 · Research Basis (NEW) ─────────────────── */
   #s7 {
+    background: var(--navy2);
+    display: flex;
+    flex-direction: column;
+    padding: 5% 7%;
+  }
+  #s7 .slide-title { color: var(--gold); border-bottom-color: var(--red); }
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5%;
+    flex: 1;
+    align-content: center;
+  }
+  .research-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(201,160,59,.25);
+    border-radius: 8px;
+    padding: 4% 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
+  }
+  .research-card .stat {
+    font-size: clamp(14px, 2vw, 24px);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .research-card .finding {
+    font-size: clamp(7px, .95vw, 11px);
+    color: var(--cream);
+    line-height: 1.45;
+    flex: 1;
+  }
+  .research-card .source-tag {
+    font-size: clamp(6px, .75vw, 8px);
+    color: rgba(255,255,255,.35);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .research-sources {
+    margin-top: 2.5%;
+    font-size: clamp(6px, .8vw, 9px);
+    color: rgba(255,255,255,.3);
+    letter-spacing: .5px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 2%;
+    line-height: 1.6;
+  }
+
+  /* ── SLIDE 8 · Opex per User ─────────────────────────── */
+  #s8 {
     background: var(--navy2);
     display: flex;
     padding: 5% 7%;
@@ -417,8 +494,8 @@
   .opex-item .desc { flex: 1; font-size: clamp(8px, 1vw, 11px); color: var(--cream); }
   .opex-item .amt  { font-size: clamp(10px, 1.3vw, 14px); font-weight: 700; color: var(--gold); white-space: nowrap; }
 
-  /* ── SLIDE 8 · What's NOT in Opex ───────────────────── */
-  #s8 {
+  /* ── SLIDE 9 · What's NOT in Opex ───────────────────── */
+  #s9 {
     background: var(--cream);
     display: flex;
     flex-direction: column;
@@ -455,14 +532,14 @@
     margin-bottom: 3%;
   }
 
-  /* ── SLIDE 9 · Tab 1 Cascades ────────────────────────── */
-  #s9 {
+  /* ── SLIDE 10 · Tab 1 Cascades ────────────────────────── */
+  #s10 {
     background: var(--navy2);
     display: flex;
     flex-direction: column;
     padding: 5% 7%;
   }
-  #s9 .slide-title { color: var(--gold); border-bottom-color: var(--red); }
+  #s10 .slide-title { color: var(--gold); border-bottom-color: var(--red); }
   .cascade-diagram {
     flex: 1;
     display: flex;
@@ -493,13 +570,6 @@
   .cascade-source .cs-sub {
     font-size: clamp(6px, .8vw, 9px);
     color: rgba(255,255,255,.7);
-  }
-  .cascade-arrow-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    flex: 0 0 auto;
   }
   .h-arrow {
     width: clamp(20px, 3vw, 40px);
@@ -541,19 +611,18 @@
     margin-bottom: 2px;
   }
 
-  /* ── SLIDE 10 · Quarterly Watchlist ──────────────────── */
-  #s10 {
+  /* ── SLIDE 11 · Quarterly Watchlist ──────────────────── */
+  #s11 {
     background: var(--cream);
     display: flex;
     flex-direction: column;
-    padding: 6% 8%;
+    padding: 5% 7%;
   }
-  .watch-list {
-    flex: 1;
+  .watch-top {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 3%;
-    align-content: center;
+    gap: 2.5%;
+    flex: 1;
   }
   .watch-item {
     display: flex;
@@ -575,9 +644,38 @@
   }
   .watch-content h3 { font-size: clamp(9px, 1.2vw, 13px); font-weight: 700; color: var(--navy); margin-bottom: 3%; }
   .watch-content p  { font-size: clamp(7px, .9vw, 10px); color: var(--gray); line-height: 1.5; }
+  .churn-mini {
+    margin-top: 2.5%;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 3% 4%;
+    border-top: 3px solid var(--navy);
+  }
+  .churn-mini h3 {
+    font-size: clamp(9px, 1.2vw, 12px);
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2%;
+  }
+  .churn-row {
+    display: flex;
+    gap: 2%;
+    flex-wrap: wrap;
+  }
+  .churn-pill {
+    background: rgba(42,42,74,.06);
+    border: 1px solid rgba(42,42,74,.15);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: clamp(6px, .85vw, 9px);
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .churn-pill.hi { border-color: var(--red); color: var(--red); background: rgba(215,25,33,.06); }
+  .churn-pill.lo { border-color: var(--green); color: var(--green); background: rgba(26,138,74,.06); }
 
-  /* ── SLIDE 11 · Close ────────────────────────────────── */
-  #s11 {
+  /* ── SLIDE 12 · Close ────────────────────────────────── */
+  #s12 {
     background: var(--navy2);
     display: flex;
     flex-direction: column;
@@ -588,21 +686,27 @@
     position: relative;
     overflow: hidden;
   }
-  #s11 .tagline {
+  #s12 .tagline {
     font-size: clamp(20px, 3.5vw, 44px);
     font-weight: 900;
     color: var(--white);
     line-height: 1.2;
     margin-bottom: 4%;
   }
-  #s11 .tagline span { color: var(--gold); }
-  #s11 .sub-tagline {
+  #s12 .tagline span { color: var(--gold); }
+  #s12 .sub-tagline {
     font-size: clamp(10px, 1.4vw, 16px);
     color: rgba(255,255,255,.55);
-    margin-bottom: 7%;
+    margin-bottom: 4%;
     max-width: 65%;
   }
-  #s11 .xlsx-link {
+  #s12 .rev-note {
+    font-size: clamp(8px, 1vw, 11px);
+    color: rgba(201,160,59,.6);
+    margin-bottom: 6%;
+    font-style: italic;
+  }
+  #s12 .xlsx-link {
     display: inline-block;
     background: var(--red);
     color: #fff;
@@ -613,8 +717,8 @@
     text-decoration: none;
     letter-spacing: .5px;
   }
-  #s11 .xlsx-link:hover { background: #b5141a; }
-  #s11 .ring {
+  #s12 .xlsx-link:hover { background: #b5141a; }
+  #s12 .ring {
     position: absolute;
     border-radius: 50%;
     border: 1.5px solid rgba(201,160,59,.15);
@@ -655,13 +759,13 @@
 
 <!-- Navigation -->
 <div id="nav">
-  <div class="brand">PEANUT eSIM · TAB 1 README</div>
+  <div class="brand">PEANUT eSIM · TAB 1 README · RESEARCH-BACKED REV</div>
   <div class="controls">
-    <button onclick="goTo(0)">◀◀ First</button>
-    <button onclick="prev()">◀ Prev</button>
-    <span class="slide-counter" id="counter">1 / 11</span>
-    <button onclick="next()">Next ▶</button>
-    <button onclick="goTo(10)">Last ▶▶</button>
+    <button onclick="goTo(0)">&#9664;&#9664; First</button>
+    <button onclick="prev()">&#9664; Prev</button>
+    <span class="slide-counter" id="counter">1 / 12</span>
+    <button onclick="next()">Next &#9654;</button>
+    <button onclick="goTo(11)">Last &#9654;&#9654;</button>
   </div>
 </div>
 
@@ -670,12 +774,13 @@
 <!-- ── S1 · Title ─────────────────────────────────────── -->
 <div class="slide active" id="s1">
   <div class="pre">Peanut eSIM · Internal Finance</div>
+  <div class="rev-badge">Research-Backed Revision · May 31 2026</div>
   <h1>P&amp;L Model<br><span>Tab 1 — README<br>&amp; Assumptions</span></h1>
-  <div class="sub">Single source of truth for every number in the model</div>
+  <div class="sub">Tier mix updated from Airalo, Holafly, RevenueCat &amp; Firsty field data</div>
   <div class="date">2026-05-31</div>
   <div class="stripe"></div>
   <div class="dot"></div>
-  <div class="slide-num-badge dark-badge">01 / 11</div>
+  <div class="slide-num-badge dark-badge">01 / 12</div>
 </div>
 
 <!-- ── S2 · Color Key ─────────────────────────────────── -->
@@ -711,7 +816,7 @@
       </div>
     </div>
   </div>
-  <div class="slide-num-badge light-badge">02 / 11</div>
+  <div class="slide-num-badge light-badge">02 / 12</div>
 </div>
 
 <!-- ── S3 · Cabin Tiers Table ─────────────────────────── -->
@@ -729,36 +834,36 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="tier-icon">🌱</span>Economy</td>
-        <td>$4.99</td>
-        <td>1 GB</td>
+        <td><span class="tier-icon">🌱</span>Economy (PAYG)</td>
+        <td>$4.99/GB · 2.5 GB avg</td>
+        <td>2.5 GB avg</td>
         <td>0%</td>
         <td></td>
       </tr>
       <tr>
         <td><span class="tier-icon">📋</span>Roster Bundle</td>
-        <td>$39.99</td>
+        <td>$39.99 / mo</td>
         <td>5 GB</td>
         <td>0%</td>
         <td><span class="badge badge-pop">MOST POPULAR</span></td>
       </tr>
       <tr>
         <td><span class="tier-icon">✈️</span>Premium Economy</td>
-        <td>$12.99</td>
+        <td>$12.99 / mo</td>
         <td>10 GB</td>
         <td>50%</td>
         <td></td>
       </tr>
       <tr>
         <td><span class="tier-icon">💺</span>Business</td>
-        <td>$24.99</td>
-        <td>8 GB</td>
+        <td>$24.99 / mo</td>
+        <td>15 GB</td>
         <td>70%</td>
         <td><span class="badge badge-rec">RECOMMENDED</span></td>
       </tr>
       <tr>
         <td><span class="tier-icon">👑</span>First</td>
-        <td>$49.99</td>
+        <td>$49.99 / mo</td>
         <td>20 GB</td>
         <td>100% × 2 mo</td>
         <td></td>
@@ -766,20 +871,20 @@
       <tr>
         <td><span class="tier-icon">🛩️</span>Cockpit (annual)</td>
         <td>$299 / yr</td>
-        <td>30 GB</td>
+        <td>12 GB/mo + 12 GB bank</td>
         <td>100%</td>
         <td></td>
       </tr>
       <tr>
         <td><span class="tier-icon">⛽</span>Refuel (add-on)</td>
         <td>$5.99</td>
-        <td>1 GB</td>
+        <td>+1 GB top-up</td>
         <td>—</td>
         <td><span class="badge badge-add">ADD-ON</span></td>
       </tr>
     </tbody>
   </table>
-  <div class="slide-num-badge dark-badge">03 / 11</div>
+  <div class="slide-num-badge dark-badge">03 / 12</div>
 </div>
 
 <!-- ── S4 · Carryover Progression ────────────────────── -->
@@ -807,9 +912,9 @@
     </div>
   </div>
   <div class="carry-note">
-    <strong>Design intent:</strong> Carryover is the primary loyalty lever — it rewards upgrade without creating infinite data liability. First-class carries for 2 months; Cockpit is unlimited rollover for pilots on annual billing. Economy and Roster Bundle carry nothing, anchoring entry-tier revenue.
+    <strong>Design intent:</strong> Carryover is the primary loyalty lever — it rewards upgrade without creating infinite data liability. First-class carries for 2 months; Cockpit is unlimited rollover for pilots on annual billing. Economy and Roster Bundle carry nothing, anchoring entry-tier revenue. RevenueCat data shows annual subscribers (Cockpit) are 2.4–3× more valuable over their lifetime vs. monthly.
   </div>
-  <div class="slide-num-badge light-badge">04 / 11</div>
+  <div class="slide-num-badge light-badge">04 / 12</div>
 </div>
 
 <!-- ── S5 · Geo Cost Buckets ──────────────────────────── -->
@@ -836,62 +941,101 @@
     </div>
   </div>
   <div class="blended-row">
-    <span class="lbl">Blended cost (60/25/15 mix)</span>
+    <span class="lbl">Blended cost (60/25/15 mix) — unchanged</span>
     <span class="val">$1.83 / GB</span>
   </div>
-  <div class="slide-num-badge dark-badge">05 / 11</div>
+  <div class="slide-num-badge dark-badge">05 / 12</div>
 </div>
 
-<!-- ── S6 · Cabin Class Mix ───────────────────────────── -->
+<!-- ── S6 · Cabin Class Mix (UPDATED) ─────────────────── -->
 <div class="slide" id="s6">
-  <div class="slide-title">Cabin Class Mix — Assumed User Distribution</div>
+  <div class="slide-title">Cabin Class Mix — Research-Backed Distribution</div>
   <div class="mix-bars">
     <div class="mix-row">
-      <div class="tier-lbl">Economy</div>
-      <div class="bar-track"><div class="bar-fill" style="width:30%;background:var(--navy);"></div></div>
-      <div class="pct-lbl">30%</div>
+      <div class="tier-lbl">Economy / PAYG</div>
+      <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--navy);"></div></div>
+      <div class="pct-lbl">50%<span class="changed-tag">↑ was 30%</span></div>
     </div>
     <div class="mix-row">
       <div class="tier-lbl">Roster Bundle</div>
-      <div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--red);"></div></div>
-      <div class="pct-lbl">35%</div>
+      <div class="bar-track"><div class="bar-fill" style="width:18%;background:var(--red);"></div></div>
+      <div class="pct-lbl">18%<span class="changed-tag">↓ was 35%</span></div>
     </div>
     <div class="mix-row">
       <div class="tier-lbl">Premium Economy</div>
-      <div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--gold);"></div></div>
-      <div class="pct-lbl">15%</div>
+      <div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--gold);"></div></div>
+      <div class="pct-lbl">13%<span class="changed-tag">↓ was 15%</span></div>
     </div>
     <div class="mix-row">
       <div class="tier-lbl">Business</div>
-      <div class="bar-track"><div class="bar-fill" style="width:12%;background:#2A8ABF;"></div></div>
-      <div class="pct-lbl">12%</div>
+      <div class="bar-track"><div class="bar-fill" style="width:8%;background:#2A8ABF;"></div></div>
+      <div class="pct-lbl">8%<span class="changed-tag">↓ was 12%</span></div>
     </div>
     <div class="mix-row">
       <div class="tier-lbl">First</div>
       <div class="bar-track"><div class="bar-fill" style="width:5%;background:#8A3ABF;"></div></div>
-      <div class="pct-lbl">5%</div>
+      <div class="pct-lbl">5% — unchanged</div>
     </div>
     <div class="mix-row">
       <div class="tier-lbl">Cockpit (annual)</div>
-      <div class="bar-track"><div class="bar-fill" style="width:2%;background:#3ABF6A;"></div></div>
-      <div class="pct-lbl">2%</div>
+      <div class="bar-track"><div class="bar-fill" style="width:3%;background:#3ABF6A;"></div></div>
+      <div class="pct-lbl">3%<span class="changed-tag">↑ was 2%</span></div>
     </div>
     <div class="mix-row">
       <div class="tier-lbl">Refuel attach</div>
-      <div class="bar-track"><div class="bar-fill" style="width:10%;background:rgba(42,42,74,.35);"></div></div>
-      <div class="pct-lbl">10% attach</div>
+      <div class="bar-track"><div class="bar-fill" style="width:30%;background:rgba(42,42,74,.35);"></div></div>
+      <div class="pct-lbl">30%<span class="changed-tag">↑ was 10%</span></div>
     </div>
   </div>
-  <div class="mix-note">Roster Bundle (35%) anchors the model — it's the scheduler-upload reward tier. Refuel is an attach rate against active subscribers, not a standalone cohort.</div>
-  <div class="slide-num-badge light-badge">06 / 11</div>
+  <div class="mix-note">Economy → subscription conversion is now the primary revenue growth lever. Refuel attach tripled to 30% on telecom benchmark data (25–35% industry range). See next slide for research basis.</div>
+  <div class="slide-num-badge light-badge">06 / 12</div>
 </div>
 
-<!-- ── S7 · Opex per User ─────────────────────────────── -->
+<!-- ── S7 · Research Basis (NEW SLIDE) ───────────────── -->
 <div class="slide" id="s7">
+  <div class="slide-title">Research Basis — Why These Numbers</div>
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="stat">$16.55/yr</div>
+      <div class="finding">Airalo blended ARPU ($331M revenue ÷ 20M users, 2024). Proves global eSIM market is dominated by PAYG behavior — most users buy 1–2 trip plans per year, not monthly subs. Drives 50% Economy assumption.</div>
+      <div class="source-tag">Source: Airalo press releases 2024</div>
+    </div>
+    <div class="research-card">
+      <div class="stat">$13.33 AOV</div>
+      <div class="finding">Holafly average order value ($200M ÷ 15M eSIMs, 2024). Confirms per-trip transactional model dominates. Crew eSIM behavior mirrors leisure traveler baseline before app-specific loyalty kicks in.</div>
+      <div class="source-tag">Source: Holafly via Travolution 2024</div>
+    </div>
+    <div class="research-card">
+      <div class="stat">3–5 GB</div>
+      <div class="finding">Actual crew data need per layover, NOT 10–15 GB. Hotel WiFi covers Netflix/email; eSIM is for transit, Maps, spot use. Business class 15 GB = strong value perception. Explains Roster Bundle re-sizing.</div>
+      <div class="source-tag">Source: Firsty field research (LinkedIn)</div>
+    </div>
+    <div class="research-card">
+      <div class="stat">53% / 40%</div>
+      <div class="finding">53% of crew over-buy their current eSIM. 40% under-buy and run out of data. This is the positioning goldmine for roster-auto-sizing — the right plan, pre-selected, before the month starts.</div>
+      <div class="source-tag">Source: Firsty field research (LinkedIn)</div>
+    </div>
+    <div class="research-card">
+      <div class="stat">8–12%/mo churn</div>
+      <div class="finding">RevenueCat 2025 benchmark for travel/lifestyle subscription apps. Annual subscribers: 44% Year-1 retention vs. 17% monthly. Annual subs are 2.4–3× more valuable. Cockpit Annual = structural LTV play.</div>
+      <div class="source-tag">Source: RevenueCat State of Subscription Apps 2025</div>
+    </div>
+    <div class="research-card">
+      <div class="stat">25–35% attach</div>
+      <div class="finding">Telecom add-on top-up benchmark. Refuel at 30% is within range for an engaged subscriber base. Prior 10% assumption was materially too conservative. Refuel is high-margin and captures peak-intent moments.</div>
+      <div class="source-tag">Source: Telecom add-on industry benchmarks</div>
+    </div>
+  </div>
+  <div class="research-sources">Sources: RevenueCat State of Subscription Apps 2025 · Firsty field research (LinkedIn) · Airalo press releases 2024 · Holafly via Travolution 2024 · AeroTime/Holafly crew roaming article</div>
+  <div class="slide-num-badge dark-badge">07 / 12</div>
+</div>
+
+<!-- ── S8 · Opex per User ─────────────────────────────── -->
+<div class="slide" id="s8">
   <div class="opex-left">
     <div class="slide-title">Opex per User / Month</div>
     <div class="opex-total">$<span>1.10</span></div>
-    <div class="opex-label">per active subscriber · per month</div>
+    <div class="opex-label">per active subscriber · per month · unchanged</div>
   </div>
   <div class="opex-right">
     <div class="opex-item">
@@ -920,11 +1064,11 @@
       <span class="amt">$0.10</span>
     </div>
   </div>
-  <div class="slide-num-badge dark-badge">07 / 11</div>
+  <div class="slide-num-badge dark-badge">08 / 12</div>
 </div>
 
-<!-- ── S8 · What's NOT in Opex ────────────────────────── -->
-<div class="slide" id="s8">
+<!-- ── S9 · What's NOT in Opex ────────────────────────── -->
+<div class="slide" id="s9">
   <div class="slide-title">What's NOT in the $1.10 Opex Figure</div>
   <div class="exclusion-grid">
     <div class="excl-card">
@@ -960,11 +1104,11 @@
       </div>
     </div>
   </div>
-  <div class="slide-num-badge light-badge">08 / 11</div>
+  <div class="slide-num-badge light-badge">09 / 12</div>
 </div>
 
-<!-- ── S9 · Tab 1 Cascades ────────────────────────────── -->
-<div class="slide" id="s9">
+<!-- ── S10 · Tab 1 Cascades ────────────────────────────── -->
+<div class="slide" id="s10">
   <div class="slide-title">Tab 1 is the Source — It Cascades Through Everything</div>
   <div class="cascade-diagram">
     <div class="cascade-source">
@@ -989,62 +1133,74 @@
       <div class="tab-pill"><span class="tab-num">Tab 12</span>Risk &amp; Goodwill</div>
     </div>
   </div>
-  <div class="slide-num-badge dark-badge">09 / 11</div>
+  <div class="slide-num-badge dark-badge">10 / 12</div>
 </div>
 
-<!-- ── S10 · Quarterly Watchlist ─────────────────────── -->
-<div class="slide" id="s10">
-  <div class="slide-title">Quarterly Watchlist — Revisit These 4</div>
-  <div class="watch-list">
+<!-- ── S11 · Quarterly Watchlist ─────────────────────── -->
+<div class="slide" id="s11">
+  <div class="slide-title">Quarterly Watchlist — 4 Items + Churn Table</div>
+  <div class="watch-top">
     <div class="watch-item">
       <div class="watch-num">01</div>
       <div class="watch-content">
-        <h3>Geo Mix Calibration</h3>
-        <p>Actual crew route distribution (EK network) vs. assumed 60/25/15. A 5-pt shift to Tier C costs ~$0.40/GB blended. Review after first 500 activations.</p>
+        <h3>Economy Conversion Rate</h3>
+        <p>50% of users start in PAYG. If conversion to monthly sub is below 15% by day 60 of beta, blended ARPU lags model. Track in-app funnel from first activation.</p>
       </div>
     </div>
     <div class="watch-item">
       <div class="watch-num">02</div>
       <div class="watch-content">
         <h3>Refuel Attach Rate (Akito's lever)</h3>
-        <p>Currently assumed at 10% of active subs. Akito's in-app push &amp; Crew Recs gamification could move this to 18–22%. Every 1-pt move = ~$0.06/user/mo revenue lift.</p>
+        <p>Updated to 30% from 10% — a 3× assumption. Only achievable with well-timed in-app prompts. Every 1-pt move = ~$0.06/user/mo revenue lift. Watch actual attach vs. benchmark.</p>
       </div>
     </div>
     <div class="watch-item">
       <div class="watch-num">03</div>
       <div class="watch-content">
-        <h3>Support Cost at 5K-User Inflection</h3>
-        <p>$0.30/user is modeled on AI-first support + low escalation. At 5K users the support queue may require a part-time human. Watch ticket-to-user ratio.</p>
+        <h3>Geo Mix Calibration</h3>
+        <p>60/25/15 Tier-A/B/C is assumed, not measured. A 5-pt shift to Tier C costs ~$0.40/GB blended. Review after first 500 activations with route-level usage data.</p>
       </div>
     </div>
     <div class="watch-item">
       <div class="watch-num">04</div>
       <div class="watch-content">
         <h3>Wholesale Cost (Direct Supplier Path)</h3>
-        <p>Current model uses Samurai sub-reseller rates (40% flat margin). Signing direct would yield 3.5× net on data COGS. Trigger: 2K active users or $10K MRR.</p>
+        <p>Current model uses sub-reseller rates (40% flat margin). Going direct = 3.5× net on data COGS. Trigger: 2K active users or $10K MRR.</p>
       </div>
     </div>
   </div>
-  <div class="slide-num-badge light-badge">10 / 11</div>
+  <div class="churn-mini">
+    <h3>Monthly Churn by Tier (RevenueCat 2025 benchmark anchored)</h3>
+    <div class="churn-row">
+      <div class="churn-pill hi">Economy 18%/mo</div>
+      <div class="churn-pill hi">Roster Bundle 10%/mo</div>
+      <div class="churn-pill hi">Premium Economy 10%/mo</div>
+      <div class="churn-pill">Business 9%/mo</div>
+      <div class="churn-pill">First 8%/mo</div>
+      <div class="churn-pill lo">Cockpit Annual 0.6%/mo (~7%/yr)</div>
+    </div>
+  </div>
+  <div class="slide-num-badge light-badge">11 / 12</div>
 </div>
 
-<!-- ── S11 · Close ────────────────────────────────────── -->
-<div class="slide" id="s11">
+<!-- ── S12 · Close ────────────────────────────────────── -->
+<div class="slide" id="s12">
   <!-- decorative rings -->
   <div class="ring" style="width:70%;padding-top:70%;top:-10%;right:-15%;"></div>
   <div class="ring" style="width:40%;padding-top:40%;bottom:-15%;left:-5%;"></div>
 
   <div class="tagline">Change any <span>yellow cell,</span><br>watch it cascade.</div>
-  <div class="sub-tagline">All 11 tabs derive from the assumptions on this sheet. Tab 1 is the only place you should ever override a number by hand.</div>
+  <div class="sub-tagline">All 12 tabs derive from the assumptions on this sheet. Tab 1 is the only place you should ever override a number by hand.</div>
+  <div class="rev-note">May 2026 revision: tier mix anchored to Airalo, Holafly, RevenueCat &amp; Firsty field data</div>
   <a class="xlsx-link" href="Peanut-eSIM-PL-Model-2026-05-31.xlsx">
     📊 &nbsp;Open P&amp;L Model (.xlsx)
   </a>
-  <div class="slide-num-badge dark-badge">11 / 11</div>
+  <div class="slide-num-badge dark-badge">12 / 12</div>
 </div>
 
 </div><!-- /deck -->
 
-<div id="hint">← → arrow keys to navigate · click buttons above</div>
+<div id="hint">&#8592; &#8594; arrow keys to navigate · click buttons above</div>
 
 <script>
 const slides = document.querySelectorAll('.slide');
