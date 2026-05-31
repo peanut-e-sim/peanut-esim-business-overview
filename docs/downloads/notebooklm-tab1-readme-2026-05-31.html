@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tab 1 — README & Assumptions · NotebookLM Source</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background: #f9f5ef;
+      color: #1a1a1a;
+      line-height: 1.75;
+    }
+    header {
+      background: #D71921;
+      color: #fff;
+      padding: 28px 40px 24px;
+    }
+    header h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    header p {
+      font-size: 0.85rem;
+      opacity: 0.82;
+      margin-top: 6px;
+    }
+    .copy-bar {
+      background: #fff;
+      border-bottom: 1px solid #e5e0d8;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    #copyBtn {
+      background: #D71921;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #copyBtn:hover { background: #b5141a; }
+    #copyFeedback {
+      font-size: 0.85rem;
+      color: #2a7a3b;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .doc {
+      max-width: 820px;
+      margin: 40px auto;
+      padding: 0 40px 80px;
+    }
+    .doc h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #D71921;
+      margin: 40px 0 12px;
+      border-bottom: 2px solid #D71921;
+      padding-bottom: 6px;
+    }
+    .doc h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 28px 0 8px;
+    }
+    .doc p {
+      margin-bottom: 16px;
+      font-size: 0.97rem;
+    }
+    .doc ul {
+      margin: 8px 0 16px 22px;
+    }
+    .doc li {
+      margin-bottom: 8px;
+      font-size: 0.97rem;
+    }
+    .callout {
+      background: #fff8e1;
+      border-left: 4px solid #f9a825;
+      padding: 14px 18px;
+      border-radius: 4px;
+      margin: 20px 0;
+      font-size: 0.93rem;
+    }
+    .callout strong { color: #b76e00; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.88rem;
+    }
+    th {
+      background: #D71921;
+      color: #fff;
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e5e0d8;
+    }
+    tr:nth-child(even) td { background: #faf7f2; }
+    .badge {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .badge-red { background: #fde8e8; color: #D71921; }
+    .badge-green { background: #e6f4ea; color: #2a7a3b; }
+    .badge-yellow { background: #fff8e1; color: #b76e00; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Tab 1 — README &amp; Assumptions · NotebookLM Source</h1>
+  <p>Peanut eSIM P&amp;L Model · Prepared 2026-05-31 · Upload to NotebookLM for audio overview</p>
+</header>
+
+<div class="copy-bar">
+  <button id="copyBtn">📋 Copy Full Document</button>
+  <span id="copyFeedback">Copied to clipboard!</span>
+  <span style="font-size:0.82rem;color:#888;">Plain text — paste directly into NotebookLM</span>
+</div>
+
+<div class="doc" id="docBody">
+
+  <!-- ===================== PLAIN TEXT SOURCE STARTS HERE ===================== -->
+  <div id="plainTextSource" style="display:none;">TAB 1 — README &amp; ASSUMPTIONS
+Peanut eSIM P&amp;L Model Source Document for NotebookLM
+Prepared: May 31, 2026
+
+
+INTRODUCTION
+
+This document explains the first tab of the Peanut eSIM financial model — the README and Assumptions tab. Think of Tab 1 as the control panel for the entire spreadsheet. Every revenue projection, every cost calculation, every scenario comparison in tabs two through twelve draws its inputs from here. If a number is wrong in Tab 1, everything downstream is wrong. So before we talk about the exciting stuff — the revenue curves, the break-even timeline, the scenario comparisons — we need to be crystal clear on what this tab says, why it was built this way, and where the risks live.
+
+Peanut eSIM is a travel connectivity startup aimed at airline cabin crew. The founding team is Balraj in Dubai handling the technology, finance, and operations side, and Akito in Japan leading brand, marketing, and user experience. The initial target is Emirates cabin crew based in Dubai — a group of roughly 18,000 people who travel to 130 destinations worldwide and need mobile data in every single one of them. The business model is simple: sell eSIM data plans via a mobile app, bundled around a crew-specific workflow, and layer on premium features that generic eSIM providers like Airalo and Holafly cannot replicate.
+
+Tab 1 is where every assumption that drives that model is written down and justified.
+
+
+SECTION 1: THE COLOR KEY
+
+The model uses a four-color coding system. Blue cells are hardcoded inputs — raw numbers that a human typed in. Black cells are formula-driven — they calculate automatically from other cells. Green cells are cross-sheet references — they pull from another tab. Yellow cells are key assumptions — numbers that matter most, that the team should review regularly, and that scenario testing should always include.
+
+This color discipline sounds like a minor formatting choice but it is actually one of the most important features of the model. In any financial model, the most dangerous errors come from accidentally hardcoding a number that should be a formula, or overwriting a formula with a number and not noticing. The color system makes those mistakes immediately visible. If you see a black cell and you want to change it, you need to understand the formula first. If you see a blue cell and it never changes, someone might have frozen a number that should have been updated.
+
+For NotebookLM listeners: when someone on the team refers to a "blue cell" or a "yellow assumption," they mean a specific cell type within this framework. The model was designed so that anyone — including team members who did not build it — can orient themselves within five seconds.
+
+
+SECTION 2: CABIN CLASS RETAIL PRICES
+
+This is the heart of Tab 1 and arguably the most strategically interesting section of the whole model.
+
+Peanut uses a seven-tier pricing structure. The tiers are named after aircraft cabin classes, which is deliberate — the naming is instantly legible to crew, reflects their daily language, and creates a status ladder that encourages upgrades.
+
+Here are the seven tiers:
+
+Economy is the entry-level pay-per-trip plan. It costs $4.99 per trip, delivers 1 gigabyte of data, and has zero percent data carry-over. This plan exists specifically to remove the barrier to first use. A crew member who has never heard of Peanut can try it for five dollars on their next layover without committing to a subscription. The revenue per user is modest, but the acquisition value is high. Economy users who like the product are the primary conversion funnel into the subscription tiers above.
+
+Roster Bundle is the flagship subscription at $39.99 per month. It delivers 5 gigabytes and has zero carry-over — use it or lose it. The model flags this as the most popular tier, and that classification is important. A 5GB monthly pool sounds large, but crew who travel to multiple destinations per month — say, four or five layovers — may actually find this tight. Zero carry-over is intentional: it creates a clean monthly revenue cycle and reduces the complexity of tracking rolling data balances. But it also creates an upgrade pressure toward the higher subscription tiers, which is exactly what the business wants.
+
+Premium Economy costs $12.99 per month and gives 10 gigabytes with 50 percent carry-over. This tier is designed for the crew member who travels moderately — maybe two or three layovers a month — and hates the feeling of wasted data. The 50 percent carry-over means unused gigabytes partially roll forward. The pricing here might look odd at first glance: Premium Economy is cheaper per month than Roster Bundle but delivers more data and a carry-over benefit. The logic is that Premium Economy is for lower-frequency travelers who need flexibility, not volume. A crew member flying short-haul routes within the region would be a natural fit.
+
+Business class sits at $24.99 per month, provides 8 gigabytes of data, and carries over 70 percent. The model marks this as the recommended tier. The recommendation designation is strategic: it influences in-app merchandising. When a user opens the pricing screen, Business class will be visually highlighted, likely with a label or color treatment. At $24.99, it is positioned just below the psychological $30 threshold, it carries the best carry-over ratio in the monthly tiers, and 8 gigabytes is enough for heavy social media use across multiple layovers. This tier is expected to be the highest-revenue-per-user segment once the user base matures.
+
+First class is priced at $49.99 per month, provides 20 gigabytes, and offers 100 percent carry-over capped at a two-month rolling maximum. The two-month cap is an important detail — it prevents a heavy traveler from accumulating a massive data bank over six or twelve months, which would destroy the unit economics. The 20 gigabyte pool targets long-haul crew on ultra-premium routes, or crew who use their eSIM as their primary internet connection during multi-day trips.
+
+Cockpit Annual is the pilot-focused annual plan, priced at $299 per year. That works out to $24.92 per month equivalent — almost exactly the same as Business monthly. It provides 30 gigabytes and 100 percent carry-over on an annual basis, meaning data can accumulate across the full year. Pilots operate on predictable rosters, often fly the same routes repeatedly, and tend to be higher earners with a preference for annual subscriptions over monthly billing friction. The Cockpit Annual plan targets that behavioral profile directly. From a cash flow perspective, annual plans are also extremely valuable to the business — collecting 12 months of revenue upfront dramatically improves the working capital position.
+
+Refuel is the add-on top-up at $5.99 for 1 additional gigabyte. It applies to any user who hits their monthly or annual cap and needs more data mid-layover. Refuel is a high-margin item — the incremental cost to deliver 1 gigabyte is well below the wholesale price, especially in Tier-A geographies — and it captures spending from the exact moment a user is most motivated: they're connected, traveling, and suddenly out of data. The conversion rate on in-app top-up prompts should be extremely high.
+
+Why seven tiers rather than three or four? The answer is that crew are not a homogeneous segment. Short-haul crew flying regional routes have completely different data needs from long-haul crew on transoceanic routes. Pilots have different patterns from cabin crew. Monthly travelers have different preferences from occasional travelers. A single plan or even a three-tier structure would either over-serve low-volume users at low prices or under-serve high-volume users with data caps. Seven tiers let the model capture maximum willingness to pay across the full segment.
+
+
+SECTION 3: GEO COST BUCKETS
+
+Now we move from the revenue side to the cost side. Delivering eSIM data is not a fixed cost — it varies dramatically by country. The wholesale supplier purchases data capacity from local mobile networks, and the price per gigabyte-day in Japan or Singapore is completely different from the price in Brazil or South Africa.
+
+The model handles this through three geographic cost buckets.
+
+Tier A covers the cheap countries: Japan, United Kingdom, Singapore, Malaysia, Hong Kong, South Korea, and the United States. These markets have dense mobile infrastructure, intense competition between carriers, and deep wholesale markets. The blended cost for Tier A is $0.97 per gigabyte per day.
+
+Tier B covers medium-cost countries: Canada, Australia, New Zealand, Vietnam, and the UAE. These markets have good infrastructure but less wholesale depth, often due to geographic isolation or lower population density. The cost here is $1.50 per gigabyte per day.
+
+Tier C covers the expensive markets: India, Brazil, Saudi Arabia, and South Africa. These are either heavily regulated markets, markets with limited wholesale competition, or markets where the roaming data infrastructure requires premium partners. The cost jumps to $5.80 per gigabyte per day — nearly six times the Tier A rate.
+
+The model applies a default traffic mix of 60 percent Tier A, 25 percent Tier B, and 15 percent Tier C. This blended mix produces a weighted average cost of $1.83 per gigabyte.
+
+The 60/25/15 split reflects the actual Emirates network. Emirates flies heavily to Asia-Pacific and transatlantic routes — Tokyo, Singapore, London, New York — all Tier A destinations. The Tier B and Tier C exposure is real but proportionally smaller.
+
+Why does this matter? Because gross margin is not uniform across the user base. A crew member who primarily flies Singapore routes is a high-margin customer. A crew member who regularly lays over in Mumbai or Johannesburg costs significantly more to serve. The blended $1.83 number is a model average — actual margin per user will vary based on their specific route portfolio.
+
+The biggest risk in this section is that the 60/25/15 mix is an assumption, not measured data. In year one, before Peanut has actual usage data, the team is flying blind on geo mix. If early adopters happen to be heavy India or Brazil travelers, the actual blended cost could be $2.50 or higher, compressing margins significantly.
+
+
+SECTION 4: CABIN CLASS MIX
+
+This section defines what percentage of the paying user base falls into each pricing tier. The model uses the following distribution: Economy accounts for 30 percent of users, Roster Bundle 35 percent, Premium Economy 10 percent, Business 15 percent, First 5 percent, Cockpit Annual 3 percent, and Refuel add-on purchases across 20 percent of users in any given month.
+
+The mix directly determines blended revenue per user per month, which is the single most important top-line metric in the model. If the Business and First tiers are larger than assumed, revenue per user goes up. If users cluster in Economy and never upgrade, revenue per user is lower.
+
+The 35 percent Roster Bundle assumption is the most consequential single number in this section. Roster Bundle is the highest-volume tier, at $39.99 per month. If actual adoption is 45 or 50 percent instead of 35, the revenue model improves materially. If it is 20 percent because users prefer the cheaper Premium Economy or stick to Economy top-ups, the model weakens.
+
+This mix will be one of the first things to validate with the beta cohort. After three months of real usage data, the team should be able to replace these assumed percentages with actuals, and that update will ripple through every downstream projection.
+
+
+SECTION 5: OPERATING COST PER USER PER MONTH
+
+The final section of Tab 1 breaks down the non-data operating cost to serve a single user for one month. Five line items total $1.10 per user per month.
+
+Cloud and API infrastructure costs $0.15 per user. This covers the backend systems — servers, databases, the eSIM provisioning API calls, and developer tooling. At early scale, this is likely higher per user due to fixed infrastructure overhead that gets amortized as volume grows.
+
+Payment processing costs $0.50 per user. This is the largest single line item in opex and reflects the reality of operating in the payments space. Stripe and equivalent processors charge around 2.9 percent plus $0.30 per transaction. The $0.50 assumption implies an average transaction value around $8. As users migrate to higher subscription tiers, the percentage cost comes down but the dollar amount per transaction goes up. This line item deserves careful monitoring.
+
+Customer support costs $0.30 per user per month. eSIM installation is the primary support trigger — crew who have never installed an eSIM before will need help. The model assumes a mix of AI-assisted support via an in-app chat agent and some human escalation. As the AI support layer matures, this number should decline. The risk is that if eSIM installation issues are more common than expected, the actual support cost per user could run two or three times the modeled figure.
+
+SMS and OTP authentication costs $0.05 per user. This is modest and well-understood — these are fixed-rate bulk SMS costs for verification messages.
+
+Hosting and developer tools cost $0.10 per user. This covers GitHub, CI/CD, monitoring tools, and similar developer infrastructure at scale.
+
+The total of $1.10 per user per month is intentionally lean. It is achievable at meaningful scale — say, 500 users or more — but in the first three to six months while the user base is small, the per-user cost will effectively be higher because fixed costs are spread over a tiny base. The model handles this by tracking absolute cost dollars in the operating expense tabs rather than purely relying on the per-user rate.
+
+
+WHAT TAB 1 DRIVES DOWNSTREAM
+
+Every tab in the model that follows reads from Tab 1. The revenue model in Tab 2 uses the cabin class prices, the user mix percentages, and the Refuel add-on rate to project monthly revenue. The cost of goods tab uses the geo bucket costs and the blended $1.83 rate to calculate gross margin. The operating cost tabs apply the $1.10 per-user formula across the user count projections. The scenario analysis tabs swap in alternative values for key yellow assumptions — like the cabin class mix or the geo cost blend — and show the impact on EBITDA.
+
+Tab 1 is essentially the DNA of the model. Change one assumption here, and you instantly see the downstream effect everywhere else. That's the power of building a model this way — it's a living document, not a static spreadsheet.
+
+
+KEY RISKS AND THINGS TO WATCH
+
+First risk: the wholesale supplier cost structure. The current model uses costs from a single wholesale supplier who is a sub-reseller. This means Peanut is not buying data capacity at the best available market rate. The actual margin improvement available by moving to a direct relationship with a top-tier eSIM wholesale provider could be substantial — potentially reducing data costs by 30 to 50 percent. The model currently reflects conservative assumptions, but the team should actively pursue direct supplier relationships in parallel with growth.
+
+Second risk: the geo mix assumption. The 60/25/15 Tier-A/B/C split will not be known with certainty until the app is live and usage data is flowing. If early crew users are heavy Tier-C destination travelers, margins compress immediately. The team should track actual usage by geography from day one and update Tab 1 quarterly.
+
+Third risk: the cabin class mix. The 35 percent Roster Bundle assumption is a guess. Beta data from the first 50 to 100 paying users will be the most important input to validate or update this figure.
+
+Fourth risk: payment processing costs. If the average transaction value is lower than assumed — for example, because many users buy Economy plans at $4.99 — the payment processing cost per dollar of revenue goes up materially.
+
+Fifth risk: support costs at launch. Early-stage eSIM products have higher support needs than steady-state products. The $0.30 per user per month figure is a steady-state assumption. The actual first-month support cost per user could be three to five times higher.
+
+
+CLOSING
+
+Tab 1 is designed to be a living document. The team reviews it quarterly, or whenever a major assumption changes — like a new supplier agreement, a pricing change, or a new geographic market. The color-coded system means anyone can open the file, see exactly which cells are inputs versus formulas, and understand what to update when reality diverges from projection.
+
+The goal of building the model this way is not to predict the future with precision. Startup financials are never precise. The goal is to build a structured framework where the team can ask "what happens if we get the cabin class mix wrong?" or "how bad does it get if Tier-C traffic is 30 percent instead of 15 percent?" — and get an honest answer in minutes rather than rebuilding the model from scratch.
+
+That framework starts here, in Tab 1.</div>
+  <!-- ===================== PLAIN TEXT SOURCE ENDS HERE ===================== -->
+
+  <h2>Introduction</h2>
+
+  <p>This document explains the first tab of the Peanut eSIM financial model — the README and Assumptions tab. Think of Tab 1 as the control panel for the entire spreadsheet. Every revenue projection, every cost calculation, every scenario comparison in tabs two through twelve draws its inputs from here. If a number is wrong in Tab 1, everything downstream is wrong. So before we talk about the exciting stuff — the revenue curves, the break-even timeline, the scenario comparisons — we need to be crystal clear on what this tab says, why it was built this way, and where the risks live.</p>
+
+  <p>Peanut eSIM is a travel connectivity startup aimed at airline cabin crew. The founding team is Balraj in Dubai handling the technology, finance, and operations side, and Akito in Japan leading brand, marketing, and user experience. The initial target is Emirates cabin crew based in Dubai — a group of roughly 18,000 people who travel to 130 destinations worldwide and need mobile data in every single one of them. The business model is simple: sell eSIM data plans via a mobile app, bundled around a crew-specific workflow, and layer on premium features that generic eSIM providers like Airalo and Holafly cannot replicate.</p>
+
+  <p>Tab 1 is where every assumption that drives that model is written down and justified.</p>
+
+  <h2>Section 1: The Color Key</h2>
+
+  <p>The model uses a four-color coding system. <strong>Blue cells</strong> are hardcoded inputs — raw numbers that a human typed in. <strong>Black cells</strong> are formula-driven — they calculate automatically from other cells. <strong>Green cells</strong> are cross-sheet references — they pull from another tab. <strong>Yellow cells</strong> are key assumptions — numbers that matter most, that the team should review regularly, and that scenario testing should always include.</p>
+
+  <p>This color discipline sounds like a minor formatting choice but it is actually one of the most important features of the model. In any financial model, the most dangerous errors come from accidentally hardcoding a number that should be a formula, or overwriting a formula with a number and not noticing. The color system makes those mistakes immediately visible.</p>
+
+  <p>For NotebookLM listeners: when someone on the team refers to a "blue cell" or a "yellow assumption," they mean a specific cell type within this framework. The model was designed so that anyone — including team members who did not build it — can orient themselves within five seconds.</p>
+
+  <h2>Section 2: Cabin Class Retail Prices</h2>
+
+  <p>This is the heart of Tab 1 and arguably the most strategically interesting section of the whole model. Peanut uses a seven-tier pricing structure. The tiers are named after aircraft cabin classes — which is deliberate. The naming is instantly legible to crew, reflects their daily language, and creates a status ladder that encourages upgrades.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Price</th>
+        <th>Data Pool</th>
+        <th>Carry-over</th>
+        <th>Flag</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Economy</td><td>$4.99 / trip</td><td>1 GB</td><td>0%</td><td><span class="badge badge-green">Entry</span></td></tr>
+      <tr><td>Roster Bundle</td><td>$39.99 / mo</td><td>5 GB</td><td>0%</td><td><span class="badge badge-red">Most Popular</span></td></tr>
+      <tr><td>Premium Economy</td><td>$12.99 / mo</td><td>10 GB pool</td><td>50%</td><td></td></tr>
+      <tr><td>Business</td><td>$24.99 / mo</td><td>8 GB pool</td><td>70%</td><td><span class="badge badge-yellow">Recommended</span></td></tr>
+      <tr><td>First</td><td>$49.99 / mo</td><td>20 GB pool</td><td>100% (2-mo cap)</td><td></td></tr>
+      <tr><td>Cockpit Annual</td><td>$299 / yr</td><td>30 GB</td><td>100% annual</td><td><span class="badge badge-green">Pilots</span></td></tr>
+      <tr><td>Refuel</td><td>$5.99 add-on</td><td>+1 GB top-up</td><td>—</td><td><span class="badge badge-yellow">High margin</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Economy — The Acquisition Engine</h3>
+  <p>Economy exists to remove the barrier to first use. A crew member who has never heard of Peanut can try it for five dollars on their next layover without committing to a subscription. Revenue per user is modest, but acquisition value is high. Economy users who like the product are the primary conversion funnel into the subscription tiers above.</p>
+
+  <h3>Roster Bundle — The Flagship</h3>
+  <p>At $39.99 per month with 5 GB and zero carry-over, Roster Bundle is flagged as the most popular tier. Zero carry-over is intentional: it creates a clean monthly revenue cycle and reduces the complexity of tracking rolling data balances. It also creates upgrade pressure toward higher tiers — which is exactly what the business wants.</p>
+
+  <h3>Business — The Recommended Tier</h3>
+  <p>Business class at $24.99/month with 8 GB and 70% carry-over is the model's recommended tier. The recommendation designation is strategic — it influences in-app merchandising. At $24.99, it sits just below the psychological $30 threshold and carries the best carry-over ratio in the monthly lineup. This tier is expected to become the highest-revenue-per-user segment once the user base matures.</p>
+
+  <h3>Cockpit Annual — The Pilot Plan</h3>
+  <p>$299 per year works out to $24.92 per month equivalent — almost identical to Business monthly. Pilots fly predictable routes, earn higher incomes, and prefer annual billing. From a cash flow perspective, collecting 12 months of revenue upfront dramatically improves the working capital position. Annual plans are business gold.</p>
+
+  <h3>Refuel — The High-Margin Add-On</h3>
+  <p>Refuel captures spending at the exact moment a user is most motivated: connected, mid-layover, and suddenly out of data. The conversion rate on in-app top-up prompts should be extremely high. The incremental data cost is well below $5.99, especially in Tier-A geographies.</p>
+
+  <div class="callout">
+    <strong>Why seven tiers?</strong> Crew are not homogeneous. Short-haul regional crew have completely different data needs from long-haul transoceanic crew. Pilots differ from cabin crew. Monthly travelers differ from occasional travelers. Seven tiers let the model capture maximum willingness to pay across the full segment without forcing anyone into an ill-fitting plan.
+  </div>
+
+  <h2>Section 3: Geo Cost Buckets</h2>
+
+  <p>Delivering eSIM data is not a fixed cost — it varies dramatically by country. The wholesale supplier purchases data capacity from local mobile networks, and the price per gigabyte-day in Japan is completely different from the price in South Africa.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bucket</th>
+        <th>Countries</th>
+        <th>Cost / 1 GB-day</th>
+        <th>Default Mix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Tier A — Cheap</strong></td><td>JP, UK, SG, MY, HK, KR, US</td><td>$0.97</td><td>60%</td></tr>
+      <tr><td><strong>Tier B — Medium</strong></td><td>CA, AU, NZ, VN, UAE</td><td>$1.50</td><td>25%</td></tr>
+      <tr><td><strong>Tier C — Expensive</strong></td><td>IN, BR, SA, ZA</td><td>$5.80</td><td>15%</td></tr>
+    </tbody>
+  </table>
+
+  <p>The 60/25/15 mix produces a <strong>blended cost of $1.83 per gigabyte</strong>. This reflects the Emirates network reality — heavy Asia-Pacific and transatlantic flying, which skews toward Tier-A destinations.</p>
+
+  <div class="callout">
+    <strong>Biggest risk in this section:</strong> The 60/25/15 mix is an assumption, not measured data. If early adopters are heavy India or Brazil travelers, the actual blended cost could run $2.50 or higher. Gross margin is not uniform across the user base — a crew member flying Singapore routes is a fundamentally different economics profile from one regularly laying over in Mumbai.
+  </div>
+
+  <h2>Section 4: Cabin Class Mix</h2>
+
+  <p>This section defines the percentage of paying users per tier. The mix directly determines blended revenue per user per month — the single most important top-line metric in the model.</p>
+
+  <table>
+    <thead>
+      <tr><th>Tier</th><th>Assumed % of Paying Users</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Economy</td><td>30%</td></tr>
+      <tr><td>Roster Bundle</td><td>35%</td></tr>
+      <tr><td>Premium Economy</td><td>10%</td></tr>
+      <tr><td>Business</td><td>15%</td></tr>
+      <tr><td>First</td><td>5%</td></tr>
+      <tr><td>Cockpit Annual</td><td>3%</td></tr>
+      <tr><td>Refuel (monthly)</td><td>20% of users in any month</td></tr>
+    </tbody>
+  </table>
+
+  <p>The 35% Roster Bundle assumption is the most consequential single number in this section. If actual adoption is 45–50%, revenue per user improves materially. If users cluster in Economy and never upgrade, the model weakens. This mix will be one of the first things to validate with the beta cohort — after three months of real data, assumed percentages get replaced with actuals, and that update ripples through every downstream projection.</p>
+
+  <h2>Section 5: Operating Cost per User per Month</h2>
+
+  <p>Five line items total <strong>$1.10 per user per month</strong> in non-data operating cost.</p>
+
+  <table>
+    <thead>
+      <tr><th>Line Item</th><th>$/User/Mo</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cloud / API infrastructure</td><td>$0.15</td><td>Servers, DB, eSIM API calls — higher per-user at small scale</td></tr>
+      <tr><td>Payment processing</td><td>$0.50</td><td>Largest single opex item; ~2.9% + $0.30/txn at avg ~$8 txn value</td></tr>
+      <tr><td>Customer support</td><td>$0.30</td><td>AI-assisted + human escalation; should decline as AI matures</td></tr>
+      <tr><td>SMS / OTP auth</td><td>$0.05</td><td>Fixed-rate bulk SMS for verification</td></tr>
+      <tr><td>Hosting + dev tools</td><td>$0.10</td><td>GitHub, CI/CD, monitoring at scale</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Launch-phase warning:</strong> The $1.10/user figure is a steady-state number. In the first 3–6 months, fixed costs spread over a tiny user base will push the effective per-user cost to $3–5. The model accounts for this via absolute cost tracking in the opex tabs, not just the per-user rate.
+  </div>
+
+  <h2>What Tab 1 Drives Downstream</h2>
+
+  <p>Every subsequent tab reads from Tab 1. The revenue model uses cabin class prices and user mix to project monthly revenue. The COGS tab applies the blended $1.83 geo cost to calculate gross margin. The opex tabs apply the $1.10 per-user formula across projected user counts. The scenario analysis tabs swap in alternative yellow-cell values — different geo mixes, different tier distributions — and show instant EBITDA impact.</p>
+
+  <p>Tab 1 is essentially the DNA of the model. Change one assumption here and you see the downstream effect everywhere else. That's the design intent: a living document where the team can ask "what happens if the cabin class mix is wrong?" and get an honest answer in minutes.</p>
+
+  <h2>Key Risks and Things to Watch</h2>
+
+  <p><strong>Wholesale supplier cost structure.</strong> The current model reflects costs from a sub-reseller, not a direct tier-1 wholesale relationship. A direct deal could reduce data costs by 30–50%. The team should pursue this actively in parallel with growth — it is the single largest margin lever in the model.</p>
+
+  <p><strong>Geo mix assumption.</strong> The 60/25/15 Tier-A/B/C split will not be known until the app is live. Track actual usage by geography from day one and update Tab 1 quarterly. A swing to 25% Tier-C traffic could cut gross margin significantly.</p>
+
+  <p><strong>Cabin class mix.</strong> The 35% Roster Bundle assumption is a model guess. Beta data from the first 50–100 paying users is the single most important input to validate or update. Build the beta survey and onboarding flow to capture plan-selection data explicitly.</p>
+
+  <p><strong>Payment processing at low ticket values.</strong> If average transaction value is lower than assumed — for example, because Economy plans dominate early — the processing cost as a percentage of revenue climbs. Monitor average order value monthly.</p>
+
+  <p><strong>Support costs at launch.</strong> Early eSIM products have higher support needs than steady-state products. The $0.30/user figure is mature-stage. Budget for 3–5× that number in month one and two.</p>
+
+  <h2>Closing</h2>
+
+  <p>Tab 1 is designed to be a living document. The team reviews it quarterly, or whenever a major assumption changes — a new supplier agreement, a pricing update, a new geographic market. The color-coded system means anyone can open the file, immediately see which cells are inputs versus formulas, and know exactly what to update when reality diverges from projection.</p>
+
+  <p>The goal is not precision — startup financials are never precise. The goal is a structured framework where the team can test any assumption in minutes and get an honest answer about how it flows through to the bottom line. That framework starts here, in Tab 1.</p>
+
+</div>
+
+<script>
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    const source = document.getElementById('plainTextSource').innerText;
+    navigator.clipboard.writeText(source).then(function () {
+      const fb = document.getElementById('copyFeedback');
+      fb.style.opacity = '1';
+      setTimeout(function () { fb.style.opacity = '0'; }, 2500);
+    });
+  });
+</script>
+
+</body>
+</html>
