@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Documents & Deliverables Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+  --purple: #6B3FA0;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.55; }
+header.top { background: var(--ink); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,.15); position: sticky; top: 0; z-index: 100; }
+.top a { color: white; text-decoration: none; opacity: 0.7; font-size: 14px; }
+.top a:hover { opacity: 1; }
+.top .brand { font-weight: 600; letter-spacing: .02em; }
+.container { max-width: 1180px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 38px; margin: 0 0 8px; letter-spacing: -.01em; }
+.subtitle { color: var(--ink-soft); font-size: 16px; margin-bottom: 32px; }
+.section { margin: 48px 0 0; }
+.section-header { display: flex; align-items: baseline; gap: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); margin-bottom: 20px; }
+.section-header h2 { font-size: 24px; margin: 0; color: var(--red-dark); }
+.section-header .count { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.card { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 20px; transition: all 0.2s ease; position: relative; }
+.card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,.06); transform: translateY(-2px); }
+.card h3 { font-size: 16px; margin: 0 0 6px; color: var(--ink); line-height: 1.3; }
+.card p { font-size: 13px; color: var(--ink-soft); margin: 0 0 12px; }
+.card a { text-decoration: none; color: inherit; display: block; }
+.card .meta { display: flex; gap: 8px; flex-wrap: wrap; font-size: 11px; color: #999; }
+.card .meta .pill { padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+.card .meta .pill.html { background: #FBE0E0; color: var(--red); }
+.card .meta .pill.xlsx { background: #D4EDDA; color: var(--green); }
+.card .meta .pill.json { background: #FFF3CD; color: var(--amber); }
+.card .meta .pill.md { background: #E0E8F4; color: #2A4A8A; }
+.card .meta .pill.starred { background: #FBEFD9; color: var(--amber); }
+.card.featured { border-left: 4px solid var(--red); background: linear-gradient(to right, #FFF5F5 0%, white 60%); }
+.card.featured h3::before { content: "⭐ "; }
+.section-intro { color: var(--ink-soft); font-size: 14px; margin-bottom: 16px; font-style: italic; }
+.nav-back { color: white; opacity: 0.7; font-size: 13px; }
+@media (max-width: 600px) {
+  .container { padding: 24px 16px 60px; }
+  h1 { font-size: 28px; }
+  .cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <span class="brand">Peanut eSIM · Documents Hub</span>
+  <span><a href="../../">← Back to main site</a></span>
+</header>
+
+<div class="container">
+
+<h1>Documents & Deliverables Hub</h1>
+<div class="subtitle">Every artifact built for the Peanut eSIM venture, organized by topic. Updated 2026-06-01.</div>
+
+<!-- ============================================================ -->
+<!-- 1. P&L MODEL & TAB REPORTS -->
+<!-- ============================================================ -->
+<section class="section">
+  <div class="section-header">
+    <h2>📊 P&L Model & Tab Reports</h2>
+    <span class="count">10 items</span>
+  </div>
+  <p class="section-intro">The financial model itself + deep-dive reports for each tab. The Peanut-eSIM-PL-Model xlsx is the master spreadsheet.</p>
+  <div class="cards">
+
+    <a href="Peanut-eSIM-PL-Model-2026-05-31.xlsx" class="card featured">
+      <h3>Peanut eSIM P&L Model</h3>
+      <p>The master 22-tab spreadsheet — pricing, behavior, economics, scenarios, scale, and cash. Live source of truth.</p>
+      <div class="meta"><span class="pill xlsx">XLSX</span><span class="pill starred">MASTER</span><span>2026-05-31</span></div>
+    </a>
+
+    <a href="peanut-esim-project-briefing-2026-05-31.html" class="card featured">
+      <h3>Master Project Briefing</h3>
+      <p>Comprehensive briefing covering every locked decision, debate, and rationale. For Claude.ai Project uploads.</p>
+      <div class="meta"><span class="pill html">HTML</span><span class="pill starred">SHARE THIS</span><span>2026-05-31</span></div>
+    </a>
+
+    <a href="tab1-in-depth-report-2026-06-01.html" class="card">
+      <h3>Tab 1 In-Depth Report</h3>
+      <p>Pricing Architecture — full breakdown of the 7-tier ladder, geo cost buckets, cabin-class mix, operating cost.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-06-01</span></div>
+    </a>
+
+    <a href="tab1-visual-explainer-akito-2026-06-01.html" class="card featured">
+      <h3>Tab 1 Visual Explainer (for Akito)</h3>
+      <p>Charts + worked example. Scroll-and-understand version of Tab 1 — built for non-spreadsheet readers.</p>
+      <div class="meta"><span class="pill html">HTML</span><span class="pill starred">FOR AKITO</span><span>2026-06-01</span></div>
+    </a>
+
+    <a href="tab2-in-depth-report-2026-06-01.html" class="card">
+      <h3>Tab 2 In-Depth Report</h3>
+      <p>User Behavior — 4 archetypes, per-tier consumption rates, 1-GB refill UX, breakage mechanic.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-06-01</span></div>
+    </a>
+
+    <a href="tab3-in-depth-report-2026-06-01.html" class="card">
+      <h3>Tab 3 In-Depth Report</h3>
+      <p>Per-Tier Unit Economics — single-subscriber math + Bite 6 sensitivity analysis.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-06-01</span></div>
+    </a>
+
+    <a href="tab1-slides-2026-05-31.html" class="card">
+      <h3>Tab 1 Slide Deck</h3>
+      <p>12-slide HTML presentation of Tab 1 — for Canva-style sharing.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-05-31</span></div>
+    </a>
+
+    <a href="notebooklm-tab1-readme-2026-05-31.html" class="card">
+      <h3>Tab 1 NotebookLM Source</h3>
+      <p>~2,000-word narrative version of Tab 1 — paste into NotebookLM for audio overview.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-05-31</span></div>
+    </a>
+
+    <a href="pl-scenarios-2026-05-24.html" class="card">
+      <h3>P&L Scenarios (early)</h3>
+      <p>Earlier scenario writeup. Superseded by current 22-tab model but useful for history.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-05-24</span></div>
+    </a>
+
+    <a href="wholesale-markup-audit-2026-05-31.html" class="card">
+      <h3>Wholesale Markup Audit</h3>
+      <p>Per-country breakdown of Samurai's 68% effective markup + $1.6M/yr savings opportunity.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-05-31</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. PLANS & PRICING -->
+<!-- ============================================================ -->
+<section class="section">
+  <div class="section-header">
+    <h2>💳 Plans & Pricing</h2>
+    <span class="count">5 items</span>
+  </div>
+  <p class="section-intro">Plan structure, pricing rationale, mockups, and competitor benchmarks.</p>
+  <div class="cards">
+
+    <a href="pricing-plan-structure.html" class="card">
+      <h3>Pricing Plan Structure</h3>
+      <p>Tier structure rationale doc — the WHY behind the 7-tier ladder.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="pricing-mockup.html" class="card">
+      <h3>Pricing Mockup</h3>
+      <p>Visual pricing card mockup for the marketing site.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="plans-and-refunds.html" class="card">
+      <h3>Plans & Refunds</h3>
+      <p>6-scenario refund logic + plan rules.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="plans-infographic.html" class="card">
+      <h3>Plans Infographic</h3>
+      <p>Plan infographic — marketing-ready visual.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="competitor-pricing-research-2026-06-01.html" class="card">
+      <h3>Competitor Pricing Research</h3>
+      <p>Airalo, Holafly, Crew SIM, Saily, Nomad — full pricing matrix + positioning recommendations.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-06-01</span></div>
+    </a>
+
+    <a href="Competitor_Pricing_Benchmark.xlsx" class="card">
+      <h3>Competitor Pricing Benchmark (xlsx)</h3>
+      <p>Raw spreadsheet of competitor pricing data.</p>
+      <div class="meta"><span class="pill xlsx">XLSX</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. BRAND & NAMING -->
+<!-- ============================================================ -->
+<section class="section">
+  <div class="section-header">
+    <h2>🎨 Brand & Naming</h2>
+    <span class="count">1 item</span>
+  </div>
+  <p class="section-intro">Naming research, brand identity decisions, and holding-company structure.</p>
+  <div class="cards">
+
+    <a href="brand-name-candidates-2026-05-24.html" class="card">
+      <h3>Brand Name Candidates</h3>
+      <p>27 names verified across USPTO Class 9+38, .com, social handles, App Store. Top 3 GREEN: SORU, ROMU, DRIFTO.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-05-24</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. CREW RESEARCH & FEATURES -->
+<!-- ============================================================ -->
+<section class="section">
+  <div class="section-header">
+    <h2>✈️ Crew Research & Features</h2>
+    <span class="count">7 items</span>
+  </div>
+  <p class="section-intro">Crew interview tools, beta recruitment, recommendation database, and Emirates layover data.</p>
+  <div class="cards">
+
+    <a href="crew-interview-script.html" class="card">
+      <h3>Crew Interview Script</h3>
+      <p>Akito's structured questionnaire for the 20-30 crew validation interviews.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="akito-crew-questionnaire-builder.html" class="card">
+      <h3>Crew Questionnaire Builder</h3>
+      <p>Interactive tool for building/iterating crew survey questions.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="akito-beta-recruitment-brief.html" class="card">
+      <h3>Beta Crew Recruitment Brief</h3>
+      <p>Plan for recruiting first 20 beta crew users from Akito's WhatsApp network.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="crew-recs-and-souvenirs.html" class="card">
+      <h3>Crew Recs + Souvenirs Feature</h3>
+      <p>Michelin-style crew-curated layover recs + souvenir guides — the long-term moat.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="crew-recs-starter-db.json" class="card">
+      <h3>Crew Recs Starter DB</h3>
+      <p>Initial seed dataset for the recommendation engine.</p>
+      <div class="meta"><span class="pill json">JSON</span></div>
+    </a>
+
+    <a href="crew-souvenirs-guide.json" class="card">
+      <h3>Crew Souvenirs Guide</h3>
+      <p>Starter dataset for souvenir guides per city.</p>
+      <div class="meta"><span class="pill json">JSON</span></div>
+    </a>
+
+    <a href="Emirates_Crew_Layover_Countries.xlsx" class="card">
+      <h3>Emirates Layover Countries</h3>
+      <p>67 layover destinations Emirates operates — by region.</p>
+      <div class="meta"><span class="pill xlsx">XLSX</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. OPERATIONS & SETUP -->
+<!-- ============================================================ -->
+<section class="section">
+  <div class="section-header">
+    <h2>⚙️ Operations & Setup Guides</h2>
+    <span class="count">5 items</span>
+  </div>
+  <p class="section-intro">How-to guides for entity setup, supplier landscape, iOS provisioning, and risk management.</p>
+  <div class="cards">
+
+    <a href="delaware-llc-how-to.html" class="card">
+      <h3>Delaware LLC How-To</h3>
+      <p>Step-by-step guide for filing Moonlight Holdings LLC in Delaware.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="account-setup-how-to.html" class="card">
+      <h3>Account Setup How-To</h3>
+      <p>Mercury bank, Stripe Atlas, Apple Developer — step-by-step.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="ios-access-setup.html" class="card">
+      <h3>iOS Access Setup</h3>
+      <p>iOS provisioning notes — Apple Universal Link vs Carrier Entitlement.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="supplier-landscape-2026-05-24.html" class="card">
+      <h3>Supplier Landscape</h3>
+      <p>Samurai vs eSIM Access vs eSIM Go — wholesale supplier comparison.</p>
+      <div class="meta"><span class="pill html">HTML</span><span>2026-05-24</span></div>
+    </a>
+
+    <a href="risk-register.html" class="card">
+      <h3>Risk Register</h3>
+      <p>Known risks + mitigations across the venture.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. DESIGN / STITCH PROMPTS -->
+<!-- ============================================================ -->
+<section class="section">
+  <div class="section-header">
+    <h2>🎨 Design / Stitch Prompts</h2>
+    <span class="count">5 items</span>
+  </div>
+  <p class="section-intro">Prompts used to generate 29 app mockup screens via Stitch — saved for re-runs.</p>
+  <div class="cards">
+
+    <a href="stitch-prompts-crewlink-29screens.html" class="card">
+      <h3>29-Screen Stitch Prompt Set</h3>
+      <p>Full prompt collection for the 29-screen app prototype.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="stitch-prompts-crewlink-mega.html" class="card">
+      <h3>Mega Stitch Prompt</h3>
+      <p>Single large prompt for the full app design.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="stitch-prompts-crewlink-6batches.html" class="card">
+      <h3>6-Batch Stitch Prompts</h3>
+      <p>Stitch prompts broken into 6 logical batches.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="stitch-prompts-plans-and-verification.html" class="card">
+      <h3>Plans + Verification Stitch Prompts</h3>
+      <p>Specific prompts for the plan-selection and pilot-verification screens.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="stitch-prompt-update-naming.html" class="card">
+      <h3>Stitch Naming Update Prompt</h3>
+      <p>Prompt for updating brand naming across the Stitch outputs.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. DISCUSSION & NOTES -->
+<!-- ============================================================ -->
+<section class="section">
+  <div class="section-header">
+    <h2>📝 Discussion & Working Notes</h2>
+    <span class="count">5 items</span>
+  </div>
+  <p class="section-intro">Conversation summaries, NotebookLM source markdown, and pricing benchmark notes.</p>
+  <div class="cards">
+
+    <a href="crewlink-full-discussion-summary.html" class="card">
+      <h3>CrewLink Full Discussion Summary</h3>
+      <p>Earlier full-session discussion summary covering brand, pricing, app design.</p>
+      <div class="meta"><span class="pill html">HTML</span></div>
+    </a>
+
+    <a href="crewlink-full-discussion-summary.md" class="card">
+      <h3>CrewLink Discussion (markdown)</h3>
+      <p>Markdown version of the same discussion summary.</p>
+      <div class="meta"><span class="pill md">MD</span></div>
+    </a>
+
+    <a href="plans-notebooklm-source.md" class="card">
+      <h3>Plans NotebookLM Source</h3>
+      <p>Earlier NotebookLM source for plans walkthrough (markdown).</p>
+      <div class="meta"><span class="pill md">MD</span></div>
+    </a>
+
+    <a href="pricing-benchmark-2026-05-24.md" class="card">
+      <h3>Pricing Benchmark Notes</h3>
+      <p>Early pricing benchmark notes (markdown).</p>
+      <div class="meta"><span class="pill md">MD</span><span>2026-05-24</span></div>
+    </a>
+
+  </div>
+</section>
+
+<div style="margin-top: 80px; padding: 24px; background: white; border-left: 4px solid var(--gold); color: var(--ink-soft); font-size: 14px;">
+<strong>Cross-references:</strong>
+<ul style="margin: 8px 0; padding-left: 20px;">
+  <li>Main site → <a href="../../">peanut-e-sim.github.io/peanut-esim-business-overview/</a></li>
+  <li>Live Google Sheet → <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit" target="_blank">linked sheet</a></li>
+  <li>App demo → <a href="../../app-demos/">app-demos/</a></li>
+  <li>Policies → <a href="../privacy-policy.html">privacy</a> · <a href="../refund-policy.html">refunds</a> · <a href="../terms-of-service.html">terms</a></li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>
