@@ -2671,6 +2671,10 @@
         <span class="lang en">Cost</span>
         <span class="lang jp">コスト</span>
       </button>
+      <button class="tab-btn" data-tab="blueprint">
+        <span class="lang en">📘 Blueprint</span>
+        <span class="lang jp">📘 設計書</span>
+      </button>
       <button class="tab-btn" data-tab="updates">
         <span class="lang en">📌 Updates</span>
         <span class="lang jp">📌 アップデート</span>
@@ -8793,6 +8797,338 @@ Mercury（米国法人銀行口座）
     </div>
   </section>
 
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ─── TAB: BLUEPRINT (Tab 1 in-depth pricing report) ─── -->
+<!-- ============================================================ -->
+<div class="tab-content" data-tab-content="blueprint">
+<div class="container">
+
+<style>
+  .blueprint-doc { background: #FAF6F0; padding: 32px; border-radius: 8px; max-width: 100%; }
+  .blueprint-doc h2 { font-size: 26px; margin: 40px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #D71921; color: #A01218; }
+  .blueprint-doc h3 { font-size: 19px; margin: 24px 0 8px; color: #1A1A1A; }
+  .blueprint-doc h4 { font-size: 14px; margin: 16px 0 6px; color: #4A4A4A; text-transform: uppercase; letter-spacing: .05em; }
+  .blueprint-doc table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 13px; background: white; }
+  .blueprint-doc th { background: #1A1A1A; color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+  .blueprint-doc td { padding: 10px 12px; border-bottom: 1px solid #E5DDD0; vertical-align: top; }
+  .blueprint-doc tr:nth-child(even) td { background: #FCFAF5; }
+  .blueprint-doc .pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+  .blueprint-doc .pill.locked { background: #E0F2E7; color: #2D7A4F; }
+  .blueprint-doc .pill.open { background: #FBEFD9; color: #B07A1F; }
+  .blueprint-doc .pill.flagged { background: #FBE0E0; color: #D71921; }
+  .blueprint-doc blockquote { margin: 14px 0; padding: 12px 18px; background: white; border-left: 3px solid #C9A03B; font-style: italic; color: #4A4A4A; }
+  .blueprint-doc .lede { font-size: 16px; color: #4A4A4A; margin: 14px 0 28px; padding: 16px 20px; background: white; border-left: 4px solid #C9A03B; }
+  .blueprint-doc code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 12px; }
+  .blueprint-doc .toc { background: white; padding: 16px 22px; border: 1px solid #E5DDD0; margin: 20px 0 28px; }
+  .blueprint-doc .toc ul { margin: 0; padding-left: 20px; }
+  .blueprint-doc .toc li { margin: 4px 0; font-size: 14px; }
+</style>
+
+<header class="hero">
+  <span class="doc-tag">PEANUT ESIM · PRICING BLUEPRINT</span>
+  <h1 class="lang en">The <em>Blueprint</em> — every locked price, every decision.</h1>
+  <h1 class="lang jp">設計書 — 価格決定の全ロジック</h1>
+  <p class="lead lang en">Full Tab 1 walk-through: 7 cabin tiers, geo cost buckets, mix assumptions, operating cost. What's locked, why, and what's still open. Last updated 2026-06-01.</p>
+  <p class="lead lang jp">Tab 1 の完全解説：キャビン7段階、地域別コスト、ユーザー構成比、運営コスト。確定事項、根拠、残課題。最終更新 2026-06-01。</p>
+</header>
+
+<div class="blueprint-doc">
+
+<div class="lede">
+This document captures the full reasoning and locked decisions from the deep-dive on Tab 1 of the Peanut eSIM P&amp;L Model. Every retail price, pool size, carryover rule, cost bucket, mix percentage, and operating cost line is explained: <strong>what's in the model</strong>, <strong>why it's there</strong>, and <strong>what's still open</strong>.
+</div>
+
+<div class="toc">
+<strong>Table of Contents</strong>
+<ul>
+  <li><a href="#bp-overview">1. What Tab 1 is and why it matters</a></li>
+  <li><a href="#bp-s1">2. Section 1 — Color Key</a></li>
+  <li><a href="#bp-s2">3. Section 2 — Cabin Class Retail Prices (the locked ladder)</a></li>
+  <li><a href="#bp-s3">4. Section 3 — Geo Cost Buckets</a></li>
+  <li><a href="#bp-s4">5. Section 4 — Cabin-Class Mix</a></li>
+  <li><a href="#bp-s5">6. Section 5 — Operating Cost per User</a></li>
+  <li><a href="#bp-ladder">7. Final locked pricing ladder (summary)</a></li>
+  <li><a href="#bp-backdoors">8. Backdoor exploits closed</a></li>
+  <li><a href="#bp-open">9. Open items / validation queue</a></li>
+</ul>
+</div>
+
+<h2 id="bp-overview">1. What Tab 1 is and why it matters</h2>
+<p>Tab 1 is the <strong>master input sheet</strong> of the entire 16-tab P&amp;L model. Every downstream calculation references the cells in Tab 1. Change one number here, the whole model recalculates.</p>
+<table>
+<tr><th>#</th><th>Section</th><th>What it controls</th></tr>
+<tr><td>1</td><td>Color Key</td><td>Visual legend for the model</td></tr>
+<tr><td>2</td><td>Cabin Class Retail Prices</td><td>The 7-tier price ladder — every plan's price, pool, carry rules</td></tr>
+<tr><td>3</td><td>Geo Cost Buckets</td><td>Wholesale cost per GB by country bucket (drives COGS)</td></tr>
+<tr><td>4</td><td>Cabin-Class Mix</td><td>% of paying users on each tier (drives blended ARPU)</td></tr>
+<tr><td>5</td><td>Operating Cost / User / Month</td><td>What we pay per active user beyond data (Stripe, support, cloud)</td></tr>
+</table>
+
+<h2 id="bp-s1">2. Section 1 — Color Key</h2>
+<table>
+<tr><th>Color</th><th>Meaning</th></tr>
+<tr><td><span style="color:#0000FF;font-weight:600;">Blue text</span></td><td>Hardcoded input — change at will</td></tr>
+<tr><td>Black text</td><td>Formula — do not edit</td></tr>
+<tr><td><span style="color:#008000;font-weight:600;">Green text</span></td><td>Cross-sheet reference</td></tr>
+<tr><td><span style="background:#FFFFCC;padding:0 6px;">Yellow fill</span></td><td>Key assumption — review before pitching</td></tr>
+</table>
+
+<h2 id="bp-s2">3. Section 2 — Cabin Class Retail Prices (the locked ladder)</h2>
+
+<h3>2.1 Economy (PAYG)</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Price</td><td><strong>$4.99 per 1 GB top-up</strong></td></tr>
+<tr><td>Pool</td><td>1 GB per purchase</td></tr>
+<tr><td>Subscription?</td><td>NO — single-purchase, no recurring charge</td></tr>
+<tr><td>Coverage (v1)</td><td>Flat worldwide (zonal in v1.1)</td></tr>
+<tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<h4>5-layer pricing logic for $4.99</h4>
+<table>
+<tr><th>Layer</th><th>Rationale</th></tr>
+<tr><td>Cost floor</td><td>Samurai 1-GB short-trip plans cost $0.56–1.25/GB in cheap zones. $4.99 retail = 75-89% gross margin.</td></tr>
+<tr><td>Market middle</td><td>Airalo ~$4.50, Roamless ~$4.00, Crew SIM $3-7. We sit fair-middle, not discount race.</td></tr>
+<tr><td>Psychological</td><td>Under-$5 = impulse zone. $5.99 = considered purchase.</td></tr>
+<tr><td>Upsell anchor</td><td>3 top-ups = $14.97 → more than Premium Economy $17.99 / 10 GB. Drives upgrade.</td></tr>
+<tr><td>Crew fit</td><td>1 GB matches 1 layover. Selling 10 GB to a 1-trip crew traveler feels wasteful.</td></tr>
+</table>
+
+<h4>Backdoor closure</h4>
+<p><strong>Economy is blocked for active subscribers in the app.</strong> Closes the loophole where a Business user could buy Economy top-ups instead of refueling.</p>
+
+<h3>2.2 Roster Bundle</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Price</td><td><strong>$3.99 per flight bundled, capped at $39.99/month</strong></td></tr>
+<tr><td>Pool model</td><td>Per-flight, not pool-based</td></tr>
+<tr><td>Auto-arming</td><td>YES — eSIM activates when crew lands</td></tr>
+<tr><td>Discount vs Economy</td><td>$1/flight saved (20% off PAYG)</td></tr>
+<tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<h4>The fundamental insight</h4>
+<p>A PAYG user with 5 scheduled flights doesn't buy 5 SIMs — they buy 1-2 when they remember. Real PAYG captures $8-11/mo. Roster Bundle's job is to capture the <strong>whole month upfront</strong> at $19.95 (5 × $3.99) with predictable cash flow.</p>
+
+<h4>5-flight worked example</h4>
+<table>
+<tr><th>City</th><th>Samurai cost</th><th>PAYG ($4.99)</th><th>Bundle ($3.99)</th></tr>
+<tr><td>Tokyo</td><td>$0.90</td><td>$4.99</td><td>$3.99</td></tr>
+<tr><td>Singapore</td><td>$0.83</td><td>$4.99</td><td>$3.99</td></tr>
+<tr><td>London</td><td>$1.25</td><td>$4.99</td><td>$3.99</td></tr>
+<tr><td>Sydney</td><td>$1.04</td><td>$4.99</td><td>$3.99</td></tr>
+<tr><td>Mumbai</td><td>$5.21</td><td>$4.99</td><td>$3.99</td></tr>
+<tr><th>TOTAL</th><th>$9.23</th><th>$24.95</th><th>$19.95</th></tr>
+</table>
+
+<h3>2.3 Premium Economy</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Price</td><td><strong>$17.99/month</strong> (bumped from $12.99 to avoid cannibalizing Roster Bundle)</td></tr>
+<tr><td>Pool</td><td>10 GB monthly</td></tr>
+<tr><td>Carryover</td><td>50% × 1 month</td></tr>
+<tr><td>UX</td><td>1-GB active at a time, manual refill</td></tr>
+<tr><td>Coverage</td><td>Global pool</td></tr>
+<tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<h4>The 1-GB refill UX mechanic</h4>
+<p>Users see only 1 GB active at a time. When it runs out, they tap "Refill from pool." Consumption drops from 62.5% (auto-deduct baseline) to ~40%. The unused half rolls into carry, the other half breaks.</p>
+
+<blockquote>Breakage we earn from honest forgetfulness is fair revenue. Breakage we earn from hidden mechanics is fraud.</blockquote>
+
+<h4>Transparency policy (locked)</h4>
+<table>
+<tr><th>Rule</th><th>Reason</th></tr>
+<tr><td>Pool ALWAYS visible</td><td>Never hide what user paid for</td></tr>
+<tr><td>Refill button visible at all times</td><td>One tap, no hidden friction</td></tr>
+<tr><td>Day-25 reminder push</td><td>Give them every chance to consume</td></tr>
+<tr><td>Carryover shown explicitly</td><td>"Y GB will carry, Z GB will expire"</td></tr>
+</table>
+
+<h4>Per-user economics at $17.99</h4>
+<table>
+<tr><th>Line</th><th>Value</th></tr>
+<tr><td>Revenue</td><td>$17.99</td></tr>
+<tr><td>GB consumed (40% friction)</td><td>4.0 GB</td></tr>
+<tr><td>Wholesale COGS</td><td>$4.80</td></tr>
+<tr><td>+ Refuel net (20% × $4.99)</td><td>+$0.96</td></tr>
+<tr><td><strong>Total profit / user / mo</strong></td><td><strong>$14.15 (74% margin)</strong></td></tr>
+</table>
+
+<h3>2.4 Business ⭐ RECOMMENDED</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Price</td><td><strong>$29.99/month</strong> (bumped from $24.99)</td></tr>
+<tr><td>Pool</td><td>15 GB</td></tr>
+<tr><td>Carryover</td><td>70% × 1 month</td></tr>
+<tr><td>Perks</td><td>Priority support + crew recs unlocked</td></tr>
+<tr><td>Persona</td><td>Default subscriber — senior crew, full-rota</td></tr>
+<tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<h4>Why $29.99 not $24.99</h4>
+<p>$17.99 → $24.99 was only +$7 (small bump). +$12 to $29.99 signals a meaningful upgrade. Market room is huge (Airalo $50 for 20 GB). Adds ~$480K/year at 100K users from this single decision.</p>
+
+<h4>Per-user economics at $29.99</h4>
+<table>
+<tr><th>Line</th><th>Value</th></tr>
+<tr><td>Revenue</td><td>$29.99</td></tr>
+<tr><td>GB consumed (45% — heavier users)</td><td>6.75 GB</td></tr>
+<tr><td>Wholesale COGS</td><td>$8.10</td></tr>
+<tr><td>+ Refuel net (25% attach)</td><td>+$1.20</td></tr>
+<tr><td><strong>Total profit / user / mo</strong></td><td><strong>$23.09 (74% margin)</strong></td></tr>
+</table>
+
+<h3>2.5 First</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Price</td><td><strong>$39.99/month</strong></td></tr>
+<tr><td>Pool</td><td>25 GB</td></tr>
+<tr><td>Carryover</td><td>100% × 2 months</td></tr>
+<tr><td>Perks</td><td>Concierge layer</td></tr>
+<tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<p>We created two First tiers (First + First Suite) mirroring Emirates' actual cabin structure. First captures purser-grade crew who feel above Business but not in Suite territory.</p>
+
+<h4>The pool-expansion insight</h4>
+<p>The 1-GB refill friction caps actual consumption at ~13-14 GB regardless of pool size. <strong>Pool expansion is essentially free to us.</strong> This is why First's pool was bumped 20 → 25 GB without changing price.</p>
+
+<h3>2.6 First Suite</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Price</td><td><strong>$49.99/month</strong></td></tr>
+<tr><td>Pool</td><td>40 GB</td></tr>
+<tr><td>Carryover</td><td>100% × 2 months</td></tr>
+<tr><td>Per-GB</td><td><strong>$1.25 — best per-GB on the entire ladder</strong></td></tr>
+<tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<p>The anchor product. At $1.25/GB it's the cheapest unit price on the price card — creates the "this is the best deal" upgrade pull.</p>
+
+<h3>2.7 Cockpit</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Price</td><td><strong>$299/year</strong> (annual prepay only)</td></tr>
+<tr><td>Pool</td><td>12 GB monthly</td></tr>
+<tr><td>Emergency bank</td><td>12 GB lifetime — <strong>refreshes annually</strong> (Option A locked)</td></tr>
+<tr><td>Lockin</td><td>12 months</td></tr>
+<tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<h4>Critical reframing — NOT pilot-occupation</h4>
+<p>"Cockpit" = "you be the pilot of your own data." Not pilot-only. Any user can buy it. The promise: <em>set it for a year, stop thinking about plan management.</em></p>
+
+<h4>Per-user annual economics</h4>
+<table>
+<tr><th>Line</th><th>Value</th></tr>
+<tr><td>Annual revenue (prepaid)</td><td>$299.00</td></tr>
+<tr><td>Annual pool capacity</td><td>156 GB (144 monthly + 12 emergency)</td></tr>
+<tr><td>Annual COGS</td><td>$106.56</td></tr>
+<tr><td><strong>Annual profit per user</strong></td><td><strong>$192.44 (64% margin)</strong></td></tr>
+</table>
+
+<h3>2.8 Refuel</h3>
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Price</td><td><strong>$4.99 per 1 GB</strong> (dropped from $5.99 — matches Economy)</td></tr>
+<tr><td>Available to</td><td>Active subscribers ONLY</td></tr>
+<tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<h2 id="bp-s3">4. Section 3 — Geo Cost Buckets</h2>
+<table>
+<tr><th>Bucket</th><th>Countries</th><th>$/GB (real Samurai)</th><th>% mix (placeholder)</th></tr>
+<tr><td>Tier-A (cheap)</td><td>JP, UK, SG, MY, HK, KR, US</td><td><strong>$0.85</strong></td><td>60%</td></tr>
+<tr><td>Tier-B (medium)</td><td>CA, AU, NZ, VN, UAE</td><td><strong>$1.40</strong></td><td>25%</td></tr>
+<tr><td>Tier-C (expensive)</td><td>IN, BR, SA, ZA</td><td><strong>$8.50</strong></td><td>15%</td></tr>
+<tr><td><strong>Blended cost / GB</strong></td><td></td><td><strong>$2.13</strong></td><td>—</td></tr>
+</table>
+
+<p>Costs are real Samurai data (locked). The % mix is flagged as placeholder — needs Akito to validate with 5-10 sample crew rosters.</p>
+
+<h2 id="bp-s4">5. Section 4 — Cabin-Class Mix</h2>
+<table>
+<tr><th>Tier</th><th>%</th><th>Confidence</th></tr>
+<tr><td>Economy (PAYG)</td><td>50%</td><td>Medium</td></tr>
+<tr><td>Roster Bundle</td><td>18%</td><td>Low</td></tr>
+<tr><td>Premium Economy</td><td>13%</td><td>Medium</td></tr>
+<tr><td>Business ⭐</td><td>8%</td><td>Medium</td></tr>
+<tr><td>First</td><td>3%</td><td>Low</td></tr>
+<tr><td>First Suite</td><td>2%</td><td>Low</td></tr>
+<tr><td>Cockpit</td><td>3%</td><td>Low</td></tr>
+<tr><td>Refuel attach</td><td>30%</td><td>Medium</td></tr>
+</table>
+
+<p>Honest assessment: these are informed guesses from general SaaS benchmarks. No public data exists for "eSIM products sold to airline cabin crew." Tab 7 (Behavior Sensitivity) now stress-tests this with 5 scenarios. <strong>Blended ARPU range: $14.55 — $21.48</strong> (current model $17.52 = middle).</p>
+
+<h2 id="bp-s5">6. Section 5 — Operating Cost per User per Month</h2>
+<table>
+<tr><th>Line</th><th>Value</th><th>Status</th></tr>
+<tr><td>Cloud / API per user</td><td>$0.15</td><td><span class="pill open">Placeholder OK</span></td></tr>
+<tr><td><strong>Payment processing</strong></td><td><strong>$1.20</strong> (3-scenario range)</td><td><span class="pill locked">Locked</span></td></tr>
+<tr><td>Customer support amortized</td><td>$0.30</td><td><span class="pill flagged">Phase-based fix needed</span></td></tr>
+<tr><td>SMS / OTP / verification</td><td>$0.05</td><td><span class="pill open">Placeholder OK</span></td></tr>
+<tr><td>Hosting + dev tools</td><td>$0.10</td><td><span class="pill open">Placeholder OK</span></td></tr>
+<tr><td><strong>TOTAL OPEX</strong></td><td><strong>$1.80/user/mo</strong></td><td></td></tr>
+</table>
+
+<h4>Payment processing — 3-scenario range</h4>
+<table>
+<tr><th>Scenario</th><th>$/user/mo</th><th>At 100K users</th></tr>
+<tr><td>Optimistic (Stripe-only)</td><td>$1.00</td><td>$50K/mo</td></tr>
+<tr><td><strong>Realistic (mixed) ⭐</strong></td><td><strong>$1.20</strong></td><td>$120K/mo</td></tr>
+<tr><td>Conservative (IAP-heavy)</td><td>$1.50</td><td>$150K/mo</td></tr>
+</table>
+
+<h2 id="bp-ladder">7. Final locked pricing ladder (summary)</h2>
+<table>
+<tr><th>Tier</th><th>Price</th><th>Pool</th><th>Per-GB</th><th>Carry</th><th>Mix %</th></tr>
+<tr><td>Economy (PAYG)</td><td>$4.99 / 1 GB top-up</td><td>per-purchase</td><td>$4.99</td><td>none</td><td>50%</td></tr>
+<tr><td>Roster Bundle</td><td>$3.99/flight (cap $39.99)</td><td>per-flight</td><td>n/a</td><td>none</td><td>18%</td></tr>
+<tr><td>Premium Economy</td><td>$17.99/mo</td><td>10 GB</td><td>$1.80</td><td>50% × 1mo</td><td>13%</td></tr>
+<tr><td>Business ⭐</td><td>$29.99/mo</td><td>15 GB</td><td>$2.00</td><td>70% × 1mo</td><td>8%</td></tr>
+<tr><td>First</td><td>$39.99/mo</td><td>25 GB</td><td>$1.60</td><td>100% × 2mo</td><td>3%</td></tr>
+<tr><td>First Suite</td><td>$49.99/mo</td><td>40 GB</td><td><strong>$1.25</strong></td><td>100% × 2mo</td><td>2%</td></tr>
+<tr><td>Cockpit (annual)</td><td>$299/year</td><td>12 GB + 12 emergency</td><td>$1.92</td><td>100% × 2mo</td><td>3%</td></tr>
+<tr><td>Refuel</td><td>$4.99 / 1 GB</td><td>subscribers only</td><td>$4.99</td><td>none</td><td>30% attach</td></tr>
+</table>
+
+<h2 id="bp-backdoors">8. Backdoor exploits closed</h2>
+<table>
+<tr><th>#</th><th>Exploit</th><th>Closure</th></tr>
+<tr><td>1</td><td>Subscriber buys Economy ($4.99/GB) instead of refuel ($5.99/GB)</td><td>Refuel dropped to $4.99 + Economy hidden from subscribers</td></tr>
+<tr><td>2</td><td>Business users downgrade to Cockpit per-GB</td><td>Annual lockin + emergency bank differentiates</td></tr>
+<tr><td>3</td><td>Refuel exploit</td><td>Refuel matches Economy — fair, no advantage</td></tr>
+<tr><td>4</td><td>Roster heavy users shift to Cockpit</td><td>Fair tradeoff — give up auto-arming for cheaper pool</td></tr>
+<tr><td>5</td><td>Premium vs Cockpit backdoor</td><td>Cockpit costs $83 more annually but bundles emergency + lockin</td></tr>
+</table>
+
+<h2 id="bp-open">9. Open items / validation queue</h2>
+<table>
+<tr><th>Item</th><th>Owner</th><th>Priority</th></tr>
+<tr><td>Validate cabin-class mix % with 20-30 crew interviews</td><td>Akito</td><td>High</td></tr>
+<tr><td>Validate Tier-A/B/C distribution with 5-10 sample rosters</td><td>Akito</td><td>High</td></tr>
+<tr><td>Convert flat $0.30 customer support to phase-based</td><td>Balraj / Claude</td><td>Medium</td></tr>
+<tr><td>Add Fixed Monthly Burn section (founder salary, legal, insurance)</td><td>Balraj / Claude</td><td>Medium</td></tr>
+<tr><td>Validate iOS payment routing — Stripe-first vs Apple IAP</td><td>Balraj (tech)</td><td>Medium</td></tr>
+<tr><td>Lock final retail prices for India/Brazil/Africa zonal pricing (v1.1)</td><td>Balraj / Akito</td><td>Low (3-6mo post-launch)</td></tr>
+</table>
+
+<p style="margin-top:32px;color:#4A4A4A;font-size:13px;">
+<strong>Cross-references:</strong> Per-plan deep dives live in the xlsx — <code>Economy Logic</code>, <code>Roster Bundle Logic</code>, <code>Premium Economy Logic</code>, <code>Business Logic</code>, <code>First Logic</code>, <code>First Suite Logic</code>, <code>Cockpit Logic</code>. Sensitivity in Tab 7. Live Google Sheet syncs all changes.
+<br><br>
+<a href="docs/downloads/tab1-in-depth-report-2026-06-01.html" target="_blank">Open as standalone document ↗</a> ·
+<a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit" target="_blank">Open live Google Sheet ↗</a> ·
+<a href="docs/downloads/Peanut-eSIM-PL-Model-2026-05-31.xlsx" download>Download xlsx model</a>
+</p>
+
+</div>
 </div>
 </div>
 
