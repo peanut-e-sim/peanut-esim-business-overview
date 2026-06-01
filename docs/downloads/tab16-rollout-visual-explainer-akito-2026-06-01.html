@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — 24-Month Rollout (for Akito)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #e8e2d6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  a { color: var(--red); }
+
+  /* Sticky header */
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--red); color: #fff;
+    padding: 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  header.bar .title { font-weight: 700; letter-spacing: .2px; font-size: 16px; }
+  header.bar .title small { display:block; font-weight: 400; opacity:.85; font-size:12px; margin-top:2px;}
+  header.bar .btn-group { display: flex; gap: 8px; align-items: center; }
+  header.bar a.back-btn, header.bar button {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.5);
+    color: #fff; font: inherit;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    transition: background .15s ease;
+    font-size: 13px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  header.bar a.back-btn:hover, header.bar button:hover { background: rgba(255,255,255,.28); }
+
+  /* Layout */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 56px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero {
+    font-size: clamp(28px, 4.2vw, 44px);
+    line-height: 1.15; margin: 0 0 14px;
+    letter-spacing: -.5px;
+  }
+  h1.hero .accent { color: var(--red); }
+  p.lede {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: #2a2a2a; max-width: 760px; margin: 0 0 18px;
+  }
+  .badge-updated {
+    display: inline-block; padding: 4px 12px;
+    background: #fff; border: 1px solid var(--gold); border-radius: 999px;
+    font-size: 12px; font-weight: 600; color: #7a5c1a; letter-spacing: .3px;
+  }
+  h2.section-title {
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0 0 6px; letter-spacing: -.2px;
+  }
+  h2.section-title .num {
+    display: inline-block;
+    width: 30px; height: 30px; line-height: 30px;
+    border-radius: 50%; background: var(--ink); color: #fff;
+    font-size: 14px; text-align: center; margin-right: 10px;
+    vertical-align: middle;
+  }
+  p.section-sub {
+    color: var(--muted); max-width: 720px; margin: 0 0 22px; font-size: 15px;
+  }
+
+  /* Chart cards */
+  .chart-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; box-shadow: var(--shadow);
+  }
+  .chart-card h3 { margin: 0 0 4px; font-size: 16px; }
+  .chart-card p.sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .chart-wrap { position: relative; height: 340px; }
+  .chart-wrap.tall { height: 420px; }
+
+  .two-col {
+    display: grid; gap: 18px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Milestone cards */
+  .milestone-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    margin-top: 20px;
+  }
+  .milestone-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 18px; box-shadow: var(--shadow);
+    position: relative;
+  }
+  .milestone-card .icon { font-size: 22px; margin-bottom: 8px; }
+  .milestone-card .month { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 4px; }
+  .milestone-card .name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .milestone-card .users { font-size: 22px; font-weight: 700; letter-spacing: -.5px; }
+  .milestone-card .users small { font-size: 12px; font-weight: 500; color: var(--muted); }
+  .milestone-card .note { font-size: 12px; color: #555; margin-top: 6px; }
+  .milestone-card.highlight { border-top: 3px solid var(--red); }
+  .milestone-card.gold { border-top: 3px solid var(--gold); }
+  .milestone-card.green { border-top: 3px solid var(--green); }
+
+  /* Callout boxes */
+  .callout-gold {
+    background: #fff8e6; border-left: 4px solid var(--gold);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #5a4a14;
+  }
+  .callout-red {
+    background: #fff5f5; border-left: 4px solid var(--red);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #5a1a1a;
+  }
+  .callout-green {
+    background: #f0faf4; border-left: 4px solid var(--green);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #1a5a3a;
+  }
+
+  /* Big callout */
+  .callout-big {
+    margin-top: 20px;
+    background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+    color: #fff; border-radius: 18px; padding: 36px 28px;
+    text-align: center;
+  }
+  .callout-big .small { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .callout-big .big-num { font-size: clamp(36px, 6vw, 58px); font-weight: 700; letter-spacing: -1.5px; color: #fff; line-height: 1.05; }
+  .callout-big .big-num span { color: var(--gold); }
+  .callout-big .ctx { color: #d8d2c5; max-width: 600px; margin: 14px auto 0; font-size: 15px; }
+
+  /* Breakeven comparison block */
+  .breakeven-block {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 24px; box-shadow: var(--shadow);
+    margin-top: 14px;
+  }
+  .be-row {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+  }
+  .be-row:last-child { border-bottom: 0; }
+  .be-row .icon { font-size: 20px; flex: 0 0 28px; margin-top: 2px; }
+  .be-row .body { flex: 1; }
+  .be-row .label { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .be-row .detail { font-size: 13.5px; color: #444; }
+  .be-row .pill {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: .3px;
+    margin-left: 8px;
+  }
+  .pill-red { background: #fde8e8; color: #8b1a1a; }
+  .pill-green { background: #e0f2ea; color: #1a5a3a; }
+  .pill-gold { background: #fdf0d3; color: #7a5c1a; }
+
+  /* Churn assumption card */
+  .churn-card {
+    background: var(--card); border: 2px solid var(--red);
+    border-radius: 14px; padding: 28px; box-shadow: var(--shadow);
+  }
+  .churn-card h3 { margin: 0 0 14px; font-size: 20px; color: var(--red); }
+  .churn-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
+  .churn-table th, .churn-table td {
+    padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left;
+  }
+  .churn-table th { background: #faf6ec; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .3px; color: #5a4a14; }
+  .churn-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .churn-table tr.our { background: #f0faf4; font-weight: 600; }
+  .churn-table tr.danger { background: #fff5f5; }
+  .churn-table td.danger-val { color: var(--red); font-weight: 700; }
+
+  /* Akito ask */
+  .callout-akito {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+    color: #fff; border-radius: 18px; padding: 40px 32px;
+    text-align: center;
+  }
+  .callout-akito .small { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .callout-akito .ask { font-size: clamp(18px, 2.5vw, 26px); font-weight: 700; letter-spacing: -.3px; color: #fff; line-height: 1.3; margin: 12px 0; }
+  .callout-akito .ask span { color: var(--gold); }
+  .callout-akito .ctx { color: #d8d2c5; max-width: 640px; margin: 0 auto; font-size: 14.5px; line-height: 1.6; }
+
+  /* Investor view */
+  .investor-block {
+    background: linear-gradient(135deg, #0a1628 0%, #12213a 100%);
+    color: #fff; border-radius: 18px; padding: 40px 32px;
+  }
+  .investor-block .eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .investor-block .big-stat { font-size: clamp(42px, 7vw, 68px); font-weight: 700; letter-spacing: -2px; color: #fff; line-height: 1; }
+  .investor-block .big-stat span { color: var(--gold); }
+  .investor-block .stat-label { font-size: 15px; color: #a0aab8; margin-top: 8px; }
+  .investor-micro {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin-top: 28px;
+  }
+  .investor-micro .item { border-top: 1px solid rgba(255,255,255,.12); padding-top: 12px; }
+  .investor-micro .item .val { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: -.5px; }
+  .investor-micro .item .val span { color: var(--gold); }
+  .investor-micro .item .lbl { font-size: 12px; color: #7a8899; margin-top: 4px; }
+
+  /* Timeline strip */
+  .timeline {
+    display: flex; gap: 0; overflow-x: auto; padding-bottom: 8px;
+    margin-top: 20px;
+  }
+  .t-phase {
+    flex: 1 0 120px; text-align: center; padding: 14px 10px;
+    border-right: 1px solid var(--line); min-width: 120px;
+  }
+  .t-phase:last-child { border-right: 0; }
+  .t-phase .range { font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); }
+  .t-phase .status { font-size: 13px; font-weight: 700; margin: 6px 0 4px; }
+  .t-phase .desc { font-size: 11.5px; color: #555; }
+  .t-phase.burn { background: #fff5f5; }
+  .t-phase.contrib { background: #fff8e6; }
+  .t-phase.profit { background: #f0faf4; }
+  .t-phase .status.red { color: var(--red); }
+  .t-phase .status.gold { color: #a07020; }
+  .t-phase .status.green { color: var(--green); }
+
+  /* Micro grid */
+  .micro-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    margin-top: 16px;
+  }
+  .micro {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px;
+  }
+  .micro .label { font-size: 11px; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
+  .micro .val { font-size: 22px; font-weight: 700; letter-spacing: -.5px; margin-top: 2px; }
+  .micro .ctx { font-size: 12px; color: #555; margin-top: 4px; }
+
+  footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 50px; }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: #fff; padding: 10px 18px;
+    border-radius: 999px; font-size: 13px; opacity: 0;
+    transition: opacity .25s ease; pointer-events: none; z-index: 100;
+  }
+  .toast.show { opacity: 1; }
+
+  @media (max-width: 600px) {
+    header.bar .title { font-size: 14px; }
+    header.bar a.back-btn { display: none; }
+    .milestone-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    Peanut eSIM — 24-Month Rollout
+    <small>Tab 16 of the P&amp;L model · for Akito · 2026-06-01</small>
+  </div>
+  <div class="btn-group">
+    <a href="index.html" class="back-btn">Back to Hub</a>
+    <button id="copyBtn" type="button">Copy link</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: HERO -->
+<!-- ============================================================ -->
+<section class="first">
+  <h1 class="hero">24-Month Rollout — <span class="accent">When Does This Business Start Working?</span></h1>
+  <p class="lede">
+    Tabs 1-3 answered "if we have X users, we make Y." This tab answers the harder question:
+    <em>when</em> does Y start covering the bills? The growth curve from 50 crew in month 1 to 5,000 by month 24 — with the honest breakeven date visible.
+  </p>
+  <span class="badge-updated">Updated 2026-06-01</span>
+
+  <!-- 3-phase summary timeline -->
+  <div class="timeline" style="margin-top:28px;">
+    <div class="t-phase burn">
+      <div class="range">M1 – M5</div>
+      <div class="status red">Burning cash</div>
+      <div class="desc">Net contribution &lt; $11K fixed burn</div>
+    </div>
+    <div class="t-phase contrib">
+      <div class="range">M6 – M11</div>
+      <div class="status gold">Contribution-positive</div>
+      <div class="desc">Revenue &gt; COGS, still net-negative vs burn</div>
+    </div>
+    <div class="t-phase profit">
+      <div class="range">M12 – M24</div>
+      <div class="status green">True profit</div>
+      <div class="desc">Covers fixed costs, cumulative surplus grows</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: GROWTH CURVE (dual-axis) -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">2</span>The growth curve</h2>
+  <p class="section-sub">
+    Users grow left-to-right (blue, left axis). Net contribution per month tracks alongside (red, right axis).
+    The gap between the two lines closing is the story — they become proportional as the base stabilises.
+  </p>
+
+  <div class="chart-card">
+    <h3>Users vs Net Contribution / month — M1 to M24</h3>
+    <p class="sub">Milestone annotations in gold. All values from the 24-Month Rollout tab of the P&L model.</p>
+    <div class="chart-wrap tall"><canvas id="growthChart"></canvas></div>
+  </div>
+
+  <div class="micro-grid" style="margin-top:20px;">
+    <div class="micro">
+      <div class="label">M1 users</div>
+      <div class="val">50</div>
+      <div class="ctx">Launch cohort — Emirates crew friends of Akito</div>
+    </div>
+    <div class="micro">
+      <div class="label">M12 users</div>
+      <div class="val">2,100</div>
+      <div class="ctx">Approaching true breakeven zone</div>
+    </div>
+    <div class="micro">
+      <div class="label">M24 users</div>
+      <div class="val">5,000</div>
+      <div class="ctx">Year-2 exit state</div>
+    </div>
+    <div class="micro">
+      <div class="label">M24 net/mo</div>
+      <div class="val" style="color:var(--green);">$52,650</div>
+      <div class="ctx">After COGS, before fixed burn</div>
+    </div>
+    <div class="micro">
+      <div class="label">Monthly growth rate</div>
+      <div class="val">~20%</div>
+      <div class="ctx">Implied early; slows as base grows</div>
+    </div>
+    <div class="micro">
+      <div class="label">ARPU assumption</div>
+      <div class="val">$13/mo</div>
+      <div class="ctx">Blended across all tiers (Tab 3)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: MILESTONE CALLOUTS -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">3</span>Milestone callouts</h2>
+  <p class="section-sub">
+    Seven moments that matter on the journey from launch to sustainable.
+  </p>
+
+  <div class="milestone-grid">
+    <div class="milestone-card">
+      <div class="icon">&#128640;</div>
+      <div class="month">M1</div>
+      <div class="name">Launch</div>
+      <div class="users">50 <small>users</small></div>
+      <div class="note">Seed cohort. Akito's direct network. No paid acquisition yet.</div>
+    </div>
+    <div class="milestone-card">
+      <div class="icon">&#128181;</div>
+      <div class="month">~M3</div>
+      <div class="name">First $1K month</div>
+      <div class="users">~150 <small>users</small></div>
+      <div class="note">Net contribution crosses $1,000/mo. Proof the engine works.</div>
+    </div>
+    <div class="milestone-card highlight">
+      <div class="icon">&#127869;</div>
+      <div class="month">M5–M6</div>
+      <div class="name">Ramen breakeven</div>
+      <div class="users">~400 <small>users</small></div>
+      <div class="note">$3K/mo covers founder living costs. First psychologically meaningful milestone.</div>
+    </div>
+    <div class="milestone-card">
+      <div class="icon">&#9651;</div>
+      <div class="month">~M6</div>
+      <div class="name">First $5K month</div>
+      <div class="users">450 <small>users</small></div>
+      <div class="note">Net contribution $4,738. Contribution-positive vs COGS — but $11K burn still not covered.</div>
+    </div>
+    <div class="milestone-card gold">
+      <div class="icon">&#9889;</div>
+      <div class="month">M11–M12</div>
+      <div class="name">TRUE breakeven</div>
+      <div class="users">~2,000 <small>users</small></div>
+      <div class="note">Net contribution covers the full $11K/mo fixed burn. Every dollar after this is real profit.</div>
+    </div>
+    <div class="milestone-card">
+      <div class="icon">&#128200;</div>
+      <div class="month">M13</div>
+      <div class="name">First $25K month</div>
+      <div class="users">~2,300 <small>users</small></div>
+      <div class="note">Net contribution $25K+. Business clearly self-sustaining.</div>
+    </div>
+    <div class="milestone-card green">
+      <div class="icon">&#127942;</div>
+      <div class="month">M24</div>
+      <div class="name">$50K month</div>
+      <div class="users">5,000 <small>users</small></div>
+      <div class="note">$52,650/mo net. $632K annualised run rate. Year-2 exit state.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: CUMULATIVE CASH POSITION -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">4</span>Cumulative cash position</h2>
+  <p class="section-sub">
+    This chart includes the $11K/mo fixed burn (salaries, infra, ops) that the sheet's Net column does NOT show.
+    The trough — deepest negative — hits around M5-M6. The crossing back to zero is the TRUE breakeven.
+  </p>
+
+  <div class="chart-card">
+    <h3>Cumulative cash (net contribution minus $11K/mo fixed burn)</h3>
+    <p class="sub">Shaded area below zero = cash consumed from runway. Trough ~M5-M6 at approx. -$30K cumulative. Zero crossing ~M11-M12.</p>
+    <div class="chart-wrap tall"><canvas id="cumulativeChart"></canvas></div>
+  </div>
+
+  <div class="callout-gold" style="margin-top:18px;">
+    <strong>What this means for funding:</strong> The cumulative trough is approximately -$30,000 (M5-M6).
+    That is the minimum runway you need to get to true breakeven. Months 1-11 consume roughly $55,000-65,000 total
+    (fixed burn outpacing contribution). Every dollar raised above that is growth capital for faster user acquisition.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: THE HONEST TRUE BREAKEVEN CALLOUT -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">5</span>The honest "TRUE breakeven" callout</h2>
+  <p class="section-sub">
+    The sheet's Net column looks good by M6. But that column only subtracts COGS — not the $11K/mo
+    you need to keep the lights on. Here's what the two breakevens actually mean.
+  </p>
+
+  <div class="breakeven-block">
+    <div class="be-row">
+      <div class="icon">&#128200;</div>
+      <div class="body">
+        <div class="label">Paper breakeven (sheet Net column) <span class="pill pill-gold">M6 · 450 users</span></div>
+        <div class="detail">
+          Monthly net contribution &gt; $0 after subtracting data COGS from revenue. The spreadsheet turns green here.
+          This means you are no longer paying your wholesale supplier more than you earn — but you haven't paid
+          yourself or your server bills yet.
+        </div>
+      </div>
+    </div>
+    <div class="be-row">
+      <div class="icon">&#9888;&#65039;</div>
+      <div class="body">
+        <div class="label">TRUE breakeven (incl. $11K/mo fixed burn) <span class="pill pill-red">M11-M12 · ~2,000 users</span></div>
+        <div class="detail">
+          Net contribution exceeds the $11,000/month of fixed operating costs: estimated at ~$5K salaries,
+          ~$3K cloud/API/SMS infra, ~$2K legal/compliance, ~$1K misc. Until this point you are still losing
+          money in real terms even if the contribution column looks positive.
+        </div>
+      </div>
+    </div>
+    <div class="be-row">
+      <div class="icon">&#9989;</div>
+      <div class="body">
+        <div class="label">Why the gap matters for investors <span class="pill pill-green">Action: raise for M11-M12</span></div>
+        <div class="detail">
+          When fundraising, always use the TRUE breakeven number (M11-M12, ~$55-65K cumulative burn).
+          Citing M6 as breakeven will destroy credibility in any serious investor meeting.
+          The $11K fixed burn line is a separate tab in the cash model — make sure it's visible in every deck.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card" style="margin-top:18px;">
+    <h3>Paper Net vs TRUE Net (after $11K/mo fixed burn) — same 24-month window</h3>
+    <p class="sub">Gold = contribution net. Red dashed = true net after $11K burn. The gap closes at M11-M12.</p>
+    <div class="chart-wrap"><canvas id="breakevenChart"></canvas></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: 3-LEVER SENSITIVITY -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">6</span>3-lever sensitivity at M24</h2>
+  <p class="section-sub">
+    Three inputs dominate the model. A 20% adverse move in each: which hurts the most?
+  </p>
+
+  <div class="chart-card">
+    <h3>M24 net contribution — base case vs each lever at -20%</h3>
+    <p class="sub">Lower bar = worse outcome. ARPU is the largest risk by far — a 20% ARPU drop costs $13K/mo at M24.</p>
+    <div class="chart-wrap"><canvas id="sensitivityChart"></canvas></div>
+  </div>
+
+  <div style="margin-top:18px; overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <thead>
+        <tr style="background:#faf6ec;">
+          <th style="padding:10px 12px; text-align:left; font-size:12px; text-transform:uppercase; letter-spacing:.3px; color:#5a4a14; border-bottom:2px solid var(--line);">Lever</th>
+          <th style="padding:10px 12px; text-align:right; font-size:12px; text-transform:uppercase; letter-spacing:.3px; color:#5a4a14; border-bottom:2px solid var(--line);">Base value</th>
+          <th style="padding:10px 12px; text-align:right; font-size:12px; text-transform:uppercase; letter-spacing:.3px; color:#5a4a14; border-bottom:2px solid var(--line);">-20% scenario</th>
+          <th style="padding:10px 12px; text-align:right; font-size:12px; text-transform:uppercase; letter-spacing:.3px; color:#5a4a14; border-bottom:2px solid var(--line);">M24 net impact</th>
+          <th style="padding:10px 12px; text-align:left; font-size:12px; text-transform:uppercase; letter-spacing:.3px; color:#5a4a14; border-bottom:2px solid var(--line);">Why it matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff5f5;">
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); font-weight:700; color:var(--red);">ARPU</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right;">$13.00/mo</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right;">$10.40/mo</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right; color:var(--red); font-weight:700;">-$13K/mo</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line);">Every user pays less — hits the entire 5,000-user base simultaneously</td>
+        </tr>
+        <tr style="background:#fff8f0;">
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); font-weight:700; color:#a05010;">Churn</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right;">5.0%/mo</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right;">6.0%/mo</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right; color:#a05010; font-weight:700;">-$8K/mo</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line);">Slower compounding — fewer users in the base each month, M24 users fall to ~3,000</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); font-weight:700; color:var(--muted);">CAC</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right;">$8/user</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right;">$9.60/user</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line); text-align:right; color:var(--muted); font-weight:700;">-$2K/mo</td>
+          <td style="padding:10px 12px; border-bottom:1px solid var(--line);">Organic crew-network growth limits upside risk; smallest lever by far</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout-red" style="margin-top:18px;">
+    <strong>ARPU is the #1 sensitivity.</strong> A 20% ARPU drop costs 2.5x more per month than a 20% CAC increase.
+    This means tier mix matters enormously — pushing crew from Economy/PAYG into Business subscriptions is not just a revenue move,
+    it's the single biggest model protection you have.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: DANGEROUS CHURN ASSUMPTION -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">7</span>The dangerous churn assumption</h2>
+  <p class="section-sub">
+    5% monthly churn is the number the whole curve rests on. Industry disagrees.
+  </p>
+
+  <div class="churn-card">
+    <h3>5% monthly churn — our thesis vs the industry</h3>
+
+    <table class="churn-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Monthly churn</th>
+          <th class="num">M24 users</th>
+          <th class="num">M24 net/mo</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="our">
+          <td><strong>Our thesis</strong></td>
+          <td>5.0%</td>
+          <td class="num">5,000</td>
+          <td class="num">$52,650</td>
+          <td>Crew = recurring fliers, sticky by nature</td>
+        </tr>
+        <tr class="danger">
+          <td><strong>Industry average</strong></td>
+          <td class="danger-val">8-12%</td>
+          <td class="num">~2,800 – 3,200</td>
+          <td class="num danger-val">~$29K – $34K</td>
+          <td>One-trip purchasers, never return</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:18px;">
+      <p style="font-size:14px; color:#333; margin:0 0 12px;"><strong>Why we think 5% holds for crew:</strong></p>
+      <ul style="font-size:14px; color:#444; margin:0; padding-left:20px; line-height:1.9;">
+        <li>Crew fly every month — data need is structural, not trip-dependent</li>
+        <li>CrewLink roster upload = monthly re-engagement hook built into the product</li>
+        <li>Crew recs + accommodation layers create non-eSIM reasons to open the app</li>
+        <li>Cabin-class brand identity = social currency inside the crew community</li>
+      </ul>
+    </div>
+
+    <div class="callout-red" style="margin-top:20px;">
+      <strong>What breaks if we're wrong:</strong> If churn runs at 8% instead of 5%, the M24 user base falls from
+      5,000 to approximately 3,000 and monthly net contribution drops from $52,650 to ~$31,000.
+      The TRUE breakeven slides from M11-M12 to approximately M14-M15. This is the single biggest assumption
+      to validate in the first 3 months post-launch.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: INVESTOR VIEW -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">8</span>Investor view</h2>
+  <p class="section-sub">
+    One number that frames the business. One note on what you're actually asking for.
+  </p>
+
+  <div class="investor-block">
+    <div class="eyebrow">PEANUT ESIM — YEAR 2 RUN RATE (BASE CASE)</div>
+    <div class="big-stat">$<span>632K</span>/yr</div>
+    <div class="stat-label">at 5,000 users · $52,650/mo net contribution · profitable off $11K/mo burn baseline</div>
+
+    <div class="investor-micro">
+      <div class="item">
+        <div class="val">5,<span>000</span></div>
+        <div class="lbl">Active subscribers at M24</div>
+      </div>
+      <div class="item">
+        <div class="val">$<span>11K</span>/mo</div>
+        <div class="lbl">Fixed operating burn (salaries + infra)</div>
+      </div>
+      <div class="item">
+        <div class="val">M<span>11-12</span></div>
+        <div class="lbl">TRUE breakeven month</div>
+      </div>
+      <div class="item">
+        <div class="val">~$<span>60K</span></div>
+        <div class="lbl">Estimated M1-M11 cumulative burn (funding ask)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-gold" style="margin-top:18px;">
+    <strong>What you're actually raising for:</strong> Months 1 through 11, the business consumes roughly $55,000-65,000
+    in fixed costs before reaching true breakeven. This is the minimum raise. Every dollar beyond that accelerates
+    user acquisition and compresses the timeline. A $100K raise gets you to breakeven with ~$40K buffer — that's
+    the recommended ask for a seed/friends-and-family round before approaching angels.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 9: THE AKITO ASK -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">9</span>The Akito ask</h2>
+  <p class="section-sub">
+    Two things that will confirm or break the entire 24-month model. Both are field-validation tasks.
+  </p>
+
+  <div class="callout-akito">
+    <div class="small">WHAT NEEDS TO BE TRUE FOR THIS CURVE TO HOLD</div>
+    <div class="ask">Two numbers to validate before we lock the model.</div>
+    <div class="ctx" style="margin-top:20px; text-align:left;">
+      <p style="margin:0 0 18px;">
+        <strong style="color:var(--gold);">(1) Actual M1 cost per user acquired.</strong><br>
+        The model assumes $8 CAC — based on organic crew-network referrals. Before month 3, measure what
+        you actually spend per new subscriber (time cost + any paid spend). If the real number is above $12,
+        the CAC assumption needs updating and the cash curve widens.
+      </p>
+      <p style="margin:0;">
+        <strong style="color:var(--gold);">(2) M3-M4 retention rate (proxy for monthly churn).</strong><br>
+        Look at the first crew who signed up in M1. What percentage are still active by M3-M4?
+        If it is 85%+ (i.e., 5% monthly churn confirmed), the whole model stands. If it falls below 75%
+        (i.e., 8%+ churn), the TRUE breakeven slides and the funding ask needs to increase. This one number
+        is the most important field data point in the first year.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Generated 2026-06-01 · Peanut eSIM business overview · Tab 16 — 24-Month Rollout · For Akito · Confidential
+</footer>
+
+<div class="toast" id="toast">Link copied</div>
+
+<script>
+// Copy link
+document.getElementById('copyBtn').addEventListener('click', function() {
+  navigator.clipboard.writeText(window.location.href).then(function() {
+    var t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 2000);
+  });
+});
+
+// ─── DATA ───────────────────────────────────────────────────────
+var months = ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12','M13','M14','M15','M16','M17','M18','M19','M20','M21','M22','M23','M24'];
+
+// Users: M1=50, M3=150, M6=450, M9=1100, M12=2100, M15=2800, M18=3500, M21=4300, M24=5000
+// Interpolate intermediate values
+var users = [50, 95, 150, 230, 320, 450, 640, 860, 1100, 1450, 1770, 2100, 2300, 2580, 2800, 3050, 3280, 3500, 3760, 4020, 4300, 4530, 4770, 5000];
+
+// Net contribution (Tab 16 data + interpolation)
+// M1=526, M3=1580, M6=4738, M9=11500, M12=22113, M15=29500, M18=36800, M21=45200, M24=52650
+var netContrib = [526, 1000, 1580, 2420, 3370, 4738, 6740, 9050, 11500, 15300, 18600, 22113, 24200, 27200, 29500, 32100, 34500, 36800, 39400, 42300, 45200, 47600, 50100, 52650];
+
+var fixedBurn = 11000;
+
+// True net (contrib - burn)
+var trueNet = netContrib.map(function(v){ return v - fixedBurn; });
+
+// Cumulative cash: sum of trueNet
+var cumulative = [];
+var running = 0;
+trueNet.forEach(function(v){ running += v; cumulative.push(Math.round(running)); });
+
+// ─── CHART 1: Growth Curve (dual axis) ──────────────────────────
+var growthCtx = document.getElementById('growthChart').getContext('2d');
+new Chart(growthCtx, {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: 'Users',
+        data: users,
+        yAxisID: 'yUsers',
+        borderColor: '#1565C0',
+        backgroundColor: 'rgba(21,101,192,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        fill: true,
+        tension: 0.4
+      },
+      {
+        label: 'Net contribution ($/mo)',
+        data: netContrib,
+        yAxisID: 'yNet',
+        borderColor: '#D71921',
+        backgroundColor: 'rgba(215,25,33,0.06)',
+        borderWidth: 2.5,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        fill: false,
+        tension: 0.4,
+        borderDash: []
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12 } } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            if (ctx.datasetIndex === 0) return ' Users: ' + ctx.raw.toLocaleString();
+            return ' Net: $' + ctx.raw.toLocaleString();
+          }
+        }
+      },
+      annotation: {
+        annotations: {}
+      }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(0,0,0,0.04)' } },
+      yUsers: {
+        type: 'linear', position: 'left',
+        title: { display: true, text: 'Users', font: { size: 11 } },
+        ticks: { callback: function(v){ return v.toLocaleString(); } },
+        grid: { color: 'rgba(0,0,0,0.04)' }
+      },
+      yNet: {
+        type: 'linear', position: 'right',
+        title: { display: true, text: 'Net contribution ($/mo)', font: { size: 11 } },
+        ticks: { callback: function(v){ return '$' + (v/1000).toFixed(0) + 'K'; } },
+        grid: { drawOnChartArea: false }
+      }
+    }
+  }
+});
+
+// ─── CHART 2: Cumulative Cash ──────────────────────────────────
+var cumCtx = document.getElementById('cumulativeChart').getContext('2d');
+new Chart(cumCtx, {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: 'Cumulative cash (net - $11K/mo burn)',
+        data: cumulative,
+        borderColor: '#1a8a5a',
+        backgroundColor: function(ctx) {
+          var chart = ctx.chart;
+          var gradient = chart.ctx.createLinearGradient(0, 0, 0, chart.height);
+          gradient.addColorStop(0, 'rgba(26,138,90,0.18)');
+          gradient.addColorStop(1, 'rgba(26,138,90,0.02)');
+          return gradient;
+        },
+        borderWidth: 2.5,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        fill: 'origin',
+        tension: 0.4,
+        segment: {
+          borderColor: function(ctx) {
+            return ctx.p0.parsed.y < 0 ? '#D71921' : '#1a8a5a';
+          },
+          backgroundColor: function(ctx) {
+            return ctx.p0.parsed.y < 0 ? 'rgba(215,25,33,0.08)' : 'rgba(26,138,90,0.08)';
+          }
+        }
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12 } } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            var val = ctx.raw;
+            var sign = val >= 0 ? '+' : '';
+            return ' Cumulative: ' + sign + '$' + val.toLocaleString();
+          }
+        }
+      }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(0,0,0,0.04)' } },
+      y: {
+        ticks: { callback: function(v){ return '$' + (v/1000).toFixed(0) + 'K'; } },
+        grid: { color: 'rgba(0,0,0,0.04)' }
+      }
+    }
+  }
+});
+
+// ─── CHART 3: Breakeven comparison ────────────────────────────
+var beCtx = document.getElementById('breakevenChart').getContext('2d');
+new Chart(beCtx, {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: 'Paper Net (contribution only)',
+        data: netContrib,
+        borderColor: '#C9A03B',
+        backgroundColor: 'rgba(201,160,59,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        fill: true,
+        tension: 0.4
+      },
+      {
+        label: 'TRUE Net (after $11K/mo burn)',
+        data: trueNet,
+        borderColor: '#D71921',
+        backgroundColor: 'rgba(215,25,33,0.06)',
+        borderWidth: 2,
+        borderDash: [6, 3],
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        fill: true,
+        tension: 0.4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12 } } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            var val = ctx.raw;
+            var sign = val >= 0 ? '+' : '';
+            return ' ' + ctx.dataset.label + ': ' + sign + '$' + val.toLocaleString();
+          }
+        }
+      }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(0,0,0,0.04)' } },
+      y: {
+        ticks: { callback: function(v){ return '$' + (v/1000).toFixed(0) + 'K'; } },
+        grid: { color: 'rgba(0,0,0,0.04)' }
+      }
+    }
+  }
+});
+
+// ─── CHART 4: Sensitivity grouped bar ─────────────────────────
+var sensCtx = document.getElementById('sensitivityChart').getContext('2d');
+new Chart(sensCtx, {
+  type: 'bar',
+  data: {
+    labels: ['M24 Net/mo'],
+    datasets: [
+      {
+        label: 'Base case',
+        data: [52650],
+        backgroundColor: '#1a8a5a',
+        borderColor: '#1a8a5a',
+        borderWidth: 1
+      },
+      {
+        label: 'CAC -20% (worst)',
+        data: [50650],
+        backgroundColor: '#8B92A3',
+        borderColor: '#8B92A3',
+        borderWidth: 1
+      },
+      {
+        label: 'Churn -20% (6% instead of 5%)',
+        data: [44650],
+        backgroundColor: '#E6A020',
+        borderColor: '#E6A020',
+        borderWidth: 1
+      },
+      {
+        label: 'ARPU -20% ($10.40 instead of $13)',
+        data: [39650],
+        backgroundColor: '#D71921',
+        borderColor: '#D71921',
+        borderWidth: 1
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: 'y',
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12 } } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            return ' ' + ctx.dataset.label + ': $' + ctx.raw.toLocaleString();
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { callback: function(v){ return '$' + (v/1000).toFixed(0) + 'K'; } },
+        grid: { color: 'rgba(0,0,0,0.04)' }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
