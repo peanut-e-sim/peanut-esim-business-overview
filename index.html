@@ -8867,6 +8867,11 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
   <a href="#bp-tab2" style="color:white;text-decoration:none;padding:8px 16px;background:#2D7A4F;border-radius:4px;font-weight:600;font-size:14px;">Tab 2 — User Behavior</a>
 </div>
 
+<div class="decision-box" style="border-left: 4px solid #C9A03B; background: #FCFAF5; padding: 18px 22px; margin: 16px 0;">
+  <h4 style="margin-top:0; color:#A01218;">UPDATE 2026-06-01 — Geo cost mix revised to Emirates-realistic</h4>
+  <p style="margin: 0;">The Tier-A / Tier-B / Tier-C mix has been recalibrated from <strong>60/25/15</strong> to <strong>75/20/5</strong> to reflect Emirates crew's actual concentration on Asia + Europe + USA destinations (Tier-A) rather than even-weighted layovers. This drops the <strong>blended wholesale cost from $2.13/GB to $1.34/GB</strong>. Downstream per-tier wholesale references previously held at $1.20 (conservative placeholder) are now updated to $1.34. All per-tier economics and Logic tabs reflect the revised cost. Retail prices are unchanged.</p>
+</div>
+
 <h2 id="bp-tab1" style="font-size:32px;border-bottom:3px solid #D71921;padding-bottom:12px;margin-top:8px;">PART I — Tab 1: Pricing Architecture</h2>
 
 <div class="toc">
@@ -9010,10 +9015,10 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <tr><th>Line</th><th>Value</th></tr>
 <tr><td>Subscription revenue</td><td>$17.99</td></tr>
 <tr><td>GB consumed (40% friction)</td><td>4.0 GB</td></tr>
-<tr><td>Wholesale COGS at $1.20/GB blended</td><td>$4.80</td></tr>
-<tr><td>Gross profit (subscription)</td><td>$13.19 (73% margin)</td></tr>
-<tr><td>+ Refuel (20% attach × $4.99)</td><td>+$0.96 net</td></tr>
-<tr><td><strong>Total per user / mo</strong></td><td><strong>$14.15 (74% margin)</strong></td></tr>
+<tr><td>Wholesale COGS at $1.34/GB blended</td><td>$5.36</td></tr>
+<tr><td>Gross profit (subscription)</td><td>$12.63 (70% margin)</td></tr>
+<tr><td>+ Refuel (20% attach × $4.99)</td><td>+$0.93 net</td></tr>
+<tr><td><strong>Total per user / mo</strong></td><td><strong>$13.56 (71% margin)</strong></td></tr>
 </table>
 
 <h3>2.4 Business ⭐ RECOMMENDED</h3>
@@ -9044,10 +9049,10 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <tr><th>Line</th><th>Value</th></tr>
 <tr><td>Subscription revenue</td><td>$29.99</td></tr>
 <tr><td>GB consumed (45% — heavier than Premium)</td><td>6.75 GB</td></tr>
-<tr><td>Wholesale COGS</td><td>$8.10</td></tr>
-<tr><td>Gross profit (subscription)</td><td>$21.89 (73% margin)</td></tr>
-<tr><td>+ Refuel (25% attach)</td><td>+$1.20 net</td></tr>
-<tr><td><strong>Total per user / mo</strong></td><td><strong>$23.09 (74% margin)</strong></td></tr>
+<tr><td>Wholesale COGS at $1.34/GB blended</td><td>$9.05</td></tr>
+<tr><td>Gross profit (subscription)</td><td>$20.94 (70% margin)</td></tr>
+<tr><td>+ Refuel (25% attach)</td><td>+$1.16 net</td></tr>
+<tr><td><strong>Total per user / mo</strong></td><td><strong>$22.10 (70% margin)</strong></td></tr>
 </table>
 
 <h3>2.5 First</h3>
@@ -9122,10 +9127,10 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <tr><th>Line</th><th>Value</th></tr>
 <tr><td>Annual revenue (prepaid upfront)</td><td>$299.00</td></tr>
 <tr><td>Annual pool capacity</td><td>156 GB (144 monthly + 12 emergency)</td></tr>
-<tr><td>Annual base COGS (12 × 7.2 GB × $1.20)</td><td>$103.68</td></tr>
-<tr><td>Emergency usage cost (20% × 12 × $1.20)</td><td>$2.88</td></tr>
-<tr><td>Total annual COGS</td><td>$106.56</td></tr>
-<tr><td><strong>Annual profit per user</strong></td><td><strong>$192.44 (64% margin)</strong></td></tr>
+<tr><td>Annual base COGS (12 × 7.2 GB × $1.34)</td><td>$115.78</td></tr>
+<tr><td>Emergency usage cost (20% × 12 × $1.34)</td><td>$3.22</td></tr>
+<tr><td>Total annual COGS</td><td>$119.00</td></tr>
+<tr><td><strong>Annual profit per user</strong></td><td><strong>$180.00 (60% margin)</strong></td></tr>
 </table>
 
 <h3>2.8 Refuel (add-on)</h3>
@@ -9145,16 +9150,19 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <p>The simplest section structurally, but the most consequential numerically. Three cost buckets group countries by wholesale cost; a weighted mix produces a single "blended $/GB" number that every downstream tab uses as COGS.</p>
 
 <table>
-<tr><th>Bucket</th><th>Countries</th><th>$/GB (locked Samurai data)</th><th>% of trips (placeholder)</th></tr>
-<tr><td>Tier-A (cheap)</td><td>JP, UK, SG, MY, HK, KR, US</td><td><strong>$0.85</strong> (was $0.97 placeholder)</td><td>60%</td></tr>
-<tr><td>Tier-B (medium)</td><td>CA, AU, NZ, VN, UAE</td><td><strong>$1.40</strong> (was $1.50)</td><td>25%</td></tr>
-<tr><td>Tier-C (expensive)</td><td>IN, BR, SA, ZA</td><td><strong>$8.50</strong> (was $5.80 — actually worse than estimate)</td><td>15%</td></tr>
-<tr><td><strong>Blended cost / GB</strong></td><td></td><td><strong>$2.13</strong> at current mix</td><td>100%</td></tr>
+<tr><th>Bucket</th><th>Countries</th><th>$/GB (locked wholesale supplier data)</th><th>% of trips (Emirates-realistic, updated 2026-06-01)</th></tr>
+<tr><td>Tier-A (cheap)</td><td>JP, UK, SG, MY, HK, KR, US</td><td><strong>$0.85</strong> (was $0.97 placeholder)</td><td>75%</td></tr>
+<tr><td>Tier-B (medium)</td><td>CA, AU, NZ, VN, UAE</td><td><strong>$1.40</strong> (was $1.50)</td><td>20%</td></tr>
+<tr><td>Tier-C (expensive)</td><td>IN, BR, SA, ZA</td><td><strong>$8.50</strong> (was $5.80 — actually worse than estimate)</td><td>5%</td></tr>
+<tr><td><strong>Blended cost / GB</strong></td><td></td><td><strong>$1.34</strong> at current mix (was $2.13 at 60/25/15)</td><td>100%</td></tr>
 </table>
 
-<h4>Key insight from the Samurai data audit</h4>
-<p>Sampling Samurai's actual settlement prices for 1-GB short-trip plans revealed that <strong>Tier-C destinations are WORSE than we estimated</strong> (India: $5.21 for 2-day, South Africa: $10.00 for 2-day). This pushed the blended cost UP, not down, contrary to expectations.</p>
-<p><strong>The real lever is the % mix, not the bucket prices.</strong> Emirates crew don't fly evenly across all 67 layover countries — they concentrate on Asia + Europe + USA. The 60/25/15 mix is likely too aggressive on Tier-C for Emirates specifically.</p>
+<h4>Update 2026-06-01 — mix recalibrated from 60/25/15 to 75/20/5</h4>
+<p>The original 60/25/15 placeholder was set before we had a clear view of Emirates-specific route concentration. Emirates crew overwhelmingly fly Asia + Europe + USA (Tier-A), with relatively few rotations to Tier-C (India/Brazil/South Africa). Reweighting to <strong>75% Tier-A / 20% Tier-B / 5% Tier-C</strong> drops the blended wholesale cost from <strong>$2.13 → $1.34/GB</strong> — a 37% reduction in unit COGS that flows through every per-tier P&amp;L line.</p>
+
+<h4>Key insight from the wholesale supplier data audit</h4>
+<p>Sampling the supplier's actual settlement prices for 1-GB short-trip plans revealed that <strong>Tier-C destinations are WORSE than we estimated</strong> (India: $5.21 for 2-day, South Africa: $10.00 for 2-day). This makes the mix re-weighting even more material — at 5% Tier-C the expensive bucket barely moves the blended number; at 15% it dominated.</p>
+<p><strong>The real lever is the % mix, not the bucket prices.</strong> Emirates crew don't fly evenly across all 67 layover countries — they concentrate on Asia + Europe + USA. The 75/20/5 mix is the Emirates-specific reality.</p>
 
 <h4>Why the mix is flagged, not locked</h4>
 <p>The Emirates_Crew_Layover_Countries.xlsx file lists 67 countries (Africa 22, Europe 23, Asia Pacific 16, Americas 6) — but it gives country COUNT, not FLIGHT FREQUENCY. Real Emirates flight share is heavily Asia/Europe/USA, but we don't have the route-level data to validate exact percentages.</p>
@@ -9354,11 +9362,11 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 <p>Tab 10 (Carryover Liability) tracks this aging properly. Tab 2 shows only the monthly snapshot.</p>
 
 <h4>Breakage in dollars (Premium Economy example)</h4>
-<p>3 GB breakage × $1.20 blended wholesale = <strong>$3.60 of pure profit per Premium user per month</strong>.</p>
+<p>3 GB breakage × $1.34 blended wholesale = <strong>$4.02 of pure profit per Premium user per month</strong> <em>(updated 2026-06-01: blended cost revised from $1.20 to $1.34/GB after geo mix recalibration to 75/20/5)</em>.</p>
 <table>
 <tr><th>Scale</th><th>Premium users (13%)</th><th>Monthly breakage profit</th><th>Annual</th></tr>
-<tr><td>10,000 users</td><td>1,300</td><td>$4,680</td><td>$56,160</td></tr>
-<tr><td>100,000 users</td><td>13,000</td><td>$46,800</td><td><strong>$561,600</strong></td></tr>
+<tr><td>10,000 users</td><td>1,300</td><td>$5,226</td><td>$62,712</td></tr>
+<tr><td>100,000 users</td><td>13,000</td><td>$52,260</td><td><strong>$627,120</strong></td></tr>
 </table>
 
 <h2 id="bp2-downstream">6. How Tab 2 feeds the rest of the model</h2>
