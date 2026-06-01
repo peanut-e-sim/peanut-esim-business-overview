@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — User Behavior (for Akito)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #e8e2d6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  a { color: var(--red); }
+
+  /* Sticky header */
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--red); color: #fff;
+    padding: 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  header.bar .title { font-weight: 700; letter-spacing: .2px; font-size: 16px; }
+  header.bar .title small { display:block; font-weight: 400; opacity:.85; font-size:12px; margin-top:2px;}
+  header.bar .btn-group { display: flex; gap: 8px; align-items: center; }
+  header.bar a.back-btn, header.bar button {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.5);
+    color: #fff; font: inherit;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    transition: background .15s ease;
+    font-size: 13px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  header.bar a.back-btn:hover, header.bar button:hover { background: rgba(255,255,255,.28); }
+
+  /* Layout */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 56px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero {
+    font-size: clamp(28px, 4.2vw, 44px);
+    line-height: 1.15; margin: 0 0 14px;
+    letter-spacing: -.5px;
+  }
+  h1.hero .accent { color: var(--red); }
+  p.lede {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: #2a2a2a; max-width: 760px; margin: 0 0 18px;
+  }
+  .badge-updated {
+    display: inline-block; padding: 4px 12px;
+    background: #fff; border: 1px solid var(--gold); border-radius: 999px;
+    font-size: 12px; font-weight: 600; color: #7a5c1a; letter-spacing: .3px;
+  }
+  h2.section-title {
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0 0 6px; letter-spacing: -.2px;
+  }
+  h2.section-title .num {
+    display: inline-block;
+    width: 30px; height: 30px; line-height: 30px;
+    border-radius: 50%; background: var(--ink); color: #fff;
+    font-size: 14px; text-align: center; margin-right: 10px;
+    vertical-align: middle;
+  }
+  p.section-sub {
+    color: var(--muted); max-width: 720px; margin: 0 0 22px; font-size: 15px;
+  }
+
+  /* Chart cards */
+  .chart-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; box-shadow: var(--shadow);
+  }
+  .chart-card h3 { margin: 0 0 4px; font-size: 16px; }
+  .chart-card p.sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .chart-wrap { position: relative; height: 320px; }
+
+  .two-col {
+    display: grid; gap: 18px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Archetype cards */
+  .archetype-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin-top: 24px;
+  }
+  .archetype {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 20px; box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .archetype::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  }
+  .archetype.light::before { background: #94b9c8; }
+  .archetype.heavy::before { background: var(--red); }
+  .archetype.pro::before { background: var(--gold); }
+  .archetype .pct {
+    font-size: 40px; font-weight: 700; letter-spacing: -1.5px; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .archetype.light .pct { color: #94b9c8; }
+  .archetype.heavy .pct { color: var(--red); }
+  .archetype.pro .pct { color: var(--gold); }
+  .archetype .name { font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+  .archetype .desc { font-size: 13.5px; color: #444; line-height: 1.6; }
+  .archetype .tag {
+    display: inline-block; font-size: 11px; padding: 3px 8px;
+    border-radius: 6px; background: #f0ece2; color: #574c30;
+    margin-bottom: 8px;
+  }
+
+  /* Stepper */
+  .stepper {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 28px; box-shadow: var(--shadow);
+  }
+  .stepper .flow {
+    display: flex; gap: 0; align-items: stretch; flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .stepper .step {
+    flex: 1; min-width: 160px;
+    background: #faf6ec; border: 1px solid var(--line);
+    border-radius: 10px; padding: 16px 14px; text-align: center;
+    position: relative;
+  }
+  .stepper .step .icon { font-size: 28px; margin-bottom: 8px; }
+  .stepper .step .label { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .stepper .step .detail { font-size: 12px; color: #666; }
+  .stepper .arrow {
+    display: flex; align-items: center; padding: 0 8px;
+    color: var(--muted); font-size: 20px; font-weight: 300;
+  }
+  @media (max-width: 640px) {
+    .stepper .flow { flex-direction: column; gap: 10px; }
+    .stepper .arrow { transform: rotate(90deg); align-self: center; }
+  }
+  .step.trigger { border-color: var(--gold); background: #fdf5df; }
+  .step.trigger .label { color: #7a5c1a; }
+  .step.action { border-color: var(--red); background: #fff5f5; }
+  .step.action .label { color: var(--red); }
+  .step.result { border-color: var(--green); background: #f0faf4; }
+  .step.result .label { color: #15633f; }
+
+  /* Tables */
+  .we-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 10px; }
+  .we-table th, .we-table td {
+    text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line);
+  }
+  .we-table th { background: #faf6ec; font-weight: 600; color: #5a4a14; font-size: 12px; letter-spacing: .3px; text-transform: uppercase; }
+  .we-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .we-table tr.total td { font-weight: 700; background: #fdf5e3; }
+  .we-table tr.highlight td { background: #fff5f5; }
+
+  /* Callout boxes */
+  .callout-gold {
+    background: #fff8e6; border-left: 4px solid var(--gold);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #5a4a14;
+  }
+  .callout-red {
+    background: #fff5f5; border-left: 4px solid var(--red);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #5a1a1a;
+  }
+  .callout-green {
+    background: #f0faf4; border-left: 4px solid var(--green);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #1a5a3a;
+  }
+  .callout-akito {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+    color: #fff; border-radius: 18px; padding: 36px 28px;
+    text-align: center;
+  }
+  .callout-akito .small { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .callout-akito .ask { font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -.5px; color: #fff; line-height: 1.2; margin: 12px 0; }
+  .callout-akito .ask span { color: var(--gold); }
+  .callout-akito .ctx { color: #d8d2c5; max-width: 640px; margin: 0 auto; font-size: 15px; }
+  .callout-akito .checklist { text-align: left; max-width: 480px; margin: 20px auto 0; }
+  .callout-akito .checklist li { padding: 6px 0; font-size: 14px; color: #e8e2d5; }
+
+  /* Worked example */
+  .we-step {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .we-step .step-num { display:inline-block; font-size: 11px; letter-spacing: 1.5px; color: var(--red); font-weight: 700; margin-bottom: 4px; }
+  .we-step h3 { margin: 0 0 8px; font-size: 18px; }
+  .we-step p { margin: 0 0 12px; color: #333; font-size: 14.5px; }
+
+  /* Math breakdown */
+  .math-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 14px;
+  }
+  .math-row:last-child { border-bottom: 0; }
+  .math-row .lbl { color: #444; }
+  .math-row .val { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .math-row.total { background: #fdf5e3; margin: 8px -22px -22px; padding: 12px 22px; border-radius: 0 0 14px 14px; }
+  .math-row.total .lbl { font-weight: 700; }
+
+  /* Geo list */
+  .geo-list { font-size: 13px; color: #444; }
+  .geo-list .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+  .geo-list .row:last-child { border-bottom: 0; }
+  .geo-list .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+  /* Mini metrics */
+  .micro-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    margin-top: 16px;
+  }
+  .micro {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px;
+  }
+  .micro .label { font-size: 11px; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
+  .micro .val { font-size: 22px; font-weight: 700; letter-spacing: -.5px; margin-top: 2px; }
+  .micro .ctx { font-size: 12px; color: #555; margin-top: 4px; }
+
+  footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 50px; }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: #fff; padding: 10px 18px;
+    border-radius: 999px; font-size: 13px; opacity: 0;
+    transition: opacity .25s ease; pointer-events: none; z-index: 100;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    Peanut eSIM — User Behavior
+    <small>Tab 2 of the P&amp;L model · for Akito · 2026-06-01</small>
+  </div>
+  <div class="btn-group">
+    <a href="index.html" class="back-btn">← Back to Hub</a>
+    <button id="copyBtn" type="button">Copy share link</button>
+  </div>
+</header>
+
+<main>
+
+<section class="first">
+  <h1 class="hero">WHO buys WHAT — and how much do they <span class="accent">actually use</span>.</h1>
+  <p class="lede">
+    Tab 2 is the intelligence layer. It doesn't set prices — it predicts behavior. Which crew fly light vs heavy,
+    how much of their data pool they burn, how often they hit the refuel prompt. This is where profit gets made
+    or lost before a single invoice lands.
+  </p>
+  <span class="badge-updated">Updated 2026-06-01</span>
+</section>
+
+<!-- ============================================================ -->
+<!-- 1. Archetype mix -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">1</span>The 3 crew archetypes</h2>
+  <p class="section-sub">
+    All subscribers fall into one of three behavioral buckets. Akito estimated these from his crew network.
+    The split sums to 100% — it's the mix that shapes everything downstream.
+  </p>
+
+  <div class="two-col">
+    <div class="chart-card">
+      <h3>Archetype mix · % of subscribers</h3>
+      <p class="sub">Based on Akito's crew network signal. Pending validation via roster samples.</p>
+      <div class="chart-wrap"><canvas id="archetypeDonut"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>What each archetype looks like</h3>
+      <p class="sub">Behavioral snapshot — how each segment consumes data.</p>
+      <div class="geo-list">
+        <div class="row">
+          <span><span class="dot" style="background:#94b9c8;"></span><strong>Light tourists</strong> · 25%</span>
+          <span style="color: #94b9c8; font-weight:700;">25%</span>
+        </div>
+        <div class="row" style="font-size:12px; color:#666; padding-top:4px; padding-bottom:8px;">
+          <span style="padding-left:18px;">Leisure crew. 1–2 short trips/month. WhatsApp + maps, rarely stream.</span>
+        </div>
+        <div class="row">
+          <span><span class="dot" style="background:var(--red);"></span><strong>Heavy commuters</strong> · 40%</span>
+          <span style="color: var(--red); font-weight:700;">40%</span>
+        </div>
+        <div class="row" style="font-size:12px; color:#666; padding-top:4px; padding-bottom:8px;">
+          <span style="padding-left:18px;">Frequent flyers. Multi-leg long-hauls. Email, streaming, mapping, always connected.</span>
+        </div>
+        <div class="row">
+          <span><span class="dot" style="background:var(--gold);"></span><strong>Pro creators</strong> · 35%</span>
+          <span style="color: var(--gold); font-weight:700;">35%</span>
+        </div>
+        <div class="row" style="font-size:12px; color:#666; padding-top:4px;">
+          <span style="padding-left:18px;">Content creators. Stream + upload heavy. Instagram reels from every layover.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="archetype-grid">
+    <div class="archetype light">
+      <div class="pct">25%</div>
+      <div class="tag">Low consumption</div>
+      <div class="name">Light Tourists</div>
+      <div class="desc">
+        Short-haul leisure crew. Fly 1–2 routes a month. Use data mainly for WhatsApp, Google Maps, checking in.
+        Likely to stay on Economy PAYG or Roster Bundle. Low churn risk if the app is easy to use.
+        <br><br>
+        <strong>Implication:</strong> Low COGS, low refuel attach. These are the margin contributors.
+      </div>
+    </div>
+    <div class="archetype heavy">
+      <div class="pct">40%</div>
+      <div class="tag">Medium-high consumption</div>
+      <div class="name">Heavy Commuters</div>
+      <div class="desc">
+        Long-haul, multi-leg schedules. Dubai → Sydney → London → Dubai in a week. Always connected between legs.
+        Upgrade naturally to Premium or Business. More likely to hit the 80% refuel prompt.
+        <br><br>
+        <strong>Implication:</strong> Highest ARPU potential. Best target for upsell from Roster to Business.
+      </div>
+    </div>
+    <div class="archetype pro">
+      <div class="pct">35%</div>
+      <div class="tag">High consumption</div>
+      <div class="name">Pro Creators</div>
+      <div class="desc">
+        Dubai crew side-hustle as influencers. Upload reels, post Stories, run YouTube from layovers.
+        Stream + upload eats data fast. Push toward First and First Suite. Very vocal on social — good for referrals.
+        <br><br>
+        <strong>Implication:</strong> High COGS, high refuel attach, high lifetime value. Handle well.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-gold" style="margin-top:20px;">
+    <strong>Source note:</strong> These percentages come from Akito's gut read of his crew network — not a formal survey yet.
+    Until we have 5–10 real roster samples, treat this as a working hypothesis. The good news: even if the mix shifts,
+    the model structure stays the same. Only the blended COGS changes.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. Per-tier consumption rates -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">2</span>Per-tier consumption rates</h2>
+  <p class="section-sub">
+    Each tier has its own behavioral profile. Business subscribers are actually the most <em>efficient</em> for us —
+    they buy a big pool but only use about a third of it. First Suite users actually burn 60% of their pool.
+    These rates are the key COGS driver per tier.
+  </p>
+
+  <div class="chart-card">
+    <h3>% of data pool consumed per tier</h3>
+    <p class="sub">Y-axis = share of the GB pool actually used this month. Lower = more breakage margin for us. Each bar shows the tier price for context.</p>
+    <div class="chart-wrap" style="height: 360px;"><canvas id="consumptionBar"></canvas></div>
+  </div>
+
+  <div style="margin-top: 18px;">
+    <table class="we-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th class="num">Price</th>
+          <th class="num">Pool (GB)</th>
+          <th class="num">% Consumed</th>
+          <th class="num">GB Used</th>
+          <th class="num">COGS @ $1.34</th>
+          <th class="num">Revenue</th>
+          <th class="num">Gross Margin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Economy (PAYG)</td><td class="num">$4.99</td><td class="num">1</td><td class="num">40.0%</td><td class="num">0.40</td><td class="num">$0.54</td><td class="num">$4.99</td><td class="num">89%</td></tr>
+        <tr><td>Roster Vendor</td><td class="num">$3.99/mo</td><td class="num">3</td><td class="num">45.0%</td><td class="num">1.35</td><td class="num">$1.81</td><td class="num">$3.99</td><td class="num">55%</td></tr>
+        <tr class="highlight"><td>Premium ($17.99)</td><td class="num">$17.99</td><td class="num">10</td><td class="num">54.0%</td><td class="num">5.40</td><td class="num">$7.24</td><td class="num">$17.99</td><td class="num">60%</td></tr>
+        <tr><td>Business ($29.99)</td><td class="num">$29.99</td><td class="num">25</td><td class="num">33.0%</td><td class="num">8.25</td><td class="num">$11.06</td><td class="num">$29.99</td><td class="num">63%</td></tr>
+        <tr><td>First ($39.99)</td><td class="num">$39.99</td><td class="num">50</td><td class="num">60.0%</td><td class="num">30.00</td><td class="num">$40.20</td><td class="num">$39.99</td><td class="num">-1%</td></tr>
+        <tr><td>First Suite ($49.99)</td><td class="num">$49.99</td><td class="num">80</td><td class="num">60.0%</td><td class="num">48.00</td><td class="num">$64.32</td><td class="num">$49.99</td><td class="num">-29%</td></tr>
+        <tr><td>Cockpit ($299/yr)</td><td class="num">$24.92</td><td class="num">200/yr</td><td class="num">very low</td><td class="num">—</td><td class="num">—</td><td class="num">$24.92</td><td class="num">high</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout-red" style="margin-top:16px;">
+    <strong>Note on First and First Suite:</strong> At 60% consumption and the current $1.34/GB blended cost, these tiers show negative or near-zero gross margin before refuel revenue and OPEX.
+    This is a model signal — either prices need adjusting, pool sizes need to shrink, or consumption assumptions need tightening once real data arrives.
+    Akito's roster samples will be critical here.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. Refuel attach mechanic -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">3</span>The Refuel mechanic</h2>
+  <p class="section-sub">
+    When a subscriber hits 80% of their pool, the app surfaces a prompt: "+1 GB for $4.99." This is not a bug or dark pattern —
+    it's the core breakage-as-revenue mechanic. We call it Refuel. The attach rate (% of subscribers who tap Yes) is the
+    single biggest upside lever in the model.
+  </p>
+
+  <div class="stepper">
+    <div style="font-weight: 600; font-size: 15px; margin-bottom: 16px;">How the Refuel prompt fires</div>
+    <div class="flow">
+      <div class="step">
+        <div class="icon">📱</div>
+        <div class="label">Crew uses data</div>
+        <div class="detail">Browsing, streaming, WhatsApp during layover</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step trigger">
+        <div class="icon">⚡</div>
+        <div class="label">80% threshold hit</div>
+        <div class="detail">App detects pool is 80% consumed</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="icon">🔔</div>
+        <div class="label">Refuel prompt</div>
+        <div class="detail">"Running low — add 1 GB for $4.99?"</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step action">
+        <div class="icon">💳</div>
+        <div class="label">Crew taps Yes</div>
+        <div class="detail">$4.99 charged, 1 GB added instantly</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step result">
+        <div class="icon">✓</div>
+        <div class="label">Revenue booked</div>
+        <div class="detail">$4.99 top-up at ~$1.34 COGS</div>
+      </div>
+    </div>
+
+    <div class="callout-gold" style="margin-top: 20px;">
+      <strong>Why this matters:</strong> A refuel sale has near-identical margin to the base plan (we pay ~$1.34/GB wholesale).
+      At $4.99 per GB, the gross margin is ~73%. At scale with 50,000 subscribers, even a 5% attach rate is
+      50,000 × 5% × $4.99 = <strong>$12,475/month</strong> in near-pure-margin revenue.
+    </div>
+  </div>
+
+  <div style="margin-top: 20px;" class="chart-card">
+    <h3>Refuel attach rates by tier</h3>
+    <p class="sub">Economy is PAYG so attach is N/A. Subscription tiers have meaningful attach — Premium at 8% is the sweet spot.</p>
+    <div class="chart-wrap" style="height: 280px;"><canvas id="refuelBar"></canvas></div>
+  </div>
+
+  <div style="margin-top:18px;">
+    <table class="we-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th class="num">Attach %</th>
+          <th class="num">Assumed refuels/mo</th>
+          <th class="num">Refuel price</th>
+          <th class="num">Refuel revenue/user/mo</th>
+          <th class="num">Refuel COGS</th>
+          <th class="num">Refuel margin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Economy (PAYG)</td><td class="num">N/A</td><td class="num">—</td><td class="num">$4.99</td><td class="num">$0.00</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td>Roster Vendor</td><td class="num">5.0%</td><td class="num">1</td><td class="num">$4.99</td><td class="num">$0.25</td><td class="num">$0.07</td><td class="num">73%</td></tr>
+        <tr class="highlight"><td>Premium ($17.99)</td><td class="num">8.0%</td><td class="num">1</td><td class="num">$4.99</td><td class="num">$0.40</td><td class="num">$0.11</td><td class="num">73%</td></tr>
+        <tr><td>Business ($29.99)</td><td class="num">3.0%</td><td class="num">1</td><td class="num">$4.99</td><td class="num">$0.15</td><td class="num">$0.04</td><td class="num">73%</td></tr>
+        <tr><td>First ($39.99)</td><td class="num">2.0%</td><td class="num">1</td><td class="num">$4.99</td><td class="num">$0.10</td><td class="num">$0.03</td><td class="num">73%</td></tr>
+        <tr><td>First Suite ($49.99)</td><td class="num">2.0%</td><td class="num">1</td><td class="num">$4.99</td><td class="num">$0.10</td><td class="num">$0.03</td><td class="num">73%</td></tr>
+        <tr class="total"><td>Blended attach (weighted)</td><td class="num">~4.5%</td><td class="num">—</td><td class="num">—</td><td class="num">~$0.22 avg</td><td class="num">—</td><td class="num">73%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin-top:8px;">
+      Attach % = share of subscribers in that tier who buy at least one Refuel in the month. Refuel revenue/user = attach % × $4.99.
+      COGS = 1 GB × $1.34/GB blended wholesale.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. Geo mix donut -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">4</span>Where crew actually fly: the Geo Mix</h2>
+  <p class="section-sub">
+    We pay our wholesale supplier per GB delivered — and the price depends on which country the crew is in.
+    The 75/20/5 split is the new base case, replacing the older 60/25/15. It reflects Emirates-realistic routes:
+    most flying is intra-Asia + Middle East, which are cheap markets.
+  </p>
+
+  <div class="two-col">
+    <div class="chart-card">
+      <h3>GB consumption by region tier</h3>
+      <p class="sub">75% of all consumed GBs land in cheap Tier-A markets — that's the cost advantage.</p>
+      <div class="chart-wrap"><canvas id="geoMixDonut"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Wholesale cost breakdown</h3>
+      <p class="sub">The blended $1.34/GB is a weighted average of these three tiers.</p>
+      <div class="geo-list" style="margin-top:8px;">
+        <div class="row">
+          <span><span class="dot" style="background:var(--green);"></span><strong>Tier A · cheap regions</strong> · 75%</span>
+          <span><strong>$0.85/GB</strong></span>
+        </div>
+        <div class="row" style="font-size:12px; color:#666; padding-top:4px; padding-bottom:8px;">
+          <span style="padding-left:18px;">Asia: JP, SG, HK, KR, TH · Middle East: AE, QA · UK, MY</span>
+        </div>
+        <div class="row">
+          <span><span class="dot" style="background:var(--gold);"></span><strong>Tier B · mid regions</strong> · 20%</span>
+          <span><strong>$1.40/GB</strong></span>
+        </div>
+        <div class="row" style="font-size:12px; color:#666; padding-top:4px; padding-bottom:8px;">
+          <span style="padding-left:18px;">Europe, AU, NZ, Canada, select SE Asia</span>
+        </div>
+        <div class="row">
+          <span><span class="dot" style="background:var(--red);"></span><strong>Tier C · expensive regions</strong> · 5%</span>
+          <span><strong>$8.50/GB</strong></span>
+        </div>
+        <div class="row" style="font-size:12px; color:#666; padding-top:4px; padding-bottom:8px;">
+          <span style="padding-left:18px;">US, sub-Saharan Africa, South America, cruise markets</span>
+        </div>
+        <div class="row" style="margin-top: 10px; border-top: 2px solid var(--ink); padding-top: 10px;">
+          <span><strong>Blended cost (75/20/5)</strong></span>
+          <span><strong style="color:var(--red);">$1.34/GB</strong></span>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; background: #fdf5e3; border-radius: 8px; padding: 14px; font-size: 13px;">
+        <strong>The math:</strong><br>
+        0.75 × $0.85 = $0.64<br>
+        0.20 × $1.40 = $0.28<br>
+        0.05 × $8.50 = $0.43<br>
+        <strong>Total = $1.34/GB blended</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. Old vs new geo mix comparison -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">5</span>Why we revised the Geo Mix</h2>
+  <p class="section-sub">
+    The original model used 60/25/15. It felt conservative — 15% in expensive Tier-C countries was too high
+    given Emirates' actual route map. The revised 75/20/5 brings the blended cost from <strong>$2.13</strong>
+    down to <strong>$1.34</strong>. That's a 37% reduction in modelled COGS.
+  </p>
+
+  <div class="two-col">
+    <div class="chart-card">
+      <h3>Old vs New: blended wholesale cost per GB</h3>
+      <p class="sub">Shifting Tier-C share from 15% to 5% is the key move. Tier-C at $8.50/GB is an outlier that dominates the blend when over-weighted.</p>
+      <div class="chart-wrap" style="height: 280px;"><canvas id="geoCompareBar"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Mix breakdown: Old 60/25/15 vs New 75/20/5</h3>
+      <p class="sub">Side-by-side. The Tier-C shift is the single biggest driver of the cost improvement.</p>
+      <table class="we-table" style="margin-top:4px;">
+        <thead>
+          <tr><th>Region tier</th><th class="num">Old mix</th><th class="num">Old cost contrib.</th><th class="num">New mix</th><th class="num">New cost contrib.</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="geo-list" style="display:inline;"><span class="dot" style="display:inline-block;background:var(--green);width:8px;height:8px;border-radius:50%;margin-right:4px;"></span></span>Tier A ($0.85)</td>
+            <td class="num">60%</td><td class="num">$0.51</td><td class="num">75%</td><td class="num">$0.64</td>
+          </tr>
+          <tr>
+            <td><span class="geo-list" style="display:inline;"><span class="dot" style="display:inline-block;background:var(--gold);width:8px;height:8px;border-radius:50%;margin-right:4px;"></span></span>Tier B ($1.40)</td>
+            <td class="num">25%</td><td class="num">$0.35</td><td class="num">20%</td><td class="num">$0.28</td>
+          </tr>
+          <tr>
+            <td><span class="geo-list" style="display:inline;"><span class="dot" style="display:inline-block;background:var(--red);width:8px;height:8px;border-radius:50%;margin-right:4px;"></span></span>Tier C ($8.50)</td>
+            <td class="num">15%</td><td class="num">$1.28</td><td class="num">5%</td><td class="num">$0.43</td>
+          </tr>
+          <tr class="total">
+            <td>Blended cost</td>
+            <td class="num" colspan="2">$2.13/GB</td>
+            <td class="num" colspan="2" style="color:var(--red);">$1.34/GB</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout-gold" style="margin-top: 16px; font-size: 13px;">
+        <strong>Placeholder until validated.</strong> Akito's roster samples will tell us which countries crew actually fly to —
+        and how much data they use per leg. Until then, both models are estimates.
+      </div>
+    </div>
+  </div>
+
+  <div class="micro-grid">
+    <div class="micro"><div class="label">Old blended cost</div><div class="val">$2.13</div><div class="ctx">per GB · 60/25/15 mix</div></div>
+    <div class="micro"><div class="label">New blended cost</div><div class="val" style="color:var(--red);">$1.34</div><div class="ctx">per GB · 75/20/5 mix</div></div>
+    <div class="micro"><div class="label">Cost reduction</div><div class="val" style="color:var(--green);">37%</div><div class="ctx">in modelled COGS</div></div>
+    <div class="micro"><div class="label">Key driver</div><div class="val">Tier C</div><div class="ctx">from 15% → 5% of mix</div></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. Worked example: Premium user -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">6</span>Worked example: one Premium subscriber</h2>
+  <p class="section-sub">
+    Let's walk through a single Premium ($17.99/mo) subscriber — the easiest tier to reason about.
+    10 GB pool, 54% consumption, 8% refuel attach, $1.34/GB wholesale.
+  </p>
+
+  <div class="we-step">
+    <div class="step-num">STEP 1 · REVENUE</div>
+    <h3>What we collect from this subscriber</h3>
+    <p>Monthly subscription + any refuel purchases.</p>
+    <div class="math-row"><span class="lbl">Base subscription</span><span class="val">$17.99</span></div>
+    <div class="math-row"><span class="lbl">Refuel revenue (8% attach × $4.99)</span><span class="val">$0.40</span></div>
+    <div class="math-row total"><span class="lbl">Total revenue / month</span><span class="val" style="color:var(--red);">$18.39</span></div>
+  </div>
+
+  <div class="we-step">
+    <div class="step-num">STEP 2 · COGS</div>
+    <h3>What we pay to deliver this subscriber's data</h3>
+    <p>54% of 10 GB pool = 5.4 GB consumed. We pay $1.34/GB blended wholesale.</p>
+    <div class="math-row"><span class="lbl">GB consumed (54% × 10 GB)</span><span class="val">5.40 GB</span></div>
+    <div class="math-row"><span class="lbl">Wholesale cost (5.40 × $1.34)</span><span class="val">$7.24</span></div>
+    <div class="math-row"><span class="lbl">Refuel COGS (1 GB × $1.34 × 8%)</span><span class="val">$0.11</span></div>
+    <div class="math-row total"><span class="lbl">Total COGS / month</span><span class="val" style="color:var(--red);">$7.35</span></div>
+  </div>
+
+  <div class="we-step">
+    <div class="step-num">STEP 3 · GROSS MARGIN</div>
+    <h3>Revenue minus supplier cost</h3>
+    <p>Before operating costs (payment processing, support, cloud, etc.).</p>
+    <div class="math-row"><span class="lbl">Revenue</span><span class="val">$18.39</span></div>
+    <div class="math-row"><span class="lbl">− COGS</span><span class="val">−$7.35</span></div>
+    <div class="math-row total"><span class="lbl">Gross contribution / user / month</span><span class="val" style="color:var(--red);">$11.04 · 60% margin</span></div>
+  </div>
+
+  <div class="we-step" style="background:#fdf5e3; border-color:#e9d99a;">
+    <div class="step-num">STEP 4 · THE PUNCHLINE</div>
+    <h3>Net picture after OPEX</h3>
+    <p>Subtract $1.80/user/month in operating costs (Stripe fees, support, cloud, SMS — from Tab 1).</p>
+    <table class="we-table">
+      <tbody>
+        <tr><td>Revenue (subscription + refuel)</td><td class="num">$18.39</td></tr>
+        <tr><td>− Supplier COGS</td><td class="num">−$7.35</td></tr>
+        <tr><td>− OPEX (per user per month)</td><td class="num">−$1.80</td></tr>
+        <tr class="total"><td>Net contribution / user / month</td><td class="num" style="color:var(--red); font-size:18px;">$9.24</td></tr>
+        <tr><td>Net margin</td><td class="num">50%</td></tr>
+        <tr><td>Annualised (× 12)</td><td class="num">$110.88 / user / year</td></tr>
+      </tbody>
+    </table>
+    <div class="callout-green" style="margin-top:16px;">
+      A Premium subscriber retained for 12 months contributes <strong>$110.88 net</strong>. At 10,000 Premium subscribers, that's $1.1M/year net from this tier alone.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. The Akito ask -->
+<!-- ============================================================ -->
+<section>
+  <div class="callout-akito">
+    <div class="small">Action required — Akito</div>
+    <div class="ask">We need <span>5–10 real crew roster samples</span> to validate the 75/20/5 geo mix.</div>
+    <div class="ctx">
+      Every blended cost number in this model — the $1.34/GB, the COGS per tier, the gross margins —
+      depends on this single assumption. Until we see real layover data, treat these as educated placeholders.
+    </div>
+    <ul class="checklist">
+      <li>Collect 5–10 crew roster samples (any format — screenshot, PDF, CSV)</li>
+      <li>Map each flight leg to its destination country</li>
+      <li>Categorize each country into Tier A / B / C</li>
+      <li>Count what % of legs land in each tier</li>
+      <li>Compare to the 75/20/5 assumption — if it's off, update this tab</li>
+    </ul>
+    <div style="margin-top: 24px; padding: 14px 16px; background: rgba(201,160,59,0.15); border-radius: 8px; font-size: 13px; color: #f5e6c0; max-width: 560px; margin-left:auto; margin-right:auto;">
+      <strong>Why this matters more than anything else in Tab 2:</strong> A 10% shift in Tier-C share
+      (5% → 15%) blows the blended cost from $1.34 to $2.13/GB — a 59% increase in COGS. That alone
+      could flip the business model from profitable to marginal.
+    </div>
+  </div>
+</section>
+
+<footer>
+  Peanut eSIM · User Behavior (Tab 2) · visual explainer for Akito · Generated 2026-06-01
+</footer>
+
+</main>
+
+<div id="toast" class="toast">Link copied</div>
+
+<script>
+  // ---------- Copy share link ----------
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      showToast();
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = url; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e){}
+      ta.remove();
+      showToast();
+    });
+  });
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1500);
+  }
+
+  // ---------- Chart.js shared settings ----------
+  const RED   = '#D71921';
+  const GOLD  = '#C9A03B';
+  const INK   = '#1A1A1A';
+  const CREAM = '#FAF6F0';
+  const GREEN = '#1a8a5a';
+  const BLUE  = '#94b9c8';
+
+  const fontFamily = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+  Chart.defaults.font.family = fontFamily;
+  Chart.defaults.color = '#3a3a3a';
+  Chart.defaults.font.size = 12;
+
+  // 1) Archetype donut
+  new Chart(document.getElementById('archetypeDonut'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Light Tourists (25%)', 'Heavy Commuters (40%)', 'Pro Creators (35%)'],
+      datasets: [{
+        data: [25, 40, 35],
+        backgroundColor: [BLUE, RED, GOLD],
+        borderColor: CREAM, borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '62%',
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14 } },
+        tooltip: { callbacks: { label: (ctx) => ctx.label + ' of subscribers' } }
+      }
+    }
+  });
+
+  // 2) Per-tier consumption bar (vertical)
+  new Chart(document.getElementById('consumptionBar'), {
+    type: 'bar',
+    data: {
+      labels: ['Economy\n($4.99)', 'Roster\n($3.99)', 'Premium\n($17.99)', 'Business\n($29.99)', 'First\n($39.99)', 'First Suite\n($49.99)', 'Cockpit\n($299/yr)'],
+      datasets: [{
+        label: '% of pool consumed',
+        data: [40, 45, 54, 33, 60, 60, 15],
+        backgroundColor: ['#b8c5cf', '#7a9bab', GOLD, RED, '#b07729', '#7a5c1a', INK],
+        borderRadius: 6,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ctx.parsed.y + '% of pool consumed',
+            afterLabel: (ctx) => {
+              const prices = ['$4.99 PAYG', '$3.99/mo', '$17.99/mo', '$29.99/mo', '$39.99/mo', '$49.99/mo', '~$24.92/mo equiv.'];
+              return prices[ctx.dataIndex];
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+        y: {
+          beginAtZero: true,
+          max: 80,
+          ticks: { callback: v => v + '%' },
+          grid: { color: '#eee' },
+          title: { display: true, text: '% of GB pool consumed', color: '#666', font: { size: 12 } }
+        }
+      }
+    }
+  });
+
+  // 3) Refuel attach bar
+  new Chart(document.getElementById('refuelBar'), {
+    type: 'bar',
+    data: {
+      labels: ['Economy\n(PAYG)', 'Roster\n($3.99)', 'Premium\n($17.99)', 'Business\n($29.99)', 'First\n($39.99)', 'First Suite\n($49.99)'],
+      datasets: [{
+        label: 'Refuel attach rate (%)',
+        data: [0, 5, 8, 3, 2, 2],
+        backgroundColor: ['#d9d9d9', '#b8c5cf', GOLD, RED, '#b07729', '#7a5c1a'],
+        borderRadius: 6,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (ctx) => ctx.parsed.y + '% attach rate · $' + (ctx.parsed.y / 100 * 4.99).toFixed(2) + '/user/mo refuel revenue' } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+        y: {
+          beginAtZero: true,
+          max: 12,
+          ticks: { callback: v => v + '%' },
+          grid: { color: '#eee' },
+          title: { display: true, text: 'Attach rate (%)', color: '#666', font: { size: 12 } }
+        }
+      }
+    }
+  });
+
+  // 4) Geo mix donut
+  new Chart(document.getElementById('geoMixDonut'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Tier A — $0.85/GB (75%)', 'Tier B — $1.40/GB (20%)', 'Tier C — $8.50/GB (5%)'],
+      datasets: [{
+        data: [75, 20, 5],
+        backgroundColor: [GREEN, GOLD, RED],
+        borderColor: CREAM, borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '62%',
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14 } },
+        tooltip: { callbacks: { label: (ctx) => ctx.label + ' of GB consumed' } }
+      }
+    }
+  });
+
+  // 5) Geo compare bar (old vs new blended cost)
+  new Chart(document.getElementById('geoCompareBar'), {
+    type: 'bar',
+    data: {
+      labels: ['Old 60/25/15', 'New 75/20/5'],
+      datasets: [
+        {
+          label: 'Tier A contribution',
+          data: [0.51, 0.64],
+          backgroundColor: GREEN, borderRadius: 4
+        },
+        {
+          label: 'Tier B contribution',
+          data: [0.35, 0.28],
+          backgroundColor: GOLD, borderRadius: 4
+        },
+        {
+          label: 'Tier C contribution',
+          data: [1.28, 0.43],
+          backgroundColor: RED, borderRadius: 4
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 12, padding: 12 } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ctx.dataset.label + ': $' + ctx.parsed.y.toFixed(2) + '/GB',
+            afterBody: (items) => {
+              const total = items.reduce((s, i) => s + i.parsed.y, 0);
+              return 'Blended total: $' + total.toFixed(2) + '/GB';
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { display: false } },
+        y: {
+          stacked: false,
+          beginAtZero: true,
+          max: 2.50,
+          ticks: { callback: v => '$' + v.toFixed(2) },
+          grid: { color: '#eee' },
+          title: { display: true, text: 'Cost contribution ($/GB)', color: '#666', font: { size: 12 } }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
