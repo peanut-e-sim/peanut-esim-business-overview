@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tab 3 — Per-Tier Unit Economics In-Depth Report (2026-06-01)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root { --red:#D71921; --red-dark:#A01218; --cream:#FAF6F0; --gold:#C9A03B; --ink:#1A1A1A; --ink-soft:#4A4A4A; --line:#E5DDD0; --green:#2D7A4F; --amber:#B07A1F; --purple:#6B3FA0; --purple-dark:#4A2D75; --blue:#1E5FAF; }
+* { box-sizing:border-box; }
+html,body { margin:0; padding:0; background:var(--cream); color:var(--ink); font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; line-height:1.55; }
+.copy-bar { position:sticky; top:0; background:var(--red); color:white; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight:600; letter-spacing:.02em; }
+.copy-bar button { background:white; color:var(--red); border:0; padding:10px 18px; font-weight:600; font-size:14px; border-radius:4px; cursor:pointer; }
+.copy-bar button:hover { background:var(--cream); }
+.container { max-width:980px; margin:0 auto; padding:40px 32px 120px; }
+h1 { font-size:38px; margin:0 0 8px; letter-spacing:-.01em; }
+h2 { font-size:26px; margin:48px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--purple); color:var(--purple-dark); }
+h3 { font-size:20px; margin:28px 0 8px; color:var(--ink); }
+h4 { font-size:16px; margin:18px 0 6px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; }
+p,li { font-size:15px; }
+.meta { color:var(--ink-soft); font-size:13px; margin-bottom:24px; }
+.lede { font-size:17px; color:var(--ink-soft); margin:16px 0 32px; padding:18px 22px; background:white; border-left:4px solid var(--gold); }
+table { width:100%; border-collapse:collapse; margin:16px 0 24px; font-size:14px; background:white; }
+th { background:var(--ink); color:white; text-align:left; padding:10px 12px; font-weight:600; }
+td { padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+tr:nth-child(even) td { background:#FCFAF5; }
+.pill { display:inline-block; padding:2px 10px; border-radius:12px; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+.pill.locked { background:#E0F2E7; color:var(--green); }
+.pill.estimate { background:#FBEFD9; color:var(--amber); }
+.pill.flagged { background:#FBE0E0; color:var(--red); }
+.pill.high { background:#E0F2E7; color:var(--green); }
+.pill.medium { background:#FBEFD9; color:var(--amber); }
+.pill.low { background:#FBE0E0; color:var(--red); }
+blockquote { margin:16px 0; padding:12px 18px; background:white; border-left:3px solid var(--gold); font-style:italic; color:var(--ink-soft); }
+.decision-box { background:white; border:1px solid var(--line); padding:18px 22px; margin:16px 0; border-radius:4px; }
+.decision-box h4 { margin-top:0; color:var(--purple-dark); }
+a { color:var(--purple-dark); }
+code { background:#F0E8DD; padding:1px 6px; border-radius:3px; font-size:13px; }
+.toc { background:white; padding:18px 24px; border:1px solid var(--line); margin:24px 0 32px; }
+.toc ul { margin:0; padding-left:20px; }
+.toc li { margin:4px 0; }
+.toc a { text-decoration:none; }
+.toc a:hover { text-decoration:underline; }
+hr { border:0; border-top:1px solid var(--line); margin:40px 0; }
+.green-text { color:var(--green); font-weight:600; }
+.red-text { color:var(--red); font-weight:600; }
+.copy-textarea { position:absolute; left:-9999px; }
+.footer-note { font-size:13px; color:var(--ink-soft); margin-top:60px; padding-top:16px; border-top:1px solid var(--line); }
+.col-group { display:inline-block; padding:3px 10px; border-radius:4px; font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; margin-right:6px; }
+.col-group.inputs { background:#DCEBFB; color:var(--blue); }
+.col-group.esim { background:#FBEFD9; color:var(--amber); }
+.col-group.profit { background:#E0F2E7; color:var(--green); }
+.hero-tier { background:#FFF8E7; border-left:4px solid var(--gold); padding:14px 18px; margin:14px 0; font-size:14px; }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 3 IN-DEPTH REPORT — Peanut eSIM (2026-06-01)</span>
+  <button onclick="copyAll()">Copy Full Report</button>
+</div>
+
+<div class="container">
+
+<h1>Tab 3 — Per-Tier Unit Economics: In-Depth Report</h1>
+<div class="meta">Prepared 2026-06-01 · Captures every column, formula, per-tier result, and downstream connection from the bite-by-bite walkthrough · Owners: Balraj + Akito</div>
+
+<div class="decision-box" style="border-left:4px solid var(--purple); background:#F5F0FA;">
+  <h4>Tab 3 in one sentence</h4>
+  <p style="margin:0;">Tab 3 translates the <strong>retail prices from Tab 1</strong> and the <strong>consumption behavior from Tab 2</strong> into a single <strong>per-USER profit number for each tier</strong>. It is the bridge between architecture and money. Every downstream scaling tab (Volume Scenarios, 24-Month Rollout, LTV-CAC) multiplies these per-user numbers by user counts.</p>
+</div>
+
+<div class="lede">
+This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Economics</strong> of the Peanut eSIM P&amp;L Model. Tab 3 answers a single question: <em>"For one subscriber on each plan, in one month, how much profit do we make?"</em> The walkthrough explains all 13 columns (3 column groups), the locked per-tier results, the strategic insights about which tier wins, and the downstream tabs that depend on these numbers.
+</div>
+
+<div class="toc">
+<strong>Table of Contents</strong>
+<ul>
+  <li><a href="#purpose">1. Purpose — what Tab 3 does (and what it doesn't)</a></li>
+  <li><a href="#columns">2. The 13 columns explained (3 column groups)</a></li>
+  <li><a href="#results">3. Per-tier results table (locked numbers)</a></li>
+  <li><a href="#insights">4. Strategic insights — which tier wins, which is weakest</a></li>
+  <li><a href="#downstream">5. Downstream consumption — how Tab 3 feeds the rest</a></li>
+  <li><a href="#confidence">6. Confidence assessment per input</a></li>
+  <li><a href="#validation">7. Validation queue</a></li>
+</ul>
+</div>
+
+<h2 id="purpose">1. Purpose — what Tab 3 does (and what it doesn't)</h2>
+
+<table>
+<tr><th>Tab 3 IS</th><th>Tab 3 is NOT</th></tr>
+<tr><td>Per-USER math (one subscriber, one month)</td><td>Total revenue or company-level P&amp;L</td></tr>
+<tr><td>The translation layer between Tab 1 (prices) and Tab 2 (behavior) and money</td><td>A scaling tab — multiplication by user counts happens in Tab 5+</td></tr>
+<tr><td>Where COGS, gross margin, and net margin are computed for each plan</td><td>A sensitivity tab — that's Tab 7</td></tr>
+<tr><td>The source of every "per user / month" number quoted in pitches</td><td>A churn or LTV tab — that's Tab 8</td></tr>
+</table>
+
+<blockquote>If Tab 1 is the menu and Tab 2 is the appetite, Tab 3 is the kitchen receipt. One customer, one meal, one number.</blockquote>
+
+<h2 id="columns">2. The 13 columns explained</h2>
+<p>Tab 3's 13 columns are organized into <strong>three logical groups</strong>, each color-coded in the workbook for fast visual parsing.</p>
+
+<h3><span class="col-group inputs">Group 1 — Inputs</span> Columns A–D (blue)</h3>
+<p>The four upstream-fed inputs. None of these are calculated in Tab 3 — they pull from Tab 1 and Tab 2.</p>
+<table>
+<tr><th>Col</th><th>Name</th><th>Source</th><th>Example (Business)</th></tr>
+<tr><td>A</td><td>Tier name</td><td>Tab 1 row label</td><td>Business ⭐</td></tr>
+<tr><td>B</td><td>Monthly Revenue</td><td>Tab 1 retail price</td><td>$29.99</td></tr>
+<tr><td>C</td><td>GB Consumed</td><td>Tab 2 per-tier consumption</td><td>6.75 GB (45% of 15 GB pool)</td></tr>
+<tr><td>D</td><td>Wholesale $/GB</td><td>Tab 1 blended cost ($1.34 at 75/20/5 mix)</td><td>$1.34/GB</td></tr>
+</table>
+
+<h3><span class="col-group esim">Group 2 — eSIM &amp; Refuel Math</span> Columns E–H (amber)</h3>
+<p>The four columns that compute the eSIM data cost plus refuel add-on revenue + cost.</p>
+<table>
+<tr><th>Col</th><th>Name</th><th>Formula</th><th>Example (Business)</th></tr>
+<tr><td>E</td><td>eSIM COGS</td><td>C × D</td><td>6.75 × $1.34 = $9.05</td></tr>
+<tr><td>F</td><td>Refuel Attach %</td><td>Tab 2 per-tier estimate (currently uses 25% for Business)</td><td>25%</td></tr>
+<tr><td>G</td><td>Refuel Revenue</td><td>F × $4.99 (refuel price from Tab 1)</td><td>0.25 × $4.99 = $1.25</td></tr>
+<tr><td>H</td><td>Refuel COGS</td><td>F × 1 GB × D</td><td>0.25 × 1 × $1.34 = $0.34</td></tr>
+</table>
+
+<h3><span class="col-group profit">Group 3 — Profit Math</span> Columns I–M (green)</h3>
+<p>The five columns that roll everything into a single per-user profit number.</p>
+<table>
+<tr><th>Col</th><th>Name</th><th>Formula</th><th>Example (Business)</th></tr>
+<tr><td>I</td><td>Total Revenue</td><td>B + G</td><td>$29.99 + $1.25 = $31.24</td></tr>
+<tr><td>J</td><td>Total COGS</td><td>E + H</td><td>$9.05 + $0.34 = $9.40</td></tr>
+<tr><td>K</td><td>Gross Profit</td><td>I − J</td><td>$31.24 − $9.40 = $21.84</td></tr>
+<tr><td>L</td><td>Gross Margin %</td><td>K ÷ I</td><td>69.9%</td></tr>
+<tr><td>M</td><td>Net Margin (after OPEX)</td><td>(K − $1.80) ÷ I</td><td>($21.84 − $1.80) ÷ $31.24 = 65.6%</td></tr>
+</table>
+
+<h4>Why OPEX is $1.80</h4>
+<p>The $1.80 figure comes from Tab 1 Section 5 (Operating Cost per User per Month). It bundles payment processing ($1.20 mixed Stripe/Apple IAP), customer support amortized ($0.30), cloud/API ($0.15), SMS/OTP ($0.05), hosting ($0.10). This is the same number applied across every tier — the assumption being that ops cost scales linearly per active user, regardless of plan size.</p>
+
+<h2 id="results">3. Per-tier results table (locked numbers)</h2>
+<p>The full output of Tab 3 — one row per tier, all 7 plans + the Cockpit annual row recomputed to a monthly equivalent.</p>
+
+<table>
+<tr><th>Tier</th><th>Revenue</th><th>GB Consumed</th><th>eSIM COGS</th><th>Refuel Net</th><th>Total Rev</th><th>Total COGS</th><th>Gross Profit</th><th>Gross Margin</th><th>Net Margin</th></tr>
+<tr><td>Economy (PAYG)</td><td>$4.99</td><td>1.0</td><td>$1.34</td><td>$0.00</td><td>$4.99</td><td>$1.34</td><td>$3.65</td><td>73.1%</td><td>36.0%</td></tr>
+<tr><td>Roster Bundle</td><td>$19.95</td><td>5.0</td><td>$6.71</td><td>$0.37</td><td>$20.45</td><td>$6.84</td><td>$13.60</td><td>66.5%</td><td>59.9%</td></tr>
+<tr><td>Premium Economy</td><td>$17.99</td><td>4.0</td><td>$5.37</td><td>$0.73</td><td>$18.99</td><td>$5.64</td><td>$13.35</td><td>70.3%</td><td>63.2%</td></tr>
+<tr><td><strong>Business ⭐</strong></td><td><strong>$29.99</strong></td><td><strong>6.75</strong></td><td><strong>$9.06</strong></td><td><strong>$0.91</strong></td><td><strong>$31.24</strong></td><td><strong>$9.40</strong></td><td><strong>$21.84</strong></td><td><strong>69.9%</strong></td><td><strong>65.6%</strong></td></tr>
+<tr><td>First</td><td>$39.99</td><td>13.5</td><td>$18.12</td><td>$1.46</td><td>$41.99</td><td>$18.66</td><td>$23.33</td><td>55.5%</td><td>52.3%</td></tr>
+<tr><td><strong>First Suite</strong></td><td><strong>$49.99</strong></td><td><strong>13.2</strong></td><td><strong>$17.72</strong></td><td><strong>$0.73</strong></td><td><strong>$50.99</strong></td><td><strong>$17.99</strong></td><td><strong>$33.00</strong></td><td><strong>64.7%</strong></td><td><strong>62.1%</strong></td></tr>
+<tr><td>Cockpit (annual → monthly)</td><td>$24.92</td><td>7.2</td><td>$9.66</td><td>$0.55</td><td>$25.67</td><td>$9.87</td><td>$15.80</td><td>61.6%</td><td>56.3%</td></tr>
+</table>
+
+<div class="hero-tier"><strong>The hero tier:</strong> First Suite — $33.00 gross profit per user per month, highest absolute profit on the entire ladder. Customers who upgrade from Business to First Suite are worth an extra $11.18/user/month in profit.</div>
+
+<h2 id="insights">4. Strategic insights</h2>
+
+<h3>4.1 First Suite is the hero</h3>
+<p>At <strong>$33.00 gross profit / user / month</strong>, First Suite generates more absolute profit than any other tier — beating even Cockpit's annual prepay on a monthly-equivalent basis. The reason is structural: First Suite has the same friction-capped consumption as First (~13 GB) but a $10 higher retail price. The pool went from 25 GB to 40 GB on paper, but actual GB delivered stayed flat. <strong>Pool expansion is free; price expansion is profit.</strong></p>
+
+<h3>4.2 Business is the default RECOMMENDED tier</h3>
+<p>Business sits at the sweet spot: <strong>70% gross margin, $21.84 profit per user</strong>, the highest absolute profit among the broad-market tiers. It's the "everyone should buy this" tier on the price card — high enough that ARPU is meaningful, low enough that broad crew demographics can afford it. This is why it carries the RECOMMENDED flag in the app.</p>
+
+<h3>4.3 First is the weakest tier on margin</h3>
+<p>First's net margin is just <strong>52.3%</strong> — the lowest of any subscription tier. The reason: heavy users on First push consumption to 13.5 GB (54% of the 25 GB pool), and at $1.34/GB blended that's $18+ of COGS against just $39.99 revenue. First's job is positional — it bridges Business to First Suite on the price ladder. It captures users who feel above Business but balk at First Suite's $49.99 price tag.</p>
+
+<blockquote>First is the "ladder rung" tier. Its purpose is to make First Suite look reasonable. We accept thinner margins here because it pulls Business buyers up.</blockquote>
+
+<h3>4.4 Economy is a volume play</h3>
+<p>At <strong>$3.65 gross profit per top-up</strong>, Economy needs 2.5+ purchases per month to compete with even the cheapest subscription tier. A user who buys 2 top-ups in a month delivers $7.30 — less than half of Premium Economy. The strategic role of Economy is twofold: (1) <strong>acquisition</strong> — a $4.99 try-it price has near-zero friction, and (2) <strong>upsell anchor</strong> — once users buy 3 top-ups in a month ($14.97), they realize Premium Economy ($17.99 for 10 GB) is a better deal and convert.</p>
+
+<h3>4.5 Cockpit is about cash flow, not per-user max profit</h3>
+<p>At $25.67 monthly-equivalent revenue and $15.80 gross profit, Cockpit underperforms Business ($21.84) and First Suite ($33.00) on a per-user-per-month basis. <strong>That's by design.</strong> Cockpit's value is <strong>$299 collected upfront on day 1</strong> — strong cash flow, zero churn for 12 months, predictable annual revenue stream. The annual lock-in matters more than per-month margin maximization.</p>
+
+<h3>4.6 The upgrade arithmetic</h3>
+<p>Every upgrade path has a measurable per-user-per-month profit delta:</p>
+<table>
+<tr><th>Upgrade path</th><th>Profit delta</th><th>Annual delta per user</th></tr>
+<tr><td>Economy → Premium Economy</td><td>+$9.70/mo</td><td>+$116/yr</td></tr>
+<tr><td>Premium Economy → Business</td><td>+$8.49/mo</td><td>+$102/yr</td></tr>
+<tr><td>Business → First</td><td>+$1.49/mo</td><td>+$18/yr (weak)</td></tr>
+<tr><td><strong>Business → First Suite</strong></td><td><strong>+$11.18/mo</strong></td><td><strong>+$134/yr</strong></td></tr>
+<tr><td>First → First Suite</td><td>+$9.67/mo</td><td>+$116/yr</td></tr>
+</table>
+<p><strong>Implication:</strong> the strongest in-app upgrade prompt to design is <strong>Business → First Suite</strong>, skipping First entirely. Marketing should funnel Business users directly to First Suite, not nudge them through First.</p>
+
+<h2 id="downstream">5. Downstream consumption — how Tab 3 feeds the rest</h2>
+<p>Tab 3 is the per-user math factory. Every scaling tab downstream multiplies these per-user numbers by user counts, lifetime, or growth curves.</p>
+
+<table>
+<tr><th>Downstream tab</th><th>What it does with Tab 3</th><th>Output</th></tr>
+<tr><td><strong>Tab 5 — Volume Scenarios</strong></td><td>Per-user gross profit × user counts (1K / 5K / 10K / 100K)</td><td>Monthly P&amp;L at each scale</td></tr>
+<tr><td><strong>Tab 6 — 24-Month Rollout</strong></td><td>Per-user × monthly growth curve (assuming acquisition + retention)</td><td>24-month revenue + profit projection</td></tr>
+<tr><td><strong>Tab 8 — LTV-CAC + Churn</strong></td><td>Per-user gross profit × expected lifetime (1 / churn)</td><td>LTV per tier; LTV/CAC ratio</td></tr>
+<tr><td><strong>Tab 10 — Carryover Liability</strong></td><td>Connected via Tab 2's GB Consumed → unused → deferred breakage</td><td>Carryover aging schedule</td></tr>
+<tr><td><strong>Tab 11 — Strategic Scenarios</strong></td><td>Re-runs per-tier economics under Samurai vs direct supplier paths</td><td>Strategic supplier comparison</td></tr>
+<tr><td><strong>Tab 12 — Cash + Sensitivity</strong></td><td>Per-user × scenarios × cash conversion timing</td><td>Cash flow + runway sensitivity</td></tr>
+</table>
+
+<blockquote>Change ANY single number in Tab 3 — wholesale $/GB, OPEX, refuel attach — and the entire downstream P&amp;L cascades. That's why every Tab 3 input is sourced from Tab 1 or Tab 2, never hardcoded here.</blockquote>
+
+<h2 id="confidence">6. Confidence assessment per input</h2>
+<p>Not every number in Tab 3 has the same level of grounding. Confidence by input:</p>
+
+<table>
+<tr><th>Input</th><th>Confidence</th><th>Why</th></tr>
+<tr><td>Retail prices (Tab 1)</td><td><span class="pill high">High</span></td><td>Locked decisions, every tier reviewed in detail. Won't change without explicit re-litigation.</td></tr>
+<tr><td>GB Consumed per tier (Tab 2)</td><td><span class="pill medium">Medium</span></td><td>Per-tier estimates from friction model. Logical but not yet validated by real app analytics.</td></tr>
+<tr><td>Wholesale $/GB ($1.34)</td><td><span class="pill medium">Medium</span></td><td>Real Samurai rate sheet × placeholder 75/20/5 country mix. Bucket prices are real; mix is Akito-validated estimate.</td></tr>
+<tr><td>Refuel attach % per tier</td><td><span class="pill low">Low</span></td><td>Educated guesses (10% / 7.5% / 20% / 25% / 35% / 15% / 22%). Need post-launch app analytics for ground truth.</td></tr>
+<tr><td>OPEX $1.80/user/mo</td><td><span class="pill medium">Medium</span></td><td>Stripe + Apple IAP fees are well-modeled; support cost is flat-line placeholder that should be phase-based.</td></tr>
+<tr><td>Refuel price $4.99</td><td><span class="pill high">High</span></td><td>Locked at Economy parity to close the subscriber-backdoor exploit.</td></tr>
+</table>
+
+<h2 id="validation">7. Validation queue</h2>
+<p>What needs real data to convert Tab 3 from estimate to verified:</p>
+
+<table>
+<tr><th>Item</th><th>How to validate</th><th>Owner</th><th>When</th></tr>
+<tr><td>Per-tier refuel attach rates</td><td>App analytics — track "refuel purchase" events by tier in months 1-3 post-launch</td><td>Balraj (tech)</td><td>Post-launch month 3</td></tr>
+<tr><td>Wholesale country mix (75/20/5)</td><td>Collect 5-10 sample Emirates crew rosters, compute actual flight distribution by country bucket</td><td>Akito</td><td>This week</td></tr>
+<tr><td>Per-tier consumption rates (inherited from Tab 2)</td><td>App analytics — track "GB consumed / pool size" by tier in months 1-3</td><td>Balraj (tech)</td><td>Post-launch month 3</td></tr>
+<tr><td>Sensitivity: what if Premium consumption is 50% (not 40%)?</td><td>Tab 7 stress test — rerun Tab 3 at +/- 10% consumption</td><td>Claude</td><td>Next Tab 7 pass</td></tr>
+<tr><td>Sensitivity: what if Tier-C mix is 10% (not 5%)?</td><td>Tab 7 stress test — blended cost rises to $1.78/GB; rerun Tab 3</td><td>Claude</td><td>Next Tab 7 pass</td></tr>
+<tr><td>OPEX phase-based revision</td><td>Replace flat $1.80 with phase-based curve ($3.50 → $1.80 → $0.80 as scale grows)</td><td>Claude</td><td>Tab 1 Section 5 follow-up</td></tr>
+</table>
+
+<h4>Stress test — what if everything goes worse than expected?</h4>
+<table>
+<tr><th>Variable</th><th>Base case</th><th>Worst case</th><th>Impact on Business gross profit</th></tr>
+<tr><td>Wholesale $/GB</td><td>$1.34</td><td>$2.13 (60/25/15 mix)</td><td>$21.84 → $17.49 (−20%)</td></tr>
+<tr><td>Business consumption</td><td>45%</td><td>65%</td><td>$21.84 → $17.84 (−18%)</td></tr>
+<tr><td>Refuel attach (Business)</td><td>25%</td><td>10%</td><td>$21.84 → $21.29 (−3%)</td></tr>
+<tr><td>OPEX</td><td>$1.80</td><td>$2.50</td><td>Net margin 65.6% → 63.4%</td></tr>
+<tr><td><strong>All combined</strong></td><td><strong>$21.84 / 65.6% net</strong></td><td><strong>$13.49 / 35.3% net</strong></td><td>Still profitable, but margin halves</td></tr>
+</table>
+
+<p>Even in the worst-case scenario, every tier remains gross-margin positive. The model is robust to combined-downside shocks — what changes is the rate of profit, not the existence of profit.</p>
+
+<div class="footer-note">
+<strong>Cross-references:</strong>
+<ul>
+  <li>Tab 1 In-Depth Report (pricing architecture) — <a href="tab1-in-depth-report-2026-06-01.html">tab1-in-depth-report-2026-06-01.html</a></li>
+  <li>Tab 2 In-Depth Report (user behavior) — <a href="tab2-in-depth-report-2026-06-01.html">tab2-in-depth-report-2026-06-01.html</a></li>
+  <li>Per-plan deep dives in the xlsx — <code>Economy Logic</code>, <code>Roster Bundle Logic</code>, <code>Premium Economy Logic</code>, <code>Business Logic</code>, <code>First Logic</code>, <code>First Suite Logic</code>, <code>Cockpit Logic</code></li>
+  <li>Sensitivity: Tab 7 (Behavior Sensitivity) stress-tests Tab 3 inputs</li>
+  <li>Downstream: Tab 5 (Volume), Tab 6 (24-Month), Tab 8 (LTV-CAC), Tab 10 (Carryover), Tab 11 (Strategic), Tab 12 (Cash)</li>
+  <li>Live Google Sheet: <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit">linked sheet</a></li>
+  <li>xlsx download: <a href="Peanut-eSIM-PL-Model-2026-05-31.xlsx">Peanut-eSIM-PL-Model-2026-05-31.xlsx</a></li>
+  <li>Master briefing doc: <a href="peanut-esim-project-briefing-2026-05-31.html">peanut-esim-project-briefing-2026-05-31.html</a></li>
+</ul>
+<br>
+<strong>Document state:</strong> Tab 3 walkthrough complete as of 2026-06-01. All 7 tier rows locked at current numbers. 6 items in Tab 3 Validation Queue (3 require post-launch app analytics; 1 requires Akito roster sampling; 2 are sensitivity passes).
+</div>
+
+</div>
+
+<textarea id="copy-source" class="copy-textarea" readonly></textarea>
+
+<script>
+function copyAll() {
+  const container = document.querySelector('.container');
+  let text = '';
+  function walk(node) {
+    if (node.nodeType === Node.TEXT_NODE) text += node.textContent;
+    else if (node.nodeType === Node.ELEMENT_NODE) {
+      const tag = node.tagName.toLowerCase();
+      if (tag === 'h1') text += '\n\n# ';
+      else if (tag === 'h2') text += '\n\n## ';
+      else if (tag === 'h3') text += '\n\n### ';
+      else if (tag === 'h4') text += '\n\n#### ';
+      else if (tag === 'p' || tag === 'li' || tag === 'tr') text += '\n';
+      else if (tag === 'td' || tag === 'th') text += ' | ';
+      else if (tag === 'br') text += '\n';
+      for (const child of node.childNodes) walk(child);
+    }
+  }
+  walk(container);
+  text = text.replace(/\n{3,}/g, '\n\n').trim();
+  const ta = document.getElementById('copy-source');
+  ta.value = text;
+  ta.select();
+  document.execCommand('copy');
+  const btn = document.querySelector('.copy-bar button');
+  const original = btn.textContent;
+  btn.textContent = 'Copied!';
+  setTimeout(() => btn.textContent = original, 2000);
+}
+</script>
+
+</body>
+</html>
