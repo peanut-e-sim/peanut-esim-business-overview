@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — Per-Tier Unit Economics (for Akito)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #e8e2d6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  a { color: var(--red); }
+
+  /* Sticky header */
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--red); color: #fff;
+    padding: 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  header.bar .title { font-weight: 700; letter-spacing: .2px; font-size: 16px; }
+  header.bar .title small { display:block; font-weight: 400; opacity:.85; font-size:12px; margin-top:2px;}
+  header.bar .btn-group { display: flex; gap: 8px; align-items: center; }
+  header.bar a.back-btn, header.bar button {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.5);
+    color: #fff; font: inherit;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    transition: background .15s ease;
+    font-size: 13px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  header.bar a.back-btn:hover, header.bar button:hover { background: rgba(255,255,255,.28); }
+
+  /* Layout */
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 56px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero {
+    font-size: clamp(28px, 4.2vw, 44px);
+    line-height: 1.15; margin: 0 0 14px;
+    letter-spacing: -.5px;
+  }
+  h1.hero .accent { color: var(--red); }
+  p.lede {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: #2a2a2a; max-width: 760px; margin: 0 0 18px;
+  }
+  .badge-updated {
+    display: inline-block; padding: 4px 12px;
+    background: #fff; border: 1px solid var(--gold); border-radius: 999px;
+    font-size: 12px; font-weight: 600; color: #7a5c1a; letter-spacing: .3px;
+  }
+  h2.section-title {
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0 0 6px; letter-spacing: -.2px;
+  }
+  h2.section-title .num {
+    display: inline-block;
+    width: 30px; height: 30px; line-height: 30px;
+    border-radius: 50%; background: var(--ink); color: #fff;
+    font-size: 14px; text-align: center; margin-right: 10px;
+    vertical-align: middle;
+  }
+  p.section-sub {
+    color: var(--muted); max-width: 720px; margin: 0 0 22px; font-size: 15px;
+  }
+
+  /* Chart cards */
+  .chart-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; box-shadow: var(--shadow);
+  }
+  .chart-card h3 { margin: 0 0 4px; font-size: 16px; }
+  .chart-card p.sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .chart-wrap { position: relative; height: 320px; }
+  .chart-wrap.tall { height: 400px; }
+  .chart-wrap.xlarge { height: 460px; }
+
+  .two-col {
+    display: grid; gap: 18px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Tables */
+  .we-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 10px; }
+  .we-table th, .we-table td {
+    text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line);
+  }
+  .we-table th { background: #faf6ec; font-weight: 600; color: #5a4a14; font-size: 12px; letter-spacing: .3px; text-transform: uppercase; }
+  .we-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .we-table tr.total td { font-weight: 700; background: #fdf5e3; }
+  .we-table tr.danger td { background: #fff5f5; color: #8b1a1a; }
+  .we-table tr.danger td.num { color: #D71921; font-weight: 700; }
+  .we-table tr.highlight td { background: #f0faf4; }
+
+  /* Callout boxes */
+  .callout-gold {
+    background: #fff8e6; border-left: 4px solid var(--gold);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #5a4a14;
+  }
+  .callout-red {
+    background: #fff5f5; border-left: 4px solid var(--red);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #5a1a1a;
+  }
+  .callout-green {
+    background: #f0faf4; border-left: 4px solid var(--green);
+    border-radius: 6px; padding: 16px 18px;
+    font-size: 14px; color: #1a5a3a;
+  }
+
+  /* Workhorse cards */
+  .workhorse-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    margin-top: 20px;
+  }
+  .workhorse {
+    background: var(--card); border: 2px solid var(--green);
+    border-radius: 14px; padding: 20px; box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .workhorse::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: var(--green);
+  }
+  .workhorse .name { font-weight: 700; font-size: 15px; color: #15633f; margin-bottom: 4px; }
+  .workhorse .big { font-size: 36px; font-weight: 700; letter-spacing: -1px; color: var(--green); line-height: 1.1; }
+  .workhorse .unit { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .workhorse .gm { font-size: 13px; color: #444; margin-top: 8px; }
+
+  /* Red flag cards */
+  .redflag-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin-top: 20px;
+  }
+  .redflag {
+    background: #fff5f5; border: 2px solid var(--red);
+    border-radius: 14px; padding: 20px; box-shadow: var(--shadow);
+  }
+  .redflag .name { font-weight: 700; font-size: 15px; color: #8b1a1a; margin-bottom: 4px; }
+  .redflag .big { font-size: 36px; font-weight: 700; letter-spacing: -1px; color: var(--red); line-height: 1.1; }
+  .redflag .unit { font-size: 12px; color: #8b1a1a; margin-top: 2px; }
+  .redflag .math { font-size: 13px; color: #5a1a1a; margin-top: 10px; line-height: 1.7; }
+  .redflag .math code { background: #fde0e0; padding: 1px 6px; border-radius: 4px; font-family: monospace; }
+
+  /* Refuel SKU */
+  .refuel-card {
+    background: var(--card); border: 2px solid var(--gold);
+    border-radius: 14px; padding: 24px; box-shadow: var(--shadow);
+    display: flex; gap: 24px; align-items: center; flex-wrap: wrap;
+  }
+  .refuel-card .icon { font-size: 48px; flex: 0 0 auto; }
+  .refuel-card .body { flex: 1; min-width: 260px; }
+  .refuel-card .body .label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .refuel-card .body .big { font-size: 40px; font-weight: 700; letter-spacing: -1px; color: var(--gold); line-height: 1; }
+  .refuel-card .body .sub { font-size: 14px; color: #5a4a14; margin-top: 8px; }
+
+  /* Economy variants table */
+  .eco-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 12px; }
+  .eco-table th, .eco-table td {
+    padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left;
+  }
+  .eco-table th { background: #faf6ec; font-weight: 700; font-size: 12px; letter-spacing: .3px; text-transform: uppercase; color: #5a4a14; }
+  .eco-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .eco-table tr.highlight td { background: #f0faf4; font-weight: 600; }
+  .eco-table tr.dim td { color: var(--muted); }
+
+  /* Playbook cards */
+  .playbook-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin-top: 20px;
+  }
+  .play-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 24px; box-shadow: var(--shadow);
+    position: relative;
+  }
+  .play-card .num-badge {
+    display: inline-block; width: 28px; height: 28px; line-height: 28px;
+    background: var(--ink); color: #fff; border-radius: 50%;
+    font-size: 13px; font-weight: 700; text-align: center; margin-bottom: 10px;
+  }
+  .play-card h3 { margin: 0 0 8px; font-size: 17px; }
+  .play-card p { margin: 0; font-size: 14px; color: #444; line-height: 1.6; }
+  .play-card .action { margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--red); }
+
+  /* Akito ask */
+  .callout-akito {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+    color: #fff; border-radius: 18px; padding: 40px 32px;
+    text-align: center;
+  }
+  .callout-akito .small { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .callout-akito .ask { font-size: clamp(20px, 2.8vw, 30px); font-weight: 700; letter-spacing: -.5px; color: #fff; line-height: 1.25; margin: 12px 0; }
+  .callout-akito .ask span { color: var(--gold); }
+  .callout-akito .ctx { color: #d8d2c5; max-width: 640px; margin: 0 auto; font-size: 15px; }
+  .callout-akito .cta-row { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .callout-akito .cta-row a {
+    display: inline-block; background: var(--red); color: #fff;
+    padding: 12px 24px; border-radius: 8px; text-decoration: none;
+    font-weight: 700; font-size: 15px;
+  }
+  .callout-akito .cta-row a.ghost {
+    background: transparent; border: 1px solid rgba(255,255,255,.4); color: #fff;
+  }
+
+  /* Micro metrics row */
+  .micro-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    margin-top: 16px;
+  }
+  .micro {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px;
+  }
+  .micro .label { font-size: 11px; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; }
+  .micro .val { font-size: 22px; font-weight: 700; letter-spacing: -.5px; margin-top: 2px; }
+  .micro .ctx { font-size: 12px; color: #555; margin-top: 4px; }
+
+  /* Sensitivity heatmap */
+  .sens-grid {
+    display: grid; gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    margin-top: 16px;
+  }
+  .sens-row {
+    display: grid; grid-template-columns: 140px 1fr 90px 90px;
+    background: var(--card);
+  }
+  .sens-row.header { background: #faf6ec; font-size: 12px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: #5a4a14; }
+  .sens-row > div { padding: 10px 12px; font-size: 13.5px; }
+  .sens-row .bar-cell { display: flex; align-items: center; gap: 10px; }
+  .sens-bar { height: 16px; border-radius: 4px; min-width: 4px; }
+  .sens-row.base { background: #f0faf4; }
+  .sens-row.base > div { font-weight: 700; color: #15633f; }
+  .sens-row.bad > div { color: #8b1a1a; }
+
+  @media (max-width: 640px) {
+    .sens-row { grid-template-columns: 120px 1fr 70px; }
+    .sens-row > div:last-child { display: none; }
+    .callout-akito { padding: 28px 20px; }
+    .refuel-card { flex-direction: column; gap: 12px; }
+  }
+
+  /* Danger zone annotation */
+  .danger-zone-label {
+    display: inline-block; background: var(--red); color: #fff;
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+    letter-spacing: .3px; margin-left: 8px; vertical-align: middle;
+  }
+
+  footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 50px; padding-bottom: 20px; }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: #fff; padding: 10px 18px;
+    border-radius: 999px; font-size: 13px; opacity: 0;
+    transition: opacity .25s ease; pointer-events: none; z-index: 100;
+  }
+  .toast.show { opacity: 1; }
+
+  .pill {
+    display: inline-block; font-size: 11px; padding: 3px 9px;
+    border-radius: 999px; background: var(--ink); color: #fff;
+    letter-spacing: .3px;
+  }
+  .pill.red { background: var(--red); }
+  .pill.gold { background: var(--gold); color: var(--ink); }
+  .pill.green { background: var(--green); }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    Peanut eSIM — Per-Tier Unit Economics
+    <small>Tab 3 of the P&amp;L model · for Akito · 2026-06-01</small>
+  </div>
+  <div class="btn-group">
+    <a href="index.html" class="back-btn">&#8592; Back to Hub</a>
+    <button id="copyBtn" type="button">Copy share link</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- HERO -->
+<!-- ============================================================ -->
+<section class="first">
+  <h1 class="hero">One subscriber. One month. How much do we <span class="accent">actually make</span>?</h1>
+  <p class="lede">
+    Tab 3 is the kitchen receipt. Every price and every consumption rate from Tabs 1 and 2 meets here
+    and resolves into a single number: the gross contribution per subscriber per month, tier by tier.
+    Two tiers are red. Three are stars. One is a hidden gem. Here's the whole picture.
+  </p>
+  <span class="badge-updated">Updated 2026-06-01</span>
+</section>
+
+<!-- ============================================================ -->
+<!-- 1. Revenue vs COGS grouped bar -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">1</span>Revenue vs. COGS — per tier, per month</h2>
+  <p class="section-sub">
+    Green bar = what the subscriber pays. Red bar = what we pay our wholesale supplier for the data they consume.
+    The gap between the two bars is our gross contribution. Two tiers have no gap — their red bar exceeds the green.
+  </p>
+  <div class="chart-card">
+    <h3>Revenue (green) vs. Wholesale COGS (red) — $/user/month</h3>
+    <p class="sub">First and First Suite: COGS exceeds revenue at 60% consumption. Economy shown at realistic 2.5x refuel scenario ($12.48).</p>
+    <div class="chart-wrap tall"><canvas id="revCOGSChart"></canvas></div>
+  </div>
+  <div class="callout-gold" style="margin-top: 18px;">
+    <strong>Read this chart as a gap story:</strong> a wider green-over-red gap = more margin per subscriber. Business and Cockpit have great gaps. First and First Suite have no gap — their red bar is taller than the green one.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 2. Contribution per tier -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">2</span>Contribution per subscriber — sorted by profit</h2>
+  <p class="section-sub">
+    Revenue minus COGS, one number per tier, sorted highest to lowest.
+    Red bars are negative — those tiers lose money at current consumption assumptions.
+    <span class="danger-zone-label">DANGER ZONE</span> = below $0.
+  </p>
+  <div class="chart-card">
+    <h3>Gross contribution $/user/month (revenue – wholesale COGS)</h3>
+    <p class="sub">Sorted descending. Refuel top-up shown separately — it stacks on top of any subscription.</p>
+    <div class="chart-wrap xlarge"><canvas id="contributionChart"></canvas></div>
+  </div>
+
+  <div class="micro-grid" style="margin-top: 20px;">
+    <div class="micro"><div class="label">Best tier</div><div class="val" style="color: var(--green);">$18.93</div><div class="ctx">Business class</div></div>
+    <div class="micro"><div class="label">Cockpit (annual)</div><div class="val" style="color: var(--green);">$18.22</div><div class="ctx">≈ $24.92/mo equiv.</div></div>
+    <div class="micro"><div class="label">Economy realistic</div><div class="val" style="color: var(--green);">$9.13</div><div class="ctx">2.5× refuel scenario</div></div>
+    <div class="micro"><div class="label">First Suite</div><div class="val" style="color: var(--red);">−$14.33</div><div class="ctx">Worst tier at 60% use</div></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3. Gross margin % chart -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">3</span>Gross margin % — the efficiency score</h2>
+  <p class="section-sub">
+    What percentage of revenue becomes gross profit. Color-coded:
+    <span class="pill green">above 60%</span> — excellent,
+    <span class="pill gold">30–60%</span> — OK,
+    <span class="pill red">below 0%</span> — pricing problem.
+  </p>
+  <div class="chart-card">
+    <h3>Gross margin % per tier</h3>
+    <p class="sub">The 0% line is the break-even threshold. First and First Suite fall below it at current consumption rates.</p>
+    <div class="chart-wrap tall"><canvas id="gmChart"></canvas></div>
+  </div>
+
+  <div class="callout-red" style="margin-top: 18px;">
+    <strong>What −1% and −29% actually mean:</strong> At 60% consumption, First and First Suite are not just thin — they are structurally loss-making. Every subscriber who actually uses their data costs us more than they pay. This is not a rounding problem. It requires a decision before launch.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 4. Economy variants -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">4</span>The 3 Economy scenarios — PAYG math</h2>
+  <p class="section-sub">
+    Economy is PAYG, not a subscription. Revenue = number of $4.99/GB top-ups the crew buys. The more they fly and use data, the more refuel events we capture. Three scenarios cover the full behavioral range.
+  </p>
+
+  <div class="chart-card">
+    <h3>Economy PAYG — three scenarios</h3>
+    <p class="sub">Each row = one crew member buying a different number of 1-GB top-ups in a month. All at $4.99/GB retail, $1.34/GB wholesale.</p>
+    <table class="eco-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Top-ups</th>
+          <th class="num">Revenue</th>
+          <th class="num">Wholesale COGS</th>
+          <th class="num">Contribution</th>
+          <th class="num">GM %</th>
+          <th>Who does this</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="dim">
+          <td>Trial mode</td>
+          <td>1×</td>
+          <td class="num">$4.99</td>
+          <td class="num">$1.34</td>
+          <td class="num">$3.65</td>
+          <td class="num">73%</td>
+          <td>Trying for one trip</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>Realistic</strong></td>
+          <td><strong>2.5×</strong></td>
+          <td class="num"><strong>$12.48</strong></td>
+          <td class="num"><strong>$3.35</strong></td>
+          <td class="num"><strong>$9.13</strong></td>
+          <td class="num"><strong>73%</strong></td>
+          <td>Active crew, normal month</td>
+        </tr>
+        <tr>
+          <td>Heavy</td>
+          <td>4×</td>
+          <td class="num">$19.96</td>
+          <td class="num">$5.36</td>
+          <td class="num">$14.60</td>
+          <td class="num">73%</td>
+          <td>Creator, long-haul week</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout-green" style="margin-top: 18px;">
+    <strong>The 73% GM insight:</strong> Economy PAYG maintains a constant 73% gross margin regardless of volume — because every GB has the same $4.99 retail / $1.34 wholesale structure. Unlike subscriptions, there is no pool to mis-price. The risk is purely volume: a crew member who buys only 1 top-up/month contributes just $3.65. But at 2.5×, that's $9.13 — competitive with Premium.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 5. Workhorse callout -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">5</span>The contribution workhorses</h2>
+  <p class="section-sub">
+    Three tiers punch above their weight. Together they form the profitable core of the model. If mix skews here, Peanut makes money. If mix skews toward First or First Suite, we are paying crew to use our service.
+  </p>
+
+  <div class="workhorse-grid">
+    <div class="workhorse">
+      <div class="name">Business</div>
+      <div class="big">$18.93</div>
+      <div class="unit">per subscriber / month</div>
+      <div class="gm">63% gross margin · 25 GB pool · 33% consumed<br>The sweet spot: big pool, conservative crew usage, strong price.</div>
+    </div>
+    <div class="workhorse">
+      <div class="name">Cockpit (annual)</div>
+      <div class="big">$18.22</div>
+      <div class="unit">monthly equivalent · paid annually</div>
+      <div class="gm">73% gross margin · 200 GB/yr · low consumption<br>Annual lock-in + low usage = the best margin story in the model.</div>
+    </div>
+    <div class="workhorse">
+      <div class="name">Premium</div>
+      <div class="big">$11.15</div>
+      <div class="unit">per subscriber / month (incl. refuel)</div>
+      <div class="gm">60% base GM + $0.40 refuel uplift · 10 GB pool · 54% consumed<br>Volume tier. Most crew land here. High attach rate.</div>
+    </div>
+  </div>
+
+  <div class="callout-gold" style="margin-top: 20px;">
+    <strong>The marketing priority:</strong> If Akito pushes crew toward Business or Cockpit — even getting 20% of the subscriber base there — the blended model stays healthy even if First/Suite underperform. Business conversion is the most valuable marketing action in the entire funnel.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 6. Red flag section -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">6</span>The red flags — First and First Suite lose money</h2>
+  <p class="section-sub">
+    This is not a modeling artifact. The math is straightforward: when 60% of a large pool is consumed, the wholesale cost exceeds the retail price. Pilots and FA seniors who actually use their data are net-negative subscribers.
+  </p>
+
+  <div class="redflag-grid">
+    <div class="redflag">
+      <div class="name">First — $39.99/mo</div>
+      <div class="big">−$0.21</div>
+      <div class="unit">per subscriber / month</div>
+      <div class="math">
+        60% × 50 GB = <code>30 GB consumed</code><br>
+        30 GB × $1.34 = <code>$40.20 COGS</code><br>
+        $39.99 revenue &lt; $40.20 cost<br>
+        <strong>Loss: $0.21 per subscriber</strong><br><br>
+        At 30–40% consumption this tier is fine ($14–$21 contribution). The problem is only pilots who actually use all their data. We don't know what that rate is.
+      </div>
+    </div>
+    <div class="redflag">
+      <div class="name">First Suite — $49.99/mo</div>
+      <div class="big">−$14.33</div>
+      <div class="unit">per subscriber / month</div>
+      <div class="math">
+        60% × 80 GB = <code>48 GB consumed</code><br>
+        48 GB × $1.34 = <code>$64.32 COGS</code><br>
+        $49.99 revenue &lt; $64.32 cost<br>
+        <strong>Loss: $14.33 per subscriber</strong><br><br>
+        This is structural, not marginal. First Suite needs either a pool cut (e.g. 40 GB) or a price hike (e.g. $69.99) or it cannot be offered at 60% consumption.
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 18px;" class="callout-red">
+    <strong>Why we're being this blunt:</strong> The in-depth model uses 60% consumption for First/Suite based on the Tab 2 behavioral assumption that higher-tier crew (pro creators, heavy commuters) actually burn data. If that assumption is wrong and real consumption is 30–40%, both tiers recover. But we have to decide: do we believe pilots really use 30–48 GB/month? Until we know, we should not offer these tiers at current pool sizes.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 7. Refuel as hidden SKU -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">7</span>Refuel — the hidden SKU that stacks on everything</h2>
+  <p class="section-sub">
+    Refuel is not just a safety valve against data overages. It is a separate, highly profitable SKU that stacks on top of any subscription. Every refuel event is an incremental $3.65 of contribution.
+  </p>
+
+  <div class="refuel-card">
+    <div class="icon">&#x26FD;</div>
+    <div class="body">
+      <div class="label">Per refuel event</div>
+      <div class="big">$3.65</div>
+      <div class="sub">
+        $4.99 retail &minus; $1.34 wholesale = <strong>$3.65 gross contribution</strong> · 73% GM<br><br>
+        At 8% attach rate (Premium), this adds $0.40/user/month to Premium's contribution — turning $10.75 into $11.15.<br><br>
+        At higher attach rates (e.g. if Akito builds a low-data-warning UI push), refuel becomes a meaningful revenue line on its own. 1,000 refuel events/month = $3,650 incremental contribution at zero subscriber growth.
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card" style="margin-top: 18px;">
+    <h3>Refuel contribution stacked per tier (8% attach assumed where applicable)</h3>
+    <p class="sub">Shows base contribution + refuel uplift side by side. Cockpit and Economy PAYG do not have refuel as a separate line.</p>
+    <div class="chart-wrap"><canvas id="refuelStackChart"></canvas></div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 8. Sensitivity — 5 scenarios for Premium -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">8</span>Sensitivity — 5 scenarios, Premium as the test tier</h2>
+  <p class="section-sub">
+    Premium is the model's fulcrum tier. It has the most subscribers, sits in the middle of the price ladder,
+    and is sensitive to both wholesale cost and consumption rate. Five stress tests show how its contribution changes under different conditions.
+  </p>
+
+  <div class="chart-card">
+    <h3>Premium contribution ($/user/mo) across sensitivity scenarios</h3>
+    <p class="sub">Base case highlighted. Scenarios A–E stress-test the model's key assumptions one at a time.</p>
+    <div class="chart-wrap tall"><canvas id="sensitivityChart"></canvas></div>
+  </div>
+
+  <div class="sens-grid" style="margin-top: 18px;">
+    <div class="sens-row header">
+      <div>Scenario</div>
+      <div>What changes</div>
+      <div>Premium $</div>
+      <div>vs Base</div>
+    </div>
+    <div class="sens-row base">
+      <div>Base case</div>
+      <div>$1.34/GB, 54% consumed, 10 GB pool, 8% attach, normal geo</div>
+      <div>$11.15</div>
+      <div>—</div>
+    </div>
+    <div class="sens-row bad">
+      <div>A. Cost spike</div>
+      <div>Wholesale rises to $2.00/GB (Tier C geo share grows)</div>
+      <div>$7.55</div>
+      <div>−$3.60</div>
+    </div>
+    <div class="sens-row bad">
+      <div>B. Heavy use</div>
+      <div>Consumption rises by +10pp (crew use more data)</div>
+      <div>$9.40</div>
+      <div>−$1.75</div>
+    </div>
+    <div class="sens-row bad">
+      <div>C. Pool grows</div>
+      <div>Premium pool expanded 10→15 GB (marketing flex)</div>
+      <div>$6.95</div>
+      <div>−$4.20</div>
+    </div>
+    <div class="sens-row">
+      <div>D. Attach 2×</div>
+      <div>Refuel attach rate doubles (better in-app UI prompt)</div>
+      <div>$11.95</div>
+      <div>+$0.80</div>
+    </div>
+    <div class="sens-row">
+      <div>E. Geo improves</div>
+      <div>Tier-A geo share grows to 85% (mostly Asia routes)</div>
+      <div>$11.65</div>
+      <div>+$0.50</div>
+    </div>
+  </div>
+
+  <div class="callout-gold" style="margin-top: 18px;">
+    <strong>Read:</strong> The two scenarios that hurt most are a wholesale cost spike (A) and expanding the pool (C). The two that help most are refuel attach (D) and geo mix (E). Scenario D is entirely within our control via the app UI — it is the highest-ROI lever we have.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 9. Response playbook -->
+<!-- ============================================================ -->
+<section>
+  <h2 class="section-title"><span class="num">9</span>Response playbook — what to do about this</h2>
+  <p class="section-sub">
+    Three moves. Two are operational (Balraj's lane). One is marketing (Akito's lane). All three need to be addressed before launch or shortly after.
+  </p>
+
+  <div class="playbook-grid">
+    <div class="play-card">
+      <div class="num-badge">1</div>
+      <h3>Rebalance First &amp; First Suite pools</h3>
+      <p>At 60% consumption, the 50 GB and 80 GB pools are too large for the price. Cutting First to 30 GB and First Suite to 40 GB brings both tiers positive. Alternatively, price increases to ~$54.99 and ~$69.99 achieve the same result without changing the offer.<br><br>
+      Neither move is major marketing — crew are used to "pool sizes may change" on eSIM plans. But the decision needs to happen before we go live.</p>
+      <div class="action">Owner: Balraj — pricing decision</div>
+    </div>
+    <div class="play-card">
+      <div class="num-badge">2</div>
+      <h3>Negotiate Tier-C wholesale cost</h3>
+      <p>Scenario A shows that a wholesale spike to $2.00/GB drops Premium by $3.60. The blended $1.34/GB depends on only 5% Tier-C geo mix. If Emirates adds routes to India, Brazil, or South Africa, that mix moves — and our cost with it.<br><br>
+      Balraj should explore a direct agreement with the wholesale supplier to cap Tier-C rates or secure a volume-based blended rate rather than per-country billing.</p>
+      <div class="action">Owner: Balraj — supplier negotiation</div>
+    </div>
+    <div class="play-card">
+      <div class="num-badge">3</div>
+      <h3>Push refuel attach via in-app UI</h3>
+      <p>Scenario D shows that doubling refuel attach adds $0.80/user/month to Premium — nearly 100% ROI from a pure UX change. The mechanism: a persistent "You've used 80% of your pool" notification with a one-tap refuel button.<br><br>
+      This is Akito's lane. The notification copy, timing, and visual design matter. Crew who see it and tap = $3.65 contribution per event. Crew who churn off because they ran out = $0 + a lost subscriber.</p>
+      <div class="action">Owner: Akito — app UX + notification copy</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 10. The Akito ask -->
+<!-- ============================================================ -->
+<section>
+  <div class="callout-akito">
+    <div class="small">Decision required — before launch</div>
+    <div class="ask">First and First Suite need a pool-size revisit<br><span>(or a price hike) before we publish.</span></div>
+    <p class="ctx">
+      At 60% consumption, First loses $0.21/user/month and First Suite loses $14.33/user/month. These are not launch-and-fix problems — a subscriber who signs up on a loss-making tier generates negative cash flow from day one. The fix is simple (cut pools or raise price), but <strong>a decision is needed</strong> before these tiers appear in the app or on the marketing site.
+    </p>
+    <div style="margin-top: 24px; background: rgba(255,255,255,.08); border-radius: 10px; padding: 16px 20px; max-width: 640px; margin-left: auto; margin-right: auto; text-align: left;">
+      <div style="font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 10px; letter-spacing: .5px;">TWO VIABLE FIXES</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; color: #d8d2c5;">
+        <div>
+          <strong style="color: #fff;">Option A — Cut pools</strong><br>
+          First: 50 GB &rarr; 30 GB<br>
+          First Suite: 80 GB &rarr; 40 GB<br>
+          <span style="color: var(--gold);">Price unchanged, offer smaller</span>
+        </div>
+        <div>
+          <strong style="color: #fff;">Option B — Raise prices</strong><br>
+          First: $39.99 &rarr; $54.99<br>
+          First Suite: $49.99 &rarr; $69.99<br>
+          <span style="color: var(--gold);">Pool unchanged, price higher</span>
+        </div>
+      </div>
+    </div>
+    <div class="cta-row">
+      <a href="tab3-in-depth-report-2026-06-01.html">Full in-depth report ↗</a>
+      <a href="index.html" class="ghost">Back to Hub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Generated 2026-06-01 &nbsp;·&nbsp; Peanut eSIM &nbsp;·&nbsp; Tab 3 — Per-Tier Unit Economics &nbsp;·&nbsp; for Akito
+</footer>
+
+<div class="toast" id="toast">Link copied!</div>
+
+<script>
+// ─── DATA ───
+const tiers = ['Economy\n(realistic)', 'Roster\nVendor', 'Premium', 'Business', 'First', 'First\nSuite', 'Cockpit', 'Refuel\ntop-up'];
+const tiersShort = ['Economy', 'Roster Vendor', 'Premium', 'Business', 'First', 'First Suite', 'Cockpit', 'Refuel/GB'];
+const revenue = [12.48, 3.99, 17.99, 29.99, 39.99, 49.99, 24.92, 4.99];
+const cogs    = [3.35,  1.81, 7.24,  11.06, 40.20, 64.32, 6.70,  1.34];
+const contrib = [9.13,  2.18, 10.75, 18.93, -0.21, -14.33, 18.22, 3.65];
+const gm      = [73.2,  54.6, 59.8,  63.1,  -0.5,  -28.7,  73.1,  73.1];
+
+const RED   = '#D71921';
+const GREEN = '#1a8a5a';
+const GOLD  = '#C9A03B';
+const INK   = '#1A1A1A';
+const MUTED = 'rgba(26,26,26,0.25)';
+
+Chart.defaults.font.family = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+Chart.defaults.color = '#4a4a4a';
+
+// ─── 1. Revenue vs COGS grouped bar ───
+const ctx1 = document.getElementById('revCOGSChart').getContext('2d');
+new Chart(ctx1, {
+  type: 'bar',
+  data: {
+    labels: tiersShort,
+    datasets: [
+      {
+        label: 'Revenue ($/user/mo)',
+        data: revenue,
+        backgroundColor: 'rgba(26,138,90,0.75)',
+        borderColor: GREEN,
+        borderWidth: 1.5,
+        borderRadius: 4,
+      },
+      {
+        label: 'Wholesale COGS ($/user/mo)',
+        data: cogs,
+        backgroundColor: function(ctx) {
+          const v = cogs[ctx.dataIndex];
+          const r = revenue[ctx.dataIndex];
+          return v > r ? 'rgba(215,25,33,0.85)' : 'rgba(215,25,33,0.55)';
+        },
+        borderColor: RED,
+        borderWidth: 1.5,
+        borderRadius: 4,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            return ctx.dataset.label + ': $' + ctx.parsed.y.toFixed(2);
+          }
+        }
+      },
+      annotation: {
+        annotations: {
+          dangerBox: {
+            type: 'box',
+            xMin: 3.5, xMax: 5.5,
+            backgroundColor: 'rgba(215,25,33,0.06)',
+            borderColor: 'rgba(215,25,33,0.3)',
+            borderWidth: 1,
+          }
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: {
+        beginAtZero: true,
+        ticks: { callback: v => '$' + v.toFixed(0) },
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      }
+    }
+  }
+});
+
+// ─── 2. Contribution horizontal bar ───
+const contribSorted = [
+  { label: 'Business', val: 18.93, color: GREEN },
+  { label: 'Cockpit', val: 18.22, color: GREEN },
+  { label: 'Economy (realistic)', val: 9.13, color: GREEN },
+  { label: 'Premium (w/ refuel)', val: 11.15, color: GREEN },
+  { label: 'Refuel/GB', val: 3.65, color: GOLD },
+  { label: 'Roster Vendor', val: 2.18, color: GOLD },
+  { label: 'First', val: -0.21, color: RED },
+  { label: 'First Suite', val: -14.33, color: RED },
+];
+const ctx2 = document.getElementById('contributionChart').getContext('2d');
+new Chart(ctx2, {
+  type: 'bar',
+  data: {
+    labels: contribSorted.map(d => d.label),
+    datasets: [{
+      data: contribSorted.map(d => d.val),
+      backgroundColor: contribSorted.map(d => d.color + 'cc'),
+      borderColor: contribSorted.map(d => d.color),
+      borderWidth: 1.5,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' $' + ctx.parsed.x.toFixed(2) + ' / user / month'
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { callback: v => '$' + v.toFixed(0) },
+        grid: { color: v => v.tick.value === 0 ? 'rgba(215,25,33,0.5)' : 'rgba(0,0,0,0.05)' }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// ─── 3. Gross margin % ───
+const ctx3 = document.getElementById('gmChart').getContext('2d');
+new Chart(ctx3, {
+  type: 'bar',
+  data: {
+    labels: tiersShort,
+    datasets: [{
+      data: gm,
+      backgroundColor: gm.map(v => v >= 60 ? 'rgba(26,138,90,0.75)' : v >= 0 ? 'rgba(201,160,59,0.75)' : 'rgba(215,25,33,0.8)'),
+      borderColor:      gm.map(v => v >= 60 ? GREEN : v >= 0 ? GOLD : RED),
+      borderWidth: 1.5,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' GM: ' + ctx.parsed.y.toFixed(1) + '%'
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: {
+        ticks: { callback: v => v + '%' },
+        grid: { color: v => v.tick.value === 0 ? 'rgba(215,25,33,0.5)' : 'rgba(0,0,0,0.05)' }
+      }
+    }
+  }
+});
+
+// ─── 7. Refuel stack chart ───
+const refuelTiers = ['Roster Vendor', 'Premium', 'Business', 'First'];
+const baseContrib = [2.18, 10.75, 18.93, -0.21];
+const refuelUplift = [
+  3.99 * 0.05 * 3.65 / 3.99,  // roster vendor 5% attach × $3.65 contribution per refuel
+  0.40,   // premium 8% attach
+  0.90,   // business 3% attach × ~4.99 avg refuel
+  0.0,    // first 2% attach (shown but tiny)
+];
+// recalculate as dollar uplifts
+const refuelUpliftDollar = [
+  (0.05 * 3.65).toFixed(2)*1,   // ~$0.18
+  0.40,
+  (0.03 * 3.65).toFixed(2)*1,   // ~$0.11
+  (0.02 * 3.65).toFixed(2)*1,   // ~$0.07
+];
+
+const ctx7 = document.getElementById('refuelStackChart').getContext('2d');
+new Chart(ctx7, {
+  type: 'bar',
+  data: {
+    labels: refuelTiers,
+    datasets: [
+      {
+        label: 'Base subscription contribution',
+        data: baseContrib,
+        backgroundColor: baseContrib.map(v => v >= 0 ? 'rgba(26,138,90,0.7)' : 'rgba(215,25,33,0.7)'),
+        borderColor: baseContrib.map(v => v >= 0 ? GREEN : RED),
+        borderWidth: 1.5, borderRadius: [4,4,0,0],
+      },
+      {
+        label: 'Refuel uplift',
+        data: refuelUpliftDollar,
+        backgroundColor: 'rgba(201,160,59,0.8)',
+        borderColor: GOLD,
+        borderWidth: 1.5, borderRadius: [4,4,0,0],
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' ' + ctx.dataset.label + ': $' + ctx.parsed.y.toFixed(2)
+        }
+      }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false } },
+      y: {
+        stacked: true,
+        ticks: { callback: v => '$' + v.toFixed(0) },
+        grid: { color: v => v.tick.value === 0 ? 'rgba(215,25,33,0.5)' : 'rgba(0,0,0,0.05)' }
+      }
+    }
+  }
+});
+
+// ─── 8. Sensitivity chart ───
+const sensLabels = ['D. Refuel 2×\n(+$0.80)', 'E. Geo improves\n(+$0.50)', 'Base case\n$11.15', 'B. Heavy use\n(−$1.75)', 'A. Cost spike\n(−$3.60)', 'C. Pool 15GB\n(−$4.20)'];
+const sensValues = [11.95, 11.65, 11.15, 9.40, 7.55, 6.95];
+const sensColors = sensValues.map(v => v >= 11.15 ? 'rgba(26,138,90,0.75)' : v === 11.15 ? 'rgba(26,138,90,0.9)' : 'rgba(215,25,33,0.7)');
+const sensBorders = sensValues.map(v => v >= 11.15 ? GREEN : RED);
+
+const ctx8 = document.getElementById('sensitivityChart').getContext('2d');
+new Chart(ctx8, {
+  type: 'bar',
+  data: {
+    labels: ['D. Refuel 2×', 'E. Geo improves', 'Base case ★', 'B. Heavy use', 'A. Cost spike', 'C. Pool grows'],
+    datasets: [{
+      data: sensValues,
+      backgroundColor: ['rgba(26,138,90,0.7)', 'rgba(26,138,90,0.6)', 'rgba(26,138,90,0.9)', 'rgba(215,25,33,0.55)', 'rgba(215,25,33,0.7)', 'rgba(215,25,33,0.8)'],
+      borderColor: [GREEN, GREEN, GREEN, RED, RED, RED],
+      borderWidth: [1.5, 1.5, 2.5, 1.5, 1.5, 1.5],
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ' Premium contribution: $' + ctx.parsed.y.toFixed(2) + '/user/mo'
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: {
+        beginAtZero: true,
+        ticks: { callback: v => '$' + v.toFixed(0) },
+        grid: { color: 'rgba(0,0,0,0.05)' }
+      }
+    }
+  }
+});
+
+// ─── Copy link button ───
+document.getElementById('copyBtn').addEventListener('click', function() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  });
+});
+</script>
+</body>
+</html>
