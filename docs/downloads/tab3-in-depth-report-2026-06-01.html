@@ -84,6 +84,7 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
   <li><a href="#downstream">5. Downstream consumption — how Tab 3 feeds the rest</a></li>
   <li><a href="#confidence">6. Confidence assessment per input</a></li>
   <li><a href="#validation">7. Validation queue</a></li>
+  <li><a href="#sensitivity">8. Bite 6 — Sensitivity analysis (what could break us)</a></li>
 </ul>
 </div>
 
@@ -235,6 +236,68 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 </table>
 
 <p>Even in the worst-case scenario, every tier remains gross-margin positive. The model is robust to combined-downside shocks — what changes is the rate of profit, not the existence of profit.</p>
+
+<h2 id="sensitivity">8. Bite 6 — Sensitivity analysis (what could break us)</h2>
+<p>Five "what if" scenarios stress-testing the model. Each shows per-user impact and at-scale dollar consequences.</p>
+
+<h3>Scenario 1 — Consumption % rises (users eat more)</h3>
+<p>If Premium Economy consumption goes <strong>40% → 50%</strong>:</p>
+<table>
+<tr><th>Metric</th><th>Now (40%)</th><th>If 50%</th><th>Δ per user</th></tr>
+<tr><td>GB Consumed</td><td>4 GB</td><td>5 GB</td><td>+1 GB</td></tr>
+<tr><td>Wholesale COGS</td><td>$5.36</td><td>$6.70</td><td>+$1.34</td></tr>
+<tr><td>Gross Profit</td><td>$13.35</td><td>$12.01</td><td><strong>−$1.34/user</strong></td></tr>
+<tr><td>At 100K users × 13% Premium</td><td colspan="2"></td><td><strong>−$20,904/year</strong></td></tr>
+</table>
+
+<h3>Scenario 2 — Refuel attach drops (users top up less)</h3>
+<p>If Business refuel attach goes <strong>25% → 10%</strong>:</p>
+<table>
+<tr><th>Metric</th><th>Now (25%)</th><th>If 10%</th><th>Δ per user</th></tr>
+<tr><td>Refuel Revenue</td><td>$1.25</td><td>$0.50</td><td>−$0.75</td></tr>
+<tr><td>Refuel net profit</td><td>$0.91</td><td>$0.37</td><td><strong>−$0.54/user</strong></td></tr>
+<tr><td>At 100K users × 8% Business</td><td colspan="2"></td><td><strong>−$5,184/year</strong></td></tr>
+</table>
+
+<h3>Scenario 3 — Wholesale supplier raises prices (the big one)</h3>
+<p>If blended wholesale rises <strong>$1.34 → $2.00</strong> (50% supplier hike):</p>
+<table>
+<tr><th>Tier</th><th>Profit now ($1.34)</th><th>Profit at $2.00</th><th>Δ margin</th></tr>
+<tr><td>Premium</td><td>$13.35 (70%)</td><td>$10.95 (58%)</td><td>−12 pts</td></tr>
+<tr><td>Business</td><td>$21.84 (70%)</td><td>$17.39 (56%)</td><td>−14 pts</td></tr>
+<tr><td>First</td><td>$23.33 (56%)</td><td>$14.43 (34%)</td><td><strong>−22 pts</strong> ⚠</td></tr>
+<tr><td>First Suite</td><td>$33.00 (65%)</td><td>$24.29 (48%)</td><td>−17 pts</td></tr>
+</table>
+<p><strong>Insight:</strong> First gets crushed if wholesale rises (already lowest margin). Strong argument for moving direct to eSIM Access supplier at scale rather than staying with Tier-3 sub-reseller.</p>
+
+<h3>Scenario 4 — Mix shift toward heavy tiers</h3>
+<p>If First grows from <strong>3% → 6%</strong> of users (heavy crew adoption):</p>
+<table>
+<tr><th>Metric</th><th>At 3% First</th><th>At 6% First</th><th>Δ annual</th></tr>
+<tr><td>First tier contribution at 100K users</td><td>$70,080</td><td>$140,160</td><td><strong>+$70,080/yr</strong></td></tr>
+</table>
+<p>But First has the lowest margin (56%). Net positive on revenue, but check that blended margin holds.</p>
+
+<h3>Scenario 5 — Price war / Premium drop</h3>
+<p>If we drop Premium from <strong>$17.99 → $14.99</strong> (to drive volume):</p>
+<table>
+<tr><th>Metric</th><th>$17.99</th><th>$14.99</th><th>Δ</th></tr>
+<tr><td>Gross profit/user</td><td>$13.35</td><td>$10.35</td><td>−$3.00</td></tr>
+<tr><td>Volume increase needed to break even</td><td>—</td><td><strong>+29%</strong></td><td>To match dollar profit</td></tr>
+</table>
+<p><strong>Insight:</strong> Premium is fragile to price drops. Don't promo Premium — promo Roster Bundle or Business instead.</p>
+
+<h3>Response playbook</h3>
+<table>
+<tr><th>Risk</th><th>If it materializes — what we do</th></tr>
+<tr><td>Consumption rises (users eat more)</td><td>Accept thinner margins OR pull friction levers harder (smaller default refill amount)</td></tr>
+<tr><td>Refuel attach drops</td><td>Marketing push for top-ups + consider raising refuel price slightly</td></tr>
+<tr><td>Wholesale rises</td><td>Accelerate move to direct eSIM Access supplier — this is the biggest single risk</td></tr>
+<tr><td>Mix shifts heavy</td><td>Push First Suite over First (better margin on heavy tier)</td></tr>
+<tr><td>Price war / discount pressure</td><td>Don't drop Premium — drop Roster Bundle which has more breakage cushion</td></tr>
+</table>
+
+<blockquote>Bite 6 = "what could break us, and how to respond." Every base-case number above is bracketed with a worst-case impact. The business stays profitable under every single-variable downside — only combined downsides erode margin meaningfully.</blockquote>
 
 <div class="footer-note">
 <strong>Cross-references:</strong>
