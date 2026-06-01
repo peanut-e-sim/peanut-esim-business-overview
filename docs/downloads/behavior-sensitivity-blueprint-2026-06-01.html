@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 17 Behavior Sensitivity: In-Depth Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.flagged { background: #FBE0E0; color: var(--red); }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.decision-box { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+tr.best td { background: #e8f4e8; font-weight: 600; color: var(--green); }
+tr.worst td { background: #fff0f0; color: #888; }
+tr.base td { background: #faf6ec; font-weight: 600; }
+.flag-row td:first-child { border-left: 3px solid var(--amber); }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 17 BLUEPRINT — Behavior Sensitivity — Peanut eSIM (2026-06-01)</span>
+</div>
+
+<div class="container">
+
+<h1>Tab 17 — Behavior Sensitivity: In-Depth Blueprint</h1>
+<div class="meta">Prepared 2026-06-01 · Captures full discussion, decisions, and open items · Owners: Balraj + Akito</div>
+
+<div class="lede">
+  <strong>What this tab tells you:</strong> Net profit is sensitive to two distinct types of user behavior — HOW MUCH data they consume (archetype mix) and WHICH PLAN they pay for (tier mix). This tab models both. The key finding: tier mix matters far more than archetype mix. Economy-to-subscription conversion is the number one profit lever in the entire model.
+</div>
+
+<div class="toc">
+<strong>Contents</strong>
+<ul>
+  <li><a href="#why">1. Why this tab matters</a></li>
+  <li><a href="#archetypes">2. The 4 archetypes (consumption behavior)</a></li>
+  <li><a href="#tier-scenarios">3. The 5 tier scenarios (which plan they buy)</a></li>
+  <li><a href="#data">4. Verified contributions per tier</a></li>
+  <li><a href="#discussion">5. The discussion we had</a></li>
+  <li><a href="#worked">6. Worked example — 100 users, two worlds</a></li>
+  <li><a href="#conclusion">7. The conclusion (what we decided)</a></li>
+  <li><a href="#flags">8. The honest flags</a></li>
+  <li><a href="#takeaway">9. Strategic takeaway</a></li>
+  <li><a href="#queue">10. Open items / queue</a></li>
+</ul>
+</div>
+
+<h2 id="why">1. Why this tab matters</h2>
+<p>Tabs 1-14 model a single steady-state. Tab 17 is the first tab to ask: "what if our assumptions about WHO our users are turn out to be wrong?" Specifically, what if most users stay on Economy forever? What if crew use more data than we assumed? What if the mix shifts toward high-value subscribers faster than expected?</p>
+<p>The tab is a stress-test. It does not change the base case — it quantifies how much that base case could be wrong in either direction.</p>
+
+<h2 id="archetypes">2. The 4 archetypes (Layer 1 — consumption behavior)</h2>
+<p>These archetypes describe how users consume data from their monthly pool. Different behavior = different GB consumed = different wholesale COGS.</p>
+
+<table>
+  <tr><th>Archetype</th><th>Mix profile</th><th>Avg % consumed</th><th>What this means</th></tr>
+  <tr><td><strong>Casual Travelers</strong></td><td>40% light, 35% avg, 20% heavy, 5% churn</td><td>Low (~35-40%)</td><td>Non-crew leisure users. Fly 2-4x/year for vacation. Light data use, not loyal. Acts like an Airalo customer, not a crew member.</td></tr>
+  <tr><td><strong>Crew Standard</strong></td><td>25% light, 40% avg, 30% heavy, 5% churn</td><td>Medium (~45-55%)</td><td>Realistic crew mix. Most users are cabin crew flying 15-25 flights/month. Mix of short-haul and long-haul. Current base assumption.</td></tr>
+  <tr><td><strong>Power Crew</strong></td><td>15% light, 35% avg, 45% heavy, 5% churn</td><td>High (~65-80%)</td><td>Heavy-flier dominance. Long-haul pursers, senior crew on multi-leg pairings. They consume nearly all the pool every month.</td></tr>
+  <tr><td><strong>One-and-Done</strong></td><td>30% light, 25% avg, 15% heavy, 30% churn</td><td>Low (but high churn)</td><td>High churn scenario — 30% of users disappear after one trip. Typical if we accidentally market to casual vacationers instead of working crew.</td></tr>
+</table>
+
+<h2 id="tier-scenarios">3. The 5 tier scenarios (Layer 2 — which plan they buy)</h2>
+<p>These scenarios describe the distribution of users across the 7 pricing tiers. This directly determines blended ARPU.</p>
+
+<table>
+  <tr><th>Scenario</th><th>Econ%</th><th>Roster%</th><th>Prem%</th><th>Biz%</th><th>First%</th><th>Suite%</th><th>Cockpit%</th><th>ARPU</th></tr>
+  <tr class="worst"><td><strong>PAYG Trap</strong> — 70% stuck on Economy</td><td>70</td><td>10</td><td>8</td><td>4</td><td>2</td><td>1</td><td>2</td><td>$15.17</td></tr>
+  <tr class="worst"><td><strong>Launch Reality</strong> — Months 1-6</td><td>80</td><td>10</td><td>5</td><td>3</td><td>1</td><td>0.5</td><td>0.5</td><td>$14.55</td></tr>
+  <tr class="base"><td><strong>Steady State</strong> — Current base case</td><td>50</td><td>18</td><td>13</td><td>8</td><td>3</td><td>2</td><td>3</td><td>$17.52</td></tr>
+  <tr class="best"><td><strong>Ladder Climbers</strong> — Strong subscription</td><td>35</td><td>22</td><td>18</td><td>12</td><td>5</td><td>3</td><td>5</td><td>$20.34</td></tr>
+  <tr class="best"><td><strong>Mature Crew</strong> — Year 2+</td><td>30</td><td>20</td><td>20</td><td>15</td><td>6</td><td>4</td><td>5</td><td>$21.48</td></tr>
+</table>
+
+<h2 id="data">4. Verified contributions per tier (from source xlsx)</h2>
+<p>These gross profit contributions per user per month are the numbers used in the worked example. Verified from the xlsx at $1.34/GB blended rate (75/20/5 geo mix).</p>
+
+<table>
+  <tr><th>Tier</th><th>Monthly revenue</th><th>Gross profit/user/mo</th><th>Source</th></tr>
+  <tr><td>Economy (realistic: 2.5 top-ups/mo)</td><td>$12.48</td><td>$9.13</td><td>Per-Tier Unit Economics tab + Economy Logic tab</td></tr>
+  <tr><td>Roster Bundle</td><td>$19.95</td><td>$13.62</td><td>Behavior Sensitivity tab, confirmed against Roster Bundle Logic</td></tr>
+  <tr><td>Premium Economy</td><td>$17.99</td><td>$13.36</td><td>Behavior Sensitivity tab, confirmed against Premium Economy Logic</td></tr>
+  <tr><td>Business</td><td>$29.99</td><td>$21.86</td><td>Behavior Sensitivity tab, confirmed against Business Logic</td></tr>
+  <tr><td>First</td><td>$39.99</td><td>$28.05</td><td>Behavior Sensitivity tab, confirmed against First Logic</td></tr>
+  <tr><td>First Suite</td><td>$49.99</td><td>$33.03</td><td>Behavior Sensitivity tab, confirmed against First Suite Logic</td></tr>
+  <tr><td>Cockpit (monthly equivalent)</td><td>$24.92</td><td>$15.82</td><td>Behavior Sensitivity tab, confirmed against Cockpit Logic</td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Important note on Economy contribution</h4>
+  <p>The $9.13 contribution for Economy uses the "realistic 2.5 top-ups/month" assumption, meaning revenue of $12.48 (2.5 × $4.99), not a single $4.99 transaction. A one-and-done Economy user who buys once generates $3.65 gross profit on that one transaction. The "realistic Economy user" buys 2.5 times per month. This is an estimate — actual average purchase frequency must be validated post-launch.</p>
+</div>
+
+<h2 id="discussion">5. The discussion we had</h2>
+
+<div class="discussion-block">
+  <h4>Discussion — the key finding: tier mix dominates archetype mix</h4>
+  <p>We set up the tab expecting both layers (archetype mix and tier mix) to have roughly equal impact on profit. The discovery was that tier mix is the dominant variable. Here is why:</p>
+  <ul>
+    <li>Archetype differences affect how many GB are consumed from a fixed pool. But the gross margin percentage stays roughly stable (73% across most tiers) regardless of consumption rate. Consuming more GB increases COGS but also enables refuel revenue at the same margin. The net per-user profit doesn't change dramatically between a Casual Traveler and a Power Crew on the same tier.</li>
+    <li>Tier differences affect revenue directly and massively. The delta between an Economy user ($9.13 contribution) and a Business user ($21.86 contribution) is $12.73/user/month — 140% more per user for choosing a different plan. No archetype difference comes close to this magnitude.</li>
+    <li>Therefore: every dollar invested in converting Economy users to subscription tiers delivers roughly 5-10x the return vs investing in reducing churn of high-consumption users.</li>
+  </ul>
+</div>
+
+<div class="discussion-block">
+  <h4>Discussion — how we set the tier scenario percentages</h4>
+  <p>The percentages in each tier scenario are informed guesses (labeled "educated guesses" in the xlsx). They are not based on hard data for a crew-targeted eSIM product — no such comparable data exists. We designed them to represent plausible market positions:</p>
+  <ul>
+    <li><strong>Launch Reality (80% Economy):</strong> Based on the observed pattern in consumer subscription apps that most new signups start on the cheapest option. 80% is probably conservative — some crew will immediately recognize the subscription value — but it is honest.</li>
+    <li><strong>Steady State (50% Economy):</strong> Our base case. We are betting that over time, approximately half of users will upgrade to a subscription tier. This is an informed bet, not a measured outcome.</li>
+    <li><strong>PAYG Trap (70% Economy):</strong> What happens if we fail to execute on the conversion funnel. The business is still profitable but significantly less so. The trap is not fatal — it just leaves money on the table.</li>
+    <li><strong>Ladder Climbers (35% Economy):</strong> What happens if onboarding is strong, the value of subscription is immediately obvious, and social proof accelerates upgrades. Achievable with excellent product design.</li>
+    <li><strong>Mature Crew (30% Economy):</strong> Year 2+ expectation. By this point, early Economy users have either upgraded, churned, or settled into a pattern. A 30% Economy base is the floor for a well-run subscription business.</li>
+  </ul>
+</div>
+
+<div class="discussion-block">
+  <h4>Discussion — why One-and-Done is specifically dangerous</h4>
+  <p>The One-and-Done archetype has a 30% monthly churn rate. This is dangerous not just for unit economics but for the viral growth loop. If 30% of users disappear after one trip, they never become the people who tell their crewmates about Peanut. The entire word-of-mouth growth model depends on users having at least 2-3 monthly cycles before they form habits and referral behavior. One-and-Done users essentially never enter the referral funnel. At scale, a One-and-Done-heavy user base means the S-curve in Tab 16 never steepens — the business grows only as fast as Akito can recruit personally.</p>
+</div>
+
+<h2 id="worked">6. Worked example — 100 users, two worlds</h2>
+<p>This is the single most important worked example in the entire model. Same 100 users, same supplier costs. The only variable is which tier they pick.</p>
+
+<h4>World 1: Launch Reality — 80% on Economy</h4>
+<table>
+  <tr><th>Tier</th><th>Users</th><th>Contribution/user</th><th>Total</th></tr>
+  <tr><td>Economy</td><td>80</td><td>$9.13</td><td>$730.40</td></tr>
+  <tr><td>Roster Bundle</td><td>10</td><td>$13.62</td><td>$136.20</td></tr>
+  <tr><td>Premium Economy</td><td>5</td><td>$13.36</td><td>$66.80</td></tr>
+  <tr><td>Business</td><td>3</td><td>$21.86</td><td>$65.58</td></tr>
+  <tr><td>First</td><td>1</td><td>$28.05</td><td>$28.05</td></tr>
+  <tr><td>First Suite</td><td>1</td><td>$33.03</td><td>$33.03</td></tr>
+  <tr><td>Cockpit</td><td>0</td><td>$15.82</td><td>$0.00</td></tr>
+  <tr class="base"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td></td><td><strong>$1,060/month</strong></td></tr>
+</table>
+
+<h4>World 2: Ladder Climbers — 35% on Economy</h4>
+<table>
+  <tr><th>Tier</th><th>Users</th><th>Contribution/user</th><th>Total</th></tr>
+  <tr><td>Economy</td><td>35</td><td>$9.13</td><td>$319.55</td></tr>
+  <tr><td>Roster Bundle</td><td>22</td><td>$13.62</td><td>$299.64</td></tr>
+  <tr><td>Premium Economy</td><td>18</td><td>$13.36</td><td>$240.48</td></tr>
+  <tr><td>Business</td><td>12</td><td>$21.86</td><td>$262.32</td></tr>
+  <tr><td>First</td><td>5</td><td>$28.05</td><td>$140.25</td></tr>
+  <tr><td>First Suite</td><td>3</td><td>$33.03</td><td>$99.09</td></tr>
+  <tr><td>Cockpit</td><td>5</td><td>$15.82</td><td>$79.10</td></tr>
+  <tr class="best"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td></td><td><strong>$1,440/month</strong></td></tr>
+</table>
+
+<blockquote>The lift from Launch Reality to Ladder Climbers: +$380/month on 100 users (+37%). At 5,000 users this becomes +$19,000/month or approximately $228,000/year. The source is tier conversion, not user growth.</blockquote>
+
+<h2 id="conclusion">7. The conclusion (what we decided)</h2>
+
+<p>The discussion produced a clear, decisive conclusion:</p>
+
+<ol>
+  <li><strong>Conclusion 1 — Tier mix is the primary profit lever.</strong> The tab confirmed that converting Economy users to any subscription tier is more valuable than almost any other operational improvement. A 1% shift in the Economy percentage at 5,000 users = $50 × ($13.36 − $9.13) = ~$2,115/month permanently. This is not incremental — it compounds with user count.</li>
+  <li><strong>Conclusion 2 — The PAYG Trap is the primary risk.</strong> Not the One-and-Done archetype. If users are perfectly happy buying $4.99 top-ups forever and never feel the need to subscribe, we are in the PAYG Trap. The product design (the 3-PAYG purchases = Premium Economy upsell nudge) is specifically designed to prevent this.</li>
+  <li><strong>Conclusion 3 — Archetype mix should be monitored but not over-optimized.</strong> There is not much point spending marketing budget to attract Power Crew over Crew Standard — the per-user profit difference is small. Focus acquisition on crew (not casual travelers) to avoid One-and-Done, but within that constraint, any crew archetype is fine.</li>
+</ol>
+
+<h2 id="flags">8. The honest flags</h2>
+
+<table>
+  <tr><th>Flag</th><th>Detail</th><th>Risk</th></tr>
+  <tr class="flag-row"><td>All tier scenario percentages are estimates</td><td>Explicitly labeled "educated guesses" in the xlsx. No hard data exists for eSIM subscription behavior in a crew-specific context. The actual split will only be known post-launch.</td><td><span class="pill flagged">HIGH — measure at M3</span></td></tr>
+  <tr class="flag-row"><td>Economy contribution assumes 2.5 top-ups/month</td><td>The $9.13/user contribution assumes 2.5 Economy purchases per month per user. A one-time trialer generates only $3.65. If many Economy users are one-time buyers, the true contribution is closer to $3.65 than $9.13.</td><td><span class="pill open">MEDIUM</span></td></tr>
+  <tr class="flag-row"><td>Archetype behavior rates are guesses</td><td>The % consumption of monthly pools for each archetype (40%, 55%, 75% etc.) are not validated. We will only know the real consumption rate from app data.</td><td><span class="pill open">MEDIUM</span></td></tr>
+  <tr class="flag-row"><td>Refuel attach rates per tier</td><td>The refuel attach rates (Economy 0%, Roster 10%, Premium 20%, Business 25%, First 40%, Suite 20%, Cockpit 15%) are estimates. These are significant contributors to the gross profit figures above. If attach rates are lower than modeled, contributions fall.</td><td><span class="pill open">MEDIUM</span></td></tr>
+</table>
+
+<h2 id="takeaway">9. Strategic takeaway</h2>
+
+<p>Two action items came out of this tab:</p>
+
+<ol>
+  <li><strong>Build the conversion funnel into the product before launch.</strong> The moment a user makes their 3rd Economy purchase in a single month, the app should show: "You spent $14.97 this month. Premium Economy is $17.99 for 10 GB — and works everywhere without buying per-trip." This in-product prompt is the single most valuable feature for profitability. Akito should spec this as a v1.0 feature, not a v1.1 feature.</li>
+  <li><strong>Track tier distribution from Week 1.</strong> Balraj should set up a simple monthly report: what percentage of active users are on each tier? Compare against the Launch Reality baseline. If by M3 the Economy percentage is tracking higher than 80%, the conversion funnel is not working and needs adjustment before the numbers compound into the PAYG Trap.</li>
+</ol>
+
+<h2 id="queue">10. Open items / queue</h2>
+
+<table>
+  <tr><th>Item</th><th>Owner</th><th>Target</th></tr>
+  <tr><td>Validate actual Economy purchase frequency — is 2.5/month realistic? Build from app logs at M2-M3</td><td>Balraj (analytics)</td><td>M3</td></tr>
+  <tr><td>Specify the "3-PAYG purchase" in-app upsell nudge as a v1.0 feature — Akito to spec the UX</td><td>Akito</td><td>Pre-launch</td></tr>
+  <tr><td>Set up monthly tier distribution dashboard — % users on each tier, track against Launch Reality baseline</td><td>Balraj</td><td>M1</td></tr>
+  <tr><td>Validate refuel attach rates against real app data at M3-M6</td><td>Balraj (analytics)</td><td>M6</td></tr>
+  <tr><td>If at M6 Economy% is still above 70%: convene a conversion funnel review — what onboarding step is failing?</td><td>Balraj + Akito</td><td>M6 (conditional)</td></tr>
+</table>
+
+<div class="footer-note">
+  Tab 17 — Behavior Sensitivity In-Depth Blueprint · Peanut eSIM · 2026-06-01 · Contributions verified from source xlsx at $1.34/GB blended rate (75/20/5 geo mix). All tier scenario percentages are modeling assumptions, not measured data.
+</div>
+
+</div>
+</body>
+</html>

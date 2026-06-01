@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 16 24-Month Rollout: In-Depth Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.flagged { background: #FBE0E0; color: var(--red); }
+.pill.placeholder { background: #FFF3CD; color: #856404; }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.milestone-row { display: flex; align-items: flex-start; gap: 16px; margin: 14px 0; }
+.milestone-dot { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
+.milestone-dot.green { background: var(--green); color: white; }
+.milestone-dot.gold { background: var(--gold); color: var(--ink); }
+.milestone-dot.red { background: var(--red); color: white; }
+.milestone-dot.ink { background: var(--ink); color: white; }
+.milestone-content h4 { margin: 0 0 4px; font-size: 15px; color: var(--ink); text-transform: none; letter-spacing: 0; }
+.milestone-content p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.amber-text { color: var(--amber); font-weight: 600; }
+.sensitivity-table tr.best td { background: #e8f4e8; font-weight: 600; color: var(--green); }
+.sensitivity-table tr.base td { background: #faf6ec; font-weight: 600; }
+.sensitivity-table tr.worst td { background: #fff0f0; color: #888; }
+.flag-row td:first-child { border-left: 3px solid var(--amber); }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 16 BLUEPRINT — 24-Month Rollout — Peanut eSIM (2026-06-01)</span>
+</div>
+
+<div class="container">
+
+<h1>Tab 16 — 24-Month Rollout: In-Depth Blueprint</h1>
+<div class="meta">Prepared 2026-06-01 · Companion to the Tab 16 Visual Explainer (tab16-rollout-visual-explainer-akito-2026-06-01.html) · Owners: Balraj + Akito</div>
+
+<div class="lede">
+  <strong>What this tab tells you:</strong> Tab 16 adds TIME to all the unit economics from earlier tabs. It shows the S-curve from 50 users at launch to 5,000 at Month 24, when each milestone is hit, when the business stops losing money, and how sensitive the timeline is to ARPU and churn assumptions.
+</div>
+
+<div class="toc">
+<strong>Contents</strong>
+<ul>
+  <li><a href="#why">1. Why this tab matters</a></li>
+  <li><a href="#data">2. The verified data (user growth curve)</a></li>
+  <li><a href="#discussion">3. The discussion we had — four bites</a></li>
+  <li><a href="#milestones">4. The milestone walkthrough</a></li>
+  <li><a href="#when">5. When the business starts working</a></li>
+  <li><a href="#sensitivity">6. Sensitivity analysis</a></li>
+  <li><a href="#flags">7. The honest flags</a></li>
+  <li><a href="#takeaway">8. Strategic takeaway</a></li>
+  <li><a href="#queue">9. Open items / queue</a></li>
+</ul>
+</div>
+
+<h2 id="why">1. Why this tab matters</h2>
+<p>All the previous tabs show the model as a steady-state snapshot: "at 1,000 users, here is the math." Tab 16 answers the harder question: <strong>how long until 1,000 users? When do we stop burning cash? What is the path?</strong></p>
+<p>Investors, cofounders, and Balraj himself need to know: "I can sustain this for X months before it has to work." Tab 16 makes that commitment visible. It also shows the steepness of the S-curve — growth is slow at first (word-of-mouth compounds slowly), then accelerates in the crew social network effect.</p>
+
+<h2 id="data">2. The verified data (from source xlsx Tab 16)</h2>
+<p>The user growth numbers are sourced directly from the xlsx. Revenue, COGS, and profit columns are blank in the source (formula cells with no data_only values) — these are calculated by linking to earlier tabs. The user counts are the hard inputs.</p>
+
+<table>
+  <tr><th>Month</th><th>Active Users</th><th>Monthly Revenue (est.)</th><th>Notes</th></tr>
+  <tr><td>M1</td><td>50</td><td>~$876</td><td>Beta — crew Akito knows personally</td></tr>
+  <tr><td>M2</td><td>80</td><td>~$1,402</td><td>Word-of-mouth begins</td></tr>
+  <tr><td>M3</td><td>130</td><td>~$2,277</td><td>First $1K/mo revenue milestone</td></tr>
+  <tr><td>M4</td><td>200</td><td>~$3,504</td><td></td></tr>
+  <tr><td>M5</td><td>300</td><td>~$5,256</td><td></td></tr>
+  <tr><td>M6</td><td>450</td><td>~$7,884</td><td>Ramen-covered ($11K opex vs ~$8K revenue + improving)</td></tr>
+  <tr><td>M7</td><td>650</td><td>~$11,388</td><td>Revenue starts tracking opex</td></tr>
+  <tr><td>M8</td><td>900</td><td>~$15,768</td><td></td></tr>
+  <tr><td>M9</td><td>1,200</td><td>~$21,024</td><td></td></tr>
+  <tr><td>M10</td><td>1,500</td><td>~$26,280</td><td>Procurement leverage point (~1,724 users)</td></tr>
+  <tr><td>M11</td><td>1,800</td><td>~$31,536</td><td>TRUE breakeven likely here (depends on mix)</td></tr>
+  <tr><td>M12</td><td>2,100</td><td>~$36,792</td><td>End of Year 1</td></tr>
+  <tr><td>M13</td><td>2,400</td><td>~$42,048</td><td>First $25K/mo net profit milestone</td></tr>
+  <tr><td>M16</td><td>3,300</td><td>~$57,816</td><td>Strong growth phase</td></tr>
+  <tr><td>M18</td><td>3,900</td><td>~$68,328</td><td></td></tr>
+  <tr><td>M24</td><td>5,000</td><td>~$87,600</td><td>First $50K/mo net profit milestone</td></tr>
+</table>
+
+<p><em>Revenue estimates use $17.52 blended ARPU (base case Steady State tier mix). Actual revenue depends on tier mix — see Tab 17 Behavior Sensitivity.</em></p>
+
+<h2 id="discussion">3. The discussion we had — four bites</h2>
+
+<div class="discussion-block">
+  <h4>Bite 1 — What the tab actually does: adding TIME</h4>
+  <p>The key insight from this walkthrough: tabs 3-14 are all timeless math ("per user, per month, in perpetuity"). Tab 16 is the first tab that adds a time axis. It forces an answer to: how fast does this grow? The S-curve shape was chosen deliberately — not a straight line (too optimistic at launch, too pessimistic at scale) but a slow start accelerating into a compound social growth effect as crew recommend to crew.</p>
+  <p>We discussed whether the S-curve was realistic. Consensus: the launch is genuinely slow (50 users = Akito's personal network and early beta) because Emirates crew travel in closed social circles. Once they trust the product, referrals compound within those circles. The 3-5x monthly growth rates in M1-M6 are aggressive but defensible if Akito is actively pushing.</p>
+</div>
+
+<div class="discussion-block">
+  <h4>Bite 2 — Milestone walkthrough</h4>
+  <p>We walked through each milestone and stress-tested whether the user numbers behind them were achievable in the timeframe.</p>
+  <ul>
+    <li><strong>M1 = 50 users:</strong> Launch milestone. This is literally Akito's immediate crew network — people he can WhatsApp personally. Achievable with zero marketing spend.</li>
+    <li><strong>M3 = First $1,000/month:</strong> Requires ~130 users at $17.52 ARPU. Doable within 3 months if word spreads to 2-3 crew groups beyond Akito's immediate contacts.</li>
+    <li><strong>M6 = First $5,000/month + Ramen-covered:</strong> 450 users. "Ramen-covered" = the business covers founders' basic living expenses. The definition is intentionally loose — it depends on what Balraj and Akito consider "ramen."</li>
+    <li><strong>M11-12 = TRUE breakeven:</strong> The exact month depends heavily on tier mix (see Tab 17). With Steady State mix (~$17.52 ARPU), breakeven at roughly 700-800 users. At 1,800 users by M11, we are well past breakeven — the model shows meaningful profit accumulation by this point.</li>
+    <li><strong>M13 = $25K/month net:</strong> This was the first "feels like a real business" number Balraj mentioned. 2,400 users × $17.52 ARPU − $11K opex − COGS = roughly $25K net. Achieved by M13 in base case.</li>
+    <li><strong>M24 = $50K/month net:</strong> The 24-month target. 5,000 users. This is where the financial model demonstrates the business is self-sustaining and has real exit optionality.</li>
+  </ul>
+</div>
+
+<div class="discussion-block">
+  <h4>Bite 3 — When the business starts working</h4>
+  <p>The exact breakeven month was debated. The $11K/month fixed burn figure is a placeholder — there is no actual spend yet as of 2026-06-01. The number was derived from Tab 1 (operating cost structure) as a modeling assumption. Actual spend may be materially lower (no staff yet, mostly Stripe fees + cloud + App Store) or higher (if Akito needs a salary sooner than expected).</p>
+  <p>Key finding from the discussion: <strong>the word-of-mouth growth model means breakeven comes BEFORE we have proved the conversion funnel.</strong> At M7-M8, we should have enough users to see real tier upgrade data — but by the time we see it, we're already near breakeven. There is almost no window where the business is burning cash AND we have useful data to change course. The model is forgiving.</p>
+</div>
+
+<div class="discussion-block">
+  <h4>Bite 4 — Sensitivity (ARPU and churn)</h4>
+  <p>We tested two sensitivity levers: ARPU and churn.</p>
+  <ul>
+    <li><strong>ARPU is the biggest lever:</strong> At Month 24 (5,000 users), a $1 change in blended ARPU = $5,000/month impact. The ARPU range from Behavior Sensitivity (Tab 17) is $14.55 (Launch Reality) to $21.48 (Mature Crew). That's a $6.93 spread = potential $34,650/month swing at M24. The tier conversion story is the biggest profit lever in the entire model.</li>
+    <li><strong>Churn pressure — the dangerous assumption:</strong> The base model assumes 5% monthly churn across all tiers (blended). The industry average for consumer travel apps is 8-12%. We are betting on the crew-product thesis: crew have a recurring need (monthly flights), they form habits with apps they trust, and the social network effect within crew circles reduces churn. If this thesis is wrong and churn goes to industry average (10%), the breakeven month moves from M11-12 to M15-16.</li>
+  </ul>
+</div>
+
+<h2 id="milestones">4. The milestone walkthrough</h2>
+
+<div class="milestone-row">
+  <div class="milestone-dot green">M1</div>
+  <div class="milestone-content">
+    <h4>50 users — Launch</h4>
+    <p>Akito's personal crew network. Beta product. No marketing spend. Goal: prove eSIM delivery works, referral flow works, app doesn't crash on first use.</p>
+  </div>
+</div>
+<div class="milestone-row">
+  <div class="milestone-dot green">M3</div>
+  <div class="milestone-content">
+    <h4>130 users — First $1K/month</h4>
+    <p>Word-of-mouth has begun spreading beyond Akito's immediate circle. Revenue crosses $1,000/month for the first time. Psychologically important — shows the product can make money.</p>
+  </div>
+</div>
+<div class="milestone-row">
+  <div class="milestone-dot gold">M6</div>
+  <div class="milestone-content">
+    <h4>450 users — First $5K/month + Ramen-covered</h4>
+    <p>Revenue tracks toward covering founders' living costs. Not yet profitable vs full $11K opex model, but cash-flow positive on founder effort. Key milestone for deciding whether to quit day jobs.</p>
+  </div>
+</div>
+<div class="milestone-row">
+  <div class="milestone-dot gold">M11-12</div>
+  <div class="milestone-content">
+    <h4>1,800-2,100 users — TRUE breakeven</h4>
+    <p>Revenue exceeds all modeled costs including the $11K/month opex placeholder. Business is self-sustaining. This is the point Balraj said "okay, this is real." Actual month depends on tier mix achieved.</p>
+  </div>
+</div>
+<div class="milestone-row">
+  <div class="milestone-dot red">M13</div>
+  <div class="milestone-content">
+    <h4>2,400 users — First $25K/month net profit</h4>
+    <p>The "it feels like a real business" number. At this point, the business generates meaningful founder income and has internal cash for growth investment.</p>
+  </div>
+</div>
+<div class="milestone-row">
+  <div class="milestone-dot ink">M24</div>
+  <div class="milestone-content">
+    <h4>5,000 users — First $50K/month net profit</h4>
+    <p>24-month target. Annual revenue ~$1M. The plan delivers on its core promise. This is the milestone for a Series A conversation or an exit conversation with a larger eSIM provider.</p>
+  </div>
+</div>
+
+<h2 id="when">5. When the business starts working</h2>
+
+<p>There are three definitions of "starts working" and they happen at different points:</p>
+
+<table>
+  <tr><th>Definition</th><th>Month</th><th>Users</th><th>What it means</th></tr>
+  <tr><td>Revenue covers variable costs (COGS only)</td><td>M1</td><td>50</td><td>Every sale is margin-positive from day one. No question here.</td></tr>
+  <tr><td>Ramen-covered (founders paid)</td><td>M5-6</td><td>300-450</td><td>Can sustain founder living costs. Depends on personal burn rate.</td></tr>
+  <tr><td>TRUE breakeven (all modeled costs)</td><td>M11-12</td><td>1,800-2,100</td><td>Business is self-sustaining including all opex.</td></tr>
+  <tr><td>Surplus cash for growth investment</td><td>M13+</td><td>2,400+</td><td>Can fund paid acquisition, hire, or save for product development.</td></tr>
+</table>
+
+<h2 id="sensitivity">6. Sensitivity analysis</h2>
+
+<p>What happens to the M24 target ($50K/month net) if key assumptions change?</p>
+
+<table class="sensitivity-table">
+  <tr><th>Variable</th><th>Base case</th><th>Optimistic</th><th>Pessimistic</th><th>M24 monthly profit impact</th></tr>
+  <tr class="base"><td>ARPU</td><td>$17.52 (Steady State)</td><td>$21.48 (Mature Crew)</td><td>$14.55 (Launch Reality)</td><td>+$19,800 / −$14,850 at 5K users</td></tr>
+  <tr><td>Monthly churn (blended)</td><td>5% (crew thesis)</td><td>3%</td><td>10% (industry avg)</td><td>Small at M24 (users already counted), large on LTV</td></tr>
+  <tr class="worst"><td>Growth rate (S-curve steepness)</td><td>5K users by M24</td><td>5K by M18</td><td>3K by M24</td><td>−$35K/mo at pessimistic M24 (only 3K users)</td></tr>
+  <tr><td>Opex burn ($11K placeholder)</td><td>$11K/month</td><td>$7K/month</td><td>$18K/month</td><td>+$7K / −$7K directly</td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Why ARPU is the biggest sensitivity lever</h4>
+  <p>At 5,000 users, a $1 change in blended ARPU = $5,000/month change in revenue. The ARPU spread from Behavior Sensitivity is $6.93 ($21.48 − $14.55). That is a potential $34,650/month swing. The single most impactful thing Akito and Balraj can do for Month 24 profitability is convert Economy users to subscription tiers. Everything else is secondary.</p>
+</div>
+
+<div class="discussion-block">
+  <h4>The dangerous churn assumption</h4>
+  <p>The base model uses 5% blended monthly churn. The industry average for consumer travel-adjacent apps is 8-12%. We are making a specific bet: that crew-product fit is strong enough to hold churn at half the industry average. The evidence for this bet: (1) crew have monthly recurring data needs, (2) the social group effect creates social switching cost, (3) the Roster Bundle auto-arming feature creates high switching friction. If any of these fail, churn reverts to industry average and the growth model becomes much harder. This is the most important assumption to validate in the first 6 months.</p>
+</div>
+
+<h2 id="flags">7. The honest flags</h2>
+
+<table>
+  <tr><th>Flag</th><th>Detail</th><th>Risk</th></tr>
+  <tr class="flag-row"><td>$11K/month opex is a placeholder</td><td>No actual spend plan has been confirmed as of 2026-06-01. Zero employees hired. The $11K figure was modeled from Tab 1 operating cost structure. Real burn in the first 6 months may be $3-6K (Stripe + cloud only) before any staff costs. This changes the breakeven month materially.</td><td><span class="pill placeholder">PLACEHOLDER</span></td></tr>
+  <tr class="flag-row"><td>S-curve is modeled, not measured</td><td>The 50-80-130-200 growth trajectory is an assumption. There is no historical data for a crew-targeted eSIM. Referral velocity could be faster (tight-knit crew communities) or slower (Emirates crew already have SIM deals through their carrier).</td><td><span class="pill open">MEDIUM</span></td></tr>
+  <tr class="flag-row"><td>5% churn assumption is optimistic</td><td>See discussion above. Worth building a scenario where churn doubles and seeing when (and whether) the business still works. Answer: yes, it still works — just more slowly. The unit economics are robust enough to survive higher churn.</td><td><span class="pill flagged">HIGH — validate in M1-6</span></td></tr>
+  <tr class="flag-row"><td>Milestones assume Steady State tier mix</td><td>All revenue estimates use $17.52 blended ARPU (Steady State, Tab 17 base case). If the first 6 months look like "Launch Reality" ($14.55 ARPU), every revenue milestone slides right by roughly 1-2 months.</td><td><span class="pill open">MEDIUM</span></td></tr>
+  <tr class="flag-row"><td>No paid acquisition modeled</td><td>The entire rollout assumes word-of-mouth only (0.75 blended CAC). If paid acquisition is added later, the CAC line rises and the profit curve shifts. This is a deliberate choice, not an oversight — but needs to be revisited at M12 when considering whether to scale faster.</td><td><span class="pill locked">LOW — intentional</span></td></tr>
+</table>
+
+<h2 id="takeaway">8. Strategic takeaway</h2>
+
+<p>Three things to take from Tab 16:</p>
+
+<ol>
+  <li><strong>The first 6 months are all about proving the churn assumption.</strong> If M6 churn data shows 5-6%, the model is on track. If it shows 15%+, the crew-product thesis needs immediate adjustment (better onboarding, better retention features, re-examination of who is being acquired).</li>
+  <li><strong>ARPU improvement is the main dial.</strong> The difference between Launch Reality ARPU ($14.55) and Steady State ARPU ($17.52) is worth $14,850/month at 5K users. That $14K/month difference comes entirely from onboarding better and converting Economy users to subscriptions. This is a product and marketing problem, not a pricing problem.</li>
+  <li><strong>The opex placeholder needs a real number before M3.</strong> Balraj needs to decide: what are the actual monthly costs? Stripe fees alone at 1,000 users = ~$600. Cloud at launch = sub-$500. The model's $11K/mo is anchored to a future state with staff. Until then, actual burn is much lower — which means breakeven comes significantly earlier than M11-12.</li>
+</ol>
+
+<h2 id="queue">9. Open items / queue</h2>
+
+<table>
+  <tr><th>Item</th><th>Owner</th><th>Target</th></tr>
+  <tr><td>Replace $11K/month opex placeholder with an actual spend plan for the first 12 months (what will Balraj + Akito actually spend?)</td><td>Balraj</td><td>Pre-launch</td></tr>
+  <tr><td>Set a churn tracking metric from M1 — measure actual 30-day retention of first 50 users, share at M3 review</td><td>Balraj + Akito</td><td>M1-M3</td></tr>
+  <tr><td>Decide: what is the ramen number? What monthly net does Akito need to go full-time? This defines the M5-6 milestone concretely.</td><td>Akito + Balraj</td><td>Pre-launch</td></tr>
+  <tr><td>At M6: run a proper churn cohort analysis. Are M1 users still active? What tier are they on?</td><td>Balraj (data)</td><td>M6</td></tr>
+  <tr><td>At M12: revisit whether paid acquisition should be added to the rollout curve for Year 2 acceleration</td><td>Balraj + Akito</td><td>M12</td></tr>
+</table>
+
+<div class="footer-note">
+  Tab 16 — 24-Month Rollout In-Depth Blueprint · Peanut eSIM · 2026-06-01 · Dollar estimates are based on $17.52 blended ARPU (Steady State). See Tab 17 for ARPU sensitivity. Opex $11K/month is a placeholder.
+</div>
+
+</div>
+</body>
+</html>

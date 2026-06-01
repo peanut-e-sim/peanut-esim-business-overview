@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 18 LTV-CAC + Churn: In-Depth Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.flagged { background: #FBE0E0; color: var(--red); }
+.pill.excellent { background: #E0F2E7; color: var(--green); }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.decision-box { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+.rejected-box { background: #FFF0F0; border: 1px solid #f5c0c0; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.rejected-box strong { color: var(--red); }
+.fix-box { background: #e0f2e7; border: 1px solid #a8d8b5; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.fix-box strong { color: var(--green); }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+tr.excellent td { background: #e8f4e8; }
+tr.cockpit-special td { background: #faf6ec; border-left: 3px solid var(--gold); }
+.flag-row td:first-child { border-left: 3px solid var(--amber); }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 18 BLUEPRINT — LTV-CAC + Churn — Peanut eSIM (2026-06-01)</span>
+</div>
+
+<div class="container">
+
+<h1>Tab 18 — LTV-CAC + Churn: In-Depth Blueprint</h1>
+<div class="meta">Prepared 2026-06-01 · Captures full discussion, decisions, modeling corrections, and open items · Owners: Balraj + Akito</div>
+
+<div class="lede">
+  <strong>What this tab tells you:</strong> Peanut has exceptional unit economics. At $0.75 blended CAC, every tier produces an LTV:CAC ratio between 32x and 760x. The business earns back its acquisition cost in under 2 days per Premium user. The real risk is not the math — it is whether word-of-mouth alone can compound to 5,000 users within 24 months.
+</div>
+
+<div class="toc">
+<strong>Contents</strong>
+<ul>
+  <li><a href="#why">1. Why this tab matters</a></li>
+  <li><a href="#concepts">2. The three concepts (churn, LTV, CAC)</a></li>
+  <li><a href="#churn-data">3. Per-tier monthly churn (verified)</a></li>
+  <li><a href="#cac-data">4. CAC structure and the fix</a></li>
+  <li><a href="#ltv-table">5. Full LTV:CAC table (verified)</a></li>
+  <li><a href="#discussion">6. The discussion we had</a></li>
+  <li><a href="#worked">7. Worked example — Akito tells Yuki</a></li>
+  <li><a href="#lemonade">8. The lemonade stand payback analogy</a></li>
+  <li><a href="#economy-test">9. Economy churn pressure-test</a></li>
+  <li><a href="#real-risk">10. The real risk: scale velocity</a></li>
+  <li><a href="#flags">11. The honest flags</a></li>
+  <li><a href="#takeaway">12. Strategic takeaway</a></li>
+  <li><a href="#queue">13. Open items / queue</a></li>
+</ul>
+</div>
+
+<h2 id="why">1. Why this tab matters</h2>
+<p>LTV:CAC is the investor's first question: "For every dollar you spend acquiring a user, how many dollars do you get back over their lifetime?" Most consumer subscription businesses consider a 3:1 ratio healthy and 5:1 excellent. Peanut's ratios are 32x to 760x.</p>
+<p>But there is a critical nuance: great unit economics don't automatically mean a great business. They mean the business is efficient per unit. The total business value depends on <em>how many units</em> you can acquire. That scale question is the real test — and it hinges entirely on whether word-of-mouth within the Emirates crew network compounds fast enough.</p>
+
+<h2 id="concepts">2. The three concepts</h2>
+
+<table>
+  <tr><th>Concept</th><th>Definition</th><th>Formula</th><th>For Peanut</th></tr>
+  <tr>
+    <td><strong>Churn</strong></td>
+    <td>% of users who stop using the product per month</td>
+    <td>Users lost / Starting users</td>
+    <td>8-18% by tier (Cockpit: annual prepay, different model)</td>
+  </tr>
+  <tr>
+    <td><strong>LTV</strong></td>
+    <td>Total gross profit earned from one user over their lifetime</td>
+    <td>Gross profit/mo × Avg lifetime months</td>
+    <td>$24 (Refuel) to $570 (Cockpit) depending on tier</td>
+  </tr>
+  <tr>
+    <td><strong>CAC</strong></td>
+    <td>Cost to acquire one paying user</td>
+    <td>Total acquisition spend / New users acquired</td>
+    <td>$0.75 blended at launch (WOM + referral only)</td>
+  </tr>
+  <tr>
+    <td><strong>LTV:CAC</strong></td>
+    <td>The health ratio — how efficient is acquisition vs lifetime value?</td>
+    <td>LTV / CAC</td>
+    <td>32x to 760x. Benchmark for "excellent" is 5x.</td>
+  </tr>
+</table>
+
+<h2 id="churn-data">3. Per-tier monthly churn (verified from source xlsx Tab 18)</h2>
+
+<table>
+  <tr><th>Tier</th><th>Monthly Churn %</th><th>Avg Lifetime (mo)</th><th>Notes</th></tr>
+  <tr><td>Economy</td><td>18%</td><td>5.6 mo</td><td>1-month casuals, trial users. Highest churn on the ladder.</td></tr>
+  <tr><td>Roster Bundle</td><td>10%</td><td>10 mo</td><td>Sticky once roster sync is set up — setup friction = retention.</td></tr>
+  <tr><td>Premium Economy</td><td>10%</td><td>10 mo</td><td>Light commitment, but subscription habit forms.</td></tr>
+  <tr><td>Business</td><td>9%</td><td>11.1 mo</td><td>Pool habit forms. Concierge starts creating lock-in.</td></tr>
+  <tr><td>First</td><td>8%</td><td>12.5 mo</td><td>Power users — perks (concierge, crew recs) lock them in.</td></tr>
+  <tr><td>First Suite</td><td>7%</td><td>14.3 mo</td><td>Top of ladder. Concierge + status badge creates identity.</td></tr>
+  <tr class="cockpit-special"><td><strong>Cockpit</strong></td><td>Annual prepay (special)</td><td>36 mo (corrected)</td><td>Year 1 = forced retention (0% churn — already paid). ~70% renew Year 2+. Realistic lifetime = 3 years. Cannot use monthly churn formula.</td></tr>
+  <tr><td>Refuel (add-on)</td><td>15%</td><td>6.7 mo</td><td>Per-purchase add-on. Lower retention than subscriptions.</td></tr>
+</table>
+
+<div class="fix-box">
+  <strong>Cockpit modeling correction — important to document</strong><br>
+  An earlier version of the model applied the monthly churn formula to Cockpit: <code>1 / (monthly churn %) = lifetime</code>. But Cockpit has no monthly churn — it is annual prepay. Applying any monthly churn rate to Cockpit produces absurd results (e.g., at 0.6% monthly "churn" = 167-month lifetime, which is 14 years). This was a modeling error. The correction: use the realistic observed lifetime of annual-prepay products (~36 months, based on ~70% renewal rate after Year 1). LTV = $15.82/month × 36 months = $569.52.
+</div>
+
+<h2 id="cac-data">4. CAC structure and the fix (key discussion)</h2>
+
+<h4>Original model (wrong): had paid social + influencer baked in</h4>
+<p>The original CAC calculation included an allocation for paid social advertising ($12 CAC per paid user) and influencer marketing ($8 CAC per influencer-acquired user). This produced a blended CAC of approximately $3.85.</p>
+
+<div class="rejected-box">
+  <strong>Rejected: the $3.85 blended CAC with paid social + influencer</strong><br>
+  Reason: Balraj confirmed that the launch plan is word-of-mouth only. No paid ads at launch. The Harikai illustrator partnership is an asset swap (she provides illustrations, we give exposure/credits), not a paid CAC event. Including paid channels in launch CAC was incorrect and overstated the cost.
+</div>
+
+<h4>Corrected model (locked 2026-06-01):</h4>
+
+<table>
+  <tr><th>Channel</th><th>% of acquisition</th><th>$ CAC</th><th>Notes</th></tr>
+  <tr><td>Organic / crew word-of-mouth</td><td>85%</td><td>$0</td><td>Cabin crew layover chat, group chats, social proof. 100% free.</td></tr>
+  <tr><td>Referral bonus ($5 credit)</td><td>15%</td><td>$5</td><td>Existing user refers a colleague. Paid in app credit, not cash.</td></tr>
+  <tr><td>Paid social</td><td>0%</td><td>—</td><td>FUTURE channel. Not in launch plan. Will increase blended CAC when added.</td></tr>
+  <tr><td>Influencer / crew creator</td><td>0%</td><td>—</td><td>FUTURE. Harikai partnership is asset swap, not paid CAC.</td></tr>
+  <tr style="background:#e8f4e8;"><td><strong>Blended CAC (launch)</strong></td><td>100%</td><td><strong>$0.75</strong></td><td>85% × $0 + 15% × $5 = $0.75</td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Why $5 referral credit is still a CAC even though it's not cash</h4>
+  <p>The $5 referral credit appears in the app as a credit against the user's next bill — it is an economic cost, not a cash outflow in the month it's granted. But over time, as users redeem those credits, it reduces realized revenue. We treat it as CAC = $5 because it is the economic cost of the acquisition event, even though the cash impact is deferred and fractional.</p>
+</div>
+
+<h2 id="ltv-table">5. Full LTV:CAC table (verified contributions)</h2>
+<p>Gross profit contributions per tier are verified from the source xlsx (Per-Tier Unit Economics tab) at $1.34/GB blended rate (75/20/5 geo mix). CAC = $0.75 for all tiers.</p>
+
+<table>
+  <tr><th>Tier</th><th>Gross profit/mo</th><th>Lifetime</th><th>LTV</th><th>CAC</th><th>LTV:CAC</th><th>Payback (mo)</th><th>Verdict</th></tr>
+  <tr class="excellent"><td>Economy</td><td>$9.13</td><td>5.6 mo</td><td>$51</td><td>$0.75</td><td><strong>68x</strong></td><td>0.08 mo (2.5 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Roster Bundle</td><td>$13.62</td><td>10 mo</td><td>$136</td><td>$0.75</td><td><strong>181x</strong></td><td>0.06 mo (1.8 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Premium Economy</td><td>$13.36</td><td>10 mo</td><td>$134</td><td>$0.75</td><td><strong>179x</strong></td><td>0.06 mo (1.7 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Business</td><td>$21.86</td><td>11.1 mo</td><td>$243</td><td>$0.75</td><td><strong>324x</strong></td><td>0.03 mo (1.0 day)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>First</td><td>$28.05</td><td>12.5 mo</td><td>$351</td><td>$0.75</td><td><strong>468x</strong></td><td>0.027 mo (0.8 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>First Suite</td><td>$33.03</td><td>14.3 mo</td><td>$472</td><td>$0.75</td><td><strong>629x</strong></td><td>0.023 mo (0.7 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="cockpit-special"><td><strong>Cockpit</strong> (annual prepay)</td><td>$15.82/mo equiv</td><td>36 mo (corrected)</td><td>$570</td><td>$0.75</td><td><strong>760x</strong></td><td>0.047 mo (1.4 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Refuel (add-on)</td><td>$3.65</td><td>6.7 mo</td><td>$24</td><td>$0.75</td><td><strong>32x</strong></td><td>0.21 mo (6 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+</table>
+
+<blockquote>Note: All payback periods are sub-month. Compare to a typical consumer subscription startup: $50 CAC, $5/month profit = 10-month payback. Peanut's equivalent is under 2 days.</blockquote>
+
+<h2 id="discussion">6. The discussion we had</h2>
+
+<div class="discussion-block">
+  <h4>Discussion — why the same $0.75 CAC applies to all tiers</h4>
+  <p>A crucial insight emerged during this walkthrough: acquisition and tier selection are sequential, not simultaneous. When Akito tells his crew friend about Peanut, the friend downloads the app before choosing a plan. The $0.75 CAC is incurred at the download/signup event, not at the tier selection event. Tier selection happens in the onboarding flow afterwards.</p>
+  <p>Implication: <strong>every tier upgrade is $0 additional CAC</strong>. An Economy user who upgrades to Premium after 2 months adds $83 to their LTV at zero incremental acquisition cost. The upgrade is pure profit from the business's perspective. This makes the conversion funnel (Economy to subscription) even more valuable than it first appears — it is not just a revenue line, it is a pure-margin event.</p>
+</div>
+
+<div class="discussion-block">
+  <h4>Discussion — the Cockpit modeling error and the fix</h4>
+  <p>The original model applied a monthly churn assumption to Cockpit. Balraj noticed this during the walkthrough — a Cockpit user who prepays $299/year cannot churn in month 1. The monthly churn formula only applies to rolling subscription products. For Cockpit, we need to model the actual renewal pattern: Year 1 = 100% retention (prepaid), Year 2+ = ~70% renewal rate.</p>
+  <p>We considered: what is the realistic average lifetime for an annual-prepay subscriber with 70% renewal? The geometric series with 70% renewal converges to approximately 3 years (36 months) as the expected lifetime. This is the number now used. The old formula would have produced 167 months (14 years) which was clearly wrong.</p>
+</div>
+
+<div class="discussion-block">
+  <h4>Discussion — is the $0.75 CAC sustainable at scale?</h4>
+  <p>Word-of-mouth has a natural ceiling. At some point, Akito's personal network is exhausted. The first degree of referrals also reaches saturation. From M12+ the blended CAC will rise as the business starts adding paid acquisition channels to accelerate growth beyond organic reach.</p>
+  <p>We modeled this as a future-state concern, not a launch concern. The $0.75 CAC is realistic for M1-M12 based on the crew network thesis. What we did not model: what happens to the LTV:CAC ratio when CAC rises to $15-25 (typical for paid social). Answer: it is still excellent. Even at $25 CAC, Premium LTV:CAC = 134/25 = 5.4x — which is above the "excellent" threshold. The business remains healthy even with paid acquisition.</p>
+  <p>However: this means the business model does NOT depend on always staying at $0.75. The unit economics work even at competitive CAC levels. This is a strength.</p>
+</div>
+
+<div class="discussion-block">
+  <h4>Discussion — why we separated CAC from tier CAC</h4>
+  <p>We briefly considered whether to model different CAC levels for different tier users — e.g., a Business user might be harder to find and convert than an Economy trial user. Rejected this approach for two reasons: (1) in the word-of-mouth model, we don't control who Akito's friend tells (it could be a purser who immediately goes to Business or a junior crew who tries Economy), and (2) the math doesn't support it — there is no empirical evidence that higher-tier users cost more to acquire in a WOM model. If anything, senior crew (more likely to buy Business+) are more connected to other senior crew via professional networks, so higher-tier users may actually have lower CAC.</p>
+</div>
+
+<h2 id="worked">7. Worked example — Akito tells Yuki</h2>
+
+<p>Akito is on a DXB-SIN layover. He tells his colleague Yuki about Peanut. Yuki downloads the app and signs up for Premium Economy.</p>
+
+<div style="margin: 20px 0; overflow-x: auto;">
+  <svg width="100%" viewBox="0 0 620 110" style="max-width:620px; display:block; margin: 0 auto;">
+    <!-- Akito -->
+    <circle cx="55" cy="55" r="30" fill="#1A1A1A"/>
+    <text x="55" y="49" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#fff">Akito</text>
+    <text x="55" y="63" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#ccc">tells Yuki</text>
+    <!-- Arrow with cost -->
+    <line x1="87" y1="55" x2="148" y2="55" stroke="#C9A03B" stroke-width="2" marker-end="url(#bpa)"/>
+    <text x="118" y="47" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" fill="#B07A1F">$5 credit</text>
+    <text x="118" y="70" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#888">CAC = $0.75</text>
+    <!-- Yuki -->
+    <circle cx="183" cy="55" r="30" fill="#faf6ec" stroke="#C9A03B" stroke-width="2"/>
+    <text x="183" y="49" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#1A1A1A">Yuki</text>
+    <text x="183" y="63" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#6b6b6b">signs up</text>
+    <!-- Arrow: Yuki -> chooses plan -->
+    <line x1="215" y1="55" x2="265" y2="55" stroke="#888" stroke-width="1.5" marker-end="url(#bpa2)"/>
+    <!-- Tier choice box -->
+    <rect x="268" y="35" width="110" height="40" rx="6" fill="#D71921"/>
+    <text x="323" y="53" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#fff">Premium Economy</text>
+    <text x="323" y="67" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#ffc0c0">$17.99/mo</text>
+    <!-- Arrow: monthly profit -->
+    <line x1="380" y1="55" x2="430" y2="55" stroke="#2D7A4F" stroke-width="1.5" marker-end="url(#bpa3)"/>
+    <text x="405" y="47" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" fill="#2D7A4F">$13.36/mo</text>
+    <!-- Peanut -->
+    <circle cx="470" cy="55" r="35" fill="#2D7A4F"/>
+    <text x="470" y="49" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#fff">Peanut</text>
+    <text x="470" y="63" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#a8d8b5">earns</text>
+    <!-- 10 months arrow -->
+    <line x1="507" y1="55" x2="553" y2="55" stroke="#888" stroke-width="1.5" marker-end="url(#bpa2)"/>
+    <!-- LTV box -->
+    <rect x="558" y="35" width="58" height="40" rx="6" fill="#faf6ec" stroke="#C9A03B" stroke-width="1.5"/>
+    <text x="587" y="52" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="11" font-weight="800" fill="#B07A1F">$134</text>
+    <text x="587" y="66" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#888">LTV</text>
+    <defs>
+      <marker id="bpa" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#C9A03B"/></marker>
+      <marker id="bpa2" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#888"/></marker>
+      <marker id="bpa3" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#2D7A4F"/></marker>
+    </defs>
+  </svg>
+</div>
+
+<table>
+  <tr><th>Event</th><th>Amount</th><th>Cumulative</th></tr>
+  <tr><td>Akito tells Yuki → she signs up</td><td>−$0.75 (CAC)</td><td>−$0.75</td></tr>
+  <tr><td>Month 1: Yuki pays $17.99</td><td>+$13.36 gross profit</td><td>+$12.61</td></tr>
+  <tr><td>Month 2</td><td>+$13.36</td><td>+$25.97</td></tr>
+  <tr><td>...</td><td>+$13.36/mo</td><td>...</td></tr>
+  <tr><td>Month 10 (avg lifetime ends)</td><td>+$13.36</td><td>+$133.25 net</td></tr>
+  <tr style="background:#e8f4e8; font-weight:700;"><td><strong>Total return on $0.75 invested</strong></td><td><strong>$133.25 net profit</strong></td><td><strong>LTV:CAC = 179x</strong></td></tr>
+</table>
+
+<p>Now what if Yuki upgrades from Premium Economy to Business after 3 months?</p>
+
+<table>
+  <tr><th>Phase</th><th>Monthly profit</th><th>Duration</th><th>Contribution</th></tr>
+  <tr><td>Premium Economy (M1-M3)</td><td>$13.36</td><td>3 months</td><td>$40.08</td></tr>
+  <tr><td>Business (M4-M11)</td><td>$21.86</td><td>8 months</td><td>$174.88</td></tr>
+  <tr style="background:#e8f4e8; font-weight:700;"><td><strong>Total LTV with upgrade</strong></td><td></td><td>11 months</td><td><strong>$214.96</strong></td></tr>
+</table>
+
+<p>The $0.75 CAC is spent once. The upgrade adds $80.88 LTV at zero additional cost. This is the power of the tier ladder.</p>
+
+<h2 id="lemonade">8. The lemonade stand payback analogy</h2>
+
+<p>From the source xlsx, verbatim:</p>
+
+<blockquote>You spend $5 on posters to attract a customer. Each lemonade they buy earns you $2 profit. After 3 lemonades ($6 cumulative), you have paid back the $5 poster cost. Every lemonade after that = pure profit.</blockquote>
+
+<p>Applied to Peanut, Premium tier:</p>
+<ul>
+  <li>Posters (CAC): $0.75</li>
+  <li>Each lemonade (monthly profit): $13.36</li>
+  <li>Payback: $0.75 / $13.36 = 0.056 months = approximately 1.7 days</li>
+  <li>Everything after day 2 of a user's active month = pure profit</li>
+</ul>
+
+<p>Compare to a typical startup:</p>
+<ul>
+  <li>CAC: $50 (typical paid social)</li>
+  <li>Monthly profit: $5</li>
+  <li>Payback: 10 months</li>
+  <li>Many startups don't survive 10 months of negative unit economics at scale</li>
+</ul>
+
+<p>Peanut's word-of-mouth strategy is not just cheap — it structurally eliminates the payback-period risk that kills most subscription startups.</p>
+
+<h2 id="economy-test">9. Economy churn pressure-test</h2>
+
+<p>Economy has the highest churn at 18%. The industry average for trial-style consumer apps is 30-40%. What happens to Economy LTV:CAC if churn is much higher?</p>
+
+<table>
+  <tr><th>Scenario</th><th>Monthly churn</th><th>Lifetime</th><th>LTV</th><th>LTV:CAC</th><th>Verdict</th></tr>
+  <tr><td>Optimistic (current model)</td><td>18%</td><td>5.6 mo</td><td>$51</td><td>68x</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr><td>Realistic (travel eSIM avg)</td><td>30%</td><td>3.3 mo</td><td>$30</td><td>41x</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr><td>Pessimistic (pure trial users)</td><td>40%</td><td>2.5 mo</td><td>$23</td><td>30x</td><td><span class="pill excellent">Excellent</span></td></tr>
+</table>
+
+<blockquote>The verdict is "Excellent" in all three scenarios. Even the worst case (40% churn) produces a 30x LTV:CAC ratio. The $0.75 CAC is so low that unit economics remain excellent across the entire realistic churn range. This is structurally important — it means the business can survive significant acquisition quality issues without unit economics breaking down.</blockquote>
+
+<h2 id="real-risk">10. The real risk: scale velocity</h2>
+
+<p>The key insight from this tab's discussion:</p>
+
+<blockquote>The risk is NOT unit economics — it is whether word-of-mouth alone can scale fast enough to reach 5,000 users in 24 months.</blockquote>
+
+<p>The math behind this risk:</p>
+
+<table>
+  <tr><th>Referral rate</th><th>Description</th><th>Users at M18</th><th>Users at M24</th></tr>
+  <tr style="background:#e8f4e8;"><td>0.5 referrals/user/mo</td><td>Each active user tells 1 new person every 2 months</td><td>~5,000</td><td>~5,000+ (target achieved)</td></tr>
+  <tr><td>0.3 referrals/user/mo</td><td>Moderate crew word-of-mouth</td><td>~3,200</td><td>~4,800</td></tr>
+  <tr style="background:#fff0f0;"><td>0.2 referrals/user/mo</td><td>Conservative crew word-of-mouth</td><td>~2,000</td><td>~2,400</td></tr>
+</table>
+
+<p>The 5,000-user M24 target requires roughly 0.5 referrals per user per month in the steady-state growth period. That means, on average, each active user needs to tell one new person about Peanut every 2 months. In a tight crew community with monthly layovers and shared accommodations, this is plausible — but it is not guaranteed. The crew-thesis must hold.</p>
+
+<h2 id="flags">11. The honest flags</h2>
+
+<table>
+  <tr><th>Flag</th><th>Detail</th><th>Risk</th></tr>
+  <tr class="flag-row"><td>Churn rates are estimates</td><td>The 18%/10%/9%/8%/7% per-tier churn numbers are modeled assumptions. They have not been validated against real user data. Actual churn may be higher (if crew are not as sticky as assumed) or lower (if the product achieves true habit formation).</td><td><span class="pill flagged">HIGH — validate M3-M6</span></td></tr>
+  <tr class="flag-row"><td>Cockpit lifetime corrected but still estimated</td><td>The 36-month Cockpit lifetime is based on a ~70% annual renewal assumption. This renewal rate is estimated from comparable annual subscription products (Audible, LinkedIn Premium). Actual Cockpit renewal rate will only be known after Year 1.</td><td><span class="pill open">MEDIUM</span></td></tr>
+  <tr class="flag-row"><td>CAC will rise when paid channels open</td><td>The $0.75 CAC applies only to the launch phase (WOM + referral). When paid social is added (M12+), blended CAC will rise. The LTV:CAC ratios in this table will come down. They remain excellent even at $25 CAC, but they will not stay at 179x.</td><td><span class="pill locked">LOW — acknowledged</span></td></tr>
+  <tr class="flag-row"><td>Referral velocity is unknown</td><td>The word-of-mouth growth model requires 0.5 referrals/user/month to hit 5,000 by M24. This is an assumption about crew social behavior. It has not been tested. If the actual referral rate is 0.2/month, the 24-month target is not achievable.</td><td><span class="pill flagged">HIGH — measure from M1</span></td></tr>
+  <tr class="flag-row"><td>Economy contribution assumes 2.5 purchases/month</td><td>The $9.13 Economy contribution assumes 2.5 PAYG purchases per month. A one-time buyer generates only $3.65. If Economy users are predominantly one-time buyers, LTV at 18% churn = $3.65 × 5.6 = $20.44, ratio = 27x. Still excellent but materially lower than 68x.</td><td><span class="pill open">MEDIUM</span></td></tr>
+</table>
+
+<h2 id="takeaway">12. Strategic takeaway</h2>
+
+<ol>
+  <li><strong>The unit economics are a structural advantage — use them in investor conversations.</strong> A 179x LTV:CAC ratio on the main subscription tier is genuinely exceptional. Most consumer SaaS businesses would be excited with 10x. Peanut's structural advantage (low CAC via WOM + high margin via breakage) creates an unusually efficient business. This should be front and center in any pitch.</li>
+  <li><strong>Instrument the referral loop from day one.</strong> Since scale velocity is the main risk, Balraj needs to measure referral rate (new user / existing user) every month from M1. Track this as a core KPI, not a nice-to-have. If the referral rate is below 0.3 at M3, either the product isn't driving WOM (product quality issue) or we're not in the right community (acquisition quality issue). Either way, it needs diagnosis before M6.</li>
+  <li><strong>The upgrade funnel is worth more than it looks.</strong> Because CAC is the same ($0.75) regardless of tier, every Economy-to-subscription upgrade is pure LTV at zero additional cost. An Economy user who upgrades to Business after 2 months adds +$192 LTV for free. This makes the in-app conversion nudge (show Premium value after 3 PAYG purchases) one of the highest-ROI product features in the entire roadmap.</li>
+</ol>
+
+<h2 id="queue">13. Open items / queue</h2>
+
+<table>
+  <tr><th>Item</th><th>Owner</th><th>Target</th></tr>
+  <tr><td>Validate Economy purchase frequency assumption — is 2.5/month real or are most Economy users one-and-done?</td><td>Balraj (analytics)</td><td>M3</td></tr>
+  <tr><td>Measure actual 30-day retention from M1 cohort — compare against 18% churn model</td><td>Balraj (analytics)</td><td>M2</td></tr>
+  <tr><td>Define referral rate KPI in app analytics — track new signups attributed to existing user referrals vs organic, monthly</td><td>Balraj (product)</td><td>Pre-launch</td></tr>
+  <tr><td>At M12: model what happens to LTV:CAC when paid social is added. What CAC level breaks the economics?</td><td>Balraj</td><td>M12</td></tr>
+  <tr><td>Validate Cockpit renewal rate at end of Year 1 — is 70% renewal realistic? Adjust 36-month lifetime if needed</td><td>Balraj</td><td>M14 (post-first-cohort renewal)</td></tr>
+</table>
+
+<div class="footer-note">
+  Tab 18 — LTV-CAC + Churn In-Depth Blueprint · Peanut eSIM · 2026-06-01 · Cockpit lifetime corrected from 167 months (formula error) to 36 months (annual prepay realistic lifetime). CAC corrected from $3.85 (included phantom paid channels) to $0.75 (WOM + referral only). All tier contributions verified from source xlsx at $1.34/GB blended rate.
+</div>
+
+</div>
+</body>
+</html>

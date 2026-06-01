@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 15 Procurement Options: In-Depth Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.flagged { background: #FBE0E0; color: var(--red); }
+.pill.estimate { background: #FFF3CD; color: #856404; }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.decision-box { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+.decision-box h4 { margin-top: 0; color: var(--red-dark); }
+.rejected-box { background: #FFF0F0; border: 1px solid #f5c0c0; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.rejected-box strong { color: var(--red); }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.amber-text { color: var(--amber); font-weight: 600; }
+.flag-row td:first-child { border-left: 3px solid var(--amber); }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 15 BLUEPRINT — Procurement Options — Peanut eSIM (2026-06-01)</span>
+</div>
+
+<div class="container">
+
+<h1>Tab 15 — Procurement Options: In-Depth Blueprint</h1>
+<div class="meta">Prepared 2026-06-01 · Captures full discussion, decisions, and open items · Owners: Balraj + Akito</div>
+
+<div class="lede">
+  <strong>What this tab tells you:</strong> There are three possible ways to buy data from suppliers. Right now we use Option A (pay-per-order) as our model assumption. Options B and C are directional estimates — not real quotes. The math shows Option C only becomes better than A above 1,724 users, so the strategic plan is to launch on A, grow volume, then negotiate with leverage.
+</div>
+
+<div class="toc">
+<strong>Contents</strong>
+<ul>
+  <li><a href="#why">1. Why this tab matters</a></li>
+  <li><a href="#data">2. The verified data</a></li>
+  <li><a href="#discussion">3. The discussion we had</a></li>
+  <li><a href="#worked">4. Worked example — Yuki</a></li>
+  <li><a href="#crossover">5. The crossover math</a></li>
+  <li><a href="#flags">6. The honest flags</a></li>
+  <li><a href="#takeaway">7. Strategic takeaway</a></li>
+  <li><a href="#queue">8. Open items / queue</a></li>
+</ul>
+</div>
+
+<h2 id="why">1. Why this tab matters</h2>
+<p>Every other tab in this model assumes Option A pricing ($1.34/GB blended after the 75/20/5 geo mix). The procurement decision is the single biggest COGS lever in the entire business. Moving from Option A to Option C at 5,000 users would save roughly $13,000/month — more than doubling operating profit at that scale.</p>
+<p>The reason this tab exists is to make the procurement roadmap visible and intentional, not reactive. We don't want to renegotiate supplier terms in an emergency — we want to approach that conversation with volume data, real competitive quotes, and a clear alternative (Option C) as leverage.</p>
+
+<h2 id="data">2. The verified data (from source xlsx Tab 15)</h2>
+
+<table>
+  <tr><th>Option</th><th>Cost modifier</th><th>Breakage tax</th><th>Platform fee</th><th>Status</th></tr>
+  <tr><td><strong>A: Pay-per-order</strong></td><td>1.0x (baseline)</td><td>None</td><td>$0</td><td><span class="pill open">UNCERTAIN — needs negotiation</span></td></tr>
+  <tr><td><strong>B: Bulk prepay −10%</strong></td><td>0.9x</td><td>15% on unused</td><td>$0</td><td><span class="pill locked">CONFIDENT — fallback</span></td></tr>
+  <tr><td><strong>C: Direct −40%</strong></td><td>0.6x</td><td>None</td><td>$5,000/mo</td><td><span class="pill estimate">PENDING RESEARCH</span></td></tr>
+</table>
+
+<p>Blended wholesale cost per GB at Option A rates: <strong>$1.34/GB</strong> (after 75/20/5 geo mix). This is the number used across all other tabs.</p>
+
+<h3>Derived per-user COGS (Premium user, 4 GB consumed)</h3>
+<table>
+  <tr><th>Option</th><th>$/GB</th><th>COGS (4 GB)</th><th>Breakage cost</th><th>Platform per user (1K)</th><th>Total COGS</th></tr>
+  <tr><td>A</td><td>$1.34</td><td>$5.36</td><td>$0.00</td><td>$0.00</td><td>$5.36</td></tr>
+  <tr><td>B</td><td>$1.21</td><td>$4.82</td><td>+$0.72</td><td>$0.00</td><td>$5.54</td></tr>
+  <tr><td>C</td><td>$0.80</td><td>$3.22</td><td>$0.00</td><td>+$5.00</td><td>$8.22</td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Note on Option B math at single-user level</h4>
+  <p>Option B's breakage tax (15% on unused inventory) means you pre-buy a pool assuming users will consume it. At 4 GB consumed from a 10 GB pool, 6 GB is "unused" — but you pre-bought it. The 15% breakage is modeled as an additional cost on the under-consumed portion. In practice, at scale the math averages out differently, but Balraj's worked example above shows the single-user case to make the concept clear.</p>
+</div>
+
+<h2 id="discussion">3. The discussion we had</h2>
+
+<div class="discussion-block">
+  <h4>Discussion notes — 2026-06-01 bite-by-bite walkthrough</h4>
+  <ul>
+    <li><strong>Why Option A is called "UNCERTAIN":</strong> We have access to the wholesale supplier's published rate sheet. We have not signed a contract or negotiated terms. The model assumes we can buy at list rate — this may or may not be available or may require volume minimums. Needs a direct conversation with the supplier.</li>
+    <li><strong>Why Option B is "CONFIDENT":</strong> Balraj said he is confident a bulk prepay arrangement can be negotiated with the current wholesale supplier. This is the fallback if Option A pay-per-order isn't available or has unfavorable terms. The 15% breakage tax is an estimate of the cost of over-buying inventory.</li>
+    <li><strong>Why Option C is "PENDING RESEARCH":</strong> The direct wholesale research file was produced 2026-06-01 identifying eSIM Access direct, eSIM Go, and Telnyx as potential upstream providers. The 40% saving is an estimate based on typical supplier margin analysis, not a real quote from any of these providers. Research was in progress at time of this document.</li>
+    <li><strong>We considered going direct at launch:</strong> Rejected. The $5,000/month fixed platform fee is a major drag at low user counts. At 50 users (launch), the platform fee alone would cost $100/user/month — wiping out all margins. There is no reason to take on that cost before we have volume to dilute it.</li>
+    <li><strong>We discussed whether Option B is ever the right answer:</strong> Option B (bulk prepay) is only better than A if the breakage tax on unused inventory is lower than the 10% saved on COGS. At high consumption rates (e.g., Power Crew archetype) it works. At low consumption rates (Casual Travelers) it doesn't. The answer depends on our actual user mix — which we don't have data on yet.</li>
+    <li><strong>We discussed wholesaler negotiation strategy:</strong> Wholesalers do not drop prices voluntarily. The levers are: (1) volume — "we're at 2,000 users and growing," (2) competition — showing real quotes from direct providers, (3) direct access — credibly threatening to bypass them. Without all three, the conversation starts from weakness.</li>
+    <li><strong>The supplier margin spread (40-130x):</strong> Research showed the wholesale markup over upstream direct rates is extremely wide — between 40x and 130x depending on market. This is the commercial opportunity in Option C. The research file is at direct-supplier-research-2026-06-01.html.</li>
+  </ul>
+</div>
+
+<div class="rejected-box">
+  <strong>Rejected approach: Lock into a bulk prepay contract at launch.</strong><br>
+  Reason: No data yet on actual consumption patterns. Buying a large pool without knowing how much crew actually use risks paying a large breakage tax on phantom inventory. Wait for real usage data post-launch before committing to any prepay.
+</div>
+
+<div class="rejected-box">
+  <strong>Rejected approach: Build direct provider relationship before launch.</strong><br>
+  Reason: Direct provider contracts (eSIM Access, eSIM Go, Telnyx) require business validation, API integration work, and volume minimums. Pre-launch we have none of these. The payoff only materialises above 1,724 users anyway — the work is better done closer to that milestone.
+</div>
+
+<h2 id="worked">4. Worked example — Yuki</h2>
+
+<p>Yuki is a cabin crew member on Emirates, flying DXB-SIN-DXB and DXB-LHR-DXB each month. She is on Premium Economy ($17.99/month, 10 GB pool). She uses about 4 GB per month. Here is what Peanut's economics look like on Yuki under each procurement option.</p>
+
+<table>
+  <tr><th>Line</th><th>Option A</th><th>Option B</th><th>Option C</th></tr>
+  <tr><td>Yuki pays Peanut</td><td>$17.99</td><td>$17.99</td><td>$17.99</td></tr>
+  <tr><td>GB consumed</td><td>4 GB</td><td>4 GB</td><td>4 GB</td></tr>
+  <tr><td>Supplier cost/GB</td><td>$1.34</td><td>$1.21 (est.)</td><td>$0.80 (est.)</td></tr>
+  <tr><td>eSIM data COGS</td><td>$5.36</td><td>$4.82</td><td>$3.22</td></tr>
+  <tr><td>Breakage tax (15% unused)</td><td>$0.00</td><td>+$0.72</td><td>$0.00</td></tr>
+  <tr><td>Platform fee per user (at 1K users)</td><td>$0.00</td><td>$0.00</td><td>+$5.00</td></tr>
+  <tr><td>Operating cost per user</td><td>$1.80</td><td>$1.80</td><td>$1.80</td></tr>
+  <tr style="background:#e8f4e8;"><td><strong>Net profit on Yuki / mo</strong></td><td><strong>$10.83</strong></td><td><strong>$10.65</strong></td><td><strong>$7.97</strong></td></tr>
+  <tr><td>Gross margin</td><td>70.2%</td><td>69.2%</td><td>54.3%</td></tr>
+</table>
+
+<blockquote>At 1,000 users, Option A gives the best per-user profit. Option C only wins when the $5,000 fixed platform fee is diluted across enough users — the crossover is 1,724 users.</blockquote>
+
+<h2 id="crossover">5. The crossover math</h2>
+
+<p>Option C's advantage per user on COGS: <strong>$1.34 − $0.80 = $0.54/GB</strong>. For a typical Premium user consuming 4 GB, that's $2.16/user saved on data. Plus the opex saving on breakage. The blended saving per user across all tiers is approximately <strong>$2.90/user/month</strong>.</p>
+
+<p>Option C's fixed platform fee: <strong>$5,000/month</strong> (directional estimate — not a real quote).</p>
+
+<p>Crossover point: $5,000 / $2.90 = <strong>1,724 users</strong>.</p>
+
+<table>
+  <tr><th>User count</th><th>Option A monthly profit est.</th><th>Option C monthly profit est.</th><th>Verdict</th></tr>
+  <tr><td>500 users</td><td>+$4,360</td><td>-$550</td><td class="red-text">A wins decisively</td></tr>
+  <tr><td>1,000 users</td><td>+$8,720</td><td>+$4,100</td><td class="red-text">A wins</td></tr>
+  <tr><td>1,724 users (crossover)</td><td>+$15,033</td><td>+$15,000</td><td class="amber-text">Break even</td></tr>
+  <tr><td>2,500 users</td><td>+$21,800</td><td>+$24,500</td><td class="green-text">C wins by ~$2,700/mo</td></tr>
+  <tr><td>5,000 users</td><td>+$43,600</td><td>+$59,500</td><td class="green-text">C wins by ~$15,900/mo</td></tr>
+</table>
+
+<p><em>Note: All Option C figures are estimates using the −40% directional modifier. Real quotes may change these numbers significantly in either direction.</em></p>
+
+<h2 id="flags">6. The honest flags</h2>
+
+<table>
+  <tr><th>Flag</th><th>What it is</th><th>Risk level</th></tr>
+  <tr class="flag-row"><td>Option A pricing is not contracted</td><td>We have the wholesale supplier rate sheet but no signed contract. The $1.34/GB blended rate is our model assumption. Actual negotiated rate may be different — potentially better or worse.</td><td><span class="pill flagged">HIGH</span></td></tr>
+  <tr class="flag-row"><td>Option B breakage tax is estimated</td><td>15% breakage on unused inventory is an assumption of what would happen if we pre-buy more than users consume. Real terms would be negotiated.</td><td><span class="pill open">MEDIUM</span></td></tr>
+  <tr class="flag-row"><td>Option C −40% is a directional estimate</td><td>Based on supplier margin analysis, not an actual quote from eSIM Access, eSIM Go, or Telnyx. Real quotes may be materially different in either direction.</td><td><span class="pill flagged">HIGH</span></td></tr>
+  <tr class="flag-row"><td>$5,000/mo platform fee for Option C</td><td>This is an estimated monthly access fee for a direct API contract with an upstream eSIM provider. Actual fee structure may be very different (per-SIM activation fee, tiered, or zero for volume players).</td><td><span class="pill open">MEDIUM</span></td></tr>
+  <tr class="flag-row"><td>Crossover math assumes stable ARPU</td><td>The 1,724-user crossover assumes $17.52 blended ARPU throughout. If ARPU changes (users upgrade to higher tiers), the crossover shifts. Higher ARPU = Option C wins sooner.</td><td><span class="pill open">LOW</span></td></tr>
+</table>
+
+<h2 id="takeaway">7. Strategic takeaway</h2>
+
+<p>The procurement strategy has three phases:</p>
+
+<ol>
+  <li><strong>Launch on Option A (M1-M10, 0-1,500 users):</strong> Pay-per-order, no inventory risk, no upfront commitment. Negotiate terms with wholesale supplier early — even a small improvement from the list rate improves all downstream economics.</li>
+  <li><strong>Get research-backed quotes at 1,500 users (M9-M11):</strong> By this point we have real usage data, a proof-of-concept business, and a coherent story for direct providers. Get actual quotes from eSIM Access, eSIM Go, Telnyx. Validate or revise the −40% assumption.</li>
+  <li><strong>Negotiate the switch above 1,724 users (M12+):</strong> Approach wholesale supplier with direct-provider quotes in hand. Either they improve terms (wins Option A/B) or we switch to direct (wins Option C). Wholesalers don't negotiate without leverage — volume + alternatives is that leverage.</li>
+</ol>
+
+<p>The most important insight from this tab: <strong>the wholesale markup is 40-130x over upstream rates</strong>. This means there is enormous room for cost improvement. We are currently leaving material margin on the table as the price of a fast, simple launch. That is a reasonable tradeoff — but the roadmap to capture that margin should be explicit and time-bound.</p>
+
+<h2 id="queue">8. Open items / queue</h2>
+
+<table>
+  <tr><th>Item</th><th>Owner</th><th>Target</th></tr>
+  <tr><td>Negotiate Option A pay-per-order pricing with wholesale supplier — get real contracted rate, understand minimum order requirements</td><td>Balraj</td><td>Pre-launch</td></tr>
+  <tr><td>If Option A terms are unfavorable: negotiate bulk prepay terms with same supplier (Option B)</td><td>Balraj</td><td>Pre-launch backup</td></tr>
+  <tr><td>Get real quotes from eSIM Access direct, eSIM Go, Telnyx — validate or revise the −40% estimate</td><td>Balraj (research in progress)</td><td>M9-M11</td></tr>
+  <tr><td>Decide: option switch at 1,724 users or wait for better quotes that change crossover point?</td><td>Balraj + Akito</td><td>M11-M12</td></tr>
+  <tr><td>Understand direct provider API integration complexity — affects cost and timeline of Option C switch</td><td>Balraj (dev assessment)</td><td>M6</td></tr>
+</table>
+
+<div class="footer-note">
+  Tab 15 — Procurement Options In-Depth Blueprint · Peanut eSIM · 2026-06-01 · All dollar figures are directional estimates unless marked LOCKED. The wholesale supplier is referred to as "wholesale supplier" throughout; actual supplier names are internal only.
+</div>
+
+</div>
+</body>
+</html>
