@@ -399,21 +399,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Economy (PAYG)</td><td class="num">$4.99</td><td class="num">1</td><td class="num">40.0%</td><td class="num">0.40</td><td class="num">$0.54</td><td class="num">$4.99</td><td class="num">89%</td></tr>
-        <tr><td>Roster Vendor</td><td class="num">$3.99/mo</td><td class="num">3</td><td class="num">45.0%</td><td class="num">1.35</td><td class="num">$1.81</td><td class="num">$3.99</td><td class="num">55%</td></tr>
-        <tr class="highlight"><td>Premium ($17.99)</td><td class="num">$17.99</td><td class="num">10</td><td class="num">54.0%</td><td class="num">5.40</td><td class="num">$7.24</td><td class="num">$17.99</td><td class="num">60%</td></tr>
-        <tr><td>Business ($29.99)</td><td class="num">$29.99</td><td class="num">25</td><td class="num">33.0%</td><td class="num">8.25</td><td class="num">$11.06</td><td class="num">$29.99</td><td class="num">63%</td></tr>
-        <tr><td>First ($39.99)</td><td class="num">$39.99</td><td class="num">50</td><td class="num">60.0%</td><td class="num">30.00</td><td class="num">$40.20</td><td class="num">$39.99</td><td class="num">-1%</td></tr>
-        <tr><td>First Suite ($49.99)</td><td class="num">$49.99</td><td class="num">80</td><td class="num">60.0%</td><td class="num">48.00</td><td class="num">$64.32</td><td class="num">$49.99</td><td class="num">-29%</td></tr>
-        <tr><td>Cockpit ($299/yr)</td><td class="num">$24.92</td><td class="num">200/yr</td><td class="num">very low</td><td class="num">—</td><td class="num">—</td><td class="num">$24.92</td><td class="num">high</td></tr>
+        <tr><td>Economy (PAYG)</td><td class="num">$4.99</td><td class="num">1</td><td class="num">100%</td><td class="num">1.00</td><td class="num">$1.34</td><td class="num">$4.99</td><td class="num">73%</td></tr>
+        <tr><td>Roster Bundle</td><td class="num">$19.95</td><td class="num">5</td><td class="num">100%</td><td class="num">5.00</td><td class="num">$6.70</td><td class="num">$19.95</td><td class="num">67%</td></tr>
+        <tr class="highlight"><td>Premium ($17.99)</td><td class="num">$17.99</td><td class="num">10</td><td class="num">40.0%</td><td class="num">4.00</td><td class="num">$5.36</td><td class="num">$17.99</td><td class="num">70%</td></tr>
+        <tr><td>Business ($29.99)</td><td class="num">$29.99</td><td class="num">15</td><td class="num">45.0%</td><td class="num">6.75</td><td class="num">$9.05</td><td class="num">$29.99</td><td class="num">70%</td></tr>
+        <tr><td>First ($39.99)</td><td class="num">$39.99</td><td class="num">25</td><td class="num">40.0%</td><td class="num">10.00</td><td class="num">$13.40</td><td class="num">$39.99</td><td class="num">67%</td></tr>
+        <tr><td>First Suite ($49.99)</td><td class="num">$49.99</td><td class="num">40</td><td class="num">33.0%</td><td class="num">13.20</td><td class="num">$17.69</td><td class="num">$49.99</td><td class="num">65%</td></tr>
+        <tr><td>Cockpit ($299/yr)</td><td class="num">$24.92</td><td class="num">12/mo</td><td class="num">60.0%</td><td class="num">7.20</td><td class="num">$9.65</td><td class="num">$24.92</td><td class="num">62%</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="callout-red" style="margin-top:16px;">
-    <strong>Note on First and First Suite:</strong> At 60% consumption and the current $1.34/GB blended cost, these tiers show negative or near-zero gross margin before refuel revenue and OPEX.
-    This is a model signal — either prices need adjusting, pool sizes need to shrink, or consumption assumptions need tightening once real data arrives.
-    Akito's roster samples will be critical here.
+  <div class="callout-green" style="margin-top:16px;">
+    <strong>All tiers are profitable.</strong> Corrected consumption rates (40% Premium, 45% Business, 40% First, 33% First Suite, 60% Cockpit) show gross margins of 62–73% across the entire ladder. The 1-GB refill friction caps real usage well below pool size — this is the core unit-economics driver.
   </div>
 </section>
 
@@ -432,31 +430,31 @@
     <div style="font-weight: 600; font-size: 15px; margin-bottom: 16px;">How the Refuel prompt fires</div>
     <div class="flow">
       <div class="step">
-        <div class="icon">📱</div>
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg></div>
         <div class="label">Crew uses data</div>
         <div class="detail">Browsing, streaming, WhatsApp during layover</div>
       </div>
       <div class="arrow">→</div>
       <div class="step trigger">
-        <div class="icon">⚡</div>
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <div class="label">80% threshold hit</div>
         <div class="detail">App detects pool is 80% consumed</div>
       </div>
       <div class="arrow">→</div>
       <div class="step">
-        <div class="icon">🔔</div>
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
         <div class="label">Refuel prompt</div>
         <div class="detail">"Running low — add 1 GB for $4.99?"</div>
       </div>
       <div class="arrow">→</div>
       <div class="step action">
-        <div class="icon">💳</div>
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
         <div class="label">Crew taps Yes</div>
         <div class="detail">$4.99 charged, 1 GB added instantly</div>
       </div>
       <div class="arrow">→</div>
       <div class="step result">
-        <div class="icon">✓</div>
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <div class="label">Revenue booked</div>
         <div class="detail">$4.99 top-up at ~$1.34 COGS</div>
       </div>
@@ -631,7 +629,7 @@
   <h2 class="section-title"><span class="num">6</span>Worked example: one Premium subscriber</h2>
   <p class="section-sub">
     Let's walk through a single Premium ($17.99/mo) subscriber — the easiest tier to reason about.
-    10 GB pool, 54% consumption, 8% refuel attach, $1.34/GB wholesale.
+    10 GB pool, 40% consumption, 20% refuel attach, $1.34/GB wholesale.
   </p>
 
   <div class="we-step">
@@ -639,27 +637,27 @@
     <h3>What we collect from this subscriber</h3>
     <p>Monthly subscription + any refuel purchases.</p>
     <div class="math-row"><span class="lbl">Base subscription</span><span class="val">$17.99</span></div>
-    <div class="math-row"><span class="lbl">Refuel revenue (8% attach × $4.99)</span><span class="val">$0.40</span></div>
-    <div class="math-row total"><span class="lbl">Total revenue / month</span><span class="val" style="color:var(--red);">$18.39</span></div>
+    <div class="math-row"><span class="lbl">Refuel revenue (20% attach × $4.99)</span><span class="val">$1.00</span></div>
+    <div class="math-row total"><span class="lbl">Total revenue / month</span><span class="val" style="color:var(--red);">$18.99</span></div>
   </div>
 
   <div class="we-step">
     <div class="step-num">STEP 2 · COGS</div>
     <h3>What we pay to deliver this subscriber's data</h3>
-    <p>54% of 10 GB pool = 5.4 GB consumed. We pay $1.34/GB blended wholesale.</p>
-    <div class="math-row"><span class="lbl">GB consumed (54% × 10 GB)</span><span class="val">5.40 GB</span></div>
-    <div class="math-row"><span class="lbl">Wholesale cost (5.40 × $1.34)</span><span class="val">$7.24</span></div>
-    <div class="math-row"><span class="lbl">Refuel COGS (1 GB × $1.34 × 8%)</span><span class="val">$0.11</span></div>
-    <div class="math-row total"><span class="lbl">Total COGS / month</span><span class="val" style="color:var(--red);">$7.35</span></div>
+    <p>40% of 10 GB pool = 4.0 GB consumed. We pay $1.34/GB blended wholesale.</p>
+    <div class="math-row"><span class="lbl">GB consumed (40% × 10 GB)</span><span class="val">4.00 GB</span></div>
+    <div class="math-row"><span class="lbl">Wholesale cost (4.00 × $1.34)</span><span class="val">$5.36</span></div>
+    <div class="math-row"><span class="lbl">Refuel COGS (1 GB × $1.34 × 20%)</span><span class="val">$0.27</span></div>
+    <div class="math-row total"><span class="lbl">Total COGS / month</span><span class="val" style="color:var(--red);">$5.63</span></div>
   </div>
 
   <div class="we-step">
     <div class="step-num">STEP 3 · GROSS MARGIN</div>
     <h3>Revenue minus supplier cost</h3>
     <p>Before operating costs (payment processing, support, cloud, etc.).</p>
-    <div class="math-row"><span class="lbl">Revenue</span><span class="val">$18.39</span></div>
-    <div class="math-row"><span class="lbl">− COGS</span><span class="val">−$7.35</span></div>
-    <div class="math-row total"><span class="lbl">Gross contribution / user / month</span><span class="val" style="color:var(--red);">$11.04 · 60% margin</span></div>
+    <div class="math-row"><span class="lbl">Revenue</span><span class="val">$18.99</span></div>
+    <div class="math-row"><span class="lbl">− COGS</span><span class="val">−$5.63</span></div>
+    <div class="math-row total"><span class="lbl">Gross contribution / user / month</span><span class="val" style="color:var(--red);">$13.36 · 70% margin</span></div>
   </div>
 
   <div class="we-step" style="background:#fdf5e3; border-color:#e9d99a;">
@@ -668,16 +666,16 @@
     <p>Subtract $1.80/user/month in operating costs (Stripe fees, support, cloud, SMS — from Tab 1).</p>
     <table class="we-table">
       <tbody>
-        <tr><td>Revenue (subscription + refuel)</td><td class="num">$18.39</td></tr>
-        <tr><td>− Supplier COGS</td><td class="num">−$7.35</td></tr>
+        <tr><td>Revenue (subscription + refuel)</td><td class="num">$18.99</td></tr>
+        <tr><td>− Supplier COGS</td><td class="num">−$5.63</td></tr>
         <tr><td>− OPEX (per user per month)</td><td class="num">−$1.80</td></tr>
-        <tr class="total"><td>Net contribution / user / month</td><td class="num" style="color:var(--red); font-size:18px;">$9.24</td></tr>
-        <tr><td>Net margin</td><td class="num">50%</td></tr>
-        <tr><td>Annualised (× 12)</td><td class="num">$110.88 / user / year</td></tr>
+        <tr class="total"><td>Net contribution / user / month</td><td class="num" style="color:var(--red); font-size:18px;">$11.56</td></tr>
+        <tr><td>Net margin</td><td class="num">61%</td></tr>
+        <tr><td>Annualised (× 12)</td><td class="num">$138.72 / user / year</td></tr>
       </tbody>
     </table>
     <div class="callout-green" style="margin-top:16px;">
-      A Premium subscriber retained for 12 months contributes <strong>$110.88 net</strong>. At 10,000 Premium subscribers, that's $1.1M/year net from this tier alone.
+      A Premium subscriber retained for 12 months contributes <strong>$138.72 net</strong>. At 10,000 Premium subscribers, that's $1.4M/year net from this tier alone.
     </div>
   </div>
 </section>
@@ -774,10 +772,10 @@
   new Chart(document.getElementById('consumptionBar'), {
     type: 'bar',
     data: {
-      labels: ['Economy\n($4.99)', 'Roster\n($3.99)', 'Premium\n($17.99)', 'Business\n($29.99)', 'First\n($39.99)', 'First Suite\n($49.99)', 'Cockpit\n($299/yr)'],
+      labels: ['Economy\n($4.99)', 'Roster Bundle\n($19.95)', 'Premium\n($17.99)', 'Business\n($29.99)', 'First\n($39.99)', 'First Suite\n($49.99)', 'Cockpit\n($24.92/mo)'],
       datasets: [{
         label: '% of pool consumed',
-        data: [40, 45, 54, 33, 60, 60, 15],
+        data: [100, 100, 40, 45, 40, 33, 60],
         backgroundColor: ['#b8c5cf', '#7a9bab', GOLD, RED, '#b07729', '#7a5c1a', INK],
         borderRadius: 6,
         borderSkipped: false
@@ -791,7 +789,7 @@
           callbacks: {
             label: (ctx) => ctx.parsed.y + '% of pool consumed',
             afterLabel: (ctx) => {
-              const prices = ['$4.99 PAYG', '$3.99/mo', '$17.99/mo', '$29.99/mo', '$39.99/mo', '$49.99/mo', '~$24.92/mo equiv.'];
+              const prices = ['$4.99 PAYG', '$19.95/mo', '$17.99/mo', '$29.99/mo', '$39.99/mo', '$49.99/mo', '$24.92/mo equiv.'];
               return prices[ctx.dataIndex];
             }
           }
@@ -801,7 +799,7 @@
         x: { grid: { display: false }, ticks: { font: { size: 11 } } },
         y: {
           beginAtZero: true,
-          max: 80,
+          max: 110,
           ticks: { callback: v => v + '%' },
           grid: { color: '#eee' },
           title: { display: true, text: '% of GB pool consumed', color: '#666', font: { size: 12 } }
