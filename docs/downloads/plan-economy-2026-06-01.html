@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Economy Plan — Peanut eSIM Logic Visualizer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --red: #D71921; --gold: #C9A03B; --cream: #FAF6F0; --ink: #1A1A1A;
+    --muted: #6b6b6b; --line: #e8e2d6; --card: #ffffff;
+    --accent: #7a7a7a;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; font-size: 16px; }
+  a { color: var(--red); }
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--ink); color: #fff;
+    padding: 12px 22px; display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  }
+  header.bar .title { font-weight: 700; font-size: 15px; }
+  header.bar .title small { display: block; font-weight: 400; opacity: .75; font-size: 11px; margin-top: 1px; }
+  header.bar .btn-group { display: flex; gap: 8px; }
+  header.bar a.back-btn {
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.4);
+    color: #fff; font: inherit; padding: 7px 13px; border-radius: 999px;
+    font-size: 12px; text-decoration: none; display: inline-block;
+    transition: background .15s;
+  }
+  header.bar a.back-btn:hover { background: rgba(255,255,255,.28); }
+  main { max-width: 1000px; margin: 0 auto; padding: 32px 22px 80px; }
+  .hero-banner {
+    background: linear-gradient(135deg, #4a4a4a 0%, #1a1a1a 100%);
+    color: #fff; border-radius: 18px; padding: 40px 36px; margin-bottom: 40px;
+    position: relative; overflow: hidden;
+  }
+  .hero-banner::before {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,.04);
+  }
+  .hero-banner .plan-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 10px; }
+  .hero-banner h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; letter-spacing: -.5px; margin: 0 0 10px; line-height: 1.1; }
+  .hero-banner .pos { font-size: 17px; color: rgba(255,255,255,.8); max-width: 600px; margin: 0 0 18px; }
+  .badge-updated { display: inline-block; padding: 4px 12px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 999px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.85); letter-spacing: .3px; }
+  .price-big { font-size: clamp(36px, 5vw, 52px); font-weight: 700; letter-spacing: -1px; color: #fff; margin-top: 16px; }
+  .price-big small { font-size: 16px; font-weight: 400; opacity: .7; }
+  section { margin: 40px 0; }
+  h2.sec { font-size: clamp(18px, 2.2vw, 22px); font-weight: 700; margin: 0 0 6px; letter-spacing: -.2px; }
+  h2.sec .icon { margin-right: 8px; }
+  p.sec-sub { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; box-shadow: var(--shadow); }
+  .chart-wrap { position: relative; height: 280px; }
+  .two-col { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+  .flow-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .flow-table tr td { padding: 9px 12px; border-bottom: 1px solid var(--line); }
+  .flow-table tr:last-child td { border-bottom: 0; }
+  .flow-table .lbl { color: var(--muted); font-size: 12px; }
+  .flow-table .val { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .flow-table .total-row td { background: #fdf5e3; font-weight: 700; font-size: 15px; }
+  .big-metric { text-align: center; padding: 28px 16px; }
+  .big-metric .val { font-size: clamp(40px, 6vw, 58px); font-weight: 700; letter-spacing: -1.5px; line-height: 1; }
+  .big-metric .lbl { font-size: 13px; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: .5px; }
+  .honest-read { background: #fff8e6; border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; padding: 18px 20px; font-size: 14.5px; color: #5a4a14; margin-top: 6px; }
+  .honest-read strong { display: block; font-size: 15px; margin-bottom: 6px; color: #3a2e08; }
+  .scale-bar-wrap { margin-top: 14px; }
+  .scale-row { display: flex; align-items: center; gap: 12px; margin: 8px 0; font-size: 13px; }
+  .scale-row .slbl { width: 130px; color: #444; flex-shrink: 0; }
+  .scale-outer { flex: 1; background: #f0ece2; border-radius: 6px; height: 26px; overflow: hidden; }
+  .scale-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding: 0 10px; color: #fff; font-size: 11px; font-weight: 700; }
+  footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 50px; }
+  .red-flag { background: #FFF0F0; border-left: 4px solid var(--red); border-radius: 0 10px 10px 0; padding: 16px 20px; font-size: 14px; color: #7a1010; }
+  .green-flag { background: #F0FFF4; border-left: 4px solid #1a8a5a; border-radius: 0 10px 10px 0; padding: 16px 20px; font-size: 14px; color: #0a4a20; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    Economy Plan — Logic Visualizer
+    <small>Peanut eSIM · per-plan deep dive · 2026-06-01</small>
+  </div>
+  <div class="btn-group">
+    <a class="back-btn" href="tab1-visual-explainer-akito-2026-06-01.html">← Tab 1</a>
+    <a class="back-btn" href="index.html">Hub</a>
+  </div>
+</header>
+
+<main>
+
+<!-- Hero -->
+<div class="hero-banner">
+  <div class="plan-tag">Tier 1 of 7 · Pay-as-you-go</div>
+  <h1>Economy</h1>
+  <div class="pos">Pay-as-you-go safety net for non-subscribers — the bottom rung of the ladder.</div>
+  <span class="badge-updated">Updated 2026-06-01</span>
+  <div class="price-big">$4.99 <small>/ 1 GB top-up</small></div>
+</div>
+
+<!-- Who it's for -->
+<section>
+  <h2 class="sec"><span class="icon">👤</span>Who it's for</h2>
+  <p class="sec-sub">The persona behind this plan</p>
+  <div class="card">
+    <p>Crew who want connectivity without any commitment — think a cabin crew member doing one short trip to Singapore this month and nothing else. They top up when they land, pay for exactly what they need, and forget about it. <strong>Example:</strong> Priya, a short-haul FA flying DXB–BKK 3× a month, uses ~2.5 GB total and would rather top up than subscribe. Economy is her gateway into Peanut eSIM.</p>
+    <p style="margin-top:10px; color: var(--muted); font-size: 13px;">Monetisation thesis: capture the long tail of non-committers, push UX nudges toward 2-3 topups/session, use Economy as a funnel into Premium Economy subscriptions.</p>
+  </div>
+</section>
+
+<!-- The Math -->
+<section>
+  <h2 class="sec"><span class="icon">💰</span>The math — single subscriber, single month</h2>
+  <p class="sec-sub">Two realistic scenarios: single top-up vs. realistic 2.5× top-ups</p>
+  <div class="two-col">
+    <div class="card">
+      <h3 style="font-size:15px; margin:0 0 12px;">Scenario A: 1 top-up only</h3>
+      <table class="flow-table">
+        <tr><td>User pays</td><td class="val">$4.99</td></tr>
+        <tr><td class="lbl">GB consumed (40%)</td><td class="val">0.4 GB</td></tr>
+        <tr><td class="lbl">COGS @ $1.34/GB</td><td class="val" style="color:var(--red);">−$0.54</td></tr>
+        <tr><td class="lbl">Refuel uplift</td><td class="val">—</td></tr>
+        <tr class="total-row"><td>Net contribution</td><td class="val" style="color:#1a8a5a;">$4.45</td></tr>
+        <tr><td class="lbl">Gross margin %</td><td class="val">89%</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px; margin:0 0 12px;">Scenario B: 2.5× realistic topups</h3>
+      <table class="flow-table">
+        <tr><td>User pays (2.5×)</td><td class="val">$12.48</td></tr>
+        <tr><td class="lbl">GB consumed total</td><td class="val">2.5 GB</td></tr>
+        <tr><td class="lbl">COGS @ $1.34/GB</td><td class="val" style="color:var(--red);">−$3.35</td></tr>
+        <tr><td class="lbl">Refuel uplift</td><td class="val">—</td></tr>
+        <tr class="total-row"><td>Net contribution</td><td class="val" style="color:#1a8a5a;">$9.13</td></tr>
+        <tr><td class="lbl">Gross margin %</td><td class="val">73%</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Pool vs Consumption -->
+<section>
+  <h2 class="sec"><span class="icon">📊</span>Pool vs. consumption</h2>
+  <p class="sec-sub">1 GB pool — 40% consumed on average (single top-up model)</p>
+  <div class="card">
+    <div class="chart-wrap"><canvas id="poolChart"></canvas></div>
+    <p style="margin-top:14px; font-size:13px; color: var(--muted);">
+      0.4 GB used of 1 GB pool = <strong>60% headroom</strong>. Unlike subscription tiers, Economy has no carry-forward — unused data expires immediately after the trip. This is intentional: it keeps COGS per top-up very low.
+    </p>
+  </div>
+</section>
+
+<!-- Gross Margin -->
+<section>
+  <h2 class="sec"><span class="icon">📈</span>Gross margin</h2>
+  <div class="two-col">
+    <div class="card">
+      <div class="big-metric">
+        <div class="val" style="color: #1a8a5a;">89%</div>
+        <div class="lbl">Gross margin (Scenario A, 1 topup)</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="big-metric">
+        <div class="val" style="color: #1a8a5a;">73%</div>
+        <div class="lbl">Gross margin (Scenario B, 2.5× topups)</div>
+      </div>
+    </div>
+  </div>
+  <div class="green-flag" style="margin-top:14px;">
+    Economy has the highest per-unit gross margin in the ladder — but only because usage is low. The revenue is also the lowest. The goal is volume + conversion to subscription.
+  </div>
+</section>
+
+<!-- Revenue vs COGS -->
+<section>
+  <h2 class="sec"><span class="icon">⚖️</span>Revenue vs. COGS</h2>
+  <div class="card">
+    <div class="chart-wrap"><canvas id="revCogsChart"></canvas></div>
+  </div>
+</section>
+
+<!-- At 1,000 subscribers -->
+<section>
+  <h2 class="sec"><span class="icon">🚀</span>At 1,000 Economy users / month</h2>
+  <div class="card">
+    <p style="font-size:14px; margin:0 0 16px; color:#333;">Using Scenario B (2.5× avg topups) as the realistic model:</p>
+    <div class="scale-bar-wrap">
+      <div class="scale-row">
+        <div class="slbl">Monthly revenue</div>
+        <div class="scale-outer"><div class="scale-fill" style="width:100%; background:#4a4a4a;">$12,480</div></div>
+      </div>
+      <div class="scale-row">
+        <div class="slbl">Total COGS</div>
+        <div class="scale-outer"><div class="scale-fill" style="width:27%; background:var(--red);">$3,350</div></div>
+      </div>
+      <div class="scale-row">
+        <div class="slbl">Net contribution</div>
+        <div class="scale-outer"><div class="scale-fill" style="width:73%; background:#1a8a5a;">$9,130/mo</div></div>
+      </div>
+    </div>
+    <p style="margin-top:14px; font-size:13px; color:var(--muted);">$9,130/mo = <strong>$109,560/yr</strong> from Economy alone. But note: Economy users are ~50% of your base — this is the volume tier.</p>
+  </div>
+</section>
+
+<!-- Sensitivity -->
+<section>
+  <h2 class="sec"><span class="icon">🎛️</span>Sensitivity — what if things change?</h2>
+  <div class="card">
+    <div class="chart-wrap" style="height:240px;"><canvas id="sensChart"></canvas></div>
+    <p style="margin-top:12px; font-size:13px; color:var(--muted);">Base uses 2.5 topups @ $1.34/GB. Scenarios: +10pp consumption, $2/GB wholesale, 3× topups.</p>
+  </div>
+</section>
+
+<!-- Honest Read -->
+<section>
+  <h2 class="sec"><span class="icon">🔍</span>The honest read</h2>
+  <div class="honest-read">
+    <strong>Economy: Surprisingly profitable PAYG — IF users top up multiple times.</strong>
+    At 1 top-up, you make $4.45 which is fine but small. The magic is the 2.5× realistic scenario: $9.13/user is respectable. UX must be engineered to trigger 2nd and 3rd top-ups within the same month — a "low data" banner at 70% consumed, a seamless one-tap refill screen, and a "3-pack" option ($13.99 for 3 GB) to nudge users toward bulk buying. Without this, Economy under-performs. With it, it's a solid funnel tier.
+  </div>
+</section>
+
+<footer>Peanut eSIM · Economy Plan Logic Visualizer · 2026-06-01 · Wholesale supplier data used for COGS calculations</footer>
+
+</main>
+
+<script>
+const RED='#D71921',GOLD='#C9A03B',INK='#1A1A1A',CREAM='#FAF6F0',GREEN='#1a8a5a',GRAY='#9e9e9e';
+Chart.defaults.font.family='"Helvetica Neue",Helvetica,Arial,sans-serif';
+Chart.defaults.color='#3a3a3a'; Chart.defaults.font.size=12;
+
+new Chart(document.getElementById('poolChart'),{type:'bar',data:{
+  labels:['Economy top-up'],
+  datasets:[
+    {label:'Pool (1 GB)',data:[1],backgroundColor:'#e0dcd0',borderRadius:6,borderSkipped:false},
+    {label:'Consumed (0.4 GB)',data:[0.4],backgroundColor:INK,borderRadius:6,borderSkipped:false}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{position:'bottom'}},
+scales:{x:{max:1.2,ticks:{callback:v=>v+'GB'},grid:{color:'#eee'}},y:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('revCogsChart'),{type:'bar',data:{
+  labels:['Scenario A (1×)','Scenario B (2.5×)'],
+  datasets:[
+    {label:'Revenue',data:[4.99,12.48],backgroundColor:INK,borderRadius:6,borderSkipped:false},
+    {label:'COGS',data:[0.54,3.35],backgroundColor:RED,borderRadius:6,borderSkipped:false},
+    {label:'Net Contribution',data:[4.45,9.13],backgroundColor:GREEN,borderRadius:6,borderSkipped:false}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},
+scales:{y:{ticks:{callback:v=>'$'+v},grid:{color:'#eee'}},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('sensChart'),{type:'bar',data:{
+  labels:['Base (2.5×)','↑ +10pp use','Wholesale $2/GB','3× topups'],
+  datasets:[{label:'Net contribution per user',data:[9.13,8.48,7.48,12.27],
+    backgroundColor:[INK,GOLD,RED,GREEN],borderRadius:6,borderSkipped:false}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+scales:{y:{ticks:{callback:v=>'$'+v},grid:{color:'#eee'}},x:{grid:{display:false}}}}});
+</script>
+</body>
+</html>

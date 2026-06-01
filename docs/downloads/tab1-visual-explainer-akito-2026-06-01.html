@@ -110,6 +110,40 @@
   .tier.rank-6 { border-top: 3px solid var(--gold); }
   .tier.rank-7 { border-top: 3px solid var(--ink); }
 
+  /* Clickable tier cards */
+  a.tier {
+    display: block; text-decoration: none; color: inherit;
+    transition: transform .18s ease, box-shadow .18s ease;
+    cursor: pointer;
+  }
+  a.tier:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 28px rgba(26,26,26,.12);
+  }
+  a.tier .arrow {
+    position: absolute; bottom: 12px; right: 14px;
+    font-size: 16px; color: var(--muted); transition: color .18s, transform .18s;
+  }
+  a.tier:hover .arrow { color: var(--red); transform: translateX(3px); }
+  .tier-click-hint {
+    font-size: 12px; color: var(--muted); margin-bottom: 10px;
+    letter-spacing: .2px;
+  }
+
+  /* Refuel add-on card */
+  .refuel-card {
+    margin-top: 20px; padding: 16px 18px;
+    background: #f0fff4; border: 1px solid #a8e0b0; border-radius: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .refuel-card .left { display: flex; align-items: center; gap: 12px; }
+  .refuel-card .icon { font-size: 22px; }
+  .refuel-card .text strong { display: block; font-size: 14px; color: #1b5e20; }
+  .refuel-card .text span { font-size: 12px; color: #4a7a50; }
+  .refuel-card a { font-size: 13px; font-weight: 600; color: #1b5e20; text-decoration: none; border: 1px solid #1b5e20; padding: 6px 14px; border-radius: 999px; transition: background .15s; }
+  .refuel-card a:hover { background: #1b5e20; color: #fff; }
+
   /* Chart cards */
   .chart-card {
     background: var(--card); border: 1px solid var(--line);
@@ -236,57 +270,77 @@
     so it sells itself. First Suite is the anchor at the top; Business is what we recommend most.
   </p>
 
+  <p class="tier-click-hint">Click any tier to see its full economics →</p>
+
   <div class="tier-grid">
-    <div class="tier rank-1">
+    <a class="tier rank-1" href="plan-economy-2026-06-01.html">
       <div class="tag">Pay-as-you-go</div>
       <div class="name">Economy</div>
       <div class="price">$4.99 <small>/ 1 GB top-up</small></div>
       <div class="pool">No subscription · blocked for members</div>
       <div class="perGB">≈ $4.99 / GB</div>
-    </div>
-    <div class="tier rank-2">
+      <div class="arrow">→</div>
+    </a>
+    <a class="tier rank-2" href="plan-roster-bundle-2026-06-01.html">
       <div class="tag">Per-flight</div>
       <div class="name">Roster Bundle</div>
       <div class="price">$3.99 <small>/ flight</small></div>
       <div class="pool">Auto-arms per leg · cap $39.99/mo</div>
       <div class="perGB">Cap = 10 flights</div>
-    </div>
-    <div class="tier rank-3">
+      <div class="arrow">→</div>
+    </a>
+    <a class="tier rank-3" href="plan-premium-2026-06-01.html">
       <div class="tag">Subscription</div>
       <div class="name">Premium Economy</div>
       <div class="price">$17.99 <small>/ mo</small></div>
       <div class="pool">10 GB pool · 50% × 1mo carry</div>
       <div class="perGB">≈ $1.80 / GB</div>
-    </div>
-    <div class="tier rank-4">
+      <div class="arrow">→</div>
+    </a>
+    <a class="tier rank-4" href="plan-business-2026-06-01.html">
       <div class="badge">⭐ RECOMMENDED</div>
       <div class="tag">Subscription</div>
       <div class="name">Business</div>
       <div class="price">$29.99 <small>/ mo</small></div>
-      <div class="pool">15 GB pool · 70% × 1mo carry</div>
-      <div class="perGB">≈ $2.00 / GB</div>
-    </div>
-    <div class="tier rank-5">
+      <div class="pool">25 GB pool · 70% × 1mo carry</div>
+      <div class="perGB">≈ $1.20 / GB</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="tier rank-5" href="plan-first-2026-06-01.html">
       <div class="tag">Subscription</div>
       <div class="name">First</div>
       <div class="price">$39.99 <small>/ mo</small></div>
-      <div class="pool">25 GB pool · 100% × 2mo carry</div>
-      <div class="perGB">≈ $1.60 / GB · concierge</div>
-    </div>
-    <div class="tier rank-6">
+      <div class="pool">50 GB pool · 100% × 2mo carry</div>
+      <div class="perGB">≈ $0.80 / GB · concierge</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="tier rank-6" href="plan-first-suite-2026-06-01.html">
       <div class="tag">Subscription · anchor</div>
       <div class="name">First Suite</div>
       <div class="price">$49.99 <small>/ mo</small></div>
-      <div class="pool">40 GB pool · 100% × 2mo carry</div>
-      <div class="perGB">≈ $1.25 / GB (price anchor)</div>
-    </div>
-    <div class="tier rank-7">
+      <div class="pool">80 GB pool · 100% × 2mo carry</div>
+      <div class="perGB">≈ $0.63 / GB (price anchor)</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="tier rank-7" href="plan-cockpit-2026-06-01.html">
       <div class="tag">Annual</div>
       <div class="name">Cockpit</div>
       <div class="price">$299 <small>/ yr</small></div>
-      <div class="pool">12 GB/mo + 12 GB lifetime emergency</div>
+      <div class="pool">200 GB / yr · annual prepay</div>
       <div class="perGB">≈ $24.92 / mo equiv.</div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+
+  <div class="refuel-card">
+    <div class="left">
+      <div class="icon">⛽</div>
+      <div class="text">
+        <strong>Refuel ($4.99 / 1 GB top-up)</strong>
+        <span>Add-on available to all subscribers when the pool runs out — 73% margin, 100% consumed, $3.65 net per tap.</span>
+      </div>
     </div>
+    <a href="plan-refuel-2026-06-01.html">See Refuel economics →</a>
   </div>
 
   <div style="margin-top:24px;" class="chart-card">
