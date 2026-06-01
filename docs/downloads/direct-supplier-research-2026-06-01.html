@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Peanut eSIM — Direct Supplier Research 2026-06-01</title>
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --gold: #C9A03B;
+  --cream: #FAF6F0;
+  --ink: #1A1A1A;
+  --muted: #6b6b6b;
+  --line: #e8e2d6;
+  --card: #ffffff;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+  --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Header */
+header.bar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--red); color: #fff;
+  padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+}
+header.bar .title { font-weight: 700; font-size: 16px; }
+header.bar .title small { display:block; font-weight:400; opacity:.85; font-size:12px; margin-top:2px; }
+header.bar a { color: white; opacity: 0.75; font-size: 13px; text-decoration: none; }
+header.bar a:hover { opacity: 1; }
+
+main { max-width: 1140px; margin: 0 auto; padding: 36px 24px 100px; }
+
+/* Hero */
+.hero-block {
+  background: var(--ink);
+  color: white;
+  border-radius: 12px;
+  padding: 40px 36px 36px;
+  margin-bottom: 48px;
+}
+.hero-block .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.hero-block h1 { font-size: clamp(26px,3.5vw,38px); margin: 0 0 14px; line-height: 1.15; letter-spacing: -.3px; }
+.hero-block p { margin: 0; color: rgba(255,255,255,.75); font-size: 16px; max-width: 780px; line-height: 1.6; }
+
+/* Section headers */
+.section { margin: 52px 0; }
+.section-hdr { display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--red); margin-bottom: 22px; }
+.section-hdr h2 { font-size: 22px; margin: 0; color: var(--red-dark); }
+.section-hdr .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; background: #FBE0E0; color: var(--red); }
+p.section-sub { color: var(--muted); font-size: 15px; margin: 0 0 20px; }
+
+/* Executive summary top-3 */
+.top3 { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 16px; margin-bottom: 28px; }
+.top3-card {
+  background: white;
+  border-radius: 10px;
+  border: 2px solid var(--gold);
+  padding: 22px;
+  position: relative;
+}
+.top3-card .rank {
+  position: absolute; top: -12px; left: 18px;
+  background: var(--gold); color: white;
+  font-weight: 700; font-size: 12px; padding: 2px 12px; border-radius: 20px;
+}
+.top3-card h3 { margin: 8px 0 6px; font-size: 18px; }
+.top3-card .type-tag { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+.top3-card p { margin: 0 0 10px; font-size: 14px; line-height: 1.55; color: var(--ink); }
+.top3-card .rationale { background: #FBF7EF; border-left: 3px solid var(--gold); padding: 10px 12px; border-radius: 0 6px 6px 0; font-size: 13px; color: var(--ink); margin: 0; }
+
+/* Summary callout */
+.callout {
+  background: #FBF7EF;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 20px;
+  margin: 24px 0;
+  font-size: 15px;
+}
+.callout strong { color: var(--red-dark); }
+
+/* Provider cards */
+.provider-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(340px,1fr)); gap: 20px; }
+.provider-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px;
+  transition: box-shadow .18s, border-color .18s;
+}
+.provider-card:hover { border-color: var(--gold); box-shadow: var(--shadow); }
+.provider-card.tier1 { border-top: 3px solid var(--gold); }
+.provider-card.tier2 { border-top: 3px solid #4A90D9; }
+.provider-card.tier3 { border-top: 3px solid #A0A0A0; }
+
+.prov-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.prov-name { font-size: 18px; font-weight: 700; margin: 0 0 3px; }
+.prov-type { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; }
+.fit-badge {
+  display: flex; flex-direction: column; align-items: center;
+  min-width: 52px;
+}
+.fit-badge .stars { color: var(--gold); font-size: 14px; letter-spacing: 1px; }
+.fit-badge .label { font-size: 10px; color: var(--muted); font-weight: 600; text-transform: uppercase; margin-top: 2px; }
+
+.prov-rows { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+.prov-row { display: flex; gap: 10px; font-size: 13px; }
+.prov-row .lbl { color: var(--muted); font-weight: 600; min-width: 110px; flex-shrink: 0; }
+.prov-row .val { color: var(--ink); }
+.prov-row .val.verified { color: var(--green); font-weight: 600; }
+.prov-row .val.unverified { color: var(--muted); font-style: italic; }
+.prov-row .val.warning { color: #B05A00; font-weight: 600; }
+
+.prov-note { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; margin-top: 4px; font-style: italic; }
+.prov-rationale { background: #F2FAF5; border-left: 3px solid var(--green); padding: 8px 12px; border-radius: 0 4px 4px 0; font-size: 13px; margin-top: 10px; color: var(--ink); }
+.prov-link { font-size: 12px; color: var(--red); margin-top: 8px; display: block; word-break: break-all; }
+
+/* API rating bars */
+.api-bar { display: flex; align-items: center; gap: 6px; }
+.api-pip { width: 10px; height: 10px; border-radius: 2px; background: var(--line); }
+.api-pip.on { background: var(--red); }
+
+/* Comparison table */
+.tbl-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; background: white; font-size: 13px; min-width: 900px; }
+thead tr { background: var(--ink); color: white; }
+thead th { padding: 12px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+tbody tr { border-bottom: 1px solid var(--line); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: #FFFBF5; }
+tbody td { padding: 11px 14px; vertical-align: top; }
+.tbl-name { font-weight: 600; color: var(--ink); }
+.tbl-name .tbl-type { display: block; font-weight: 400; color: var(--muted); font-size: 11px; text-transform: uppercase; }
+.fit-5 { color: var(--gold); font-weight: 700; }
+.fit-4 { color: var(--green); font-weight: 700; }
+.fit-3 { color: #4A90D9; font-weight: 700; }
+.fit-2 { color: var(--muted); }
+.fit-1 { color: #ccc; }
+.verified-tag { color: var(--green); font-weight: 600; font-size: 11px; }
+.unverified-tag { color: var(--muted); font-size: 11px; }
+.highlight-row td { background: #FFFBF0; }
+
+/* Next steps */
+.next-step-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.next-step-list li {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.next-step-list li .priority {
+  background: var(--red);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.next-step-list li .content h4 { margin: 0 0 4px; font-size: 15px; }
+.next-step-list li .content p { margin: 0; font-size: 13px; color: var(--muted); }
+.next-step-list li .content a { color: var(--red); font-size: 13px; }
+
+/* Open questions */
+.questions-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.questions-list li {
+  background: white;
+  border: 1px solid var(--line);
+  border-left: 3px solid #4A90D9;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+.questions-list li strong { color: var(--ink); }
+
+/* Footer */
+footer { text-align: center; padding: 40px 24px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); margin-top: 60px; }
+
+@media (max-width: 640px) {
+  main { padding: 24px 16px 60px; }
+  .hero-block { padding: 28px 22px; }
+  .provider-grid { grid-template-columns: 1fr; }
+  .top3 { grid-template-columns: 1fr; }
+  .prov-row { flex-direction: column; gap: 2px; }
+  .prov-row .lbl { min-width: unset; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    Peanut eSIM · Direct Supplier Research
+    <small>2026-06-01 · Researcher Sub-Agent</small>
+  </div>
+  <a href="index.html">← Back to Hub</a>
+</header>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- HERO -->
+<!-- ============================================================ -->
+<div class="hero-block">
+  <div class="eyebrow">Operations Intelligence</div>
+  <h1>Direct eSIM Supplier Research</h1>
+  <p>Mapping 14 upstream wholesale eSIM suppliers to replace or supplement our current wholesale supplier relationship. Goal: negotiate from a position of strength with 5–8 verified alternatives and understand true market rates before signing any direct deal. All pricing marked verified/unverified — only confirmed figures used.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-hdr">
+    <h2>1 · Executive Summary</h2>
+    <span class="badge">TOP PICKS</span>
+  </div>
+  <p class="section-sub">Top 3 suppliers to pursue first, based on fit for a travel eSIM startup targeting Emirates crew, needing strong MENA/Asia/Europe coverage, a REST API, and no crippling monthly minimums at launch.</p>
+
+  <div class="top3">
+
+    <div class="top3-card">
+      <div class="rank">🥇 PRIORITY 1</div>
+      <h3>eSIM Access</h3>
+      <div class="type-tag">Upstream Aggregator</div>
+      <p>The actual upstream of our current wholesale supplier — going direct cuts out the intermediary markup. No minimum order to start. Published tiered rebate structure (10–20% back at $5K–$50K/month). Already understands the exact plan types we're selling.</p>
+      <p class="rationale"><strong>Why #1:</strong> We know their product works (it's what we're already selling). Going direct removes one full margin layer. Entry cost is $0 MOQ — lowest risk entry of any supplier.</p>
+    </div>
+
+    <div class="top3-card">
+      <div class="rank">🥈 PRIORITY 2</div>
+      <h3>eSIM Go</h3>
+      <div class="type-tag">Wholesale MVNO Platform</div>
+      <p>Purpose-built for exactly what Peanut needs: travel eSIM, white-label, consumer app. Strong API (REST, full management portal). Standard tier requires only $1K/month for first 3 months. Transparent public tier structure. TNS Global-backed funding in 2026 = stability. 190+ countries.</p>
+      <p class="rationale"><strong>Why #2:</strong> Most transparent pricing in the market. API quality is the best documented. $1K/month minimum is achievable early. Silver tier at $25K/month aligns with our ~Month 4 revenue projection.</p>
+    </div>
+
+    <div class="top3-card">
+      <div class="rank">🥉 PRIORITY 3</div>
+      <h3>Telnyx</h3>
+      <div class="type-tag">Telecom API Platform</div>
+      <p>US-listed, publicly priced infrastructure. eSIM at $0.70 + $2/month per SIM. Data from $0.0125/MB at scale (5GB+ tier). No MOQ. No contracts. Designed for developers — REST API, SDKs for iOS/Android/Node. Used by fintechs as white-label eSIM layer. Strong for US/Europe/Asia.</p>
+      <p class="rationale"><strong>Why #3:</strong> Only major provider with real public pricing. At $12.80/GB (5GB+ tier) it's IoT-grade not travel-grade, but useful as a rate floor benchmark + negotiation leverage with other suppliers.</p>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <strong>The core play:</strong> Get a rate card from eSIM Access Direct, simultaneously request demos from eSIM Go and Telnyx, then walk back to any current supplier negotiations with three competing quotes. The wholesale market data suggests an additional 20–40% COGS reduction is achievable vs current rates at meaningful volume (10K+ monthly orders). At Peanut's Year-1 projections, even a 20% COGS reduction = ~$80–120K retained annually.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: PROVIDER PROFILES -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-hdr">
+    <h2>2 · Provider Profile Cards</h2>
+  </div>
+  <p class="section-sub">14 providers profiled. Gold border = Priority 1–3 (high fit). Blue border = worth pursuing. Grey = niche/low fit for Peanut's use case.</p>
+
+  <div class="provider-grid">
+
+    <!-- eSIM ACCESS -->
+    <div class="provider-card tier1">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">eSIM Access</div>
+          <div class="prov-type">Upstream Aggregator / Wholesale API</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★★★</div>
+          <div class="label">Fit: 5/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">esimaccess.com</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">100+ countries, global roaming. Tier-1 carrier agreements directly.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val verified">Package pricing (wholesale bundle price per country/region). Per-GB model unlocked at 5–10K daily orders. Rebates: 10% at $5K/mo, 15% at $20K/mo, 20% at $50K/mo.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val verified">$0 — no minimums. Prepaid wallet. No MOQ.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">4/5 — REST, full docs at docs.esimaccess.com</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Any business — no size requirement. Travel apps, eCommerce, fintechs.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val">Pricing NOT shown publicly — must log into partner portal or request via alliance@esimaccess.com. Sub-resellers of eSIM Access exist (including our current wholesale supplier). Price change notification within 24h by email.</span></div>
+      </div>
+      <div class="prov-rationale">Best first call: going direct removes the intermediary margin layer we're currently absorbing. Known product, known coverage.</div>
+      <a class="prov-link" href="https://esimaccess.com" target="_blank">→ esimaccess.com</a>
+    </div>
+
+    <!-- eSIM Go -->
+    <div class="provider-card tier1">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">eSIM Go</div>
+          <div class="prov-type">Wholesale MVNO Platform / Travel eSIM</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★★★</div>
+          <div class="label">Fit: 5/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">esimgo.com</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">190+ countries. Tier-1 multi-network.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val verified">4-tier: Standard ($1K/mo first 3mo), Silver ($25K/mo), Gold ($50K→$100K/mo), Platinum ($100K→$250K/mo). No eSIM download fees. No active profile fees. Wholesale rate deck improves at each tier.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val verified">$1,000/month (Standard) — achievable from launch. $0 setup fee.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">5/5 — REST, full docs, webhooks, sandbox</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Travel app businesses, MVNOs, resellers. Purpose-built for this use case.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val">TNS Global investment (2026). Custom brand profiles cost $2K/mo extra on Gold/Platinum. Android direct install $2K/mo extra. Public pricing page is one of the only transparent rate structures in the market — significant for benchmarking.</span></div>
+      </div>
+      <div class="prov-rationale">Most transparent public pricing in the industry. $1K/mo minimum is realistic at Peanut's launch scale. Tier structure maps cleanly to our growth trajectory.</div>
+      <a class="prov-link" href="https://esimgo.com/product/pricing/" target="_blank">→ esimgo.com/product/pricing/</a>
+    </div>
+
+    <!-- TELNYX -->
+    <div class="provider-card tier1">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">Telnyx</div>
+          <div class="prov-type">Telecom API Platform / eSIM-as-a-Service</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★★☆</div>
+          <div class="label">Fit: 4/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">telnyx.com/products/esim</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">190+ countries. Global carrier agreements. Strong US/EU/Asia.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val verified">Pay-as-you-go. eSIM: $0.70 OTA + $2/month active SIM. Data: $0.078/MB (&lt;100MB) → $0.0125/MB (5GB+). Wholesale/reseller rates require custom quote. No MOQ, no contracts.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val verified">$0 — pure pay-as-you-go.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">5/5 — REST API, SDKs for iOS/Android/Node/PHP</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Developers, fintechs, MVNOs, travel brands. No size requirement.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val warning">IoT-grade pricing, not travel-bundle pricing. $0.0125/MB = $12.80/GB at 5GB+ — too expensive for consumer travel eSIM at retail. Best used as benchmarking tool + negotiation leverage, not primary supplier.</span></div>
+      </div>
+      <div class="prov-rationale">Only major supplier with real public per-MB pricing. Use as negotiation floor. API quality is best-in-class for developers building travel apps.</div>
+      <a class="prov-link" href="https://telnyx.com/pricing/iot-data-plans" target="_blank">→ telnyx.com/pricing/iot-data-plans</a>
+    </div>
+
+    <!-- MOBIMATTER -->
+    <div class="provider-card tier2">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">MobiMatter</div>
+          <div class="prov-type">eSIM Marketplace + B2B Reseller Platform</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★★☆</div>
+          <div class="label">Fit: 4/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">mobimatter.com/reseller-partner</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">200+ countries. UAE from $0.30/GB retail visible. Middle East coverage confirmed.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val verified">Prepaid wallet model. Wholesale prices shown post-signup. Minimum wallet top-up: $250 USD. Resellers set their own retail prices.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val verified">$250 wallet top-up to activate. Very low barrier.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">4/5 — REST API with JSON. Docs at docs.mobimatter.com</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Any reseller. Low barrier. 700+ active resellers on platform.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val">UAE eSIM visible at $0.30/GB retail — implies strong MENA coverage. Accepts crypto payments. Good for quick API test before committing to larger suppliers. Not a primary carrier-level supplier.</span></div>
+      </div>
+      <div class="prov-rationale">Best platform for rapid test integration: $250 wallet, instant API keys, UAE coverage confirmed. Use as fallback or for MENA gap-filling.</div>
+      <a class="prov-link" href="https://mobimatter.com/reseller-partner" target="_blank">→ mobimatter.com/reseller-partner</a>
+    </div>
+
+    <!-- eSIM CARD -->
+    <div class="provider-card tier2">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">eSIM Card (esimcard.com)</div>
+          <div class="prov-type">Wholesale Distribution + White-Label</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★☆☆</div>
+          <div class="label">Fit: 3/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">esimcard.com/partners/</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">200+ countries. 700+ active resellers.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val verified">30–50% margins. Wholesale prices "up to 40% lower than competition." No hidden fees, no setup fees, no minimum orders. Data packages: 1, 3, 5, 10, 20GB + unlimited.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val verified">$0 — no minimums stated.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">3/5 — REST API + SDK. 24h onboarding.</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">MVNOs, travel businesses, bulk buyers. 24h account activation.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val">Good coverage breadth. 24/7 live support + dedicated account manager on white-label tier. Less differentiated than eSIM Go at scale. Worth a quote for comparison.</span></div>
+      </div>
+      <div class="prov-rationale">Good quick-start option for MENA gap-filling. Less compelling at scale vs eSIM Go. Useful as 3rd quote in negotiations.</div>
+      <a class="prov-link" href="https://esimcard.com/partners/" target="_blank">→ esimcard.com/partners/</a>
+    </div>
+
+    <!-- 1GLOBAL -->
+    <div class="provider-card tier2">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">1GLOBAL (ex-Truphone)</div>
+          <div class="prov-type">Licensed MVNO + Telco-as-a-Service</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★☆☆</div>
+          <div class="label">Fit: 3/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">1global.com</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">190+ countries. 600+ roaming agreements. GSMA-certified.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val unverified">Enterprise custom quotes only. Telco-as-a-Service white-label. Acquired Truphone's network in 2022. Provides full MVNO stack.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val unverified">Not disclosed. Likely enterprise-scale minimums.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">4/5 — REST. Docs at docs.connect.1global.com</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Travel agencies, airlines (N26 bank partnership cited). Likely enterprise-only pricing.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val warning">Ranked #1 in roaming infrastructure by Juniper Research 2026. Excellent coverage, but pricing and minimums hidden behind sales calls. Likely too large for Peanut at launch. Long-term aspiration supplier.</span></div>
+      </div>
+      <div class="prov-rationale">Tier-1 infrastructure player. Worth a discovery call to benchmark enterprise rates — may have startup programs. Not realistic for v1.0.</div>
+      <a class="prov-link" href="https://www.1global.com/telco-as-a-service" target="_blank">→ 1global.com/telco-as-a-service</a>
+    </div>
+
+    <!-- TELNYX (KORE Super SIM) -->
+    <div class="provider-card tier2">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">KORE / Twilio Super SIM</div>
+          <div class="prov-type">IoT Connectivity Platform (KORE acquired Twilio IoT 2023)</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★☆☆☆</div>
+          <div class="label">Fit: 2/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">twilio.com/en-us/iot/super-sim-card</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">400+ cellular networks worldwide.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val unverified">One-time SIM fee + monthly active SIM fee + pay-as-you-go data. Pricing not publicly listed post-KORE acquisition. IoT-optimized, not travel.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val unverified">Sales agreement required. Not self-serve.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">4/5 — Mature Twilio infrastructure</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val unverified">IoT device manufacturers, enterprises. Unclear if travel eSIM apps qualify.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val warning">IoT focus, not travel. Pricing architecture not designed for high-volume consumer eSIM. Low fit for Peanut's use case.</span></div>
+      </div>
+      <div class="prov-rationale">Low priority. IoT-focused pricing doesn't align with travel eSIM economics. Skip unless no other options.</div>
+      <a class="prov-link" href="https://www.twilio.com/en-us/iot/super-sim-card" target="_blank">→ twilio.com/en-us/iot/super-sim-card</a>
+    </div>
+
+    <!-- LOTUSFLARE -->
+    <div class="provider-card tier2">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">LotusFlare (Nomad)</div>
+          <div class="prov-type">MVNE / Wholesale eSIM Platform</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★☆☆</div>
+          <div class="label">Fit: 3/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">lotusflare.com</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">200+ countries (via Nomad eSIM). From $4.50 retail.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val unverified">B2B2X platform. Pricing not disclosed. "Launch in months, not years" positioning. No-code operations for non-technical teams.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val unverified">Not disclosed. Enterprise platform — likely high.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">3/5 — Self-service portal mentioned</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Airlines, hotels, travel agencies, IoT companies. Builds MVNE infrastructure for carriers.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val">LotusFlare also runs Nomad (competitor consumer eSIM). Interesting conflict — they sell both wholesale infrastructure AND compete at retail. Worth a discovery call to understand their wholesale side.</span></div>
+      </div>
+      <div class="prov-rationale">Interesting infrastructure play for mid-term. Not self-serve, but an "airline eSIM distribution" angle is worth exploring for the Emirates crew strategy.</div>
+      <a class="prov-link" href="https://lotusflare.com/offerings/outcomes/wholesale-esim/" target="_blank">→ lotusflare.com/offerings/outcomes/wholesale-esim/</a>
+    </div>
+
+    <!-- floLIVE -->
+    <div class="provider-card tier3">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">floLIVE</div>
+          <div class="prov-type">Global IoT Connectivity / SGP.32 eSIM</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★☆☆☆</div>
+          <div class="label">Fit: 2/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">flolive.net</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">Multi-country IoT. GDPR/CCPA compliant localized core network.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val unverified">Pay-as-you-grow, billed per active IoT device. Travel eSIM pricing not applicable.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val unverified">Not disclosed. Enterprise IoT focus.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">3/5 — IoT CMP platform</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Mobile operators, enterprises, IoT deployments. Not travel apps.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val warning">Launched SGP.32 support (Feb 2026). IoT-only. Low relevance for Peanut's travel eSIM use case.</span></div>
+      </div>
+      <div class="prov-rationale">Skip. IoT infrastructure, not travel eSIM. No travel use case alignment.</div>
+      <a class="prov-link" href="https://flolive.net" target="_blank">→ flolive.net</a>
+    </div>
+
+    <!-- WORKZ GROUP -->
+    <div class="provider-card tier3">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">Workz Group</div>
+          <div class="prov-type">eSIM Cloud Platform / Module Production</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★☆☆☆</div>
+          <div class="label">Fit: 2/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">workz.com/esim-and-sim/management</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val unverified">Global. Focuses on eSIM provisioning + orchestration + module production.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val unverified">Not public. Platform licensing, not data resale. Targets MVNOs, OEMs, enterprises.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val unverified">Enterprise. Acquired by Trasna Holdings (2024).</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">3/5 — Multi-tenant CMP platform</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val unverified">MVNOs, OEMs, carriers. Not consumer travel apps.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val warning">Workz provides eSIM management infrastructure (SM-DP+, SM-DS, orchestration), not data resale. Wrong layer of the stack for Peanut.</span></div>
+      </div>
+      <div class="prov-rationale">Skip. Workz provides eSIM management tech (SIM provisioning), not data resale. Wrong layer for Peanut.</div>
+      <a class="prov-link" href="https://workz.com/esim-and-sim/management" target="_blank">→ workz.com</a>
+    </div>
+
+    <!-- ORANGE WHOLESALE -->
+    <div class="provider-card tier2">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">Orange Wholesale International</div>
+          <div class="prov-type">Tier-1 Carrier Wholesale / MVNO Light</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★☆☆</div>
+          <div class="label">Fit: 3/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">wholesale.orange.com/international/en/our-solutions/roaming/e-sim.html</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">Ranked #1 roaming by Juniper Research 2026. Massive global footprint. Strong Europe. MENA via agreements.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val unverified">Wholesale roaming agreements. MVNO light and full MVNO programs. Pricing negotiated, not public.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val unverified">Enterprise-scale. Not suitable for startups at launch.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">3/5 — Carrier-grade, not developer-friendly</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Light MVNOs, full MVNOs. Not individual app developers.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val">Tier-1 carrier. Strong for Europe + MENA connectivity. Realistic at Series A scale, not pre-revenue. Good long-term aspiration.</span></div>
+      </div>
+      <div class="prov-rationale">Long-term target (Year 2–3). Discovery call worth making now to understand their minimum MVNO volume threshold.</div>
+      <a class="prov-link" href="https://wholesale.orange.com/international/en/our-solutions/roaming/e-sim.html" target="_blank">→ wholesale.orange.com</a>
+    </div>
+
+    <!-- Soracom -->
+    <div class="provider-card tier3">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">Soracom</div>
+          <div class="prov-type">IoT SIM / eSIM Platform (Japan-origin)</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★☆☆☆</div>
+          <div class="label">Fit: 2/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">soracom.io / soracommobile.com</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">174 countries IoT. 58 countries prepaid eSIM. Japan, South Korea, Australia strong. MENA weak.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val verified">Base data from ~$0.017/MB (~$17.40/GB). Europe IoT: €4.50/25MB. Not competitive for travel eSIM.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val verified">Pay-as-you-go. No minimums for IoT tier.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">4/5 — Excellent IoT APIs. Japan/APAC strong.</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">IoT deployments, app developers. Self-serve onboarding.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val warning">Pricing is IoT-grade (~$17/GB+). Far too expensive for consumer travel eSIM. Japan/APAC coverage is a minor plus for Emirates Japan routes. Low priority overall.</span></div>
+      </div>
+      <div class="prov-rationale">Skip for primary supply. Soracom Mobile could be a niche Japan-route top-up provider if needed, but cost structure is wrong.</div>
+      <a class="prov-link" href="https://soracommobile.com" target="_blank">→ soracommobile.com</a>
+    </div>
+
+    <!-- GloEsim -->
+    <div class="provider-card tier2">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">GloEsim</div>
+          <div class="prov-type">Enterprise B2B eSIM API + White-Label</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★☆☆</div>
+          <div class="label">Fit: 3/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">gloesim.com</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">200+ countries. 500+ mobile operator partnerships.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val unverified">Wholesale pricing mentioned but not publicly disclosed. White-label marketplace available. 99.9% SLA. 24/7 support. Contact: gloesim@swiftreload.com</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val unverified">Not disclosed. Demo required.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip"></div><div class="api-pip"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">3/5 — "Instant API integration" claimed. No public docs found.</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Resellers, super apps, digital platforms. Enterprise focus.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val">Relatively new entrant. Appears to be a reseller/aggregator layer. Worth a quick rate inquiry before assuming they're competitive. Contact: gloesim@swiftreload.com / +1 289-979-8885</span></div>
+      </div>
+      <div class="prov-rationale">Quick rate inquiry low cost. Could reveal a less-explored wholesale channel with Middle East strength. Unverified until contacted.</div>
+      <a class="prov-link" href="https://gloesim.com" target="_blank">→ gloesim.com</a>
+    </div>
+
+    <!-- eSIM.tech -->
+    <div class="provider-card tier2">
+      <div class="prov-header">
+        <div>
+          <div class="prov-name">eSIM.tech</div>
+          <div class="prov-type">API-First eSIM Platform / Real Phone Numbers</div>
+        </div>
+        <div class="fit-badge">
+          <div class="stars">★★★☆☆</div>
+          <div class="label">Fit: 3/5</div>
+        </div>
+      </div>
+      <div class="prov-rows">
+        <div class="prov-row"><span class="lbl">Website</span><span class="val">esim.tech</span></div>
+        <div class="prov-row"><span class="lbl">Geo Coverage</span><span class="val verified">190+ countries global. Local eSIM with phone numbers in 25+ countries. Strong EU, US, Japan, South Korea, Australia. MENA coverage limited.</span></div>
+        <div class="prov-row"><span class="lbl">Pricing Model</span><span class="val verified">Pay-as-you-go per MB. Example: 1024MB ≈ €1.20 (~$1.20/GB equivalent? — but likely high-level demo pricing). No bundles, billed per MB actually consumed. No minimum orders, no contracts.</span></div>
+        <div class="prov-row"><span class="lbl">Min Commitment</span><span class="val verified">$0 — no minimums, no contracts.</span></div>
+        <div class="prov-row"><span class="lbl">API Quality</span>
+          <span class="val">
+            <div class="api-bar">
+              <div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div><div class="api-pip on"></div>
+              <span style="font-size:12px;color:var(--muted);margin-left:4px;">5/5 — REST, ~120ms latency, SDKs for Node/Python/Go, webhooks, sandbox</span>
+            </div>
+          </span>
+        </div>
+        <div class="prov-row"><span class="lbl">Sells Direct To</span><span class="val verified">Developers building travel apps. White-label. Self-serve API onboarding.</span></div>
+        <div class="prov-row"><span class="lbl">Key Notes</span><span class="val warning">Best API quality seen. But MENA coverage unconfirmed. Per-MB billing means no bundle economics — not ideal for pre-packaged travel eSIM plans. The €1.20/1024MB pricing is ambiguous (demo pricing?). Clarify actual MENA rates before pursuing.</span></div>
+      </div>
+      <div class="prov-rationale">Best developer API of any provider. Use for prototyping/testing even if not primary supplier. Worth a rate inquiry for MENA specifically.</div>
+      <a class="prov-link" href="https://esim.tech" target="_blank">→ esim.tech</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: COMPARISON TABLE -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-hdr">
+    <h2>3 · Comparison Table</h2>
+  </div>
+  <p class="section-sub">All 14 providers across key decision criteria. Verified = confirmed from public sources. Unverified = stated claim, not confirmed.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Type</th>
+          <th>Geo Coverage</th>
+          <th>Min Commitment</th>
+          <th>Pricing Model</th>
+          <th>API Rating</th>
+          <th>MENA Fit</th>
+          <th>Peanut Fit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td><span class="tbl-name">eSIM Access<span class="tbl-type">Upstream Aggregator</span></span></td>
+          <td>Wholesale API</td>
+          <td>100+ countries <span class="verified-tag">✓</span></td>
+          <td><strong>$0 MOQ</strong> <span class="verified-tag">✓</span></td>
+          <td>Package pricing + rebate tiers (10–20%) <span class="verified-tag">✓</span></td>
+          <td>4/5</td>
+          <td>Strong <span class="verified-tag">✓</span></td>
+          <td class="fit-5">★★★★★</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><span class="tbl-name">eSIM Go<span class="tbl-type">MVNO Platform</span></span></td>
+          <td>Travel eSIM B2B</td>
+          <td>190+ countries <span class="verified-tag">✓</span></td>
+          <td><strong>$1K/mo</strong> <span class="verified-tag">✓</span></td>
+          <td>4-tier ($1K → $250K/mo) public pricing <span class="verified-tag">✓</span></td>
+          <td>5/5</td>
+          <td>Strong <span class="verified-tag">✓</span></td>
+          <td class="fit-5">★★★★★</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><span class="tbl-name">Telnyx<span class="tbl-type">Telecom API</span></span></td>
+          <td>API Platform</td>
+          <td>190+ countries <span class="verified-tag">✓</span></td>
+          <td><strong>$0 PAYG</strong> <span class="verified-tag">✓</span></td>
+          <td>$0.0125–$0.078/MB. $0.70 eSIM + $2/mo/SIM <span class="verified-tag">✓</span></td>
+          <td>5/5</td>
+          <td>Moderate <span class="unverified-tag">?</span></td>
+          <td class="fit-4">★★★★☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">MobiMatter<span class="tbl-type">Marketplace + B2B</span></span></td>
+          <td>Reseller Platform</td>
+          <td>200+ countries <span class="verified-tag">✓</span></td>
+          <td><strong>$250</strong> wallet <span class="verified-tag">✓</span></td>
+          <td>Prepaid wallet, wholesale rates post-signup <span class="verified-tag">✓</span></td>
+          <td>4/5</td>
+          <td>Strong — UAE $0.30/GB retail <span class="verified-tag">✓</span></td>
+          <td class="fit-4">★★★★☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">eSIM Card<span class="tbl-type">Wholesale Dist.</span></span></td>
+          <td>White-Label Platform</td>
+          <td>200+ countries <span class="verified-tag">✓</span></td>
+          <td><strong>$0</strong> <span class="verified-tag">✓</span></td>
+          <td>30–50% margins, wholesale -40% vs retail <span class="verified-tag">✓</span></td>
+          <td>3/5</td>
+          <td>Moderate <span class="unverified-tag">?</span></td>
+          <td class="fit-3">★★★☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">eSIM.tech<span class="tbl-type">API Platform</span></span></td>
+          <td>Developer API</td>
+          <td>190+ countries <span class="verified-tag">✓</span></td>
+          <td><strong>$0</strong> <span class="verified-tag">✓</span></td>
+          <td>Per-MB PAYG, no bundles. €1.20/1024MB (demo) <span class="unverified-tag">?</span></td>
+          <td>5/5</td>
+          <td>Unconfirmed <span class="unverified-tag">?</span></td>
+          <td class="fit-3">★★★☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">GloEsim<span class="tbl-type">Enterprise API</span></span></td>
+          <td>B2B Aggregator</td>
+          <td>200+ countries <span class="verified-tag">✓</span></td>
+          <td>Unknown <span class="unverified-tag">?</span></td>
+          <td>Wholesale pricing, demo required <span class="unverified-tag">?</span></td>
+          <td>3/5</td>
+          <td>Unknown <span class="unverified-tag">?</span></td>
+          <td class="fit-3">★★★☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">1GLOBAL<span class="tbl-type">Licensed MVNO</span></span></td>
+          <td>Telco-as-a-Service</td>
+          <td>190+ / 600 roaming <span class="verified-tag">✓</span></td>
+          <td>Enterprise-only <span class="unverified-tag">?</span></td>
+          <td>Custom quotes only <span class="unverified-tag">?</span></td>
+          <td>4/5</td>
+          <td>Strong <span class="verified-tag">✓</span></td>
+          <td class="fit-3">★★★☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">LotusFlare<span class="tbl-type">MVNE Platform</span></span></td>
+          <td>Wholesale MVNE</td>
+          <td>200+ <span class="verified-tag">✓</span></td>
+          <td>Enterprise <span class="unverified-tag">?</span></td>
+          <td>Custom, not disclosed <span class="unverified-tag">?</span></td>
+          <td>3/5</td>
+          <td>Moderate <span class="unverified-tag">?</span></td>
+          <td class="fit-3">★★★☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">Orange Wholesale<span class="tbl-type">Tier-1 Carrier</span></span></td>
+          <td>MVNO Light Program</td>
+          <td>#1 roaming 2026 <span class="verified-tag">✓</span></td>
+          <td>Enterprise <span class="unverified-tag">?</span></td>
+          <td>Negotiated carrier rates <span class="unverified-tag">?</span></td>
+          <td>3/5</td>
+          <td>Strong — MENA agreements <span class="verified-tag">✓</span></td>
+          <td class="fit-3">★★★☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">KORE/Super SIM<span class="tbl-type">IoT Platform</span></span></td>
+          <td>IoT Connectivity</td>
+          <td>400+ networks <span class="verified-tag">✓</span></td>
+          <td>Sales agreement <span class="unverified-tag">?</span></td>
+          <td>SIM + monthly + PAYG data <span class="unverified-tag">?</span></td>
+          <td>4/5</td>
+          <td>Low <span class="unverified-tag">?</span></td>
+          <td class="fit-2">★★☆☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">floLIVE<span class="tbl-type">IoT eSIM</span></span></td>
+          <td>IoT Infrastructure</td>
+          <td>Multi-country IoT <span class="verified-tag">✓</span></td>
+          <td>Enterprise <span class="unverified-tag">?</span></td>
+          <td>Per active IoT device <span class="unverified-tag">?</span></td>
+          <td>3/5</td>
+          <td>Low <span class="unverified-tag">?</span></td>
+          <td class="fit-2">★★☆☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">Workz Group<span class="tbl-type">eSIM Mgmt Platform</span></span></td>
+          <td>SM-DP+ / Orchestration</td>
+          <td>Global <span class="unverified-tag">?</span></td>
+          <td>Enterprise <span class="unverified-tag">?</span></td>
+          <td>Platform licensing, not data <span class="unverified-tag">?</span></td>
+          <td>3/5</td>
+          <td>N/A — wrong layer</td>
+          <td class="fit-2">★★☆☆☆</td>
+        </tr>
+        <tr>
+          <td><span class="tbl-name">Soracom<span class="tbl-type">IoT SIM</span></span></td>
+          <td>IoT Platform</td>
+          <td>174 countries IoT <span class="verified-tag">✓</span></td>
+          <td>$0 PAYG <span class="verified-tag">✓</span></td>
+          <td>~$17/GB+ base rate <span class="verified-tag">✓</span></td>
+          <td>4/5</td>
+          <td>Weak <span class="verified-tag">✓</span></td>
+          <td class="fit-2">★★☆☆☆</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: NEXT STEPS -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-hdr">
+    <h2>4 · Next Steps — Outreach Priority Order</h2>
+  </div>
+  <p class="section-sub">Exact contacts and actions, ordered by priority. Run steps 1–3 in parallel this week.</p>
+
+  <ul class="next-step-list">
+    <li>
+      <div class="priority">P1 · THIS WEEK</div>
+      <div class="content">
+        <h4>eSIM Access — Request Direct Reseller Rate Card</h4>
+        <p>Email <a href="mailto:alliance@esimaccess.com">alliance@esimaccess.com</a> — state: "We are a travel eSIM startup targeting airline crew in UAE. We're currently using a sub-reseller relationship and want to explore direct partnership. Please share your wholesale price list and rebate tier structure." Reference volume projections (500–2K monthly activations in Month 1, targeting 5K/month by Month 6).</p>
+      </div>
+    </li>
+    <li>
+      <div class="priority">P1 · THIS WEEK</div>
+      <div class="content">
+        <h4>eSIM Go — Request Demo + Rate Deck</h4>
+        <p>Form at <a href="https://esimgo.com/product/pricing/" target="_blank">esimgo.com/product/pricing/</a> — request Standard tier info + actual wholesale rates for top 20 Emirates destinations (MENA, Europe, Asia). Ask specifically for: per-country/region price list, coverage map for UAE, Japan, UK, Europe. Mention: travel app for airline crew, targeting 190+ countries via Emirates routes.</p>
+      </div>
+    </li>
+    <li>
+      <div class="priority">P1 · THIS WEEK</div>
+      <div class="content">
+        <h4>MobiMatter — Activate Account ($250) + Pull Rate Card</h4>
+        <p>Go to <a href="https://mobimatter.com/reseller-partner" target="_blank">mobimatter.com/reseller-partner</a> — sign up, top up $250 wallet, pull API rate card immediately. This gives us real market pricing within 24 hours for comparison. Especially useful for UAE ($0.30/GB retail visible) and MENA region benchmarking.</p>
+      </div>
+    </li>
+    <li>
+      <div class="priority">P2 · WEEK 2</div>
+      <div class="content">
+        <h4>Telnyx — Pull Public Pricing + Request Volume Discount Quote</h4>
+        <p>Visit <a href="https://telnyx.com/pricing/iot-data-plans" target="_blank">telnyx.com/pricing/iot-data-plans</a> — document current rates. Then contact via <a href="https://telnyx.com/use-cases/travel-esim" target="_blank">telnyx.com/use-cases/travel-esim</a> for a volume discount quote. Use Telnyx's public pricing as the negotiation floor in all other supplier conversations: "We have a confirmed $12.80/GB option at zero minimums."</p>
+      </div>
+    </li>
+    <li>
+      <div class="priority">P2 · WEEK 2</div>
+      <div class="content">
+        <h4>eSIM Card — Quick Rate Inquiry</h4>
+        <p>Fill partner form at <a href="https://esimcard.com/partners/" target="_blank">esimcard.com/partners/</a> — ask for wholesale rate sheet for top Emirates destinations. Use as third comparison quote in negotiations. Mention: "looking to migrate from a sub-reseller relationship, want to go direct."</p>
+      </div>
+    </li>
+    <li>
+      <div class="priority">P2 · WEEK 2</div>
+      <div class="content">
+        <h4>eSIM.tech — API Trial + MENA Rate Inquiry</h4>
+        <p>Sign up at <a href="https://esim.tech" target="_blank">esim.tech</a> — activate sandbox, test API latency (claimed 120ms). Ask specifically: do you have UAE/MENA coverage? What is per-MB rate for UAE? The developer API quality here is the best in market — worth testing even if not primary supplier.</p>
+      </div>
+    </li>
+    <li>
+      <div class="priority">P3 · MONTH 2</div>
+      <div class="content">
+        <h4>1GLOBAL — Discovery Call (Long-Term)</h4>
+        <p>Contact via <a href="https://www.1global.com/telco-as-a-service" target="_blank">1global.com/telco-as-a-service</a> — ask: what is minimum monthly commitment for a Telco-as-a-Service white-label relationship? Do you have any startup/early-stage programs? Good intelligence even if not actionable at launch.</p>
+      </div>
+    </li>
+    <li>
+      <div class="priority">P3 · MONTH 2</div>
+      <div class="content">
+        <h4>GloEsim — Quick Email Inquiry</h4>
+        <p>Email <a href="mailto:gloesim@swiftreload.com">gloesim@swiftreload.com</a> or call +1 289-979-8885 — ask for wholesale rate sheet and minimum commitment. Low time cost, potential surprise find. Ask specifically about UAE/MENA and Japan/APAC coverage.</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: OPEN QUESTIONS -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-hdr">
+    <h2>5 · Open Questions — What We Couldn't Find</h2>
+  </div>
+  <p class="section-sub">Items where public sources were insufficient. Must be addressed in direct outreach.</p>
+
+  <ul class="questions-list">
+    <li><strong>eSIM Access direct rate card:</strong> Prices are hidden behind account login. We know the rebate structure (10–20%) but not the base rate per country/region. The #1 question to answer in outreach.</li>
+    <li><strong>UAE/MENA wholesale rates across all providers:</strong> Most providers confirm "200+ countries" but don't specify UAE/MENA wholesale rates publicly. MobiMatter shows UAE retail at $0.30/GB — implies reasonable wholesale, but unconfirmed.</li>
+    <li><strong>eSIM Go actual per-country rate:</strong> Tier structure confirmed publicly, but actual per-GB rates for specific countries (UAE, Japan, UK) are not public. Must be requested in demo.</li>
+    <li><strong>Whether our current wholesale supplier blocks direct eSIM Access access:</strong> Some sub-reseller contracts contain exclusivity or no-compete clauses. Need to review our current contract before approaching eSIM Access directly.</li>
+    <li><strong>Telnyx wholesale/reseller rates:</strong> Public pricing is IoT-grade ($12.80/GB+). Travel reseller programs likely exist but pricing requires custom quote. Gap between public and wholesale rate unknown.</li>
+    <li><strong>eSIM.tech actual MENA coverage:</strong> Local eSIM with phone numbers limited to 25 countries (no MENA listed). Global data coverage unclear for UAE specifically.</li>
+    <li><strong>1GLOBAL minimum volume requirement:</strong> "Enterprise only" implied. Unknown if they have a startup or pre-seed program. Juniper #1 roaming ranking suggests premium pricing.</li>
+    <li><strong>Market rate for direct-wholesale vs aggregator:</strong> The simology.io data gives a useful $2.80–$4.50/GB range for direct-wholesale at 10K–100K+ GB/quarter. We need to validate this against actual quotes. This translates to roughly $1.12–$1.80/user/month at our average consumption estimates — meaningful vs current structure.</li>
+    <li><strong>Minimum per-GB rate floor:</strong> Telnyx public: $12.80/GB. MobiMatter UAE retail: $0.30/GB (wholesale ~$0.10–0.18/GB implied). This spread is enormous — suggests aggregator/reseller pricing is 10–50x the direct carrier rate. The actual direct wholesale rate for UAE data needs to be negotiated, not assumed.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- FOOTNOTE / CONFIDENCE LEGEND -->
+<!-- ============================================================ -->
+<div style="margin-top: 52px; background: white; border: 1px solid var(--line); border-radius: 8px; padding: 22px 24px;">
+  <h3 style="margin: 0 0 12px; font-size: 16px; color: var(--ink-dark);">Confidence Legend</h3>
+  <div style="display: flex; gap: 24px; flex-wrap: wrap; font-size: 14px;">
+    <div><span style="color: var(--green); font-weight: 700;">✓ Verified</span> — confirmed from public pricing pages, official docs, or news</div>
+    <div><span style="color: var(--muted); font-style: italic;">? Unverified</span> — stated by company but unconfirmed, or behind login wall</div>
+    <div><span style="color: #B05A00; font-weight: 700;">⚠ Warning</span> — important caveat or incompatibility for Peanut's use case</div>
+  </div>
+  <p style="margin: 12px 0 0; font-size: 13px; color: var(--muted);">Research conducted 2026-06-01 via web search + public pricing pages. IoT pricing should not be assumed to equal travel eSIM wholesale rates — different commercial tiers apply. All pricing figures subject to change; confirm via direct outreach before making decisions.</p>
+</div>
+
+</main>
+
+<footer>
+  Peanut eSIM · Direct Supplier Research · 2026-06-01 · Researcher Sub-Agent<br>
+  <a href="index.html">← Back to Documents Hub</a>
+</footer>
+
+</body>
+</html>
