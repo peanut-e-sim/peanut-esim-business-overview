@@ -8848,23 +8848,23 @@ Mercury（米国法人銀行口座）
 </style>
 
 <header class="hero">
-  <span class="doc-tag">PEANUT ESIM · PRICING BLUEPRINT</span>
-  <h1 class="lang en">The <em>Blueprint</em> — every locked price, every decision.</h1>
-  <h1 class="lang jp">設計書 — 価格決定の全ロジック</h1>
-  <p class="lead lang en">Full Tab 1 walk-through: 7 cabin tiers, geo cost buckets, mix assumptions, operating cost. What's locked, why, and what's still open. Last updated 2026-06-01.</p>
-  <p class="lead lang jp">Tab 1 の完全解説：キャビン7段階、地域別コスト、ユーザー構成比、運営コスト。確定事項、根拠、残課題。最終更新 2026-06-01。</p>
+  <span class="doc-tag">PEANUT ESIM · PRICING ARCHITECTURE</span>
+  <h1 class="lang en">Pricing <em>Architecture</em> — every plan, every decision.</h1>
+  <h1 class="lang jp">プライシング・アーキテクチャ — 全プラン、全意思決定</h1>
+  <p class="lead lang en">The full strategic walk-through behind Peanut's 7-tier ladder: cabin-class pricing logic, geo cost buckets, mix assumptions, operating cost, and the backdoor exploits we closed. What's locked, why, and what's still open. Last updated 2026-06-01.</p>
+  <p class="lead lang jp">Peanut の7段階ティア戦略を支える全ロジック解説：キャビンクラス価格論理、地域別コスト、ユーザー構成比、運営コスト、そして塞いだ抜け穴。確定事項、根拠、残課題。最終更新 2026-06-01。</p>
 </header>
 
 <div class="blueprint-doc">
 
 <div class="lede">
-This document captures the full reasoning and locked decisions from the deep-dive on Tab 1 of the Peanut eSIM P&amp;L Model. Every retail price, pool size, carryover rule, cost bucket, mix percentage, and operating cost line is explained: <strong>what's in the model</strong>, <strong>why it's there</strong>, and <strong>what's still open</strong>.
+This document captures the full reasoning and locked decisions behind Peanut eSIM's pricing architecture (Tab 1 of the P&amp;L Model). Every retail price, pool size, carryover rule, cost bucket, mix percentage, and operating cost line is explained: <strong>what's in the model</strong>, <strong>why it's there</strong>, and <strong>what's still open</strong>. Built once, never re-litigate.
 </div>
 
 <div class="toc">
 <strong>Table of Contents</strong>
 <ul>
-  <li><a href="#bp-overview">1. What Tab 1 is and why it matters</a></li>
+  <li><a href="#bp-overview">1. What this architecture is and why it matters</a></li>
   <li><a href="#bp-s1">2. Section 1 — Color Key</a></li>
   <li><a href="#bp-s2">3. Section 2 — Cabin Class Retail Prices (the locked ladder)</a></li>
   <li><a href="#bp-s3">4. Section 3 — Geo Cost Buckets</a></li>
@@ -8876,27 +8876,30 @@ This document captures the full reasoning and locked decisions from the deep-div
 </ul>
 </div>
 
-<h2 id="bp-overview">1. What Tab 1 is and why it matters</h2>
-<p>Tab 1 is the <strong>master input sheet</strong> of the entire 16-tab P&amp;L model. Every downstream calculation references the cells in Tab 1. Change one number here, the whole model recalculates.</p>
+<h2 id="bp-overview">1. What this architecture is and why it matters</h2>
+<p>Tab 1 is the <strong>master input sheet</strong> of the entire 16-tab P&amp;L model. Every downstream calculation — Tab 3 (Per-Tier Unit Economics), Tab 4 (Volume Scenarios), Tab 6 (24-Month Rollout), Tab 8 (LTV-CAC), Tab 10 (Carryover Liability), Tab 11 (Strategic Scenarios), Tab 12 (Cash + Sensitivity) — references the cells in Tab 1. Change one number here, the whole model recalculates.</p>
+<p>The architecture has <strong>five sections</strong>, top to bottom:</p>
 <table>
 <tr><th>#</th><th>Section</th><th>What it controls</th></tr>
-<tr><td>1</td><td>Color Key</td><td>Visual legend for the model</td></tr>
+<tr><td>1</td><td>Color Key</td><td>Visual legend for the model — what cell colors mean</td></tr>
 <tr><td>2</td><td>Cabin Class Retail Prices</td><td>The 7-tier price ladder — every plan's price, pool, carry rules</td></tr>
-<tr><td>3</td><td>Geo Cost Buckets</td><td>Wholesale cost per GB by country bucket (drives COGS)</td></tr>
+<tr><td>3</td><td>Geo Cost Buckets</td><td>Wholesale cost per GB by country bucket (drives our COGS)</td></tr>
 <tr><td>4</td><td>Cabin-Class Mix</td><td>% of paying users on each tier (drives blended ARPU)</td></tr>
-<tr><td>5</td><td>Operating Cost / User / Month</td><td>What we pay per active user beyond data (Stripe, support, cloud)</td></tr>
+<tr><td>5</td><td>Operating Cost / User / Month</td><td>What we pay per active user beyond data (Stripe fees, support, cloud)</td></tr>
 </table>
 
 <h2 id="bp-s1">2. Section 1 — Color Key</h2>
+<p>Visual conventions used throughout the model:</p>
 <table>
 <tr><th>Color</th><th>Meaning</th></tr>
 <tr><td><span style="color:#0000FF;font-weight:600;">Blue text</span></td><td>Hardcoded input — change at will</td></tr>
 <tr><td>Black text</td><td>Formula — do not edit</td></tr>
-<tr><td><span style="color:#008000;font-weight:600;">Green text</span></td><td>Cross-sheet reference</td></tr>
+<tr><td><span style="color:#008000;font-weight:600;">Green text</span></td><td>Cross-sheet reference (pulled from another tab)</td></tr>
 <tr><td><span style="background:#FFFFCC;padding:0 6px;">Yellow fill</span></td><td>Key assumption — review before pitching</td></tr>
 </table>
 
 <h2 id="bp-s2">3. Section 2 — Cabin Class Retail Prices (the locked ladder)</h2>
+<p>This is the single most important section in the entire workbook. Every revenue calculation downstream pivots from these 7 rows. Below are the locked prices, the reasoning, and the deep-dive on each tier (each plan has its own dedicated "Logic" tab in the workbook).</p>
 
 <h3>2.1 Economy (PAYG)</h3>
 <table>
@@ -8905,38 +8908,44 @@ This document captures the full reasoning and locked decisions from the deep-div
 <tr><td>Pool</td><td>1 GB per purchase</td></tr>
 <tr><td>Subscription?</td><td>NO — single-purchase, no recurring charge</td></tr>
 <tr><td>Coverage (v1)</td><td>Flat worldwide (zonal in v1.1)</td></tr>
+<tr><td>Carryover</td><td>None — unused data expires with the top-up</td></tr>
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
-<h4>5-layer pricing logic for $4.99</h4>
+<h4>The 5-layer pricing logic behind $4.99</h4>
 <table>
 <tr><th>Layer</th><th>Rationale</th></tr>
-<tr><td>Cost floor</td><td>Samurai 1-GB short-trip plans cost $0.56–1.25/GB in cheap zones. $4.99 retail = 75-89% gross margin.</td></tr>
-<tr><td>Market middle</td><td>Airalo ~$4.50, Roamless ~$4.00, Crew SIM $3-7. We sit fair-middle, not discount race.</td></tr>
-<tr><td>Psychological</td><td>Under-$5 = impulse zone. $5.99 = considered purchase.</td></tr>
-<tr><td>Upsell anchor</td><td>3 top-ups = $14.97 → more than Premium Economy $17.99 / 10 GB. Drives upgrade.</td></tr>
-<tr><td>Crew fit</td><td>1 GB matches 1 layover. Selling 10 GB to a 1-trip crew traveler feels wasteful.</td></tr>
+<tr><td>1. Cost floor</td><td>Samurai's actual wholesale (real rate sheet) for 1-GB short-trip plans: $0.56–1.25/GB in cheap zones (HK/Korea/Japan/Singapore/USA/UK). At $4.99 retail = 75-89% gross margin on typical crew trips.</td></tr>
+<tr><td>2. Market middle</td><td>Airalo 1 GB / 7-day USA ~$4.50, Roamless ~$4.00, Crew SIM $3-7 depending on country. We sit in the fair-middle, not the discount race.</td></tr>
+<tr><td>3. Psychological</td><td>Under-$5 = impulse purchase zone. $5.99 = considered purchase. The 9-cents rule matters here.</td></tr>
+<tr><td>4. Upsell anchor</td><td>3 top-ups in a month = $14.97 → that's <em>more</em> than Premium Economy ($17.99 for 10 GB). The user does the math, upgrades.</td></tr>
+<tr><td>5. Crew fit</td><td>1 GB matches 1 layover. Selling 10 GB to a 1-trip crew traveler feels wasteful → churn risk.</td></tr>
 </table>
 
+<h4>Flat vs Zonal decision</h4>
+<p><strong>Locked:</strong> Flat $4.99 worldwide for v1. Zonal pricing for India/Brazil/Africa in v1.1 (3-6 months post-launch).</p>
+<p><strong>Why flat:</strong> "Pay $5 anywhere you fly" is a clean marketing line. The ~10% of crew trips that happen in loss-making zones (India/Brazil/South Africa) are subsidized by the 90% in cheap zones (Asia/Europe/USA). At 10K Economy users, the worst-case loss is ~$2K/mo, dwarfed by $38K/mo profit from healthy zones. Net: +$36K/mo, defensible.</p>
+
 <h4>Backdoor closure</h4>
-<p><strong>Economy is blocked for active subscribers in the app.</strong> Closes the loophole where a Business user could buy Economy top-ups instead of refueling.</p>
+<p><strong>Economy is blocked for active subscribers in the app.</strong> Without this, a Business user paying $29.99/mo for 15 GB could buy 5 Economy top-ups at $4.99/GB instead of refueling at the old $5.99/GB — and save money. We close this by hiding Economy from subscribers entirely.</p>
 
 <h3>2.2 Roster Bundle</h3>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
 <tr><td>Price</td><td><strong>$3.99 per flight bundled, capped at $39.99/month</strong></td></tr>
-<tr><td>Pool model</td><td>Per-flight, not pool-based</td></tr>
-<tr><td>Auto-arming</td><td>YES — eSIM activates when crew lands</td></tr>
-<tr><td>Discount vs Economy</td><td>$1/flight saved (20% off PAYG)</td></tr>
+<tr><td>Pool model</td><td>Per-flight, not pool-based — separate country-specific eSIMs bundled together</td></tr>
+<tr><td>Auto-arming</td><td>YES — eSIM activates when crew lands at each city</td></tr>
+<tr><td>Discount vs Economy</td><td>$1/flight saved (20% off the $4.99 PAYG rate)</td></tr>
+<tr><td>Subscription?</td><td>Monthly recurring once enrolled — auto-renews on next roster upload</td></tr>
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
-<h4>The fundamental insight</h4>
-<p>A PAYG user with 5 scheduled flights doesn't buy 5 SIMs — they buy 1-2 when they remember. Real PAYG captures $8-11/mo. Roster Bundle's job is to capture the <strong>whole month upfront</strong> at $19.95 (5 × $3.99) with predictable cash flow.</p>
+<h4>The fundamental insight that drove the design</h4>
+<p>A PAYG user with 5 scheduled flights in a month doesn't buy 5 SIMs. They buy 1-2 when they remember. Real PAYG behavior captures ~$8-11/mo per user. <strong>Roster Bundle's job is to capture the WHOLE month upfront</strong> — get the user to pre-commit to all 5 flights at a discount, lifting per-user revenue to $19.95 (5 × $3.99) with predictable cash flow.</p>
 
 <h4>5-flight worked example</h4>
 <table>
-<tr><th>City</th><th>Samurai cost</th><th>PAYG ($4.99)</th><th>Bundle ($3.99)</th></tr>
+<tr><th>City</th><th>Samurai wholesale cost</th><th>PAYG price ($4.99)</th><th>Bundle price ($3.99)</th></tr>
 <tr><td>Tokyo</td><td>$0.90</td><td>$4.99</td><td>$3.99</td></tr>
 <tr><td>Singapore</td><td>$0.83</td><td>$4.99</td><td>$3.99</td></tr>
 <tr><td>London</td><td>$1.25</td><td>$4.99</td><td>$3.99</td></tr>
@@ -8945,166 +8954,262 @@ This document captures the full reasoning and locked decisions from the deep-div
 <tr><th>TOTAL</th><th>$9.23</th><th>$24.95</th><th>$19.95</th></tr>
 </table>
 
+<h4>Why Bundle wins despite "lower" per-user profit vs full PAYG</h4>
+<table>
+<tr><th>Reality check</th><th>Outcome</th></tr>
+<tr><td>PAYG user buys 2 of 5 (typical)</td><td>$8.25 profit</td></tr>
+<tr><td>PAYG user buys 3 of 5</td><td>$11.48 profit</td></tr>
+<tr><td>Bundle captures all 5 (locked-in)</td><td><strong>$10.72 profit + low support burden + low churn</strong></td></tr>
+</table>
+<p>Bundle captures users who would otherwise drop out mid-month. Revenue per user roughly doubles vs PAYG.</p>
+
+<h4>$39.99 monthly cap rationale</h4>
+<p>Heavy-flier crew (12+ flights/month) would otherwise pay $47.88+ at $3.99/flight. The cap at $39.99 makes Roster Bundle feel safe for heavy users — no fear of runaway billing. Margin compression on 12-flight users is acceptable for the loyalty + LTV gains.</p>
+
 <h3>2.3 Premium Economy</h3>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
-<tr><td>Price</td><td><strong>$17.99/month</strong> (bumped from $12.99 to avoid cannibalizing Roster Bundle)</td></tr>
+<tr><td>Price</td><td><strong>$17.99/month</strong> (was $12.99 placeholder)</td></tr>
 <tr><td>Pool</td><td>10 GB monthly</td></tr>
 <tr><td>Carryover</td><td>50% × 1 month</td></tr>
-<tr><td>UX</td><td>1-GB active at a time, manual refill</td></tr>
-<tr><td>Coverage</td><td>Global pool</td></tr>
+<tr><td>Coverage</td><td>Global pool — works in any country on supplier network</td></tr>
+<tr><td>Auto-arming</td><td>NO — manual eSIM install</td></tr>
+<tr><td>UX</td><td>1-GB active at a time, manual refill from pool</td></tr>
+<tr><td>Perks</td><td>Lounge guides</td></tr>
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
-<h4>The 1-GB refill UX mechanic</h4>
-<p>Users see only 1 GB active at a time. When it runs out, they tap "Refill from pool." Consumption drops from 62.5% (auto-deduct baseline) to ~40%. The unused half rolls into carry, the other half breaks.</p>
+<h4>Why the price was bumped from $12.99 to $17.99</h4>
+<p>The original $12.99 placeholder was <em>cheaper</em> than Roster Bundle ($19.95 for 5 flights). A crew member looking at the price card would see "Premium Economy is cheaper AND works anywhere" and choose it 100% of the time — cannibalizing Roster Bundle, which is the wedge feature.</p>
+<p><strong>$17.99 sits $2 below Roster Bundle</strong>, signaling "cheaper but you trade away auto-arming" — clean positioning, no cannibalization.</p>
 
-<blockquote>Breakage we earn from honest forgetfulness is fair revenue. Breakage we earn from hidden mechanics is fraud.</blockquote>
+<h4>The 1-GB refill UX mechanic</h4>
+<p>Users see <strong>only 1 GB active at a time</strong>. When that GB runs out, they tap "Refill from pool" to get the next GB. The pool is always visible (transparency), but refill requires manual action.</p>
+<p><strong>Why this matters:</strong> friction-limited consumption drops from 62.5% (auto-deduct baseline) to ~40%. The unused 60% either rolls into carry or breaks. <strong>Pure breakage profit comes from forgetfulness, not deception.</strong></p>
 
 <h4>Transparency policy (locked)</h4>
 <table>
 <tr><th>Rule</th><th>Reason</th></tr>
-<tr><td>Pool ALWAYS visible</td><td>Never hide what user paid for</td></tr>
-<tr><td>Refill button visible at all times</td><td>One tap, no hidden friction</td></tr>
-<tr><td>Day-25 reminder push</td><td>Give them every chance to consume</td></tr>
-<tr><td>Carryover shown explicitly</td><td>"Y GB will carry, Z GB will expire"</td></tr>
+<tr><td>Pool is ALWAYS visible</td><td>Never hide what user paid for</td></tr>
+<tr><td>Refill button is visible at all times</td><td>One tap, no friction beyond explicit action</td></tr>
+<tr><td>Day-25 reminder push: "You have X GB unused — refill?"</td><td>Give them every chance to consume what they paid for</td></tr>
+<tr><td>Carryover shown explicitly: "Y GB will carry, Z GB will expire"</td><td>Honest disclosure</td></tr>
 </table>
+<blockquote>Breakage we earn from honest forgetfulness is fair revenue. Breakage we earn from hidden mechanics is fraud.</blockquote>
 
 <h4>Per-user economics at $17.99</h4>
 <table>
 <tr><th>Line</th><th>Value</th></tr>
-<tr><td>Revenue</td><td>$17.99</td></tr>
+<tr><td>Subscription revenue</td><td>$17.99</td></tr>
 <tr><td>GB consumed (40% friction)</td><td>4.0 GB</td></tr>
-<tr><td>Wholesale COGS</td><td>$4.80</td></tr>
-<tr><td>+ Refuel net (20% × $4.99)</td><td>+$0.96</td></tr>
-<tr><td><strong>Total profit / user / mo</strong></td><td><strong>$14.15 (74% margin)</strong></td></tr>
+<tr><td>Wholesale COGS at $1.20/GB blended</td><td>$4.80</td></tr>
+<tr><td>Gross profit (subscription)</td><td>$13.19 (73% margin)</td></tr>
+<tr><td>+ Refuel (20% attach × $4.99)</td><td>+$0.96 net</td></tr>
+<tr><td><strong>Total per user / mo</strong></td><td><strong>$14.15 (74% margin)</strong></td></tr>
 </table>
 
 <h3>2.4 Business ⭐ RECOMMENDED</h3>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
-<tr><td>Price</td><td><strong>$29.99/month</strong> (bumped from $24.99)</td></tr>
-<tr><td>Pool</td><td>15 GB</td></tr>
+<tr><td>Price</td><td><strong>$29.99/month</strong> (was $24.99 placeholder)</td></tr>
+<tr><td>Pool</td><td>15 GB monthly</td></tr>
 <tr><td>Carryover</td><td>70% × 1 month</td></tr>
+<tr><td>UX</td><td>Same 1-GB refill mechanic as Premium</td></tr>
 <tr><td>Perks</td><td>Priority support + crew recs unlocked</td></tr>
-<tr><td>Persona</td><td>Default subscriber — senior crew, full-rota</td></tr>
+<tr><td>Tier flag</td><td><strong>"RECOMMENDED" on price card</strong></td></tr>
+<tr><td>Persona</td><td>Senior crew, full-rota crew, frequent travelers — the default subscriber</td></tr>
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
-<h4>Why $29.99 not $24.99</h4>
-<p>$17.99 → $24.99 was only +$7 (small bump). +$12 to $29.99 signals a meaningful upgrade. Market room is huge (Airalo $50 for 20 GB). Adds ~$480K/year at 100K users from this single decision.</p>
+<h4>The 5 reasons for $29.99 (not $24.99)</h4>
+<table>
+<tr><th>Reason</th><th>Detail</th></tr>
+<tr><td>Meaningful upgrade gap</td><td>$17.99 → $24.99 was only +$7. Felt like a small bump. +$12 to $29.99 signals "real upgrade."</td></tr>
+<tr><td>Market room</td><td>Airalo at ~$50 for 20 GB. We're still significantly below the market ceiling.</td></tr>
+<tr><td>Persona-fit</td><td>Business buyers are typically senior crew with higher salaries. $5/mo is dinner money to them.</td></tr>
+<tr><td>Promo headroom</td><td>At $29.99 we can run "first month $19.99" without bleeding margin. At $24.99 we'd have nothing to give.</td></tr>
+<tr><td>Compounded upside</td><td>At 100K users × 8% Business × +$5/mo = +$480K/year pure margin. Material upside from one decision.</td></tr>
+</table>
 
 <h4>Per-user economics at $29.99</h4>
 <table>
 <tr><th>Line</th><th>Value</th></tr>
-<tr><td>Revenue</td><td>$29.99</td></tr>
-<tr><td>GB consumed (45% — heavier users)</td><td>6.75 GB</td></tr>
+<tr><td>Subscription revenue</td><td>$29.99</td></tr>
+<tr><td>GB consumed (45% — heavier than Premium)</td><td>6.75 GB</td></tr>
 <tr><td>Wholesale COGS</td><td>$8.10</td></tr>
-<tr><td>+ Refuel net (25% attach)</td><td>+$1.20</td></tr>
-<tr><td><strong>Total profit / user / mo</strong></td><td><strong>$23.09 (74% margin)</strong></td></tr>
+<tr><td>Gross profit (subscription)</td><td>$21.89 (73% margin)</td></tr>
+<tr><td>+ Refuel (25% attach)</td><td>+$1.20 net</td></tr>
+<tr><td><strong>Total per user / mo</strong></td><td><strong>$23.09 (74% margin)</strong></td></tr>
 </table>
 
 <h3>2.5 First</h3>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
 <tr><td>Price</td><td><strong>$39.99/month</strong></td></tr>
-<tr><td>Pool</td><td>25 GB</td></tr>
-<tr><td>Carryover</td><td>100% × 2 months</td></tr>
-<tr><td>Perks</td><td>Concierge layer</td></tr>
+<tr><td>Pool</td><td><strong>25 GB monthly</strong> (was 20 GB in earlier draft)</td></tr>
+<tr><td>Carryover</td><td>100% × 2 months (longer carry = top-tier differentiator)</td></tr>
+<tr><td>UX</td><td>Same 1-GB refill mechanic</td></tr>
+<tr><td>Perks</td><td>Concierge layer (direct human support)</td></tr>
+<tr><td>Persona</td><td>Senior crew wanting more pool than Business</td></tr>
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
-<p>We created two First tiers (First + First Suite) mirroring Emirates' actual cabin structure. First captures purser-grade crew who feel above Business but not in Suite territory.</p>
+<h4>Why we created TWO First tiers (First + First Suite)</h4>
+<p>Original plan was a single First at $49.99 / 25 GB. But the gap from Business ($29.99 / 15 GB) to First ($49.99 / 25 GB) felt big and one-dimensional. Splitting into <strong>First $39.99/25GB</strong> and <strong>First Suite $49.99/40GB</strong> creates a clean ladder mirroring Emirates' actual cabin naming (First Class + First Class Suite). First captures purser-grade crew who feel above Business but not in "Suite" territory.</p>
 
-<h4>The pool-expansion insight</h4>
-<p>The 1-GB refill friction caps actual consumption at ~13-14 GB regardless of pool size. <strong>Pool expansion is essentially free to us.</strong> This is why First's pool was bumped 20 → 25 GB without changing price.</p>
+<h4>The 1-GB friction insight (locked-in understanding)</h4>
+<p><strong>Pool expansion is essentially free to us.</strong> The 1-GB refill friction caps actual consumption at ~13-14 GB regardless of whether the pool is 15, 20, 25, or 40 GB. Bigger pool = better value perception, same COGS. This is why First's pool was bumped 20 → 25 GB without changing price.</p>
 
 <h3>2.6 First Suite</h3>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
 <tr><td>Price</td><td><strong>$49.99/month</strong></td></tr>
-<tr><td>Pool</td><td>40 GB</td></tr>
+<tr><td>Pool</td><td><strong>40 GB monthly</strong> (was 30 GB earlier)</td></tr>
 <tr><td>Carryover</td><td>100% × 2 months</td></tr>
-<tr><td>Per-GB</td><td><strong>$1.25 — best per-GB on the entire ladder</strong></td></tr>
+<tr><td>Per-GB price</td><td><strong>$1.25/GB — best per-GB on the entire ladder</strong></td></tr>
+<tr><td>UX</td><td>Same 1-GB refill mechanic</td></tr>
+<tr><td>Perks</td><td>Concierge support + crew recs + priority + status badge</td></tr>
+<tr><td>Persona</td><td>Top of ladder — heaviest travelers, lead purser, frequent fliers who want the "best deal"</td></tr>
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
-<p>The anchor product. At $1.25/GB it's the cheapest unit price on the price card — creates the "this is the best deal" upgrade pull.</p>
+<h4>Why First Suite is the anchor product</h4>
+<p>At $1.25/GB it's the cheapest unit price on the price card. That creates the "this is the best deal" pull. Even users who would have bought Business or First Lite see the math and reconsider. Anchor pricing 101 — make the top tier obviously valuable per-unit.</p>
 
 <h3>2.7 Cockpit</h3>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
-<tr><td>Price</td><td><strong>$299/year</strong> (annual prepay only)</td></tr>
+<tr><td>Price</td><td><strong>$299/year</strong> (annual prepay only — no monthly option)</td></tr>
+<tr><td>Monthly equivalent</td><td>$24.92/mo (for ladder display only)</td></tr>
 <tr><td>Pool</td><td>12 GB monthly</td></tr>
-<tr><td>Emergency bank</td><td>12 GB lifetime — <strong>refreshes annually</strong> (Option A locked)</td></tr>
-<tr><td>Lockin</td><td>12 months</td></tr>
+<tr><td>Carryover</td><td>100% × 2 months</td></tr>
+<tr><td>Emergency bank</td><td><strong>12 GB lifetime — REFRESHES ANNUALLY</strong> (locked Option A)</td></tr>
+<tr><td>Lockin</td><td>12 months. No mid-year cancellation or refunds.</td></tr>
+<tr><td>Persona</td><td>"You be the pilot of your year" — set it for a year, stop thinking</td></tr>
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
-<h4>Critical reframing — NOT pilot-occupation</h4>
-<p>"Cockpit" = "you be the pilot of your own data." Not pilot-only. Any user can buy it. The promise: <em>set it for a year, stop thinking about plan management.</em></p>
+<h4>Critical reframing — Cockpit is NOT pilot-occupation</h4>
+<p>Earlier the model treated Cockpit as a pilot-only tier. <strong>This was wrong.</strong> The name "Cockpit" means "you be the pilot of your own data" — i.e., you're in command of a year of worry-free connectivity. Any user (crew, ground staff, frequent traveler) can buy it.</p>
+
+<h4>Why annual lock-in is the structural differentiator</h4>
+<table>
+<tr><th>Cockpit's value prop</th><th>What it means</th></tr>
+<tr><td>Pay once for the year</td><td>One decision, never again</td></tr>
+<tr><td>Schedule changes? Route changes?</td><td>Doesn't matter — you're covered</td></tr>
+<tr><td>Unscheduled trips, vacation, family travel?</td><td>All covered</td></tr>
+<tr><td>Sick of plan management?</td><td>Cockpit is the answer</td></tr>
+</table>
+
+<h4>Why the emergency bank refreshes annually (Option A)</h4>
+<table>
+<tr><th>Option considered</th><th>Verdict</th></tr>
+<tr><td>A — Refreshes annually (PICKED)</td><td>Cleanest mental model. Strong renewal incentive. ~$2.88/user/year cost.</td></tr>
+<tr><td>B — True lifetime (one-time)</td><td>Punishes loyal customers. Anti-renewal.</td></tr>
+<tr><td>C — Accumulates with 24 GB cap</td><td>Complex to communicate. Long-term subs build big unpredictable banks.</td></tr>
+</table>
 
 <h4>Per-user annual economics</h4>
 <table>
 <tr><th>Line</th><th>Value</th></tr>
-<tr><td>Annual revenue (prepaid)</td><td>$299.00</td></tr>
+<tr><td>Annual revenue (prepaid upfront)</td><td>$299.00</td></tr>
 <tr><td>Annual pool capacity</td><td>156 GB (144 monthly + 12 emergency)</td></tr>
-<tr><td>Annual COGS</td><td>$106.56</td></tr>
+<tr><td>Annual base COGS (12 × 7.2 GB × $1.20)</td><td>$103.68</td></tr>
+<tr><td>Emergency usage cost (20% × 12 × $1.20)</td><td>$2.88</td></tr>
+<tr><td>Total annual COGS</td><td>$106.56</td></tr>
 <tr><td><strong>Annual profit per user</strong></td><td><strong>$192.44 (64% margin)</strong></td></tr>
 </table>
 
-<h3>2.8 Refuel</h3>
+<h3>2.8 Refuel (add-on)</h3>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
-<tr><td>Price</td><td><strong>$4.99 per 1 GB</strong> (dropped from $5.99 — matches Economy)</td></tr>
+<tr><td>Price</td><td><strong>$4.99 per 1 GB top-up</strong> (was $5.99 — dropped to match Economy)</td></tr>
+<tr><td>Pool</td><td>1 GB per refuel</td></tr>
 <tr><td>Available to</td><td>Active subscribers ONLY</td></tr>
+<tr><td>Carry</td><td>None</td></tr>
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
+<h4>Why refuel price was dropped from $5.99 to $4.99</h4>
+<p>The original $5.99 refuel rate was a "subscriber tax" — subscribers paid more per GB than PAYG users for the same product. That was both unfair and created the Economy backdoor. By matching refuel to Economy ($4.99) AND blocking Economy for subscribers, we close the loophole transparently.</p>
+
 <h2 id="bp-s3">4. Section 3 — Geo Cost Buckets</h2>
+<p>The simplest section structurally, but the most consequential numerically. Three cost buckets group countries by wholesale cost; a weighted mix produces a single "blended $/GB" number that every downstream tab uses as COGS.</p>
+
 <table>
-<tr><th>Bucket</th><th>Countries</th><th>$/GB (real Samurai)</th><th>% mix (placeholder)</th></tr>
-<tr><td>Tier-A (cheap)</td><td>JP, UK, SG, MY, HK, KR, US</td><td><strong>$0.85</strong></td><td>60%</td></tr>
-<tr><td>Tier-B (medium)</td><td>CA, AU, NZ, VN, UAE</td><td><strong>$1.40</strong></td><td>25%</td></tr>
-<tr><td>Tier-C (expensive)</td><td>IN, BR, SA, ZA</td><td><strong>$8.50</strong></td><td>15%</td></tr>
-<tr><td><strong>Blended cost / GB</strong></td><td></td><td><strong>$2.13</strong></td><td>—</td></tr>
+<tr><th>Bucket</th><th>Countries</th><th>$/GB (locked Samurai data)</th><th>% of trips (placeholder)</th></tr>
+<tr><td>Tier-A (cheap)</td><td>JP, UK, SG, MY, HK, KR, US</td><td><strong>$0.85</strong> (was $0.97 placeholder)</td><td>60%</td></tr>
+<tr><td>Tier-B (medium)</td><td>CA, AU, NZ, VN, UAE</td><td><strong>$1.40</strong> (was $1.50)</td><td>25%</td></tr>
+<tr><td>Tier-C (expensive)</td><td>IN, BR, SA, ZA</td><td><strong>$8.50</strong> (was $5.80 — actually worse than estimate)</td><td>15%</td></tr>
+<tr><td><strong>Blended cost / GB</strong></td><td></td><td><strong>$2.13</strong> at current mix</td><td>100%</td></tr>
 </table>
 
-<p>Costs are real Samurai data (locked). The % mix is flagged as placeholder — needs Akito to validate with 5-10 sample crew rosters.</p>
+<h4>Key insight from the Samurai data audit</h4>
+<p>Sampling Samurai's actual settlement prices for 1-GB short-trip plans revealed that <strong>Tier-C destinations are WORSE than we estimated</strong> (India: $5.21 for 2-day, South Africa: $10.00 for 2-day). This pushed the blended cost UP, not down, contrary to expectations.</p>
+<p><strong>The real lever is the % mix, not the bucket prices.</strong> Emirates crew don't fly evenly across all 67 layover countries — they concentrate on Asia + Europe + USA. The 60/25/15 mix is likely too aggressive on Tier-C for Emirates specifically.</p>
+
+<h4>Why the mix is flagged, not locked</h4>
+<p>The Emirates_Crew_Layover_Countries.xlsx file lists 67 countries (Africa 22, Europe 23, Asia Pacific 16, Americas 6) — but it gives country COUNT, not FLIGHT FREQUENCY. Real Emirates flight share is heavily Asia/Europe/USA, but we don't have the route-level data to validate exact percentages.</p>
+<p><strong>Validation path:</strong> Akito to collect 5-10 sample crew rosters → derive actual flight distribution → update the mix with real data.</p>
 
 <h2 id="bp-s4">5. Section 4 — Cabin-Class Mix</h2>
+<p>What % of paying users sit on each tier. Drives blended ARPU.</p>
+
 <table>
-<tr><th>Tier</th><th>%</th><th>Confidence</th></tr>
-<tr><td>Economy (PAYG)</td><td>50%</td><td>Medium</td></tr>
-<tr><td>Roster Bundle</td><td>18%</td><td>Low</td></tr>
-<tr><td>Premium Economy</td><td>13%</td><td>Medium</td></tr>
-<tr><td>Business ⭐</td><td>8%</td><td>Medium</td></tr>
-<tr><td>First</td><td>3%</td><td>Low</td></tr>
-<tr><td>First Suite</td><td>2%</td><td>Low</td></tr>
-<tr><td>Cockpit</td><td>3%</td><td>Low</td></tr>
-<tr><td>Refuel attach</td><td>30%</td><td>Medium</td></tr>
+<tr><th>Tier</th><th>%</th><th>Source</th><th>Confidence</th></tr>
+<tr><td>Economy (PAYG)</td><td>50%</td><td>SaaS benchmark — typically 40-60% in PAYG/free tier</td><td>Medium</td></tr>
+<tr><td>Roster Bundle</td><td>18%</td><td>Estimate — wedge feature, expect 15-25% adoption</td><td>Low</td></tr>
+<tr><td>Premium Economy</td><td>13%</td><td>SaaS subscription benchmark — entry tier 10-15%</td><td>Medium</td></tr>
+<tr><td>Business ⭐</td><td>8%</td><td>"Best value" tier captures 5-10% in tiered SaaS</td><td>Medium</td></tr>
+<tr><td>First</td><td>3%</td><td>Split arbitrarily from old "First 5%"</td><td>Low</td></tr>
+<tr><td>First Suite</td><td>2%</td><td>Split arbitrarily</td><td>Low</td></tr>
+<tr><td>Cockpit</td><td>3%</td><td>Annual prepay tiers typically 2-5%</td><td>Low</td></tr>
+<tr><td>Refuel attach</td><td>30%</td><td>SaaS top-up behavior 20-40% in PAYG-credits</td><td>Medium</td></tr>
 </table>
 
-<p>Honest assessment: these are informed guesses from general SaaS benchmarks. No public data exists for "eSIM products sold to airline cabin crew." Tab 7 (Behavior Sensitivity) now stress-tests this with 5 scenarios. <strong>Blended ARPU range: $14.55 — $21.48</strong> (current model $17.52 = middle).</p>
+<h4>Honest assessment of confidence</h4>
+<p>Nothing about this distribution is specifically validated for "eSIM products sold to airline cabin crew." This is a niche of a niche of a niche — no public dataset exists for it. The numbers are informed by general SaaS benchmarks (RevenueCat, OpenView, ProfitWell) and travel-app conversion rates, applied with crew-vertical adjustments.</p>
+
+<h4>Sensitivity stress-test added to Tab 7</h4>
+<p>Tab 7 (Behavior Sensitivity) now contains 5 mix scenarios spanning pessimistic to optimistic. Blended ARPU range: <strong>$14.55 — $21.48</strong> (current model sits at $17.52 = middle of range). This validates that the placeholder mix is in defensible territory.</p>
 
 <h2 id="bp-s5">6. Section 5 — Operating Cost per User per Month</h2>
+<p>Costs we pay per active user beyond wholesale data. These directly hit gross profit.</p>
+
 <table>
 <tr><th>Line</th><th>Value</th><th>Status</th></tr>
-<tr><td>Cloud / API per user</td><td>$0.15</td><td><span class="pill open">Placeholder OK</span></td></tr>
-<tr><td><strong>Payment processing</strong></td><td><strong>$1.20</strong> (3-scenario range)</td><td><span class="pill locked">Locked</span></td></tr>
-<tr><td>Customer support amortized</td><td>$0.30</td><td><span class="pill flagged">Phase-based fix needed</span></td></tr>
-<tr><td>SMS / OTP / verification</td><td>$0.05</td><td><span class="pill open">Placeholder OK</span></td></tr>
-<tr><td>Hosting + dev tools</td><td>$0.10</td><td><span class="pill open">Placeholder OK</span></td></tr>
-<tr><td><strong>TOTAL OPEX</strong></td><td><strong>$1.80/user/mo</strong></td><td></td></tr>
+<tr><td>Cloud / API per user</td><td>$0.15</td><td><span class="pill open">Placeholder, acceptable</span></td></tr>
+<tr><td><strong>Payment processing</strong></td><td><strong>$1.20</strong> (was $0.50 placeholder)</td><td><span class="pill locked">Locked with 3-scenario range</span></td></tr>
+<tr><td>Customer support amortized</td><td>$0.30</td><td><span class="pill flagged">Flagged — should be phase-based</span></td></tr>
+<tr><td>SMS / OTP / verification</td><td>$0.05</td><td><span class="pill open">Placeholder, acceptable</span></td></tr>
+<tr><td>Hosting + dev tools amortized</td><td>$0.10</td><td><span class="pill open">Placeholder, acceptable</span></td></tr>
+<tr><td><strong>TOTAL OPEX (current)</strong></td><td><strong>$1.80/user/mo</strong></td><td>Up from $1.10 original</td></tr>
 </table>
 
-<h4>Payment processing — 3-scenario range</h4>
+<h4>Why payment processing was the big change</h4>
+<p>The original $0.50 placeholder dramatically under-estimated Stripe + Apple IAP fees. Real calculation:</p>
 <table>
-<tr><th>Scenario</th><th>$/user/mo</th><th>At 100K users</th></tr>
-<tr><td>Optimistic (Stripe-only)</td><td>$1.00</td><td>$50K/mo</td></tr>
-<tr><td><strong>Realistic (mixed) ⭐</strong></td><td><strong>$1.20</strong></td><td>$120K/mo</td></tr>
-<tr><td>Conservative (IAP-heavy)</td><td>$1.50</td><td>$150K/mo</td></tr>
+<tr><th>Tier</th><th>Transactions/mo</th><th>Cost/user/mo</th></tr>
+<tr><td>Economy PAYG (2.5 × $4.99)</td><td>2.5</td><td>$1.10</td></tr>
+<tr><td>Premium Economy</td><td>1.3</td><td>$0.96</td></tr>
+<tr><td>Business</td><td>1.25</td><td>$1.29</td></tr>
+<tr><td>First Suite</td><td>1</td><td>$1.75</td></tr>
+<tr><td><strong>Weighted blended</strong></td><td></td><td><strong>~$1.00 Stripe-only / $1.20 mixed / $1.50 Apple IAP-heavy</strong></td></tr>
 </table>
+
+<h4>3-scenario payment processing range</h4>
+<table>
+<tr><th>Scenario</th><th>$/user/mo</th><th>At 100K users</th><th>When to use</th></tr>
+<tr><td>Optimistic (Stripe-only)</td><td>$1.00</td><td>$50K/mo</td><td>If we route all iOS via web checkout</td></tr>
+<tr><td><strong>Realistic (mixed)</strong> ⭐</td><td><strong>$1.20</strong></td><td>$120K/mo</td><td>CURRENT MODEL VALUE</td></tr>
+<tr><td>Conservative (IAP-heavy)</td><td>$1.50</td><td>$150K/mo</td><td>Use for investor pitches</td></tr>
+</table>
+
+<h4>What's still open in Section 5</h4>
+<ul>
+  <li><strong>Customer support</strong> should be phase-based: $2-3/user pre-launch → $0.50 early scale → $0.15-0.20 at 100K+ users (currently flat $0.30)</li>
+  <li><strong>Fixed Monthly Burn</strong> is missing entirely: founder salaries, legal/accounting, insurance, marketing, software stack — needs a separate section (~$2K-25K/mo)</li>
+</ul>
 
 <h2 id="bp-ladder">7. Final locked pricing ladder (summary)</h2>
 <table>
