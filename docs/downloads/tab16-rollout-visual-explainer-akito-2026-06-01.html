@@ -287,6 +287,14 @@
 <main>
 
 <!-- ============================================================ -->
+<!-- PLACEHOLDER NOTICE BANNER -->
+<!-- ============================================================ -->
+<div style="border: 2px solid #C9A03B; background: #FAF6F0; border-radius: 8px; padding: 18px 22px; margin: 24px 0 0; max-width: 1100px; margin-left: auto; margin-right: auto; box-sizing: border-box;">
+  <p style="margin: 0 0 8px; font-weight: 700; font-size: 15px; color: #7A5A10;">⚠️ PLACEHOLDER NOTICE — Fixed burn ($11K/mo) is not real data.</p>
+  <p style="margin: 0; font-size: 14px; color: #4A3A10; line-height: 1.6;">No expenses have been incurred yet as of 2026-06-01. The "$11K/mo fixed burn," "TRUE breakeven M11-M12," and cumulative cash trough figures in this report are <strong>estimates based on a placeholder assumption</strong> — not actual tracked spend. These projections will be updated as real costs are recorded. The user-payment unit economics in Tabs 1–3 (ARPU, COGS, net contribution) are <strong>not affected</strong> by this — only the rollout net column and breakeven timeline depend on this placeholder.</p>
+</div>
+
+<!-- ============================================================ -->
 <!-- SECTION 1: HERO -->
 <!-- ============================================================ -->
 <section class="first">
@@ -302,7 +310,7 @@
     <div class="t-phase burn">
       <div class="range">M1 – M5</div>
       <div class="status red">Burning cash</div>
-      <div class="desc">Net contribution &lt; $11K fixed burn</div>
+      <div class="desc">Net contribution &lt; $11K fixed burn <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;">PLACEHOLDER</span></div>
     </div>
     <div class="t-phase contrib">
       <div class="range">M6 – M11</div>
@@ -403,14 +411,14 @@
       <div class="month">~M6</div>
       <div class="name">First $5K month</div>
       <div class="users">450 <small>users</small></div>
-      <div class="note">Net contribution $4,738. Contribution-positive vs COGS — but $11K burn still not covered.</div>
+      <div class="note">Net contribution $4,738. Contribution-positive vs COGS — but $11K burn still not covered. <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;">PLACEHOLDER burn</span></div>
     </div>
     <div class="milestone-card gold">
       <div class="icon">&#9889;</div>
       <div class="month">M11–M12</div>
-      <div class="name">TRUE breakeven</div>
+      <div class="name">Breakeven est. <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;">PLACEHOLDER</span></div>
       <div class="users">~2,000 <small>users</small></div>
-      <div class="note">Net contribution covers the full $11K/mo fixed burn. Every dollar after this is real profit.</div>
+      <div class="note">IF fixed burn ends up around $11K/mo, breakeven hits M11–M12 — actual TBD once real expenses are tracked.</div>
     </div>
     <div class="milestone-card">
       <div class="icon">&#128200;</div>
@@ -424,7 +432,7 @@
       <div class="month">M24</div>
       <div class="name">$50K month</div>
       <div class="users">5,000 <small>users</small></div>
-      <div class="note">$52,650/mo net. $632K annualised run rate. Year-2 exit state.</div>
+      <div class="note">$52,650/mo net contribution (before fixed burn). $632K annualised run rate at M24 user scale. <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;">PLACEHOLDER burn not yet deducted</span></div>
     </div>
   </div>
 </section>
@@ -435,13 +443,13 @@
 <section>
   <h2 class="section-title"><span class="num">4</span>Cumulative cash position</h2>
   <p class="section-sub">
-    This chart includes the $11K/mo fixed burn (salaries, infra, ops) that the sheet's Net column does NOT show.
-    The trough — deepest negative — hits around M5-M6. The crossing back to zero is the TRUE breakeven.
+    This chart models the $11K/mo fixed burn (salaries, infra, ops) <strong style="color:#C9A03B;">— this is a placeholder, not actual tracked spend.</strong> The sheet's Net column does NOT show this cost.
+    The trough — deepest negative — hits around M5-M6 <em>under this assumption</em>. The crossing back to zero is the estimated breakeven.
   </p>
 
   <div class="chart-card">
-    <h3>Cumulative cash (net contribution minus $11K/mo fixed burn)</h3>
-    <p class="sub">Shaded area below zero = cash consumed from runway. Trough ~M5-M6 at approx. -$30K cumulative. Zero crossing ~M11-M12.</p>
+    <h3>Cumulative cash (net contribution minus $11K/mo fixed burn) <span style="background:#C9A03B;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:6px;">PLACEHOLDER</span></h3>
+    <p class="sub">Fixed burn = placeholder. Will be updated when real expenses are tracked. Trough ~M5-M6 at approx. -$30K cumulative. Zero crossing ~M11-M12 — all conditional on $11K/mo assumption.</p>
     <div class="chart-wrap tall"><canvas id="cumulativeChart"></canvas></div>
   </div>
 
@@ -456,10 +464,10 @@
 <!-- SECTION 5: THE HONEST TRUE BREAKEVEN CALLOUT -->
 <!-- ============================================================ -->
 <section>
-  <h2 class="section-title"><span class="num">5</span>The honest "TRUE breakeven" callout</h2>
+  <h2 class="section-title"><span class="num">5</span>The "TRUE breakeven" estimate <span style="background:#C9A03B;color:#fff;font-size:13px;font-weight:700;padding:2px 10px;border-radius:4px;margin-left:8px;vertical-align:middle;">PLACEHOLDER ASSUMPTION</span></h2>
   <p class="section-sub">
     The sheet's Net column looks good by M6. But that column only subtracts COGS — not the $11K/mo
-    you need to keep the lights on. Here's what the two breakevens actually mean.
+    fixed burn placeholder. Here's what the two breakeven estimates mean — <strong>neither is confirmed until real costs are tracked.</strong>
   </p>
 
   <div class="breakeven-block">
@@ -477,11 +485,9 @@
     <div class="be-row">
       <div class="icon">&#9888;&#65039;</div>
       <div class="body">
-        <div class="label">TRUE breakeven (incl. $11K/mo fixed burn) <span class="pill pill-red">M11-M12 · ~2,000 users</span></div>
+        <div class="label">Estimated breakeven (IF $11K/mo fixed burn holds) <span class="pill pill-red">M11-M12 · ~2,000 users</span> <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;">PLACEHOLDER</span></div>
         <div class="detail">
-          Net contribution exceeds the $11,000/month of fixed operating costs: estimated at ~$5K salaries,
-          ~$3K cloud/API/SMS infra, ~$2K legal/compliance, ~$1K misc. Until this point you are still losing
-          money in real terms even if the contribution column looks positive.
+          IF fixed costs land around $11,000/month (~$5K salaries, ~$3K cloud/API/SMS infra, ~$2K legal/compliance, ~$1K misc), net contribution would cover them by M11-M12. <strong>No actual expenses have been incurred yet as of 2026-06-01.</strong> This timeline will be updated once real costs are tracked.
         </div>
       </div>
     </div>
@@ -490,17 +496,17 @@
       <div class="body">
         <div class="label">Why the gap matters for investors <span class="pill pill-green">Action: raise for M11-M12</span></div>
         <div class="detail">
-          When fundraising, always use the TRUE breakeven number (M11-M12, ~$55-65K cumulative burn).
+          When fundraising, use the estimated breakeven range (M11-M12, ~$55-65K cumulative burn — <strong>based on $11K/mo placeholder</strong>).
           Citing M6 as breakeven will destroy credibility in any serious investor meeting.
-          The $11K fixed burn line is a separate tab in the cash model — make sure it's visible in every deck.
+          The $11K fixed burn line is a placeholder estimate in the cash model — update it before showing to investors once real costs are known.
         </div>
       </div>
     </div>
   </div>
 
   <div class="chart-card" style="margin-top:18px;">
-    <h3>Paper Net vs TRUE Net (after $11K/mo fixed burn) — same 24-month window</h3>
-    <p class="sub">Gold = contribution net. Red dashed = true net after $11K burn. The gap closes at M11-M12.</p>
+    <h3>Paper Net vs Estimated Net (after $11K/mo fixed burn placeholder) — same 24-month window</h3>
+    <p class="sub">Gold = contribution net. Red dashed = estimated net after $11K/mo placeholder burn. <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;">PLACEHOLDER</span> Fixed burn = not real data. Gap closes at M11-M12 <em>under this assumption</em>.</p>
     <div class="chart-wrap"><canvas id="breakevenChart"></canvas></div>
   </div>
 </section>
@@ -565,6 +571,23 @@
 </section>
 
 <!-- ============================================================ -->
+<!-- SECTION 6b: MARKETING & CAC ASSUMPTION -->
+<!-- ============================================================ -->
+<section>
+  <div style="background: #EEF6FB; border: 1px solid #A8D1E8; border-radius: 8px; padding: 22px 26px;">
+    <h3 style="margin: 0 0 10px; color: #1A4A6B; font-size: 18px; font-weight: 700;">Marketing &amp; CAC Assumption</h3>
+    <p style="margin: 0 0 12px; font-size: 14px; color: #2A3A4A; line-height: 1.65;">
+      Current model uses <strong>$8 CAC as a placeholder</strong>. User has confirmed: <strong>marketing spend = $0 for launch phase (word-of-mouth only).</strong>
+      Referral rewards may be added later as a separate line item. CAC scenarios in the sensitivity chart above should be read as
+      <em>"IF we ever pay for acquisition"</em> — not current state.
+    </p>
+    <p style="margin: 0; font-size: 13px; color: #3A5A7A; background: rgba(255,255,255,.6); border-radius: 6px; padding: 10px 14px;">
+      <strong>Practical implication:</strong> With $0 paid marketing, the CAC lever has no real downside risk at launch. Every new user in M1–M6 is organic crew-network. The $8 CAC assumption becomes relevant only if/when paid channels are introduced — update the model at that point.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
 <!-- SECTION 7: DANGEROUS CHURN ASSUMPTION -->
 <!-- ============================================================ -->
 <section>
@@ -617,8 +640,7 @@
     <div class="callout-red" style="margin-top:20px;">
       <strong>What breaks if we're wrong:</strong> If churn runs at 8% instead of 5%, the M24 user base falls from
       5,000 to approximately 3,000 and monthly net contribution drops from $52,650 to ~$31,000.
-      The TRUE breakeven slides from M11-M12 to approximately M14-M15. This is the single biggest assumption
-      to validate in the first 3 months post-launch.
+      The estimated breakeven slides from M11-M12 to approximately M14-M15 (both figures assume $11K/mo fixed burn — <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;">PLACEHOLDER</span>). This is the single biggest assumption to validate in the first 3 months post-launch.
     </div>
   </div>
 </section>
@@ -635,7 +657,7 @@
   <div class="investor-block">
     <div class="eyebrow">PEANUT ESIM — YEAR 2 RUN RATE (BASE CASE)</div>
     <div class="big-stat">$<span>632K</span>/yr</div>
-    <div class="stat-label">at 5,000 users · $52,650/mo net contribution · profitable off $11K/mo burn baseline</div>
+    <div class="stat-label">at 5,000 users · $52,650/mo net contribution · <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;">PLACEHOLDER</span> $11K/mo fixed burn not yet confirmed</div>
 
     <div class="investor-micro">
       <div class="item">
@@ -644,11 +666,11 @@
       </div>
       <div class="item">
         <div class="val">$<span>11K</span>/mo</div>
-        <div class="lbl">Fixed operating burn (salaries + infra)</div>
+        <div class="lbl">Fixed operating burn estimate <span style="background:#C9A03B;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;display:inline-block;margin-top:2px;">PLACEHOLDER</span></div>
       </div>
       <div class="item">
         <div class="val">M<span>11-12</span></div>
-        <div class="lbl">TRUE breakeven month</div>
+        <div class="lbl">Est. breakeven month <span style="background:#C9A03B;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;display:inline-block;margin-top:2px;">PLACEHOLDER</span></div>
       </div>
       <div class="item">
         <div class="val">~$<span>60K</span></div>
