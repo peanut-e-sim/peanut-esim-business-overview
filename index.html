@@ -112,10 +112,28 @@
     gap: 4px;
     margin-top: 12px;
     overflow-x: auto;
-    scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #999 #f0f0f0;
+    position: relative;
+    padding-bottom: 4px;
   }
-  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-nav::-webkit-scrollbar { height: 6px; }
+  .tab-nav::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 3px; }
+  .tab-nav::-webkit-scrollbar-thumb { background: #999; border-radius: 3px; }
+  .tab-nav::-webkit-scrollbar-thumb:hover { background: #666; }
+  /* Right-edge fade hint so users know to scroll */
+  .tab-nav-wrap { position: relative; }
+  .tab-nav-wrap::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 6px;
+    width: 32px;
+    background: linear-gradient(to right, transparent, #FAF6F0);
+    pointer-events: none;
+  }
   .tab-btn {
     padding: 11px 18px;
     background: transparent;
@@ -2636,6 +2654,7 @@
         <button class="lang-btn" data-lang="jp">日本語</button>
       </div>
     </div>
+    <div class="tab-nav-wrap">
     <nav class="tab-nav" id="tabNav">
       <button class="tab-btn active" data-tab="overview">
         <span class="lang en">Overview</span>
@@ -2689,6 +2708,7 @@
         <span class="lang jp">アプリ デモ ↗</span>
       </a>
     </nav>
+    </div>
     <div class="progress-wrap" id="progressWrap">
       <div class="progress-track">
         <div class="progress-fill" id="progressFill"></div>
