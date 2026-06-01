@@ -8848,18 +8848,26 @@ Mercury（米国法人銀行口座）
 </style>
 
 <header class="hero">
-  <span class="doc-tag">PEANUT ESIM · PRICING ARCHITECTURE</span>
-  <h1 class="lang en">Pricing <em>Architecture</em> — every plan, every decision.</h1>
-  <h1 class="lang jp">プライシング・アーキテクチャ — 全プラン、全意思決定</h1>
-  <p class="lead lang en">The full strategic walk-through behind Peanut's 7-tier ladder: cabin-class pricing logic, geo cost buckets, mix assumptions, operating cost, and the backdoor exploits we closed. What's locked, why, and what's still open. Last updated 2026-06-01.</p>
-  <p class="lead lang jp">Peanut の7段階ティア戦略を支える全ロジック解説：キャビンクラス価格論理、地域別コスト、ユーザー構成比、運営コスト、そして塞いだ抜け穴。確定事項、根拠、残課題。最終更新 2026-06-01。</p>
+  <span class="doc-tag">PEANUT ESIM · PRICING &amp; BEHAVIOR ARCHITECTURE</span>
+  <h1 class="lang en">Pricing &amp; Behavior <em>Architecture</em> — every plan, every decision, every assumption.</h1>
+  <h1 class="lang jp">プライシング・行動アーキテクチャ — 全プラン、全意思決定、全前提</h1>
+  <p class="lead lang en">The full strategic walk-through behind Peanut's 7-tier ladder (Tab 1) and the behavioral model that predicts how crew actually consume data (Tab 2). Cabin-class pricing logic, geo cost buckets, mix assumptions, operating cost, the backdoor exploits we closed — plus the 4 user archetypes, per-tier consumption rates, the 1-GB refill UX insight, and where breakage profit appears. What's locked, why, and what's still open. Last updated 2026-06-01.</p>
+  <p class="lead lang jp">Peanut の7段階ティア戦略を支える全ロジック (Tab 1) と、乗務員がデータをどう使うかを予測する行動モデル (Tab 2) の完全解説。キャビンクラス価格論理、地域別コスト、ユーザー構成比、運営コスト、塞いだ抜け穴、加えて4つのユーザー類型、ティア別消費率、1GBリフィルUXの洞察、ブレッケージ利益の源泉。確定事項、根拠、残課題。最終更新 2026-06-01。</p>
 </header>
 
 <div class="blueprint-doc">
 
 <div class="lede">
-This document captures the full reasoning and locked decisions behind Peanut eSIM's pricing architecture (Tab 1 of the P&amp;L Model). Every retail price, pool size, carryover rule, cost bucket, mix percentage, and operating cost line is explained: <strong>what's in the model</strong>, <strong>why it's there</strong>, and <strong>what's still open</strong>. Built once, never re-litigate.
+This document captures the full reasoning and locked decisions behind <strong>Tab 1 (Pricing Architecture)</strong> and <strong>Tab 2 (User Behavior)</strong> of the Peanut eSIM P&amp;L Model. Tab 1 sets every retail price, pool size, carryover rule, cost bucket, mix percentage, and operating cost line. Tab 2 then predicts how much of that pool crew will actually USE — the intelligence layer that drives COGS, gross margin, LTV, and breakage downstream. Together they form the foundation the rest of the 16-tab model pivots from. Built once, never re-litigate.
 </div>
+
+<div style="display:flex;gap:12px;margin:24px 0 28px;padding:18px 22px;background:#1A1A1A;color:white;border-radius:6px;align-items:center;flex-wrap:wrap;">
+  <strong style="font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#C9A03B;">Jump to:</strong>
+  <a href="#bp-tab1" style="color:white;text-decoration:none;padding:8px 16px;background:#D71921;border-radius:4px;font-weight:600;font-size:14px;">Tab 1 — Pricing Architecture</a>
+  <a href="#bp-tab2" style="color:white;text-decoration:none;padding:8px 16px;background:#2D7A4F;border-radius:4px;font-weight:600;font-size:14px;">Tab 2 — User Behavior</a>
+</div>
+
+<h2 id="bp-tab1" style="font-size:32px;border-bottom:3px solid #D71921;padding-bottom:12px;margin-top:8px;">PART I — Tab 1: Pricing Architecture</h2>
 
 <div class="toc">
 <strong>Table of Contents</strong>
@@ -9245,10 +9253,176 @@ This document captures the full reasoning and locked decisions behind Peanut eSI
 <tr><td>Lock final retail prices for India/Brazil/Africa zonal pricing (v1.1)</td><td>Balraj / Akito</td><td>Low (3-6mo post-launch)</td></tr>
 </table>
 
+<hr style="margin:64px 0 16px;border:0;border-top:3px dashed #C9A03B;">
+
+<h2 id="bp-tab2" style="font-size:32px;border-bottom:3px solid #2D7A4F;color:#2D7A4F;padding-bottom:12px;margin-top:8px;">PART II — Tab 2: User Behavior</h2>
+
+<div class="lede" style="border-left-color:#2D7A4F;">
+Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it predicts how much data crew will actually USE (not buy). Every downstream tab references this to compute COGS, gross margin, LTV, and breakage. We pay our supplier <strong>per GB consumed</strong>, not per GB sold — so predicting consumption accurately is the difference between profitable and unprofitable.
+</div>
+
+<div class="toc">
+<strong>Tab 2 — Table of Contents</strong>
+<ul>
+  <li><a href="#bp2-purpose">1. What Tab 2 does and why it matters</a></li>
+  <li><a href="#bp2-archetypes">2. The 4 user archetypes (Light / Average / Heavy / Churner)</a></li>
+  <li><a href="#bp2-pertier">3. Per-tier consumption — the real driver</a></li>
+  <li><a href="#bp2-friction">4. The 1-GB refill UX (the key insight)</a></li>
+  <li><a href="#bp2-breakage">5. Breakage column — where profit appears</a></li>
+  <li><a href="#bp2-downstream">6. How Tab 2 feeds the rest of the model</a></li>
+  <li><a href="#bp2-validation">7. Validation queue</a></li>
+  <li><a href="#bp2-ethics">8. Ethics — transparency-first breakage</a></li>
+</ul>
+</div>
+
+<h2 id="bp2-purpose">1. What Tab 2 does and why it matters</h2>
+<p>Tab 2 answers one question:</p>
+<blockquote>Given that a crew member buys a plan, <strong>how much data will they actually use</strong> — and how often will they refuel?</blockquote>
+<p>This single prediction drives every downstream tab. We pay our supplier <strong>per GB consumed</strong>, not per GB sold. So predicting consumption accurately is the difference between profitable and unprofitable.</p>
+<p>The tab has two layers:</p>
+<table>
+<tr><th>Layer</th><th>What it does</th></tr>
+<tr><td><strong>Layer 1 — Archetypes</strong></td><td>Defines 4 generic user types (Light / Average / Heavy / Churner) with their consumption + refuel attach rates. Conceptual model.</td></tr>
+<tr><td><strong>Layer 2 — Per-tier consumption</strong></td><td>Applies tier-specific consumption rates that <em>override</em> the archetype weighted average. The actual driver of COGS.</td></tr>
+</table>
+
+<h2 id="bp2-archetypes">2. The 4 user archetypes</h2>
+<p>Every paying crew member falls into one of four buckets, regardless of tier:</p>
+<table>
+<tr><th>Archetype</th><th>% of users</th><th>% pool consumed</th><th>Refuel attach</th><th>Mental picture</th></tr>
+<tr><td><strong>Light</strong></td><td>25%</td><td>30%</td><td>10%</td><td>"Subscribed Premium just in case." Pool sits mostly unused. The profit-engine cohort.</td></tr>
+<tr><td><strong>Average</strong></td><td>40%</td><td>65%</td><td>30%</td><td>Default crew. Eats most of pool. Refuels ~1 month in 3.</td></tr>
+<tr><td><strong>Heavy</strong></td><td>30%</td><td>95%</td><td>65%</td><td>Long-haul + connectivity dependent. Almost full consumption, often refuels.</td></tr>
+<tr><td><strong>Churner</strong></td><td>5%</td><td>10%</td><td>0%</td><td>Tries one month, cancels. Single-month pure breakage.</td></tr>
+</table>
+
+<h4>Why crew-skewed (25/40/30/5) instead of general (40/35/20/5)</h4>
+<p>Crew fly 8-12 layovers/month <em>as their job</em>. They're heavier travelers than vacationers. The bell curve shifts right. We're modeling truck drivers, not weekend tourists.</p>
+<p><strong>Confidence: <span class="pill open">Estimate</span></strong> — the 25/40/30/5 shift is logical but not validated by crew-specific data. Original 40/35/20/5 is grounded in general SaaS benchmarks (RevenueCat, ProfitWell, OpenView).</p>
+
+<h2 id="bp2-pertier">3. Per-tier consumption — the real driver</h2>
+<p>After we locked the <strong>1-GB refill UX</strong>, the single weighted average from archetypes no longer reflected reality. Friction makes a Premium user behave differently than a First Suite user even when they're both "Average."</p>
+<p>So we replaced the single weighted average with per-tier rates:</p>
+<table>
+<tr><th>Tier</th><th>Pool</th><th>% Consumed</th><th>GB Consumed</th><th>Reasoning</th></tr>
+<tr><td>Economy (PAYG)</td><td>1 GB</td><td>100%</td><td>1 GB</td><td>Buy what you need, consume what you buy</td></tr>
+<tr><td>Roster Bundle</td><td>5 flights</td><td>100%</td><td>5 SIMs</td><td>Per-flight, each used on that trip</td></tr>
+<tr><td><strong>Premium Economy</strong></td><td>10 GB</td><td><strong>40%</strong></td><td>4 GB</td><td>Small pool, 1-GB friction caps usage</td></tr>
+<tr><td><strong>Business ⭐</strong></td><td>15 GB</td><td><strong>45%</strong></td><td>6.75 GB</td><td>Slightly heavier users, same friction</td></tr>
+<tr><td><strong>First</strong></td><td>25 GB</td><td><strong>54%</strong></td><td>13.5 GB</td><td>Heavy users push near friction cap</td></tr>
+<tr><td><strong>First Suite</strong></td><td>40 GB</td><td><strong>33%</strong></td><td>13.2 GB</td><td>Same heavy users (~13 GB), big pool dilutes %</td></tr>
+<tr><td><strong>Cockpit</strong></td><td>12 GB</td><td><strong>60%</strong></td><td>7.2 GB</td><td>Tight pool, friction less constraining</td></tr>
+<tr><td>Refuel</td><td>1 GB</td><td>100%</td><td>1 GB</td><td>Top-up, consumed on purchase</td></tr>
+</table>
+
+<p><strong>Confidence: <span class="pill open">Estimate</span></strong> — these per-tier rates are derived from the friction logic. Real consumption could land 30-70% depending on UX behavior. App analytics months 1-3 post-launch will replace estimates with measured values.</p>
+
+<h2 id="bp2-friction">4. The 1-GB refill UX (the key insight)</h2>
+<p>Users see <strong>only 1 GB active at a time</strong>. When that GB runs out, they tap "Refill from pool" to get the next GB. The pool is always visible (transparency), but refill requires manual action.</p>
+<p>This single design choice produces three compounding effects:</p>
+<table>
+<tr><th>Effect</th><th>Mechanism</th></tr>
+<tr><td>Lower consumption</td><td>Friction-limited usage drops from ~62.5% to ~40-60% per tier</td></tr>
+<tr><td>More breakage</td><td>Unused pool either carries (deferred breakage) or expires immediately</td></tr>
+<tr><td>Pool expansion is free</td><td>Going from 25 GB First to 40 GB First Suite doesn't change COGS — friction still caps usage at ~13 GB. Bigger pool just improves perceived value.</td></tr>
+</table>
+
+<h4>The "pool expansion is free" insight in numbers</h4>
+<table>
+<tr><th>Tier</th><th>Pool</th><th>Friction-capped consumption</th><th>Per-GB price</th></tr>
+<tr><td>Premium Economy</td><td>10 GB</td><td>4 GB (40%)</td><td>$1.80</td></tr>
+<tr><td>Business</td><td>15 GB</td><td>6.75 GB (45%)</td><td>$2.00</td></tr>
+<tr><td>First</td><td>25 GB</td><td>13.5 GB (54%)</td><td>$1.60</td></tr>
+<tr><td><strong>First Suite ⭐</strong></td><td><strong>40 GB</strong></td><td><strong>13.2 GB (33%)</strong></td><td><strong>$1.25</strong> ← best on ladder</td></tr>
+</table>
+<p>First Suite consumes the same absolute GB as First but with a 60% bigger pool. Same COGS, dramatically better marketing position. That's why First Suite is the <strong>anchor product</strong>.</p>
+
+<h2 id="bp2-breakage">5. Breakage column — where profit appears</h2>
+<p>Breakage = <strong>GB the user paid for, but never used.</strong> Once it expires (no carryover left), we keep the revenue but never pay our supplier. <strong>100% margin on those GB.</strong></p>
+
+<table>
+<tr><th>Tier</th><th>Pool</th><th>Consumed</th><th>Unused</th><th>Carries</th><th>Immediate Breakage</th></tr>
+<tr><td><strong>Premium Economy</strong></td><td>10 GB</td><td>4 GB</td><td>6 GB</td><td>3 GB (50%)</td><td><strong>3 GB</strong> ⭐</td></tr>
+<tr><td><strong>Business</strong></td><td>15 GB</td><td>6.75 GB</td><td>8.25 GB</td><td>5.78 GB (70%)</td><td><strong>2.48 GB</strong></td></tr>
+<tr><td><strong>First</strong></td><td>25 GB</td><td>13.5 GB</td><td>11.5 GB</td><td>11.5 GB (100%)</td><td><strong>0 GB</strong> (deferred)</td></tr>
+<tr><td><strong>First Suite</strong></td><td>40 GB</td><td>13.2 GB</td><td>26.8 GB</td><td>26.8 GB (100%)</td><td><strong>0 GB</strong> (deferred)</td></tr>
+<tr><td><strong>Cockpit</strong></td><td>12 GB</td><td>7.2 GB</td><td>4.8 GB</td><td>4.8 GB (100%)</td><td><strong>0 GB</strong> (deferred)</td></tr>
+</table>
+
+<h4>Why top tiers show ZERO immediate breakage</h4>
+<p>First, First Suite, and Cockpit all have <strong>100% × 2 month carry</strong>. That means month 1 unused rolls forward, doesn't break immediately. Real breakage hits at end of month 2 as carryover ages out.</p>
+<p>Tab 10 (Carryover Liability) tracks this aging properly. Tab 2 shows only the monthly snapshot.</p>
+
+<h4>Breakage in dollars (Premium Economy example)</h4>
+<p>3 GB breakage × $1.20 blended wholesale = <strong>$3.60 of pure profit per Premium user per month</strong>.</p>
+<table>
+<tr><th>Scale</th><th>Premium users (13%)</th><th>Monthly breakage profit</th><th>Annual</th></tr>
+<tr><td>10,000 users</td><td>1,300</td><td>$4,680</td><td>$56,160</td></tr>
+<tr><td>100,000 users</td><td>13,000</td><td>$46,800</td><td><strong>$561,600</strong></td></tr>
+</table>
+
+<h2 id="bp2-downstream">6. How Tab 2 feeds the rest of the model</h2>
+<p>Tab 2 outputs flow into 7+ downstream tabs:</p>
+<table>
+<tr><th>Tab</th><th>Uses Tab 2 for...</th><th>Produces</th></tr>
+<tr><td>Tab 3 — Per-Tier Unit Economics</td><td>GB Consumed → COGS per user</td><td>Gross margin per tier</td></tr>
+<tr><td>Tab 4 — Pricing Simulator</td><td>Behavior inputs</td><td>Break-even / margin-target retail prices</td></tr>
+<tr><td>Tab 5 — Volume Scenarios</td><td>Per-user economics × user counts</td><td>1K / 5K / 10K / 100K P&amp;L</td></tr>
+<tr><td>Tab 7 — Behavior Sensitivity</td><td>Archetype mix (rows 7-11)</td><td>What-if mix scenarios</td></tr>
+<tr><td>Tab 8 — LTV-CAC + Churn</td><td>Consumption + churn</td><td>Lifetime value per tier</td></tr>
+<tr><td>Tab 10 — Carryover Liability</td><td>GB Carries column</td><td>Deferred revenue + aging schedule</td></tr>
+<tr><td>Tab 11 — Strategic Scenarios</td><td>Behavior under different supplier paths</td><td>Wholesale supplier vs direct comparison</td></tr>
+<tr><td>Per-plan Logic tabs</td><td>Per-tier consumption + behavior</td><td>Plan-specific deep-dive economics</td></tr>
+</table>
+
+<blockquote>Tab 2 is the factory floor. Every other tab is a different report from the same factory. Change ANY number in Tab 2 and the entire workbook recalculates.</blockquote>
+
+<h2 id="bp2-validation">7. Validation queue — what needs real data</h2>
+<p>About half of Tab 2's numbers are educated estimates. The validation queue captures everything that needs to be tested against real data:</p>
+<table>
+<tr><th>Item to validate</th><th>Owner</th><th>When</th><th>Status</th></tr>
+<tr><td>Archetype mix (25/40/30/5 crew-skewed)</td><td>Akito</td><td>This week</td><td><span class="pill open">Estimate</span></td></tr>
+<tr><td>Per-archetype consumption % (30/65/95/10)</td><td>Akito</td><td>Same crew interviews</td><td><span class="pill open">Estimate</span></td></tr>
+<tr><td>Per-archetype refuel attach (10/30/65/0%)</td><td>Akito</td><td>Same crew interviews</td><td><span class="pill open">Estimate</span></td></tr>
+<tr><td>Per-tier consumption rates (40/45/54/33/60%)</td><td>App analytics</td><td>Months 1-3 post-launch</td><td><span class="pill open">Estimate</span></td></tr>
+<tr><td>Refuel attach by tier (still uses archetype avg)</td><td>Claude</td><td>Next pass</td><td><span class="pill flagged">Bug to fix</span></td></tr>
+<tr><td>Document Economy/Roster "100% consumption" model abstraction</td><td>Claude</td><td>This blueprint</td><td><span class="pill locked">Done</span></td></tr>
+<tr><td>Add "Source / Confidence" column to Tab 2</td><td>Claude</td><td>Next pass</td><td><span class="pill open">Pending</span></td></tr>
+</table>
+
+<h4>Akito's crew interview script — what to ask</h4>
+<table>
+<tr><th>Question</th><th>What it validates</th></tr>
+<tr><td>"In a typical month, how much of your data plan do you actually use? Most of it? Some? Barely any?"</td><td>Archetype distribution (Light/Avg/Heavy)</td></tr>
+<tr><td>"Do you usually need to buy a top-up before the end of the month?"</td><td>Refuel attach rate</td></tr>
+<tr><td>"When you have extra data left at end of month, does it bother you to lose it?"</td><td>Carryover sensitivity</td></tr>
+<tr><td>"How would you feel about uploading your monthly roster for automatic eSIM activation?"</td><td>Roster Bundle adoption</td></tr>
+<tr><td>"What's the most you'd pay per month for a reliable global travel eSIM?"</td><td>Price ceiling validation</td></tr>
+</table>
+
+<h2 id="bp2-ethics">8. Ethics — transparency-first breakage</h2>
+<p>Breakage is a real profit lever. But it's only ethical if the user has every chance to consume what they paid for.</p>
+
+<table>
+<tr><th>Locked transparency rule</th><th>Why</th></tr>
+<tr><td>Pool ALWAYS visible</td><td>Never hide what user paid for</td></tr>
+<tr><td>Refill button visible at all times</td><td>One tap, no hidden friction</td></tr>
+<tr><td>Day-25 reminder push notification</td><td>Give them every chance to consume</td></tr>
+<tr><td>Carryover shown explicitly: "Y GB will carry, Z GB will expire"</td><td>Honest disclosure</td></tr>
+</table>
+
+<blockquote>Breakage we earn from honest forgetfulness is fair revenue. Breakage we earn from hidden mechanics is fraud.</blockquote>
+
+<p>This was Balraj's call (2026-06-01). The locked policy means even though the 1-GB refill UX creates more breakage, every user has full visibility and explicit reminders. They can fully utilize their pool if they want to.</p>
+
 <p style="margin-top:32px;color:#4A4A4A;font-size:13px;">
-<strong>Cross-references:</strong> Per-plan deep dives live in the xlsx — <code>Economy Logic</code>, <code>Roster Bundle Logic</code>, <code>Premium Economy Logic</code>, <code>Business Logic</code>, <code>First Logic</code>, <code>First Suite Logic</code>, <code>Cockpit Logic</code>. Sensitivity in Tab 7. Live Google Sheet syncs all changes.
+<strong>Cross-references:</strong> Per-plan deep dives live in the xlsx — <code>Economy Logic</code>, <code>Roster Bundle Logic</code>, <code>Premium Economy Logic</code>, <code>Business Logic</code>, <code>First Logic</code>, <code>First Suite Logic</code>, <code>Cockpit Logic</code>. Sensitivity in Tab 7. Carryover aging in Tab 10. Live Google Sheet syncs all changes.
 <br><br>
-<a href="docs/downloads/tab1-in-depth-report-2026-06-01.html" target="_blank">Open as standalone document ↗</a> ·
+<strong>Standalone reports:</strong>
+<a href="docs/downloads/tab1-in-depth-report-2026-06-01.html" target="_blank">Tab 1 — Pricing Architecture ↗</a> ·
+<a href="docs/downloads/tab2-in-depth-report-2026-06-01.html" target="_blank">Tab 2 — User Behavior ↗</a>
+<br><br>
+<strong>Live model:</strong>
 <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit" target="_blank">Open live Google Sheet ↗</a> ·
 <a href="docs/downloads/Peanut-eSIM-PL-Model-2026-05-31.xlsx" download>Download xlsx model</a>
 </p>
