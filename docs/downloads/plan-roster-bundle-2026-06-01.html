@@ -60,15 +60,15 @@
   .big-metric { text-align: center; padding: 28px 16px; }
   .big-metric .val { font-size: clamp(40px, 6vw, 58px); font-weight: 700; letter-spacing: -1.5px; line-height: 1; }
   .big-metric .lbl { font-size: 13px; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: .5px; }
-  .honest-read { background: #fff3e0; border-left: 4px solid #e67e22; border-radius: 0 10px 10px 0; padding: 18px 20px; font-size: 14.5px; color: #5a3010; margin-top: 6px; }
-  .honest-read strong { display: block; font-size: 15px; margin-bottom: 6px; color: #3a1a00; }
+  .honest-read { background: #f0fff4; border-left: 4px solid #1a8a5a; border-radius: 0 10px 10px 0; padding: 18px 20px; font-size: 14.5px; color: #0a4a20; margin-top: 6px; }
+  .honest-read strong { display: block; font-size: 15px; margin-bottom: 6px; color: #062a10; }
   .scale-bar-wrap { margin-top: 14px; }
   .scale-row { display: flex; align-items: center; gap: 12px; margin: 8px 0; font-size: 13px; }
   .scale-row .slbl { width: 130px; color: #444; flex-shrink: 0; }
   .scale-outer { flex: 1; background: #f0ece2; border-radius: 6px; height: 26px; overflow: hidden; }
   .scale-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; padding: 0 10px; color: #fff; font-size: 11px; font-weight: 700; }
   footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 50px; }
-  .amber-flag { background: #fff3e0; border-left: 4px solid #e67e22; border-radius: 0 10px 10px 0; padding: 16px 20px; font-size: 14px; color: #5a3010; }
+  .green-flag { background: #F0FFF4; border-left: 4px solid #1a8a5a; border-radius: 0 10px 10px 0; padding: 16px 20px; font-size: 14px; color: #0a4a20; }
 </style>
 </head>
 <body>
@@ -89,43 +89,44 @@
 <div class="hero-banner">
   <div class="plan-tag">Tier 2 of 7 · Per-flight</div>
   <h1>Roster Bundle</h1>
-  <div class="pos">Auto-armed per flight leg — the crew-native entry point for light flyers who think in flights, not months.</div>
+  <div class="pos">Auto-armed per flight leg — the crew-native entry point for light flyers who think in flights, not months. ~5 flights/mo = $19.95 ARPU.</div>
   <span class="badge-updated">Updated 2026-06-01</span>
-  <div class="price-big">$3.99 <small>/ flight</small></div>
+  <div class="price-big">$19.95 <small>/ month (~5 flights × $3.99)</small></div>
 </div>
 
 <section>
   <h2 class="sec"><span class="icon">👤</span>Who it's for</h2>
   <p class="sec-sub">The persona behind this plan</p>
   <div class="card">
-    <p>Crew who find monthly subscriptions wasteful but still want automatic connectivity for every flight. <strong>Example:</strong> Kenji, a part-time FA flying 4-6 legs a month, doesn't want to think about eSIM — he uploads his roster, the plan fires for each flight, and he's billed per leg at $3.99. The auto-cap at $39.99/mo (10 flights) means it never blows up. Roster Bundle is the entry funnel for crew who are "roster-first" thinkers.</p>
-    <p style="margin-top:10px; color: var(--muted); font-size: 13px;">Assumes 5% refuel attach — crew flying multiple legs sometimes blow their 3 GB mid-trip and need a top-up.</p>
+    <p>Crew who find monthly subscriptions wasteful but still want automatic connectivity for every flight. <strong>Example:</strong> Kenji, a part-time FA flying 4-6 legs a month, doesn't want to think about eSIM — he uploads his roster, the plan fires for each flight at $3.99/leg, and he's billed per leg. The auto-cap at $39.99/mo (10 flights) means it never blows up. Roster Bundle is the entry funnel for crew who are "roster-first" thinkers.</p>
+    <p style="margin-top:10px; color: var(--muted); font-size: 13px;">Model uses average 5 flights/mo = $19.95 ARPU. Pool is 5 GB total across those flights (1 GB/flight avg), 100% consumed (PAYG model — all delivered data is used). Refuel attach 10%.</p>
   </div>
 </section>
 
 <section>
-  <h2 class="sec"><span class="icon">💰</span>The math — 1 flight (3 GB pool, avg 45% use)</h2>
+  <h2 class="sec"><span class="icon">💰</span>The math — monthly (5 flights avg, 5 GB pool, 100% consumed)</h2>
   <div class="card">
     <table class="flow-table">
-      <tr><td>User pays per flight</td><td class="val">$3.99</td></tr>
-      <tr><td class="lbl">Pool per flight</td><td class="val">3 GB</td></tr>
-      <tr><td class="lbl">Consumption rate</td><td class="val">45%</td></tr>
-      <tr><td class="lbl">GB consumed</td><td class="val">1.35 GB</td></tr>
-      <tr><td class="lbl">COGS @ $1.34/GB</td><td class="val" style="color:var(--red);">−$1.81</td></tr>
-      <tr><td class="lbl">Refuel attach (5% × $4.99)</td><td class="val" style="color:#0e7e7e;">+$0.25</td></tr>
-      <tr class="total-row"><td>Net contribution</td><td class="val" style="color:#1a8a5a;">$2.43</td></tr>
-      <tr><td class="lbl">Gross margin %</td><td class="val">55% (pre-refuel) / 57% (with refuel)</td></tr>
+      <tr><td>User pays (5 flights × $3.99)</td><td class="val">$19.95</td></tr>
+      <tr><td class="lbl">Pool (5 GB total)</td><td class="val">5 GB</td></tr>
+      <tr><td class="lbl">Consumption rate</td><td class="val">100%</td></tr>
+      <tr><td class="lbl">GB consumed</td><td class="val">5.0 GB</td></tr>
+      <tr><td class="lbl">COGS @ $1.34/GB</td><td class="val" style="color:var(--red);">−$6.70</td></tr>
+      <tr><td class="lbl">Refuel attach (10% × $4.99)</td><td class="val" style="color:#0e7e7e;">+$0.50</td></tr>
+      <tr><td class="lbl">Refuel COGS (10% × $1.34)</td><td class="val" style="color:var(--red);">−$0.13</td></tr>
+      <tr class="total-row"><td>Net contribution</td><td class="val" style="color:#1a8a5a;">$13.62</td></tr>
+      <tr><td class="lbl">Gross margin %</td><td class="val">67%</td></tr>
     </table>
   </div>
 </section>
 
 <section>
-  <h2 class="sec"><span class="icon">📊</span>Pool vs. consumption per flight</h2>
-  <p class="sec-sub">3 GB pool — 1.35 GB consumed = 55% headroom per flight</p>
+  <h2 class="sec"><span class="icon">📊</span>Pool vs. consumption</h2>
+  <p class="sec-sub">5 GB pool — 100% consumed (per-flight PAYG — no carry-forward)</p>
   <div class="card">
     <div class="chart-wrap"><canvas id="poolChart"></canvas></div>
     <p style="margin-top:14px; font-size:13px; color:var(--muted);">
-      1.35 GB used of 3 GB pool = <strong>55% headroom per flight</strong>. No carry-forward on this plan — unused data from flight A doesn't roll into flight B. This ensures COGS stay low per leg.
+      5 GB fully consumed across ~5 flights. No carry-forward on this plan — unused data from flight A doesn't roll into flight B. Because all purchased data is consumed, there is no breakage. This is a clean PAYG model at the monthly level.
     </p>
   </div>
 </section>
@@ -135,19 +136,19 @@
   <div class="two-col">
     <div class="card">
       <div class="big-metric">
-        <div class="val" style="color: #e67e22;">55%</div>
-        <div class="lbl">Gross margin (per flight, pre-refuel)</div>
+        <div class="val" style="color: #1a8a5a;">67%</div>
+        <div class="lbl">Gross margin (with 10% refuel attach)</div>
       </div>
     </div>
     <div class="card">
       <div class="big-metric">
-        <div class="val" style="color: #1a8a5a;">57%</div>
-        <div class="lbl">Gross margin (with 5% refuel attach)</div>
+        <div class="val" style="color: #1a8a5a;">$13.62</div>
+        <div class="lbl">Net contribution / user / month</div>
       </div>
     </div>
   </div>
-  <div class="amber-flag" style="margin-top:14px;">
-    55-57% margin is the lowest among subscription/per-flight tiers. This plan is a loss-leader anchor — the goal is to get crew habituated to Peanut eSIM, then convert them to Premium Economy or Business.
+  <div class="green-flag" style="margin-top:14px;">
+    67% margin — strong tier, not a loss-leader. The per-flight model ($3.99 × ~5 flights = $19.95/mo) attracts crew who don't want a subscription but fly often. Refuel attach 10% adds modest uplift. Better economics than the prior model assumed.
   </div>
 </section>
 
@@ -161,22 +162,22 @@
 <section>
   <h2 class="sec"><span class="icon">🚀</span>At 1,000 Roster Bundle users / month</h2>
   <div class="card">
-    <p style="font-size:14px; margin:0 0 16px; color:#333;">Assumes avg 5 flights/user/month (=$19.95 ARPU):</p>
+    <p style="font-size:14px; margin:0 0 16px; color:#333;">Assumes avg 5 flights/user/month (= $19.95 ARPU):</p>
     <div class="scale-bar-wrap">
       <div class="scale-row">
         <div class="slbl">Monthly revenue</div>
-        <div class="scale-outer"><div class="scale-fill" style="width:100%; background:#0a5f5f;">$19,950</div></div>
+        <div class="scale-outer"><div class="scale-fill" style="width:100%; background:#0a5f5f;">$20,450</div></div>
       </div>
       <div class="scale-row">
         <div class="slbl">Total COGS</div>
-        <div class="scale-outer"><div class="scale-fill" style="width:45%; background:var(--red);">$9,050</div></div>
+        <div class="scale-outer"><div class="scale-fill" style="width:33%; background:var(--red);">$6,830</div></div>
       </div>
       <div class="scale-row">
         <div class="slbl">Net contribution</div>
-        <div class="scale-outer"><div class="scale-fill" style="width:55%; background:#1a8a5a;">$10,900/mo</div></div>
+        <div class="scale-outer"><div class="scale-fill" style="width:67%; background:#1a8a5a;">$13,620/mo</div></div>
       </div>
     </div>
-    <p style="margin-top:14px; font-size:13px; color:var(--muted);">$10,900/mo = <strong>$130,800/yr</strong> — but Roster Bundle is ~18% of mix, so its absolute contribution is meaningful.</p>
+    <p style="margin-top:14px; font-size:13px; color:var(--muted);">$13,620/mo = <strong>$163,440/yr</strong> from Roster Bundle at 1,000 users.</p>
   </div>
 </section>
 
@@ -184,15 +185,15 @@
   <h2 class="sec"><span class="icon">🎛️</span>Sensitivity</h2>
   <div class="card">
     <div class="chart-wrap" style="height:240px;"><canvas id="sensChart"></canvas></div>
-    <p style="margin-top:12px; font-size:13px; color:var(--muted);">Base: 5 flights/mo, $1.34/GB. Scenarios: +10pp usage, $2/GB wholesale, refuel attach doubles to 10%.</p>
+    <p style="margin-top:12px; font-size:13px; color:var(--muted);">Base: 5 flights/mo, $1.34/GB, 10% refuel. Scenarios: +10pp usage, $2/GB wholesale, refuel doubles to 20%.</p>
   </div>
 </section>
 
 <section>
   <h2 class="sec"><span class="icon">🔍</span>The honest read</h2>
   <div class="honest-read">
-    <strong>Roster Bundle: Loss-leader anchor — barely worth running on its own.</strong>
-    At $2.43/flight net and ~5 flights/month, you're making $12.15/user vs. $11.15 for Premium Economy on a higher price point. The math isn't the point. Roster Bundle exists as a gateway: it captures crew who won't commit to monthly billing, builds habit around Peanut eSIM's roster-upload UX (our core wedge vs. Crew SIM), and creates a natural upgrade path. Run it, but make every session include an upgrade nudge.
+    <strong>Roster Bundle: 67% margin — strong tier, not a loss-leader. The per-flight model attracts crew who don't want a subscription but fly often.</strong>
+    The per-flight model ($3.99 × ~5 flights = $19.95/mo) attracts crew who don't want a subscription but fly often. Refuel attach 10% adds modest uplift. The key insight: 100% consumption rate means no breakage math — what's sold is used, making unit economics transparent and predictable. Run it, and use every session as a natural upgrade nudge to Premium Economy.
   </div>
 </section>
 
@@ -205,28 +206,28 @@ Chart.defaults.font.family='"Helvetica Neue",Helvetica,Arial,sans-serif';
 Chart.defaults.color='#3a3a3a'; Chart.defaults.font.size=12;
 
 new Chart(document.getElementById('poolChart'),{type:'bar',data:{
-  labels:['Per-flight pool'],
+  labels:['Monthly pool (5 flights)'],
   datasets:[
-    {label:'Pool (3 GB)',data:[3],backgroundColor:'#e0dcd0',borderRadius:6,borderSkipped:false},
-    {label:'Consumed (1.35 GB)',data:[1.35],backgroundColor:TEAL,borderRadius:6,borderSkipped:false}
+    {label:'Pool (5 GB)',data:[5],backgroundColor:'#e0dcd0',borderRadius:6,borderSkipped:false},
+    {label:'Consumed (5.0 GB — 100%)',data:[5.0],backgroundColor:TEAL,borderRadius:6,borderSkipped:false}
   ]
 },options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{position:'bottom'}},
-scales:{x:{max:3.5,ticks:{callback:v=>v+'GB'},grid:{color:'#eee'}},y:{grid:{display:false}}}}});
+scales:{x:{max:5.5,ticks:{callback:v=>v+'GB'},grid:{color:'#eee'}},y:{grid:{display:false}}}}});
 
 new Chart(document.getElementById('revCogsChart'),{type:'bar',data:{
-  labels:['Per flight'],
+  labels:['Monthly (5 flights)'],
   datasets:[
-    {label:'Revenue',data:[3.99],backgroundColor:TEAL,borderRadius:6,borderSkipped:false},
-    {label:'COGS',data:[1.81],backgroundColor:RED,borderRadius:6,borderSkipped:false},
-    {label:'Net Contribution',data:[2.18],backgroundColor:GREEN,borderRadius:6,borderSkipped:false}
+    {label:'Revenue',data:[20.45],backgroundColor:TEAL,borderRadius:6,borderSkipped:false},
+    {label:'COGS',data:[6.83],backgroundColor:RED,borderRadius:6,borderSkipped:false},
+    {label:'Net Contribution',data:[13.62],backgroundColor:GREEN,borderRadius:6,borderSkipped:false}
   ]
 },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},
 scales:{y:{ticks:{callback:v=>'$'+v},grid:{color:'#eee'}},x:{grid:{display:false}}}}});
 
 new Chart(document.getElementById('sensChart'),{type:'bar',data:{
-  labels:['Base (5 flights)','↑ +10pp use','Wholesale $2/GB','Refuel 2× (10%)'],
-  datasets:[{label:'Net contribution per user/mo',data:[12.15,11.15,9.65,13.40],
-    backgroundColor:[TEAL,AMBER,RED,GREEN],borderRadius:6,borderSkipped:false}]
+  labels:['Base (5 flights)','Wholesale $2/GB','Refuel 2× (20%)','6 flights/mo'],
+  datasets:[{label:'Net contribution per user/mo',data:[13.62,10.97,14.11,16.52],
+    backgroundColor:[TEAL,RED,GREEN,AMBER],borderRadius:6,borderSkipped:false}]
 },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
 scales:{y:{ticks:{callback:v=>'$'+v},grid:{color:'#eee'}},x:{grid:{display:false}}}}});
 </script>

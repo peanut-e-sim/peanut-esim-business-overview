@@ -71,7 +71,7 @@ hr { border:0; border-top:1px solid var(--line); margin:40px 0; }
 </div>
 
 <div class="lede">
-This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Economics</strong> of the Peanut eSIM P&amp;L Model. Tab 3 answers a single question: <em>"For one subscriber on each plan, in one month, how much profit do we make?"</em> The walkthrough explains all 13 columns (3 column groups), the locked per-tier results, the strategic insights about which tier wins, and the downstream tabs that depend on these numbers.
+This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Economics</strong> of the Peanut eSIM P&amp;L Model. Tab 3 answers a single question: <em>"For one subscriber on each plan, in one month, how much profit do we make?"</em> The walkthrough explains all 13 columns (3 column groups), the locked per-tier results, the strategic insights about which tier wins, and the downstream tabs that depend on these numbers. <strong>Every tier is profitable — the ladder ranges from 62% (Cockpit) to 73% (Economy/Refuel) gross margin.</strong>
 </div>
 
 <div class="toc">
@@ -110,6 +110,7 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <tr><td>A</td><td>Tier name</td><td>Tab 1 row label</td><td>Business ⭐</td></tr>
 <tr><td>B</td><td>Monthly Revenue</td><td>Tab 1 retail price</td><td>$29.99</td></tr>
 <tr><td>C</td><td>GB Consumed</td><td>Tab 2 per-tier consumption</td><td>6.75 GB (45% of 15 GB pool)</td></tr>
+
 <tr><td>D</td><td>Wholesale $/GB</td><td>Tab 1 blended cost ($1.34 at 75/20/5 mix)</td><td>$1.34/GB</td></tr>
 </table>
 
@@ -142,45 +143,45 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 
 <table>
 <tr><th>Tier</th><th>Revenue</th><th>GB Consumed</th><th>eSIM COGS</th><th>Refuel Net</th><th>Total Rev</th><th>Total COGS</th><th>Gross Profit</th><th>Gross Margin</th><th>Net Margin</th></tr>
-<tr><td>Economy (PAYG)</td><td>$4.99</td><td>1.0</td><td>$1.34</td><td>$0.00</td><td>$4.99</td><td>$1.34</td><td>$3.65</td><td>73.1%</td><td>36.0%</td></tr>
-<tr><td>Roster Bundle</td><td>$19.95</td><td>5.0</td><td>$6.71</td><td>$0.37</td><td>$20.45</td><td>$6.84</td><td>$13.60</td><td>66.5%</td><td>59.9%</td></tr>
-<tr><td>Premium Economy</td><td>$17.99</td><td>4.0</td><td>$5.37</td><td>$0.73</td><td>$18.99</td><td>$5.64</td><td>$13.35</td><td>70.3%</td><td>63.2%</td></tr>
-<tr><td><strong>Business ⭐</strong></td><td><strong>$29.99</strong></td><td><strong>6.75</strong></td><td><strong>$9.06</strong></td><td><strong>$0.91</strong></td><td><strong>$31.24</strong></td><td><strong>$9.40</strong></td><td><strong>$21.84</strong></td><td><strong>69.9%</strong></td><td><strong>65.6%</strong></td></tr>
-<tr><td>First</td><td>$39.99</td><td>13.5</td><td>$18.12</td><td>$1.46</td><td>$41.99</td><td>$18.66</td><td>$23.33</td><td>55.5%</td><td>52.3%</td></tr>
-<tr><td><strong>First Suite</strong></td><td><strong>$49.99</strong></td><td><strong>13.2</strong></td><td><strong>$17.72</strong></td><td><strong>$0.73</strong></td><td><strong>$50.99</strong></td><td><strong>$17.99</strong></td><td><strong>$33.00</strong></td><td><strong>64.7%</strong></td><td><strong>62.1%</strong></td></tr>
-<tr><td>Cockpit (annual → monthly)</td><td>$24.92</td><td>7.2</td><td>$9.66</td><td>$0.55</td><td>$25.67</td><td>$9.87</td><td>$15.80</td><td>61.6%</td><td>56.3%</td></tr>
+<tr><td>Economy (PAYG, 2.5× mo)</td><td>$12.48</td><td>2.5</td><td>$3.35</td><td>$0.00</td><td>$12.48</td><td>$3.35</td><td>$9.13</td><td>73.2%</td><td>58.7%</td></tr>
+<tr><td>Roster Bundle</td><td>$19.95</td><td>5.0</td><td>$6.70</td><td>$0.37</td><td>$20.45</td><td>$6.83</td><td>$13.62</td><td>66.6%</td><td>57.8%</td></tr>
+<tr><td>Premium Economy</td><td>$17.99</td><td>4.0</td><td>$5.36</td><td>$0.73</td><td>$18.99</td><td>$5.63</td><td>$13.36</td><td>70.4%</td><td>60.9%</td></tr>
+<tr><td><strong>Business ⭐</strong></td><td><strong>$29.99</strong></td><td><strong>6.75</strong></td><td><strong>$9.05</strong></td><td><strong>$0.91</strong></td><td><strong>$31.24</strong></td><td><strong>$9.38</strong></td><td><strong>$21.86</strong></td><td><strong>70.0%</strong></td><td><strong>64.2%</strong></td></tr>
+<tr><td>First</td><td>$39.99</td><td>10.0</td><td>$13.40</td><td>$1.46</td><td>$41.99</td><td>$13.94</td><td>$28.05</td><td>66.8%</td><td>61.5%</td></tr>
+<tr><td><strong>First Suite ⭐</strong></td><td><strong>$49.99</strong></td><td><strong>13.2</strong></td><td><strong>$17.69</strong></td><td><strong>$0.73</strong></td><td><strong>$50.99</strong></td><td><strong>$17.96</strong></td><td><strong>$33.03</strong></td><td><strong>64.8%</strong></td><td><strong>59.2%</strong></td></tr>
+<tr><td>Cockpit (annual → monthly)</td><td>$24.92</td><td>7.2</td><td>$9.65</td><td>$0.55</td><td>$25.67</td><td>$9.85</td><td>$15.82</td><td>61.6%</td><td>54.6%</td></tr>
 </table>
 
-<div class="hero-tier"><strong>The hero tier:</strong> First Suite — $33.00 gross profit per user per month, highest absolute profit on the entire ladder. Customers who upgrade from Business to First Suite are worth an extra $11.18/user/month in profit.</div>
+<div class="hero-tier"><strong>The hero tier:</strong> First Suite — $33.03 gross profit per user per month, highest absolute profit on the entire ladder. Customers who upgrade from Business to First Suite are worth an extra $11.17/user/month in profit.</div>
 
 <h2 id="insights">4. Strategic insights</h2>
 
 <h3>4.1 First Suite is the hero</h3>
-<p>At <strong>$33.00 gross profit / user / month</strong>, First Suite generates more absolute profit than any other tier — beating even Cockpit's annual prepay on a monthly-equivalent basis. The reason is structural: First Suite has the same friction-capped consumption as First (~13 GB) but a $10 higher retail price. The pool went from 25 GB to 40 GB on paper, but actual GB delivered stayed flat. <strong>Pool expansion is free; price expansion is profit.</strong></p>
+<p>At <strong>$33.03 gross profit / user / month</strong>, First Suite generates more absolute profit than any other tier. The reason is structural: despite a 40 GB pool, actual consumption is just 33% (13.2 GB). Suite passengers and senior pilots spend most of their time on hotel WiFi — the generous pool is the marketing story; the low actual consumption is what makes the economics exceptional. <strong>Pool expansion is free; what matters is actual GB consumed.</strong></p>
 
-<h3>4.2 Business is the default RECOMMENDED tier</h3>
-<p>Business sits at the sweet spot: <strong>70% gross margin, $21.84 profit per user</strong>, the highest absolute profit among the broad-market tiers. It's the "everyone should buy this" tier on the price card — high enough that ARPU is meaningful, low enough that broad crew demographics can afford it. This is why it carries the RECOMMENDED flag in the app.</p>
+<h3>4.2 First is the second-strongest premium tier</h3>
+<p>First delivers <strong>$28.05 gross profit / user / month</strong> at 67% margin — the second-highest absolute contribution in the ladder. The 25 GB pool with 40% consumption (10 GB actual) keeps COGS at $13.40. The 40% refuel attach adds $1.46 net on top. First's role is to bridge Business to First Suite on the price ladder, and it does so while remaining highly profitable in its own right.</p>
 
-<h3>4.3 First is the weakest tier on margin</h3>
-<p>First's net margin is just <strong>52.3%</strong> — the lowest of any subscription tier. The reason: heavy users on First push consumption to 13.5 GB (54% of the 25 GB pool), and at $1.34/GB blended that's $18+ of COGS against just $39.99 revenue. First's job is positional — it bridges Business to First Suite on the price ladder. It captures users who feel above Business but balk at First Suite's $49.99 price tag.</p>
+<h3>4.3 Business is the default RECOMMENDED tier</h3>
+<p>Business sits at the broad-market sweet spot: <strong>70% gross margin, $21.86 profit per user</strong>, the highest absolute profit among tiers accessible to all crew demographics. It's the "everyone should buy this" tier on the price card. This is why it carries the RECOMMENDED flag in the app.</p>
 
-<blockquote>First is the "ladder rung" tier. Its purpose is to make First Suite look reasonable. We accept thinner margins here because it pulls Business buyers up.</blockquote>
+<blockquote>First is the "ladder rung" tier. Its purpose is to make First Suite look reasonable — but unlike a typical anchor SKU, it's also highly profitable at $28.05/user. Running First costs nothing; it earns well.</blockquote>
 
 <h3>4.4 Economy is a volume play</h3>
 <p>At <strong>$3.65 gross profit per top-up</strong>, Economy needs 2.5+ purchases per month to compete with even the cheapest subscription tier. A user who buys 2 top-ups in a month delivers $7.30 — less than half of Premium Economy. The strategic role of Economy is twofold: (1) <strong>acquisition</strong> — a $4.99 try-it price has near-zero friction, and (2) <strong>upsell anchor</strong> — once users buy 3 top-ups in a month ($14.97), they realize Premium Economy ($17.99 for 10 GB) is a better deal and convert.</p>
 
 <h3>4.5 Cockpit is about cash flow, not per-user max profit</h3>
-<p>At $25.67 monthly-equivalent revenue and $15.80 gross profit, Cockpit underperforms Business ($21.84) and First Suite ($33.00) on a per-user-per-month basis. <strong>That's by design.</strong> Cockpit's value is <strong>$299 collected upfront on day 1</strong> — strong cash flow, zero churn for 12 months, predictable annual revenue stream. The annual lock-in matters more than per-month margin maximization.</p>
+<p>At $25.67 monthly-equivalent revenue and $15.82 gross profit, Cockpit underperforms Business ($21.86) and First Suite ($33.03) on a per-user-per-month basis. <strong>That's by design.</strong> Cockpit's value is <strong>$299 collected upfront on day 1</strong> — strong cash flow, zero churn for 12 months, predictable annual revenue stream. The 62% margin is the lowest in the ladder, but the annual prepay is the trade-off.</p>
 
 <h3>4.6 The upgrade arithmetic</h3>
 <p>Every upgrade path has a measurable per-user-per-month profit delta:</p>
 <table>
 <tr><th>Upgrade path</th><th>Profit delta</th><th>Annual delta per user</th></tr>
-<tr><td>Economy → Premium Economy</td><td>+$9.70/mo</td><td>+$116/yr</td></tr>
-<tr><td>Premium Economy → Business</td><td>+$8.49/mo</td><td>+$102/yr</td></tr>
-<tr><td>Business → First</td><td>+$1.49/mo</td><td>+$18/yr (weak)</td></tr>
-<tr><td><strong>Business → First Suite</strong></td><td><strong>+$11.18/mo</strong></td><td><strong>+$134/yr</strong></td></tr>
-<tr><td>First → First Suite</td><td>+$9.67/mo</td><td>+$116/yr</td></tr>
+<tr><td>Economy → Premium Economy</td><td>+$4.23/mo</td><td>+$51/yr</td></tr>
+<tr><td>Premium Economy → Business</td><td>+$8.50/mo</td><td>+$102/yr</td></tr>
+<tr><td>Business → First</td><td>+$6.19/mo</td><td>+$74/yr</td></tr>
+<tr><td><strong>Business → First Suite</strong></td><td><strong>+$11.17/mo</strong></td><td><strong>+$134/yr</strong></td></tr>
+<tr><td>First → First Suite</td><td>+$4.98/mo</td><td>+$60/yr</td></tr>
 </table>
 <p><strong>Implication:</strong> the strongest in-app upgrade prompt to design is <strong>Business → First Suite</strong>, skipping First entirely. Marketing should funnel Business users directly to First Suite, not nudge them through First.</p>
 
@@ -193,7 +194,7 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <tr><td><strong>Tab 6 — 24-Month Rollout</strong></td><td>Per-user × monthly growth curve (assuming acquisition + retention)</td><td>24-month revenue + profit projection</td></tr>
 <tr><td><strong>Tab 8 — LTV-CAC + Churn</strong></td><td>Per-user gross profit × expected lifetime (1 / churn)</td><td>LTV per tier; LTV/CAC ratio</td></tr>
 <tr><td><strong>Tab 10 — Carryover Liability</strong></td><td>Connected via Tab 2's GB Consumed → unused → deferred breakage</td><td>Carryover aging schedule</td></tr>
-<tr><td><strong>Tab 11 — Strategic Scenarios</strong></td><td>Re-runs per-tier economics under Samurai vs direct supplier paths</td><td>Strategic supplier comparison</td></tr>
+<tr><td><strong>Tab 11 — Strategic Scenarios</strong></td><td>Re-runs per-tier economics under wholesale supplier vs direct supplier paths</td><td>Strategic supplier comparison</td></tr>
 <tr><td><strong>Tab 12 — Cash + Sensitivity</strong></td><td>Per-user × scenarios × cash conversion timing</td><td>Cash flow + runway sensitivity</td></tr>
 </table>
 
@@ -206,7 +207,7 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <tr><th>Input</th><th>Confidence</th><th>Why</th></tr>
 <tr><td>Retail prices (Tab 1)</td><td><span class="pill high">High</span></td><td>Locked decisions, every tier reviewed in detail. Won't change without explicit re-litigation.</td></tr>
 <tr><td>GB Consumed per tier (Tab 2)</td><td><span class="pill medium">Medium</span></td><td>Per-tier estimates from friction model. Logical but not yet validated by real app analytics.</td></tr>
-<tr><td>Wholesale $/GB ($1.34)</td><td><span class="pill medium">Medium</span></td><td>Real Samurai rate sheet × placeholder 75/20/5 country mix. Bucket prices are real; mix is Akito-validated estimate.</td></tr>
+<tr><td>Wholesale $/GB ($1.34)</td><td><span class="pill medium">Medium</span></td><td>Real wholesale supplier rate sheet × placeholder 75/20/5 country mix. Bucket prices are real; mix is Akito-validated estimate.</td></tr>
 <tr><td>Refuel attach % per tier</td><td><span class="pill low">Low</span></td><td>Educated guesses (10% / 7.5% / 20% / 25% / 35% / 15% / 22%). Need post-launch app analytics for ground truth.</td></tr>
 <tr><td>OPEX $1.80/user/mo</td><td><span class="pill medium">Medium</span></td><td>Stripe + Apple IAP fees are well-modeled; support cost is flat-line placeholder that should be phase-based.</td></tr>
 <tr><td>Refuel price $4.99</td><td><span class="pill high">High</span></td><td>Locked at Economy parity to close the subscriber-backdoor exploit.</td></tr>
@@ -228,11 +229,11 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <h4>Stress test — what if everything goes worse than expected?</h4>
 <table>
 <tr><th>Variable</th><th>Base case</th><th>Worst case</th><th>Impact on Business gross profit</th></tr>
-<tr><td>Wholesale $/GB</td><td>$1.34</td><td>$2.13 (60/25/15 mix)</td><td>$21.84 → $17.49 (−20%)</td></tr>
-<tr><td>Business consumption</td><td>45%</td><td>65%</td><td>$21.84 → $17.84 (−18%)</td></tr>
-<tr><td>Refuel attach (Business)</td><td>25%</td><td>10%</td><td>$21.84 → $21.29 (−3%)</td></tr>
-<tr><td>OPEX</td><td>$1.80</td><td>$2.50</td><td>Net margin 65.6% → 63.4%</td></tr>
-<tr><td><strong>All combined</strong></td><td><strong>$21.84 / 65.6% net</strong></td><td><strong>$13.49 / 35.3% net</strong></td><td>Still profitable, but margin halves</td></tr>
+<tr><td>Wholesale $/GB</td><td>$1.34</td><td>$2.13 (60/25/15 mix)</td><td>$21.86 → $17.51 (−20%)</td></tr>
+<tr><td>Business consumption</td><td>45%</td><td>65%</td><td>$21.86 → $17.86 (−18%)</td></tr>
+<tr><td>Refuel attach (Business)</td><td>25%</td><td>10%</td><td>$21.86 → $21.32 (−2%)</td></tr>
+<tr><td>OPEX</td><td>$1.80</td><td>$2.50</td><td>Net margin 64.2% → 62.0%</td></tr>
+<tr><td><strong>All combined</strong></td><td><strong>$21.86 / 64.2% net</strong></td><td><strong>$13.51 / 35.0% net</strong></td><td>Still profitable, but margin halves</td></tr>
 </table>
 
 <p>Even in the worst-case scenario, every tier remains gross-margin positive. The model is robust to combined-downside shocks — what changes is the rate of profit, not the existence of profit.</p>
@@ -244,9 +245,9 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <p>If Premium Economy consumption goes <strong>40% → 50%</strong>:</p>
 <table>
 <tr><th>Metric</th><th>Now (40%)</th><th>If 50%</th><th>Δ per user</th></tr>
-<tr><td>GB Consumed</td><td>4 GB</td><td>5 GB</td><td>+1 GB</td></tr>
+<tr><td>GB Consumed</td><td>4.0 GB</td><td>5.0 GB</td><td>+1 GB</td></tr>
 <tr><td>Wholesale COGS</td><td>$5.36</td><td>$6.70</td><td>+$1.34</td></tr>
-<tr><td>Gross Profit</td><td>$13.35</td><td>$12.01</td><td><strong>−$1.34/user</strong></td></tr>
+<tr><td>Gross Profit</td><td>$13.36</td><td>$12.02</td><td><strong>−$1.34/user</strong></td></tr>
 <tr><td>At 100K users × 13% Premium</td><td colspan="2"></td><td><strong>−$20,904/year</strong></td></tr>
 </table>
 
@@ -258,43 +259,44 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <tr><td>Refuel net profit</td><td>$0.91</td><td>$0.37</td><td><strong>−$0.54/user</strong></td></tr>
 <tr><td>At 100K users × 8% Business</td><td colspan="2"></td><td><strong>−$5,184/year</strong></td></tr>
 </table>
+<p>Business base contribution without refuel drop = $21.86 → $21.32. Still highly profitable — refuel attach is upside, not structural.</p>
 
 <h3>Scenario 3 — Wholesale supplier raises prices (the big one)</h3>
 <p>If blended wholesale rises <strong>$1.34 → $2.00</strong> (50% supplier hike):</p>
 <table>
 <tr><th>Tier</th><th>Profit now ($1.34)</th><th>Profit at $2.00</th><th>Δ margin</th></tr>
-<tr><td>Premium</td><td>$13.35 (70%)</td><td>$10.95 (58%)</td><td>−12 pts</td></tr>
-<tr><td>Business</td><td>$21.84 (70%)</td><td>$17.39 (56%)</td><td>−14 pts</td></tr>
-<tr><td>First</td><td>$23.33 (56%)</td><td>$14.43 (34%)</td><td><strong>−22 pts</strong> ⚠</td></tr>
-<tr><td>First Suite</td><td>$33.00 (65%)</td><td>$24.29 (48%)</td><td>−17 pts</td></tr>
+<tr><td>Premium</td><td>$13.36 (70%)</td><td>$10.96 (58%)</td><td>−12 pts</td></tr>
+<tr><td>Business</td><td>$21.86 (70%)</td><td>$17.36 (56%)</td><td>−14 pts</td></tr>
+<tr><td>First</td><td>$28.05 (67%)</td><td>$19.05 (45%)</td><td>−22 pts ⚠</td></tr>
+<tr><td>First Suite</td><td>$33.03 (65%)</td><td>$24.32 (48%)</td><td>−17 pts</td></tr>
 </table>
-<p><strong>Insight:</strong> First gets crushed if wholesale rises (already lowest margin). Strong argument for moving direct to eSIM Access supplier at scale rather than staying with Tier-3 sub-reseller.</p>
+<p><strong>Insight:</strong> All tiers remain profitable even at $2.00/GB — but First takes the biggest relative hit because of its high refuel attach. Strong argument for moving direct to eSIM Access supplier at scale to lock in lower wholesale rates.</p>
 
-<h3>Scenario 4 — Mix shift toward heavy tiers</h3>
+<h3>Scenario 4 — Mix shift toward premium tiers</h3>
 <p>If First grows from <strong>3% → 6%</strong> of users (heavy crew adoption):</p>
 <table>
 <tr><th>Metric</th><th>At 3% First</th><th>At 6% First</th><th>Δ annual</th></tr>
-<tr><td>First tier contribution at 100K users</td><td>$70,080</td><td>$140,160</td><td><strong>+$70,080/yr</strong></td></tr>
+<tr><td>First tier contribution at 100K users</td><td>$1,011,600</td><td>$2,023,200</td><td><strong>+$1,011,600/yr</strong></td></tr>
 </table>
-<p>But First has the lowest margin (56%). Net positive on revenue, but check that blended margin holds.</p>
+<p>First is now $28.05/user — a mix shift toward First is highly positive. Similarly, any shift from Premium to First Suite (+$19.67/user) is a large profit driver. Push the premium end.</p>
 
 <h3>Scenario 5 — Price war / Premium drop</h3>
 <p>If we drop Premium from <strong>$17.99 → $14.99</strong> (to drive volume):</p>
 <table>
 <tr><th>Metric</th><th>$17.99</th><th>$14.99</th><th>Δ</th></tr>
-<tr><td>Gross profit/user</td><td>$13.35</td><td>$10.35</td><td>−$3.00</td></tr>
+<tr><td>Gross profit/user</td><td>$13.36</td><td>$10.36</td><td>−$3.00</td></tr>
 <tr><td>Volume increase needed to break even</td><td>—</td><td><strong>+29%</strong></td><td>To match dollar profit</td></tr>
 </table>
-<p><strong>Insight:</strong> Premium is fragile to price drops. Don't promo Premium — promo Roster Bundle or Business instead.</p>
+<p><strong>Insight:</strong> Premium is fragile to price drops. Don't promo Premium — promo Roster Bundle (per-flight feels lower-commitment) or push directly to Business instead.</p>
 
 <h3>Response playbook</h3>
 <table>
 <tr><th>Risk</th><th>If it materializes — what we do</th></tr>
 <tr><td>Consumption rises (users eat more)</td><td>Accept thinner margins OR pull friction levers harder (smaller default refill amount)</td></tr>
 <tr><td>Refuel attach drops</td><td>Marketing push for top-ups + consider raising refuel price slightly</td></tr>
-<tr><td>Wholesale rises</td><td>Accelerate move to direct eSIM Access supplier — this is the biggest single risk</td></tr>
-<tr><td>Mix shifts heavy</td><td>Push First Suite over First (better margin on heavy tier)</td></tr>
-<tr><td>Price war / discount pressure</td><td>Don't drop Premium — drop Roster Bundle which has more breakage cushion</td></tr>
+<tr><td>Wholesale rises</td><td>Accelerate move to direct eSIM Access supplier — this is the biggest single risk; consider USA/Cruise add-on SKU for Tier-C geo</td></tr>
+<tr><td>Mix shifts premium</td><td>This is POSITIVE — First Suite at $33.03/user is the best outcome; encourage it</td></tr>
+<tr><td>Price war / discount pressure</td><td>Don't drop Premium — drop Roster Bundle (per-flight pricing cushions the perception)</td></tr>
 </table>
 
 <blockquote>Bite 6 = "what could break us, and how to respond." Every base-case number above is bracketed with a worst-case impact. The business stays profitable under every single-variable downside — only combined downsides erode margin meaningfully.</blockquote>

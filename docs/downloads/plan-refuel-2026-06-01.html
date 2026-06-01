@@ -135,12 +135,12 @@
       </thead>
       <tbody>
         <tr><td>Economy (PAYG)</td><td class="num">N/A — IS refuel</td><td class="num">core product</td><td>Their only interaction</td></tr>
-        <tr><td>Roster Bundle</td><td class="num">5%</td><td class="num">+$0.25</td><td>Sometimes burst on long legs</td></tr>
-        <tr><td>Premium Economy</td><td class="num">8%</td><td class="num">+$0.40</td><td>10 GB pool occasionally tight</td></tr>
-        <tr><td>Business</td><td class="num">3%</td><td class="num">+$0.15</td><td>25 GB pool rarely exhausted</td></tr>
-        <tr><td>First</td><td class="num">2%</td><td class="num">+$0.10</td><td>50 GB pool rarely exhausted</td></tr>
-        <tr><td>First Suite</td><td class="num">2%</td><td class="num">+$0.10</td><td>80 GB pool rarely exhausted</td></tr>
-        <tr><td>Cockpit</td><td class="num">0%</td><td class="num">—</td><td>Annual plan, sufficient pool</td></tr>
+        <tr><td>Roster Bundle</td><td class="num">10%</td><td class="num">+$0.37</td><td>Sometimes burst on long legs</td></tr>
+        <tr><td>Premium Economy</td><td class="num">20%</td><td class="num">+$0.73</td><td>10 GB pool occasionally tight — highest attach</td></tr>
+        <tr><td>Business</td><td class="num">25%</td><td class="num">+$0.91</td><td>Heavy commuters — highest subscription attach</td></tr>
+        <tr><td>First</td><td class="num">40%</td><td class="num">+$1.46</td><td>When First users run out, they top up immediately</td></tr>
+        <tr><td>First Suite</td><td class="num">20%</td><td class="num">+$0.73</td><td>40 GB pool large, but occasional overages happen</td></tr>
+        <tr><td>Cockpit</td><td class="num">15%</td><td class="num">+$0.55</td><td>Annual plan — moderate attach across the year</td></tr>
       </tbody>
     </table>
     <div class="chart-wrap" style="margin-top:18px;"><canvas id="attachChart"></canvas></div>
@@ -198,8 +198,8 @@
 <section>
   <h2 class="sec"><span class="icon">🔍</span>The honest read</h2>
   <div class="honest-read">
-    <strong>Refuel: Hidden margin SKU. $3.65/refuel × volume = significant upside that compounds silently.</strong>
-    Refuel is the cleanest unit in the entire model: 100% consumption, no breakage math, 73% margin, one-tap UX. At 1,000 subscribers, it adds $515/mo. At 100K users, it adds $131K/yr. The key design principle: the Refuel screen must be frictionless — a single "Add 1 GB for $4.99" banner at 80% pool consumption, inline in the app. The UX should never feel like a upsell. At that point, it's a feature that solves a problem and generates margin simultaneously.
+    <strong>Refuel: 73% margin per top-up. Not a primary tier — sits inside all other plans. $3.65 per refuel × attach rate × subscribers = hidden upside.</strong>
+    Refuel is the cleanest unit in the entire model: 100% consumption, no breakage math, 73% margin, one-tap UX. Across 5,000 users at 15% blended attach: ~$2,700/mo pure margin. At 1,000 subscribers (blended attach), it adds meaningful incremental revenue. The key design principle: the Refuel screen must be frictionless — a single "Add 1 GB for $4.99" banner at 80% pool consumption, inline in the app. The UX should never feel like an upsell. At that point, it's a feature that solves a problem and generates margin simultaneously.
   </div>
 </section>
 
@@ -212,11 +212,11 @@ Chart.defaults.font.family='"Helvetica Neue",Helvetica,Arial,sans-serif';
 Chart.defaults.color='#3a3a3a'; Chart.defaults.font.size=12;
 
 new Chart(document.getElementById('attachChart'),{type:'bar',data:{
-  labels:['Roster Bundle','Premium Econ.','Business','First','First Suite'],
-  datasets:[{label:'Refuel attach rate %',data:[5,8,3,2,2],
-    backgroundColor:[INK,GREEN,GOLD,AMBER,RED],borderRadius:6,borderSkipped:false}]
+  labels:['Roster Bundle','Premium Econ.','Business','First','First Suite','Cockpit'],
+  datasets:[{label:'Refuel attach rate %',data:[10,20,25,40,20,15],
+    backgroundColor:[INK,GREEN,GOLD,AMBER,RED,INK],borderRadius:6,borderSkipped:false}]
 },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:'#eee'},max:10},x:{grid:{display:false}}}}});
+scales:{y:{ticks:{callback:v=>v+'%'},grid:{color:'#eee'},max:50},x:{grid:{display:false}}}}});
 
 new Chart(document.getElementById('sensChart'),{type:'bar',data:{
   labels:['1K users (3%)','10K users (3%)','100K users (3%)','100K users (5%)'],
