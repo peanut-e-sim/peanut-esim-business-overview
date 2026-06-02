@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — Tab 21 Strategic Scenarios Visualizer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --red-dark: #A01218;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #E8E2D6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --green-bg: #f0faf4;
+    --green-border: #a8d8b5;
+    --amber: #B07A1F;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+    --shadow-sm: 0 1px 3px rgba(26,26,26,.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--red); color: #fff;
+    padding: 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  header.bar .title { font-weight: 700; letter-spacing: .2px; font-size: 15px; }
+  header.bar .title small { display: block; font-weight: 400; opacity: .85; font-size: 12px; margin-top: 2px; }
+  header.bar a.back-btn {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.5);
+    color: #fff; font: inherit;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    font-size: 13px; text-decoration: none; display: inline-block;
+  }
+  header.bar a.back-btn:hover { background: rgba(255,255,255,.28); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 52px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero {
+    font-size: clamp(26px, 3.8vw, 42px);
+    line-height: 1.12; margin: 0 0 14px;
+    letter-spacing: -.5px;
+  }
+  h1.hero .accent { color: var(--red); }
+  p.lede {
+    font-size: clamp(15px, 1.7vw, 18px);
+    color: #2a2a2a; max-width: 760px; margin: 0 0 18px;
+  }
+  .badge {
+    display: inline-block; padding: 4px 12px;
+    background: #fff; border: 1px solid var(--gold); border-radius: 999px;
+    font-size: 12px; font-weight: 600; color: #7a5c1a; letter-spacing: .3px;
+  }
+  .badge.now { background: #fff5f5; border-color: var(--red); color: var(--red-dark); }
+  .badge.parked { background: #f5f5f5; border-color: #ccc; color: #666; }
+
+  h2.section-title {
+    font-size: clamp(20px, 2.4vw, 26px);
+    margin: 0 0 6px; letter-spacing: -.2px;
+  }
+  h2.section-title .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px;
+    border-radius: 50%; background: var(--ink); color: #fff;
+    font-size: 14px; margin-right: 10px; vertical-align: middle;
+  }
+  p.section-sub {
+    color: var(--muted); max-width: 720px; margin: 0 0 22px; font-size: 15px;
+  }
+
+  /* Timing summary row */
+  .timing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+  @media (max-width: 720px) { .timing-grid { grid-template-columns: 1fr; } }
+  .timing-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 20px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+  .timing-card.now { border-top: 3px solid var(--red); }
+  .timing-card.parked { border-top: 3px solid #ccc; opacity: .8; }
+  .timing-card .tc-tag { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+  .timing-card.now .tc-tag { color: var(--red); }
+  .timing-card.parked .tc-tag { color: #888; }
+  .timing-card h3 { margin: 0 0 8px; font-size: 17px; }
+  .timing-card p { margin: 0; font-size: 14px; color: var(--muted); }
+
+  /* Chart cards */
+  .chart-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 24px; box-shadow: var(--shadow);
+  }
+  .chart-card h3 { margin: 0 0 4px; font-size: 16px; }
+  .chart-card p.sub { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+  .chart-wrap { position: relative; height: 320px; }
+  .chart-wrap.tall { height: 400px; }
+
+  /* Callouts */
+  .callout-red {
+    background: #fff5f5; border-left: 4px solid var(--red);
+    border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #5a1a1a;
+  }
+  .callout-green {
+    background: var(--green-bg); border-left: 4px solid var(--green);
+    border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #1a4a2a;
+  }
+  .callout-gold {
+    background: #fff8e6; border-left: 4px solid var(--gold);
+    border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #5a4a14;
+  }
+  .callout-ink {
+    background: var(--ink); color: #fff;
+    border-radius: 12px; padding: 24px 28px; margin: 20px 0;
+  }
+  .callout-ink .big { font-size: clamp(24px, 4vw, 36px); font-weight: 700; letter-spacing: -1px; line-height: 1.1; color: #fff; }
+  .callout-ink .small { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .callout-ink p { margin: 8px 0 0; font-size: 14px; opacity: .8; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 32px; margin: 24px 0; }
+  .timeline::before {
+    content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(180deg, var(--red), var(--gold), #ccc);
+  }
+  .tl-item {
+    position: relative; margin-bottom: 24px;
+  }
+  .tl-dot {
+    position: absolute; left: -26px; top: 4px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--card); border: 2px solid var(--red);
+  }
+  .tl-item:nth-child(2) .tl-dot { border-color: var(--gold); }
+  .tl-item:nth-child(3) .tl-dot { border-color: #999; }
+  .tl-item .tl-year { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .tl-item:nth-child(2) .tl-year { color: var(--amber); }
+  .tl-item:nth-child(3) .tl-year { color: #888; }
+  .tl-item h4 { margin: 0 0 6px; font-size: 16px; }
+  .tl-item p { margin: 0; font-size: 14px; color: var(--muted); }
+  .tl-stats { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .tl-stat { background: var(--cream); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; font-size: 13px; }
+  .tl-stat strong { display: block; font-size: 18px; font-weight: 700; }
+
+  /* Moat grid */
+  .moat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .moat-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px;
+    box-shadow: var(--shadow-sm);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .moat-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: #FBE0E0; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .moat-card h4 { margin: 0 0 4px; font-size: 14px; font-weight: 700; }
+  .moat-card p { margin: 0; font-size: 12px; color: var(--muted); }
+
+  /* Defense table */
+  table.defense { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); }
+  table.defense th { background: var(--ink); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 13px; }
+  table.defense td { padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.defense tr.match-row td { background: #fff5f5; }
+  table.defense tr.hold-row td { background: var(--green-bg); }
+  table.defense tr.never-row td { background: #1A1A1A; color: #fff; }
+  table.defense tr.never-row td .strategy-tag { background: rgba(255,255,255,.15); color: #fff; }
+  .strategy-tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .st-match { background: #fbe0e0; color: var(--red-dark); }
+  .st-hold { background: #d8f0e0; color: #1a6a3a; }
+  .st-never { background: #fff3d0; color: #7a4a00; }
+
+  /* Playbook cards */
+  .playbook-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .playbook-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 20px;
+    box-shadow: var(--shadow-sm); position: relative;
+  }
+  .playbook-card .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--red); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; margin-bottom: 12px;
+  }
+  .playbook-card .timing { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .playbook-card h4 { margin: 0 0 8px; font-size: 15px; }
+  .playbook-card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* Economy callout */
+  .economy-expose {
+    background: linear-gradient(135deg, #fff5f5, #fff);
+    border: 2px solid var(--red); border-radius: 14px;
+    padding: 28px; margin: 24px 0;
+  }
+  .economy-expose .big-cushion { font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -1px; color: var(--red); }
+  .economy-expose p { font-size: 15px; color: var(--ink); margin: 10px 0 0; }
+
+  /* Open items */
+  .open-items { list-style: none; padding: 0; margin: 16px 0; }
+  .open-items li { display: flex; gap: 12px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-bottom: none; font-size: 14px; }
+  .open-items li:first-child { border-radius: 8px 8px 0 0; }
+  .open-items li:last-child { border-bottom: 1px solid var(--line); border-radius: 0 0 8px 8px; }
+  .oi-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); margin-top: 5px; flex-shrink: 0; }
+  .oi-dot.akito { background: var(--red); }
+
+  /* Two col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } }
+
+  footer { border-top: 1px solid var(--line); padding: 24px 22px; text-align: center; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div>
+    <div class="title">TAB 21 — Strategic Scenarios</div>
+    <small>Wholesale triggers · Multi-airline · Competitive floor · Peanut eSIM (2026-06-02)</small>
+  </div>
+  <a href="index.html" class="back-btn">← Back to hub</a>
+</header>
+
+<main>
+
+<!-- ====================================================== -->
+<!-- HERO -->
+<!-- ====================================================== -->
+<section class="first">
+  <h1 class="hero">Strategic Scenarios — <span class="accent">What if</span> scale unlocks better rates, what if we expand, what if Crew SIM attacks?</h1>
+  <p class="lede">Tab 21 runs three forward-looking questions: when does user volume negotiate us into cheaper wholesale, what does a multi-airline empire look like, and exactly how low can we go before any tier loses money? The third question is the one that matters now.</p>
+  <span class="badge now">Section 3 is live NOW</span>
+  <span class="badge parked" style="margin-left: 8px;">Sections 1-2 parked Year 2+</span>
+</section>
+
+<!-- ====================================================== -->
+<!-- THE 3 SECTIONS AT A GLANCE -->
+<!-- ====================================================== -->
+<section>
+  <h2 class="section-title"><span class="num">1</span>The 3 sections at a glance</h2>
+  <p class="section-sub">Each section answers a different planning question. Only one is urgent right now.</p>
+  <div class="timing-grid">
+    <div class="timing-card parked">
+      <div class="tc-tag">Section 1 · Year 2+</div>
+      <h3>Wholesale Tier Triggers</h3>
+      <p>At what user volume does our wholesale supplier markup drop? When should we switch to direct eSIM Access? Models the negotiation roadmap from 1K to 100K users.</p>
+    </div>
+    <div class="timing-card parked">
+      <div class="tc-tag">Section 2 · Year 2-3</div>
+      <h3>Multi-Airline Expansion</h3>
+      <p>Sequential crew base expansion: Emirates (Year 1) → Etihad + JAL + ANA (Year 2) → Singapore + Cathay + Qatar (Year 3). Revenue and crew base projections.</p>
+    </div>
+    <div class="timing-card now">
+      <div class="tc-tag">Section 3 · NOW — Critical</div>
+      <h3>Competitive Floor</h3>
+      <p>If Crew SIM undercuts our prices today, exactly how low can each tier go before we lose money? This affects launch pricing decisions immediately.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- SECTION 1 — WHOLESALE TIER TRIGGERS -->
+<!-- ====================================================== -->
+<section>
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px; flex-wrap:wrap;">
+    <h2 class="section-title" style="margin:0;"><span class="num">2</span>Section 1 — Wholesale Tier Triggers</h2>
+    <span class="badge parked">Year 2+ — Park for now</span>
+  </div>
+  <p class="section-sub">Volume vs. wholesale supplier markup (model assumption, not supplier-confirmed). Switch from wholesale supplier to direct eSIM Access happens around 25K users.</p>
+  <div class="chart-card">
+    <h3>Wholesale Markup vs. User Volume</h3>
+    <p class="sub">As we grow, our negotiating leverage increases — and at 25K users, direct sourcing becomes equally attractive.</p>
+    <div class="chart-wrap">
+      <canvas id="chart-wholesale"></canvas>
+    </div>
+  </div>
+  <div class="callout-gold" style="margin-top: 16px;">
+    <strong>Key trigger:</strong> At 25,000 active users, direct eSIM Access (fixed ~$0.55/GB) becomes cost-equal to wholesale. At 50,000+ users, direct is strictly cheaper. This is the Year 2 negotiation playbook — not a Year 1 concern.
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- SECTION 2 — MULTI-AIRLINE -->
+<!-- ====================================================== -->
+<section>
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px; flex-wrap:wrap;">
+    <h2 class="section-title" style="margin:0;"><span class="num">3</span>Section 2 — Multi-Airline Expansion</h2>
+    <span class="badge parked">Year 2-3 — Strategic ambition</span>
+  </div>
+  <p class="section-sub">Sequential rollout plan verified from Google Sheets. Each airline adds a new crew base and revenue multiplier.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">Year 1 — NOW</div>
+      <h4>Emirates DXB</h4>
+      <p>Launch airline. Emirates crew base in Dubai. Closed network, word-of-mouth only.</p>
+      <div class="tl-stats">
+        <div class="tl-stat"><strong>24,000</strong>crew base</div>
+        <div class="tl-stat"><strong>1,000</strong>active users</div>
+        <div class="tl-stat"><strong>$185K</strong>annual rev.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">Year 2</div>
+      <h4>+ Etihad, JAL, ANA</h4>
+      <p>Akito-led Japan expansion (JAL + ANA) + Etihad AUH. 3x volume multiplier.</p>
+      <div class="tl-stats">
+        <div class="tl-stat"><strong>80,000</strong>crew base</div>
+        <div class="tl-stat"><strong>6,000</strong>active users</div>
+        <div class="tl-stat"><strong>$1.1M</strong>annual rev.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">Year 3</div>
+      <h4>+ Singapore, Cathay HKG, Qatar</h4>
+      <p>Full Asia-Gulf coverage. 5x volume multiplier from Year 1 baseline.</p>
+      <div class="tl-stats">
+        <div class="tl-stat"><strong>140,000</strong>crew base</div>
+        <div class="tl-stat"><strong>18,000</strong>active users</div>
+        <div class="tl-stat"><strong>$3.3M</strong>annual rev.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- SECTION 3 — COMPETITIVE FLOOR (THE IMPORTANT ONE) -->
+<!-- ====================================================== -->
+<section>
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px; flex-wrap:wrap;">
+    <h2 class="section-title" style="margin:0;"><span class="num">4</span>Section 3 — Competitive Floor</h2>
+    <span class="badge now">NOW — Affects launch pricing</span>
+  </div>
+  <p class="section-sub">If Crew SIM undercuts us, how far can we follow before a tier goes negative? Floor = COGS + OPEX. Numbers verified from Google Sheets.</p>
+
+  <div class="chart-card">
+    <h3>Margin Cushion vs. Crew SIM — by tier</h3>
+    <p class="sub">Our retail price minus our minimum viable price. The bigger the bar, the more room to maneuver. Economy has the smallest cushion.</p>
+    <div class="chart-wrap tall">
+      <canvas id="chart-cushion"></canvas>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px;" class="two-col">
+    <div class="chart-card">
+      <h3>Min Viable Price vs. Our Retail</h3>
+      <p class="sub">Floor (COGS + OPEX) shown in red. Retail shown in charcoal. Gap = our defensive runway.</p>
+      <div class="chart-wrap">
+        <canvas id="chart-floor-retail"></canvas>
+      </div>
+    </div>
+    <div>
+      <div class="economy-expose">
+        <div class="small" style="font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--red); margin-bottom:8px;">Economy — The Exposed Tier</div>
+        <div class="big-cushion">$0.28</div>
+        <p>Cushion between Economy's floor ($4.71) and Crew SIM's price ($4.99). The thinnest margin in the stack. Hard floor: never go below $4.71 (COGS $3.36 + OPEX $1.35).</p>
+      </div>
+      <div class="callout-green" style="margin-top: 16px;">
+        <strong>All other tiers are well-defended.</strong> Roster Bundle has $26.94 cushion. First / First Suite / Cockpit have $13–27 cushion. No defensive need to match Crew SIM on subscriptions.
+      </div>
+      <div class="callout-gold" style="margin-top: 12px;">
+        <strong>First Suite note:</strong> Crew SIM $45.00 reference is a placeholder — they have no First Suite tier. Akito to validate actual competitive price.
+      </div>
+    </div>
+  </div>
+
+  <!-- Full verified table -->
+  <div style="margin-top: 24px; overflow-x: auto;">
+    <table class="defense">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Our Retail</th>
+          <th>COGS</th>
+          <th>OPEX</th>
+          <th>Min Viable Price</th>
+          <th>Crew SIM Ref</th>
+          <th>Cushion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="match-row">
+          <td><strong>Economy</strong></td>
+          <td>$12.48</td>
+          <td>$3.36</td>
+          <td>$1.35</td>
+          <td><strong>$4.71</strong></td>
+          <td>$4.99</td>
+          <td><span class="strategy-tag st-match">$0.28 — THIN</span></td>
+        </tr>
+        <tr class="hold-row">
+          <td><strong>Roster Bundle</strong></td>
+          <td>$19.95</td>
+          <td>$6.71</td>
+          <td>$1.35</td>
+          <td><strong>$8.06</strong></td>
+          <td>$35.00</td>
+          <td><span class="strategy-tag st-hold">$26.94</span></td>
+        </tr>
+        <tr class="hold-row">
+          <td><strong>Premium Economy</strong></td>
+          <td>$17.99</td>
+          <td>$5.37</td>
+          <td>$1.35</td>
+          <td><strong>$6.72</strong></td>
+          <td>$12.99</td>
+          <td><span class="strategy-tag st-hold">$6.27</span></td>
+        </tr>
+        <tr class="hold-row">
+          <td><strong>Business</strong></td>
+          <td>$29.99</td>
+          <td>$9.06</td>
+          <td>$1.35</td>
+          <td><strong>$10.41</strong></td>
+          <td>$21.99</td>
+          <td><span class="strategy-tag st-hold">$11.58</span></td>
+        </tr>
+        <tr class="never-row">
+          <td><strong>First</strong></td>
+          <td>$39.99</td>
+          <td>$13.43</td>
+          <td>$1.35</td>
+          <td><strong>$14.78</strong></td>
+          <td>$39.99</td>
+          <td><span class="strategy-tag st-never">$25.22 — NEVER DROP</span></td>
+        </tr>
+        <tr class="never-row">
+          <td><strong>First Suite</strong></td>
+          <td>$49.99</td>
+          <td>$17.72</td>
+          <td>$1.35</td>
+          <td><strong>$19.07</strong></td>
+          <td>$45.00 *</td>
+          <td><span class="strategy-tag st-never">PLACEHOLDER *</span></td>
+        </tr>
+        <tr class="never-row">
+          <td><strong>Cockpit</strong></td>
+          <td>$24.92</td>
+          <td>$9.67</td>
+          <td>$1.35</td>
+          <td><strong>$11.02</strong></td>
+          <td>$24.99</td>
+          <td><span class="strategy-tag st-never">$13.97 — NEVER DROP</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin-top:8px;">* Crew SIM has no First Suite tier. $45.00 is a placeholder pending Akito validation. Source: Google Sheets "Strategic Scenarios" tab, verified 2026-06-02.</p>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- THE 8-FEATURE MOAT -->
+<!-- ====================================================== -->
+<section>
+  <h2 class="section-title"><span class="num">5</span>The 8-Feature Moat</h2>
+  <p class="section-sub">Crew SIM has a 41-country price list. We have that PLUS an 8-feature stack that creates real switching costs. We compete on the bundle, not on price.</p>
+  <div class="moat-grid">
+
+    <div class="moat-card">
+      <div class="moat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div>
+        <h4>CrewLink Roster Upload</h4>
+        <p>High switching cost. No competitor replicates this. Ties us to crew workflow.</p>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+      </div>
+      <div>
+        <h4>Gifting Carryover</h4>
+        <p>Viral mechanism. Unused data becomes a gift — triggers word-of-mouth.</p>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div>
+        <h4>UAE Redemption</h4>
+        <p>Use your eSIM data at home in Dubai via same-SIM dynamic allocation. No other provider offers this for crew.</p>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div>
+        <h4>Crew Recs (Michelin-style)</h4>
+        <p>Content moat. Crew-curated destination intel. Impossible to copy without the community.</p>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </div>
+      <div>
+        <h4>Same-SIM Dynamic Allocation</h4>
+        <p>One eSIM, multiple country pools. Better UX than juggling multiple plans.</p>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div>
+        <h4>60% Cheaper Than 1 GB Packets</h4>
+        <p>Subscription pools beat per-GB pricing for frequent fliers. The math always wins.</p>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div>
+        <h4>AI Support</h4>
+        <p>Instant install help, top-up, refunds via AI chat. Crew SIM is email-only.</p>
+      </div>
+    </div>
+
+    <div class="moat-card">
+      <div class="moat-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div>
+        <h4>Annual Cockpit Prepay</h4>
+        <p>Locked retention. One payment, one year. The user is off the market entirely.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout-ink">
+    <div class="small">The big insight</div>
+    <div class="big">Bundle, not price.</div>
+    <p>Crew SIM has 41 countries on a price list. We have 41 countries plus 8 features that create daily-life utility, viral mechanics, and retention lock. Our moat is not $1 cheaper data. It is the 8-feature stack.</p>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- HYBRID DEFENSE BY TIER -->
+<!-- ====================================================== -->
+<section>
+  <h2 class="section-title"><span class="num">6</span>Hybrid Defense Strategy by Tier</h2>
+  <p class="section-sub">Not all tiers need defending the same way. Match on Economy if needed, hold everywhere else.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="defense">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Strategy if Crew SIM cuts</th>
+          <th>Cushion</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="match-row">
+          <td><strong>Economy</strong></td>
+          <td><span class="strategy-tag st-match">MATCH if they go below $4.99</span></td>
+          <td>$0.28</td>
+          <td>Entry point, price-sensitive. But never below $4.71 floor.</td>
+        </tr>
+        <tr class="hold-row">
+          <td><strong>Roster Bundle</strong></td>
+          <td><span class="strategy-tag st-hold">HOLD $19.95</span></td>
+          <td>$26.94</td>
+          <td>They don't have CrewLink. Win on feature, not price.</td>
+        </tr>
+        <tr class="hold-row">
+          <td><strong>Premium Economy</strong></td>
+          <td><span class="strategy-tag st-hold">HOLD $17.99</span></td>
+          <td>$6.27</td>
+          <td>Big cushion. Promo if needed, not a price cut.</td>
+        </tr>
+        <tr class="hold-row">
+          <td><strong>Business</strong></td>
+          <td><span class="strategy-tag st-hold">HOLD $29.99</span></td>
+          <td>$11.58</td>
+          <td>Heavy users want predictability, not cheapness.</td>
+        </tr>
+        <tr class="never-row">
+          <td><strong>First</strong></td>
+          <td><span class="strategy-tag st-never">NEVER DROP</span></td>
+          <td>$25.22</td>
+          <td>Premium positioning. Cutting hurts the brand.</td>
+        </tr>
+        <tr class="never-row">
+          <td><strong>First Suite</strong></td>
+          <td><span class="strategy-tag st-never">NEVER DROP</span></td>
+          <td>—</td>
+          <td>Crew SIM has no equivalent. We own this tier entirely.</td>
+        </tr>
+        <tr class="never-row">
+          <td><strong>Cockpit</strong></td>
+          <td><span class="strategy-tag st-never">NEVER DROP</span></td>
+          <td>$13.97</td>
+          <td>Annual lock-in. Price-sensitive users don't buy Cockpit.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- THE 4-STEP PLAYBOOK -->
+<!-- ====================================================== -->
+<section>
+  <h2 class="section-title"><span class="num">7</span>The 4-Step Playbook if Crew SIM Attacks</h2>
+  <p class="section-sub">Sequential response. Do not skip ahead. Most attacks resolve at Step 2 without any price change.</p>
+  <div class="playbook-grid">
+
+    <div class="playbook-card">
+      <div class="step-num">1</div>
+      <div class="timing">Days 1-7</div>
+      <h4>Don't react publicly</h4>
+      <p>Watch the move. Do not post, do not announce. Gather data on what they actually changed. Knee-jerk reactions signal weakness.</p>
+    </div>
+
+    <div class="playbook-card">
+      <div class="step-num">2</div>
+      <div class="timing">Week 2-4</div>
+      <h4>Assess actual impact</h4>
+      <p>Track new signups and churn rate. If neither moves in Week 3, ignore completely. Most competitive noise has zero measurable impact on crew signups.</p>
+    </div>
+
+    <div class="playbook-card">
+      <div class="step-num">3</div>
+      <div class="timing">Only if signups drop</div>
+      <h4>Spring Promotion</h4>
+      <p>Looks organic, not reactive. Never cut posted prices. Options: 1 month free Premium for new crew. Refer 3, get Cockpit at 50% for Year 1.</p>
+    </div>
+
+    <div class="playbook-card">
+      <div class="step-num">4</div>
+      <div class="timing">Parallel track</div>
+      <h4>Aggressive retention</h4>
+      <p>Target at-risk users individually. Premium users 6+ months: push to Cockpit annual (locks them). Heavy users: free CrewLink upgrade. No blanket discounts.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- ECONOMY EXPOSED CALLOUT -->
+<!-- ====================================================== -->
+<section>
+  <h2 class="section-title"><span class="num">8</span>Economy is the Exposed Tier</h2>
+  <p class="section-sub">The only tier where Crew SIM's price and our floor are within striking distance of each other.</p>
+  <div class="two-col">
+    <div class="callout-red" style="border-radius:8px; padding:24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Hard floor — do not cross</div>
+      <div style="font-size:48px;font-weight:700;letter-spacing:-2px;color:var(--red);line-height:1.0;">$4.71</div>
+      <p style="font-size:14px;margin:8px 0 0;color:#5a1a1a;">Economy minimum viable price = COGS $3.36 + OPEX $1.35. Any lower and we lose money on every Economy purchase. Crew SIM reference price: $4.99. Our cushion: $0.28.</p>
+    </div>
+    <div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Why Economy is uniquely vulnerable</div>
+        <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ink);line-height:1.7;">
+          <li>PAYG structure means no subscription lock-in</li>
+          <li>Price-sensitive users comparison-shop more</li>
+          <li>Cushion ($0.28) leaves almost zero maneuver room</li>
+          <li>Cannot deploy Spring Promotion (no recurring relationship to leverage)</li>
+        </ul>
+      </div>
+      <div class="callout-gold">
+        <strong>Monitoring trigger:</strong> If Crew SIM ever lists Economy-equivalent at below $4.99, we match immediately. If they list below $4.71, we flag for a pricing architecture review — we cannot profitably follow that low.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== -->
+<!-- AKITO ASK -->
+<!-- ====================================================== -->
+<section>
+  <h2 class="section-title"><span class="num">9</span>Akito Ask — Validate First Suite Competitor Price</h2>
+  <p class="section-sub">One open item requires Akito's input before this tab is fully complete.</p>
+  <div style="background:var(--card);border:2px solid var(--red);border-radius:12px;padding:24px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;">
+    <div style="flex-shrink:0;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div style="flex:1;min-width:220px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:6px;">Action Required — Akito</div>
+      <h3 style="margin:0 0 10px;font-size:18px;">First Suite: is $45 accurate?</h3>
+      <p style="margin:0 0 10px;font-size:14px;color:var(--muted);">Crew SIM has no First Suite tier equivalent. The $45.00 Crew SIM reference price in the sheet is a placeholder. Akito to validate: does any competitor offer a product comparable to First Suite ($49.99/mo), and what do they charge? This affects our competitive positioning for the entire top end of the ladder.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <span style="display:inline-block;padding:4px 12px;background:#fff5f5;border:1px solid var(--red);border-radius:999px;font-size:12px;font-weight:600;color:var(--red-dark);">Tab 21 — Open item</span>
+        <span style="display:inline-block;padding:4px 12px;background:#f5f5f5;border:1px solid #ccc;border-radius:999px;font-size:12px;font-weight:600;color:#666;">Akito-owned</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Peanut eSIM · Tab 21 Strategic Scenarios Visualizer · Numbers verified from Google Sheets 2026-06-02 · Owners: Balraj + Akito
+</footer>
+
+<script>
+// ============================================================
+// CHART 1 — WHOLESALE MARKUP vs USER VOLUME
+// ============================================================
+(function() {
+  const ctx = document.getElementById('chart-wholesale');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['1K users', '5K users\n(M24 target)', '10K users', '25K users', '50K users', '100K users'],
+      datasets: [{
+        label: 'Wholesale Supplier Markup (%)',
+        data: [70, 55, 40, 30, 20, 15],
+        backgroundColor: [
+          '#D71921', '#D71921', '#C9A03B', '#C9A03B', '#1a8a5a', '#1a8a5a'
+        ],
+        borderRadius: 4,
+      }, {
+        label: 'Direct eSIM Access (flat baseline, approx)',
+        data: [null, null, null, null, null, null],
+        backgroundColor: 'rgba(0,0,0,0)',
+        borderColor: '#999',
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label(ctx) { return `Markup: ${ctx.raw}%`; }
+          }
+        },
+        annotation: {}
+      },
+      scales: {
+        y: {
+          beginAtZero: true, max: 80,
+          title: { display: true, text: 'Wholesale Markup (%)' },
+          ticks: { callback: v => v + '%' }
+        },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+})();
+
+// ============================================================
+// CHART 2 — CUSHION BY TIER (bar chart)
+// ============================================================
+(function() {
+  const ctx = document.getElementById('chart-cushion');
+  if (!ctx) return;
+  const tiers = ['Economy', 'Roster Bundle', 'Premium', 'Business', 'First', 'First Suite*', 'Cockpit'];
+  const cushions = [0.28, 26.94, 6.27, 11.58, 25.22, null, 13.97];
+  const colors = cushions.map(v => {
+    if (v === null) return '#E5DDD0';
+    if (v < 2) return '#D71921';
+    if (v < 8) return '#C9A03B';
+    return '#1a8a5a';
+  });
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: tiers,
+      datasets: [{
+        label: 'Cushion vs Crew SIM ($)',
+        data: cushions,
+        backgroundColor: colors,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label(ctx) {
+              if (ctx.raw === null) return 'Placeholder — no equivalent tier';
+              return `Cushion: $${ctx.raw.toFixed(2)}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          title: { display: true, text: 'Cushion vs Crew SIM ($)' },
+          ticks: { callback: v => '$' + v }
+        },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+})();
+
+// ============================================================
+// CHART 3 — FLOOR vs RETAIL
+// ============================================================
+(function() {
+  const ctx = document.getElementById('chart-floor-retail');
+  if (!ctx) return;
+  const tiers = ['Economy', 'Roster Bundle', 'Premium', 'Business', 'First', 'Suite*', 'Cockpit'];
+  const floors = [4.71, 8.06, 6.72, 10.41, 14.78, 19.07, 11.02];
+  const retails = [12.48, 19.95, 17.99, 29.99, 39.99, 49.99, 24.92];
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: tiers,
+      datasets: [
+        {
+          label: 'Min Viable Price (Floor)',
+          data: floors,
+          backgroundColor: 'rgba(215,25,33,0.8)',
+          borderRadius: 4,
+        },
+        {
+          label: 'Our Retail Price',
+          data: retails,
+          backgroundColor: 'rgba(26,26,26,0.75)',
+          borderRadius: 4,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 12 } } },
+        tooltip: {
+          callbacks: {
+            label(ctx) { return `${ctx.dataset.label}: $${ctx.raw}`; }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { callback: v => '$' + v }
+        },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

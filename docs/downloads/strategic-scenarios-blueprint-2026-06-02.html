@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 21 Strategic Scenarios: In-Depth Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.copy-bar a { color: white; text-decoration: none; font-size: 13px; opacity: .85; }
+.copy-bar a:hover { opacity: 1; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h2.now-border { border-bottom-color: var(--red); }
+h2.parked-border { border-bottom-color: #ccc; color: #666; }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+.lede.red { border-left-color: var(--red); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.now { background: #FBE0E0; color: var(--red); }
+.pill.parked { background: #f0f0f0; color: #666; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.akito { background: #F0E0FF; color: #6B3FA0; }
+.pill.match { background: #FBE0E0; color: var(--red-dark); }
+.pill.hold { background: #E0F2E7; color: var(--green); }
+.pill.never { background: #FFF3D0; color: #7a4a00; }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.decision-box { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+.now-box { background: #FFF5F5; border: 1px solid #f5c0c0; padding: 18px 22px; margin: 16px 0; border-radius: 6px; border-left: 4px solid var(--red); }
+.now-box strong { color: var(--red); }
+.parked-box { background: #f8f8f8; border: 1px solid #ddd; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; color: #666; }
+.parked-box strong { color: #555; }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+tr.match td { background: #fff5f5; }
+tr.hold td { background: #f0faf4; }
+tr.never td { background: #1A1A1A; color: #fff; }
+tr.never td strong { color: #ffd700; }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.gold-text { color: var(--amber); font-weight: 600; }
+code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+.chart-wrap { background: white; padding: 24px; border: 1px solid var(--line); border-radius: 6px; margin: 20px 0; max-width: 680px; }
+.chart-wrap canvas { max-height: 300px; }
+.step-list { counter-reset: steps; list-style: none; padding: 0; margin: 16px 0; }
+.step-list li { counter-increment: steps; display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-bottom: 1px solid var(--line); background: white; }
+.step-list li:first-child { border-radius: 6px 6px 0 0; }
+.step-list li:last-child { border-bottom: none; border-radius: 0 0 6px 6px; }
+.step-list li::before { content: counter(steps); display: flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.step-list li .step-time { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.step-list li .step-body { flex: 1; }
+.timing-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .03em; }
+.timing-tag.now { background: #FBE0E0; color: var(--red-dark); }
+.timing-tag.parked { background: #f0f0f0; color: #666; }
+.moat-list { list-style: none; padding: 0; margin: 16px 0; }
+.moat-list li { display: flex; gap: 12px; padding: 12px 16px; background: white; border-bottom: 1px solid var(--line); font-size: 14px; align-items: flex-start; }
+.moat-list li:first-child { border-radius: 6px 6px 0 0; }
+.moat-list li:last-child { border-bottom: none; border-radius: 0 0 6px 6px; }
+.moat-list li svg { flex-shrink: 0; margin-top: 1px; }
+.moat-list .moat-title { font-weight: 700; display: block; margin-bottom: 2px; }
+.moat-list .moat-desc { font-size: 13px; color: var(--ink-soft); }
+.insight-box { background: var(--ink); color: #fff; border-radius: 8px; padding: 24px 28px; margin: 20px 0; }
+.insight-box .big { font-size: clamp(22px, 3.5vw, 32px); font-weight: 700; letter-spacing: -.5px; margin-bottom: 8px; }
+.insight-box .label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.insight-box p { font-size: 14px; opacity: .85; margin: 0; }
+.open-queue { list-style: none; padding: 0; margin: 16px 0; }
+.open-queue li { display: flex; gap: 14px; padding: 13px 16px; background: white; border-bottom: 1px solid var(--line); font-size: 14px; align-items: flex-start; }
+.open-queue li:first-child { border-radius: 6px 6px 0 0; }
+.open-queue li:last-child { border-bottom: none; border-radius: 0 0 6px 6px; }
+.oq-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+.oq-dot.akito { background: var(--red); }
+.oq-dot.balraj { background: var(--gold); }
+.oq-dot.monitor { background: var(--green); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+@media (max-width: 600px) {
+  .container { padding: 24px 16px 60px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 20px; }
+  .two-col { grid-template-columns: 1fr; }
+}
+.badge-new { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: .06em; background: var(--gold); color: white; text-transform: uppercase; margin-left: 10px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 21 BLUEPRINT — Strategic Scenarios — Peanut eSIM (2026-06-02)</span>
+  <a href="index.html">← Back to hub</a>
+</div>
+
+<div class="container">
+
+<h1>Tab 21 — Strategic Scenarios: In-Depth Blueprint <span class="badge-new">New 2026-06-02</span></h1>
+<div class="meta">Prepared 2026-06-02 · Full discussion, decisions, verified numbers, and open items · Owners: Balraj + Akito</div>
+
+<!-- TLDR -->
+<div class="lede red">
+  <strong>TL;DR:</strong> Tab 21 runs three planning scenarios — wholesale tier triggers (Year 2+), multi-airline expansion (Year 2-3), and competitive floor analysis (NOW). The only section that matters today is Section 3: if Crew SIM undercuts our prices, how far can we follow? Answer: Economy is our only vulnerable tier ($0.28 cushion). Every subscription tier has substantial room. Our defence is the 8-feature bundle, not price. Economy is the only tier where matching is on the table.
+</div>
+
+<!-- TOC -->
+<div class="toc">
+<strong>Contents</strong>
+<ul>
+  <li><a href="#why">1. Why this tab matters (and the timing split)</a></li>
+  <li><a href="#source">2. Source data — verified from Google Sheets</a></li>
+  <li><a href="#s1">3. Section 1 — Wholesale Tier Triggers (parked)</a></li>
+  <li><a href="#s2">4. Section 2 — Multi-Airline Expansion (parked)</a></li>
+  <li><a href="#s3">5. Section 3 — Competitive Floor (THE MAIN CONTENT)</a></li>
+  <li><a href="#moat">6. The 8-feature moat</a></li>
+  <li><a href="#recommendation">7. Strategic recommendation — defend selectively</a></li>
+  <li><a href="#playbook">8. The 4-step playbook if attacked</a></li>
+  <li><a href="#economy">9. Economy as the exposed tier</a></li>
+  <li><a href="#insight">10. The big insight — bundle not price</a></li>
+  <li><a href="#queue">11. Open items / queue</a></li>
+</ul>
+</div>
+
+<!-- ===== 1. WHY THIS TAB MATTERS ===== -->
+<h2 id="why">1. Why this tab matters — and the timing split</h2>
+
+<p>Tab 21 exists to answer three "what if" questions that the base P&amp;L model ignores by design. The base model assumes steady-state: fixed wholesale markup, fixed crew base, fixed prices. Tab 21 tests what happens when those assumptions change.</p>
+
+<p>The three sections map to three different strategic timelines:</p>
+
+<table>
+  <tr><th>Section</th><th>Question</th><th>Timing</th><th>Priority</th></tr>
+  <tr>
+    <td>1 — Wholesale Triggers</td>
+    <td>When does scale unlock better supplier rates?</td>
+    <td>Year 2+ (need 5K users first)</td>
+    <td><span class="pill parked">PARKED</span></td>
+  </tr>
+  <tr>
+    <td>2 — Multi-Airline</td>
+    <td>What does expansion to Etihad, JAL, ANA look like?</td>
+    <td>Year 2-3 planning</td>
+    <td><span class="pill parked">PARKED</span></td>
+  </tr>
+  <tr>
+    <td><strong>3 — Competitive Floor</strong></td>
+    <td><strong>How LOW can we go before we lose money per tier?</strong></td>
+    <td><strong>NOW — affects launch pricing</strong></td>
+    <td><span class="pill now">URGENT</span></td>
+  </tr>
+</table>
+
+<div class="now-box">
+  <strong>Why Section 3 matters right now:</strong> We are setting launch prices today. If Crew SIM announces a promotional rate after launch, we need to know instantly — without recalculating — whether we can follow them, and on which tiers. Section 3 gives us that answer pre-computed for every tier.
+</div>
+
+<div class="parked-box">
+  <strong>Why Sections 1 and 2 are parked:</strong> Section 1 requires real user data to negotiate (no leverage at 0 users). Section 2 requires Section 1 to land first — you expand airlines when your first airline is proven. Neither is actionable today.
+</div>
+
+<!-- ===== 2. SOURCE DATA ===== -->
+<h2 id="source">2. Source data — verified from Google Sheets</h2>
+
+<p>All numbers in this blueprint were verified directly against the Google Sheets P&amp;L model (Sheet ID: <code>1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU</code>, tab "Strategic Scenarios") on 2026-06-02. The discussion notes used in drafting this blueprint contained some differences from the live sheet; the sheet numbers take precedence.</p>
+
+<h4>Key verified figures — Competitive Floor</h4>
+<table>
+  <tr><th>Tier</th><th>Retail</th><th>COGS</th><th>OPEX</th><th>Min Viable Price</th><th>Crew SIM Ref</th><th>Cushion</th></tr>
+  <tr><td>Economy</td><td>$12.48</td><td>$3.36</td><td>$1.35</td><td>$4.71</td><td>$4.99</td><td>$0.28</td></tr>
+  <tr><td>Roster Bundle</td><td>$19.95</td><td>$6.71</td><td>$1.35</td><td>$8.06</td><td>$35.00</td><td>$26.94</td></tr>
+  <tr><td>Premium Economy</td><td>$17.99</td><td>$5.37</td><td>$1.35</td><td>$6.72</td><td>$12.99</td><td>$6.27</td></tr>
+  <tr><td>Business</td><td>$29.99</td><td>$9.06</td><td>$1.35</td><td>$10.41</td><td>$21.99</td><td>$11.58</td></tr>
+  <tr><td>First</td><td>$39.99</td><td>$13.43</td><td>$1.35</td><td>$14.78</td><td>$39.99</td><td>$25.22</td></tr>
+  <tr><td>First Suite</td><td>$49.99</td><td>$17.72</td><td>$1.35</td><td>$19.07</td><td>$45.00 *</td><td>PLACEHOLDER *</td></tr>
+  <tr><td>Cockpit</td><td>$24.92</td><td>$9.67</td><td>$1.35</td><td>$11.02</td><td>$24.99</td><td>$13.97</td></tr>
+</table>
+<p style="font-size:13px;color:var(--ink-soft);">* First Suite: Crew SIM has no equivalent tier. $45.00 is a placeholder. Akito to validate.</p>
+
+<p>The floor formula: <code>Min Viable Price = COGS + OPEX ($1.35)</code>. At floor, we earn $0 net — we cover cost and nothing more. This is the absolute hard stop below which we lose money on every transaction.</p>
+
+<!-- ===== 3. SECTION 1 ===== -->
+<h2 id="s1" class="parked-border">3. Section 1 — Wholesale Tier Triggers <span class="pill parked">Year 2+</span></h2>
+
+<p>Section 1 models the relationship between our user volume and the wholesale supplier markup we pay. These are model assumptions — not confirmed supplier rates.</p>
+
+<div class="chart-wrap">
+  <canvas id="chart-wholesale-bp"></canvas>
+</div>
+
+<table>
+  <tr><th>Active Users</th><th>Wholesale Markup (assumed)</th><th>Strategic Move</th></tr>
+  <tr><td>1,000</td><td>70%</td><td>No leverage. Stay with current wholesale supplier.</td></tr>
+  <tr><td>5,000 (M24 target)</td><td>55%</td><td>Start negotiating.</td></tr>
+  <tr><td>10,000</td><td>40%</td><td>Hit the publicly-claimed rate.</td></tr>
+  <tr><td>25,000</td><td>30%</td><td>Direct eSIM Access becomes equally attractive.</td></tr>
+  <tr><td>50,000</td><td>20%</td><td>Direct eSIM Access strictly cheaper.</td></tr>
+  <tr><td>100,000</td><td>15%</td><td>Direct MNO contracts available.</td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Why this is parked</h4>
+  <p>We have 0 users today. The 5K trigger for opening negotiations is our Month 24 target. Approaching the wholesale supplier before we have data is a negotiation with no leverage. Park this, revisit at M18 when we can show real transaction volume.</p>
+</div>
+
+<!-- ===== 4. SECTION 2 ===== -->
+<h2 id="s2" class="parked-border">4. Section 2 — Multi-Airline Expansion <span class="pill parked">Year 2-3</span></h2>
+
+<p>Sequential rollout verified from Google Sheets. Year 2 airline row contains formula errors in the sheet (#ERROR! in airline name column) — likely a reference issue; revenue figures appear intact.</p>
+
+<table>
+  <tr><th>Year</th><th>Airlines Added</th><th>Crew Base</th><th>Active Users</th><th>Annual Revenue Est.</th></tr>
+  <tr><td><strong>Year 1</strong></td><td>Emirates DXB</td><td>24,000</td><td>1,000</td><td>$185,282</td></tr>
+  <tr><td><strong>Year 2</strong></td><td>+ Etihad, JAL, ANA</td><td>80,000</td><td>6,000</td><td>$1,111,691</td></tr>
+  <tr><td><strong>Year 3</strong></td><td>+ Singapore, Cathay HKG, Qatar</td><td>140,000</td><td>18,000</td><td>$3,335,073</td></tr>
+</table>
+
+<div class="parked-box">
+  <strong>Flag:</strong> The Year 2 and Year 3 airline name cells contain #ERROR! in the sheet. Revenue figures appear formula-derived and are likely correct. Fix the airline name cells before using this data in a pitch.
+</div>
+
+<!-- ===== 5. SECTION 3 — THE MAIN CONTENT ===== -->
+<h2 id="s3">5. Section 3 — Competitive Floor <span class="pill now">NOW — Critical</span></h2>
+
+<p>The question this section answers: "If Crew SIM undercuts our retail price on any tier today, exactly how low can we follow before that tier loses money?"</p>
+
+<h3>The floor formula</h3>
+<blockquote>Min Viable Price = COGS + OPEX per user per month ($1.35)<br>At this price: net profit = $0. We break even and nothing more.</blockquote>
+
+<p>This is not a target — it is a hard floor. Pricing below this number means we lose money on every transaction at that tier.</p>
+
+<h3>The chart: cushion by tier</h3>
+<div class="chart-wrap" style="max-width:100%;">
+  <canvas id="chart-cushion-bp"></canvas>
+</div>
+
+<h3>What the numbers tell us</h3>
+<p>Most tiers have significant room to maneuver. The problem tier is Economy:</p>
+
+<ul>
+  <li><strong>Economy:</strong> $0.28 cushion. Crew SIM at $4.99, our floor at $4.71. We are 28 cents from the edge on our entry tier. This is the only tier where a Crew SIM price cut could immediately threaten our business model.</li>
+  <li><strong>All subscription tiers:</strong> Premium ($6.27), Business ($11.58), First ($25.22), Cockpit ($13.97) — all have room to absorb promotional moves without going negative.</li>
+  <li><strong>Roster Bundle:</strong> $26.94 cushion. Crew SIM charges $35 for their equivalent. We already win on price by $15. No defensive action needed.</li>
+</ul>
+
+<!-- ===== 6. THE 8-FEATURE MOAT ===== -->
+<h2 id="moat">6. The 8-feature moat</h2>
+
+<p>Before discussing any defensive pricing move, we should note that Crew SIM's competitive threat is limited by what they can offer. Our moat is not price — it is the feature stack they cannot replicate without rebuilding their entire product.</p>
+
+<ul class="moat-list">
+  <li>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <div><span class="moat-title">1. CrewLink Roster Upload</span><span class="moat-desc">High switching cost. Ties Peanut to crew workflow. Once a crew member has uploaded their roster, Peanut becomes part of their pre-flight routine. No competitor builds for this.</span></div>
+  </li>
+  <li>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+    <div><span class="moat-title">2. Gifting Carryover</span><span class="moat-desc">Viral mechanic. Unused data becomes a gift to another crew member. Creates a loop: user stays subscribed because giving is frictionless, recipient signs up.</span></div>
+  </li>
+  <li>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div><span class="moat-title">3. UAE Redemption</span><span class="moat-desc">Use eSIM data at home in Dubai via dynamic allocation. Turns a travel-only product into daily-life infrastructure. No standard eSIM provider enables this.</span></div>
+  </li>
+  <li>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <div><span class="moat-title">4. Crew Recs (Michelin-style)</span><span class="moat-desc">Content moat. Crew-curated destination restaurant, hotel, and experience database. Only Peanut users can contribute and access. Content quality compounds over time.</span></div>
+  </li>
+  <li>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+    <div><span class="moat-title">5. Same-SIM Dynamic Allocation</span><span class="moat-desc">One eSIM, multiple country pools, allocated dynamically. Better UX than the industry standard of one eSIM per country. This is the architectural enabler for UAE redemption and gifting.</span></div>
+  </li>
+  <li>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <div><span class="moat-title">6. 60% Cheaper Than 1 GB Packets</span><span class="moat-desc">Subscription pools beat per-GB pricing for anyone flying more than twice a month. The cost advantage compounds over a year — crew figure this out quickly.</span></div>
+  </li>
+  <li>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <div><span class="moat-title">7. AI Support</span><span class="moat-desc">Instant eSIM installation help, top-up, refunds via in-app AI chat. Crew SIM is email-only. For crew on a 48-hour layover who can't get their SIM working, speed of support is everything.</span></div>
+  </li>
+  <li>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <div><span class="moat-title">8. Annual Cockpit Prepay</span><span class="moat-desc">One payment, one year, locked retention. The user is off the competitive market entirely. No monthly renewal friction. No comparison-shopping window for a competitor to exploit.</span></div>
+  </li>
+</ul>
+
+<!-- ===== 7. STRATEGIC RECOMMENDATION ===== -->
+<h2 id="recommendation">7. Strategic recommendation — defend selectively</h2>
+
+<p>The recommendation is a hybrid strategy: match on Economy if forced, hold everywhere else. The rationale is tier-by-tier:</p>
+
+<table>
+  <tr><th>Tier</th><th>Strategy if Crew SIM cuts</th><th>Cushion</th><th>Why</th></tr>
+  <tr class="match">
+    <td><strong>Economy</strong></td>
+    <td><span class="pill match">MATCH if below $4.99</span></td>
+    <td>$0.28</td>
+    <td>Entry tier. Price-sensitive users comparison-shop. Never below $4.71 floor.</td>
+  </tr>
+  <tr class="hold">
+    <td><strong>Roster Bundle</strong></td>
+    <td><span class="pill hold">HOLD $19.95</span></td>
+    <td>$26.94</td>
+    <td>Crew SIM has no CrewLink. We win on feature, not price.</td>
+  </tr>
+  <tr class="hold">
+    <td><strong>Premium Economy</strong></td>
+    <td><span class="pill hold">HOLD $17.99</span></td>
+    <td>$6.27</td>
+    <td>$11 gap vs Crew SIM. Run promo if needed — not a price cut.</td>
+  </tr>
+  <tr class="hold">
+    <td><strong>Business</strong></td>
+    <td><span class="pill hold">HOLD $29.99</span></td>
+    <td>$11.58</td>
+    <td>Heavy users value predictability and the full feature stack.</td>
+  </tr>
+  <tr class="never">
+    <td><strong>First</strong></td>
+    <td><span class="pill never">NEVER DROP</span></td>
+    <td>$25.22</td>
+    <td>Premium positioning. Cutting the posted price permanently damages the tier.</td>
+  </tr>
+  <tr class="never">
+    <td><strong>First Suite</strong></td>
+    <td><span class="pill never">NEVER DROP</span></td>
+    <td>—</td>
+    <td>Crew SIM has no equivalent. We own this tier. Any drop signals weakness.</td>
+  </tr>
+  <tr class="never">
+    <td><strong>Cockpit</strong></td>
+    <td><span class="pill never">NEVER DROP</span></td>
+    <td>$13.97</td>
+    <td>Annual lock-in users are not price-sensitive. They chose commitment.</td>
+  </tr>
+</table>
+
+<!-- ===== 8. THE 4-STEP PLAYBOOK ===== -->
+<h2 id="playbook">8. The 4-step playbook if attacked</h2>
+
+<p>This playbook is sequential. Do not skip to Step 3 without completing Steps 1 and 2. Most competitive moves resolve at Step 2 without any action on our part.</p>
+
+<ul class="step-list">
+  <li>
+    <div class="step-body">
+      <div class="step-time">Days 1-7</div>
+      <strong>Don't react publicly. Watch the move.</strong>
+      <p style="margin:6px 0 0;font-size:14px;color:var(--ink-soft);">Do not post, announce, or even mention a competitive response. Gather data on exactly what Crew SIM changed. A knee-jerk response signals weakness and may over-react to a test or typo.</p>
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <div class="step-time">Week 2-4</div>
+      <strong>Assess actual impact. Track signups and churn.</strong>
+      <p style="margin:6px 0 0;font-size:14px;color:var(--ink-soft);">If neither new signups nor churn moves in Week 3, ignore completely. The vast majority of competitive price changes have zero measurable impact on crew because crew choose based on trust and features, not a 50-cent price difference.</p>
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <div class="step-time">Only if signups drop</div>
+      <strong>"Spring Promotion" — looks organic, not reactive.</strong>
+      <p style="margin:6px 0 0;font-size:14px;color:var(--ink-soft);">Options: "1 month free Premium for new crew signing up in [month]" or "Refer 3 friends, get Cockpit at 50% for Year 1." Never cut posted prices. The promotion window ends and the full price remains intact.</p>
+    </div>
+  </li>
+  <li>
+    <div class="step-body">
+      <div class="step-time">Parallel to Step 3</div>
+      <strong>Aggressive retention for at-risk users.</strong>
+      <p style="margin:6px 0 0;font-size:14px;color:var(--ink-soft);">Target individuals, not the whole base. Premium users 6+ months: push to Cockpit annual (locks them, removes them from the risk pool entirely). Heavy users: offer free CrewLink upgrade. Do not blanket discount — that trains your best users to wait for sales.</p>
+    </div>
+  </li>
+</ul>
+
+<!-- ===== 9. ECONOMY AS EXPOSED TIER ===== -->
+<h2 id="economy">9. Economy as the exposed tier</h2>
+
+<p>Economy deserves a dedicated section because it is structurally different from every other tier:</p>
+
+<div class="two-col">
+  <div class="decision-box">
+    <h4>Why Economy is uniquely exposed</h4>
+    <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ink);">
+      <li style="margin-bottom:6px;">PAYG structure — no monthly subscription lock-in</li>
+      <li style="margin-bottom:6px;">Price-sensitive users actively comparison-shop between purchases</li>
+      <li style="margin-bottom:6px;">$0.28 cushion — nearly no room to maneuver</li>
+      <li style="margin-bottom:6px;">Cannot run "Spring Promotion" effectively (no ongoing relationship to leverage)</li>
+      <li>First impression tier — losing Economy users means losing the pipeline to subscriptions</li>
+    </ul>
+  </div>
+  <div class="decision-box">
+    <h4>The hard rules for Economy</h4>
+    <ul style="margin:0;padding-left:18px;font-size:14px;color:var(--ink);">
+      <li style="margin-bottom:6px;"><strong>Hard floor: $4.71</strong> (COGS $3.36 + OPEX $1.35)</li>
+      <li style="margin-bottom:6px;">Never price below $4.71 under any circumstances — we lose money on every transaction</li>
+      <li style="margin-bottom:6px;">If Crew SIM goes below $4.99, match at $4.99 or slightly below</li>
+      <li style="margin-bottom:6px;">If Crew SIM goes below $4.71, flag for pricing architecture review — we cannot follow</li>
+      <li>Monitor Crew SIM Economy pricing monthly</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== 10. THE BIG INSIGHT ===== -->
+<h2 id="insight">10. The big insight — bundle not price</h2>
+
+<div class="insight-box">
+  <div class="label">The strategic principle</div>
+  <div class="big">We compete on the bundle, not on price.</div>
+  <p>Crew SIM has 41 countries on a price list. We have 41 countries plus CrewLink roster sync, gifting carryover, UAE redemption, Crew Recs, AI support, same-SIM dynamic allocation, and Annual Cockpit lock-in. That 8-feature delta is not something Crew SIM can close with a price cut — they would have to rebuild their entire product.</p>
+</div>
+
+<p>The implication for pricing defense: the more we lean into the bundle rather than price matching, the stronger our competitive position becomes. A crew member who has uploaded their roster, saved $40 vs PAYG, gifted unused data to a colleague, and used UAE redemption once is not going to leave for a competitor offering a $1 discount. They are locked in by value, not by price.</p>
+
+<p>Price matching is only a tool of last resort for Economy — the one tier where we have no subscription relationship and the user has no sunk cost in our product.</p>
+
+<!-- ===== 11. OPEN ITEMS ===== -->
+<h2 id="queue">11. Open items / queue</h2>
+
+<ul class="open-queue">
+  <li>
+    <div class="oq-dot akito"></div>
+    <div>
+      <strong>Akito: Validate First Suite competitor price</strong><br>
+      <span style="font-size:13px;color:var(--ink-soft);">Crew SIM has no First Suite tier equivalent. The $45.00 in the sheet is a placeholder. Akito to research: does any competitor offer a comparable premium unlimited-ish plan and what do they charge? This completes the competitive floor table.</span><br>
+      <span class="pill akito" style="margin-top:6px;display:inline-block;">Akito-owned</span>
+    </div>
+  </li>
+  <li>
+    <div class="oq-dot balraj"></div>
+    <div>
+      <strong>Build CrewLink + gifting into v1.0 / v1.1 scope</strong><br>
+      <span style="font-size:13px;color:var(--ink-soft);">These are the two features that create the highest switching cost. CrewLink is the wedge; gifting is the viral loop. Both need to ship before a competitor can clone them.</span><br>
+      <span class="pill open" style="margin-top:6px;display:inline-block;">Balraj-scoped</span>
+    </div>
+  </li>
+  <li>
+    <div class="oq-dot monitor"></div>
+    <div>
+      <strong>Monthly monitoring: Crew SIM pricing changes</strong><br>
+      <span style="font-size:13px;color:var(--ink-soft);">Track Crew SIM's published rate page monthly. Specifically watch Economy ($4.99) and Roster equivalent ($35). If Economy drops, trigger playbook Step 1. If our signup rate drops independently, check Crew SIM first.</span><br>
+      <span class="pill locked" style="margin-top:6px;display:inline-block;">Ongoing monitor</span>
+    </div>
+  </li>
+  <li>
+    <div class="oq-dot monitor"></div>
+    <div>
+      <strong>Year 2 re-evaluate Section 1 wholesale triggers</strong><br>
+      <span style="font-size:13px;color:var(--ink-soft);">At Month 18, review real user volumes against the trigger table. If we are tracking toward 5K users (M24 target), begin opening supplier conversations around M20.</span><br>
+      <span class="pill parked" style="margin-top:6px;display:inline-block;">Year 2 item</span>
+    </div>
+  </li>
+  <li>
+    <div class="oq-dot balraj"></div>
+    <div>
+      <strong>Fix #ERROR! cells in Multi-Airline sheet rows</strong><br>
+      <span style="font-size:13px;color:var(--ink-soft);">Year 2 and Year 3 airline name columns in the "Strategic Scenarios" tab contain formula errors. Revenue figures appear correct. Repair before using in any external pitch.</span><br>
+      <span class="pill open" style="margin-top:6px;display:inline-block;">Sheet fix</span>
+    </div>
+  </li>
+</ul>
+
+<div class="footer-note">
+  Peanut eSIM · Tab 21 Strategic Scenarios Blueprint · Numbers verified from Google Sheets 2026-06-02 · Owners: Balraj + Akito · Built 2026-06-02
+</div>
+
+</div><!-- /container -->
+
+<script>
+// ============================================================
+// CHART 1 — WHOLESALE MARKUP (blueprint)
+// ============================================================
+(function() {
+  const ctx = document.getElementById('chart-wholesale-bp');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['1K', '5K\n(M24)', '10K', '25K', '50K', '100K'],
+      datasets: [{
+        label: 'Wholesale Markup (%)',
+        data: [70, 55, 40, 30, 20, 15],
+        backgroundColor: ['#D71921','#D71921','#C9A03B','#C9A03B','#2D7A4F','#2D7A4F'],
+        borderRadius: 3,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true, max: 80, ticks: { callback: v => v + '%' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+})();
+
+// ============================================================
+// CHART 2 — CUSHION BY TIER (blueprint)
+// ============================================================
+(function() {
+  const ctx = document.getElementById('chart-cushion-bp');
+  if (!ctx) return;
+  const tiers = ['Economy', 'Roster Bundle', 'Premium Econ.', 'Business', 'First', 'Cockpit'];
+  const cushions = [0.28, 26.94, 6.27, 11.58, 25.22, 13.97];
+  const colors = [
+    '#D71921', '#2D7A4F', '#C9A03B', '#2D7A4F', '#2D7A4F', '#2D7A4F'
+  ];
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: tiers,
+      datasets: [{
+        label: 'Cushion vs Crew SIM ($)',
+        data: cushions,
+        backgroundColor: colors,
+        borderRadius: 3,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label(ctx) { return `Cushion: $${ctx.raw.toFixed(2)}`; }
+          }
+        }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { callback: v => '$' + v } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
