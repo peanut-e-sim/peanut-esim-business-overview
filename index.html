@@ -4140,8 +4140,39 @@
           <span class="lang en"><strong>How this was decided:</strong> Council pass (llm-council, 5 advisors) initially recommended deferring the full rework until supplier meeting + crew survey landed, to avoid anchoring on a second unvalidated number. User then explicitly overrode that recommendation (&ldquo;do everything&rdquo;) on the basis that the price-list correction is the most important input. Model rebuilt as scenario range rather than point estimate, addressing the council's anchoring concern.</span>
           <span class="lang jp"><strong>判断プロセス:</strong> 当初 llm-council（5 名のアドバイザー）はサプライヤー会議＋クルー調査結果を待つ最小限対応を推奨（第二の未検証数値へのアンカリング回避）。Balraj が「全部やって」と明示的に上書き判断（価格表補正が最重要インプット）。アンカリング懸念に対応するため、ポイント推定ではなくシナリオレンジで再構築。</span>
         </p>
+
+        <div style="margin-top: 22px; padding: 16px 18px; background: #fef9e6; border-left: 4px solid #C9A03B; border-radius: 6px;">
+          <strong style="display: block; margin-bottom: 8px; color: #8a6420; font-size: 14px; letter-spacing: 0.3px;"><span class="lang en">STRATEGIC RISK REVIEW &mdash; council follow-up (2026-06-02, post-rebuild)</span><span class="lang jp">戦略リスクレビュー &mdash; 再構築後の council フォローアップ（2026-06-02）</span></strong>
+          <p style="margin: 0 0 10px; font-size: 13.5px; color: #4A4A4A;">
+            <span class="lang en">After the per-GB ladder inversion was spotted (Business $2.00/GB &gt; Premium $1.90/GB), a second council pass identified seven additional strategic risks across the model. Top items below; full transcript saved locally (not pushed &mdash; contains supplier names / internals). Items remain OPEN pending Balraj's decisions.</span>
+            <span class="lang jp">per-GB ラダーの逆転（Business $2.00/GB &gt; Premium $1.90/GB）発見後、第二回 council にて7件の戦略リスクを特定。主要項目を以下に記載。フルトランスクリプトはローカル保存（サプライヤー名・内部情報含むため公開なし）。Balraj 判断待ちのため OPEN ステータス。</span>
+          </p>
+          <table class="mini-table" style="margin-top: 12px; background: white;">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th><span class="lang en">Finding</span><span class="lang jp">所見</span></th>
+                <th><span class="lang en">Severity</span><span class="lang jp">重要度</span></th>
+                <th><span class="lang en">Status</span><span class="lang jp">状況</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><strong><span class="lang en">Cockpit consumption fragility</span><span class="lang jp">Cockpit 消費量脆弱性</span></strong>: <span class="lang en">35% margin holds at 60% pool consumption (7.2 GB/mo of 12 GB). At 100% pool consumption: COGS $27.08 vs $24.92 revenue = &minus;8.7% margin (UNDERWATER). Cockpit subscribers are heavy users by definition. Verified arithmetic; flag is real.</span><span class="lang jp">35% マージンは 60% プール消費（12 GB プールのうち 7.2 GB/月）前提で成立。100% プール消費時: COGS $27.08 vs 収益 $24.92 = &minus;8.7% マージン（赤字）。Cockpit 加入者は性質上ヘビーユーザー。計算検証済み、リスク現実的。</span></td><td><strong style="color:#d71921">HIGH</strong></td><td><strong>OPEN</strong></td></tr>
+              <tr><td>2</td><td><strong><span class="lang en">Refund policy was designed at $1.34/GB</span><span class="lang jp">返金ポリシーは $1.34/GB 時に設計</span></strong>: <span class="lang en">At $2.26/GB, a partial-use refund on Suite at 62.5% pool consumption can produce a per-unit loss. Locked 6-scenario refund matrix needs re-running at corrected cost base.</span><span class="lang jp">$2.26/GB では Suite 62.5% プール消費時の部分返金が単位損失を発生させうる。6 シナリオ返金マトリクスを補正後コストで再計算が必要。</span></td><td><strong style="color:#d71921">HIGH</strong></td><td><strong>OPEN</strong></td></tr>
+              <tr><td>3</td><td><strong><span class="lang en">Supplier concentration risk</span><span class="lang jp">サプライヤー集中リスク</span></strong>: <span class="lang en">Universal blind spot flagged by 3/5 peer reviewers independently. Single wholesale supplier, no BATNA, no second supplier qualified. A 10% rate increase post-launch permanently breaks First &amp; Suite economics. Mitigation: qualify backup supplier in parallel, document rate-lock terms.</span><span class="lang jp">5 名中 3 名のレビュアーが独立して指摘したユニバーサルブラインドスポット。卸サプライヤー単一依存、BATNA なし、バックアップ供給者未確保。ローンチ後の 10% レート上昇で First・Suite 経済が恒久的に破綻。緩和策: 並行してバックアップサプライヤー認定、レート固定条項文書化。</span></td><td><strong style="color:#d71921">HIGH</strong></td><td><strong>OPEN</strong></td></tr>
+              <tr><td>4</td><td><strong><span class="lang en">P&amp;L split: pre/post Q2.8 supplier negotiation</span><span class="lang jp">P&amp;L 分離: Q2.8 サプライヤー交渉前後</span></strong>: <span class="lang en">Current model blends one optimistic view assuming negotiation succeeds. Should show pre-negotiation ($2.26/GB, thin margins) and post-negotiation ($0.32/GB, healthy) side by side as distinct businesses.</span><span class="lang jp">現モデルは交渉成功前提の楽観的ブレンドビュー。交渉前（$2.26/GB、薄利）と交渉後（$0.32/GB、健全）を別事業として並列表示すべき。</span></td><td>MEDIUM</td><td><strong>OPEN</strong></td></tr>
+              <tr><td>5</td><td><strong><span class="lang en">Demand model doesn't exist</span><span class="lang jp">需要モデル不在</span></strong>: <span class="lang en">Consumption rates per tier (Premium 4 GB, First 10 GB, etc.) are estimates with no external anchor. If Premium users actually consume 7-8 GB, margin collapses from 52% to mid-20s. Every margin number is downstream of this unvalidated input. Source: competitor teardowns, industry benchmarks, beta user interviews.</span><span class="lang jp">ティア別消費率（Premium 4 GB、First 10 GB等）は外部アンカーなき推定値。Premium ユーザーが実際は 7-8 GB 消費する場合、マージンは 52% から中盤 20% に崩壊。全マージン数値はこの未検証入力の下流。情報源: 競合分析、業界ベンチマーク、ベータユーザーインタビュー。</span></td><td>MEDIUM</td><td><strong>OPEN</strong></td></tr>
+              <tr><td>6</td><td><strong><span class="lang en">Per-GB ladder inversion (your original catch)</span><span class="lang jp">per-GB ラダー逆転（最初の発見）</span></strong>: <span class="lang en">Business $2.00/GB &gt; Premium $1.90/GB. Cockpit $2.08/GB &gt; both. Cockpit is a different product class (annual prepay) so its $/GB position is acceptable; Business inversion is genuine. Two fix options: bump Business pool 15&rarr;18 GB ($1.67/GB, monotonic ladder), or stop displaying $/GB on the price card. Decision pending.</span><span class="lang jp">Business $2.00/GB &gt; Premium $1.90/GB。Cockpit $2.08/GB は両者超。Cockpit は別カテゴリ商品（年間前払い）のため $/GB ポジション許容；Business 逆転は本物。修正オプション: Business プールを 15&rarr;18 GB 増（$1.67/GB、単調ラダー）、または料金カードから $/GB 非表示。判断保留中。</span></td><td>MEDIUM</td><td><strong>OPEN</strong></td></tr>
+              <tr><td>7</td><td><strong><span class="lang en">Roster vs Premium price-card confusion</span><span class="lang jp">Roster vs Premium 料金カード混乱</span></strong>: <span class="lang en">Roster $19.95/5 GB priced ABOVE Premium $18.99/10 GB. A new buyer reading the price card asks: why pay more for less? Answer (per-flight vs pool) is invisible from the card. UX/positioning fix: lead with the per-flight value prop, not the GB total.</span><span class="lang jp">Roster $19.95/5 GB は Premium $18.99/10 GB より高額。新規買い手は料金カードを見て「なぜより少ない GB により高い金額か」と疑問。回答（フライト毎 vs プール）は料金カードから不可視。UX・ポジショニング修正: GB 総量ではなくフライト毎価値訴求でリード。</span></td><td>LOW</td><td><strong>OPEN</strong></td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top: 12px; font-size: 12.5px; color: #6b6b6b; line-height: 1.5;">
+            <span class="lang en">Full council report (HTML + transcript) saved locally at <code>/Users/a44/Downloads/eSIM/council-reports/council-report-20260602-212705.html</code>. Two automated safeguards added 2026-06-02 to prevent regression: per-GB ladder sanity-check script (<code>scripts/check_per_gb_ladder.py</code>) and Cockpit consumption stress table embedded in the plan-cockpit deep-dive page.</span>
+            <span class="lang jp">完全な council レポート（HTML ＋ トランスクリプト）は <code>/Users/a44/Downloads/eSIM/council-reports/council-report-20260602-212705.html</code> にローカル保存。2026-06-02 に追加された自動セーフガード 2 点: per-GB ラダー整合性チェック（<code>scripts/check_per_gb_ladder.py</code>）と plan-cockpit 深掘りページに Cockpit 消費ストレステーブル埋め込み。</span>
+          </p>
+        </div>
       </div>
-      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · Model rebuilt 2026-06-02 with corrected per-country rates; geo-mix still pending Akito's crew survey</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02 に補正済み国別レートで再構築完了；地理ミックスは Akito のクルー調査待ち</span></div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED for model rebuild &middot; 7 council follow-up items OPEN (3 HIGH severity)</span><span class="lang jp">ステータス ・ モデル再構築は解決済 ・ council フォローアップ 7 件 OPEN（うち HIGH 重要度 3 件）</span></div>
     </div>
 
     <div class="decision-card yellow">
@@ -9853,8 +9884,8 @@ Mercury（米国法人銀行口座）
     <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.5px; color:#D71921; background:#fdeaec; padding:4px 10px; border-radius:4px; margin-bottom:12px;">INTERNAL · MEETING PREP</span>
     <h1 class="lang en">Wholesale supplier &mdash; question set.</h1>
     <h1 class="lang jp">卸サプライヤー &mdash; 質問集。</h1>
-    <p class="lead lang en">Every question Balraj walks into the supplier meeting with. Plain-English explanation per question, plus what a good vs bad answer sounds like and what we do with each outcome.</p>
-    <p class="lead lang jp">Balraj がサプライヤーミーティングに持っていく全質問。質問ごとに平易な英語の説明、良い回答 vs 悪い回答の例、それぞれの結果でとるアクション。</p>
+    <p class="lead lang en">All 27 questions for the wholesale supplier &mdash; rewritten as a sending format. Each question is self-contained (2-3 sentences with the &ldquo;why&rdquo; embedded inline), ready to paste into an email or shared as this page link. The standalone printable meeting-prep version with good/bad answer expectations is linked at the bottom.</p>
+    <p class="lead lang jp">卸サプライヤー向け全 27 問 &mdash; 送信用フォーマットに書き直し。各質問は 2〜3 文で自己完結（背景情報を本文に埋め込み済み）、メールにそのまま貼り付ける、またはこのページのリンクとして共有可能。良い回答 vs 悪い回答の期待値を含む印刷可能なミーティング準備版は、下部にリンクされています。</p>
   </header>
 
   <!-- Table of contents -->
