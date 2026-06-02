@@ -56,13 +56,13 @@ hr { border:0; border-top:1px solid var(--line); margin:40px 0; }
 <body>
 
 <div class="copy-bar">
-  <span class="title">TAB 3 IN-DEPTH REPORT — Peanut eSIM (2026-06-01)</span>
-  <button onclick="copyAll()">Copy Full Report</button>
+ <span class="title">TAB 3 IN-DEPTH REPORT — Peanut eSIM (2026-06-01)</span>
+ <button onclick="copyAll()">Copy Full Report</button>
 </div>
 <nav class="bp-viz-switcher" style="position:sticky;top:0;z-index:50;background:#FAF6F0;border-bottom:1px solid #E5DDD0;padding:10px 24px;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;">
-  <a href="tab3-visual-explainer-akito-2026-06-01.html" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:white;color:#D71921;border:1px solid #D71921;">Visualizer</a>
-  <a href="tab3-in-depth-report-2026-06-01.html" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:#D71921;color:white;border:1px solid #D71921;">Blueprint</a>
-  <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit?gid=1989528728" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:white;color:#C9A03B;border:1px solid #C9A03B;">Google Sheet &#x2197;</a>
+ <a href="tab3-visual-explainer-akito-2026-06-01.html" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:white;color:#D71921;border:1px solid #D71921;">Visualizer</a>
+ <a href="tab3-in-depth-report-2026-06-01.html" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:#D71921;color:white;border:1px solid #D71921;">Blueprint</a>
+ <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit?gid=1989528728" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:white;color:#C9A03B;border:1px solid #C9A03B;">Google Sheet &#x2197;</a>
 </nav>
 
 
@@ -72,8 +72,8 @@ hr { border:0; border-top:1px solid var(--line); margin:40px 0; }
 <div class="meta">Prepared 2026-06-01 · Captures every column, formula, per-tier result, and downstream connection from the bite-by-bite walkthrough · Owners: Balraj + Akito</div>
 
 <div class="decision-box" style="border-left:4px solid var(--purple); background:#F5F0FA;">
-  <h4>Tab 3 in one sentence</h4>
-  <p style="margin:0;">Tab 3 translates the <strong>retail prices from Tab 1</strong> and the <strong>consumption behavior from Tab 2</strong> into a single <strong>per-USER profit number for each tier</strong>. It is the bridge between architecture and money. Every downstream scaling tab (Volume Scenarios, 24-Month Rollout, LTV-CAC) multiplies these per-user numbers by user counts.</p>
+ <h4>Tab 3 in one sentence</h4>
+ <p style="margin:0;">Tab 3 translates the <strong>retail prices from Tab 1</strong> and the <strong>consumption behavior from Tab 2</strong> into a single <strong>per-USER profit number for each tier</strong>. It is the bridge between architecture and money. Every downstream scaling tab (Volume Scenarios, 24-Month Rollout, LTV-CAC) multiplies these per-user numbers by user counts.</p>
 </div>
 
 <div class="lede">
@@ -83,14 +83,14 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <div class="toc">
 <strong>Table of Contents</strong>
 <ul>
-  <li><a href="#purpose">1. Purpose — what Tab 3 does (and what it doesn't)</a></li>
-  <li><a href="#columns">2. The 13 columns explained (3 column groups)</a></li>
-  <li><a href="#results">3. Per-tier results table (locked numbers)</a></li>
-  <li><a href="#insights">4. Strategic insights — which tier wins, which is weakest</a></li>
-  <li><a href="#downstream">5. Downstream consumption — how Tab 3 feeds the rest</a></li>
-  <li><a href="#confidence">6. Confidence assessment per input</a></li>
-  <li><a href="#validation">7. Validation queue</a></li>
-  <li><a href="#sensitivity">8. Bite 6 — Sensitivity analysis (what could break us)</a></li>
+ <li><a href="#purpose">1. Purpose — what Tab 3 does (and what it doesn't)</a></li>
+ <li><a href="#columns">2. The 13 columns explained (3 column groups)</a></li>
+ <li><a href="#results">3. Per-tier results table (locked numbers)</a></li>
+ <li><a href="#insights">4. Strategic insights — which tier wins, which is weakest</a></li>
+ <li><a href="#downstream">5. Downstream consumption — how Tab 3 feeds the rest</a></li>
+ <li><a href="#confidence">6. Confidence assessment per input</a></li>
+ <li><a href="#validation">7. Validation queue</a></li>
+ <li><a href="#sensitivity">8. Bite 6 — Sensitivity analysis (what could break us)</a></li>
 </ul>
 </div>
 
@@ -113,7 +113,7 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <p>The four upstream-fed inputs. None of these are calculated in Tab 3 — they pull from Tab 1 and Tab 2.</p>
 <table>
 <tr><th>Col</th><th>Name</th><th>Source</th><th>Example (Business)</th></tr>
-<tr><td>A</td><td>Tier name</td><td>Tab 1 row label</td><td>Business ⭐</td></tr>
+<tr><td>A</td><td>Tier name</td><td>Tab 1 row label</td><td>Business </td></tr>
 <tr><td>B</td><td>Monthly Revenue</td><td>Tab 1 retail price</td><td>$29.99</td></tr>
 <tr><td>C</td><td>GB Consumed</td><td>Tab 2 per-tier consumption</td><td>6.75 GB (45% of 15 GB pool)</td></tr>
 
@@ -152,9 +152,9 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <tr><td>Economy (PAYG, 2.5× mo)</td><td>$12.48</td><td>2.5</td><td>$3.35</td><td>$0.00</td><td>$12.48</td><td>$3.35</td><td>$9.13</td><td>73.2%</td><td>58.7%</td></tr>
 <tr><td>Roster Bundle</td><td>$19.95</td><td>5.0</td><td>$6.70</td><td>$0.37</td><td>$20.45</td><td>$6.83</td><td>$13.62</td><td>66.6%</td><td>57.8%</td></tr>
 <tr><td>Premium Economy</td><td>$17.99</td><td>4.0</td><td>$5.36</td><td>$0.73</td><td>$18.99</td><td>$5.63</td><td>$13.36</td><td>70.4%</td><td>60.9%</td></tr>
-<tr><td><strong>Business ⭐</strong></td><td><strong>$29.99</strong></td><td><strong>6.75</strong></td><td><strong>$9.05</strong></td><td><strong>$0.91</strong></td><td><strong>$31.24</strong></td><td><strong>$9.38</strong></td><td><strong>$21.86</strong></td><td><strong>70.0%</strong></td><td><strong>64.2%</strong></td></tr>
+<tr><td><strong>Business </strong></td><td><strong>$29.99</strong></td><td><strong>6.75</strong></td><td><strong>$9.05</strong></td><td><strong>$0.91</strong></td><td><strong>$31.24</strong></td><td><strong>$9.38</strong></td><td><strong>$21.86</strong></td><td><strong>70.0%</strong></td><td><strong>64.2%</strong></td></tr>
 <tr><td>First</td><td>$39.99</td><td>10.0</td><td>$13.40</td><td>$1.46</td><td>$41.99</td><td>$13.94</td><td>$28.05</td><td>66.8%</td><td>61.5%</td></tr>
-<tr><td><strong>First Suite ⭐</strong></td><td><strong>$49.99</strong></td><td><strong>13.2</strong></td><td><strong>$17.69</strong></td><td><strong>$0.73</strong></td><td><strong>$50.99</strong></td><td><strong>$17.96</strong></td><td><strong>$33.03</strong></td><td><strong>64.8%</strong></td><td><strong>59.2%</strong></td></tr>
+<tr><td><strong>First Suite </strong></td><td><strong>$49.99</strong></td><td><strong>13.2</strong></td><td><strong>$17.69</strong></td><td><strong>$0.73</strong></td><td><strong>$50.99</strong></td><td><strong>$17.96</strong></td><td><strong>$33.03</strong></td><td><strong>64.8%</strong></td><td><strong>59.2%</strong></td></tr>
 <tr><td>Cockpit (annual → monthly)</td><td>$24.92</td><td>7.2</td><td>$9.65</td><td>$0.55</td><td>$25.67</td><td>$9.85</td><td>$15.82</td><td>61.6%</td><td>54.6%</td></tr>
 </table>
 
@@ -310,14 +310,14 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 <div class="footer-note">
 <strong>Cross-references:</strong>
 <ul>
-  <li>Tab 1 In-Depth Report (pricing architecture) — <a href="tab1-in-depth-report-2026-06-01.html">tab1-in-depth-report-2026-06-01.html</a></li>
-  <li>Tab 2 In-Depth Report (user behavior) — <a href="tab2-in-depth-report-2026-06-01.html">tab2-in-depth-report-2026-06-01.html</a></li>
-  <li>Per-plan deep dives in the xlsx — <code>Economy Logic</code>, <code>Roster Bundle Logic</code>, <code>Premium Economy Logic</code>, <code>Business Logic</code>, <code>First Logic</code>, <code>First Suite Logic</code>, <code>Cockpit Logic</code></li>
-  <li>Sensitivity: Tab 7 (Behavior Sensitivity) stress-tests Tab 3 inputs</li>
-  <li>Downstream: Tab 5 (Volume), Tab 6 (24-Month), Tab 8 (LTV-CAC), Tab 10 (Carryover), Tab 11 (Strategic), Tab 12 (Cash)</li>
-  <li>Live Google Sheet: <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit">linked sheet</a></li>
-  <li>xlsx download: <a href="Peanut-eSIM-PL-Model-2026-05-31.xlsx">Peanut-eSIM-PL-Model-2026-05-31.xlsx</a></li>
-  <li>Master briefing doc: <a href="peanut-esim-project-briefing-2026-05-31.html">peanut-esim-project-briefing-2026-05-31.html</a></li>
+ <li>Tab 1 In-Depth Report (pricing architecture) — <a href="tab1-in-depth-report-2026-06-01.html">tab1-in-depth-report-2026-06-01.html</a></li>
+ <li>Tab 2 In-Depth Report (user behavior) — <a href="tab2-in-depth-report-2026-06-01.html">tab2-in-depth-report-2026-06-01.html</a></li>
+ <li>Per-plan deep dives in the xlsx — <code>Economy Logic</code>, <code>Roster Bundle Logic</code>, <code>Premium Economy Logic</code>, <code>Business Logic</code>, <code>First Logic</code>, <code>First Suite Logic</code>, <code>Cockpit Logic</code></li>
+ <li>Sensitivity: Tab 7 (Behavior Sensitivity) stress-tests Tab 3 inputs</li>
+ <li>Downstream: Tab 5 (Volume), Tab 6 (24-Month), Tab 8 (LTV-CAC), Tab 10 (Carryover), Tab 11 (Strategic), Tab 12 (Cash)</li>
+ <li>Live Google Sheet: <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit">linked sheet</a></li>
+ <li>xlsx download: <a href="Peanut-eSIM-PL-Model-2026-05-31.xlsx">Peanut-eSIM-PL-Model-2026-05-31.xlsx</a></li>
+ <li>Master briefing doc: <a href="peanut-esim-project-briefing-2026-05-31.html">peanut-esim-project-briefing-2026-05-31.html</a></li>
 </ul>
 <br>
 <strong>Document state:</strong> Tab 3 walkthrough complete as of 2026-06-01. All 7 tier rows locked at current numbers. 6 items in Tab 3 Validation Queue (3 require post-launch app analytics; 1 requires Akito roster sampling; 2 are sensitivity passes).
@@ -329,32 +329,32 @@ This document captures the full structure of <strong>Tab 3 — Per-Tier Unit Eco
 
 <script>
 function copyAll() {
-  const container = document.querySelector('.container');
-  let text = '';
-  function walk(node) {
-    if (node.nodeType === Node.TEXT_NODE) text += node.textContent;
-    else if (node.nodeType === Node.ELEMENT_NODE) {
-      const tag = node.tagName.toLowerCase();
-      if (tag === 'h1') text += '\n\n# ';
-      else if (tag === 'h2') text += '\n\n## ';
-      else if (tag === 'h3') text += '\n\n### ';
-      else if (tag === 'h4') text += '\n\n#### ';
-      else if (tag === 'p' || tag === 'li' || tag === 'tr') text += '\n';
-      else if (tag === 'td' || tag === 'th') text += ' | ';
-      else if (tag === 'br') text += '\n';
-      for (const child of node.childNodes) walk(child);
-    }
+ const container = document.querySelector('.container');
+ let text = '';
+ function walk(node) {
+  if (node.nodeType === Node.TEXT_NODE) text += node.textContent;
+  else if (node.nodeType === Node.ELEMENT_NODE) {
+   const tag = node.tagName.toLowerCase();
+   if (tag === 'h1') text += '\n\n# ';
+   else if (tag === 'h2') text += '\n\n## ';
+   else if (tag === 'h3') text += '\n\n### ';
+   else if (tag === 'h4') text += '\n\n#### ';
+   else if (tag === 'p' || tag === 'li' || tag === 'tr') text += '\n';
+   else if (tag === 'td' || tag === 'th') text += ' | ';
+   else if (tag === 'br') text += '\n';
+   for (const child of node.childNodes) walk(child);
   }
-  walk(container);
-  text = text.replace(/\n{3,}/g, '\n\n').trim();
-  const ta = document.getElementById('copy-source');
-  ta.value = text;
-  ta.select();
-  document.execCommand('copy');
-  const btn = document.querySelector('.copy-bar button');
-  const original = btn.textContent;
-  btn.textContent = 'Copied!';
-  setTimeout(() => btn.textContent = original, 2000);
+ }
+ walk(container);
+ text = text.replace(/\n{3,}/g, '\n\n').trim();
+ const ta = document.getElementById('copy-source');
+ ta.value = text;
+ ta.select();
+ document.execCommand('copy');
+ const btn = document.querySelector('.copy-bar button');
+ const original = btn.textContent;
+ btn.textContent = 'Copied!';
+ setTimeout(() => btn.textContent = original, 2000);
 }
 </script>
 
