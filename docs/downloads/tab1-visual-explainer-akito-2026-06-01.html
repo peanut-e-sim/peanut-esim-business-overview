@@ -873,6 +873,103 @@
       </table>
     </div>
   </div>
+
+  <!-- Per-line item explanations - all ASSUMPTIONS -->
+  <div style="margin-top:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <span style="background:#C9A03B;color:white;font-size:10px;font-weight:700;letter-spacing:.08em;padding:4px 10px;border-radius:12px;">ALL ASSUMPTIONS</span>
+    <span style="font-size:13px;color:#666;">Actual spend = $0 today. These get refined as real costs hit (Tab 13).</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px;">
+
+    <!-- Payment processing -->
+    <div style="background:white;border:1px solid #E5DDD0;border-radius:8px;padding:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+        <strong style="font-size:14px;">Payment processing</strong>
+        <strong style="font-size:16px;color:#D71921;">$1.20</strong>
+      </div>
+      <p style="font-size:12.5px;color:#555;line-height:1.5;margin:0 0 8px;">What Stripe and Apple/Google take from every transaction. On a $13 ticket:</p>
+      <ul style="font-size:12px;color:#555;padding-left:18px;margin:0;line-height:1.6;">
+        <li>Stripe: 2.9% + $0.30/txn ≈ <strong>$0.68</strong></li>
+        <li>Apple/Google IAP: 15–30% (avoided where possible)</li>
+        <li>Our hybrid model (Decision 01) keeps most users on Stripe</li>
+      </ul>
+      <div style="font-size:11px;color:#888;margin-top:8px;font-style:italic;">Biggest line. At 100K users = $120K/mo.</div>
+    </div>
+
+    <!-- Customer support -->
+    <div style="background:white;border:1px solid #E5DDD0;border-radius:8px;padding:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+        <strong style="font-size:14px;">Customer support</strong>
+        <strong style="font-size:16px;color:#D71921;">$0.30</strong>
+      </div>
+      <p style="font-size:12.5px;color:#555;line-height:1.5;margin:0 0 8px;">Cost to help users with refunds, install issues, account problems.</p>
+      <ul style="font-size:12px;color:#555;padding-left:18px;margin:0;line-height:1.6;">
+        <li>5% of users contact support / month</li>
+        <li>$6 per contact (AI-first via Intercom Fin or similar)</li>
+        <li>5% × $6 = $0.30</li>
+      </ul>
+      <div style="font-size:11px;color:#888;margin-top:8px;font-style:italic;">Doubles if activation failure rate jumps 1% → 5%.</div>
+    </div>
+
+    <!-- Cloud API -->
+    <div style="background:white;border:1px solid #E5DDD0;border-radius:8px;padding:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+        <strong style="font-size:14px;">Cloud / API</strong>
+        <strong style="font-size:16px;color:#D71921;">$0.15</strong>
+      </div>
+      <p style="font-size:12.5px;color:#555;line-height:1.5;margin:0 0 8px;">Backend infrastructure.</p>
+      <ul style="font-size:12px;color:#555;padding-left:18px;margin:0;line-height:1.6;">
+        <li>Database + auth (Supabase / Firebase): ~$0.05</li>
+        <li>eSIM Access API calls (provision / top-up / status): ~$0.07</li>
+        <li>Push, analytics, logging: ~$0.03</li>
+      </ul>
+      <div style="font-size:11px;color:#888;margin-top:8px;font-style:italic;">Scales sub-linearly. At 100K users ≈ $0.10/user.</div>
+    </div>
+
+    <!-- Hosting -->
+    <div style="background:white;border:1px solid #E5DDD0;border-radius:8px;padding:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+        <strong style="font-size:14px;">Hosting + dev tools</strong>
+        <strong style="font-size:16px;color:#D71921;">$0.10</strong>
+      </div>
+      <p style="font-size:12.5px;color:#555;line-height:1.5;margin:0 0 8px;">Flat operating costs that don't scale per-user.</p>
+      <ul style="font-size:12px;color:#555;padding-left:18px;margin:0;line-height:1.6;">
+        <li>Vercel/Netlify marketing site (~$20/mo)</li>
+        <li>Apple Developer Program ($99/yr ÷ 12)</li>
+        <li>Sentry/Datadog monitoring (~$50/mo)</li>
+        <li>GitHub Pro, Figma, design tools (~$30/mo)</li>
+      </ul>
+      <div style="font-size:11px;color:#888;margin-top:8px;font-style:italic;">At 100 users ≈ $1/user. At 100K ≈ rounding error.</div>
+    </div>
+
+    <!-- SMS -->
+    <div style="background:white;border:1px solid #E5DDD0;border-radius:8px;padding:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+        <strong style="font-size:14px;">SMS / OTP</strong>
+        <strong style="font-size:16px;color:#D71921;">$0.05</strong>
+      </div>
+      <p style="font-size:12.5px;color:#555;line-height:1.5;margin:0 0 8px;">One-time password texts for sign-in and crew verification.</p>
+      <ul style="font-size:12px;color:#555;padding-left:18px;margin:0;line-height:1.6;">
+        <li>Twilio / Vonage cost: ~$0.0075 per SMS</li>
+        <li>~6 SMS per user per year</li>
+        <li>6 × $0.0075 ÷ 12 = $0.05</li>
+      </ul>
+      <div style="font-size:11px;color:#888;margin-top:8px;font-style:italic;">International SMS (UAE/India) can be 3× more. Soft estimate.</div>
+    </div>
+
+  </div>
+
+  <!-- Scale-up impact -->
+  <div style="margin-top:14px;padding:14px 16px;background:#1A1A1A;color:white;border-radius:6px;">
+    <div style="font-size:11px;font-weight:700;color:#C9A03B;letter-spacing:.05em;margin-bottom:8px;">SCALE IMPACT · ASSUMING $1.80/user/mo holds</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;">
+      <div><div style="font-size:11px;color:#888;">1,000 users</div><div style="font-size:16px;font-weight:700;">$1,800 / mo</div></div>
+      <div><div style="font-size:11px;color:#888;">5,000 (M24)</div><div style="font-size:16px;font-weight:700;">$9,000 / mo</div></div>
+      <div><div style="font-size:11px;color:#888;">20,000</div><div style="font-size:16px;font-weight:700;">$36,000 / mo</div></div>
+      <div><div style="font-size:11px;color:#888;color:#C9A03B;">100K vision</div><div style="font-size:16px;font-weight:700;color:#C9A03B;">$180,000 / mo</div></div>
+    </div>
+  </div>
 </section>
 
 <!-- 6. Worked example -->
