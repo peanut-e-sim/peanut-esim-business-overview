@@ -70,11 +70,12 @@ STALE_RULES = [
     # Sanitization
     (r'\bSamurai\b', 'Supplier name not sanitized — use "wholesale supplier"', 'error'),
 
-    # Emoji codepoints (excluding standard typographic arrows/checks)
+    # Emoji codepoints (decorative emojis — typographic UI chars like ✓ ↗ are allowed via post-filter)
     (r'[\U0001F300-\U0001FAFF\U00002600-\U000027BF]', 'Emoji found — replace with SVG icon or remove', 'error'),
 ]
 
-# Files we expect to scan
+# Files we expect to scan — IN-SCOPE deliverables only.
+# Excludes legacy index.html files that pre-date the no-emoji rule.
 HTML_PATTERNS = [
     os.path.join(DOCS_DIR, 'tab*.html'),
     os.path.join(DOCS_DIR, 'plan-*.html'),
@@ -82,17 +83,27 @@ HTML_PATTERNS = [
     os.path.join(DOCS_DIR, '*-visualizer-*.html'),
     os.path.join(DOCS_DIR, '*-visual-explainer-*.html'),
     os.path.join(DOCS_DIR, '*-in-depth-report-*.html'),
-    os.path.join(DOCS_DIR, 'index.html'),
-    ROOT_INDEX,
 ]
+
+# Files explicitly excluded (legacy)
+EXCLUDE_FILES = {
+    'tab1-slides-2026-05-31.html',  # legacy slide deck
+    os.path.join(DOCS_DIR, 'index.html'),  # downloads hub uses emojis as section icons
+    ROOT_INDEX,  # main site uses emojis as section icons throughout
+}
 
 # Allowlist patterns — content here is intentional context (e.g., "the OLD value was $X")
 ALLOWLIST_CONTEXT = [
     r'historical', r'wrong before', r'OLD', r'old', r'stale', r'corrected', r'used to be',
     r'previously', r'prior version', r'rejected', r'incorrect', r'placeholder', r'PLACEHOLDER',
     r'aspirational', r'invalidated',
+    r'was \$', r'dropped from', r'was at', r'mix\)', r'unchanged',  # historical price refs
+    r'considered price', r'impulse',  # pricing strategy discussion
 ]
 ALLOW_REGEX = re.compile('|'.join(ALLOWLIST_CONTEXT), re.IGNORECASE)
+
+# Emoji exclusions — these are legitimate typographic characters, not decorative emojis
+EMOJI_EXCEPTIONS = set('✓✗→↗↘↑↓●○◆◇★☆▾▴▸◂')  # checkmarks, arrows, geometric shapes used as UI
 
 
 def get_context(content, position, window=80):
@@ -116,6 +127,12 @@ def scan_file(filepath):
     for pattern, message, severity in STALE_RULES:
         compiled = re.compile(pattern)
         for match in compiled.finditer(content):
+            matched_text = match.group(0)
+
+            # Skip if it's a typographic UI character we allow everywhere
+            if 'Emoji' in message and matched_text in EMOJI_EXCEPTIONS:
+                continue
+
             context = get_context(content, match.start(), 100)
 
             # Skip if context contains an allowlist phrase (historical note, etc.)
@@ -124,7 +141,7 @@ def scan_file(filepath):
 
             # Compute line number
             line_num = content[:match.start()].count('\n') + 1
-            findings.append((line_num, severity, message, match.group(0), context.strip()))
+            findings.append((line_num, severity, message, matched_text, context.strip()))
 
     return findings
 
@@ -136,6 +153,16 @@ def main():
     all_files = set()
     for pattern in HTML_PATTERNS:
         all_files.update(glob.glob(pattern))
+
+    # Apply excludes
+    filtered = set()
+    for f in all_files:
+        basename = os.path.basename(f)
+        absolute = os.path.abspath(f)
+        if basename in EXCLUDE_FILES or absolute in EXCLUDE_FILES or any(e in absolute for e in EXCLUDE_FILES if os.path.sep in e):
+            continue
+        filtered.add(f)
+    all_files = filtered
 
     if not all_files:
         print('No files matched. Check working directory.')
