@@ -4943,6 +4943,27 @@ Akito</div>
       <span class="ne-count" id="exportNotesCount">0</span>
     </button>
 
+    <div id="roadmapFilterBar" style="display:flex;flex-wrap:wrap;gap:14px;margin:16px 0;padding:14px;background:#FAF6F0;border-radius:8px;border:1px solid #E5DDD0;">
+      <div style="flex:0 0 100%;font-size:11px;font-weight:600;color:#888;letter-spacing:.05em;text-transform:uppercase;">
+        <span class="lang en">Filter items</span><span class="lang jp">項目を絞り込み</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+        <span style="font-size:12px;color:#666;font-weight:600;margin-right:4px;"><span class="lang en">STATUS</span><span class="lang jp">ステータス</span>:</span>
+        <button type="button" class="rm-filter-btn rm-status active" data-rm-status="all" style="padding:6px 12px;border-radius:5px;border:1px solid #1A1A1A;background:#1A1A1A;color:white;font-weight:600;font-size:12px;cursor:pointer;"><span class="lang en">All</span><span class="lang jp">全て</span></button>
+        <button type="button" class="rm-filter-btn rm-status" data-rm-status="done" style="padding:6px 12px;border-radius:5px;border:1px solid #2D7A4F;background:white;color:#2D7A4F;font-weight:600;font-size:12px;cursor:pointer;"><span class="lang en">Done</span><span class="lang jp">完了</span></button>
+        <button type="button" class="rm-filter-btn rm-status" data-rm-status="progress" style="padding:6px 12px;border-radius:5px;border:1px solid #C9A03B;background:white;color:#C9A03B;font-weight:600;font-size:12px;cursor:pointer;"><span class="lang en">In progress</span><span class="lang jp">進行中</span></button>
+        <button type="button" class="rm-filter-btn rm-status" data-rm-status="hold" style="padding:6px 12px;border-radius:5px;border:1px solid #888;background:white;color:#666;font-weight:600;font-size:12px;cursor:pointer;"><span class="lang en">Hold</span><span class="lang jp">保留</span></button>
+        <button type="button" class="rm-filter-btn rm-status" data-rm-status="todo" style="padding:6px 12px;border-radius:5px;border:1px solid #D71921;background:white;color:#D71921;font-weight:600;font-size:12px;cursor:pointer;"><span class="lang en">To do</span><span class="lang jp">未着手</span></button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+        <span style="font-size:12px;color:#666;font-weight:600;margin-right:4px;"><span class="lang en">OWNER</span><span class="lang jp">担当</span>:</span>
+        <button type="button" class="rm-filter-btn rm-owner active" data-rm-owner="all" style="padding:6px 12px;border-radius:5px;border:1px solid #1A1A1A;background:#1A1A1A;color:white;font-weight:600;font-size:12px;cursor:pointer;"><span class="lang en">All</span><span class="lang jp">全て</span></button>
+        <button type="button" class="rm-filter-btn rm-owner" data-rm-owner="balraj" style="padding:6px 12px;border-radius:5px;border:1px solid #4A6FE3;background:white;color:#4A6FE3;font-weight:600;font-size:12px;cursor:pointer;">Balraj</button>
+        <button type="button" class="rm-filter-btn rm-owner" data-rm-owner="akito" style="padding:6px 12px;border-radius:5px;border:1px solid #C9A03B;background:white;color:#C9A03B;font-weight:600;font-size:12px;cursor:pointer;">Akito</button>
+        <button type="button" class="rm-filter-btn rm-owner" data-rm-owner="both" style="padding:6px 12px;border-radius:5px;border:1px solid #6B3FA0;background:white;color:#6B3FA0;font-weight:600;font-size:12px;cursor:pointer;"><span class="lang en">Both</span><span class="lang jp">両者</span></button>
+      </div>
+    </div>
+
     <div class="phase-list" id="phaseList"></div>
   </section>
 
@@ -4965,8 +4986,9 @@ Akito</div>
         { n: 13, en: 'Residual UAE compliance', jp: 'UAE 残余コンプライアンス', owner: 'both' }
       ]},
       { num: 1, en: 'Legal & Corporate', jp: '法務・法人設立', stat: 'starting', items: [
-        { n: 1, en: 'Incorporate Delaware LLC (Stripe Atlas)', jp: 'デラウェア LLC 設立（Stripe Atlas）', owner: 'balraj' },
-        { n: 2, en: 'Trademark "Peanut eSIM" (USPTO + Madrid)', jp: '商標登録「Peanut eSIM」（USPTO + マドリッド）', owner: 'balraj' },
+        { n: 1, en: 'Incorporate Spicy Kiwi LLC (Delaware via Stripe Atlas) — LOCKED 2026-06-02', jp: 'Spicy Kiwi LLC 設立（デラウェア州・Stripe Atlas 経由）— 2026-06-02 確定', owner: 'balraj' },
+        { n: 19, en: 'File "Peanut eSIM" DBA under Spicy Kiwi LLC in Delaware', jp: 'デラウェア州にて Spicy Kiwi LLC の DBA「Peanut eSIM」を登録', owner: 'balraj' },
+        { n: 2, en: 'Trademark "Peanut eSIM" (USPTO + Madrid) — DEFERRED', jp: '商標登録「Peanut eSIM」（USPTO + マドリッド）— 保留', def: 'hold', owner: 'balraj' },
         { n: 3, en: 'Domains + social handles', jp: 'ドメイン + SNSアカウント', owner: 'akito' },
         { n: 4, en: 'Terms / Privacy / Refund policy', jp: '利用規約 / プライバシー / 返金ポリシー', owner: 'balraj' },
         { n: 5, en: 'Data protection compliance (PDPL + GDPR)', jp: 'データ保護準拠（PDPL + GDPR）', owner: 'balraj' },
@@ -5167,6 +5189,20 @@ Akito</div>
         const itemsHtml = p.items.map(it => {
           const stat = getLS(statKey(p.num, it.n), it.def || '');
           const own  = getLS(ownKey(p.num, it.n), it.owner || '');
+          // Roadmap filters
+          const rmStatusF = window.__rmStatusFilter || 'all';
+          const rmOwnerF = window.__rmOwnerFilter || 'all';
+          const effectiveStatus = stat || 'todo';
+          let matches = true;
+          if (rmStatusF !== 'all') {
+            if (rmStatusF === 'todo') matches = matches && (!stat || stat === '');
+            else matches = matches && (stat === rmStatusF);
+          }
+          if (rmOwnerF !== 'all') {
+            const effectiveOwner = own || it.owner || '';
+            matches = matches && (effectiveOwner === rmOwnerF);
+          }
+          if (!matches) return ''; // skip this item
           const anchorId = 'phase-' + p.num + '-item-' + it.n;
           const linkExists = !!document.getElementById(anchorId);
           const href = '#' + anchorId;
@@ -5247,6 +5283,64 @@ Akito</div>
       document.addEventListener('DOMContentLoaded', render);
     } else {
       render();
+    }
+
+    // Wire up roadmap filter buttons
+    function wireRoadmapFilters() {
+      const bar = document.getElementById('roadmapFilterBar');
+      if (!bar) return;
+      window.__rmStatusFilter = 'all';
+      window.__rmOwnerFilter = 'all';
+      const statusBtns = bar.querySelectorAll('.rm-status');
+      const ownerBtns = bar.querySelectorAll('.rm-owner');
+      function updateActive(group, btn) {
+        group.forEach(b => {
+          b.classList.remove('active');
+          const cls = b.classList.contains('rm-status') ? 'rm-status' : 'rm-owner';
+          const val = b.getAttribute(cls === 'rm-status' ? 'data-rm-status' : 'data-rm-owner');
+          // Reset to outline state
+          if (val === 'all') { b.style.background = 'white'; b.style.color = '#1A1A1A'; }
+          else if (val === 'done') { b.style.background = 'white'; b.style.color = '#2D7A4F'; }
+          else if (val === 'progress') { b.style.background = 'white'; b.style.color = '#C9A03B'; }
+          else if (val === 'hold') { b.style.background = 'white'; b.style.color = '#666'; }
+          else if (val === 'todo') { b.style.background = 'white'; b.style.color = '#D71921'; }
+          else if (val === 'balraj') { b.style.background = 'white'; b.style.color = '#4A6FE3'; }
+          else if (val === 'akito') { b.style.background = 'white'; b.style.color = '#C9A03B'; }
+          else if (val === 'both') { b.style.background = 'white'; b.style.color = '#6B3FA0'; }
+        });
+        btn.classList.add('active');
+        const cls = btn.classList.contains('rm-status') ? 'rm-status' : 'rm-owner';
+        const val = btn.getAttribute(cls === 'rm-status' ? 'data-rm-status' : 'data-rm-owner');
+        if (val === 'all') { btn.style.background = '#1A1A1A'; btn.style.color = 'white'; }
+        else if (val === 'done') { btn.style.background = '#2D7A4F'; btn.style.color = 'white'; }
+        else if (val === 'progress') { btn.style.background = '#C9A03B'; btn.style.color = 'white'; }
+        else if (val === 'hold') { btn.style.background = '#888'; btn.style.color = 'white'; }
+        else if (val === 'todo') { btn.style.background = '#D71921'; btn.style.color = 'white'; }
+        else if (val === 'balraj') { btn.style.background = '#4A6FE3'; btn.style.color = 'white'; }
+        else if (val === 'akito') { btn.style.background = '#C9A03B'; btn.style.color = 'white'; }
+        else if (val === 'both') { btn.style.background = '#6B3FA0'; btn.style.color = 'white'; }
+      }
+      statusBtns.forEach(b => {
+        b.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.__rmStatusFilter = b.getAttribute('data-rm-status');
+          updateActive(statusBtns, b);
+          render();
+        });
+      });
+      ownerBtns.forEach(b => {
+        b.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.__rmOwnerFilter = b.getAttribute('data-rm-owner');
+          updateActive(ownerBtns, b);
+          render();
+        });
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', wireRoadmapFilters);
+    } else {
+      wireRoadmapFilters();
     }
 
     document.addEventListener('langchange', render);
