@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 20 Carryover Liability: In-Depth Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.flagged { background: #FBE0E0; color: var(--red); }
+.pill.excellent { background: #E0F2E7; color: var(--green); }
+.pill.caution { background: #FBEFD9; color: var(--amber); }
+.pill.risk { background: #FBE0E0; color: var(--red); }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.decision-box { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+.rejected-box { background: #FFF0F0; border: 1px solid #f5c0c0; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.rejected-box strong { color: var(--red); }
+.fix-box { background: #e0f2e7; border: 1px solid #a8d8b5; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.fix-box strong { color: var(--green); }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+tr.excellent td { background: #e8f4e8; }
+tr.caution td { background: #faf6ec; }
+tr.risk td { background: #fff0f0; }
+tr.recommended td { background: #e8f4e8; font-weight: 600; }
+.flag-row td:first-child { border-left: 3px solid var(--amber); }
+.risk-row td:first-child { border-left: 3px solid var(--red); }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.gold-text { color: var(--amber); font-weight: 600; }
+code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+.chart-wrap { background: white; padding: 24px; border: 1px solid var(--line); border-radius: 6px; margin: 20px 0; max-width: 640px; }
+.chart-wrap canvas { max-height: 280px; }
+.step-list { counter-reset: steps; list-style: none; padding: 0; margin: 16px 0; }
+.step-list li { counter-increment: steps; display: flex; gap: 14px; align-items: flex-start; padding: 12px 16px; border-bottom: 1px solid var(--line); background: white; }
+.step-list li::before { content: counter(steps); display: flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.persona { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+.persona svg { flex-shrink: 0; }
+.journal-entry { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 16px; margin: 12px 0; font-family: "Courier New", Courier, monospace; font-size: 13px; line-height: 1.7; }
+.journal-entry .debit { color: var(--ink); }
+.journal-entry .credit { color: var(--ink-soft); padding-left: 24px; }
+.journal-entry .header { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-soft); margin-bottom: 8px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.callout { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin: 20px 0; display: flex; gap: 16px; align-items: flex-start; }
+.callout svg { flex-shrink: 0; margin-top: 2px; }
+.callout-body { flex: 1; }
+.callout-body strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.callout-body p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+@media (max-width: 600px) {
+  .container { padding: 24px 16px 60px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 20px; }
+  .two-col { grid-template-columns: 1fr; }
+}
+.badge-new { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: .06em; background: var(--gold); color: white; text-transform: uppercase; margin-left: 10px; vertical-align: middle; }
+.icon-row { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 20 BLUEPRINT — Carryover Liability — Peanut eSIM (2026-06-02)</span>
+</div>
+
+<div class="container">
+
+<h1>Tab 20 — Carryover Liability: In-Depth Blueprint <span class="badge-new">Updated 2026-06-02</span></h1>
+<div class="meta">Prepared 2026-06-02 · Captures the full strategic discussion, worked examples, debate points, and innovations · Owners: Balraj + Akito</div>
+
+<div class="lede">
+  <strong>The one question this tab answers:</strong> How much data do we OWE users that hasn't been used yet — and what does that cost us if they redeem it? Every subscription tier that allows carryover creates a balance sheet liability. This blueprint documents the exact dollar amounts, the perception risk that drives churn, Balraj's UX fix, the gifting mechanic, the same-SIM architecture that makes UAE redemption possible, and a practical bookkeeping guide for a self-funded Year 1 operation.
+</div>
+
+<div class="toc">
+<strong>Contents</strong>
+<ul>
+  <li><a href="#why">1. Why this tab matters</a></li>
+  <li><a href="#data">2. Per-tier carryover rules (verified numbers)</a></li>
+  <li><a href="#aiko">3. Aiko's $4.03 breakdown — worked example</a></li>
+  <li><a href="#perception">4. The perception problem — Aiko's churn spiral</a></li>
+  <li><a href="#ux-fix">5. The UX fix — "You saved $1.97 vs PAYG"</a></li>
+  <li><a href="#gifting">6. Balraj's gifting idea</a></li>
+  <li><a href="#expired-margin">7. Risk 1 reframe — expired margin is real money</a></li>
+  <li><a href="#strategy">8. The "100% carry + short expiry" strategy</a></li>
+  <li><a href="#correction">9. Corrected analysis — 2-month cap is fine (recommendation reversed)</a></li>
+  <li><a href="#same-sim">10. Risk 2 — same-SIM dynamic allocation (technical architecture)</a></li>
+  <li><a href="#uae">11. Risk 3 — UAE redemption via dynamic allocation</a></li>
+  <li><a href="#concentration">12. First Suite concentration risk</a></li>
+  <li><a href="#bookkeeping">13. Accounting + bookkeeping deep-dive (self-funded owner guide)</a></li>
+  <li><a href="#takeaways">14. Strategic takeaways</a></li>
+  <li><a href="#queue">15. Open items / queue</a></li>
+</ul>
+</div>
+
+<!-- ===== 1. WHY THIS TAB MATTERS ===== -->
+<h2 id="why">1. Why this tab matters</h2>
+
+<p>Most financial models for subscription businesses focus on revenue. This tab focuses on the liability side: money owed to users who paid but haven't yet consumed what they bought.</p>
+
+<p>Carryover creates three distinct problems that must be managed simultaneously:</p>
+
+<table>
+  <tr><th>Problem</th><th>What it means</th><th>How this tab addresses it</th></tr>
+  <tr><td><strong>Balance sheet liability</strong></td><td>Every GB of carried-over data is a future supplier cost we must pay when the user redeems it. At 5K users this is ~$50K sitting on the books.</td><td>Per-tier liability table; concentration risk analysis</td></tr>
+  <tr><td><strong>Perception / churn risk</strong></td><td>Users who see "6 GB unused" every month feel they are wasting money and cancel — even when they are mathematically getting excellent value.</td><td>Churn spiral model; UX fix (Option 3)</td></tr>
+  <tr><td><strong>Revenue recognition</strong></td><td>Cash received for subscriptions is NOT revenue until the service is delivered. Carryover creates deferred revenue on the books that requires proper accounting treatment.</td><td>Four journal entries; monthly close checklist</td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Discussion framing — 2026-06-02</h4>
+  <p>The session opened with the core question: is carryover data a liability or a feature? The answer is both. It is a feature that sells subscriptions (users love the safety net) and a liability that requires disciplined management. The session worked through both dimensions in detail, and the key insight was that the same-SIM dynamic allocation architecture we are already building for procurement reasons (Tab 15) completely changes the carryover options — including unlocking UAE home redemption.</p>
+</div>
+
+<!-- ===== 2. DATA TABLE ===== -->
+<h2 id="data">2. Per-tier carryover rules (verified numbers)</h2>
+
+<p>Numbers below are read from the source spreadsheet at exact blended wholesale rate of <strong>$1.3425/GB</strong>. The spreadsheet uses the precise figure, not the rounded $1.34 — this matters at scale. Do not round this number in any downstream calculation.</p>
+
+<table>
+  <tr><th>Tier</th><th>Carry %</th><th>Cap</th><th>GB Carried/user/mo</th><th>$ Liability/user</th><th>Verdict</th></tr>
+  <tr class="excellent"><td><strong>Economy</strong></td><td>0%</td><td>—</td><td>0</td><td>$0</td><td><span class="pill excellent">No liability</span></td></tr>
+  <tr class="excellent"><td><strong>Roster Bundle</strong></td><td>0%</td><td>—</td><td>0</td><td>$0</td><td><span class="pill excellent">No liability</span></td></tr>
+  <tr class="excellent"><td><strong>Refuel</strong></td><td>0%</td><td>—</td><td>0</td><td>$0</td><td><span class="pill excellent">No liability</span></td></tr>
+  <tr class="caution"><td><strong>Premium Economy</strong></td><td>50%</td><td>1 month</td><td>3 GB</td><td><strong>$4.03</strong></td><td><span class="pill caution">Manageable</span></td></tr>
+  <tr class="caution"><td><strong>Business</strong></td><td>70%</td><td>1 month</td><td>5.78 GB</td><td><strong>$7.77</strong></td><td><span class="pill caution">Manageable</span></td></tr>
+  <tr class="caution"><td><strong>Cockpit</strong></td><td>100%</td><td>Annual</td><td>4.8 GB</td><td><strong>$6.45</strong></td><td><span class="pill caution">Monitor</span></td></tr>
+  <tr class="caution"><td><strong>First</strong></td><td>100%</td><td>2 months</td><td>15 GB</td><td><strong>$20.13</strong></td><td><span class="pill caution">Watch</span></td></tr>
+  <tr class="risk"><td><strong>First Suite</strong></td><td>100%</td><td>2 months</td><td>26.8 GB</td><td><strong>$35.99</strong></td><td><span class="pill risk">Concentration risk</span></td></tr>
+</table>
+
+<div class="callout">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A03B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  <div class="callout-body">
+    <strong>Rounding note — read carefully</strong>
+    <p>The spreadsheet uses $1.3425/GB (exact blended rate at 75% Asia/Pacific, 20% Europe, 5% Americas geo mix). The $4.03 figure for Premium is 3 GB x $1.3425 = $4.0275, rounded to $4.03. If you use $1.34 instead of $1.3425, you get $4.02 — a $0.01 error per user that compounds to $50/month at 5,000 Premium users. Always use the exact figure.</p>
+  </div>
+</div>
+
+<div class="chart-wrap">
+  <canvas id="liabilityChart"></canvas>
+</div>
+
+<!-- ===== 3. AIKO WORKED EXAMPLE ===== -->
+<h2 id="aiko">3. Aiko's $4.03 breakdown — full worked example</h2>
+
+<div class="callout" style="background:#FFFBF0; border-color: var(--gold);">
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="18" cy="12" r="7" fill="#C9A03B" opacity="0.85"/>
+    <path d="M4 34c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#C9A03B" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.7"/>
+  </svg>
+  <div class="callout-body">
+    <strong>Aiko — Premium Economy subscriber, Emirates cabin crew</strong>
+    <p>Aiko flies mostly short-haul routes. She uses about 4 GB per month from her 10 GB pool. The remaining 6 GB sit unused at the end of the billing cycle. Here is what happens next.</p>
+  </div>
+</div>
+
+<ol class="step-list">
+  <li>
+    <div>
+      <strong>Pool size</strong><br>
+      Aiko's Premium Economy plan gives her a 10 GB monthly pool. She pays $17.99/month. She has already paid — this is a done deal.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Consumption this month</strong><br>
+      She uses 40% of her pool. 10 GB x 40% = <strong>4 GB consumed</strong>. We paid the wholesale supplier for these 4 GB when she used them (dynamic allocation model, see section 10).
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Unused balance</strong><br>
+      10 GB pool minus 4 GB used = <strong>6 GB unused</strong>. Under 0% carryover, these expire and we keep the margin (about $8.06 pure margin from unused capacity). Under Premium's 50% carry rule, exactly half carries forward.
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Carry calculation</strong><br>
+      50% carry applied to 6 GB unused = <strong>3 GB carried forward</strong>. The other 3 GB expire — that is our expired margin (see section 7).
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Our liability</strong><br>
+      We owe Aiko 3 GB of future data that we have not yet paid our supplier for. When she uses those 3 GB, we trigger a top-up call to the supplier API and pay them.<br><br>
+      <strong>3 GB x $1.3425/GB = $4.0275 ≈ $4.03</strong><br><br>
+      This $4.03 is NOT a loss. It is a deferred cost — a service we collected revenue for but have not yet paid the supplier for. It sits as a liability until redeemed or expired.
+    </div>
+  </li>
+</ol>
+
+<div class="discussion-block">
+  <h4>The $4.03 is our cost, not a selling price — this tripped us up early</h4>
+  <p>There was initial confusion about whether $4.03 is what we owe the supplier or what we charge the user. It is our cost from the wholesale supplier. Aiko already paid us $17.99 in full. The $4.03 is the future out-of-pocket we will incur when she redeems those 3 GB. We do not charge her again — she already paid for this. The liability is purely on the cost side of our books.</p>
+</div>
+
+<!-- ===== 4. PERCEPTION PROBLEM ===== -->
+<h2 id="perception">4. The perception problem — Aiko's churn spiral</h2>
+
+<p>This was Balraj's first major insight in the session: even when the math is strongly in the user's favor, the visual display of "unused data" triggers cancellation behavior. Humans are loss-averse. Seeing waste — even when they are saving money — creates anxiety that compounds month over month.</p>
+
+<h3>Aiko's downward churn spiral</h3>
+<table>
+  <tr><th>Month</th><th>What Aiko sees in the app</th><th>What she thinks</th><th>Risk</th></tr>
+  <tr><td>January</td><td>4 GB used / 6 GB wasted</td><td>"I'm only using half of what I pay for"</td><td><span class="pill caution">Seed planted</span></td></tr>
+  <tr><td>February</td><td>4 GB used / 6 GB wasted</td><td>"I keep overpaying. I should just buy as I go."</td><td><span class="pill flagged">Doubt growing</span></td></tr>
+  <tr><td>March</td><td>4 GB used / 6 GB wasted</td><td>"I'm canceling Premium and going back to Economy."</td><td><span class="pill flagged">Churn likely</span></td></tr>
+</table>
+
+<h3>LTV impact of this perception problem</h3>
+<table>
+  <tr><th>Metric</th><th>Normal (10% monthly churn)</th><th>Perception-triggered (+5%)</th><th>Difference</th></tr>
+  <tr><td>Monthly churn rate</td><td>10%</td><td>15%</td><td>+5 percentage points</td></tr>
+  <tr><td>Avg Premium lifetime</td><td>10 months</td><td>6.7 months</td><td>-3.3 months</td></tr>
+  <tr><td>LTV per Premium user</td><td><span class="green-text">$134</span></td><td><span class="red-text">$89</span></td><td>-$45/user</td></tr>
+  <tr class="risk"><td><strong>At 5,000 Premium users (M24)</strong></td><td></td><td><strong>-$2.7M/year LTV</strong></td><td><span class="pill risk">Massive</span></td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Why $2.7M is not an exaggeration</h4>
+  <p>5,000 Premium users x $45 LTV loss x annualized = approximately $2.7M. The fix costs almost nothing to build — it is a display string change in the app UI. This is one of the highest ROI interventions in the entire product. Build it as part of v1.0, not v1.1.</p>
+</div>
+
+<!-- ===== 5. UX FIX ===== -->
+<h2 id="ux-fix">5. The UX fix — Option 3: "You saved $1.97 vs PAYG"</h2>
+
+<p>Instead of showing the user what they wasted, show them what they saved. This reframe is factually accurate — Aiko did save money versus buying the same data on Economy at $4.99/GB.</p>
+
+<div class="two-col">
+  <div class="rejected-box">
+    <strong>Current (bad): show unused data</strong><br><br>
+    "4 GB used / 10 GB pool / <strong>6 GB unused</strong>"<br><br>
+    User reaction: "I wasted 6 GB. I should cancel."<br><br>
+    This triggers churn even when the user is getting excellent value.
+  </div>
+  <div class="fix-box">
+    <strong>Option 3 (correct): show savings vs PAYG</strong><br><br>
+    "4 GB used / <strong>You saved $1.97 vs Pay-As-You-Go</strong>"<br><br>
+    User reaction: "I saved money. Peanut is worth it."<br><br>
+    Retention is preserved. The fact is identical — only the framing changes.
+  </div>
+</div>
+
+<h3>The math behind the $1.97 savings number</h3>
+<table>
+  <tr><th>Calculation</th><th>Amount</th></tr>
+  <tr><td>What Aiko would have paid for 4 GB on Refuel (PAYG): 4 x $4.99</td><td>$19.96</td></tr>
+  <tr><td>What Aiko actually paid for Premium Economy this month</td><td>$17.99</td></tr>
+  <tr class="excellent"><td><strong>Savings vs PAYG</strong></td><td><strong>$1.97</strong></td></tr>
+</table>
+
+<h3>Cumulative running total framing</h3>
+<p>Build a running total in the app that adds up all monthly savings across the subscription lifetime:</p>
+
+<blockquote>"This year you have saved $23.64 on Peanut vs Pay-As-You-Go." — The number feels meaningful even if each month's saving is small. Compound framing beats per-period framing every time.</blockquote>
+
+<!-- ===== 6. GIFTING ===== -->
+<h2 id="gifting">6. Balraj's gifting idea</h2>
+
+<div class="callout" style="background:#FFFBF0; border-color: var(--gold);">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A03B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+  <div class="callout-body">
+    <strong>Balraj's gifting idea — three wins in one mechanic</strong>
+    <p>Let users gift their carryover pool (not their main monthly pool) to family or colleagues. This is not a standard eSIM feature — it is a differentiator that simultaneously solves the liability problem, the churn problem, and the acquisition problem.</p>
+  </div>
+</div>
+
+<h3>Why gifting solves three problems at once</h3>
+<table>
+  <tr><th>Win</th><th>Mechanism</th><th>Impact</th></tr>
+  <tr class="excellent"><td><strong>1. Liability shrinks</strong></td><td>Aiko gifts her 3 GB carryover to her mother. We incur the $4.03 COGS — but we were going to incur it anyway when she redeemed it herself. The liability disappears from the books.</td><td>Carryover pool clears faster. Balance sheet improves.</td></tr>
+  <tr class="excellent"><td><strong>2. Viral acquisition</strong></td><td>Aiko's mother gets a free 3 GB trial of Peanut. She experiences the product, installs the app, and has a 7-day expiry window that forces her to activate. She either converts or we incur $4.03 with zero conversion.</td><td>At 2% conversion rate: $134 LTV vs $4.03 cost = 33x ROI on a cost we were going to incur anyway.</td></tr>
+  <tr class="excellent"><td><strong>3. Perception churn eliminated</strong></td><td>"I gave Mum data" completely replaces "I wasted 6 GB." The emotional experience of the unused balance transforms from negative to positive.</td><td>Churn rate preserved or improved. LTV protected.</td></tr>
+</table>
+
+<h3>Implementation rules</h3>
+<table>
+  <tr><th>Rule</th><th>Why</th></tr>
+  <tr><td>Only from carryover pool, not main monthly pool</td><td>Prevents reselling abuse — gifting the main pool would create a grey market</td></tr>
+  <tr><td>Max 3 gifts per month per user</td><td>Stops commercial exploitation while allowing genuine sharing</td></tr>
+  <tr><td>Recipient gets 7-day expiry</td><td>Forces installation and forces a decision — eliminates dead-weight gift redemptions</td></tr>
+  <tr><td>One-tap from app</td><td>Friction kills features. If it takes more than 3 taps, it will not be used.</td></tr>
+  <tr><td>Branded confirmation message</td><td>"Aiko sent you 1 GB on Peanut" — this is a viral surface. The recipient sees the brand name from a trusted friend.</td></tr>
+</table>
+
+<p><strong>Build priority: v1.1 or v1.2.</strong> Low engineering cost, high emotional value, self-funding viral acquisition channel. The math reverses from a liability into a net positive at a 2% recipient conversion rate.</p>
+
+<!-- ===== 7. EXPIRED MARGIN ===== -->
+<h2 id="expired-margin">7. Risk 1 reframe — expired margin is real money</h2>
+
+<p>Balraj's second major insight: data that does NOT carry over is pure margin we keep. The user paid for capacity they did not use. We never paid the supplier for it. This is not a risk — it is a feature of the pricing model that is working exactly as designed.</p>
+
+<div class="discussion-block">
+  <h4>Balraj's reframe (direct quote captured)</h4>
+  <p>"So the 50% that doesn't carry over — that's not our liability. That's margin we already earned and will never have to pay out. The carryover is the liability. The expiry is the profit. We want more expiry, not less."</p>
+  <p>This reframe is correct and important. Premium and Business are designed with partial carryover precisely to generate expired margin. First/Suite/Cockpit at 100% carry deliberately sacrifice this expired margin in exchange for positioning as "fully generous" premium tiers.</p>
+</div>
+
+<h3>Per-plan expired margin analysis (verified math)</h3>
+<table>
+  <tr><th>Plan</th><th>Unused GB/mo</th><th>Carry %</th><th>Expired GB</th><th>Expired margin/user/mo</th><th>Verdict</th></tr>
+  <tr class="excellent"><td><strong>Economy</strong></td><td>0</td><td>0%</td><td>0</td><td>$0</td><td><span class="pill excellent">Full PAYG, n/a</span></td></tr>
+  <tr class="excellent"><td><strong>Roster Bundle</strong></td><td>0</td><td>0%</td><td>0</td><td>$0</td><td><span class="pill excellent">Per-flight, n/a</span></td></tr>
+  <tr class="excellent"><td><strong>Premium Economy</strong></td><td>6 GB</td><td>50%</td><td>3 GB</td><td><span class="green-text">$4.03</span></td><td><span class="pill excellent">By design</span></td></tr>
+  <tr class="excellent"><td><strong>Business</strong></td><td>8.25 GB</td><td>70%</td><td>2.48 GB</td><td><span class="green-text">$3.32</span></td><td><span class="pill excellent">By design</span></td></tr>
+  <tr><td><strong>First</strong></td><td>15 GB</td><td>100%</td><td>0</td><td>$0</td><td><span class="pill open">No expiry margin</span></td></tr>
+  <tr><td><strong>First Suite</strong></td><td>26.8 GB</td><td>100%</td><td>0</td><td>$0</td><td><span class="pill open">No expiry margin</span></td></tr>
+  <tr><td><strong>Cockpit</strong></td><td>4.8 GB</td><td>100%</td><td>0</td><td>$0</td><td><span class="pill open">No expiry margin</span></td></tr>
+</table>
+
+<div class="chart-wrap">
+  <canvas id="expiredMarginChart"></canvas>
+</div>
+
+<!-- ===== 8. STRATEGY ===== -->
+<h2 id="strategy">8. Balraj's "100% carry + short expiry" strategy</h2>
+
+<p>Balraj's third major insight: "100% carryover" is a powerful marketing headline. Nobody refuses 100% carryover. But the fine print — "must use within X days" — determines how much expired margin we actually capture. You can say 100% carry and still generate significant expired margin if the redemption window is short enough.</p>
+
+<div class="discussion-block">
+  <h4>The marketing trick explained</h4>
+  <p>Marketing headline: "100% carryover on all Premium tiers — every GB you don't use carries forward."<br>Fine print: "Carried-over GB must be used within 30 days of carryover."<br><br>Users focus on the "100%" and perceive the product as generous. The 30-day window is reasonable and defensible — it is not a gotcha. But it does generate significant expired margin from users who hoard data but then do not fly within the window.</p>
+</div>
+
+<h3>Modeling four expiry windows for First Suite (the highest-liability tier)</h3>
+<table>
+  <tr><th>Window</th><th>User redemption rate</th><th>Expired GB/mo</th><th>Expired margin/user/mo</th><th>Verdict</th></tr>
+  <tr><td>60 days</td><td>80% used</td><td>~5 GB</td><td>$6.71</td><td><span class="pill open">Low capture</span></td></tr>
+  <tr class="rejected-box"><td><del><strong>30 days (original rec)</strong></del></td><td>50% used</td><td>~13 GB</td><td>$17.45</td><td><span class="pill flagged">REJECTED — see section 9</span></td></tr>
+  <tr><td>14 days</td><td>25% used</td><td>~20 GB</td><td>$26.85</td><td><span class="pill flagged">Too aggressive</span></td></tr>
+  <tr><td>7 days</td><td>10% used</td><td>~24 GB</td><td>$32.22</td><td><span class="pill flagged">PR risk</span></td></tr>
+</table>
+
+<div class="callout" style="border-color: var(--red); background: #FFF5F5;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  <div class="callout-body">
+    <strong>Initial recommendation of 30 days was REJECTED by Balraj in the same session</strong>
+    <p>See section 9 for the corrected math and the right answer. The 30-day recommendation was based on an incomplete analysis. Balraj identified the flaw immediately. The current recommendation is to keep the 2-month cap as written.</p>
+  </div>
+</div>
+
+<!-- ===== 9. CORRECTION ===== -->
+<h2 id="correction">9. Corrected analysis — 2-month cap is fine (recommendation reversed)</h2>
+
+<p>This section documents a correction made during the session. The initial recommendation of "add a 30-day expiry to capture $17.45/user expired margin" was wrong. Here is the corrected math.</p>
+
+<div class="discussion-block">
+  <h4>Balraj's correction (this is the key insight of the session)</h4>
+  <p>Balraj pushed back: "But with a 2-month cap, the data does eventually expire anyway. What is the actual steady-state difference between a 30-day window and a 2-month cap?"<br><br>
+  The answer: in <em>steady state</em>, the expired margin is the same. With a 2-month cap, a user who does not fly for 2 months loses all their carryover. The only difference is timing — when the margin appears on the books — and peak balance sheet liability.</p>
+</div>
+
+<h3>The real comparison: 30-day vs 2-month policy</h3>
+<table>
+  <tr><th>Metric</th><th>30-day expiry policy</th><th>2-month cap (current)</th><th>Difference</th></tr>
+  <tr><td>Steady-state expired margin at month 3+</td><td>~$17.45/user from non-redemption</td><td>~$35.99/user from 2-month expiry</td><td>2-month cap generates MORE expired margin long-term</td></tr>
+  <tr><td>Peak balance sheet liability (per user)</td><td>~$18 (30-day accumulation)</td><td>~$72 (2 months accumulating)</td><td>2-month cap has 4x higher peak liability</td></tr>
+  <tr><td>Marketing headline</td><td>"Carry up to 30 days"</td><td><strong>"2 full months of carryover"</strong></td><td>2-month is dramatically better marketing</td></tr>
+  <tr><td>User perception</td><td>"Tight window, feels stingy"</td><td><strong>"Genuinely generous policy"</strong></td><td>2-month wins on perception</td></tr>
+  <tr class="recommended"><td><strong>Recommendation</strong></td><td><span class="pill flagged">Rejected</span></td><td><span class="pill excellent">Keep 2-month cap</span></td><td>Right answer is the current policy</td></tr>
+</table>
+
+<div class="fix-box">
+  <strong>Final position (locked):</strong> Keep 2-month carryover cap for First and First Suite. Do not add a short expiry window. The marketing wins ("2 full months of carryover") outweigh the liability timing concern. In steady state, expired margin from the 2-month cap is actually higher than the 30-day alternative. Balraj's intuition was correct; the initial recommendation was wrong.
+</div>
+
+<blockquote>The balance sheet peak of $72 vs $18 sounds alarming until you realize it resolves itself naturally within 2 months as users fly. The key operational requirement is to hold enough liquid cash to cover the peak liability at all times — approximately $50K at 5,000 users.</blockquote>
+
+<!-- ===== 10. SAME-SIM ===== -->
+<h2 id="same-sim">10. Risk 2 — same-SIM dynamic allocation (technical architecture)</h2>
+
+<div class="callout" style="border-color: var(--gold); background: #FFFBF0;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A03B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+  <div class="callout-body">
+    <strong>Industry standard architecture — Airalo, Holafly, Crew SIM, eSIM Access all do this</strong>
+    <p>When a user has a 10 GB pool and uses 1 GB, does that 1 GB come from the same eSIM profile or a new one? Answer: same eSIM, dynamically topped up via supplier API. This is how every major eSIM platform works.</p>
+  </div>
+</div>
+
+<h3>How the flow works</h3>
+<ol class="step-list">
+  <li>User signs up. We provision ONE eSIM profile. Example ICCID: 8901260... We pre-load minimal data (or 0 GB) on it.</li>
+  <li>App UI shows the user their full pool balance — for example, 10 GB for Premium Economy. This is a balance in our database, not pre-loaded on the physical eSIM.</li>
+  <li>User activates data for a trip. Backend calls supplier API: "add 1 GB to ICCID 8901260..." The eSIM gains 1 GB of active capacity.</li>
+  <li>User uses the data. Supplier bills us for the top-up trigger (matches Option A pay-per-order model from Tab 15).</li>
+  <li>App decrements the pool balance in our database. User sees the pool shrink as they use it.</li>
+</ol>
+
+<h3>Why this matters for carryover liability</h3>
+<table>
+  <tr><th>Key benefit</th><th>Detail</th></tr>
+  <tr class="excellent"><td><strong>We only pay when triggered</strong></td><td>10,000 signups = $0 supplier cost. We pay only when users actually pull data from the pool. Carryover balance sits in our database, not on the eSIM. No pre-payment to supplier for unredemed carryover.</td></tr>
+  <tr class="excellent"><td><strong>Pool feels like a savings account</strong></td><td>UX psychology: users see a balance they can draw from whenever they fly. This is a retention mechanic. They feel they have something to lose if they cancel.</td></tr>
+  <tr class="caution"><td><strong>Supplier minimum block size</strong></td><td>Most suppliers set minimums: 1 GB, 100 MB, or 50 MB per top-up call. If minimum is 1 GB, a user who only uses 300 MB still triggers a 1 GB charge. Need to confirm with chosen supplier before building.</td></tr>
+</table>
+
+<p>The dynamic allocation architecture is the enabling technology for both the gifting feature (section 6) and the UAE redemption feature (section 11). Without same-SIM dynamic provisioning, both would require a second physical eSIM — much more complex. With it, they are just routing decisions at the database layer.</p>
+
+<!-- ===== 11. UAE REDEMPTION ===== -->
+<h2 id="uae">11. Risk 3 — UAE redemption via dynamic allocation (Balraj's key insight)</h2>
+
+<div class="callout" style="background:#FFFBF0; border-color: var(--gold);">
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="18" cy="12" r="7" fill="#C9A03B" opacity="0.85"/>
+    <path d="M4 34c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#C9A03B" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.7"/>
+  </svg>
+  <div class="callout-body">
+    <strong>Balraj's UAE insight — carryover is not tied to geography</strong>
+    <p>Because carryover balance is stored in our database (not on the physical eSIM), it has no inherent geographic restriction. We can route a redemption to any country-specific eSIM we provision. This means crew can redeem carryover data in Dubai — where they spend 70% of their time — not just on their next international flight.</p>
+  </div>
+</div>
+
+<h3>Three carryover redemption channels unlocked by dynamic allocation</h3>
+<table>
+  <tr><th>Channel</th><th>What we do technically</th><th>User benefit</th></tr>
+  <tr class="excellent"><td><strong>Next trip</strong></td><td>Allocate carried GB to the original travel eSIM profile for the next destination</td><td>Natural carryover — works like users expect</td></tr>
+  <tr class="excellent"><td><strong>UAE (home)</strong></td><td>Provision a separate UAE-compatible eSIM profile, allocate carried GB to it</td><td>Crew use data at home, not just on flights. Daily engagement driver.</td></tr>
+  <tr class="excellent"><td><strong>Gift to family/colleague</strong></td><td>Allocate carried GB to a new eSIM provisioned for the recipient's destination</td><td>Viral acquisition (see section 6)</td></tr>
+</table>
+
+<h3>The UAE risks — original 4 concerns, updated status</h3>
+<table>
+  <tr><th>Original UAE risk</th><th>Status</th><th>Notes</th></tr>
+  <tr class="excellent"><td>Consumption explodes in UAE</td><td><span class="pill excellent">Mitigated</span></td><td>Limited to carryover only — approximately 2-3 GB/mo max. Not the full pool.</td></tr>
+  <tr class="excellent"><td>Supplier doesn't support UAE profiles</td><td><span class="pill excellent">Mitigated</span></td><td>Dynamic allocation means we can route to a different UAE-specific supplier profile</td></tr>
+  <tr class="risk"><td>TDRA regulatory</td><td><span class="pill risk">Still a risk</span></td><td>Legal check required: can UAE residents legally use a foreign travel eSIM subscription for domestic UAE data? TDRA consult needed.</td></tr>
+  <tr class="excellent"><td>Cannibalizes UAE Home Plan</td><td><span class="pill excellent">Mitigated</span></td><td>2-3 GB/mo carryover is too small to replace a local SIM. It is supplementary, not competitive.</td></tr>
+</table>
+
+<h3>UAE cost math</h3>
+<table>
+  <tr><th>Item</th><th>Amount</th></tr>
+  <tr><td>Wholesale rate for UAE data (estimated)</td><td>~$1.40/GB</td></tr>
+  <tr><td>Average carryover redeemed in UAE per Premium user</td><td>~3 GB/mo</td></tr>
+  <tr><td>Our cost for UAE redemption</td><td>~$4.20/user/mo</td></tr>
+  <tr><td>Expired margin we sacrifice (we were keeping $4.03 if they did not redeem)</td><td>$4.03</td></tr>
+  <tr class="excellent"><td><strong>Net trade: UAE redemption vs no redemption</strong></td><td><strong>$0.17/user/mo extra cost</strong></td></tr>
+</table>
+
+<blockquote>For $0.17 per user per month, we transform "data I wasted last month" into "data I used at home in Dubai." That is an extraordinary retention trade. The marketing line writes itself: "Premium gives you 10 GB for travel plus your leftovers come home with you — use on your next trip, at home in UAE, or gift to family."</blockquote>
+
+<!-- ===== 12. CONCENTRATION RISK ===== -->
+<h2 id="concentration">12. First Suite concentration risk</h2>
+
+<div class="callout" style="border-color: var(--red); background: #FFF5F5;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  <div class="callout-body">
+    <strong>First Suite is 3% of users but a disproportionate share of carryover liability</strong>
+    <p>At $35.99/user, First Suite generates nearly 9x the per-user liability of Premium. At 100K users with the modeled 3% Suite penetration, this single tier creates $108K in floating liability on its own.</p>
+  </div>
+</div>
+
+<h3>Per-tier liability contribution at scale</h3>
+<table>
+  <tr><th>Tier</th><th>Liability/user</th><th>At 5K users (steady state mix)</th><th>At 100K users</th></tr>
+  <tr><td>Premium Economy (13% mix)</td><td>$4.03</td><td>$26,195</td><td>$523,900</td></tr>
+  <tr><td>Business (8%)</td><td>$7.77</td><td>$31,080</td><td>$621,600</td></tr>
+  <tr><td>First (3%)</td><td>$20.13</td><td>$30,195</td><td>$603,900</td></tr>
+  <tr class="risk"><td><strong>First Suite (2%)</strong></td><td><strong>$35.99</strong></td><td>$35,990</td><td><strong>$719,800</strong></td></tr>
+  <tr><td>Cockpit (3%)</td><td>$6.45</td><td>$9,675</td><td>$193,500</td></tr>
+  <tr class="caution"><td><strong>Total across all tiers</strong></td><td></td><td><strong>~$133,135</strong></td><td><strong>~$2.66M</strong></td></tr>
+</table>
+
+<p>At 5K users the total carryover liability is approximately $133K. The operational requirement is to hold a cash reserve equal to this amount at all times. At 100K users, this becomes $2.66M — a material balance sheet item that requires proper CFO-level management. At Year 1 scale (under 1,000 users), it is entirely manageable in a spreadsheet.</p>
+
+<!-- ===== 13. BOOKKEEPING ===== -->
+<h2 id="bookkeeping">13. Accounting + bookkeeping deep-dive (self-funded owner guide)</h2>
+
+<div class="callout" style="background: #F0F4FF; border-color: #4A6AB0;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4A6AB0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+  <div class="callout-body">
+    <strong>This section is written for a self-funded operator, not an investor deck</strong>
+    <p>Balraj confirmed during the session: Peanut is self-funded. No fundraise. The accounting framework here is designed for an owner-operator who wants to run clean books without over-engineering Year 1. The goal is: accurate enough to make decisions, simple enough to actually do it.</p>
+  </div>
+</div>
+
+<h3>The four journal entries for a single subscription cycle (Aiko's January)</h3>
+
+<p>When Aiko pays for Premium Economy in January, four accounting events happen across the month.</p>
+
+<div class="journal-entry">
+  <div class="header">Entry 1 — January 1: Cash received</div>
+  <div class="debit">DR Cash ............... $17.99</div>
+  <div class="credit">CR Deferred Revenue .. $17.99</div>
+  <br>
+  <em style="font-family:inherit; font-size:12px; color:#888;">We have Aiko's money but have not yet delivered the service. It sits as a liability (Deferred Revenue) until delivered.</em>
+</div>
+
+<div class="journal-entry">
+  <div class="header">Entry 2 — January (as data is consumed): Revenue recognition</div>
+  <div class="debit">DR Deferred Revenue ... $17.99</div>
+  <div class="credit">CR Revenue ........... $17.99</div>
+  <br>
+  <em style="font-family:inherit; font-size:12px; color:#888;">As Aiko uses her 10 GB pool throughout January, we recognize revenue. Simplified: recognize the full $17.99 at month-end since the billing cycle is monthly. More precise: prorate daily.</em>
+</div>
+
+<div class="journal-entry">
+  <div class="header">Entry 3 — January (as data is consumed): COGS</div>
+  <div class="debit">DR COGS (Supplier Cost) ... $5.37</div>
+  <div class="credit">CR Accounts Payable (Supplier) ... $5.37</div>
+  <br>
+  <em style="font-family:inherit; font-size:12px; color:#888;">4 GB used x $1.3425/GB = $5.37. We record this when Aiko triggers each top-up call. The supplier bills us at month-end or per-trigger depending on contract terms.</em>
+</div>
+
+<div class="journal-entry">
+  <div class="header">Entry 4 — February 1: Carryover liability recognized</div>
+  <div class="debit">DR Carryover Data Reserve ... $4.03</div>
+  <div class="credit">CR Service Liability (Carryover) ... $4.03</div>
+  <br>
+  <em style="font-family:inherit; font-size:12px; color:#888;">3 GB carried forward x $1.3425/GB = $4.03. We record the future obligation to deliver this data. When Aiko redeems it, we debit Service Liability and credit Accounts Payable (Supplier).</em>
+</div>
+
+<h3>Aiko's full January P&L summary</h3>
+<table>
+  <tr><th>Line item</th><th>Amount</th></tr>
+  <tr><td>Revenue recognized (full subscription)</td><td class="green-text">+$17.99</td></tr>
+  <tr><td>COGS — data delivered (4 GB x $1.3425)</td><td class="red-text">-$5.37</td></tr>
+  <tr class="excellent"><td><strong>Gross profit — recognized this month</strong></td><td><strong>+$12.62</strong></td></tr>
+  <tr><td>Carryover liability created (3 GB x $1.3425)</td><td class="red-text">-$4.03 (future obligation)</td></tr>
+  <tr class="caution"><td><strong>Economic profit net of future obligation</strong></td><td><strong>+$8.59</strong></td></tr>
+</table>
+
+<h3>Software recommendations by stage</h3>
+<table>
+  <tr><th>Stage</th><th>Revenue</th><th>Recommended software</th><th>Why</th></tr>
+  <tr class="excellent"><td><strong>Year 1</strong></td><td>Under $50K</td><td><strong>Wave (free) + Google Sheets</strong></td><td>Wave is free, handles invoicing and basic bookkeeping. Track carryover liability manually in a spreadsheet. No CPA needed yet.</td></tr>
+  <tr class="caution"><td><strong>Year 1 late</strong></td><td>$50K-$200K</td><td><strong>QuickBooks Online ($30-50/mo)</strong></td><td>When volume picks up, Wave's reporting becomes limiting. QuickBooks adds proper deferred revenue tracking and P&L by class.</td></tr>
+  <tr><td><strong>Year 2+</strong></td><td>Over $200K</td><td><strong>QuickBooks + CPA</strong></td><td>At this scale, hire a part-time CPA ($500-1,000/mo) to close books monthly and handle Texas LLC tax filings.</td></tr>
+</table>
+
+<h3>Tax treatment</h3>
+<table>
+  <tr><th>Phase</th><th>Method</th><th>When to switch</th></tr>
+  <tr class="excellent"><td><strong>Year 1 (recommended)</strong></td><td>Cash basis — report income when received, expenses when paid</td><td>Under $26M gross receipts IRS threshold</td></tr>
+  <tr><td>Year 2+ (if needed)</td><td>Accrual — report income when earned, expenses when incurred</td><td>When annual gross receipts exceed $26M (IRC Section 448)</td></tr>
+</table>
+
+<h3>Year 1 simplification: track carryover in a spreadsheet</h3>
+
+<div class="discussion-block">
+  <h4>The big simplification for &lt;1,000 users</h4>
+  <p>With under 1,000 users, the total carryover liability is unlikely to exceed $20,000. At this scale, a Google Sheet with the following columns is all you need:</p>
+  <ul>
+    <li>User ID | Tier | GB Carried | $ Liability | Expiry Date | Status (active / redeemed / expired)</li>
+  </ul>
+  <p>Update this sheet at the end of each billing cycle. The total of the $ Liability column is what you report on the balance sheet as "Service Liability — Data Carryover." No fancy accounting software required until you hit $50K annual revenue.</p>
+</div>
+
+<h3>Monthly close — 7-step checklist</h3>
+<table>
+  <tr><th>Step</th><th>Action</th><th>Tool</th></tr>
+  <tr><td>1</td><td>Reconcile subscription payments received vs Stripe dashboard</td><td>Wave / QuickBooks</td></tr>
+  <tr><td>2</td><td>Record all supplier top-up invoices as COGS</td><td>Wave / QuickBooks</td></tr>
+  <tr><td>3</td><td>Update carryover spreadsheet: add new carryovers, mark expired ones</td><td>Google Sheets</td></tr>
+  <tr><td>4</td><td>Calculate total active carryover liability (sum of $ Liability column for non-expired rows)</td><td>Google Sheets</td></tr>
+  <tr><td>5</td><td>Record journal entry for carryover liability change (increase or decrease from prior month)</td><td>Wave / QuickBooks</td></tr>
+  <tr><td>6</td><td>Review cash balance vs carryover liability — ensure cash reserve covers the liability</td><td>Bank statement + Sheets</td></tr>
+  <tr><td>7</td><td>Export monthly P&L — revenue / COGS / gross profit / operating expenses / net</td><td>Wave / QuickBooks</td></tr>
+</table>
+
+<h3>When to bring in a CPA</h3>
+<table>
+  <tr><th>Trigger</th><th>Action</th></tr>
+  <tr><td>Annual revenue exceeds $50K</td><td>Hire part-time bookkeeper or CPA for monthly close</td></tr>
+  <tr><td>Texas LLC annual report filing (due May 15 each year)</td><td>CPA files Form 1065 (partnership) or 1120 (corp)</td></tr>
+  <tr><td>Investors or partners ask for audited financials</td><td>Full CPA engagement — not needed if self-funded</td></tr>
+  <tr><td>Carryover liability exceeds $100K</td><td>CPA review to ensure deferred revenue treatment is correct</td></tr>
+</table>
+
+<!-- ===== 14. STRATEGIC TAKEAWAYS ===== -->
+<h2 id="takeaways">14. Strategic takeaways</h2>
+
+<div class="decision-box">
+
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <strong>Takeaway 1 — Premium and Business carry design is correct</strong>
+  </div>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">50% and 70% partial carryover generates $4.03 and $3.32 per user per month in expired margin. This is intentional and valuable. Do not change these parameters. The partial carry is the mechanism by which these tiers generate above-average margin per subscriber relative to full-carry tiers.</p>
+
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <strong>Takeaway 2 — First Suite concentration risk is real but the 2-month cap is fine</strong>
+  </div>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">First Suite at $35.99/user is the biggest per-user liability in the model. At 3% penetration of 100K users, that is $108K from one tier. However, the 2-month cap means the liability resolves itself within two billing cycles. The key operational requirement is holding liquid cash equal to the total carryover balance at all times. The math long-term is the same as a 30-day window; only peak timing differs.</p>
+
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <strong>Takeaway 3 — Same-SIM dynamic allocation is the enabling architecture</strong>
+  </div>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">Build the eSIM provisioning layer on dynamic allocation from day one. This is industry standard (Airalo, Holafly, Crew SIM all do it). It means we only pay the supplier when users actually consume data. The carryover "balance" is a number in our database. This unlocks gifting, UAE redemption, and any future redemption channel without re-architecting the eSIM layer.</p>
+
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <strong>Takeaway 4 — Three carryover channels, each solving a different strategic problem</strong>
+  </div>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">Next-trip redemption preserves natural usage. UAE home redemption drives daily engagement and eliminates churn perception. Gifting creates viral acquisition and turns a liability into a growth channel. Build all three. Next-trip is v1.0 (already implied). UAE and gifting are v1.1/v1.2 depending on supplier validation.</p>
+
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <strong>Takeaway 5 — Year 1 bookkeeping: Wave + a Google Sheet is sufficient</strong>
+  </div>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">Under 1,000 users, total carryover liability is under $20K. Track it in a spreadsheet. Use Wave (free) for cash-basis accounting. Run the 7-step monthly close. Upgrade to QuickBooks at $50K annual revenue. Bring in a CPA for the annual Texas LLC filing and when carryover liability exceeds $100K. Do not over-engineer the accounting before you have users.</p>
+
+</div>
+
+<!-- ===== 15. OPEN ITEMS ===== -->
+<h2 id="queue">15. Open items / queue</h2>
+
+<table>
+  <tr><th>Item</th><th>Owner</th><th>Priority</th><th>Status</th></tr>
+  <tr><td>Carryover policy: keep 2-month cap for First/Suite (CONFIRMED in session)</td><td>Balraj</td><td>Locked</td><td><span class="pill locked">Decided</span></td></tr>
+  <tr class="flag-row"><td>Build perception UX: show "saved $X vs PAYG" instead of "X GB unused" in app</td><td>Akito (UX spec)</td><td>v1.0</td><td><span class="pill flagged">Build required</span></td></tr>
+  <tr class="flag-row"><td>Build gifting feature: carryover pool only, max 3/mo, 7-day recipient expiry, one-tap</td><td>Akito + Balraj</td><td>v1.1</td><td><span class="pill open">Queued</span></td></tr>
+  <tr class="flag-row"><td>Build UAE redemption: after supplier UAE rate + multi-eSIM provisioning confirmed</td><td>Balraj</td><td>v1.2</td><td><span class="pill open">Blocked on supplier</span></td></tr>
+  <tr class="flag-row"><td>Supplier: ask wholesale supplier for UAE rate sheet + UAE ICCID provisioning capability</td><td>Balraj</td><td>Pre-launch</td><td><span class="pill flagged">Action needed</span></td></tr>
+  <tr class="flag-row"><td>Supplier: confirm minimum allocation block size (need &lt;1 GB ideally)</td><td>Balraj</td><td>Pre-launch</td><td><span class="pill flagged">Action needed</span></td></tr>
+  <tr><td>Legal: TDRA consult — can UAE residents legally use foreign travel eSIM for domestic UAE data?</td><td>Balraj</td><td>Before UAE redemption launch</td><td><span class="pill open">Queued</span></td></tr>
+  <tr><td>Stress-test liability model at 5K/100K users with real redemption rates from beta data</td><td>Balraj</td><td>M6</td><td><span class="pill open">Post-launch</span></td></tr>
+  <tr><td>Set cash reserve policy: hold liquid cash = current month carryover liability balance</td><td>Balraj</td><td>Pre-launch</td><td><span class="pill open">Ops decision</span></td></tr>
+  <tr><td>Build monthly close checklist into ops documentation</td><td>Balraj</td><td>Pre-launch</td><td><span class="pill open">Queued</span></td></tr>
+  <tr><td>Validate 20% redemption rate assumption vs actual beta data at M3</td><td>Balraj</td><td>M3</td><td><span class="pill open">Post-launch</span></td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Note on the 20% redemption rate placeholder</h4>
+  <p>The model currently uses a 20% monthly redemption rate for carryover data. This means 80% of carried-over data is never redeemed — it expires after the cap period. There is significant uncertainty here:</p>
+  <ul>
+    <li><strong>5% redemption (hoarders):</strong> M12 liability at 1K users = ~$25K. Crew who save data for big trips but rarely redeem before expiry.</li>
+    <li><strong>20% (current assumption):</strong> ~$10.5K liability at 1K users.</li>
+    <li><strong>50% (active redeemers):</strong> ~$5K. Crew who regularly use their carryover within the window.</li>
+    <li><strong>Reality estimate:</strong> Crew likely hoard for summer/long-haul months, so the real rate is probably 5-15%. The model may be under-estimating peak liability by 2-3x. Do not be surprised if reality looks closer to the hoarder scenario.</li>
+  </ul>
+</div>
+
+<div class="footer-note">
+  Tab 20 — Carryover Liability In-Depth Blueprint · Peanut eSIM · 2026-06-02 · Numbers verified from Google Sheet ID 1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU at exact $1.3425/GB blended rate. Discussion content sourced from session notes 2026-06-02. Wholesale supplier references sanitized per public repo policy. No investor framing — written for self-funded owner-operator.
+</div>
+
+</div>
+
+<script>
+// Chart 1 — Per-tier liability bar chart
+const ctx1 = document.getElementById('liabilityChart').getContext('2d');
+new Chart(ctx1, {
+  type: 'bar',
+  data: {
+    labels: ['Economy', 'Roster', 'Refuel', 'Premium', 'Business', 'Cockpit', 'First', 'First Suite'],
+    datasets: [{
+      label: '$ Liability per user per month',
+      data: [0, 0, 0, 4.03, 7.77, 6.45, 20.13, 35.99],
+      backgroundColor: [
+        '#E0F2E7', '#E0F2E7', '#E0F2E7',
+        '#FBEFD9', '#FBEFD9', '#FBEFD9',
+        '#FBE0E0', '#D71921'
+      ],
+      borderColor: [
+        '#2D7A4F', '#2D7A4F', '#2D7A4F',
+        '#B07A1F', '#B07A1F', '#B07A1F',
+        '#D71921', '#A01218'
+      ],
+      borderWidth: 1.5
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: 'Carryover Liability per User per Month by Tier ($)', font: { size: 13 } }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { callback: function(v) { return '$' + v.toFixed(2); } }
+      }
+    }
+  }
+});
+
+// Chart 2 — Expired margin bar chart
+const ctx2 = document.getElementById('expiredMarginChart').getContext('2d');
+new Chart(ctx2, {
+  type: 'bar',
+  data: {
+    labels: ['Economy', 'Roster', 'Premium', 'Business', 'First', 'First Suite', 'Cockpit'],
+    datasets: [{
+      label: 'Expired margin per user per month ($)',
+      data: [0, 0, 4.03, 3.32, 0, 0, 0],
+      backgroundColor: ['#E5DDD0', '#E5DDD0', '#2D7A4F', '#2D7A4F', '#E5DDD0', '#E5DDD0', '#E5DDD0'],
+      borderColor: ['#ccc', '#ccc', '#1a5a35', '#1a5a35', '#ccc', '#ccc', '#ccc'],
+      borderWidth: 1.5
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: 'Expired Margin per User per Month — "By Design" Profit ($)', font: { size: 13 } }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { callback: function(v) { return '$' + v.toFixed(2); } }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
