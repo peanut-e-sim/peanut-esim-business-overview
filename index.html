@@ -44,7 +44,19 @@
   }
   [data-lang="en"] body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-  .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  /* Some tabs read better narrow (long-form narrative). Keep them at 820px. */
+  [data-tab-content="overview"] .container,
+  [data-tab-content="balraj"] .container,
+  [data-tab-content="akito"] .container { max-width: 920px; }
+  /* Wide tabs benefit from more room for tables, grids, cards */
+  [data-tab-content="open"] .container,
+  [data-tab-content="roadmap"] .container,
+  [data-tab-content="blueprint"] .container,
+  [data-tab-content="docs"] .container,
+  [data-tab-content="cost"] .container,
+  [data-tab-content="updates"] .container,
+  [data-tab-content="delaware"] .container { max-width: 1280px; }
 
   /* ─── TOPBAR (sticky) ─── */
   .topbar {
