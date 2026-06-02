@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wholesale Supplier Meeting Agenda — Peanut eSIM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --red: #D71921;
+    --gold: #C9A03B;
+    --amber: #B07A1F;
+    --green: #1a8a5a;
+    --line: #E5DDD0;
+    --card: #FFFFFF;
+    --bg: #FAF6F0;
+    --text: #1A1A1A;
+    --muted: #6b6b6b;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+  main { max-width: 920px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  header.hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--red);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  header.hero .tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--red);
+    background: #fdeaec;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  header.hero h1 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  header.hero p.sub {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  header.hero .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+  }
+  header.hero .meta .item {
+    font-size: 13px;
+  }
+  header.hero .meta .item .label {
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  header.hero .meta .item .value {
+    font-weight: 600;
+  }
+
+  .strategic-note {
+    background: #fff8e6;
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+  .strategic-note strong { color: #7a5c1a; }
+
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  section h2 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--red);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  section h2 .num {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+  }
+  section p.sub {
+    margin: 0 0 16px;
+    color: var(--muted);
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  table.qtbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  table.qtbl thead th {
+    text-align: left;
+    background: #faf6ec;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #5a4a14;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--line);
+  }
+  table.qtbl thead th.num-col { width: 50px; text-align: center; }
+  table.qtbl tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.qtbl tbody td.num-col {
+    text-align: center;
+    font-weight: 700;
+    color: var(--red);
+    font-size: 13px;
+  }
+  table.qtbl tbody td.why {
+    color: var(--muted);
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  .checklist section {
+    border-left: 4px solid var(--green);
+  }
+  .checklist h2 { color: var(--green); }
+  .checklist h2 .num { background: var(--green); }
+  .check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 14px;
+  }
+  .check-row:last-child { border-bottom: none; }
+  .check-row input[type="checkbox"] {
+    margin-top: 2px;
+    transform: scale(1.2);
+  }
+  .check-row .item-label {
+    flex: 1;
+    font-weight: 500;
+  }
+  .check-row .status {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .closing-section section {
+    border-left: 4px solid var(--amber);
+  }
+  .closing-section h2 { color: var(--amber); }
+  .closing-section h2 .num { background: var(--amber); }
+  .closing-section ul {
+    margin: 0;
+    padding-left: 22px;
+  }
+  .closing-section ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .closing-section ul li strong { color: #7a5c1a; }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .print-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(215,25,33,0.3);
+    z-index: 100;
+  }
+  .print-btn:hover { background: #b8141c; }
+
+  @media print {
+    body { background: white; font-size: 12px; }
+    main { max-width: 100%; padding: 16px; }
+    header.hero, section { box-shadow: none; border-radius: 6px; page-break-inside: avoid; }
+    .print-btn { display: none; }
+    table.qtbl thead th { background: white; }
+    section { margin-bottom: 12px; padding: 16px 20px; }
+    section h2 { font-size: 16px; }
+    header.hero h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header class="hero">
+  <span class="tag">Internal &middot; Meeting Prep &middot; Peanut eSIM</span>
+  <h1>Wholesale supplier &mdash; meeting agenda &amp; question set</h1>
+  <p class="sub">Pre-meeting prep for Balraj. The 10 sections below cover everything we need to learn to make procurement, refuel, geo-risk, and multi-airline expansion decisions.</p>
+  <div class="meta">
+    <div class="item"><div class="label">Prepared</div><div class="value">2026-06-02</div></div>
+    <div class="item"><div class="label">Meeting attendee</div><div class="value">Balraj (CFO)</div></div>
+    <div class="item"><div class="label">Current scale</div><div class="value">~50 users (M1 cohort)</div></div>
+    <div class="item"><div class="label">12-month target</div><div class="value">2,100 users</div></div>
+    <div class="item"><div class="label">24-month target</div><div class="value">5,000 users</div></div>
+    <div class="item"><div class="label">Current blended cost</div><div class="value">$1.34/GB (modeled)</div></div>
+  </div>
+</header>
+
+<div class="strategic-note">
+  <strong>Strategic framing:</strong> the relationship is small today but we&apos;re modeling for 5,000 users by M24 and 100K longer-term. The two answers that matter most are <strong>(a) when do we earn a real discount tier</strong>, and <strong>(b) is billing consumed-GB or provisioned-GB</strong>. Get those even if you get nothing else. Do <em>not</em> reveal our procurement Option C ($5K/mo direct alternative) &mdash; that&apos;s our unspoken leverage.
+</div>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">1</span>Baseline &mdash; what are we paying today?</h2>
+  <p class="sub">Establish the actual current terms before anything else.</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">1.1</td><td>Can you share the full rate card by country/region for our current account tier?</td><td class="why">We model $1.34/GB blended at a 75/20/5 geo mix. Need actual per-country numbers to validate.</td></tr>
+      <tr><td class="num-col">1.2</td><td>What account tier are we currently on, and what triggers a move to a better tier?</td><td class="why">We believe we&apos;re a downstream sub-reseller. Want explicit clarity.</td></tr>
+      <tr><td class="num-col">1.3</td><td>Are there any fixed monthly platform / minimum commitment fees we&apos;re paying today?</td><td class="why">Common to find hidden fees buried in published rates.</td></tr>
+      <tr><td class="num-col">1.4</td><td>What are your standard payment terms &mdash; Net 30, prepay, on-demand?</td><td class="why">Affects working capital model and our Cockpit-prepay float math.</td></tr>
+      <tr><td class="num-col">1.5</td><td>Is the rate we see the <strong>consumed-GB</strong> rate, or <strong>provisioned-GB</strong>? Where does breakage go?</td><td class="why">Core economic question. Consumed-GB billing makes our carryover liability zero cost; provisioned makes it real.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">2</span>Volume discount triggers</h2>
+  <p class="sub">When do we earn a better rate? What does the staircase look like?</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">2.1</td><td>What&apos;s your published volume-discount schedule? At what monthly GB or $-spend do we move tier?</td><td class="why">Need this number to know exactly when to come back and renegotiate.</td></tr>
+      <tr><td class="num-col">2.2</td><td>If we commit to X GB/month for 12 months, what discount can you offer?</td><td class="why">Tests appetite for volume commitment vs pay-as-you-go.</td></tr>
+      <tr><td class="num-col">2.3</td><td>Do you offer prepay discounts (e.g., 6/12-month bulk credits)?</td><td class="why">Our Cockpit annual prepay can fund inventory prepay if the discount is meaningful.</td></tr>
+      <tr><td class="num-col">2.4</td><td>At our current ~50 active users, are there ANY pricing improvements available, or do we need to hit real volume first?</td><td class="why">Sets honest expectation. If &ldquo;no&rdquo; &mdash; we grow first, not negotiate now.</td></tr>
+      <tr><td class="num-col">2.5</td><td>If we reach 1,500 / 5,000 / 10,000 active users in 12&ndash;24 months, what tier would that put us in?</td><td class="why">Anchors a future trajectory and creates a target for them to compete for.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">3</span>Cost model &amp; billing mechanics</h2>
+  <p class="sub">The plumbing &mdash; how money flows between us, what happens to unused inventory, how partial GBs are tracked.</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">3.1</td><td>When a user&apos;s data pool carries over to next month, are we billed for carried-over GB at original-month rate or current-month rate?</td><td class="why">Affects how we model deferred-revenue cost on the balance sheet (Tab 20).</td></tr>
+      <tr><td class="num-col">3.2</td><td>Does an unused pool that expires after our policy window cost us anything?</td><td class="why">Our &ldquo;free margin from carry expiry&rdquo; thesis (~$132K/yr at 5K users) depends on this answer.</td></tr>
+      <tr><td class="num-col">3.3</td><td>How is partial-GB consumption tracked and billed &mdash; to the nearest MB, or rounded up to whole GBs?</td><td class="why">Material for high-volume Tier-C exposure.</td></tr>
+      <tr><td class="num-col">3.4</td><td>Are there any per-activation fees on top of the per-GB rate?</td><td class="why">Common hidden cost &mdash; verify before signing anything.</td></tr>
+      <tr><td class="num-col">3.5</td><td>What&apos;s the billing reconciliation cycle, and can we get usage data via API daily/hourly?</td><td class="why">Needed for real-time COGS in our P&amp;L.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">4</span>Geographic coverage &amp; Tier-C exposure</h2>
+  <p class="sub">The single biggest cost-side risk in our model. If Tier-C mix shifts, every tier compresses.</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">4.1</td><td>What countries do you classify as Tier-C (premium-cost destinations)? Can we get the full list?</td><td class="why">We assume 5% Tier-C in our model. Need the actual country list to verify against Emirates&apos; 67 destinations.</td></tr>
+      <tr><td class="num-col">4.2</td><td>Specifically: per-GB rate in India, Brazil, South Africa, and the United States?</td><td class="why">Our highest-exposure markets. The $2.00/GB stress scenario assumes Tier-C drift.</td></tr>
+      <tr><td class="num-col">4.3</td><td>If our geo mix shifts to 15% Tier-C, what happens to our blended rate?</td><td class="why">Supplier-side test of our internal sensitivity model.</td></tr>
+      <tr><td class="num-col">4.4</td><td>Do you have any way to cap or hedge Tier-C cost exposure (e.g., a fixed-blend offering)?</td><td class="why">Would significantly de-risk margin &mdash; one of three procurement options we&apos;re modeling.</td></tr>
+      <tr><td class="num-col">4.5</td><td>If we launch a USA-focused or Cruise-focused SKU, can you offer a flat per-GB rate?</td><td class="why">Direct enablement of the geo-risk add-on SKU we have planned.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">5</span>Failed activations &amp; support SLA</h2>
+  <p class="sub">Failed eSIMs cost us ~$10.80 each in the model. Who eats what?</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">5.1</td><td>What&apos;s your refund / credit policy when a user&apos;s eSIM fails to activate?</td><td class="why">We blended-cost this at $10.80/failure. Align expectations.</td></tr>
+      <tr><td class="num-col">5.2</td><td>If failure is due to device incompatibility (not user error), do we get credited?</td><td class="why">30% of failures in our model. Need to know whether we eat the cost or pass it through.</td></tr>
+      <tr><td class="num-col">5.3</td><td>What&apos;s your support SLA &mdash; initial response time, resolution time, escalation path?</td><td class="why">For our customer-facing AI Support feature we need 1st-response SLAs we can promise users.</td></tr>
+      <tr><td class="num-col">5.4</td><td>Is there a goodwill GB allowance for failed activations, or is each one a separate transaction?</td><td class="why">Affects how we structure our &ldquo;credit, not refund&rdquo; customer policy.</td></tr>
+      <tr><td class="num-col">5.5</td><td>What&apos;s the typical activation-failure rate you see across your customer base?</td><td class="why">Calibrates whether our 5&ndash;10% assumption is reasonable.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">6</span>Same-SIM dynamic allocation (Refuel)</h2>
+  <p class="sub">Refuel is a major margin driver ($3.65 net per event). The whole feature depends on supplier-side support.</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">6.1</td><td>Does your platform support <strong>same-SIM data top-up</strong> &mdash; user buys 1 GB and it appears in the existing eSIM profile without re-installation?</td><td class="why">Our Refuel feature ($3.65/event margin) depends on this.</td></tr>
+      <tr><td class="num-col">6.2</td><td>What&apos;s the latency between purchase and the new GB being usable on the device?</td><td class="why">UX critical &mdash; we need to deliver &ldquo;tap &rarr; refuel ready&rdquo; in under 30 seconds.</td></tr>
+      <tr><td class="num-col">6.3</td><td>Are there any per-top-up fees or minimum increments (e.g., 500 MB minimum)?</td><td class="why">Affects whether we can sell 1 GB top-ups profitably.</td></tr>
+      <tr><td class="num-col">6.4</td><td>Can a single eSIM profile hold multiple concurrent data pools (e.g., subscription + refuel)?</td><td class="why">Architecturally important for our Tab 20 dynamic allocation model.</td></tr>
+      <tr><td class="num-col">6.5</td><td>Is there a maximum number of top-ups per eSIM per month/year?</td><td class="why">Affects how aggressively we can push refuel attach.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">7</span>API, provisioning, operations</h2>
+  <p class="sub">Engineering reality check. Before any commitment, we need this concrete.</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">7.1</td><td>Can we get full API documentation, including provisioning, usage-query, and refund endpoints?</td><td class="why">Need this before any commitment &mdash; drives integration timeline.</td></tr>
+      <tr><td class="num-col">7.2</td><td>What&apos;s your historical uptime SLA, and what&apos;s the credit if you breach it?</td><td class="why">Risk model for our customer commitments.</td></tr>
+      <tr><td class="num-col">7.3</td><td>Is there a sandbox / test environment for our integration work?</td><td class="why">Required for Phase 1 of our build.</td></tr>
+      <tr><td class="num-col">7.4</td><td>How long does it take to provision a new eSIM profile end-to-end?</td><td class="why">Affects &ldquo;signup &rarr; activated&rdquo; UX timing in our onboarding flow.</td></tr>
+      <tr><td class="num-col">7.5</td><td>Do you support both QR-code and Apple Universal Link installation?</td><td class="why">Our roadmap commits to Apple Universal Link (no Carrier Entitlement).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">8</span>Multi-airline expansion (Y2&ndash;Y3)</h2>
+  <p class="sub">Roadmap: Etihad Y2 &rarr; JAL + ANA Y2 &rarr; Singapore, Cathay, Qatar Y3. Does the supplier scale with us?</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">8.1</td><td>If we expand from Emirates-only to Etihad + JAL + ANA in Year 2, does that require contract restructuring on your end?</td><td class="why">We don&apos;t want a surprise renegotiation when we scale.</td></tr>
+      <tr><td class="num-col">8.2</td><td>Can we operate multiple branded products (e.g., one for Emirates crew, one for JAL crew) under the same account?</td><td class="why">Affects how we structure brand portfolio expansion.</td></tr>
+      <tr><td class="num-col">8.3</td><td>Do you have direct relationships with JP / SG / HK / AU / QA carriers we&apos;d benefit from referencing?</td><td class="why">Multi-airline expansion targets these countries &mdash; supplier-side network matters.</td></tr>
+      <tr><td class="num-col">8.4</td><td>What&apos;s your view on us building a regional pricing strategy (different retail per airline market)?</td><td class="why">Supplier-side opinion is useful even if their answer is &ldquo;do what you want.&rdquo;</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2><span class="num">9</span>Strategic / contractual</h2>
+  <p class="sub">The clauses that matter at scale. Most won&apos;t be volunteered &mdash; we ask explicitly.</p>
+  <table class="qtbl">
+    <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
+    <tbody>
+      <tr><td class="num-col">9.1</td><td>Do you offer exclusivity clauses, and what would those cost us / earn us?</td><td class="why">Future leverage point.</td></tr>
+      <tr><td class="num-col">9.2</td><td>Is there an MFN (most-favored-nation) clause &mdash; same rates as your best customer at our volume?</td><td class="why">Standard wholesale clause. Worth asking.</td></tr>
+      <tr><td class="num-col">9.3</td><td>If we wanted to switch to a direct wholesale provider in Year 2, what&apos;s the contract notice period and termination cost?</td><td class="why">Critical for our procurement Option C path.</td></tr>
+      <tr><td class="num-col">9.4</td><td>Can we get a written commitment that pricing is locked for the next 12 months?</td><td class="why">Reduces model risk on our 24-month rollout.</td></tr>
+      <tr><td class="num-col">9.5</td><td>Are you open to a co-marketing arrangement (e.g., we mention you as our infrastructure partner)?</td><td class="why">Non-cash value worth quantifying if it&apos;s on offer.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<div class="checklist">
+<section>
+  <h2><span class="num">10</span>What we want to walk out with</h2>
+  <p class="sub">End-of-meeting checklist. Tick what you got. Anything unchecked = follow-up email.</p>
+  <div class="check-row">
+    <input type="checkbox" id="c1">
+    <label for="c1" class="item-label">Full rate card by country</label>
+    <span class="status">received / promised by ____ / refused</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c2">
+    <label for="c2" class="item-label">Documented volume-discount schedule</label>
+    <span class="status">received / promised by ____ / refused</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c3">
+    <label for="c3" class="item-label">Billing model confirmed (consumed vs provisioned)</label>
+    <span class="status">consumed / provisioned / open</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c4">
+    <label for="c4" class="item-label">Same-SIM Refuel technical confirmation</label>
+    <span class="status">yes / no / roadmap</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c5">
+    <label for="c5" class="item-label">Failed-activation credit policy in writing</label>
+    <span class="status">confirmed / not confirmed</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c6">
+    <label for="c6" class="item-label">API access + sandbox</label>
+    <span class="status">granted / promised by ____ / refused</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c7">
+    <label for="c7" class="item-label">Tier-C cost cap or hedge offer</label>
+    <span class="status">available / not available</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c8">
+    <label for="c8" class="item-label">12-month price-lock commitment</label>
+    <span class="status">yes / no / negotiable</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c9">
+    <label for="c9" class="item-label">Next-step commitment date</label>
+    <span class="status">scheduled for ____</span>
+  </div>
+</section>
+</div>
+
+<!-- ============================================================ -->
+<div class="closing-section">
+<section>
+  <h2><span class="num">!</span>Strategic tone notes</h2>
+  <p class="sub">How to run the conversation, not just what to ask.</p>
+  <ul>
+    <li><strong>Frame trajectory, not current scale.</strong> Open by acknowledging we&apos;re small today (~50 users) but modeling 5,000 by M24 and 100K longer-term. Suppliers compete for trajectory, not snapshots.</li>
+    <li><strong>Do not reveal Option C.</strong> Our $5K/mo direct-wholesale alternative is silent leverage. If they sense it, our negotiating position evaporates.</li>
+    <li><strong>The two answers that matter most:</strong> (a) when do we earn a real discount tier, (b) is the billing model consumed-GB or provisioned-GB. Get those even if you walk out with nothing else.</li>
+    <li><strong>Listen for what they don&apos;t volunteer.</strong> Exclusivity, MFN, and termination terms usually don&apos;t come up unless explicitly asked. Their absence is the leverage point.</li>
+    <li><strong>Anchor on the future, close on the present.</strong> Spend 70% of the conversation on 5K/10K/100K-user economics, 30% on what changes today. The first conversation rarely produces a new price &mdash; it produces a relationship that earns one.</li>
+    <li><strong>Take notes by section number.</strong> Section 1 answers go on page 1, etc. Send a written follow-up the same day summarizing what you heard &mdash; that&apos;s how verbal commitments become contractual.</li>
+  </ul>
+</section>
+</div>
+
+<footer>
+  Peanut eSIM &middot; Internal meeting prep &middot; Prepared 2026-06-02
+</footer>
+
+</main>
+
+<button class="print-btn" onclick="window.print()">Print agenda</button>
+
+</body>
+</html>
