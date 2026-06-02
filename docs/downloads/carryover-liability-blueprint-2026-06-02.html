@@ -123,8 +123,17 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <li><a href="#uae">11. Risk 3 — UAE redemption via dynamic allocation</a></li>
   <li><a href="#concentration">12. First Suite concentration risk</a></li>
   <li><a href="#bookkeeping">13. Accounting + bookkeeping deep-dive (self-funded owner guide)</a></li>
-  <li><a href="#takeaways">14. Strategic takeaways</a></li>
-  <li><a href="#queue">15. Open items / queue</a></li>
+  <li><a href="#locked-rules">14. Edge case rules (LOCKED 2026-06-02)</a>
+    <ul>
+      <li><a href="#universal-carry">14a. Universal Carry Rule</a></li>
+      <li><a href="#mid-cycle">14b. Mid-cycle changes — Option A (no refunds)</a></li>
+      <li><a href="#notifications">14c. Expiry notifications (7-day + 3-day)</a></li>
+      <li><a href="#cancellation">14d. Cancellation rule — gift-only exit</a></li>
+      <li><a href="#carry-buckets">14e. App UI — carry buckets + FIFO</a></li>
+    </ul>
+  </li>
+  <li><a href="#takeaways">15. Strategic takeaways (updated)</a></li>
+  <li><a href="#queue">16. Open items / queue (updated)</a></li>
 </ul>
 </div>
 
@@ -603,8 +612,197 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <tr><td>Carryover liability exceeds $100K</td><td>CPA review to ensure deferred revenue treatment is correct</td></tr>
 </table>
 
-<!-- ===== 14. STRATEGIC TAKEAWAYS ===== -->
-<h2 id="takeaways">14. Strategic takeaways</h2>
+<!-- ===== 14. EDGE CASE RULES (LOCKED 2026-06-02) ===== -->
+<h2 id="locked-rules">14. Edge case rules <span class="badge-new">LOCKED 2026-06-02</span></h2>
+
+<p>The following rules were decided during the 2026-06-02 session and are not open for debate. They govern how carryover behaves across plan changes, notifications, and cancellations. Each rule is documented here as a reference for product, engineering, and legal teams.</p>
+
+<!-- ===== 14a. UNIVERSAL CARRY RULE ===== -->
+<h3 id="universal-carry">14a. The Universal Carry Rule (Balraj's design)</h3>
+
+<div class="callout" style="background: #F0FFF5; border-color: #2D7A4F;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  <div class="callout-body">
+    <strong>Universal Carry Rule — verbatim (LOCKED)</strong>
+    <p>"The carryover pool always stays the same, with its original expiry date intact. The ONLY exception: when upgrading to a plan with a longer expiry window, the existing carry's expiry expands to match the new plan."</p>
+  </div>
+</div>
+
+<p>This rule means the carry bucket is immutable except in one direction: upward, when a longer expiry window applies. There are no other cases where the expiry shifts.</p>
+
+<h4>How it plays out across plan-change scenarios</h4>
+<table>
+  <tr><th>Scenario</th><th>What happens to existing carry</th><th>Status</th></tr>
+  <tr class="excellent"><td><strong>Downgrade (Premium → Roster)</strong></td><td>Carry keeps its original expiry date. It sits alongside the new plan's (zero) pool and remains redeemable until expiry.</td><td><span class="pill locked">Locked</span></td></tr>
+  <tr class="excellent"><td><strong>Upgrade with longer expiry (Business → First)</strong></td><td>Carry expiry EXPANDS to match the new plan's window. Business has 1-month expiry; First has 2-month. The carry's clock resets to the longer window.</td><td><span class="pill locked">Locked</span></td></tr>
+  <tr><td><strong>Lateral move (same tier, same expiry window)</strong></td><td>No change. Carry keeps original expiry. Nothing happens.</td><td><span class="pill locked">Locked</span></td></tr>
+  <tr class="risk"><td><strong>Cancel + resubscribe</strong></td><td>Carry expired during the gap. It is gone. No reinstatement, no credit. New subscription starts fresh.</td><td><span class="pill locked">Locked</span></td></tr>
+</table>
+
+<h4>Worked example — Aiko upgrades Business to First on Feb 5</h4>
+<div class="decision-box">
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C9A03B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <strong>Scenario: Aiko's Business → First upgrade</strong>
+  </div>
+  <table style="margin-top: 12px;">
+    <tr><th>Item</th><th>Before upgrade</th><th>After upgrade</th></tr>
+    <tr><td>Plan</td><td>Business (1-month expiry)</td><td>First (2-month expiry)</td></tr>
+    <tr><td>Carry balance</td><td>5.78 GB</td><td>5.78 GB (unchanged)</td></tr>
+    <tr><td>Carry expiry (original)</td><td>Feb 28 (end of 1-month Business window)</td><td>—</td></tr>
+    <tr class="excellent"><td><strong>Carry expiry (new — expanded)</strong></td><td>—</td><td><strong>April 5 (2 months from upgrade date Feb 5)</strong></td></tr>
+  </table>
+  <p style="font-size:13px; color: var(--ink-soft); margin: 8px 0 0;">The upgrade gives her 5 extra weeks to use the same 5.78 GB. This is the only case where the expiry clock resets. All other scenarios leave expiry untouched.</p>
+</div>
+
+<!-- ===== 14b. MID-CYCLE CHANGES ===== -->
+<h3 id="mid-cycle">14b. Mid-cycle changes — Option A (LOCKED, no refunds)</h3>
+
+<div class="callout" style="background: #F0FFF5; border-color: #2D7A4F;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  <div class="callout-body">
+    <strong>Option A LOCKED — no mid-cycle refunds</strong>
+    <p>If a user downgrades mid-cycle, the downgrade takes effect at the NEXT billing cycle. The user finishes the month they paid for. No pro-rated refund. Industry standard. Simpler accounting.</p>
+  </div>
+</div>
+
+<h4>The three options considered — Option A locked, B and C rejected</h4>
+<table>
+  <tr><th>Option</th><th>Description</th><th>Accounting complexity</th><th>Decision</th></tr>
+  <tr class="excellent"><td><strong>A — Next-cycle effective</strong></td><td>User finishes paid month. Downgrade takes effect at next billing cycle. No mid-cycle adjustment.</td><td>Minimal — no partial-month calculations needed</td><td><span class="pill locked">LOCKED</span></td></tr>
+  <tr class="risk"><td><del><strong>B — Pro-rated refund</strong></del></td><td>Refund the unused portion of the month at the lower plan's rate. Complex billing math, support overhead, disputes.</td><td>High — triggers refund flows, pro-ration engine, support tickets</td><td><span class="pill flagged">REJECTED</span></td></tr>
+  <tr class="risk"><td><del><strong>C — Immediate downgrade, credit</strong></del></td><td>Immediately switch to lower plan, give credit toward next month instead of refund. Ambiguous UX, harder to explain.</td><td>Medium — credit balance tracking, accounting mismatch</td><td><span class="pill flagged">REJECTED</span></td></tr>
+</table>
+
+<p>Option A is industry standard. Stripe, Apple, Google Play, and every major SaaS platform treats mid-cycle downgrades this way. Users understand it. It eliminates a class of accounting complexity and customer support tickets entirely.</p>
+
+<!-- ===== 14c. EXPIRY NOTIFICATIONS ===== -->
+<h3 id="notifications">14c. Expiry notifications — 7-day + 3-day (BOTH LOCKED)</h3>
+
+<div class="callout" style="background: #F0FFF5; border-color: #2D7A4F;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+  <div class="callout-body">
+    <strong>Both notification triggers are locked. Neither is optional.</strong>
+    <p>7-day soft reminder and 3-day urgent reminder. Both via push notification + email (if user opted in to email). These protect against "expired without warning" complaints and drive redemption, which reduces our liability faster.</p>
+  </div>
+</div>
+
+<table>
+  <tr><th>Trigger</th><th>Timing</th><th>Tone</th><th>Channel</th></tr>
+  <tr class="excellent"><td><strong>7-day soft reminder</strong></td><td>7 days before carry expiry date</td><td>Informational, positive framing</td><td>Push notification + email (if opted in)</td></tr>
+  <tr class="caution"><td><strong>3-day urgent reminder</strong></td><td>3 days before carry expiry date</td><td>Urgent, action-oriented — includes gift option CTA</td><td>Push notification + email (if opted in)</td></tr>
+</table>
+
+<h4>Locked notification copy</h4>
+<div class="two-col">
+  <div class="decision-box">
+    <div class="icon-row">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <strong>7-day push (soft)</strong>
+    </div>
+    <p style="font-size:14px; margin: 8px 0 0;">"Your 3 GB Premium carry expires Mar 1 — use it on your next trip!"</p>
+  </div>
+  <div class="decision-box" style="border-color: var(--amber);">
+    <div class="icon-row">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B07A1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <strong>3-day push (urgent)</strong>
+    </div>
+    <p style="font-size:14px; margin: 8px 0 0;">"Last call: 3 GB Premium carry expires in 3 days. Use it or gift it."</p>
+  </div>
+</div>
+
+<p>Why both matter: the 7-day notification gives users time to plan a trip or arrange a gift. The 3-day reminder creates urgency that drives the final action. Notifications also serve as legal cover against support complaints — we cannot be accused of failing to warn users if we sent two warnings.</p>
+
+<!-- ===== 14d. CANCELLATION RULE ===== -->
+<h3 id="cancellation">14d. Cancellation rule — gift-only exit (LOCKED)</h3>
+
+<div class="callout" style="background: #F0FFF5; border-color: #2D7A4F;">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  <div class="callout-body">
+    <strong>Cancellation rule: no cash refund for stored carry. Gifting is the ONLY exit option.</strong>
+    <p>When a user cancels, any stored carryover is forfeited — or can be gifted to another user before cancellation completes. No ghost account, no cash refund, no credit. Clean ops. Clean books.</p>
+  </div>
+</div>
+
+<h4>The cancellation flow — Aiko cancels with 3 GB stored</h4>
+
+<div class="decision-box">
+  <ol class="step-list">
+    <li>
+      <div>
+        <strong>Cancellation initiated</strong><br>
+        Aiko taps "Cancel subscription" in app. The flow does NOT immediately cancel.
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Carry balance prompt</strong><br>
+        App shows: <em>"You have 3 GB stored. Want to gift it before you go?"</em><br>
+        This screen surfaces the gifting CTA at the highest-intent moment.
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Two paths — gift or forfeit</strong><br>
+        <strong>Path A: Gift it.</strong> Aiko sends 3 GB to a contact. Recipient gets a 7-day trial of Peanut and must install the app to redeem. Viral acquisition hook fires.<br>
+        <strong>Path B: Just cancel.</strong> Aiko taps "Cancel anyway." 3 GB is forfeited. We never paid the supplier for it (deferred cost). It becomes pure recovered margin on our books.
+      </div>
+    </li>
+  </ol>
+</div>
+
+<h4>Why this design is the right business decision</h4>
+<table>
+  <tr><th>Benefit</th><th>Explanation</th></tr>
+  <tr class="excellent"><td><strong>Zero cash refund overhead</strong></td><td>No refund processing, no Stripe disputes, no customer support tickets about refund amounts. Clean books at cancellation.</td></tr>
+  <tr class="excellent"><td><strong>No ghost accounts</strong></td><td>Carry does not linger in a dormant account after cancellation. The balance is either gifted or forfeited at the moment of cancel. Zero orphaned liability.</td></tr>
+  <tr class="excellent"><td><strong>Forced gifting CTA at peak intent</strong></td><td>Cancellation is the moment a user is most likely to think about people in their life. "Give it to Mum" is a natural instinct at goodbye. We surface it at exactly the right time.</td></tr>
+  <tr class="excellent"><td><strong>Viral acquisition hook</strong></td><td>Each gifted GB at cancellation = one new user trying Peanut for free. At 2% conversion, that is a $134 LTV acquisition that cost us $4.03 we were going to write off anyway. 33x ROI on a cancelled user's last act.</td></tr>
+  <tr class="excellent"><td><strong>Pure margin if she forfeits</strong></td><td>If Aiko declines to gift, the 3 GB is gone. We collected $17.99 for Premium, paid $5.37 in COGS for her 4 GB of actual usage, and kept the $4.03 deferred cost as recovered margin. Full economic cleanup at one event.</td></tr>
+  <tr class="excellent"><td><strong>Emotionally positive last moment</strong></td><td>"I gave Mum data before I left" is a positive brand memory. Even in cancellation, the user feels good about Peanut. This matters for reactivation probability and word-of-mouth after cancel.</td></tr>
+</table>
+
+<!-- ===== 14e. APP UI — CARRY BUCKETS ===== -->
+<h3 id="carry-buckets">14e. App UI — carry buckets + FIFO burn order</h3>
+
+<div class="callout" style="background:#FFFBF0; border-color: var(--gold);">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A03B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+  <div class="callout-body">
+    <strong>App must display carry as separate buckets — not a combined total</strong>
+    <p>Because each carry bucket has its own independent expiry date, the app must show them separately. A combined total hides the expiry urgency and will generate support complaints when data expires unexpectedly.</p>
+  </div>
+</div>
+
+<h4>Required pool display format</h4>
+<table>
+  <tr><th>Bucket</th><th>GB</th><th>Expiry</th><th>Status</th></tr>
+  <tr class="excellent"><td><strong>Current month pool</strong></td><td>5 GB</td><td>Feb 28</td><td>Active — resets next billing cycle</td></tr>
+  <tr class="caution"><td><strong>Premium legacy carry</strong></td><td>3 GB</td><td>Feb 15 (10 days left)</td><td><span class="pill flagged">Expires soon</span></td></tr>
+  <tr><td><strong>First legacy carry</strong></td><td>1 GB</td><td>Mar 1 (20 days left)</td><td>Active carryover</td></tr>
+</table>
+
+<h4>FIFO burn rule — soonest-expiring bucket consumed first</h4>
+
+<div class="decision-box">
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    <strong>FIFO is mandatory — oldest expiry bucket burns first</strong>
+  </div>
+  <p style="font-size:14px; margin: 4px 0 0 26px;">When Aiko uses data, the system automatically draws from the bucket closest to expiry first. In the example above, the Premium legacy carry (Feb 15) is consumed before the First legacy carry (Mar 1), which is consumed before the current month pool (Feb 28). This automatically maximizes data usage before expiry and reduces our liability faster. Users should never need to manually manage which bucket is being used.</p>
+</div>
+
+<h4>UI engineering implication</h4>
+<table>
+  <tr><th>Requirement</th><th>Implementation note</th></tr>
+  <tr><td>Separate bucket display</td><td>Each carry bucket is a distinct UI card with its own GB amount and expiry countdown</td></tr>
+  <tr><td>Expiry countdown</td><td>Show "N days left" in the bucket card when under 14 days. Red styling when under 3 days.</td></tr>
+  <tr><td>FIFO engine</td><td>Backend logic: sort all active buckets by expiry ASC, deduct from first bucket until empty, then next</td></tr>
+  <tr><td>Gift button per bucket</td><td>Each carry bucket should have an inline "Gift" CTA — makes it obvious which pool can be gifted</td></tr>
+  <tr><td>Notification tie-in</td><td>7-day and 3-day notifications link directly to the expiring bucket's gift/use CTA</td></tr>
+</table>
+
+<!-- ===== 15. STRATEGIC TAKEAWAYS (UPDATED) ===== -->
+<h2 id="takeaways">15. Strategic takeaways (updated)</h2>
 
 <div class="decision-box">
 
@@ -638,16 +836,44 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   </div>
   <p style="margin: 4px 0 16px 26px; font-size: 14px;">Under 1,000 users, total carryover liability is under $20K. Track it in a spreadsheet. Use Wave (free) for cash-basis accounting. Run the 7-step monthly close. Upgrade to QuickBooks at $50K annual revenue. Bring in a CPA for the annual Texas LLC filing and when carryover liability exceeds $100K. Do not over-engineer the accounting before you have users.</p>
 
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <strong>Takeaway 6 — Universal Carry Rule governs all plan-change behavior (LOCKED)</strong>
+  </div>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">The carry bucket is immutable except when upgrading to a longer expiry window, in which case the expiry expands to match. Downgrades, laterals, and cancellations leave carry expiry unchanged. Cancel + resubscribe = carry is gone. This is the rule. There are no other cases. Engineering must implement this exactly.</p>
+
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    <strong>Takeaway 7 — No mid-cycle refunds, ever (LOCKED)</strong>
+  </div>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">Option A is locked. Downgrades and cancellations take effect at the next billing cycle boundary. No pro-rated refund, no partial-month credit. This is industry standard, eliminates a class of accounting complexity, and removes an entire category of support ticket. Do not revisit this.</p>
+
+  <div class="icon-row">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+    <strong>Takeaway 8 — Cancellation is gift-only exit (LOCKED) — the viral loop closes here</strong>
+  </div>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">No cash refund for stored carry at cancellation. The only exit for stored GB is gifting. This is not a punitive design — it is the moment the viral acquisition loop closes. The cancellation screen surfaces the gifting CTA at peak emotional intent. Gift it and Mum installs Peanut. Forfeit it and we recover deferred margin. Either outcome is correct for the business. This rule must be reflected in Terms of Service and the cancellation UI explicitly.</p>
+
 </div>
 
-<!-- ===== 15. OPEN ITEMS ===== -->
-<h2 id="queue">15. Open items / queue</h2>
+<!-- ===== 16. OPEN ITEMS ===== -->
+<h2 id="queue">16. Open items / queue (updated)</h2>
+
+<p>Items now marked LOCKED are no longer open. Remaining open items require engineering, supplier action, or legal validation before launch.</p>
 
 <table>
   <tr><th>Item</th><th>Owner</th><th>Priority</th><th>Status</th></tr>
-  <tr><td>Carryover policy: keep 2-month cap for First/Suite (CONFIRMED in session)</td><td>Balraj</td><td>Locked</td><td><span class="pill locked">Decided</span></td></tr>
+  <tr><td>Carryover policy: keep 2-month cap for First/Suite</td><td>Balraj</td><td>—</td><td><span class="pill locked">Locked</span></td></tr>
+  <tr><td>Universal Carry Rule: expiry intact on downgrade; expands on upgrade to longer window</td><td>Balraj + Engineering</td><td>—</td><td><span class="pill locked">Locked</span></td></tr>
+  <tr><td>Mid-cycle changes: Option A — no refunds, next-cycle effective</td><td>Balraj</td><td>—</td><td><span class="pill locked">Locked</span></td></tr>
+  <tr><td>Expiry notifications: 7-day soft + 3-day urgent (push + email)</td><td>Balraj + Engineering</td><td>—</td><td><span class="pill locked">Locked</span></td></tr>
+  <tr><td>Cancellation = gift-only exit; no cash refund; carry forfeited if not gifted</td><td>Balraj + Legal</td><td>—</td><td><span class="pill locked">Locked</span></td></tr>
+  <tr><td>App UI: multi-bucket carry display (separate card per bucket, expiry countdown, FIFO burn)</td><td>Akito (UX spec)</td><td>—</td><td><span class="pill locked">Locked design intent</span></td></tr>
   <tr class="flag-row"><td>Build perception UX: show "saved $X vs PAYG" instead of "X GB unused" in app</td><td>Akito (UX spec)</td><td>v1.0</td><td><span class="pill flagged">Build required</span></td></tr>
-  <tr class="flag-row"><td>Build gifting feature: carryover pool only, max 3/mo, 7-day recipient expiry, one-tap</td><td>Akito + Balraj</td><td>v1.1</td><td><span class="pill open">Queued</span></td></tr>
+  <tr class="flag-row"><td>Build gifting feature: carryover pool only, max 3/mo, 7-day recipient expiry, one-tap, cancellation CTA</td><td>Akito + Balraj</td><td>v1.1</td><td><span class="pill open">Queued</span></td></tr>
+  <tr class="flag-row"><td>Build carry-bucket UI with per-bucket gift CTA and FIFO backend engine</td><td>Engineering</td><td>v1.1</td><td><span class="pill open">Queued</span></td></tr>
+  <tr class="flag-row"><td>Build 7-day + 3-day expiry notification system (push + email), linked to bucket expiry dates</td><td>Engineering</td><td>v1.0</td><td><span class="pill flagged">Build required</span></td></tr>
+  <tr class="flag-row"><td>Update Terms of Service: add cancellation = gift-only exit clause for stored carry</td><td>Balraj + Legal</td><td>Pre-launch</td><td><span class="pill flagged">Action needed</span></td></tr>
   <tr class="flag-row"><td>Build UAE redemption: after supplier UAE rate + multi-eSIM provisioning confirmed</td><td>Balraj</td><td>v1.2</td><td><span class="pill open">Blocked on supplier</span></td></tr>
   <tr class="flag-row"><td>Supplier: ask wholesale supplier for UAE rate sheet + UAE ICCID provisioning capability</td><td>Balraj</td><td>Pre-launch</td><td><span class="pill flagged">Action needed</span></td></tr>
   <tr class="flag-row"><td>Supplier: confirm minimum allocation block size (need &lt;1 GB ideally)</td><td>Balraj</td><td>Pre-launch</td><td><span class="pill flagged">Action needed</span></td></tr>
