@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 19 Per-Tier Geo Mix: Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.flagged { background: #FBE0E0; color: var(--red); }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.decision-box { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+tr.excellent td { background: #e8f4e8; }
+tr.caution td { background: #faf6ec; }
+tr.risk td { background: #fff0f0; }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.gold-text { color: var(--amber); font-weight: 600; }
+code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+.chart-wrap { background: white; padding: 24px; border: 1px solid var(--line); border-radius: 6px; margin: 20px 0; max-width: 640px; }
+.chart-wrap canvas { max-height: 280px; }
+.step-list { counter-reset: steps; list-style: none; padding: 0; margin: 16px 0; }
+.step-list li { counter-increment: steps; display: flex; gap: 14px; align-items: flex-start; padding: 12px 16px; border-bottom: 1px solid var(--line); background: white; }
+.step-list li::before { content: counter(steps); display: flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.callout { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin: 20px 0; display: flex; gap: 16px; align-items: flex-start; }
+.callout-body { flex: 1; }
+.callout-body strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.callout-body p { font-size: 14px; color: var(--ink-soft); margin: 0; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+@media (max-width: 600px) { .container { padding: 24px 16px 60px; } h1 { font-size: 26px; } h2 { font-size: 20px; } .two-col { grid-template-columns: 1fr; } }
+.badge-new { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: .06em; background: var(--gold); color: white; text-transform: uppercase; margin-left: 10px; vertical-align: middle; }
+.icon-row { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-bottom: 6px; }
+.fix-box { background: #e0f2e7; border: 1px solid #a8d8b5; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.fix-box strong { color: var(--green); }
+.flag-row td { background: #fff8e8; }
+.risk-row td { background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 19 BLUEPRINT — Per-Tier Geo Mix — Peanut eSIM (2026-06-02)</span>
+</div>
+
+<div class="container">
+
+<h1>Tab 19 — Per-Tier Geo Mix</h1>
+<p class="meta">Source: Google Sheets tab "Per-Tier Geo Mix" · Verified 2026-06-02 · Blueprint format</p>
+
+<p class="lede">The flat $1.34/GB blended cost assumption is wrong for most tiers. Each plan tier attracts different crew with different route mixes — ranging from $1.37/GB (Roster Bundle, mostly Mumbai) to $4.08/GB (Economy, 40% of data in Las Vegas). Understanding this per-tier variance is the difference between thinking you have a 65% margin business and discovering you have an 18% margin problem.</p>
+
+<div class="toc">
+  <strong>Blueprint sections</strong>
+  <ul>
+    <li><a href="#tldr">TLDR</a></li>
+    <li><a href="#why">Why this tab exists</a></li>
+    <li><a href="#source">Source data — verified table</a></li>
+    <li><a href="#discussion">Discussion — what this means</a></li>
+    <li><a href="#worked">Worked example — Maya vs Yuki</a></li>
+    <li><a href="#scenarios">The three geo mix scenarios</a></li>
+    <li><a href="#flags">Honest flags</a></li>
+    <li><a href="#emirates">Emirates route research context</a></li>
+    <li><a href="#takeaway">Strategic takeaway</a></li>
+    <li><a href="#open">Open items for Akito</a></li>
+  </ul>
+</div>
+
+<h2 id="tldr">TLDR</h2>
+<p>The per-tier geo mix analysis replaces the single $1.34/GB flat cost with tier-specific blended costs that reflect WHERE each tier of crew actually roams. Economy users vacation in Las Vegas at $8.50/GB. Roster Bundle crew fly Mumbai layovers at $0.85/GB. The result: Economy's gross margin collapses from 89% (default) to 18.3% (reality). Roster Bundle holds strong at 65.7%. The business is sound — but the mix of who buys which plan matters enormously. Push crew (Roster Bundle users) into subscriptions. Don't chase mass-market vacationers at Economy rates.</p>
+
+<h2 id="why">Why This Tab Exists</h2>
+<p>The model was originally built with a single weighted blended cost of $1.34/GB based on the global Emirates route distribution (75% Tier-A, 20% Tier-B, 5% Tier-C). That assumption holds for the overall customer base, but it masks massive variance at the tier level.</p>
+<p>The insight that drove this tab: different plan tiers self-select into different user types, and different user types fly different routes. A crew member buying the Roster Bundle is optimizing for their monthly roster — they know they're flying to Mumbai and Bangkok. An Economy PAYG buyer might be a crew member on a personal holiday to the USA, or someone who bought at the airport. These two users have completely different geo profiles, and therefore completely different underlying costs.</p>
+
+<h2 id="source">Source Data — Verified Table (Rows 4–22)</h2>
+
+<h3>Section 1: Per-Tier Geo Mix (Rows 4–12)</h3>
+<table>
+  <tr><th>Tier</th><th>% Tier-A</th><th>% Tier-B</th><th>% Tier-C</th><th>Eff. $/GB</th><th>GB/mo</th><th>Monthly COGS</th></tr>
+  <tr class="risk"><td><strong>Economy</strong></td><td>30%</td><td>30%</td><td>40%</td><td>$4.08</td><td>2.5</td><td>$10.19</td></tr>
+  <tr class="excellent"><td><strong>Roster Bundle</strong></td><td>70%</td><td>25%</td><td>5%</td><td>$1.37</td><td>5.0</td><td>$6.85</td></tr>
+  <tr><td><strong>Premium Economy</strong></td><td>55%</td><td>30%</td><td>15%</td><td>$2.16</td><td>4.0</td><td>$8.65</td></tr>
+  <tr><td><strong>Business</strong></td><td>60%</td><td>25%</td><td>15%</td><td>$2.14</td><td>6.75</td><td>$14.41</td></tr>
+  <tr class="caution"><td><strong>First</strong></td><td>50%</td><td>30%</td><td>20%</td><td>$2.55</td><td>10.0</td><td>$25.45</td></tr>
+  <tr class="caution"><td><strong>First Suite</strong></td><td>50%</td><td>30%</td><td>20%</td><td>$2.55</td><td>13.2</td><td>$33.59</td></tr>
+  <tr><td><strong>Cockpit</strong></td><td>65%</td><td>25%</td><td>10%</td><td>$1.75</td><td>7.2</td><td>$12.62</td></tr>
+</table>
+<p style="font-size:12px; color:var(--ink-soft);">Source: rows 4–12. First Suite mix assumed identical to First — update post-launch with real data.</p>
+
+<h3>Section 2: Revised Gross Margin (Rows 14–22)</h3>
+<table>
+  <tr><th>Tier</th><th>Revenue/mo</th><th>Adj. COGS</th><th>Gross Profit</th><th>Margin %</th><th>vs Default</th></tr>
+  <tr class="risk"><td><strong>Economy</strong></td><td>$12.48</td><td>$10.19</td><td>$2.29</td><td>18.3%</td><td class="red-text">-$6.83</td></tr>
+  <tr class="excellent"><td><strong>Roster Bundle</strong></td><td>$19.95</td><td>$6.85</td><td>$13.10</td><td>65.7%</td><td class="red-text">-$0.50</td></tr>
+  <tr><td><strong>Premium Economy</strong></td><td>$17.99</td><td>$8.65</td><td>$9.34</td><td>51.9%</td><td class="red-text">-$4.01</td></tr>
+  <tr><td><strong>Business</strong></td><td>$29.99</td><td>$14.41</td><td>$15.58</td><td>51.9%</td><td class="red-text">-$6.26</td></tr>
+  <tr class="caution"><td><strong>First</strong></td><td>$39.99</td><td>$25.45</td><td>$14.54</td><td>36.4%</td><td class="red-text">-$13.48</td></tr>
+  <tr class="caution"><td><strong>First Suite</strong></td><td>$49.99</td><td>$33.59</td><td>$16.40</td><td>32.8%</td><td class="red-text">-$16.60</td></tr>
+  <tr><td><strong>Cockpit</strong></td><td>$24.92</td><td>$12.62</td><td>$12.30</td><td>49.4%</td><td class="red-text">-$3.50</td></tr>
+</table>
+<p style="font-size:12px; color:var(--ink-soft);">Source: rows 14–22. Revenue column uses Yuki's $19.95 for Roster Bundle (sheet row 27 shows $20.45, likely slight variant — using the section 2 verified value).</p>
+
+<h2 id="discussion">Discussion — What This Means</h2>
+
+<div class="discussion-block">
+  <h4>The core insight</h4>
+  <p>The geo mix is not random — it's structurally linked to plan type. Roster Bundle users are professional crew buying specifically for their work routes. They know they're flying to Bangkok, Mumbai, Nairobi — all Tier-A. Economy users are often crew on personal holidays (Bali, NYC, Vegas) or non-crew who stumbled across the app — these are predominantly Tier-B and Tier-C destinations.</p>
+</div>
+
+<p>This creates a beautiful natural hedge for the business: the plan that attracts the most vacation usage (Economy PAYG) is also the one with the lowest upside — because vacation destinations are expensive roaming countries. Meanwhile, the plans designed for professional crew (Roster Bundle, Cockpit) have the best cost profile because crew layovers concentrate in Tier-A countries.</p>
+
+<p>The implication: <strong>converting Economy users to Roster Bundle subscriptions is a double win</strong> — it increases ARPU and it shifts their geo mix toward cheaper corridors as they start using Peanut for work trips instead of personal vacations.</p>
+
+<h3>Why every tier shows a negative "vs Default"</h3>
+<p>The default flat $1.34/GB blended assumption was calibrated on the overall Emirates route distribution (75/20/5). But no individual tier hits that exact mix — Economy is far heavier on Tier-C, while Roster Bundle barely touches Tier-C. The result: the flat assumption is an average that understates costs for some tiers and overstates for others. Per-tier analysis always produces a "worse" picture vs the optimistic average, because the tiers with the most Tier-C usage (expensive) are also the lowest-revenue tiers.</p>
+
+<h2 id="worked">Worked Example — Maya vs Yuki (Sheet Rows 24–28)</h2>
+
+<p>Same underlying service. Same wholesale supplier. Same app. The P&amp;L looks completely different:</p>
+
+<table>
+  <tr><th></th><th>Maya (Economy PAYG)</th><th>Yuki (Roster Bundle)</th></tr>
+  <tr><td>Data</td><td>2.5 GB</td><td>5.0 GB</td></tr>
+  <tr><td>Heavy corridor</td><td>40% in Tier-C (Las Vegas / USA)</td><td>70% in Tier-A (Mumbai / Bangkok)</td></tr>
+  <tr><td>Effective $/GB</td><td>$4.08</td><td>$1.37</td></tr>
+  <tr><td>Cost to us</td><td>$10.19</td><td>$6.85</td></tr>
+  <tr><td>Revenue</td><td>$12.48</td><td>$19.95</td></tr>
+  <tr class="excellent"><td><strong>Net profit</strong></td><td class="red-text"><strong>+$2.29</strong></td><td class="green-text"><strong>+$13.10</strong></td></tr>
+</table>
+
+<blockquote>"Yuki uses 2x the data. But Yuki delivers 5.7x more profit — because of WHERE she roams." — Sheet row 28</blockquote>
+
+<h3>The gut-check math</h3>
+<ul>
+  <li>Maya: 40% of 2.5 GB = 1.0 GB at $8.50 = $8.50. 30% at $1.40 = $1.05. 30% at $0.85 = $0.64. Total COGS = $10.19 (verified)</li>
+  <li>Yuki: 70% of 5 GB = 3.5 GB at $0.85 = $2.98. 25% at $1.40 = $1.75. 5% at $8.50 = $2.13. Total COGS = $6.86 ≈ $6.85 (verified)</li>
+</ul>
+
+<h2 id="scenarios">The Three Geo Mix Scenarios</h2>
+
+<p>The flat $1.34/GB assumption only holds under the Optimistic scenario. The sheet defines three scenarios representing different user base compositions:</p>
+
+<table>
+  <tr><th>Scenario</th><th>Tier-A %</th><th>Tier-B %</th><th>Tier-C %</th><th>Blended $/GB</th><th>Assessment</th></tr>
+  <tr class="excellent"><td><strong>Optimistic</strong></td><td>75%</td><td>20%</td><td>5%</td><td>$1.34</td><td>Model default — crew-heavy, mostly Asia/Africa</td></tr>
+  <tr class="caution"><td><strong>Realistic</strong></td><td>40%</td><td>40%</td><td>20%</td><td>$2.60</td><td>Mixed base — some vacation, some crew routes</td></tr>
+  <tr class="risk"><td><strong>Pessimistic</strong></td><td>30%</td><td>35%</td><td>35%</td><td>$3.84</td><td>Heavy Tier-C — lots of USA/Canada usage</td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>Which scenario are we actually in?</h4>
+  <p>At launch, with a crew-heavy user base recruited through Akito's Emirates network, Optimistic is plausible. As we scale and attract more casual traveler sign-ups (App Store organic, etc.), the mix shifts toward Realistic. The Pessimistic scenario is a stress test — useful for understanding the floor.</p>
+  <p>The practical implication: our go-to-market strategy (targeting crew, not mass market) is also our geo mix defense strategy. Every crew customer we acquire is a Tier-A heavy user. Every generic traveler we acquire dilutes toward Tier-C.</p>
+</div>
+
+<h2 id="flags">Honest Flags</h2>
+
+<table>
+  <tr><th>Flag</th><th>Severity</th><th>What to do</th></tr>
+  <tr class="caution">
+    <td>All geo mix percentages are estimates</td>
+    <td><span class="pill open">Estimate</span></td>
+    <td>No real usage data yet. Akito crew interviews + months 1–3 app analytics will replace with measured values</td>
+  </tr>
+  <tr class="caution">
+    <td>First Suite mix assumed = First</td>
+    <td><span class="pill open">Placeholder</span></td>
+    <td>First Suite cabin crew have different route patterns. Flag for post-launch data update</td>
+  </tr>
+  <tr class="risk">
+    <td>Economy at 18.3% margin with geo is dangerously thin</td>
+    <td><span class="pill flagged">Risk</span></td>
+    <td>At 2.5 GB with 40% Tier-C, we net $2.29/user/mo. This is a razor-thin margin. UX must push Economy users toward Roster Bundle or subscription quickly</td>
+  </tr>
+  <tr>
+    <td>Roster Bundle Yuki revenue discrepancy</td>
+    <td><span class="pill locked">Minor</span></td>
+    <td>Row 27 shows $20.45, rows 16/27 section headers show $19.95. Sheet uses $19.95 in the section 2 table — using that as canonical</td>
+  </tr>
+</table>
+
+<h2 id="emirates">Emirates Route Research Context</h2>
+
+<p>The geo mix assumptions are grounded in publicly available Emirates route data:</p>
+
+<ul>
+  <li><strong>140 destinations across 85 countries</strong> total in the Emirates network</li>
+  <li><strong>67 layover countries</strong> (turnarounds excluded) — only these count for Peanut data usage</li>
+  <li><strong>North America (Tier-C): 3 countries</strong> — USA, Canada, Mexico. All long-haul routes with 24–48h layovers. These are the expensive ones.</li>
+  <li><strong>Africa (Tier-A): 22 countries</strong> — mostly 24h crew layovers in Nairobi, Johannesburg, Lagos, Accra</li>
+  <li><strong>SE Asia (Tier-A): 8+ countries</strong> — Bangkok, Colombo, Manila, Singapore, Jakarta, Kuala Lumpur, Hong Kong, Manila</li>
+  <li><strong>Indian Subcontinent (Tier-A): 5+ cities</strong> — Mumbai, Delhi, Bangalore, Chennai, Hyderabad</li>
+</ul>
+
+<div class="discussion-block">
+  <h4>What "layover" means vs "turnaround"</h4>
+  <p>Emirates DXB-based crew have very short turnarounds (1–3 hours) on some routes — crew stay on the aircraft or in the terminal and do not activate roaming. A real layover is 18+ hours: crew go to a crew hotel, rest, and use the city. Only layovers count for this analysis. Short turnarounds — even if the aircraft lands in a Tier-C country — generate zero data usage.</p>
+</div>
+
+<p>The implication for the geo mix model: even though Emirates flies to 3 North American countries (Tier-C), not all of those flights generate crew data usage. Routes like DXB-ORD-DXB might have a 24h Chicago layover (Tier-C), but the DXB-MIA turn might only be 90 minutes. Knowing which routes are true layovers vs turnarounds is essential for calibrating the Tier-C exposure.</p>
+
+<h2 id="takeaway">Strategic Takeaway</h2>
+
+<div class="fix-box">
+  <strong>The strategy is already correct — now prove it with data.</strong> The crew-first go-to-market isn't just a distribution strategy; it's a unit economics strategy. Crew users self-select into Tier-A heavy geo mixes. Every crew user we acquire is a cheaper user to serve. Every non-crew vacation traveler we acquire is a more expensive user to serve at Economy PAYG rates. The nudge system (Economy-to-Roster-Bundle conversion after 3 refuels) is not just ARPU optimization — it's also geo mix optimization. After conversion, Yuki starts using Peanut for work trips (Tier-A), not just personal vacations (Tier-C).
+</div>
+
+<h2 id="open">Open Items</h2>
+
+<table>
+  <tr><th>Item</th><th>Owner</th><th>Action</th><th>Status</th></tr>
+  <tr class="caution">
+    <td>Validate Tier-A mix assumption with 5–10 crew layover destinations</td>
+    <td>Akito</td>
+    <td>Ask crew contacts: "Top 3 cities where you use the most data on layover?" Target: cities with 18+ hour stays, not turnarounds</td>
+    <td><span class="pill open">Open</span></td>
+  </tr>
+  <tr>
+    <td>First Suite geo mix differentiation</td>
+    <td>Balraj</td>
+    <td>Decide if First Suite crew (senior purser/pilots on premium routes) have different geo profile than First cabin crew</td>
+    <td><span class="pill open">Open</span></td>
+  </tr>
+  <tr>
+    <td>Confirm USA city list from Emirates layover data</td>
+    <td>Balraj</td>
+    <td>Map EK routes to which USA cities have 24+ hour crew layovers vs turnarounds — determines real Tier-C exposure</td>
+    <td><span class="pill open">Open</span></td>
+  </tr>
+  <tr>
+    <td>Post-launch: replace all estimates with measured values</td>
+    <td>Balraj (product analytics)</td>
+    <td>Month 1–3 usage data by country will replace the estimated geo splits with actual GPS-validated usage data</td>
+    <td><span class="pill open">Post-launch</span></td>
+  </tr>
+</table>
+
+<p class="footer-note">Tab 19 — Per-Tier Geo Mix Blueprint · Peanut eSIM · 2026-06-02 · Google Sheets source: Per-Tier Geo Mix tab · This blueprint captures all discussion from the 2026-06-02 session.</p>
+
+</div>
+</body>
+</html>

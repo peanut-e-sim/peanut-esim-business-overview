@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — Tab 22 Cash + Sensitivity Visualizer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --red-dark: #A01218;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #E8E2D6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --green-bg: #f0faf4;
+    --amber: #B07A1F;
+    --shadow-sm: 0 1px 3px rgba(26,26,26,.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; font-size: 16px; }
+
+  header.bar { position: sticky; top: 0; z-index: 50; background: var(--red); color: #fff; padding: 14px 22px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+  header.bar .title { font-weight: 700; font-size: 15px; }
+  header.bar .title small { display: block; font-weight: 400; opacity: .85; font-size: 12px; margin-top: 2px; }
+  header.bar a.back-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.5); color: #fff; padding: 8px 14px; border-radius: 999px; font-size: 13px; text-decoration: none; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 52px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero { font-size: clamp(24px, 3.5vw, 40px); line-height: 1.12; margin: 0 0 14px; letter-spacing: -.5px; }
+  h1.hero .accent { color: var(--red); }
+  p.lede { font-size: clamp(15px, 1.6vw, 17px); color: #2a2a2a; max-width: 760px; margin: 0 0 18px; }
+  .badge { display: inline-block; padding: 4px 12px; background: #fff; border: 1px solid var(--gold); border-radius: 999px; font-size: 12px; font-weight: 600; color: #7a5c1a; }
+
+  h2.section-title { font-size: clamp(19px, 2.2vw, 25px); margin: 0 0 6px; }
+  h2.section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: var(--red); color: #fff; border-radius: 50%; font-size: 13px; font-weight: 700; margin-right: 10px; flex-shrink: 0; }
+  p.section-sub { color: var(--muted); font-size: 14px; margin: 0 0 20px; max-width: 700px; }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px 26px; box-shadow: var(--shadow-sm); margin-bottom: 16px; }
+  .card.red-card { border-left: 4px solid var(--red); }
+  .card.green-card { border-left: 4px solid var(--green); background: var(--green-bg); }
+  .card.gold-card { border-left: 4px solid var(--gold); background: #fffbf0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; }
+  th { background: var(--ink); color: #fff; text-align: left; padding: 10px 13px; font-weight: 600; font-size: 13px; }
+  td { padding: 10px 13px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr.row-green td { background: #eefaf4; }
+  tr.row-highlight td { background: #fff8e6; font-weight: 600; }
+
+  .chart-wrap { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px; margin: 20px 0; }
+  .chart-wrap canvas { max-height: 320px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+  .stat-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; text-align: center; }
+  .stat-box .val { font-size: 26px; font-weight: 700; letter-spacing: -.5px; }
+  .stat-box .lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .stat-box.red .val { color: var(--red); }
+  .stat-box.green .val { color: var(--green); }
+  .stat-box.gold .val { color: var(--amber); }
+
+  .failure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+  .failure-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+  .failure-box h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); margin: 0 0 8px; }
+  .failure-box .f-val { font-size: 20px; font-weight: 700; }
+  .failure-box p { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+
+  .policy-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .policy-item:last-child { border-bottom: none; }
+  .policy-dot { min-width: 10px; height: 10px; border-radius: 50%; background: var(--green); margin-top: 6px; flex-shrink: 0; }
+  .policy-dot.amber { background: var(--amber); }
+  .policy-dot.red { background: var(--red); }
+
+  .cockpit-hero { background: linear-gradient(135deg, #1A1A1A 0%, #2a2a2a 100%); color: white; border-radius: 12px; padding: 32px 36px; margin: 20px 0; }
+  .cockpit-hero h3 { font-size: 20px; margin: 0 0 8px; color: #fff; }
+  .cockpit-hero p { font-size: 14px; color: rgba(255,255,255,.7); margin: 0 0 20px; }
+  .cockpit-stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cockpit-stat { background: rgba(255,255,255,.08); border-radius: 8px; padding: 14px 18px; text-align: center; }
+  .cockpit-stat .cv { font-size: 22px; font-weight: 700; color: var(--gold); }
+  .cockpit-stat .cl { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 4px; }
+
+  .prevention-list { list-style: none; padding: 0; margin: 12px 0; }
+  .prevention-list li { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+  .prevention-list li:last-child { border-bottom: none; }
+  .prevention-list .pct { min-width: 48px; font-weight: 700; color: var(--green); font-size: 15px; }
+
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+  .pill.locked { background: #E0F2E7; color: var(--green); }
+  .pill.bug { background: #FBE0E0; color: var(--red); }
+  .pill.fixed { background: #E0F2E7; color: var(--green); }
+
+  @media (max-width: 640px) {
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .failure-grid { grid-template-columns: 1fr; }
+    .cockpit-stat-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    TAB 22 — Cash + Sensitivity
+    <small>Peanut eSIM P&amp;L Model · 2026-06-02</small>
+  </div>
+  <a class="back-btn" href="index.html">← Back</a>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="first">
+  <span class="badge">VERIFIED FROM GOOGLE SHEETS · 2026-06-02</span>
+  <h1 class="hero" style="margin-top:16px;">
+    Cash flow, failure cost, and<br><span class="accent">Cockpit's hidden superpower.</span>
+  </h1>
+  <p class="lede">Tab 22 answers three questions: how much extra profit does refuel attach generate, what does a failed eSIM actually cost us, and why does Cockpit's annual prepay function as a self-funding mechanism for the entire business.</p>
+</section>
+
+<!-- SECTION 1: REFUEL ATTACH SENSITIVITY -->
+<section>
+  <h2 class="section-title"><span class="num">1</span>Refuel Attach Sensitivity @ 1,000 Users</h2>
+  <p class="section-sub">Refuel ($4.99/GB top-up) is the highest-margin product at 73% gross margin. The question is: how many subscribers will tap "add 1 GB" when they run out? The range matters enormously.</p>
+
+  <div class="stat-row">
+    <div class="stat-box red">
+      <div class="val">$182</div>
+      <div class="lbl">Net profit at 5%<br>attach (worst case)</div>
+    </div>
+    <div class="stat-box gold">
+      <div class="val">$547</div>
+      <div class="lbl">Net profit at 15%<br>attach (breakeven)</div>
+    </div>
+    <div class="stat-box green">
+      <div class="val">$1,094</div>
+      <div class="lbl">Net profit at 30%<br>attach (best case)</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="refuelChart"></canvas>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Refuel Attach %</th>
+          <th>Monthly Refuel Revenue</th>
+          <th>Monthly Refuel COGS</th>
+          <th>Net Refuel Profit</th>
+          <th>Net Margin Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>5%</td><td>$250</td><td>$67</td><td>$182</td><td style="color:var(--red);">-$365</td></tr>
+        <tr><td>10%</td><td>$499</td><td>$134</td><td>$365</td><td style="color:var(--red);">-$182</td></tr>
+        <tr class="row-highlight"><td><strong>15% (breakeven)</strong></td><td>$749</td><td>$201</td><td><strong>$547</strong></td><td style="color:var(--green);"><strong>$0</strong></td></tr>
+        <tr><td>20%</td><td>$998</td><td>$269</td><td>$730</td><td style="color:var(--green);">+$182</td></tr>
+        <tr><td>25%</td><td>$1,248</td><td>$336</td><td>$912</td><td style="color:var(--green);">+$365</td></tr>
+        <tr class="row-green"><td><strong>30%</strong></td><td><strong>$1,497</strong></td><td>$403</td><td><strong>$1,094</strong></td><td style="color:var(--green);"><strong>+$547</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin:10px 0 0;">Source: Tab 22 rows 4–10. @ 1,000 users. Refuel price $4.99/GB, COGS ~$1.34/GB. 15% attach is the inflection point where refuel moves from drag to neutral.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: FAILED eSIM COST -->
+<section>
+  <h2 class="section-title"><span class="num">2</span>Failed-eSIM Cost — Corrected Policy</h2>
+  <p class="section-sub">The raw sheet shows $4.00 per failed activation. That figure is wrong for our actual policy. The real blended cost is ~$10.80 per failure.</p>
+
+  <div class="card red-card">
+    <strong>Sheet shows $4.00 per failure — this was based on a generic refund assumption. Our locked policy is different:</strong>
+    <ul style="margin:10px 0 0; font-size:14px; line-height:1.8;">
+      <li>Goodwill = <strong>extra GB credit</strong> (not cash). 2 GB goodwill credit = ~$2.69 supplier cost.</li>
+      <li>User-error failures capped at 3/year per user — beyond that, no goodwill issued.</li>
+      <li>Reissue cost (new eSIM provisioning + support time) = ~$3-5.</li>
+      <li>Estimated refund scenario (genuine carrier failure) = ~$5 credit, not full cash refund.</li>
+      <li><strong>Blended cost per failure ≈ $10.80</strong> (supplier COGS + support time + goodwill GB value + partial refund where applicable)</li>
+    </ul>
+  </div>
+
+  <div class="failure-grid">
+    <div class="failure-box">
+      <h4>Raw sheet figure</h4>
+      <div class="f-val" style="color:var(--red);">$4.00</div>
+      <p>Generic refund assumption. Does not reflect our actual locked policy (GB credit, not cash; 3/year cap on user-error).</p>
+    </div>
+    <div class="failure-box">
+      <h4>Corrected blended cost</h4>
+      <div class="f-val" style="color:var(--amber);">~$10.80</div>
+      <p>Includes supplier COGS for goodwill GB + support time + reissue cost + partial credit where applicable. Use this for financial modeling.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <strong>70% of failures are preventable with better UX.</strong>
+    <ul class="prevention-list">
+      <li><span class="pct">~30%</span><div>Device incompatibility — user's phone doesn't support eSIM. <strong>Fix: device check at signup.</strong></div></li>
+      <li><span class="pct">~25%</span><div>QR code scan failure — user screenshots instead of scanning directly. <strong>Fix: in-app QR scanner.</strong></div></li>
+      <li><span class="pct">~15%</span><div>APN misconfiguration. <strong>Fix: AI Support agent with step-by-step guide.</strong></div></li>
+      <li><span class="pct">~30%</span><div>Genuine carrier/supplier issues. Not preventable — but $10.80/case is manageable at scale.</div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SECTION 3: COCKPIT CASH ADVANTAGE -->
+<section>
+  <h2 class="section-title"><span class="num">3</span>Cockpit Annual Cash Advantage — Self-Funding Mechanism</h2>
+  <p class="section-sub">Cockpit users pay $299 upfront annually. We recognize it monthly at $24.92/mo. The timing gap creates real working capital — essentially free cash that reduces how much founders need to inject.</p>
+
+  <div class="cockpit-hero">
+    <h3>At 100 Cockpit users: $14,950 extra working capital + $598/yr interest</h3>
+    <p>At 1,000 Cockpit users: $149,500 extra working capital + $5,980/yr interest. This is not extra revenue — it's the timing value of collecting cash before the service is delivered.</p>
+    <div class="cockpit-stat-row">
+      <div class="cockpit-stat">
+        <div class="cv">$14,950</div>
+        <div class="cl">Extra float at 100 users</div>
+      </div>
+      <div class="cockpit-stat">
+        <div class="cv">$598/yr</div>
+        <div class="cl">Interest @ 4% on float (100 users)</div>
+      </div>
+      <div class="cockpit-stat">
+        <div class="cv">$149,500</div>
+        <div class="cl">Extra float at 1,000 users</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="cockpitChart"></canvas>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Cockpit Users</th>
+          <th>Upfront Cash Collected</th>
+          <th>Extra Working Capital (avg float)</th>
+          <th>Interest @ 4%/yr</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>10</td><td>$2,990</td><td>$1,495</td><td>$60</td></tr>
+        <tr><td>50</td><td>$14,950</td><td>$7,475</td><td>$299</td></tr>
+        <tr class="row-highlight"><td><strong>100</strong></td><td>$29,900</td><td><strong>$14,950</strong></td><td><strong>$598</strong></td></tr>
+        <tr><td>200</td><td>$59,800</td><td>$29,900</td><td>$1,196</td></tr>
+        <tr><td>500</td><td>$149,500</td><td>$74,750</td><td>$2,990</td></tr>
+        <tr class="row-green"><td><strong>1,000</strong></td><td><strong>$299,000</strong></td><td><strong>$149,500</strong></td><td><strong>$5,980</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin:10px 0 0;">Source: Tab 22 rows 26–31. Extra working capital = avg cash held with prepay vs monthly billing. Prepay holds full $299/user all year; monthly averages ~$149.52/user. Difference = TIMING value, not extra revenue.</p>
+  </div>
+
+  <div class="card gold-card" style="margin-top:16px;">
+    <strong>The self-funding insight:</strong> For a bootstrapped business, Cockpit prepay directly reduces founder cash injection need. If you have 100 Cockpit users at launch, you arrive at month 2 with $14,950 of float — that's money already in the bank covering your runway while you wait for the rest of the user base to grow. <strong>Push Cockpit aggressively. It's not just a revenue play — it's a cash flow strategy.</strong>
+  </div>
+</section>
+
+</main>
+
+<script>
+// Refuel attach chart
+const rCtx = document.getElementById('refuelChart').getContext('2d');
+new Chart(rCtx, {
+  type: 'bar',
+  data: {
+    labels: ['5%', '10%', '15%', '20%', '25%', '30%'],
+    datasets: [{
+      label: 'Net Refuel Profit ($)',
+      data: [182, 365, 547, 730, 912, 1094],
+      backgroundColor: (ctx) => {
+        const v = ctx.parsed.y;
+        if (v >= 730) return 'rgba(26,138,90,0.8)';
+        if (v >= 547) return 'rgba(176,122,31,0.8)';
+        return 'rgba(215,25,33,0.7)';
+      },
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: 'Monthly Net Refuel Profit @ 1,000 Users by Attach Rate' }
+    },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: 'Net Profit ($)' }, ticks: { callback: v => '$' + v.toLocaleString() } }
+    }
+  }
+});
+
+// Cockpit cash chart
+const cCtx = document.getElementById('cockpitChart').getContext('2d');
+new Chart(cCtx, {
+  type: 'bar',
+  data: {
+    labels: ['10', '50', '100', '200', '500', '1,000'],
+    datasets: [
+      {
+        label: 'Extra Working Capital ($)',
+        data: [1495, 7475, 14950, 29900, 74750, 149500],
+        backgroundColor: 'rgba(201,160,59,0.7)',
+        borderColor: '#C9A03B',
+        borderWidth: 1,
+        borderRadius: 4,
+        yAxisID: 'y',
+      },
+      {
+        label: 'Interest @ 4%/yr ($)',
+        data: [60, 299, 598, 1196, 2990, 5980],
+        backgroundColor: 'rgba(26,138,90,0.8)',
+        borderColor: '#1a8a5a',
+        borderWidth: 1,
+        borderRadius: 4,
+        yAxisID: 'y1',
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: true, text: 'Cockpit Annual Cash Advantage by User Count' }
+    },
+    scales: {
+      y: { type: 'linear', position: 'left', title: { display: true, text: 'Working Capital ($)' }, ticks: { callback: v => '$' + v.toLocaleString() } },
+      y1: { type: 'linear', position: 'right', title: { display: true, text: 'Interest/yr ($)' }, ticks: { callback: v => '$' + v.toLocaleString() }, grid: { drawOnChartArea: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

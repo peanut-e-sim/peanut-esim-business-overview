@@ -9714,6 +9714,44 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 </div>
 </div>
 
+<div style="margin-top: 48px; padding-top: 40px; border-top: 2px solid #D71921;">
+<h2 id="bp-tab19" style="font-size:32px;border-bottom:3px solid #D71921;padding-bottom:12px;margin-top:0;">PART VI — Tab 19: Per-Tier Geo Mix</h2>
+<p style="font-size:15px; color:#4A4A4A; margin-bottom:20px;">The flat $1.34/GB blended assumption breaks down at the tier level. Each plan tier self-selects users who fly different routes. Economy users vacation in Las Vegas ($4.08/GB). Roster Bundle crew fly Mumbai layovers ($1.37/GB). The 3x cost swing on the same service makes route mix the hidden P&amp;L driver.</p>
+<div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:20px;">
+  <a href="docs/downloads/per-tier-geo-mix-visualizer-2026-06-02.html" target="_blank" style="display:inline-block; background:#D71921; color:white; padding:12px 22px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px;">Open Tab 19 Visualizer ↗</a>
+  <a href="docs/downloads/per-tier-geo-mix-blueprint-2026-06-02.html" target="_blank" style="display:inline-block; background:white; color:#D71921; border:1px solid #D71921; padding:12px 22px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px;">Open Tab 19 Blueprint ↗</a>
+</div>
+<div style="background:#FFFBF0; border-left:4px solid #C9A03B; padding:16px 20px; font-size:14px; color:#5a4a14; border-radius:0 6px 6px 0;">
+  <strong>Key findings from the Tab 19 discussion (2026-06-02):</strong>
+  <ul style="margin:10px 0 0; padding-left:20px; line-height:1.8;">
+    <li>Economy gross margin at real geo mix: 18.3% ($2.29 net). Default model shows 73%+ — a wildly optimistic assumption when 40% of Economy data is consumed in USA/Tier-C.</li>
+    <li>Roster Bundle holds strong: 65.7% gross margin at $1.37/GB blended. Crew flying Mumbai and Bangkok are cheap to serve.</li>
+    <li>Maya vs Yuki: same eSIM service. Maya (Economy, Vegas) nets $2.29. Yuki (Roster Bundle, Mumbai) nets $13.10. Same supplier. 5.7x profit gap purely from WHERE they roam.</li>
+    <li>Three scenarios: Optimistic (75/20/5 = $1.34), Realistic (40/40/20 = $2.60), Pessimistic (30/35/35 = $3.84). Model default = Optimistic. Real mix is likely Realistic.</li>
+    <li>Akito task: validate Tier-A mix with 5–10 crew layover cities. Distinguish real layovers (18+ hours) from turnarounds (1–3 hours, no data usage).</li>
+  </ul>
+</div>
+</div>
+
+<div style="margin-top: 48px; padding-top: 40px; border-top: 2px solid #D71921;">
+<h2 id="bp-tab22" style="font-size:32px;border-bottom:3px solid #D71921;padding-bottom:12px;margin-top:0;">PART VII — Tab 22: Cash + Sensitivity</h2>
+<p style="font-size:15px; color:#4A4A4A; margin-bottom:20px;">Three short but critical analyses: Refuel attach sensitivity ($912/mo swing at 1K users from 5% to 30%), failed-eSIM true cost ($10.80 corrected, not $4.00 raw), and the Cockpit cash advantage as a self-funding mechanism. The original Cockpit sheet calculation was buggy — fix applied and documented.</p>
+<div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:20px;">
+  <a href="docs/downloads/cash-sensitivity-visualizer-2026-06-02.html" target="_blank" style="display:inline-block; background:#D71921; color:white; padding:12px 22px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px;">Open Tab 22 Visualizer ↗</a>
+  <a href="docs/downloads/cash-sensitivity-blueprint-2026-06-02.html" target="_blank" style="display:inline-block; background:white; color:#D71921; border:1px solid #D71921; padding:12px 22px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px;">Open Tab 22 Blueprint ↗</a>
+</div>
+<div style="background:#FFF5F5; border-left:4px solid #D71921; padding:16px 20px; font-size:14px; color:#5a1a1a; border-radius:0 6px 6px 0;">
+  <strong>Key findings from the Tab 22 discussion (2026-06-02):</strong>
+  <ul style="margin:10px 0 0; padding-left:20px; line-height:1.8;">
+    <li>Refuel attach breakeven = 15%. At 20%+ it's additive profit. Target 20–25% with a persistent low-data CTA in the app.</li>
+    <li>Failed-eSIM true cost = ~$10.80 blended (not $4.00 raw sheet). Our policy is GB credit goodwill, not cash. 70% of failures preventable with device check + in-app QR scanner + AI support agent.</li>
+    <li>Cockpit cash bug: original sheet compared annual revenue totals (meaningless). Fix: D = C/2 (average float held during the year). E = D × 4% (money-market interest).</li>
+    <li>At 100 Cockpit users: $14,950 extra working capital + $598/yr interest. At 1,000: $149,500 + $5,980/yr. For self-funded business, this is runway without a bridge loan.</li>
+    <li>Strategic recommendation: push Cockpit aggressively from day one. It's not just a revenue play — it's a cash flow strategy that reduces founder injection need.</li>
+  </ul>
+</div>
+</div>
+
 </div>
 </div>
 </div>
@@ -9890,6 +9928,54 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
   <div style="flex: 0 0 100%; margin-top: 12px;">
     <span class="pill" style="display:inline-block; padding:2px 10px; border-radius:12px; font-size:11px; font-weight:600; background:#E0F2E7; color:#2D7A4F;">LIVE</span>
     <span style="color: #999; font-size: 12px; margin-left: 8px;">Built 2026-06-02 · 9 sections · 3 charts · 8-feature moat · hybrid defense · mobile-responsive</span>
+  </div>
+</div>
+
+<div style="background: white; border: 1px solid #E5DDD0; border-radius: 8px; padding: 28px; margin-bottom: 24px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+  <div style="flex: 0 0 60px; height: 60px; background: #2D7A4F; color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700;">19</div>
+  <div style="flex: 1; min-width: 280px;">
+    <h3 style="margin: 0 0 6px; color: #1A1A1A; font-size: 22px;">Tab 19 — Per-Tier Geo Mix</h3>
+    <p style="margin: 0 0 12px; color: #4A4A4A;">Where users roam determines profit. Economy at 40% Tier-C collapses to 18.3% margin ($2.29 net). Roster Bundle at 70% Tier-A holds 65.7% ($13.10 net). Maya vs Yuki: same service, 5.7x profit gap. 3 geo scenarios. Emirates route context (67 layover countries). Bottom line: <strong>push crew into subscriptions — it's a geo mix strategy, not just an ARPU strategy.</strong></p>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="docs/downloads/per-tier-geo-mix-visualizer-2026-06-02.html" target="_blank" style="display: inline-block; background: #D71921; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">Open Tab 19 Infograph &#8599;</a>
+      <a href="docs/downloads/per-tier-geo-mix-blueprint-2026-06-02.html" target="_blank" style="display: inline-block; background: white; color: #D71921; border: 1px solid #D71921; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">Detailed blueprint &#8599;</a>
+    </div>
+  </div>
+  <div style="flex: 0 0 100%; margin-top: 12px;">
+    <span class="pill" style="display:inline-block; padding:2px 10px; border-radius:12px; font-size:11px; font-weight:600; background:#E0F2E7; color:#2D7A4F;">LIVE</span>
+    <span style="color: #999; font-size: 12px; margin-left: 8px;">Built 2026-06-02 · 5 sections · 2 charts · Maya vs Yuki · 3 geo scenarios · Emirates route context · mobile-responsive</span>
+  </div>
+</div>
+
+<div style="background: white; border: 1px solid #E5DDD0; border-radius: 8px; padding: 28px; margin-bottom: 24px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+  <div style="flex: 0 0 60px; height: 60px; background: #C9A03B; color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700;">20</div>
+  <div style="flex: 1; min-width: 280px;">
+    <h3 style="margin: 0 0 6px; color: #1A1A1A; font-size: 22px;">Tab 20 — Carryover Liability (Visualizer)</h3>
+    <p style="margin: 0 0 12px; color: #4A4A4A;">Visual companion to the existing blueprint. 3 core concepts (deferred revenue, expired margin, carryover). Aiko's $4.03 breakdown (5-step). Per-tier carry rules verified. Locked Universal Carry Rule + 6 edge cases. Gifting / UAE redemption / same-SIM innovations. First Suite concentration risk + 12-month cumulative chart. Bottom line: <strong>manage liability, fix the display, build 3 redemption channels.</strong></p>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="docs/downloads/carryover-liability-visualizer-2026-06-02.html" target="_blank" style="display: inline-block; background: #C9A03B; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">Open Tab 20 Infograph &#8599;</a>
+      <a href="docs/downloads/carryover-liability-blueprint-2026-06-02.html" target="_blank" style="display: inline-block; background: white; color: #C9A03B; border: 1px solid #C9A03B; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">Detailed blueprint &#8599;</a>
+    </div>
+  </div>
+  <div style="flex: 0 0 100%; margin-top: 12px;">
+    <span class="pill" style="display:inline-block; padding:2px 10px; border-radius:12px; font-size:11px; font-weight:600; background:#E0F2E7; color:#2D7A4F;">LIVE</span>
+    <span style="color: #999; font-size: 12px; margin-left: 8px;">Built 2026-06-02 · 9 sections · 2 charts · Aiko worked example · locked rules · 3 innovations · concentration risk · mobile-responsive</span>
+  </div>
+</div>
+
+<div style="background: white; border: 1px solid #E5DDD0; border-radius: 8px; padding: 28px; margin-bottom: 24px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+  <div style="flex: 0 0 60px; height: 60px; background: #1A1A1A; color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700;">22</div>
+  <div style="flex: 1; min-width: 280px;">
+    <h3 style="margin: 0 0 6px; color: #1A1A1A; font-size: 22px;">Tab 22 — Cash + Sensitivity</h3>
+    <p style="margin: 0 0 12px; color: #4A4A4A;">Refuel attach sensitivity (5% to 30% range — $912/mo swing at 1K users). Failed-eSIM corrected cost ~$10.80 (not $4.00 raw sheet) — 70% of failures preventable with UX. Cockpit annual prepay = self-funding mechanism: $14,950 extra float at 100 users + $598/yr interest. Original sheet Cockpit calc was BUGGY — fix documented. Bottom line: <strong>push Cockpit, fix device check UX, target 20%+ refuel attach.</strong></p>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="docs/downloads/cash-sensitivity-visualizer-2026-06-02.html" target="_blank" style="display: inline-block; background: #D71921; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">Open Tab 22 Infograph &#8599;</a>
+      <a href="docs/downloads/cash-sensitivity-blueprint-2026-06-02.html" target="_blank" style="display: inline-block; background: white; color: #D71921; border: 1px solid #D71921; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">Detailed blueprint &#8599;</a>
+    </div>
+  </div>
+  <div style="flex: 0 0 100%; margin-top: 12px;">
+    <span class="pill" style="display:inline-block; padding:2px 10px; border-radius:12px; font-size:11px; font-weight:600; background:#E0F2E7; color:#2D7A4F;">LIVE</span>
+    <span style="color: #999; font-size: 12px; margin-left: 8px;">Built 2026-06-02 · 3 sections · 2 charts · refuel sensitivity · corrected failure cost · Cockpit cash advantage · sheet bug documented · mobile-responsive</span>
   </div>
 </div>
 

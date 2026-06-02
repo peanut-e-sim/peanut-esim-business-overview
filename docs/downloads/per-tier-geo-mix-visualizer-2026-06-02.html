@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — Tab 19 Per-Tier Geo Mix Visualizer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --red-dark: #A01218;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #E8E2D6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --green-bg: #f0faf4;
+    --green-border: #a8d8b5;
+    --amber: #B07A1F;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+    --shadow-sm: 0 1px 3px rgba(26,26,26,.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; font-size: 16px; }
+
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--red); color: #fff;
+    padding: 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  header.bar .title { font-weight: 700; letter-spacing: .2px; font-size: 15px; }
+  header.bar .title small { display: block; font-weight: 400; opacity: .85; font-size: 12px; margin-top: 2px; }
+  header.bar a.back-btn {
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.5);
+    color: #fff; font: inherit; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    font-size: 13px; text-decoration: none; display: inline-block;
+  }
+  header.bar a.back-btn:hover { background: rgba(255,255,255,.28); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 52px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero { font-size: clamp(26px, 3.8vw, 42px); line-height: 1.12; margin: 0 0 14px; letter-spacing: -.5px; }
+  h1.hero .accent { color: var(--red); }
+  p.lede { font-size: clamp(15px, 1.7vw, 18px); color: #2a2a2a; max-width: 760px; margin: 0 0 18px; }
+  .badge {
+    display: inline-block; padding: 4px 12px;
+    background: #fff; border: 1px solid var(--gold); border-radius: 999px;
+    font-size: 12px; font-weight: 600; color: #7a5c1a; letter-spacing: .3px;
+  }
+
+  h2.section-title { font-size: clamp(20px, 2.4vw, 26px); margin: 0 0 6px; letter-spacing: -.2px; }
+  h2.section-title .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; background: var(--red); color: #fff;
+    border-radius: 50%; font-size: 13px; font-weight: 700; margin-right: 10px; flex-shrink: 0;
+  }
+  p.section-sub { color: var(--muted); font-size: 14px; margin: 0 0 22px; max-width: 700px; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 24px 28px;
+    box-shadow: var(--shadow-sm); margin-bottom: 16px;
+  }
+  .card.highlight { border-left: 4px solid var(--red); }
+  .card.green-card { border-left: 4px solid var(--green); background: var(--green-bg); }
+  .card.gold-card { border-left: 4px solid var(--gold); background: #fffbf0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; border-radius: 8px; overflow: hidden; }
+  th { background: var(--ink); color: #fff; text-align: left; padding: 11px 14px; font-weight: 600; font-size: 13px; }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr.row-highlight td { background: #fff8f0; }
+  tr.row-green td { background: #eefaf4; }
+  tr.row-red td { background: #fff3f3; }
+
+  .tier-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase;
+  }
+  .tb-a { background: #e0f2e7; color: #1a6b3f; }
+  .tb-b { background: #fbefd9; color: var(--amber); }
+  .tb-c { background: #ffe5e5; color: var(--red-dark); }
+
+  .chart-wrap { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px; margin: 20px 0; }
+  .chart-wrap canvas { max-height: 300px; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+  .stat-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; text-align: center; }
+  .stat-box .val { font-size: 26px; font-weight: 700; letter-spacing: -.5px; }
+  .stat-box .lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .stat-box.red .val { color: var(--red); }
+  .stat-box.green .val { color: var(--green); }
+  .stat-box.gold .val { color: var(--amber); }
+
+  .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .persona-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .persona-card.maya { border-top: 4px solid var(--red); }
+  .persona-card.yuki { border-top: 4px solid var(--green); }
+  .persona-card h3 { font-size: 18px; margin: 0 0 12px; }
+  .persona-card .name-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .persona-card .avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; }
+  .maya .avatar { background: #ffe5e5; color: var(--red); }
+  .yuki .avatar { background: #e0f2e7; color: var(--green); }
+  .persona-card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; font-size: 14px; }
+  .persona-card dt { color: var(--muted); font-weight: 500; }
+  .persona-card dd { margin: 0; font-weight: 600; }
+  .result-row { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+  .result-row .net { font-size: 20px; font-weight: 700; }
+  .net.red { color: var(--red); }
+  .net.green { color: var(--green); }
+
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+  .scenario-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+  .scenario-box.opt { border-top: 4px solid var(--green); }
+  .scenario-box.real { border-top: 4px solid var(--gold); }
+  .scenario-box.pess { border-top: 4px solid var(--red); }
+  .scenario-box .s-label { font-size: 11px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; margin-bottom: 8px; }
+  .scenario-box .s-cost { font-size: 24px; font-weight: 700; margin: 4px 0 2px; }
+  .scenario-box .s-mix { font-size: 12px; color: var(--muted); }
+  .scenario-box .s-note { font-size: 12px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); color: #444; }
+
+  .bombshell { background: #fff8f0; border: 2px solid var(--gold); border-radius: 10px; padding: 22px 26px; margin: 24px 0; }
+  .bombshell h3 { font-size: 16px; margin: 0 0 8px; color: #7a4a00; }
+  .bombshell p { font-size: 15px; margin: 0; color: #5a3a00; }
+
+  .akito-ask { background: #fff5f5; border-left: 4px solid var(--red); border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0; }
+  .akito-ask h3 { font-size: 15px; margin: 0 0 8px; color: var(--red-dark); }
+  .akito-ask p, .akito-ask li { font-size: 14px; color: #3a0a0a; }
+  .akito-ask ul { margin: 6px 0; padding-left: 20px; }
+
+  .layover-note { background: #f5f5ff; border: 1px solid #ccc8f0; border-radius: 8px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #333; }
+
+  @media (max-width: 640px) {
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    .persona-grid { grid-template-columns: 1fr; }
+    .scenario-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    TAB 19 — Per-Tier Geo Mix
+    <small>Peanut eSIM P&amp;L Model · 2026-06-02</small>
+  </div>
+  <a class="back-btn" href="index.html">← Back</a>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="first">
+  <span class="badge">VERIFIED FROM GOOGLE SHEETS · 2026-06-02</span>
+  <h1 class="hero" style="margin-top:16px;">
+    <span class="accent">Where they roam</span> decides<br>how much we make.
+  </h1>
+  <p class="lede">Two users. Same eSIM service. Same supplier. One delivers 6x more profit than the other — because of WHERE she uses her data, not how much.</p>
+
+  <div class="stat-row">
+    <div class="stat-box red">
+      <div class="val">$8.50</div>
+      <div class="lbl">Tier-C cost/GB<br>USA / Cruise</div>
+    </div>
+    <div class="stat-box gold">
+      <div class="val">$1.40</div>
+      <div class="lbl">Tier-B cost/GB<br>Europe / Long-haul Asia</div>
+    </div>
+    <div class="stat-box green">
+      <div class="val">$0.85</div>
+      <div class="lbl">Tier-A cost/GB<br>SE Asia / Africa</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: GEO MIX TABLE -->
+<section>
+  <h2 class="section-title">
+    <span class="num">1</span>Per-Tier Geo Mix — Verified Source Data
+  </h2>
+  <p class="section-sub">Each plan tier attracts different crew types — who fly different routes. This mix determines the effective cost per GB, which varies wildly from the flat $1.34 blended assumption.</p>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>% Tier-A</th>
+          <th>% Tier-B</th>
+          <th>% Tier-C</th>
+          <th>Effective $/GB</th>
+          <th>GB/mo</th>
+          <th>Monthly COGS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-red">
+          <td><strong>Economy</strong></td>
+          <td><span class="tier-badge tb-a">30%</span></td>
+          <td><span class="tier-badge tb-b">30%</span></td>
+          <td><span class="tier-badge tb-c">40%</span></td>
+          <td><strong>$4.08</strong></td>
+          <td>2.5</td>
+          <td>$10.19</td>
+        </tr>
+        <tr class="row-green">
+          <td><strong>Roster Bundle</strong></td>
+          <td><span class="tier-badge tb-a">70%</span></td>
+          <td><span class="tier-badge tb-b">25%</span></td>
+          <td><span class="tier-badge tb-c">5%</span></td>
+          <td><strong>$1.37</strong></td>
+          <td>5.0</td>
+          <td>$6.85</td>
+        </tr>
+        <tr>
+          <td><strong>Premium Economy</strong></td>
+          <td><span class="tier-badge tb-a">55%</span></td>
+          <td><span class="tier-badge tb-b">30%</span></td>
+          <td><span class="tier-badge tb-c">15%</span></td>
+          <td><strong>$2.16</strong></td>
+          <td>4.0</td>
+          <td>$8.65</td>
+        </tr>
+        <tr>
+          <td><strong>Business</strong></td>
+          <td><span class="tier-badge tb-a">60%</span></td>
+          <td><span class="tier-badge tb-b">25%</span></td>
+          <td><span class="tier-badge tb-c">15%</span></td>
+          <td><strong>$2.14</strong></td>
+          <td>6.75</td>
+          <td>$14.41</td>
+        </tr>
+        <tr>
+          <td><strong>First</strong></td>
+          <td><span class="tier-badge tb-a">50%</span></td>
+          <td><span class="tier-badge tb-b">30%</span></td>
+          <td><span class="tier-badge tb-c">20%</span></td>
+          <td><strong>$2.55</strong></td>
+          <td>10.0</td>
+          <td>$25.45</td>
+        </tr>
+        <tr>
+          <td><strong>First Suite</strong></td>
+          <td><span class="tier-badge tb-a">50%</span></td>
+          <td><span class="tier-badge tb-b">30%</span></td>
+          <td><span class="tier-badge tb-c">20%</span></td>
+          <td><strong>$2.55</strong></td>
+          <td>13.2</td>
+          <td>$33.59</td>
+        </tr>
+        <tr>
+          <td><strong>Cockpit</strong></td>
+          <td><span class="tier-badge tb-a">65%</span></td>
+          <td><span class="tier-badge tb-b">25%</span></td>
+          <td><span class="tier-badge tb-c">10%</span></td>
+          <td><strong>$1.75</strong></td>
+          <td>7.2</td>
+          <td>$12.62</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin:10px 0 0;">Source: Per-Tier Geo Mix tab, rows 4–12. Google Sheets verified 2026-06-02. First Suite mix assumed same as First — flag to update post-launch with real data.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: REVISED GROSS MARGIN -->
+<section>
+  <h2 class="section-title">
+    <span class="num">2</span>Revised Gross Margin — With Real Geo Mix
+  </h2>
+  <p class="section-sub">The default model uses a flat $1.34/GB blended cost. The per-tier reality is very different. Economy users vacation in Tier-C. Roster Bundle crew fly mostly Tier-A layovers.</p>
+
+  <div class="chart-wrap">
+    <canvas id="marginChart"></canvas>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Revenue/mo</th>
+          <th>Adjusted COGS</th>
+          <th>Gross Profit</th>
+          <th>Margin %</th>
+          <th>vs Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-red">
+          <td><strong>Economy</strong></td>
+          <td>$12.48</td>
+          <td>$10.19</td>
+          <td>$2.29</td>
+          <td>18.3%</td>
+          <td style="color:var(--red);">-$6.83</td>
+        </tr>
+        <tr class="row-green">
+          <td><strong>Roster Bundle</strong></td>
+          <td>$19.95</td>
+          <td>$6.85</td>
+          <td>$13.10</td>
+          <td>65.7%</td>
+          <td style="color:var(--red);">-$0.50</td>
+        </tr>
+        <tr>
+          <td><strong>Premium Economy</strong></td>
+          <td>$17.99</td>
+          <td>$8.65</td>
+          <td>$9.34</td>
+          <td>51.9%</td>
+          <td style="color:var(--red);">-$4.01</td>
+        </tr>
+        <tr>
+          <td><strong>Business</strong></td>
+          <td>$29.99</td>
+          <td>$14.41</td>
+          <td>$15.58</td>
+          <td>51.9%</td>
+          <td style="color:var(--red);">-$6.26</td>
+        </tr>
+        <tr>
+          <td><strong>First</strong></td>
+          <td>$39.99</td>
+          <td>$25.45</td>
+          <td>$14.54</td>
+          <td>36.4%</td>
+          <td style="color:var(--red);">-$13.48</td>
+        </tr>
+        <tr>
+          <td><strong>First Suite</strong></td>
+          <td>$49.99</td>
+          <td>$33.59</td>
+          <td>$16.40</td>
+          <td>32.8%</td>
+          <td style="color:var(--red);">-$16.60</td>
+        </tr>
+        <tr>
+          <td><strong>Cockpit</strong></td>
+          <td>$24.92</td>
+          <td>$12.62</td>
+          <td>$12.30</td>
+          <td>49.4%</td>
+          <td style="color:var(--red);">-$3.50</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin:10px 0 0;">Source: Per-Tier Geo Mix tab, rows 14–22. All "vs Default" figures show gap vs flat $1.34/GB assumption — real geo mix always costs more because users avoid the cheapest corridors.</p>
+  </div>
+</section>
+
+<!-- SECTION 3: THE BOMBSHELL -->
+<section>
+  <h2 class="section-title">
+    <span class="num">3</span>The Bombshell
+  </h2>
+
+  <div class="bombshell">
+    <h3>At flat $1.34/GB blended, we project $1.34/GB cost everywhere.</h3>
+    <p>The per-tier reality varies from <strong>$1.37/GB</strong> (Roster Bundle — mostly Mumbai/Bangkok layovers) to <strong>$4.08/GB</strong> (Economy — 40% of data consumed in Las Vegas, Miami, New York). That's a 3x swing in unit cost on the same underlying service.</p>
+  </div>
+
+  <div class="scenario-grid">
+    <div class="scenario-box opt">
+      <div class="s-label" style="color:var(--green);">Optimistic</div>
+      <div class="s-cost" style="color:var(--green);">$1.34/GB</div>
+      <div class="s-mix">75% Tier-A / 20% Tier-B / 5% Tier-C</div>
+      <div class="s-note">Best case — crew all fly SE Asia + Africa. Matches the model default assumption. Very unlikely in practice.</div>
+    </div>
+    <div class="scenario-box real">
+      <div class="s-label" style="color:var(--amber);">Realistic</div>
+      <div class="s-cost" style="color:var(--amber);">$2.60/GB</div>
+      <div class="s-mix">40% Tier-A / 40% Tier-B / 20% Tier-C</div>
+      <div class="s-note">Economy users vacationing in USA/Europe pushes the blended cost up significantly. Most likely base case.</div>
+    </div>
+    <div class="scenario-box pess">
+      <div class="s-label" style="color:var(--red);">Pessimistic</div>
+      <div class="s-cost" style="color:var(--red);">$3.84/GB</div>
+      <div class="s-mix">30% Tier-A / 35% Tier-B / 35% Tier-C</div>
+      <div class="s-note">Heavy North America usage (USA + Canada). Economy users using data in NY/LA/Vegas/Miami. Worst case.</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="scenarioChart"></canvas>
+  </div>
+</section>
+
+<!-- SECTION 4: MAYA vs YUKI -->
+<section>
+  <h2 class="section-title">
+    <span class="num">4</span>Maya vs Yuki — Same Service, 6x Different Profit
+  </h2>
+  <p class="section-sub">Two real-world crew personas. Same wholesale supplier. Same eSIM product. Profoundly different economics — purely because of route mix.</p>
+
+  <div class="persona-grid">
+    <div class="persona-card maya">
+      <div class="name-row">
+        <div class="avatar">M</div>
+        <div>
+          <div style="font-weight:700; font-size:17px;">Maya</div>
+          <div style="font-size:12px; color:var(--muted);">Economy PAYG · Vacation traveler</div>
+        </div>
+      </div>
+      <dl>
+        <dt>Plan</dt><dd>Economy PAYG</dd>
+        <dt>Data bought</dt><dd>2.5 GB</dd>
+        <dt>Tier-C usage</dt><dd>40% in Las Vegas / USA</dd>
+        <dt>Effective $/GB</dt><dd>$4.08</dd>
+        <dt>Our cost</dt><dd>$10.19</dd>
+        <dt>Our revenue</dt><dd>$12.48</dd>
+      </dl>
+      <div class="result-row">
+        <span style="font-size:13px; color:var(--muted);">NET PROFIT</span>
+        <span class="net red">+$2.29</span>
+      </div>
+    </div>
+
+    <div class="persona-card yuki">
+      <div class="name-row">
+        <div class="avatar">Y</div>
+        <div>
+          <div style="font-weight:700; font-size:17px;">Yuki</div>
+          <div style="font-size:12px; color:var(--muted);">Roster Bundle · Crew layover traveler</div>
+        </div>
+      </div>
+      <dl>
+        <dt>Plan</dt><dd>Roster Bundle</dd>
+        <dt>Data bought</dt><dd>5 GB</dd>
+        <dt>Tier-A usage</dt><dd>70% in Mumbai / Bangkok</dd>
+        <dt>Effective $/GB</dt><dd>$1.37</dd>
+        <dt>Our cost</dt><dd>$6.85</dd>
+        <dt>Our revenue</dt><dd>$19.95</dd>
+      </dl>
+      <div class="result-row">
+        <span style="font-size:13px; color:var(--muted);">NET PROFIT</span>
+        <span class="net green">+$13.10</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card gold-card" style="margin-top:8px;">
+    <strong>The insight from the sheet (row 28):</strong> Yuki uses 2x the data. But Yuki delivers 5.7x more profit — because of WHERE she roams. Route mix is a bigger P&amp;L driver than data volume.
+  </div>
+</section>
+
+<!-- SECTION 5: AKITO ASK -->
+<section>
+  <h2 class="section-title">
+    <span class="num">5</span>The Akito Ask — Layover Destination Data
+  </h2>
+  <p class="section-sub">We need 5–10 crew-sourced layover destinations to validate the Tier-A heavy assumption. Not turnarounds — real overnight stays where crew actually use data.</p>
+
+  <div class="akito-ask">
+    <h3>What we need from you</h3>
+    <p>Ask 3–5 Emirates crew contacts: "Which city do you use the most mobile data during a layover?" We need cities with 18–48 hour ground time — not short turnarounds.</p>
+    <ul>
+      <li><strong>Mumbai (BOM)</strong> — classic Tier-A example, 24–48h layovers, heavily Tier-A priced</li>
+      <li><strong>Bangkok (BKK)</strong> — another Tier-A city, popular crew destination</li>
+      <li><strong>London (LHR)</strong> — Tier-B, significant layover volume</li>
+      <li>We need USA/Canada examples too — these are Tier-C and drive Maya's poor margin</li>
+    </ul>
+  </div>
+
+  <div class="layover-note">
+    <strong>What counts as a "layover" vs a "turnaround":</strong> Emirates DXB-based crew spend 1–3 hours on the ground at turnaround points (e.g., DXB-BOM-DXB same day). That 90-minute ground stop does NOT count — crew stay on the plane or in the terminal and don't activate roaming. A real layover is 18+ hours: crew go to a crew hotel, shower, eat, and use the city. ONLY layovers count for this analysis.
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <strong>Emirates route context (from route research):</strong>
+    <ul style="margin:10px 0 0; padding-left:20px; font-size:14px; line-height:1.9;">
+      <li>140 destinations across 85 countries total</li>
+      <li>67 LAYOVER countries only (turnarounds excluded) — these are the relevant ones</li>
+      <li>North America (Tier-C): 3 countries (USA, Canada, Mexico) — all 24–48h long-haul layovers</li>
+      <li>Africa (Tier-A): 22 countries — mostly 24h crew layovers</li>
+      <li>SE Asia (Tier-A): Bangkok, Colombo, Manila, Singapore all high-volume layover cities</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<script>
+// Chart 1: Gross Margin by Tier
+const mCtx = document.getElementById('marginChart').getContext('2d');
+new Chart(mCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Economy', 'Roster Bundle', 'Premium', 'Business', 'First', 'First Suite', 'Cockpit'],
+    datasets: [
+      {
+        label: 'Revenue/mo',
+        data: [12.48, 19.95, 17.99, 29.99, 39.99, 49.99, 24.92],
+        backgroundColor: 'rgba(201,160,59,0.7)',
+        borderColor: '#C9A03B',
+        borderWidth: 1,
+      },
+      {
+        label: 'Adjusted COGS',
+        data: [10.19, 6.85, 8.65, 14.41, 25.45, 33.59, 12.62],
+        backgroundColor: 'rgba(215,25,33,0.7)',
+        borderColor: '#D71921',
+        borderWidth: 1,
+      },
+      {
+        label: 'Gross Profit',
+        data: [2.29, 13.10, 9.34, 15.58, 14.54, 16.40, 12.30],
+        backgroundColor: 'rgba(26,138,90,0.7)',
+        borderColor: '#1a8a5a',
+        borderWidth: 1,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: true, text: 'Per-Tier P&L With Geo Mix ($/user/month)' }
+    },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: '$/user/month' } }
+    }
+  }
+});
+
+// Chart 2: Scenario blended cost
+const sCtx = document.getElementById('scenarioChart').getContext('2d');
+new Chart(sCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Optimistic\n(75/20/5)', 'Realistic\n(40/40/20)', 'Pessimistic\n(30/35/35)'],
+    datasets: [{
+      label: 'Blended $/GB',
+      data: [1.34, 2.60, 3.84],
+      backgroundColor: ['rgba(26,138,90,0.8)', 'rgba(176,122,31,0.8)', 'rgba(215,25,33,0.8)'],
+      borderColor: ['#1a8a5a', '#B07A1F', '#D71921'],
+      borderWidth: 2,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: 'Blended Cost/GB by Geo Mix Scenario' }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 5,
+        title: { display: true, text: '$/GB blended' },
+        ticks: { callback: v => '$' + v.toFixed(2) }
+      }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

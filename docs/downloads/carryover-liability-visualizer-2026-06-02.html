@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — Tab 20 Carryover Liability Visualizer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --red-dark: #A01218;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #E8E2D6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --green-bg: #f0faf4;
+    --green-border: #a8d8b5;
+    --amber: #B07A1F;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+    --shadow-sm: 0 1px 3px rgba(26,26,26,.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; font-size: 16px; }
+
+  header.bar { position: sticky; top: 0; z-index: 50; background: var(--red); color: #fff; padding: 14px 22px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+  header.bar .title { font-weight: 700; font-size: 15px; }
+  header.bar .title small { display: block; font-weight: 400; opacity: .85; font-size: 12px; margin-top: 2px; }
+  header.bar a.back-btn { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.5); color: #fff; padding: 8px 14px; border-radius: 999px; font-size: 13px; text-decoration: none; display: inline-block; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 52px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero { font-size: clamp(24px, 3.5vw, 40px); line-height: 1.12; margin: 0 0 14px; letter-spacing: -.5px; }
+  h1.hero .accent { color: var(--red); }
+  p.lede { font-size: clamp(15px, 1.6vw, 17px); color: #2a2a2a; max-width: 760px; margin: 0 0 18px; }
+  .badge { display: inline-block; padding: 4px 12px; background: #fff; border: 1px solid var(--gold); border-radius: 999px; font-size: 12px; font-weight: 600; color: #7a5c1a; }
+
+  h2.section-title { font-size: clamp(19px, 2.2vw, 25px); margin: 0 0 6px; letter-spacing: -.2px; }
+  h2.section-title .num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: var(--red); color: #fff; border-radius: 50%; font-size: 13px; font-weight: 700; margin-right: 10px; flex-shrink: 0; }
+  p.section-sub { color: var(--muted); font-size: 14px; margin: 0 0 20px; max-width: 700px; }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px 26px; box-shadow: var(--shadow-sm); margin-bottom: 16px; }
+  .card.red-card { border-left: 4px solid var(--red); }
+  .card.green-card { border-left: 4px solid var(--green); background: var(--green-bg); }
+  .card.gold-card { border-left: 4px solid var(--gold); background: #fffbf0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; }
+  th { background: var(--ink); color: #fff; text-align: left; padding: 10px 13px; font-weight: 600; font-size: 13px; }
+  td { padding: 10px 13px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr.row-green td { background: #eefaf4; }
+  tr.row-amber td { background: #fdf8ec; }
+  tr.row-red td { background: #fff3f3; }
+
+  .chart-wrap { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px; margin: 20px 0; }
+  .chart-wrap canvas { max-height: 300px; }
+
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 20px 0; }
+  .concept-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+  .concept-box .c-icon { font-size: 28px; margin-bottom: 10px; }
+  .concept-box h3 { font-size: 15px; margin: 0 0 8px; }
+  .concept-box p { font-size: 13px; color: var(--muted); margin: 0; }
+
+  .step-block { counter-reset: s; }
+  .step-item { counter-increment: s; display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .step-item:last-child { border-bottom: none; }
+  .step-item::before { content: counter(s); display: flex; align-items: center; justify-content: center; min-width: 30px; height: 30px; background: var(--red); color: white; border-radius: 50%; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+  .step-item .s-text { font-size: 15px; }
+  .step-item .s-text .s-num { font-size: 19px; font-weight: 700; color: var(--red); }
+
+  .locked-rule { background: #e0f2e7; border: 1px solid #a8d8b5; border-radius: 8px; padding: 16px 20px; margin: 10px 0; }
+  .locked-rule strong { color: var(--green); }
+
+  .edge-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .edge-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; font-size: 13px; }
+  .edge-box .e-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; color: var(--muted); margin-bottom: 6px; }
+  .edge-box .e-rule { font-weight: 600; color: var(--ink); }
+
+  .innovation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 20px 0; }
+  .innov-box { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; text-align: center; }
+  .innov-box .i-val { font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 6px; }
+  .innov-box h4 { font-size: 14px; margin: 0 0 6px; }
+  .innov-box p { font-size: 12px; color: var(--muted); margin: 0; }
+
+  .concentration-box { background: #fff3f3; border: 2px solid var(--red); border-radius: 10px; padding: 22px 26px; margin: 20px 0; }
+  .concentration-box h3 { font-size: 16px; color: var(--red-dark); margin: 0 0 10px; }
+
+  .akito-ask { background: #fff5f5; border-left: 4px solid var(--red); border-radius: 0 8px 8px 0; padding: 18px 22px; margin: 24px 0; }
+  .akito-ask h3 { font-size: 15px; margin: 0 0 8px; color: var(--red-dark); }
+  .akito-ask ul li { font-size: 14px; margin: 6px 0; }
+
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+  .pill.locked { background: #E0F2E7; color: var(--green); }
+  .pill.open { background: #FBEFD9; color: var(--amber); }
+
+  @media (max-width: 640px) {
+    .concept-grid, .innovation-grid { grid-template-columns: 1fr; }
+    .edge-case-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    TAB 20 — Carryover Liability
+    <small>Peanut eSIM P&amp;L Model · 2026-06-02</small>
+  </div>
+  <a class="back-btn" href="index.html">← Back</a>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="first">
+  <span class="badge">VERIFIED FROM GOOGLE SHEETS &amp; DISCUSSION NOTES · 2026-06-02</span>
+  <h1 class="hero" style="margin-top:16px;">
+    <span class="accent">Carryover Liability</span> —<br>How Much Data Do We Owe Users?
+  </h1>
+  <p class="lede">When a Premium subscriber uses only 4 of their 10 GB, we owe them 3 GB next month. That 3 GB has a real cost — $4.03 at the exact blended rate. Multiply across thousands of users and it becomes a balance sheet liability that investors will ask about.</p>
+</section>
+
+<!-- SECTION 1: 3 CONCEPTS -->
+<section>
+  <h2 class="section-title"><span class="num">1</span>The 3 Core Concepts</h2>
+  <p class="section-sub">Carryover liability sits at the intersection of three financial ideas. Understanding all three matters for accounting, pricing, and UX design.</p>
+
+  <div class="concept-grid">
+    <div class="concept-box">
+      <div class="c-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="16" rx="3" fill="#FBE0E0"/><rect x="4" y="8" width="24" height="7" rx="3" fill="#D71921"/><text x="16" y="19" font-size="9" fill="#D71921" text-anchor="middle" font-weight="700">$</text></svg>
+      </div>
+      <h3>Deferred Revenue</h3>
+      <p>Aiko paid $17.99 for Premium. Until she uses all 10 GB, some of that revenue is technically still "owed" as a service. Accounting treats carried GB as a liability on the balance sheet.</p>
+    </div>
+    <div class="concept-box">
+      <div class="c-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" fill="#E0F2E7"/><path d="M10 16 L14 20 L22 12" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Expired Margin</h3>
+      <p>Data that does NOT carry over is pure margin. If Aiko uses 4 GB and 3 GB expires (at 50% carry), we never paid the supplier for it. That 3 GB = $4.03 of margin we KEEP.</p>
+    </div>
+    <div class="concept-box">
+      <div class="c-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" fill="#FBEFD9"/><path d="M12 20 L16 12 L20 20" stroke="#B07A1F" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Carryover</h3>
+      <p>Data that DOES carry over is a future cost obligation. If Aiko carries 3 GB to next month and uses it, we pay the supplier $4.03 then. It's a contingent liability until redeemed or expired.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: PER-TIER CARRYOVER TABLE -->
+<section>
+  <h2 class="section-title"><span class="num">2</span>Per-Tier Carryover Rules — Verified</h2>
+  <p class="section-sub">Not all tiers carry over. Economy and Roster Bundle are PAYG — no carryover, no liability. Premium and above carry unused GB forward with tier-specific rules.</p>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Carry %</th>
+          <th>Cap / Expiry</th>
+          <th>GB Carried/mo</th>
+          <th>$ Liability/user</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-green">
+          <td><strong>Economy</strong></td>
+          <td>0%</td>
+          <td>—</td>
+          <td>0</td>
+          <td>$0.00</td>
+        </tr>
+        <tr class="row-green">
+          <td><strong>Roster Bundle</strong></td>
+          <td>0%</td>
+          <td>—</td>
+          <td>0</td>
+          <td>$0.00</td>
+        </tr>
+        <tr class="row-amber">
+          <td><strong>Premium Economy</strong></td>
+          <td>50%</td>
+          <td>1 month</td>
+          <td>3.0 GB</td>
+          <td>$4.03</td>
+        </tr>
+        <tr class="row-amber">
+          <td><strong>Business</strong></td>
+          <td>70%</td>
+          <td>1 month</td>
+          <td>5.78 GB</td>
+          <td>$7.75</td>
+        </tr>
+        <tr class="row-red">
+          <td><strong>First</strong></td>
+          <td>100%</td>
+          <td>2 months</td>
+          <td>15.0 GB</td>
+          <td>$20.14</td>
+        </tr>
+        <tr class="row-red">
+          <td><strong>First Suite</strong></td>
+          <td>100%</td>
+          <td>2 months</td>
+          <td>26.8 GB</td>
+          <td>$35.98</td>
+        </tr>
+        <tr>
+          <td><strong>Cockpit</strong></td>
+          <td>100%</td>
+          <td>Annual</td>
+          <td>4.8 GB</td>
+          <td>$6.44</td>
+        </tr>
+        <tr class="row-green">
+          <td><strong>Refuel</strong></td>
+          <td>0%</td>
+          <td>—</td>
+          <td>0</td>
+          <td>$0.00</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin:10px 0 0;">Source: Tab 20 sheet + discussion notes 2026-06-02. $ Liability at exact blended rate $1.3425/GB. Sheet shows $4.03 for Premium (3 GB × $1.3425 = $4.0275).</p>
+  </div>
+</section>
+
+<!-- SECTION 3: AIKO'S $4.03 WORKED EXAMPLE -->
+<section>
+  <h2 class="section-title"><span class="num">3</span>Aiko's $4.03 Breakdown — 5-Step Walk</h2>
+  <p class="section-sub">Aiko is a Premium Economy subscriber. She uses 4 GB of her 10 GB pool. Here's exactly what happens to the other 6 GB.</p>
+
+  <div class="card">
+    <div class="step-block">
+      <div class="step-item">
+        <div class="s-text">
+          Pool: <span class="s-num">10 GB</span><br>
+          <span style="font-size:13px; color:var(--muted);">Aiko pays $17.99 for 10 GB of Premium Economy</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="s-text">
+          Consumed: <span class="s-num">40% = 4 GB used</span><br>
+          <span style="font-size:13px; color:var(--muted);">Aiko only uses 4 GB this month — she flew one short trip</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="s-text">
+          Unused: <span class="s-num">6 GB leftover</span><br>
+          <span style="font-size:13px; color:var(--muted);">6 GB sits in the pool at month-end — not used, not yet paid to supplier</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="s-text">
+          Carry %: <span class="s-num">50% → 3 GB carried forward</span><br>
+          <span style="font-size:13px; color:var(--muted);">Premium carries 50% of unused GB. 3 GB goes to next month. 3 GB expires (pure margin for us).</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="s-text">
+          Cost if redeemed: <span class="s-num">3 GB × $1.3425 = $4.03</span><br>
+          <span style="font-size:13px; color:var(--muted);">This is our future out-of-pocket cost to the supplier IF Aiko redeems. Aiko already paid us — this $4.03 is contingent.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card gold-card">
+    <strong>Critical clarification:</strong> $4.03 is our COST from the supplier, not a refund to Aiko. Aiko already paid $17.99. The $4.03 represents future data delivery cost we're committing to when we let that GB carry forward. It's a contingent liability — real cost only if she redeems it.
+  </div>
+</section>
+
+<!-- SECTION 4: LOCKED UNIVERSAL CARRY RULE -->
+<section>
+  <h2 class="section-title"><span class="num">4</span>The Locked Universal Carry Rule</h2>
+  <p class="section-sub">Decided 2026-06-02. The carryover pool always stays the same, with its original expiry date intact — except one precise exception.</p>
+
+  <div class="locked-rule">
+    <strong>Universal Carry Rule (LOCKED):</strong> The carryover pool always retains its original expiry date. The ONLY exception: when upgrading to a plan with a longer expiry window, the existing carry expiry EXPANDS to match the new plan.
+  </div>
+
+  <div class="card">
+    <table>
+      <tr><th>Scenario</th><th>What happens</th></tr>
+      <tr class="row-green"><td><strong>Downgrade</strong> (Premium → Roster)</td><td>Carry keeps original expiry, sits alongside new pool (no expansion)</td></tr>
+      <tr class="row-amber"><td><strong>Upgrade with longer expiry</strong> (Business → First)</td><td>Carry expiry EXPANDS to match new plan (from 1mo to 2mo)</td></tr>
+      <tr><td><strong>Lateral move</strong></td><td>No change to carry pool</td></tr>
+      <tr class="row-red"><td><strong>Cancel + resubscribe</strong></td><td>Carry expired during gap — gone. No resurrection.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 5: LOCKED EDGE CASE RULES -->
+<section>
+  <h2 class="section-title"><span class="num">5</span>Locked Edge Case Rules</h2>
+  <p class="section-sub">All decided 2026-06-02. These are locked — not for debate.</p>
+
+  <div class="edge-case-grid">
+    <div class="edge-box">
+      <div class="e-label">Downgrade rule</div>
+      <div class="e-rule">Keeps original expiry. Does NOT shrink.</div>
+      <p style="font-size:12px; color:var(--muted); margin:6px 0 0;">Carry earned on First doesn't disappear when downgrading to Premium.</p>
+    </div>
+    <div class="edge-box">
+      <div class="e-label">Upgrade rule</div>
+      <div class="e-rule">Expiry expands to new plan's window.</div>
+      <p style="font-size:12px; color:var(--muted); margin:6px 0 0;">Upgrading from Business (1mo) to First (2mo) gives existing carry 2mo.</p>
+    </div>
+    <div class="edge-box">
+      <div class="e-label">Cancellation rule</div>
+      <div class="e-rule">No cash refund. Gift-only exit.</div>
+      <p style="font-size:12px; color:var(--muted); margin:6px 0 0;">App shows "Gift your 3 GB before you go?" If she forfeits — pure margin for us.</p>
+    </div>
+    <div class="edge-box">
+      <div class="e-label">No mid-cycle refunds</div>
+      <div class="e-rule">User finishes paid month. Change next cycle.</div>
+      <p style="font-size:12px; color:var(--muted); margin:6px 0 0;">Industry standard. Simplest accounting.</p>
+    </div>
+    <div class="edge-box">
+      <div class="e-label">7-day soft reminder</div>
+      <div class="e-rule">Push + email: carry expires Mar 1.</div>
+      <p style="font-size:12px; color:var(--muted); margin:6px 0 0;">"Your 3 GB Premium carry expires Mar 1 — use it on your next trip!"</p>
+    </div>
+    <div class="edge-box">
+      <div class="e-label">3-day urgent reminder</div>
+      <div class="e-rule">Same message, urgent styling.</div>
+      <p style="font-size:12px; color:var(--muted); margin:6px 0 0;">Drives redemption — reduces our liability. Protects against "expired without warning" complaints.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: INNOVATIONS -->
+<section>
+  <h2 class="section-title"><span class="num">6</span>Balraj's Brilliant Innovations</h2>
+  <p class="section-sub">Three features that turn carryover from a passive liability into an active engagement and acquisition engine.</p>
+
+  <div class="innovation-grid">
+    <div class="innov-box">
+      <div class="i-val">GIFTING FEATURE</div>
+      <h4>Give Away Carry to Trigger Acquisition</h4>
+      <p>Let users gift their carryover pool (not main pool) to family/colleagues. 3 GB gifted = $4.03 COGS we incur anyway. Recipient potential LTV: $134+. At 2% convert rate: massively positive.</p>
+    </div>
+    <div class="innov-box">
+      <div class="i-val">UAE REDEMPTION</div>
+      <h4>Spend Carryover at Home in UAE</h4>
+      <p>Because of same-SIM dynamic allocation, carryover isn't locked to a travel eSIM. Route it to a UAE-compatible eSIM. ~$1.40/GB × 3 GB = $4.20/user net cost. Kills "wasted data" perception entirely.</p>
+    </div>
+    <div class="innov-box">
+      <div class="i-val">SAME-SIM ALLOCATION</div>
+      <h4>Dynamic Top-Up (Industry Standard)</h4>
+      <p>One eSIM profile per user, pre-loaded at 0 GB. User taps "load 1 GB" → API call to supplier. We only pay supplier when data is allocated — not at signup. 10K signups = $0 supplier cost.</p>
+    </div>
+  </div>
+
+  <div class="card gold-card" style="margin-top:8px;">
+    <strong>The three redemption channels combined:</strong> next-trip (natural usage) + UAE home (daily engagement + retention) + gifting (viral acquisition). Each channel solves a different problem and they complement each other perfectly.
+  </div>
+</section>
+
+<!-- SECTION 7: FIRST SUITE CONCENTRATION RISK -->
+<section>
+  <h2 class="section-title"><span class="num">7</span>First Suite Concentration Risk</h2>
+  <p class="section-sub">First Suite has the largest per-user liability ($35.98) and 100% carry for 2 months. At scale, this becomes a material balance sheet item.</p>
+
+  <div class="concentration-box">
+    <h3>At 100K users with 3% First Suite = 3,000 users × $35.98 = $107,940 floating liability</h3>
+    <p style="margin:6px 0 0; font-size:14px;">From Suite alone. Add First (2% × $20.14 × 100K = $40,280) and this becomes a meaningful line item that investors will ask about.</p>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="liabilityChart"></canvas>
+  </div>
+
+  <div class="card">
+    <strong>The 2-month cap math for First Suite:</strong> At 30-day expiry window (recommendation), 50% of the 26.8 GB unused is expected to be redeemed, and ~50% expires — generating ~$17.45/user in expired margin. At 5,000 mature users, that's ~$10,620/mo in expired margin, or roughly $127K/year of free margin from carry expiry alone.
+  </div>
+</section>
+
+<!-- SECTION 8: CUMULATIVE LIABILITY CHART -->
+<section>
+  <h2 class="section-title"><span class="num">8</span>Cumulative Liability Over 12 Months</h2>
+  <p class="section-sub">At 1,000 users and 20% monthly redemption rate, the carryover balance stabilizes around $12K by month 12. Warning: 20% redemption is likely optimistic — crew tend to hoard for summer trips.</p>
+
+  <div class="chart-wrap">
+    <canvas id="cumulChart"></canvas>
+  </div>
+
+  <div class="card red-card">
+    <strong>The 20% redemption assumption is probably too aggressive.</strong> Based on discussion: 5% (hoarders) puts M12 liability at ~$25K. 20% (current model) puts it at ~$12K. 50% (heavy users) = ~$5K. Crew likely hoard data for summer/long-haul months — real rate probably 5–15%, meaning the model understates liability by 2–3x.
+  </div>
+</section>
+
+<!-- SECTION 9: AKITO ASK -->
+<section>
+  <h2 class="section-title"><span class="num">9</span>Strategic Queue</h2>
+
+  <div class="akito-ask">
+    <h3>What needs to happen before launch</h3>
+    <ul>
+      <li><strong>Decide carry expiry window:</strong> 30-day recommended (captures ~$17/user Suite expired margin, fair UX, low PR risk if exposed)</li>
+      <li><strong>Build perception-fix UX:</strong> Show "you saved $1.97 vs PAYG this month" NOT "6 GB unused" — the difference is a +5% churn delta = $2.7M LTV at 5K users</li>
+      <li><strong>Set cash reserve:</strong> Hold cash = monthly carryover liability balance. At 5K users ≈ $50K liquid minimum</li>
+      <li><strong>Legal: TDRA consult</strong> on UAE redemption mechanic (resident using foreign eSIM from paid travel plan)</li>
+      <li><strong>Supplier: ask about UAE rate sheet</strong> + multi-eSIM provisioning per user</li>
+    </ul>
+  </div>
+
+  <div class="card green-card">
+    <strong>Build priority queue:</strong> Gifting feature = v1.1 (low engineering cost, high viral value). UAE redemption = v1.2 after supplier validation. Perception-fix UX = v1.0 — ship at launch.
+  </div>
+</section>
+
+</main>
+
+<script>
+// Liability by tier
+const lCtx = document.getElementById('liabilityChart').getContext('2d');
+new Chart(lCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Economy', 'Roster Bundle', 'Premium', 'Business', 'First', 'First Suite', 'Cockpit'],
+    datasets: [{
+      label: '$ Liability per user',
+      data: [0, 0, 4.03, 7.75, 20.14, 35.98, 6.44],
+      backgroundColor: ['#e0f2e7','#e0f2e7','#fbefd9','#fbefd9','#ffe5e5','#ffcccc','#e8eeff'],
+      borderColor: ['#2D7A4F','#2D7A4F','#B07A1F','#B07A1F','#D71921','#A01218','#4455cc'],
+      borderWidth: 2,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: 'Carryover Liability Per User ($/user/month)' }
+    },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: '$/user' }, ticks: { callback: v => '$' + v.toFixed(2) } }
+    }
+  }
+});
+
+// Cumulative liability
+const cCtx = document.getElementById('cumulChart').getContext('2d');
+new Chart(cCtx, {
+  type: 'line',
+  data: {
+    labels: ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'],
+    datasets: [{
+      label: '$ Liability Balance (20% redemption)',
+      data: [2661, 4790, 6492, 7855, 8945, 9817, 10514, 11072, 11519, 11876, 12161, 12390],
+      borderColor: '#D71921',
+      backgroundColor: 'rgba(215,25,33,0.08)',
+      tension: 0.4,
+      fill: true,
+      pointBackgroundColor: '#D71921',
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      title: { display: true, text: 'Cumulative Carryover Liability @ 1,000 Users ($)' }
+    },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: '$ liability balance' }, ticks: { callback: v => '$' + v.toLocaleString() } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

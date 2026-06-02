@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 22 Cash + Sensitivity: Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+tr.excellent td { background: #e8f4e8; }
+tr.caution td { background: #faf6ec; }
+tr.risk td { background: #fff0f0; }
+tr.highlight td { background: #fff8e6; font-weight: 600; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.bug { background: #FBE0E0; color: var(--red); }
+.pill.fixed { background: #E0F2E7; color: var(--green); }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.rejected-box { background: #FFF0F0; border: 1px solid #f5c0c0; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.rejected-box strong { color: var(--red); }
+.fix-box { background: #e0f2e7; border: 1px solid #a8d8b5; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.fix-box strong { color: var(--green); }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.gold-text { color: var(--amber); font-weight: 600; }
+code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+.chart-wrap { background: white; padding: 24px; border: 1px solid var(--line); border-radius: 6px; margin: 20px 0; max-width: 640px; }
+.chart-wrap canvas { max-height: 280px; }
+.decision-box { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+@media (max-width: 600px) { .container { padding: 24px 16px 60px; } h1 { font-size: 26px; } h2 { font-size: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 22 BLUEPRINT — Cash + Sensitivity — Peanut eSIM (2026-06-02)</span>
+</div>
+
+<div class="container">
+
+<h1>Tab 22 — Cash + Sensitivity</h1>
+<p class="meta">Source: Google Sheets tab "Cash + Sensitivity" · Verified 2026-06-02 · Blueprint format</p>
+
+<p class="lede">Tab 22 is a short but important tab covering three distinct questions: (1) how much does Refuel attach rate shift monthly profit, (2) what does a failed eSIM activation actually cost us under our locked policy, and (3) what is the real cash flow value of Cockpit's annual prepay — which turns out to be a self-funding mechanism for the business, not just a pricing choice.</p>
+
+<div class="toc">
+  <strong>Blueprint sections</strong>
+  <ul>
+    <li><a href="#tldr">TLDR</a></li>
+    <li><a href="#refuel">Section 1 — Refuel Attach Sensitivity</a></li>
+    <li><a href="#failure">Section 2 — Failed-eSIM Cost (corrected policy)</a></li>
+    <li><a href="#cockpit">Section 3 — Cockpit Annual Cash Advantage</a></li>
+    <li><a href="#bug">The original sheet bug and the fix</a></li>
+    <li><a href="#strategy">Strategic recommendation</a></li>
+    <li><a href="#open">Open items</a></li>
+  </ul>
+</div>
+
+<h2 id="tldr">TLDR</h2>
+<p>Refuel attach at 15%+ makes the top-up mechanic cash-positive on top of subscriptions — push for 20%+ as the healthy operating target. Failed-eSIM true cost is ~$10.80 (not the $4.00 the sheet shows) because our actual policy is GB credit goodwill, not cash refund — but 70% of failures are preventable with better UX. Cockpit annual prepay creates real working capital float that reduces founder cash injection need — at 100 Cockpit users, you arrive at month 2 with $14,950 already in the bank. The original Cockpit cash advantage calculation in the sheet was buggy (compared annual revenue totals instead of timing float), and the fix changes the D column to <code>C/2</code> with a new E column for 4% interest income.</p>
+
+<h2 id="refuel">Section 1 — Refuel Attach Sensitivity (@ 1,000 Users)</h2>
+
+<p>Refuel is the $4.99/GB top-up product. At 73% gross margin it's the highest-margin SKU in the catalog. The sensitivity analysis asks: what happens to monthly profit as the percentage of users who buy a refuel in a given month changes?</p>
+
+<table>
+  <tr><th>Refuel Attach %</th><th>Monthly Revenue</th><th>Monthly COGS</th><th>Net Profit</th><th>Net Margin Impact</th></tr>
+  <tr class="risk"><td>5%</td><td>$250</td><td>$67</td><td>$182</td><td class="red-text">-$365</td></tr>
+  <tr class="risk"><td>10%</td><td>$499</td><td>$134</td><td>$365</td><td class="red-text">-$182</td></tr>
+  <tr class="highlight"><td><strong>15% (breakeven)</strong></td><td>$749</td><td>$201</td><td><strong>$547</strong></td><td class="green-text"><strong>$0</strong></td></tr>
+  <tr><td>20%</td><td>$998</td><td>$269</td><td>$730</td><td class="green-text">+$182</td></tr>
+  <tr><td>25%</td><td>$1,248</td><td>$336</td><td>$912</td><td class="green-text">+$365</td></tr>
+  <tr class="excellent"><td><strong>30%</strong></td><td>$1,497</td><td>$403</td><td><strong>$1,094</strong></td><td class="green-text"><strong>+$547</strong></td></tr>
+</table>
+
+<div class="discussion-block">
+  <h4>What the "Net Margin Impact" column means</h4>
+  <p>The impact column shows the delta vs the 15% neutral baseline. At 5% attach, we're $365/mo below neutral — Refuel is a drag. At 30%, we're $547/mo above neutral. The range from worst to best case is $912/mo at 1,000 users — that's $11K/year swing from this one variable alone.</p>
+</div>
+
+<h3>What drives attach rate</h3>
+<ul>
+  <li><strong>UX visibility:</strong> If the "Add 1 GB" button requires 3 taps to find, attach will be low. If it appears prominently when data hits 20% remaining, attach will be high.</li>
+  <li><strong>Tier mix:</strong> Economy users are more likely to refuel (they have no pool). Premium/Business users have larger pools and may not run out.</li>
+  <li><strong>Destination:</strong> Users in data-hungry Tier-C destinations (Vegas, NYC) burn through their pool faster and refuel more often.</li>
+</ul>
+
+<p>Target: 20–25% attach. Build a persistent low-data warning that surfaces the refuel CTA with one tap. This is the single highest-ROI UX feature in the app from a revenue perspective.</p>
+
+<h2 id="failure">Section 2 — Failed-eSIM Cost (Corrected Policy)</h2>
+
+<p>The raw sheet shows $4.00 per failed activation across all failure rates. This figure is based on a generic refund assumption that does not match our locked policy.</p>
+
+<div class="rejected-box">
+  <strong>WRONG (raw sheet):</strong> $4.00 per failure. This implies a cash refund of $4.00 for every activation failure. Our policy is NOT cash refunds — it's GB credit goodwill with a 3/year cap on user-error claims.
+</div>
+
+<div class="fix-box">
+  <strong>CORRECT (locked policy):</strong> ~$10.80 blended cost per failure. Breakdown:
+  <ul style="margin:8px 0 0;">
+    <li>2 GB goodwill credit (at $1.34/GB blended) = ~$2.69 supplier cost</li>
+    <li>Reissue + support time = ~$3–5 (includes support agent time for manual fix)</li>
+    <li>Partial credit where applicable (genuine carrier failure, not user error) = ~$3–5</li>
+    <li>Blended across genuine vs user-error failures = ~$10.80</li>
+  </ul>
+</div>
+
+<h3>Cost table — corrected to $10.80</h3>
+<table>
+  <tr><th>Failure Rate</th><th>Failed/mo @ 1K users</th><th>Monthly Cost (corrected)</th><th>Annual Cost</th></tr>
+  <tr><td>1.0%</td><td>30</td><td>$324</td><td>$3,888</td></tr>
+  <tr><td>2.0%</td><td>60</td><td>$648</td><td>$7,776</td></tr>
+  <tr class="highlight"><td><strong>3.0%</strong></td><td>90</td><td><strong>$972</strong></td><td><strong>$11,664</strong></td></tr>
+  <tr class="caution"><td>5.0%</td><td>150</td><td>$1,620</td><td>$19,440</td></tr>
+  <tr class="risk"><td>8.0%</td><td>240</td><td>$2,592</td><td>$31,104</td></tr>
+</table>
+<p style="font-size:12px; color:var(--ink-soft);">Note: sheet shows raw $4.00 × volume. Corrected figures use $10.80 blended. The shape of the curve is unchanged — only the magnitude is 2.7x higher.</p>
+
+<h3>The 70% preventability opportunity</h3>
+
+<table>
+  <tr><th>Failure Type</th><th>Est. % of Failures</th><th>Prevention</th></tr>
+  <tr class="excellent"><td>Device incompatibility</td><td>~30%</td><td>Device check at signup (before purchase)</td></tr>
+  <tr class="excellent"><td>QR scan failure</td><td>~25%</td><td>In-app QR scanner (no screenshot ambiguity)</td></tr>
+  <tr class="caution"><td>APN misconfiguration</td><td>~15%</td><td>AI Support agent with carrier-specific guides</td></tr>
+  <tr><td>Genuine carrier/supplier failure</td><td>~30%</td><td>Not preventable — manage with good support SLA</td></tr>
+</table>
+
+<blockquote>If we reduce failure rate from 5% to 1.5% through UX improvements, we save ~$972/mo at 1,000 users — that's $11.7K/year from shipping a device check screen and an in-app QR scanner. Build these at v1.0.</blockquote>
+
+<h2 id="cockpit">Section 3 — Cockpit Annual Cash Advantage (FIXED)</h2>
+
+<p>Cockpit is the annual subscription: $299/year, paid upfront. Recognized as revenue at $24.92/month over 12 months. The question Tab 22 asks: what is the cash flow value of collecting $299 on day 1 instead of $24.92 each month?</p>
+
+<table>
+  <tr><th>Cockpit Users</th><th>Upfront Cash</th><th>Avg Float Advantage (D=C/2)</th><th>Interest @ 4%/yr (E=D×4%)</th></tr>
+  <tr><td>10</td><td>$2,990</td><td>$1,495</td><td>$60</td></tr>
+  <tr><td>50</td><td>$14,950</td><td>$7,475</td><td>$299</td></tr>
+  <tr class="highlight"><td><strong>100</strong></td><td>$29,900</td><td><strong>$14,950</strong></td><td><strong>$598</strong></td></tr>
+  <tr><td>200</td><td>$59,800</td><td>$29,900</td><td>$1,196</td></tr>
+  <tr><td>500</td><td>$149,500</td><td>$74,750</td><td>$2,990</td></tr>
+  <tr class="excellent"><td><strong>1,000</strong></td><td><strong>$299,000</strong></td><td><strong>$149,500</strong></td><td><strong>$5,980</strong></td></tr>
+</table>
+
+<p style="font-size:12px; color:var(--ink-soft);">Source: Tab 22 rows 26–31. D = C ÷ 2 (average float held during the year: full $299 on day 1, declining to ~$0 by day 365 as service is delivered, average ≈ $149.50). E = D × 4% (money-market rate). Fixed from buggy original sheet.</p>
+
+<h2 id="bug">The Original Sheet Bug and the Fix</h2>
+
+<div class="rejected-box">
+  <strong>Original sheet bug:</strong> The Cockpit cash advantage calculation compared the annual revenue total from prepay vs monthly billing. This is meaningless — both produce the same $299/yr in total revenue. The timing value (the ACTUAL advantage) was being measured as the wrong thing.
+</div>
+
+<div class="fix-box">
+  <strong>Fix applied:</strong> Column D now = C ÷ 2 (average float advantage — average cash held above what monthly billing would have produced, across the full 12-month period). Column E = D × 4% (interest income on that float at money-market rates). These are the two values that actually matter.
+</div>
+
+<div class="discussion-block">
+  <h4>Why D = C/2 and not C</h4>
+  <p>On day 1, we have the full $299 in hand that monthly billing wouldn't have paid yet. By day 365, we've delivered all 12 months of service — the float advantage is $0. The average across the year is half the starting value. For 100 users: $29,900 at day 1, declining to $0 by year end. Average float held = $14,950. Interest at 4% = $598/year. That $598 is real money — it goes directly to founders/company.</p>
+</div>
+
+<h3>Why this matters for a self-funded business</h3>
+
+<p>This isn't about $598/yr in interest income — it's about the timing of founder cash injection.</p>
+
+<p>Scenario: You're bootstrapping. You need $50,000 of runway to reach 1,000 users. Monthly billing requires you to raise or inject that $50K upfront. But if you have 100 Cockpit users paying $299/yr on day 1, you arrive at month 1 with $29,900 already in the bank — before your first monthly billing cycle completes. That's 60% of your $50K runway target, delivered by users, not investors.</p>
+
+<p>Scaling up: at 500 Cockpit users at launch, you collect $149,500 on day 1. For most bootstrapped SaaS businesses, that's a full year of runway.</p>
+
+<h2 id="strategy">Strategic Recommendation</h2>
+
+<div class="fix-box">
+  <strong>Push Cockpit aggressively from day one. Position it as the annual commitment plan, not just the pilot-only plan.</strong>
+  <ul style="margin:10px 0 0;">
+    <li>Current framing: "Cockpit = for pilots and senior crew." This limits the addressable audience.</li>
+    <li>Better framing: "Cockpit = for crew who want to commit annually and save 38% vs Roster Bundle monthly." The $299/yr is cheaper than $24.92 × 12 = $299.04 — but the annual commitment creates the prepay behavior we want.</li>
+    <li>Consider a launch promotion: first 50 Cockpit subscribers get a small bonus (e.g., 2 GB extra at activation) — it's cheap goodwill and accelerates the cash timing advantage.</li>
+    <li>At 200 Cockpit users on launch day: $59,800 collected, $29,900 average float, $1,196/yr in interest. This is runway that didn't require a bridge loan.</li>
+  </ul>
+</div>
+
+<h2 id="open">Open Items</h2>
+
+<table>
+  <tr><th>Item</th><th>Owner</th><th>Action</th><th>Status</th></tr>
+  <tr class="caution">
+    <td>Confirm blended failure cost with real support data post-launch</td>
+    <td>Balraj</td>
+    <td>Track support ticket type, resolution cost, and goodwill issuance in months 1–3. Replace $10.80 estimate with measured value.</td>
+    <td><span class="pill open">Post-launch</span></td>
+  </tr>
+  <tr class="caution">
+    <td>Target refuel attach rate</td>
+    <td>Balraj (product)</td>
+    <td>Set 20% attach as v1.0 target. Build persistent low-data warning with 1-tap refuel CTA. Measure against baseline.</td>
+    <td><span class="pill open">v1.0</span></td>
+  </tr>
+  <tr>
+    <td>Cockpit launch promotion</td>
+    <td>Akito</td>
+    <td>Design early-adopter Cockpit incentive. Consider 2 GB bonus or priority support badge. Goal: 50–100 Cockpit signups at launch.</td>
+    <td><span class="pill open">Pre-launch</span></td>
+  </tr>
+  <tr>
+    <td>Update sheet failure cost to $10.80</td>
+    <td>Balraj</td>
+    <td>Replace $4.00 in Tab 22 failure cost column with $10.80 blended estimate. Add note explaining policy basis.</td>
+    <td><span class="pill open">Model update</span></td>
+  </tr>
+</table>
+
+<p class="footer-note">Tab 22 — Cash + Sensitivity Blueprint · Peanut eSIM · 2026-06-02 · Google Sheets source: Cash + Sensitivity tab · Original Cockpit cash bug documented and fixed. All figures verified from sheet rows 3–34.</p>
+
+</div>
+</body>
+</html>
