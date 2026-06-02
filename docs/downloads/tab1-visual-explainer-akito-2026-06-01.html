@@ -250,6 +250,12 @@
   </div>
   <button id="copyBtn" type="button">Copy share link</button>
 </header>
+<nav class="bp-viz-switcher" style="position:sticky;top:0;z-index:50;background:#FAF6F0;border-bottom:1px solid #E5DDD0;padding:10px 24px;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;">
+  <a href="tab1-visual-explainer-akito-2026-06-01.html" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:#D71921;color:white;border:1px solid #D71921;">Visualizer</a>
+  <a href="tab1-in-depth-report-2026-06-01.html" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:white;color:#D71921;border:1px solid #D71921;">Blueprint</a>
+  <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit?gid=1965814368" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:white;color:#C9A03B;border:1px solid #C9A03B;">Google Sheet &#x2197;</a>
+</nav>
+
 
 <main>
 
@@ -604,11 +610,11 @@
   new Chart(document.getElementById('ppgbChart'), {
     type: 'bar',
     data: {
-      labels: ['Economy PAYG', 'Refuel top-up', 'Premium Econ.', 'Business ⭐', 'First', 'First Suite'],
+      labels: ['Economy PAYG', 'Refuel top-up', 'Roster Bundle', 'Premium Econ.', 'Business', 'Cockpit (annual)', 'First', 'First Suite'],
       datasets: [{
         label: '$ / GB',
-        data: [4.99, 4.99, 1.80, 2.00, 1.60, 1.25],
-        backgroundColor: ['#d9d9d9', '#bfbfbf', '#94b9c8', RED, '#b07729', GOLD],
+        data: [4.99, 4.99, 3.99, 1.80, 2.00, 2.08, 1.60, 1.25],
+        backgroundColor: ['#d9d9d9', '#bfbfbf', '#7AB8A0', '#94b9c8', RED, '#1a1a1a', '#b07729', GOLD],
         borderRadius: 6,
         borderSkipped: false
       }]
