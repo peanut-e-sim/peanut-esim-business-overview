@@ -3682,6 +3682,154 @@
     </div>
   </section>
 
+  <!-- ============================================================ -->
+  <!-- SECTION 12 — ENGINEERING FLOW (from contract to crew using the app) -->
+  <!-- ============================================================ -->
+  <section data-section-id="12">
+    <div class="sec-label">
+      <span class="lang en">12 / ENGINEERING FLOW</span>
+      <span class="lang jp">12 / エンジニアリングフロー</span>
+    </div>
+    <h2 class="lang en">From <em>contract to crew</em> using the app.</h2>
+    <h2 class="lang jp">契約から、<em>クルーが実際に使うまで</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">What &ldquo;getting an eSIM business live&rdquo; actually means in practice &mdash; the four engineering phases, what a sandbox is, and the full data flow when a crew member taps &ldquo;Get data now.&rdquo;</span>
+      <span class="lang jp">eSIM ビジネスを実際に稼働させるとはどういうことか &mdash; 4つのエンジニアリングフェーズ、サンドボックスとは何か、そしてクルーが「データを取得」をタップしたときの完全なデータフロー。</span>
+    </p>
+
+    <!-- What is a sandbox -->
+    <div class="method" style="margin-bottom:24px;">
+      <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--peanut-soft);flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="1.5" stroke="#B47A48" stroke-width="1.3" fill="none"/><line x1="5" y1="6.5" x2="11" y2="6.5" stroke="#B47A48" stroke-width="1.3"/><line x1="5" y1="9.5" x2="9" y2="9.5" stroke="#B47A48" stroke-width="1.3"/></svg>
+      </div>
+      <div>
+        <h4><span class="lang en">What is a sandbox?</span><span class="lang jp">サンドボックスとは？</span></h4>
+        <p>
+          <span class="lang en">A sandbox is a <strong>test version of Samurai&apos;s API</strong> that returns fake responses. Our engineer can build the app and call all the endpoints (provision eSIM, top up, check usage, cancel) <strong>without consuming real bundles or charging real money</strong>. Test eSIMs from the sandbox don&apos;t work on a real phone, but the API &ldquo;shape&rdquo; is identical to production &mdash; so when we flip the switch to production keys, the code just works. Without sandbox access, the engineer can&apos;t build until the contract is signed &mdash; which means the 15 Aug beta date is at risk.</span>
+          <span class="lang jp">サンドボックスは <strong>Samurai API のテスト版</strong>で、ダミーのレスポンスを返す。エンジニアはアプリを構築し、すべてのエンドポイント（eSIM 発行、トップアップ、使用量確認、キャンセル）を呼び出せる &mdash; <strong>実際のバンドルを消費したり、お金を請求したりすることなく</strong>。サンドボックスのテスト eSIM は実機では動かないが、API の「形状」は本番と同一。プロダクションキーに切り替えれば、コードはそのまま動く。サンドボックスがないと、契約締結まで構築できず、8月15日のベータが危険にさらされる。</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- 4 phases -->
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">
+      <span class="lang en">The 4 engineering phases</span>
+      <span class="lang jp">4つのエンジニアリングフェーズ</span>
+    </h3>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:24px;">
+
+      <div class="method" style="grid-template-columns:32px 1fr;">
+        <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);flex-shrink:0;font-weight:700;color:#2D8C7E;font-size:13px;">1</div>
+        <div>
+          <h4 style="font-size:14px;"><span class="lang en">SETUP &mdash; now to next week</span><span class="lang jp">セットアップ &mdash; 今から来週まで</span></h4>
+          <p style="font-size:13px;">
+            <span class="lang en">Get API docs + sandbox keys from Samurai. Sign master service agreement (runs in parallel, not blocking). Production keys issued after contract.</span>
+            <span class="lang jp">Samurai から API ドキュメント + サンドボックスキーを取得。マスターサービス契約を締結（並行進行、ブロッキングしない）。契約後にプロダクションキーが発行される。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="method" style="grid-template-columns:32px 1fr;">
+        <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--peanut-soft);flex-shrink:0;font-weight:700;color:#B47A48;font-size:13px;">2</div>
+        <div>
+          <h4 style="font-size:14px;"><span class="lang en">BUILD &mdash; June&ndash;July, ~4-6 weeks</span><span class="lang jp">構築 &mdash; 6&ndash;7月、約4&ndash;6週</span></h4>
+          <p style="font-size:13px;">
+            <span class="lang en">App UI (plan picker, pool counter), Stripe payment integration, Samurai API calls (provision / top-up / usage / cancel), eSIM install flow (Apple Universal Link or QR), test everything against sandbox.</span>
+            <span class="lang jp">アプリ UI（プラン選択、プールカウンター）、Stripe 決済連携、Samurai API 呼び出し（発行/トップアップ/使用量/キャンセル）、eSIM インストールフロー（Apple Universal Link または QR）、サンドボックスで全テスト。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="method" style="grid-template-columns:32px 1fr;">
+        <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);flex-shrink:0;font-weight:700;color:#2D8C7E;font-size:13px;">3</div>
+        <div>
+          <h4 style="font-size:14px;"><span class="lang en">BETA &mdash; 15 Aug, 5 Emirates crew</span><span class="lang jp">ベータ &mdash; 8月15日、エミレーツクルー5名</span></h4>
+          <p style="font-size:13px;">
+            <span class="lang en">Switch to production API keys. 5 crew buy real plans, install real eSIMs, use real data on real layovers. Monitor failures, fix bugs, validate that Samurai&apos;s invoices reconcile with our internal records.</span>
+            <span class="lang jp">プロダクション API キーに切り替え。クルー5名が実プランを購入、実 eSIM をインストール、実際のレイオーバーで実データを使用。障害を監視、バグを修正、Samurai の請求書と社内記録の照合を検証。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="method" style="grid-template-columns:32px 1fr;">
+        <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--peanut-soft);flex-shrink:0;font-weight:700;color:#B47A48;font-size:13px;">4</div>
+        <div>
+          <h4 style="font-size:14px;"><span class="lang en">LAUNCH &mdash; 1 Sept, public</span><span class="lang jp">ローンチ &mdash; 9月1日、一般公開</span></h4>
+          <p style="font-size:13px;">
+            <span class="lang en">Open to the wider Emirates crew network via Akito. Marketing push begins. Monthly cadence on metrics, churn, refuel attach, country coverage.</span>
+            <span class="lang jp">Akito 経由でより広いエミレーツクルーネットワークに公開。マーケティングプッシュ開始。メトリクス、解約率、リフューエルアタッチ、国別カバレッジを月次で確認。</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- User flow -->
+    <h3 style="font-size:18px; font-weight:600; margin:24px 0 12px;">
+      <span class="lang en">What happens when a crew member uses the app</span>
+      <span class="lang jp">クルーがアプリを使ったときに何が起こるか</span>
+    </h3>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:24px;">
+
+      <div class="method">
+        <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#2D8C7E" stroke-width="1.3"/><path d="M5 8l2 2 4-4" stroke="#2D8C7E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4><span class="lang en">When they BUY a plan (once per month)</span><span class="lang jp">プラン購入時（月1回）</span></h4>
+          <p>
+            <span class="lang en">Crew opens Peanut → picks Premium ($18.99/mo) → pays via Apple Pay (Stripe). Our backend records: <strong>this user has 10 top-up credits this month</strong>. <em>No call to Samurai yet</em> &mdash; they haven&apos;t actually consumed any data.</span>
+            <span class="lang jp">クルーが Peanut を開き → Premium（月額 $18.99）を選択 → Apple Pay（Stripe）で支払い。バックエンドが記録：<strong>このユーザーは今月10回のトップアップクレジットを保有</strong>。<em>Samurai への呼び出しはまだない</em> &mdash; 実際にデータを消費していないため。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="method">
+        <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--peanut-soft);flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1 L10 6 H14 L10.5 9 L12 14 L8 11 L4 14 L5.5 9 L2 6 H6 Z" stroke="#B47A48" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h4><span class="lang en">When they NEED DATA (during a layover)</span><span class="lang jp">データが必要なとき（レイオーバー中）</span></h4>
+          <p>
+            <span class="lang en">Crew lands in London → opens app → taps &ldquo;Get data now.&rdquo; Our backend calls Samurai&apos;s API: &ldquo;provision 1 GB UK bundle, attach to this user&apos;s eSIM.&rdquo; Samurai returns: eSIM details (first time = QR / Universal Link) or top-up confirmation (existing eSIM = data instantly added). App shows &ldquo;Data ready.&rdquo; Crew uses ~1 GB during the layover. Bundle auto-expires after its validity window (1-2 days if we negotiate, 7 days otherwise). Our backend decrements the pool counter: <strong>10 → 9</strong>.</span>
+            <span class="lang jp">クルーがロンドンに到着 → アプリを開く → 「データを取得」をタップ。バックエンドが Samurai API を呼び出し：「英国 1GB バンドルを発行し、このユーザーの eSIM に紐付けて」。Samurai が返す：eSIM 情報（初回 = QR / Universal Link）またはトップアップ確認（既存 eSIM = データが即座に追加）。アプリが「データ準備完了」を表示。クルーがレイオーバー中に約 1GB を使用。バンドルは有効期限後に自動失効（交渉成功なら1-2日、それ以外は7日）。バックエンドがプールカウンターを減算：<strong>10 → 9</strong>。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="method">
+        <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8 a5 5 0 1 0 5-5" stroke="#2D8C7E" stroke-width="1.3" stroke-linecap="round" fill="none"/><path d="M8 1 v3 h3" stroke="#2D8C7E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <div>
+          <h4><span class="lang en">When the month resets</span><span class="lang jp">月次リセット時</span></h4>
+          <p>
+            <span class="lang en">Subscription renews automatically (Stripe charges $18.99 again) → pool refills to 10 top-up credits. Whether unused credits from the previous month carry forward is <strong>our business policy decision</strong>, not a supplier constraint.</span>
+            <span class="lang jp">サブスクリプションが自動更新（Stripe が再度 $18.99 を請求）→ プールが 10 トップアップクレジットに補充される。前月の未使用クレジットを繰り越すかは<strong>我々のビジネスポリシーの判断</strong>であり、サプライヤーの制約ではない。</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Key insight callout -->
+    <div class="method">
+      <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--peanut-soft);flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 4.5L14 6l-3.5 3 1 5L8 11.5 4.5 14l1-5L2 6l4.5-0.5L8 1z" stroke="#B47A48" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <h4><span class="lang en">Why this flow matters strategically</span><span class="lang jp">このフローが戦略的に重要な理由</span></h4>
+        <p>
+          <span class="lang en">The &ldquo;pool&rdquo; (10 GB, 25 GB, 40 GB depending on tier) is purely a counter in our database. We don&apos;t hold inventory at Samurai &mdash; every transaction is just-in-time. That means: <strong>no carryover liability, no balance-sheet aging, no bundle dormancy risk</strong>. The supplier never sees our pool model &mdash; they just see us provisioning 1 GB top-ups, one at a time. Our entire commercial structure (prepaid balance, per-order pricing, Refuel mechanic) flows from this single design choice.</span>
+          <span class="lang jp">「プール」（ティアにより 10GB / 25GB / 40GB）は当社データベース内の単なるカウンター。Samurai に在庫を保有することはない &mdash; すべての取引はジャストインタイム。これにより：<strong>繰越負債なし、貸借対照表のエイジングなし、バンドル休眠リスクなし</strong>。サプライヤーは当社のプールモデルを見ることはない &mdash; ただ 1GB ずつのトップアップを発行しているとしか見えない。当社の商業構造全体（プリペイドバランス、注文ごとの価格設定、リフューエルメカニクス）はこの設計判断から派生している。</span>
+        </p>
+      </div>
+    </div>
+
+  </section>
+
 </div>
 </div>
 
