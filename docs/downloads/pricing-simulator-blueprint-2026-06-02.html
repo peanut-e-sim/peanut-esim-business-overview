@@ -130,7 +130,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <div class="body">
     <div class="label">Status: Parked — Year-2 Reference Material</div>
     <h3>This tool is built for someone who has already negotiated. We have not.</h3>
-    <p>As of 2026-06-02, all wholesale cost scenarios in this tab are theoretical. The $1.34/GB current rate is real and verified. The $0.30/GB and $0.20/GB scenarios are estimates of what volume discounts could look like — they are NOT quoted rates. Do not use this tab to make retail pricing decisions until a supplier negotiation has produced an actual lower rate.</p>
+    <p>As of 2026-06-02, all wholesale cost scenarios in this tab are theoretical. The current blended rate is <strong>$2.26/GB</strong> (rebuilt 2026-06-02 with corrected rate sheet data — old $1.34/GB invalidated; see Decision 00C). The $0.30/GB and $0.20/GB scenarios are estimates of what volume discounts could look like — they are NOT quoted rates. Do not use this tab to make retail pricing decisions until a supplier negotiation has produced an actual lower rate.</p>
   </div>
 </div>
 
@@ -154,7 +154,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <p>Tab 4 answers a single question: <em>given any wholesale cost per GB, what retail price produces a target margin?</em> It works in three directions:</p>
 
 <ol>
-  <li><strong>Verify current margins</strong> — input $1.34/GB blended, see that $18.99 Premium produces 70% margin. This is the verification use case, and it is relevant now.</li>
+  <li><strong>Verify current margins</strong> — input $2.26/GB blended (corrected 2026-06-02), see that $18.99 Premium produces ~50% margin. This is the verification use case, and it is relevant now.</li>
   <li><strong>Set prices for a new wholesale deal</strong> — input negotiated rate, see what margin each existing price produces. Decides whether to drop prices (pass on savings) or hold prices (pocket margin improvement). Current recommendation: pocket.</li>
   <li><strong>Model "what if we charged differently"</strong> — explore hypothetical retail prices. This is the most dangerous use case — it requires both a new wholesale rate AND new retail price validation before acting.</li>
 </ol>
@@ -177,9 +177,9 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <tbody>
     <tr class="caution">
       <td><strong>A — Current</strong></td>
-      <td>$1.34/GB blended</td>
+      <td>$2.26/GB blended <em style="font-size:12px;">(rebuilt 2026-06-02 — old $1.34 invalidated)</em></td>
       <td><span class="pill locked">LIVE</span></td>
-      <td>Verified from source sheet. 75% Tier-A / 20% Tier-B / 5% Tier-C geo mix assumption.</td>
+      <td>Corrected 2026-06-02 from actual per-country 1 GB/7-day Fixed SKU rates. 75% Tier-A ($2.29) / 20% Tier-B ($1.99) / 5% Tier-C ($2.83). See Decision 00C.</td>
       <td>No trigger needed — this is today's reality.</td>
     </tr>
     <tr>
@@ -213,14 +213,14 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <li><strong>Break-even price</strong> = COGS only (covers wholesale cost, nothing else)</li>
   <li><strong>30% margin</strong> = COGS / 0.7 (viable but thin — covers some OPEX)</li>
   <li><strong>50% margin</strong> = COGS / 0.5 (healthy — sector-standard SaaS range)</li>
-  <li><strong>70% margin</strong> = COGS / 0.3 (where we are today on most tiers)</li>
+  <li><strong>70% margin</strong> = COGS / 0.3 (target after supplier negotiation — current tiers range 35%–55%)</li>
 </ul>
 
 <table>
   <thead>
     <tr>
       <th>Tier</th>
-      <th>COGS @ $1.34</th>
+      <th>COGS @ $2.26 <em style="font-size:11px;font-weight:400;">(rebuilt 2026-06-02)</em></th>
       <th>Break-even</th>
       <th>30% margin</th>
       <th>50% margin</th>
@@ -232,80 +232,80 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <tbody>
     <tr>
       <td>Economy (1 GB)</td>
-      <td>$1.34</td>
-      <td>$1.34</td>
-      <td>$1.91</td>
-      <td>$2.68</td>
-      <td>$4.47</td>
+      <td>$2.26</td>
+      <td>$2.26</td>
+      <td>$3.23</td>
+      <td>$4.52</td>
+      <td>$7.53</td>
       <td>$4.99</td>
-      <td class="green-text">73%</td>
+      <td class="gold-text">55%</td>
     </tr>
     <tr>
-      <td>Roster Bundle (~1.8 GB)</td>
-      <td>$2.41</td>
-      <td>$2.41</td>
-      <td>$3.44</td>
-      <td>$4.82</td>
-      <td>$8.03</td>
+      <td>Roster Bundle (~1 GB/flight)</td>
+      <td>$2.26</td>
+      <td>$2.26</td>
+      <td>$3.23</td>
+      <td>$4.52</td>
+      <td>$7.53</td>
       <td>$3.99/flight</td>
-      <td class="gold-text">40%</td>
+      <td class="gold-text">43%</td>
     </tr>
     <tr class="highlight">
       <td>Premium Economy (4 GB)</td>
-      <td>$5.36</td>
-      <td>$5.36</td>
-      <td>$7.66</td>
-      <td>$10.72</td>
-      <td>$17.87</td>
+      <td>$9.04</td>
+      <td>$9.04</td>
+      <td>$12.91</td>
+      <td>$18.08</td>
+      <td>$30.13</td>
       <td>$18.99</td>
-      <td class="green-text">70%</td>
+      <td class="gold-text">52%</td>
     </tr>
     <tr>
-      <td>Business (8 GB)</td>
-      <td>$10.72</td>
-      <td>$10.72</td>
-      <td>$15.31</td>
-      <td>$21.44</td>
-      <td>$35.73</td>
+      <td>Business (6.75 GB)</td>
+      <td>$15.25</td>
+      <td>$15.25</td>
+      <td>$21.79</td>
+      <td>$30.50</td>
+      <td>$50.83</td>
       <td>$29.99</td>
-      <td class="green-text">64%</td>
+      <td class="gold-text">49%</td>
     </tr>
     <tr>
-      <td>First (15 GB)</td>
-      <td>$20.10</td>
-      <td>$20.10</td>
-      <td>$28.71</td>
-      <td>$40.20</td>
-      <td>$67.00</td>
-      <td>$49.99</td>
-      <td class="gold-text">60%</td>
+      <td>First (10 GB)</td>
+      <td>$22.60</td>
+      <td>$22.60</td>
+      <td>$32.29</td>
+      <td>$45.20</td>
+      <td>$75.33</td>
+      <td>$39.99</td>
+      <td class="gold-text">43%</td>
     </tr>
     <tr class="risk">
-      <td>First Suite (25 GB)</td>
-      <td>$33.50</td>
-      <td>$33.50</td>
-      <td>$47.86</td>
-      <td>$67.00</td>
-      <td>$111.67</td>
-      <td>$69.99</td>
-      <td class="red-text">52%</td>
+      <td>First Suite (13.2 GB)</td>
+      <td>$29.83</td>
+      <td>$29.83</td>
+      <td>$42.61</td>
+      <td>$59.66</td>
+      <td>$99.43</td>
+      <td>$49.99</td>
+      <td class="red-text">40%</td>
     </tr>
     <tr>
-      <td>Cockpit (6 GB/mo)</td>
-      <td>$9.65/mo</td>
-      <td>$115.80/yr</td>
-      <td>$165.43/yr</td>
-      <td>$231.60/yr</td>
-      <td>$386.00/yr</td>
+      <td>Cockpit (7.2 GB/mo)</td>
+      <td>$16.27/mo</td>
+      <td>$195.24/yr</td>
+      <td>$278.88/yr</td>
+      <td>$390.48/yr</td>
+      <td>$651.07/yr</td>
       <td>$299/yr</td>
-      <td class="green-text">61%</td>
+      <td class="red-text">35%</td>
     </tr>
   </tbody>
 </table>
 
 <div class="discussion-block">
   <h4>First Suite is the most sensitive tier</h4>
-  <p>At $1.34/GB and 25 GB pool, First Suite COGS is $33.50 — nearly half of the $69.99 retail price. This is why First Suite shows only 52% margin at 60% consumption. For a 70% margin target, First Suite would need to retail at $111.67 — far above any competitor equivalent. The realistic path: cut the pool to 18 GB (COGS $24.12, 65% margin at current retail) or raise price to $79.99 (71% margin at 25 GB). This is a Tab 1 / Tab 3 fix, not a Tab 4 fix.</p>
+  <p>At $2.26/GB and 13.2 GB consumed, First Suite COGS is $29.83 — nearly 60% of the $49.99 retail price <em style="font-size:12px;">(rebuilt 2026-06-02 with corrected rate sheet data)</em>. This is why First Suite shows only 40% margin. For a 70% margin target, First Suite would need to retail at $99.43 — far above any competitor equivalent. The realistic path is supplier negotiation at scale (which drops COGS dramatically) or raising price to $65–70 (bringing margin to ~55%). This is a Tab 1 / Tab 3 fix, not a Tab 4 fix.</p>
 </div>
 
 <!-- WORKED EXAMPLE -->
@@ -327,11 +327,11 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <tbody>
     <tr class="caution">
       <td><strong>Today</strong></td>
-      <td>$1.34/GB</td>
-      <td>$5.36</td>
+      <td>$2.26/GB <em style="font-size:12px;">(rebuilt 2026-06-02)</em></td>
+      <td>$9.04</td>
       <td>$18.99</td>
-      <td>70%</td>
-      <td>$12.63</td>
+      <td>52%</td>
+      <td>$9.95</td>
     </tr>
     <tr class="excellent">
       <td><strong>After negotiation ($0.30)</strong></td>
@@ -352,7 +352,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   </tbody>
 </table>
 
-<p>The gain from negotiation: <strong>+$4.16/user/month</strong> (from $12.63 to $16.79). At 5,000 Premium subscribers, that is $20,800/month of pure margin improvement with zero retail price change, zero new users, zero marketing spend.</p>
+<p>The gain from negotiation: <strong>+$7.84/user/month</strong> (from $9.95 to $17.79) <em style="font-size:12px;color:#888;">(rebuilt 2026-06-02 with corrected rate sheet data)</em>. At 5,000 Premium subscribers, that is $39,200/month of pure margin improvement with zero retail price change, zero new users, zero marketing spend.</p>
 
 <!-- NEGOTIATION SAVINGS -->
 <h2 id="negotiation">5. What Negotiation Would Unlock</h2>
@@ -370,43 +370,43 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <tbody>
     <tr>
       <td>Premium Economy</td>
-      <td>+$4.16</td>
-      <td>+$4,160</td>
-      <td>+$20,800</td>
-      <td>+$416,000</td>
+      <td>+$7.84 <em style="font-size:12px;">(rebuilt 2026-06-02)</em></td>
+      <td>+$7,840</td>
+      <td>+$39,200</td>
+      <td>+$784,000</td>
     </tr>
     <tr>
       <td>Business</td>
-      <td>+$8.32</td>
-      <td>+$8,320</td>
-      <td>+$41,600</td>
-      <td>+$832,000</td>
+      <td>+$13.23 <em style="font-size:12px;">(rebuilt 2026-06-02)</em></td>
+      <td>+$13,230</td>
+      <td>+$66,150</td>
+      <td>+$1,323,000</td>
     </tr>
     <tr>
       <td>First</td>
-      <td>+$15.60</td>
-      <td>+$15,600</td>
-      <td>+$78,000</td>
-      <td>+$1,560,000</td>
+      <td>+$19.60 <em style="font-size:12px;">(rebuilt 2026-06-02)</em></td>
+      <td>+$19,600</td>
+      <td>+$98,000</td>
+      <td>+$1,960,000</td>
     </tr>
     <tr>
       <td>First Suite</td>
-      <td>+$26.00</td>
-      <td>+$26,000</td>
-      <td>+$130,000</td>
-      <td>+$2,600,000</td>
+      <td>+$25.87 <em style="font-size:12px;">(rebuilt 2026-06-02)</em></td>
+      <td>+$25,870</td>
+      <td>+$129,350</td>
+      <td>+$2,587,000</td>
     </tr>
     <tr class="highlight">
       <td><strong>Blended (all tiers, realistic mix)</strong></td>
-      <td>~+$5.56</td>
-      <td>~+$5,560</td>
-      <td>~+$27,800</td>
-      <td>~+$556,000</td>
+      <td>~+$8.80 <em style="font-size:12px;">(rebuilt 2026-06-02)</em></td>
+      <td>~+$8,800</td>
+      <td>~+$44,000</td>
+      <td>~+$880,000</td>
     </tr>
   </tbody>
 </table>
 
-<p>The blended estimate uses the Tab 14 verified tier mix: 50% Economy (small pool, less impacted), 18% Roster Bundle, 13% Premium, 8% Business, 3% First, 2% Suite, 3% Cockpit. The per-user blended saving of ~$5.56/month is conservative because it weights Economy heavily.</p>
+<p>The blended estimate uses the Tab 14 verified tier mix: 50% Economy (small pool, less impacted), 18% Roster Bundle, 13% Premium, 8% Business, 3% First, 2% Suite, 3% Cockpit. The per-user blended saving of ~$8.80/month <em style="font-size:13px;color:#888;">(rebuilt 2026-06-02)</em> is meaningful because corrected costs make negotiation even more impactful.</p>
 
 <!-- KEY INSIGHT -->
 <h2 id="insight">6. The Key Insight</h2>
@@ -414,7 +414,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <div class="big-insight">
   <div class="label">Single most important takeaway</div>
   <div class="headline">Pricing is not the lever. Supplier negotiation is.</div>
-  <p>Our current 70% gross margins are already strong. The next 23 percentage points of margin improvement do not come from a UI pricing change, a promotion, or a product decision. They come from a single supplier conversation that requires ~5,000 users and a credible alternative in hand. This is why Tab 15 (Procurement Options) is more operationally urgent than Tab 4.</p>
+  <p>Our current margins (35%–55% across tiers, rebuilt 2026-06-02) are serviceable but thinner than previously modeled. The path to 70%+ gross margins does not come from a UI pricing change, a promotion, or a product decision. It comes from a single supplier conversation that requires ~5,000 users and a credible alternative in hand. This is why Tab 15 (Procurement Options) is more operationally urgent than Tab 4.</p>
 </div>
 
 <h3>What this means for retail pricing today</h3>
@@ -428,7 +428,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 
 <div class="fix-box">
   <strong>Correct approach: hold retail, grow word-of-mouth, negotiate later</strong>
-  <p>Keep $18.99 Premium, $29.99 Business. Every user acquired at current prices has the full 70% margin. Once volume reaches ~5K and we negotiate, the same users are now producing 93% margin. The improvement is automatic, retroactive, and permanent.</p>
+  <p>Keep $18.99 Premium, $29.99 Business. Every user acquired at current prices has ~50% margin. Once volume reaches ~5K and we negotiate ($0.30/GB target), the same users are now producing 93% margin. The improvement is automatic, retroactive, and permanent.</p>
 </div>
 
 <!-- WHEN IT BECOMES ACTIVE -->
@@ -496,7 +496,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 
 <div class="footer-note">
   Peanut eSIM · Tab 4 Pricing Simulator Blueprint · 2026-06-02<br>
-  Numbers use $1.34/GB verified from source model. $0.30 and $0.20 scenarios are directional estimates, not supplier quotes. Blueprint is companion to the Tab 4 Visualizer.
+  Numbers use $2.26/GB blended cost (rebuilt 2026-06-02 with corrected rate sheet data — old $1.34/GB invalidated). $0.30 and $0.20 scenarios are directional estimates, not supplier quotes. Blueprint is companion to the Tab 4 Visualizer.
 </div>
 
 </div><!-- /container -->

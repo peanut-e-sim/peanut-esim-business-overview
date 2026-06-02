@@ -235,7 +235,7 @@
 <section>
   <h2 class="section-title"><span class="num">2</span>Worked example — one Premium Economy user named Yuki</h2>
   <p class="section-sub">
-    Same user, same plan ($18.99/month Premium Economy, 4 GB consumed at $1.34/GB base).
+    Same user, same plan ($18.99/month Premium Economy, 4 GB consumed at $2.26/GB base — corrected 2026-06-02).
     What changes is how much we pay our supplier for those 4 GB.
   </p>
 
@@ -286,12 +286,12 @@
       <tbody>
         <tr><td>Yuki pays Peanut</td><td class="num">$18.99</td><td class="num">$18.99</td><td class="num">$18.99</td></tr>
         <tr><td>GB consumed by Yuki</td><td class="num">4 GB</td><td class="num">4 GB</td><td class="num">4 GB</td></tr>
-        <tr><td>Supplier cost per GB</td><td class="num">$1.34</td><td class="num">$1.21 (−10%)</td><td class="num">$0.80 (−40%)</td></tr>
-        <tr><td>eSIM data COGS (4 GB)</td><td class="num">$5.36</td><td class="num">$4.82</td><td class="num">$3.22</td></tr>
-        <tr><td>Breakage cost (15% of 6 GB unused pool inventory)</td><td class="num">$0.00</td><td class="num">+$1.09</td><td class="num">$0.00</td></tr>
+        <tr><td>Supplier cost per GB</td><td class="num">$2.26</td><td class="num">$2.03 (−10%)</td><td class="num">$1.36 (−40%)</td></tr>
+        <tr><td>eSIM data COGS (4 GB)</td><td class="num">$9.04</td><td class="num">$8.12</td><td class="num">$5.44</td></tr>
+        <tr><td>Breakage cost (15% of 6 GB unused pool inventory)</td><td class="num">$0.00</td><td class="num">+$1.83</td><td class="num">$0.00</td></tr>
         <tr><td>Platform fee per user (~1K users)</td><td class="num">$0.00</td><td class="num">$0.00</td><td class="num">+$5.00 ($5K ÷ 1K users)</td></tr>
-        <tr class="winner"><td><strong>Net profit on Yuki</strong></td><td class="num"><strong>$13.63</strong></td><td class="num"><strong>$13.08</strong></td><td class="num"><strong>$10.77</strong></td></tr>
-        <tr><td>Gross margin</td><td class="num">71.8%</td><td class="num">68.9%</td><td class="num">56.7%</td></tr>
+        <tr class="winner"><td><strong>Net profit on Yuki</strong></td><td class="num"><strong>$8.15</strong></td><td class="num"><strong>$7.24</strong></td><td class="num"><strong>$6.75</strong></td></tr>
+        <tr><td>Gross margin</td><td class="num">52.4%</td><td class="num">47.8%</td><td class="num">45.0%</td></tr>
       </tbody>
     </table>
 
@@ -305,15 +305,15 @@
 <section>
   <h2 class="section-title"><span class="num">3</span>The crossover: when Option C starts winning</h2>
   <p class="section-sub">
-    Option C saves <strong>$2.90/user blended across all tiers</strong> vs Option A on data COGS (this is the average savings across the full user base, not Yuki-specific — Yuki on Premium alone saves $2.14 since she only uses 4 GB).
+    Option C saves <strong>$4.86/user blended across all tiers</strong> vs Option A on data COGS (rebuilt 2026-06-02 with corrected rate sheet; old $2.90 at invalidated $1.34/GB). Yuki on Premium saves $3.60 (4 GB × $0.90 saving).
     But Option C costs $5,000/month no matter how many users you have.
-    The blended break-even is 1,724 users.
+    The corrected blended break-even is <strong>~1,029 users</strong> (was 1,724 at old rates).
   </p>
 
   <div class="two-col">
     <div class="chart-card">
       <h3>Option A vs C net profit per month</h3>
-      <p class="sub">As user count grows, Option C's fixed $5K platform fee shrinks per user. It wins above 1,724 users.</p>
+      <p class="sub">As user count grows, Option C's fixed $5K platform fee shrinks per user. It wins above ~1,029 users (corrected from 1,724 — rebuilt 2026-06-02).</p>
       <div class="chart-wrap"><canvas id="crossoverChart"></canvas></div>
     </div>
     <div class="chart-card">
@@ -324,12 +324,13 @@
   </div>
 
   <div class="callout-big">
-    <div class="small">The crossover point</div>
-    <div class="big-num"><span>1,724</span> users</div>
+    <div class="small">The crossover point (rebuilt 2026-06-02)</div>
+    <div class="big-num"><span>~1,029</span> users</div>
     <div class="ctx">
       Below this number, Option A (pay-per-order) is better than Option C (direct wholesale).
       Above this number, the $5K/mo platform fee is sufficiently diluted and Option C wins.
-      The math: $5,000 fixed cost / $2.90 per-user saving = 1,724 users to break even.
+      The math: $5,000 fixed cost / $4.86 per-user saving = ~1,029 users to break even.
+      (Old crossover 1,724 used invalidated $1.34/GB rate — corrected 2026-06-02.)
     </div>
   </div>
 </section>
@@ -373,7 +374,7 @@
       <!-- Phase 4 -->
       <rect x="640" y="30" width="70" height="100" rx="10" fill="#D71921"/>
       <text x="675" y="70" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#fff">SWITCH</text>
-      <text x="675" y="86" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#ffc0c0">if &gt;1,724</text>
+      <text x="675" y="86" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#ffc0c0">if &gt;1,029</text>
       <text x="675" y="102" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#ffc0c0">users</text>
       <defs>
         <marker id="a1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
@@ -390,23 +391,23 @@
   <div class="micro-grid">
     <div class="micro">
       <div class="label">Current COGS/GB</div>
-      <div class="val">$1.34</div>
-      <div class="ctx">Blended (75/20/5 mix)</div>
+      <div class="val">$2.26</div>
+      <div class="ctx">Blended (75/20/5 mix) — corrected 2026-06-02</div>
     </div>
     <div class="micro">
       <div class="label">B saves per GB</div>
-      <div class="val">$0.13</div>
+      <div class="val">$0.23</div>
       <div class="ctx">~10% off list rate</div>
     </div>
     <div class="micro">
       <div class="label">C saves per GB</div>
-      <div class="val">$0.54</div>
+      <div class="val">$0.90</div>
       <div class="ctx">~40% off — est. only</div>
     </div>
     <div class="micro">
       <div class="label">Crossover (C vs A)</div>
-      <div class="val">1,724</div>
-      <div class="ctx">users where C wins</div>
+      <div class="val">~1,029</div>
+      <div class="ctx">users where C wins (corrected)</div>
     </div>
     <div class="micro">
       <div class="label">C platform fee</div>
@@ -424,11 +425,11 @@
 <!-- Section 5: Chart at scale -->
 <section>
   <h2 class="section-title"><span class="num">5</span>Net profit comparison at 1K and 5K users</h2>
-  <p class="section-sub">Using blended ARPU $17.52/user. Blended COGS per user = $7.24 (Option A, $1.34/GB × 5.4 GB avg consumption), $6.52 (Option B, $1.21/GB × 5.4 GB), $4.34 (Option C, $0.80/GB × 5.4 GB). Fixed $11K opex placeholder. Breakage in Option B applies to unused pool inventory (~6 GB unused × $1.21 × 15% = $1.09/user).</p>
+  <p class="section-sub">Using blended ARPU $17.52/user. Blended COGS per user (rebuilt 2026-06-02 with corrected rate sheet): $12.20 (Option A, $2.26/GB × 5.4 GB avg consumption), $10.97 (Option B, $2.03/GB × 5.4 GB), $7.34 (Option C, $1.36/GB × 5.4 GB). Fixed $11K opex placeholder. Breakage in Option B applies to unused pool inventory (~6 GB unused × $2.03 × 15% = $1.83/user).</p>
 
   <div class="chart-card">
     <h3>Monthly net profit by procurement option</h3>
-    <p class="sub">At 1K users Option A and B are close. At 5K users Option C pulls ahead by ~$15K/mo if platform fee is still $5K.</p>
+    <p class="sub">At 1K users Option A and B are close. At 5K users Option C pulls ahead by ~$19K/mo if platform fee is still $5K (rebuilt 2026-06-02).</p>
     <div class="chart-wrap"><canvas id="scaleChart"></canvas></div>
   </div>
 </section>
@@ -441,8 +442,8 @@
 // Crossover chart: Options A vs C as users grow
 const usersArr = [200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2500, 3000, 4000, 5000];
 const blendedARPU = 17.52;
-const blendedCOGSperUserA = 7.24;
-const blendedCOGSperUserC_data = 4.34;
+const blendedCOGSperUserA = 12.20; // $2.26/GB × 5.4 GB — rebuilt 2026-06-02 with corrected rate sheet
+const blendedCOGSperUserC_data = 7.34; // $1.36/GB × 5.4 GB (−40% est.)
 const platformFeeC = 5000;
 const opexPerUser = 1.80;
 
@@ -472,36 +473,37 @@ new Chart(document.getElementById('crossoverChart'), {
   }
 });
 
-// COGS comparison bar chart
+// COGS comparison bar chart — rebuilt 2026-06-02 with corrected rate sheet
 new Chart(document.getElementById('cogsChart'), {
   type: 'bar',
   data: {
     labels: ['Option A\n(pay-per-order)', 'Option B\n(bulk −10%)', 'Option C\n(direct −40%)'],
     datasets: [
-      { label: 'COGS per GB (estimate)', data: [1.34, 1.21, 0.80], backgroundColor: ['#1A1A1A', '#2D7A4F', '#C9A03B'] }
+      { label: 'COGS per GB (estimate)', data: [2.26, 2.03, 1.36], backgroundColor: ['#1A1A1A', '#2D7A4F', '#C9A03B'] }
     ]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false }, datalabels: { display: false },
       tooltip: { callbacks: { label: ctx => ' $' + ctx.parsed.y.toFixed(2) + '/GB' } } },
-    scales: { y: { title: { display: true, text: '$/GB' }, min: 0, max: 1.6 } }
+    scales: { y: { title: { display: true, text: '$/GB' }, min: 0, max: 2.8 } }
   }
 });
 
-// Scale chart: 3 options at 1K and 5K users
+// Scale chart: 3 options at 1K and 5K users — rebuilt 2026-06-02 with corrected rate sheet
 // Breakage model (Option B): 15% of UNUSED pool inventory, not 15% of total COGS.
-// Premium baseline = 10 GB pool, ~4 GB consumed blended ≈ 6 GB unused × $1.21 = $7.26 × 15% = $1.09/user.
-const breakagePerUserB = 1.09; // $/user/mo at Option B
+// Premium baseline = 10 GB pool, ~4 GB consumed blended ≈ 6 GB unused × $2.03 = $12.18 × 15% = $1.83/user.
+const blendedCOGSperUserB = 10.97; // $2.03/GB × 5.4 GB
+const breakagePerUserB = 1.83; // $/user/mo at Option B (6 GB × $2.03 × 15%)
 
 const arr1k = [
   ((blendedARPU - blendedCOGSperUserA - opexPerUser) * 1000),
-  ((blendedARPU - 1.21 * (blendedCOGSperUserA / 1.34) - opexPerUser) * 1000 - 1000 * breakagePerUserB),
+  ((blendedARPU - blendedCOGSperUserB - opexPerUser) * 1000 - 1000 * breakagePerUserB),
   ((blendedARPU - blendedCOGSperUserC_data - opexPerUser) * 1000 - platformFeeC)
 ];
 const arr5k = [
   ((blendedARPU - blendedCOGSperUserA - opexPerUser) * 5000),
-  ((blendedARPU - 1.21 * (blendedCOGSperUserA / 1.34) - opexPerUser) * 5000 - 5000 * breakagePerUserB),
+  ((blendedARPU - blendedCOGSperUserB - opexPerUser) * 5000 - 5000 * breakagePerUserB),
   ((blendedARPU - blendedCOGSperUserC_data - opexPerUser) * 5000 - platformFeeC)
 ];
 new Chart(document.getElementById('scaleChart'), {

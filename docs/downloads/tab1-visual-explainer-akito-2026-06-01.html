@@ -256,19 +256,17 @@
   <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit?gid=1965814368" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:white;color:#C9A03B;border:1px solid #C9A03B;">Google Sheet &#x2197;</a>
 </nav>
 
-<div style="background:#D71921;color:#fff;padding:18px 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.5;border-bottom:3px solid #8a0e14;">
+<div style="background:#1A8A5A;color:#fff;padding:18px 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.5;border-bottom:3px solid #115a3c;">
   <div style="max-width:1100px;margin:0 auto;">
-    <div style="font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;opacity:.95;margin-bottom:6px;">&#x25B4; Cost-per-GB assumption under review &mdash; margins on this page are provisional</div>
+    <div style="font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;opacity:.95;margin-bottom:6px;">&#x25B4; Cost-per-GB assumption corrected 2026-06-02 &mdash; model rebuilt with verified per-country rates</div>
     <div style="font-size:15px;font-weight:600;">
-      The original $1.34/GB blended cost has been <em>invalidated</em> &mdash; traced 2026-06-02 to the wrong supplier SKU (Europe-only regional bundle, not the per-country 1GB/7-day Fixed bundles this business actually buys).
+      Previous blended cost ($1.34/GB) was sourced from the wrong supplier SKU (Europe-only regional bundle). The corrected number, computed from per-country 1GB/7-day Fixed SKU rates on the eSIM Go rate sheet weighted by the existing 75/20/5 country mix, is <strong style="background:rgba(255,255,255,.22);padding:2px 8px;border-radius:4px;">$2.26/GB</strong>.
     </div>
     <div style="font-size:14px;margin-top:8px;opacity:.95;">
-      Corrected blended range: <strong style="background:rgba(255,255,255,.18);padding:2px 8px;border-radius:4px;">$0.50 &ndash; $3.56/GB</strong>
-      depending on wholesale-supplier negotiation outcome (1-day or 2-day SKU at proportional pricing &mdash; pending meeting).
-      <strong>Do not cite specific margin percentages from this visualizer externally until the model is rebuilt with the post-meeting number.</strong>
+      Scenario range: <strong>$0.32/GB</strong> (if supplier agrees to 1-2 day SKU at proportional pricing &mdash; Q2.8 ask) up to <strong>$2.37/GB</strong> (pessimistic geo-mix shift). Tier margins on this page reflect the corrected base case at $2.26/GB.
     </div>
     <div style="font-size:12px;margin-top:8px;opacity:.85;">
-      Full model overhaul scheduled after the supplier meeting + crew geo-mix survey land. See Open Discussion on main site for details.
+      Geo-mix (75/20/5 across Akito's country buckets) still pending crew survey validation. See Decision 00C on main site for full scenario detail.
     </div>
   </div>
 </div>
@@ -476,7 +474,7 @@
   <h2 class="section-title"><span class="num">3</span>Where the world costs us money</h2>
   <p class="section-sub">
     Our supplier charges us by country. We currently assume 75% of crew layover-time lands in cheap countries.
-    The blended cost across all destinations works out to <strong>$1.34/GB</strong>.
+    The blended cost across all destinations works out to <strong>$2.26/GB</strong> (rebuilt 2026-06-02 with corrected rate sheet).
     <em>Read the "where the 75% comes from" box below — this is a placeholder pending real roster data.</em>
   </p>
 
@@ -490,21 +488,21 @@
       <h3>Cost per GB by region</h3>
       <p class="sub">Real wholesale supplier rates we pay.</p>
       <div class="geo-list" style="margin-top:8px;">
-        <div class="row"><span><span class="dot" style="background:#1a8a5a;"></span><strong>Tier-A · cheap</strong> · 75% of trips</span><span><strong>$0.85/GB</strong></span></div>
+        <div class="row"><span><span class="dot" style="background:#1a8a5a;"></span><strong>Tier-A · cheap</strong> · 75% of trips</span><span><strong>$2.29/GB</strong></span></div>
         <div class="row" style="font-size:12px; color:#666; padding-top:4px;"><span style="padding-left:18px;">JP · UK · SG · MY · HK · KR · US</span><span></span></div>
-        <div class="row"><span><span class="dot" style="background:var(--gold);"></span><strong>Tier-B · medium</strong> · 20% of trips</span><span><strong>$1.40/GB</strong></span></div>
+        <div class="row"><span><span class="dot" style="background:var(--gold);"></span><strong>Tier-B · medium</strong> · 20% of trips</span><span><strong>$1.99/GB</strong></span></div>
         <div class="row" style="font-size:12px; color:#666; padding-top:4px;"><span style="padding-left:18px;">CA · AU · NZ · VN · UAE</span><span></span></div>
-        <div class="row"><span><span class="dot" style="background:var(--red);"></span><strong>Tier-C · expensive</strong> · 5% of trips</span><span><strong>$8.50/GB</strong></span></div>
+        <div class="row"><span><span class="dot" style="background:var(--red);"></span><strong>Tier-C · expensive</strong> · 5% of trips</span><span><strong>$2.83/GB</strong></span></div>
         <div class="row" style="font-size:12px; color:#666; padding-top:4px;"><span style="padding-left:18px;">IN · BR · SA · ZA</span><span></span></div>
-        <div class="row" style="margin-top:10px; border-top:2px solid var(--ink); padding-top:10px;"><span><strong>Blended cost</strong></span><span><strong style="color:var(--red);">$1.34 / GB</strong></span></div>
+        <div class="row" style="margin-top:10px; border-top:2px solid var(--ink); padding-top:10px;"><span><strong>Blended cost</strong></span><span><strong style="color:var(--red);">$2.26 / GB</strong></span></div>
       </div>
     </div>
   </div>
 
-  <!-- HOW $1.34/GB IS CALCULATED — worked example -->
+  <!-- HOW $2.26/GB IS CALCULATED — worked example -->
   <details style="margin-top: 24px; border-radius: 6px; overflow: hidden;">
     <summary style="cursor: pointer; padding: 14px 20px; background: #1A1A1A; color: #C9A03B; font-size: 14px; font-weight: 700; letter-spacing: .05em; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none;">
-      <span>How $1.34/GB is calculated (click to expand)</span>
+      <span>How $2.26/GB is calculated (click to expand)</span>
       <span style="font-size: 12px; color: #888; font-weight: 500;">&#9660;</span>
     </summary>
   <div style="padding: 20px; background: #1A1A1A; color: white;">
@@ -528,40 +526,40 @@
           <td style="padding: 10px 12px; color: #E5DDD0;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1a8a5a;margin-right:8px;"></span><strong style="color:white;">Tier-A (Asia, Africa)</strong> · cheap</td>
           <td style="padding: 10px 12px; text-align: center; color: white;">75 GB</td>
           <td style="padding: 10px 12px; text-align: center; color: #888;">×</td>
-          <td style="padding: 10px 12px; text-align: center; color: white;">$0.85</td>
-          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: white;">$63.75</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">$2.29</td>
+          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: white;">$171.75</td>
         </tr>
         <tr style="background: #1F1F1F;">
           <td style="padding: 10px 12px; color: #E5DDD0;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C9A03B;margin-right:8px;"></span><strong style="color:white;">Tier-B (Europe, AU/NZ)</strong> · medium</td>
           <td style="padding: 10px 12px; text-align: center; color: white;">20 GB</td>
           <td style="padding: 10px 12px; text-align: center; color: #888;">×</td>
-          <td style="padding: 10px 12px; text-align: center; color: white;">$1.40</td>
-          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: white;">$28.00</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">$1.99</td>
+          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: white;">$39.80</td>
         </tr>
         <tr>
           <td style="padding: 10px 12px; color: #E5DDD0;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#D71921;margin-right:8px;"></span><strong style="color:white;">Tier-C (USA, Cruise, S. America)</strong> · expensive</td>
           <td style="padding: 10px 12px; text-align: center; color: white;">5 GB</td>
           <td style="padding: 10px 12px; text-align: center; color: #888;">×</td>
-          <td style="padding: 10px 12px; text-align: center; color: white;">$8.50</td>
-          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: #FFC107;">$42.50</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">$2.83</td>
+          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: #FFC107;">$14.15</td>
         </tr>
         <tr style="background: #2D7A4F;">
           <td style="padding: 12px; color: white; font-weight: 700;">Total cost for 100 GB</td>
           <td style="padding: 12px; text-align: center; color: white; font-weight: 700;">100 GB</td>
           <td style="padding: 12px;"></td>
           <td style="padding: 12px; text-align: center; color: white; font-weight: 700;">avg</td>
-          <td style="padding: 12px; text-align: right; color: white; font-weight: 700; font-size: 16px;">$134.25</td>
+          <td style="padding: 12px; text-align: right; color: white; font-weight: 700; font-size: 16px;">$225.70</td>
         </tr>
         <tr style="background: #2D7A4F;">
-          <td colspan="4" style="padding: 8px 12px; color: white; font-weight: 700;">Per-GB blended cost = $134.25 ÷ 100 GB</td>
-          <td style="padding: 8px 12px; text-align: right; color: white; font-weight: 700; font-size: 18px;">$1.34 / GB</td>
+          <td colspan="4" style="padding: 8px 12px; color: white; font-weight: 700;">Per-GB blended cost = $225.70 ÷ 100 GB</td>
+          <td style="padding: 8px 12px; text-align: right; color: white; font-weight: 700; font-size: 18px;">$2.26 / GB</td>
         </tr>
       </tbody>
     </table>
 
     <p style="font-size: 13px; color: #888; margin: 0 0 14px; line-height: 1.55;">
       <strong style="color: white;">The Tier-C trap:</strong> only 5 GB lands in Tier-C, but it costs us $42.50 — a third of our total bill.
-      A small shift in mix (5% → 10% Tier-C) jumps blended cost from $1.34 → $1.77/GB (+32%). That's why we keep harping on the geo mix assumption.
+      A small shift in mix (5% → 10% Tier-C) jumps blended cost from $2.26 → $2.44/GB (+8%). That's why we keep harping on the geo mix assumption.
     </p>
 
     <!-- Aiko worked example -->
@@ -572,14 +570,14 @@
         Aiko's data lands across the same 75/20/5 mix. So her 4 GB breaks down:
       </p>
       <ul style="font-size: 13px; color: #E5DDD0; padding-left: 20px; margin: 0; line-height: 1.7;">
-        <li>3.0 GB in Tier-A (Bangkok, Mumbai layovers) × $0.85 = <strong style="color:white;">$2.55</strong></li>
-        <li>0.8 GB in Tier-B (Paris stopover) × $1.40 = <strong style="color:white;">$1.12</strong></li>
-        <li>0.2 GB in Tier-C (NYC layover) × $8.50 = <strong style="color:#FFC107;">$1.70</strong></li>
-        <li style="list-style: none; margin-top: 6px; padding-top: 6px; border-top: 1px solid #444;"><strong style="color:#4CD964;">Total supplier cost for Aiko: $5.37</strong></li>
+        <li>3.0 GB in Tier-A (Bangkok, Mumbai layovers) × $2.29 = <strong style="color:white;">$6.87</strong></li>
+        <li>0.8 GB in Tier-B (Paris stopover) × $1.99 = <strong style="color:white;">$1.59</strong></li>
+        <li>0.2 GB in Tier-C (NYC layover) × $2.83 = <strong style="color:#FFC107;">$0.57</strong></li>
+        <li style="list-style: none; margin-top: 6px; padding-top: 6px; border-top: 1px solid #444;"><strong style="color:#4CD964;">Total supplier cost for Aiko: $9.03</strong></li>
       </ul>
       <p style="font-size: 12.5px; color: #888; margin: 12px 0 0; line-height: 1.55;">
-        Aiko pays Peanut $18.99 → we keep ~$12.62 gross. Her single NYC layover (0.2 GB) cost us more than her entire 3 GB in Bangkok combined.
-        <strong style="color:white;">That's the Tier-C lesson in one user.</strong>
+        Aiko pays Peanut $18.99 → we keep ~$9.96 gross (52% margin). At corrected rates, Tier-C is no longer a spike — the tiers converge. Margin pressure now comes from high-consumption tiers, not exotic destinations.
+        <strong style="color:white;">That's the corrected-rate lesson in one user.</strong>
       </p>
     </div>
   </div>
@@ -619,7 +617,7 @@
       <div style="margin-bottom:10px;">
         <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:3px;">
           <strong>Optimistic</strong> <span style="color:#888;font-size:11.5px;">75 / 20 / 5</span>
-          <strong style="color:#2D7A4F;font-size:15px;">$1.34</strong>
+          <strong style="color:#2D7A4F;font-size:15px;">$2.26</strong>
         </div>
         <div style="height:10px;background:#EFE5D0;border-radius:5px;overflow:hidden;">
           <div style="width:35%;height:100%;background:#2D7A4F;"></div>
@@ -630,7 +628,7 @@
       <div style="margin-bottom:10px;">
         <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:3px;">
           <strong>Realistic</strong> <span style="color:#888;font-size:11.5px;">40 / 40 / 20 (layover-weighted)</span>
-          <strong style="color:#C9A03B;font-size:15px;">$2.60</strong>
+          <strong style="color:#C9A03B;font-size:15px;">$2.28</strong>
         </div>
         <div style="height:10px;background:#EFE5D0;border-radius:5px;overflow:hidden;">
           <div style="width:68%;height:100%;background:#C9A03B;"></div>
@@ -641,7 +639,7 @@
       <div>
         <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:3px;">
           <strong>Pessimistic</strong> <span style="color:#888;font-size:11.5px;">30 / 35 / 35</span>
-          <strong style="color:#D71921;font-size:15px;">$3.84</strong>
+          <strong style="color:#D71921;font-size:15px;">$2.37</strong>
         </div>
         <div style="height:10px;background:#EFE5D0;border-radius:5px;overflow:hidden;">
           <div style="width:100%;height:100%;background:#D71921;"></div>
@@ -677,8 +675,8 @@
       <p class="sub">Weight each tier price by its share → blended ARPU.</p>
       <div class="micro-grid" style="margin-top:0;">
         <div class="micro"><div class="label">Blended ARPU</div><div class="val">$13.21</div><div class="ctx">per user / month</div></div>
-        <div class="micro"><div class="label">Blended COGS</div><div class="val">$5.10</div><div class="ctx">supplier @ $1.34/GB</div></div>
-        <div class="micro"><div class="label">Gross margin</div><div class="val" style="color:var(--red);">61%</div><div class="ctx">before OPEX</div></div>
+        <div class="micro"><div class="label">Blended COGS</div><div class="val">$8.20</div><div class="ctx">supplier @ $2.26/GB</div></div>
+        <div class="micro"><div class="label">Gross margin</div><div class="val" style="color:var(--red);">38%</div><div class="ctx">before OPEX</div></div>
         <div class="micro"><div class="label">Refuel attach</div><div class="val">30%</div><div class="ctx">of subscriber-months</div></div>
       </div>
     </div>
@@ -687,32 +685,32 @@
   <!-- ALWAYS-VISIBLE COGS BREAKDOWN -->
   <div style="margin-top: 18px; padding: 16px 20px; background: white; border: 1px solid #E5DDD0; border-radius: 6px;">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
-      <span style="background:#1A1A1A;color:white;font-size:10px;font-weight:700;letter-spacing:.08em;padding:4px 10px;border-radius:12px;">BLENDED COGS $5.10</span>
+      <span style="background:#1A1A1A;color:white;font-size:10px;font-weight:700;letter-spacing:.08em;padding:4px 10px;border-radius:12px;">BLENDED COGS $8.20</span>
       <strong style="font-size:14px;">Picture one random user. They could be any tier.</strong>
     </div>
-    <p style="font-size:13px;color:#555;line-height:1.55;margin:0 0 12px;">They're 50% likely to be Economy, 18% Roster, 13% Premium, etc. Each tier consumes a different amount of data. Weight each tier's GB × $1.34/GB by its share of users:</p>
+    <p style="font-size:13px;color:#555;line-height:1.55;margin:0 0 12px;">They're 50% likely to be Economy, 18% Roster, 13% Premium, etc. Each tier consumes a different amount of data. Weight each tier's GB × $2.26/GB by its share of users (rebuilt 2026-06-02 with corrected rate sheet):</p>
     <table style="width:100%;border-collapse:collapse;font-size:13px;background:#FCFAF5;border-radius:4px;overflow:hidden;">
       <thead>
         <tr style="background:#1A1A1A;color:white;">
           <th style="padding:8px 10px;text-align:left;">Tier</th>
           <th style="padding:8px 10px;text-align:center;">% of users</th>
           <th style="padding:8px 10px;text-align:center;">GB/mo</th>
-          <th style="padding:8px 10px;text-align:right;">At $1.34/GB</th>
+          <th style="padding:8px 10px;text-align:right;">At $2.26/GB</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td style="padding:6px 10px;">Economy</td><td style="padding:6px 10px;text-align:center;">50%</td><td style="padding:6px 10px;text-align:center;">2.5</td><td style="padding:6px 10px;text-align:right;">$3.35</td></tr>
-        <tr style="background:white;"><td style="padding:6px 10px;">Roster Bundle</td><td style="padding:6px 10px;text-align:center;">18%</td><td style="padding:6px 10px;text-align:center;">5.0</td><td style="padding:6px 10px;text-align:right;">$6.70</td></tr>
-        <tr><td style="padding:6px 10px;">Premium</td><td style="padding:6px 10px;text-align:center;">13%</td><td style="padding:6px 10px;text-align:center;">4.0</td><td style="padding:6px 10px;text-align:right;">$5.36</td></tr>
-        <tr style="background:white;"><td style="padding:6px 10px;">Business</td><td style="padding:6px 10px;text-align:center;">8%</td><td style="padding:6px 10px;text-align:center;">6.75</td><td style="padding:6px 10px;text-align:right;">$9.05</td></tr>
-        <tr><td style="padding:6px 10px;">First</td><td style="padding:6px 10px;text-align:center;">3%</td><td style="padding:6px 10px;text-align:center;">10.0</td><td style="padding:6px 10px;text-align:right;">$13.40</td></tr>
-        <tr style="background:white;"><td style="padding:6px 10px;">First Suite</td><td style="padding:6px 10px;text-align:center;">2%</td><td style="padding:6px 10px;text-align:center;">13.2</td><td style="padding:6px 10px;text-align:right;">$17.69</td></tr>
-        <tr><td style="padding:6px 10px;">Cockpit</td><td style="padding:6px 10px;text-align:center;">3%</td><td style="padding:6px 10px;text-align:center;">7.2</td><td style="padding:6px 10px;text-align:right;">$9.65</td></tr>
-        <tr style="background:#2D7A4F;color:white;"><td style="padding:8px 10px;font-weight:700;" colspan="3">Weighted average (each tier × its %)</td><td style="padding:8px 10px;text-align:right;font-weight:700;font-size:15px;">~$5.10</td></tr>
+        <tr><td style="padding:6px 10px;">Economy</td><td style="padding:6px 10px;text-align:center;">50%</td><td style="padding:6px 10px;text-align:center;">2.5</td><td style="padding:6px 10px;text-align:right;">$5.65</td></tr>
+        <tr style="background:white;"><td style="padding:6px 10px;">Roster Bundle</td><td style="padding:6px 10px;text-align:center;">18%</td><td style="padding:6px 10px;text-align:center;">5.0</td><td style="padding:6px 10px;text-align:right;">$11.30</td></tr>
+        <tr><td style="padding:6px 10px;">Premium</td><td style="padding:6px 10px;text-align:center;">13%</td><td style="padding:6px 10px;text-align:center;">4.0</td><td style="padding:6px 10px;text-align:right;">$9.04</td></tr>
+        <tr style="background:white;"><td style="padding:6px 10px;">Business</td><td style="padding:6px 10px;text-align:center;">8%</td><td style="padding:6px 10px;text-align:center;">6.75</td><td style="padding:6px 10px;text-align:right;">$15.26</td></tr>
+        <tr><td style="padding:6px 10px;">First</td><td style="padding:6px 10px;text-align:center;">3%</td><td style="padding:6px 10px;text-align:center;">10.0</td><td style="padding:6px 10px;text-align:right;">$22.60</td></tr>
+        <tr style="background:white;"><td style="padding:6px 10px;">First Suite</td><td style="padding:6px 10px;text-align:center;">2%</td><td style="padding:6px 10px;text-align:center;">13.2</td><td style="padding:6px 10px;text-align:right;">$29.83</td></tr>
+        <tr><td style="padding:6px 10px;">Cockpit</td><td style="padding:6px 10px;text-align:center;">3%</td><td style="padding:6px 10px;text-align:center;">7.2</td><td style="padding:6px 10px;text-align:right;">$16.27</td></tr>
+        <tr style="background:#2D7A4F;color:white;"><td style="padding:8px 10px;font-weight:700;" colspan="3">Weighted average (each tier × its %)</td><td style="padding:8px 10px;text-align:right;font-weight:700;font-size:15px;">~$8.20</td></tr>
       </tbody>
     </table>
     <p style="font-size:12.5px;color:#666;margin:10px 0 0;line-height:1.5;">
-      That's what we owe our supplier per average user per month. ARPU $13.21 − COGS $5.10 = <strong style="color:#2D7A4F;">$8.11 gross profit (61% margin)</strong> per user.
+      That's what we owe our supplier per average user per month. ARPU $13.21 − COGS $8.20 = <strong style="color:#2D7A4F;">$5.01 gross profit (38% margin)</strong> per user.
     </p>
   </div>
 
@@ -753,37 +751,37 @@
     </div>
 
     <div style="background: white; padding: 14px; border-radius: 6px; margin: 12px 0;">
-      <div style="font-weight: 700; font-size: 13px; color: #1A1A1A; margin-bottom: 6px;">Blended COGS = $5.10</div>
+      <div style="font-weight: 700; font-size: 13px; color: #1A1A1A; margin-bottom: 6px;">Blended COGS = $8.20</div>
       <div style="font-size: 13px; color: #555; line-height: 1.55; margin-bottom: 10px;">
-        What we pay our wholesale supplier per user per month. Each tier consumes GB at the blended cost of $1.34/GB.
+        What we pay our wholesale supplier per user per month. Each tier consumes GB at the blended cost of $2.26/GB (rebuilt 2026-06-02 with corrected rate sheet).
       </div>
       <!-- Stacked bar: widths = tier_$ / 5.35 * 100 — Economy 1.68/5.35=31.4%, Roster 1.21/5.35=22.6%, Premium 0.70/5.35=13.1%, Business 0.72/5.35=13.5%, First 0.40/5.35=7.5%, Suite 0.35/5.35=6.5%, Cockpit 0.29/5.35=5.4% -->
       <div style="display:flex;height:32px;border-radius:6px;overflow:hidden;margin:10px 0;" role="img" aria-label="COGS tier breakdown stacked bar">
-        <div style="background:#d9d9d9;width:31.4%;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:11px;font-weight:700;" title="Economy $1.68">Econ</div>
-        <div style="background:#7AB8A0;width:22.6%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Roster $1.21">Roster</div>
-        <div style="background:#94B9C8;width:13.1%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Premium $0.70">Prem</div>
-        <div style="background:#D71921;width:13.5%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Business $0.72">Biz</div>
-        <div style="background:#b07729;width:7.5%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;" title="First $0.40">1st</div>
-        <div style="background:#C9A03B;width:6.5%;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:10px;font-weight:700;" title="Suite $0.35">Ste</div>
-        <div style="background:#1A1A1A;width:5.4%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;" title="Cockpit $0.29">Ckt</div>
+        <div style="background:#d9d9d9;width:31.3%;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:11px;font-weight:700;" title="Economy $2.82">Econ</div>
+        <div style="background:#7AB8A0;width:22.6%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Roster $2.03">Roster</div>
+        <div style="background:#94B9C8;width:13.0%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Premium $1.18">Prem</div>
+        <div style="background:#D71921;width:13.5%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Business $1.22">Biz</div>
+        <div style="background:#b07729;width:7.5%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;" title="First $0.68">1st</div>
+        <div style="background:#C9A03B;width:6.6%;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:10px;font-weight:700;" title="Suite $0.60">Ste</div>
+        <div style="background:#1A1A1A;width:5.4%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;" title="Cockpit $0.49">Ckt</div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:#555;margin-top:6px;">
-        <span><span style="display:inline-block;width:10px;height:10px;background:#d9d9d9;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Econ $1.68</span>
-        <span><span style="display:inline-block;width:10px;height:10px;background:#7AB8A0;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Roster $1.21</span>
-        <span><span style="display:inline-block;width:10px;height:10px;background:#94B9C8;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Prem $0.70</span>
-        <span><span style="display:inline-block;width:10px;height:10px;background:#D71921;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Biz $0.72</span>
-        <span><span style="display:inline-block;width:10px;height:10px;background:#b07729;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>First $0.40</span>
-        <span><span style="display:inline-block;width:10px;height:10px;background:#C9A03B;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Suite $0.35</span>
-        <span><span style="display:inline-block;width:10px;height:10px;background:#1A1A1A;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Cockpit $0.29</span>
-        <span style="font-weight:700;color:#D71921;margin-left:4px;">= ~$5.10 blended</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#d9d9d9;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Econ $2.82</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#7AB8A0;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Roster $2.03</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#94B9C8;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Prem $1.18</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#D71921;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Biz $1.22</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#b07729;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>First $0.68</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#C9A03B;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Suite $0.60</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#1A1A1A;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Cockpit $0.49</span>
+        <span style="font-weight:700;color:#D71921;margin-left:4px;">= ~$8.20 blended</span>
       </div>
     </div>
 
     <div style="background: white; padding: 14px; border-radius: 6px; margin: 12px 0;">
-      <div style="font-weight: 700; font-size: 13px; color: #1A1A1A; margin-bottom: 6px;">Gross Margin = 61%</div>
+      <div style="font-weight: 700; font-size: 13px; color: #1A1A1A; margin-bottom: 6px;">Gross Margin = 38%</div>
       <div style="font-size: 13px; color: #555; line-height: 1.55;">
-        (Blended ARPU − Blended COGS) ÷ Blended ARPU = ($13.21 − $5.10) ÷ $13.21 = <strong>$8.11 contribution / $13.21 = 61.4%</strong>.
-        This is BEFORE operating costs (payment processing, hosting, support, etc.). Net margin after OPEX comes out around 53–55%.
+        (Blended ARPU − Blended COGS) ÷ Blended ARPU = ($13.21 − $8.20) ÷ $13.21 = <strong>$5.01 contribution / $13.21 = 37.9%</strong>.
+        This is BEFORE operating costs (payment processing, hosting, support, etc.). Net margin after OPEX comes out around 28–32% (rebuilt 2026-06-02 with corrected rate sheet).
       </div>
     </div>
 
@@ -791,8 +789,8 @@
       <div style="font-weight: 700; font-size: 13px; color: #1A1A1A; margin-bottom: 6px;">Refuel Attach = 30%</div>
       <div style="font-size: 13px; color: #555; line-height: 1.55;">
         Of all subscriber-months, ~30% include a Refuel top-up purchase ($4.99 for an extra 1 GB). This is a weighted average
-        across all subscription tiers (Premium ~20%, Business ~25%, First ~40%, Cockpit ~15%, etc.). Each refuel adds $3.65 of
-        contribution on top. Refuel attach is one of the most-leveraged levers in the model — every 5pp shift = ~$182/mo per 1K users.
+        across all subscription tiers (Premium ~20%, Business ~25%, First ~40%, Cockpit ~15%, etc.). Each refuel adds $2.73 of
+        contribution on top. Refuel attach is one of the most-leveraged levers in the model — every 5pp shift = ~$136/mo per 1K users.
       </div>
     </div>
 
@@ -813,46 +811,46 @@
       <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; background: #2A2A2A; border-radius: 4px; overflow: hidden;">
         <tbody>
           <tr><td style="padding: 8px 12px; color: #E5DDD0;">100 users each pay an average of $13.21 (blended ARPU)</td><td style="padding: 8px 12px; text-align: right; font-weight: 700; color: white;">+ $1,321 revenue</td></tr>
-          <tr style="background: #1F1F1F;"><td style="padding: 8px 12px; color: #E5DDD0;">100 users each consume data costing $5.10 (blended COGS at $1.34/GB)</td><td style="padding: 8px 12px; text-align: right; font-weight: 700; color: #FFC107;">− $510 supplier cost</td></tr>
-          <tr><td style="padding: 8px 12px; color: white; font-weight: 600;">Subscription gross profit (61% margin)</td><td style="padding: 8px 12px; text-align: right; font-weight: 700; color: #4CD964;">= $811</td></tr>
+          <tr style="background: #1F1F1F;"><td style="padding: 8px 12px; color: #E5DDD0;">100 users each consume data costing $8.20 (blended COGS at $2.26/GB)</td><td style="padding: 8px 12px; text-align: right; font-weight: 700; color: #FFC107;">− $820 supplier cost</td></tr>
+          <tr><td style="padding: 8px 12px; color: white; font-weight: 600;">Subscription gross profit (38% margin)</td><td style="padding: 8px 12px; text-align: right; font-weight: 700; color: #4CD964;">= $501</td></tr>
           <tr style="background: #1F1F1F;"><td style="padding: 8px 12px; color: #E5DDD0;">30 of them (30% refuel attach) buy a $4.99 top-up</td><td style="padding: 8px 12px; text-align: right; font-weight: 700; color: white;">+ $150 refuel revenue</td></tr>
-          <tr><td style="padding: 8px 12px; color: #E5DDD0;">Those 30 refuels cost us 30 × $1.34 in supplier data</td><td style="padding: 8px 12px; text-align: right; font-weight: 700; color: #FFC107;">− $40 refuel COGS</td></tr>
-          <tr style="background: #2D7A4F;"><td style="padding: 10px 12px; color: white; font-weight: 700;">Total monthly gross profit from 100 users</td><td style="padding: 10px 12px; text-align: right; font-weight: 700; color: white; font-size: 16px;">= $921</td></tr>
+          <tr><td style="padding: 8px 12px; color: #E5DDD0;">Those 30 refuels cost us 30 × $2.26 in supplier data</td><td style="padding: 8px 12px; text-align: right; font-weight: 700; color: #FFC107;">− $68 refuel COGS</td></tr>
+          <tr style="background: #2D7A4F;"><td style="padding: 10px 12px; color: white; font-weight: 700;">Total monthly gross profit from 100 users</td><td style="padding: 10px 12px; text-align: right; font-weight: 700; color: white; font-size: 16px;">= $583</td></tr>
         </tbody>
       </table>
 
       <p style="font-size: 13.5px; line-height: 1.6; color: #E5DDD0; margin: 14px 0 0;">
-        <strong style="color: white;">Per user that's ~$9.21 gross profit per month before OPEX.</strong>
+        <strong style="color: white;">Per user that's ~$5.83 gross profit per month before OPEX.</strong>
         Multiply across our user counts:
       </p>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 12px;">
         <div style="background: #2A2A2A; padding: 10px; border-radius: 4px; text-align: center;">
           <div style="font-size: 11px; color: #888; letter-spacing: .05em;">1,000 USERS</div>
-          <div style="font-size: 18px; font-weight: 700; color: white; margin: 4px 0;">$9,210</div>
-          <div style="font-size: 11px; color: #888;">monthly · ~$110K/yr</div>
+          <div style="font-size: 18px; font-weight: 700; color: white; margin: 4px 0;">$5,830</div>
+          <div style="font-size: 11px; color: #888;">monthly · ~$70K/yr</div>
         </div>
         <div style="background: #2A2A2A; padding: 10px; border-radius: 4px; text-align: center;">
           <div style="font-size: 11px; color: #888; letter-spacing: .05em;">5,000 (M24)</div>
-          <div style="font-size: 18px; font-weight: 700; color: white; margin: 4px 0;">$46,050</div>
-          <div style="font-size: 11px; color: #888;">monthly · ~$553K/yr</div>
+          <div style="font-size: 18px; font-weight: 700; color: white; margin: 4px 0;">$29,150</div>
+          <div style="font-size: 11px; color: #888;">monthly · ~$350K/yr</div>
         </div>
         <div style="background: #2A2A2A; padding: 10px; border-radius: 4px; text-align: center;">
           <div style="font-size: 11px; color: #888; letter-spacing: .05em;">20,000</div>
-          <div style="font-size: 18px; font-weight: 700; color: white; margin: 4px 0;">$184,200</div>
-          <div style="font-size: 11px; color: #888;">monthly · ~$2.2M/yr</div>
+          <div style="font-size: 18px; font-weight: 700; color: white; margin: 4px 0;">$116,600</div>
+          <div style="font-size: 11px; color: #888;">monthly · ~$1.4M/yr</div>
         </div>
         <div style="background: #2A2A2A; padding: 10px; border-radius: 4px; text-align: center;">
           <div style="font-size: 11px; color: #C9A03B; letter-spacing: .05em;">100,000 VISION</div>
-          <div style="font-size: 18px; font-weight: 700; color: #C9A03B; margin: 4px 0;">$921,000</div>
-          <div style="font-size: 11px; color: #C9A03B;">monthly · ~$11M/yr</div>
+          <div style="font-size: 18px; font-weight: 700; color: #C9A03B; margin: 4px 0;">$583,000</div>
+          <div style="font-size: 11px; color: #C9A03B;">monthly · ~$7M/yr</div>
         </div>
       </div>
 
       <p style="font-size: 12.5px; color: #888; margin: 14px 0 0; line-height: 1.55;">
         Note: this uses the 4 blended numbers from above. The per-tier verified P&amp;L in Tab 14 (Volume Scenarios) shows
         slightly higher numbers (~$12.48/user net) because the per-tier model captures refuel uplift more precisely per tier.
-        Both views agree: at scale, every additional 1,000 users adds ~$110K of annual gross profit.
+        Both views agree: at scale, every additional 1,000 users adds ~$70K of annual gross profit.
       </p>
     </div>
     </div>
@@ -1019,19 +1017,19 @@
   <div class="we-step">
     <div class="step-num">STEP 2</div>
     <h3>Subtract supplier cost (the data we actually deliver)</h3>
-    <p>Multiply actual usage per tier by the blended $1.34/GB. Breakage means we don't pay for unused pool.</p>
+    <p>Multiply actual usage per tier by the blended $2.26/GB. Breakage means we don't pay for unused pool (rebuilt 2026-06-02 with corrected rate sheet).</p>
     <table class="we-table">
-      <thead><tr><th>Tier</th><th class="num">Users</th><th class="num">Avg GB used</th><th class="num">Total GB</th><th class="num">COGS @ $1.34</th></tr></thead>
+      <thead><tr><th>Tier</th><th class="num">Users</th><th class="num">Avg GB used</th><th class="num">Total GB</th><th class="num">COGS @ $2.26</th></tr></thead>
       <tbody>
-        <tr><td>Economy</td><td class="num">500</td><td class="num">2.5</td><td class="num">1,250</td><td class="num">$1,675</td></tr>
-        <tr><td>Roster Bundle</td><td class="num">180</td><td class="num">3.0</td><td class="num">540</td><td class="num">$724</td></tr>
-        <tr><td>Premium Economy</td><td class="num">130</td><td class="num">4.0</td><td class="num">520</td><td class="num">$697</td></tr>
-        <tr><td>Business</td><td class="num">80</td><td class="num">6.75</td><td class="num">540</td><td class="num">$724</td></tr>
-        <tr><td>First</td><td class="num">30</td><td class="num">10.0</td><td class="num">300</td><td class="num">$402</td></tr>
-        <tr><td>First Suite</td><td class="num">20</td><td class="num">13.2</td><td class="num">264</td><td class="num">$354</td></tr>
-        <tr><td>Cockpit</td><td class="num">30</td><td class="num">7.2</td><td class="num">216</td><td class="num">$289</td></tr>
-        <tr><td>Refuel top-ups</td><td class="num">141</td><td class="num">1.0</td><td class="num">141</td><td class="num">$189</td></tr>
-        <tr class="total"><td>Total COGS</td><td class="num">—</td><td class="num">—</td><td class="num">3,771 GB</td><td class="num">$5,054</td></tr>
+        <tr><td>Economy</td><td class="num">500</td><td class="num">2.5</td><td class="num">1,250</td><td class="num">$2,825</td></tr>
+        <tr><td>Roster Bundle</td><td class="num">180</td><td class="num">3.0</td><td class="num">540</td><td class="num">$1,220</td></tr>
+        <tr><td>Premium Economy</td><td class="num">130</td><td class="num">4.0</td><td class="num">520</td><td class="num">$1,175</td></tr>
+        <tr><td>Business</td><td class="num">80</td><td class="num">6.75</td><td class="num">540</td><td class="num">$1,220</td></tr>
+        <tr><td>First</td><td class="num">30</td><td class="num">10.0</td><td class="num">300</td><td class="num">$678</td></tr>
+        <tr><td>First Suite</td><td class="num">20</td><td class="num">13.2</td><td class="num">264</td><td class="num">$597</td></tr>
+        <tr><td>Cockpit</td><td class="num">30</td><td class="num">7.2</td><td class="num">216</td><td class="num">$488</td></tr>
+        <tr><td>Refuel top-ups</td><td class="num">141</td><td class="num">1.0</td><td class="num">141</td><td class="num">$319</td></tr>
+        <tr class="total"><td>Total COGS</td><td class="num">—</td><td class="num">—</td><td class="num">3,771 GB</td><td class="num">$8,522</td></tr>
       </tbody>
     </table>
   </div>
@@ -1051,11 +1049,11 @@
     <table class="we-table">
       <tbody>
         <tr><td>Revenue</td><td class="num">$18,939</td></tr>
-        <tr><td>− Supplier COGS</td><td class="num">−$5,054</td></tr>
+        <tr><td>− Supplier COGS</td><td class="num">−$8,522</td></tr>
         <tr><td>− OPEX</td><td class="num">−$1,800</td></tr>
-        <tr class="total" style="background:#fff;"><td>Net profit / month</td><td class="num" style="color:var(--red); font-size:18px;">$12,085</td></tr>
-        <tr class="total" style="background:#fff;"><td>Net profit / year</td><td class="num" style="color:var(--red); font-size:18px;">$145,020</td></tr>
-        <tr><td>Net margin</td><td class="num">64%</td></tr>
+        <tr class="total" style="background:#fff;"><td>Net profit / month</td><td class="num" style="color:var(--red); font-size:18px;">$8,617</td></tr>
+        <tr class="total" style="background:#fff;"><td>Net profit / year</td><td class="num" style="color:var(--red); font-size:18px;">$103,404</td></tr>
+        <tr><td>Net margin</td><td class="num">45%</td></tr>
       </tbody>
     </table>
   </div>
@@ -1150,7 +1148,7 @@
   new Chart(document.getElementById('geoChart'), {
     type: 'doughnut',
     data: {
-      labels: ['Tier-A ($0.85/GB)', 'Tier-B ($1.40/GB)', 'Tier-C ($8.50/GB)'],
+      labels: ['Tier-A ($2.29/GB)', 'Tier-B ($1.99/GB)', 'Tier-C ($2.83/GB)'],
       datasets: [{
         data: [75, 20, 5],
         backgroundColor: ['#1a8a5a', GOLD, RED],

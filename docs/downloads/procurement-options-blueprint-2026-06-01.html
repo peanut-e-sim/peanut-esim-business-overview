@@ -94,7 +94,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
 </div>
 
 <h2 id="why">1. Why this tab matters</h2>
-<p>Every other tab in this model assumes Option A pricing ($1.34/GB blended after the 75/20/5 geo mix). The procurement decision is the single biggest COGS lever in the entire business. Moving from Option A to Option C at 5,000 users would save roughly $13,000/month — more than doubling operating profit at that scale.</p>
+<p>Every other tab in this model assumes Option A pricing ($2.26/GB blended after the 75/20/5 geo mix — corrected 2026-06-02, old $1.34/GB invalidated). The procurement decision is the single biggest COGS lever in the entire business. Moving from Option A to Option C at 5,000 users would save roughly $19,300/month based on corrected rates (rebuilt 2026-06-02 with corrected rate sheet).</p>
 <p>The reason this tab exists is to make the procurement roadmap visible and intentional, not reactive. We don't want to renegotiate supplier terms in an emergency — we want to approach that conversation with volume data, real competitive quotes, and a clear alternative (Option C) as leverage.</p>
 
 <h2 id="data">2. The verified data (from source xlsx Tab 15)</h2>
@@ -106,14 +106,14 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
   <tr><td><strong>C: Direct −40%</strong></td><td>0.6x</td><td>None</td><td>$5,000/mo</td><td><span class="pill estimate">PENDING RESEARCH</span></td></tr>
 </table>
 
-<p>Blended wholesale cost per GB at Option A rates: <strong>$1.34/GB</strong> (after 75/20/5 geo mix). This is the number used across all other tabs.</p>
+<p>Blended wholesale cost per GB at Option A rates: <strong>$2.26/GB</strong> (corrected 2026-06-02; old $1.34/GB invalidated — wrong SKU). This is the number used across all other tabs. Options B and C remain directional estimates at −10% and −40% respectively.</p>
 
-<h3>Derived per-user COGS (Premium user, 4 GB consumed)</h3>
+<h3>Derived per-user COGS (Premium user, 4 GB consumed) — rebuilt 2026-06-02</h3>
 <table>
   <tr><th>Option</th><th>$/GB</th><th>COGS (4 GB)</th><th>Breakage cost</th><th>Platform per user (1K)</th><th>Total COGS</th></tr>
-  <tr><td>A</td><td>$1.34</td><td>$5.36</td><td>$0.00</td><td>$0.00</td><td>$5.36</td></tr>
-  <tr><td>B</td><td>$1.21</td><td>$4.82</td><td>+$0.72</td><td>$0.00</td><td>$5.54</td></tr>
-  <tr><td>C</td><td>$0.80</td><td>$3.22</td><td>$0.00</td><td>+$5.00</td><td>$8.22</td></tr>
+  <tr><td>A</td><td>$2.26</td><td>$9.04</td><td>$0.00</td><td>$0.00</td><td>$9.04</td></tr>
+  <tr><td>B</td><td>$2.03 (est.)</td><td>$8.12</td><td>+$1.83</td><td>$0.00</td><td>$9.95</td></tr>
+  <tr><td>C</td><td>$1.36 (est.)</td><td>$5.44</td><td>$0.00</td><td>+$5.00</td><td>$10.44</td></tr>
 </table>
 
 <div class="discussion-block">
@@ -154,33 +154,35 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
   <tr><th>Line</th><th>Option A</th><th>Option B</th><th>Option C</th></tr>
   <tr><td>Yuki pays Peanut</td><td>$18.99</td><td>$18.99</td><td>$18.99</td></tr>
   <tr><td>GB consumed</td><td>4 GB</td><td>4 GB</td><td>4 GB</td></tr>
-  <tr><td>Supplier cost/GB</td><td>$1.34</td><td>$1.21 (est.)</td><td>$0.80 (est.)</td></tr>
-  <tr><td>eSIM data COGS</td><td>$5.36</td><td>$4.82</td><td>$3.22</td></tr>
-  <tr><td>Breakage tax (15% unused)</td><td>$0.00</td><td>+$0.72</td><td>$0.00</td></tr>
+  <tr><td>Supplier cost/GB</td><td>$2.26</td><td>$2.03 (est.)</td><td>$1.36 (est.)</td></tr>
+  <tr><td>eSIM data COGS</td><td>$9.04</td><td>$8.12</td><td>$5.44</td></tr>
+  <tr><td>Breakage tax (15% unused)</td><td>$0.00</td><td>+$1.83</td><td>$0.00</td></tr>
   <tr><td>Platform fee per user (at 1K users)</td><td>$0.00</td><td>$0.00</td><td>+$5.00</td></tr>
   <tr><td>Operating cost per user</td><td>$1.80</td><td>$1.80</td><td>$1.80</td></tr>
-  <tr style="background:#e8f4e8;"><td><strong>Net profit on Yuki / mo</strong></td><td><strong>$10.83</strong></td><td><strong>$10.65</strong></td><td><strong>$7.97</strong></td></tr>
-  <tr><td>Gross margin</td><td>70.2%</td><td>69.2%</td><td>54.3%</td></tr>
+  <tr style="background:#e8f4e8;"><td><strong>Net profit on Yuki / mo</strong></td><td><strong>$8.15</strong></td><td><strong>$7.24</strong></td><td><strong>$6.75</strong></td></tr>
+  <tr><td>Gross margin</td><td>52.4%</td><td>47.8%</td><td>45.0%</td></tr>
 </table>
+<p style="font-size:12px; color:var(--ink-soft);">Rebuilt 2026-06-02 with corrected rate sheet. Old $1.34/GB invalidated; new Option A $2.26/GB. Options B and C remain directional estimates.</p>
 
 <blockquote>At 1,000 users, Option A gives the best per-user profit. Option C only wins when the $5,000 fixed platform fee is diluted across enough users — the crossover is 1,724 users.</blockquote>
 
 <h2 id="crossover">5. The crossover math</h2>
 
-<p>Option C's advantage per user on COGS: <strong>$1.34 − $0.80 = $0.54/GB</strong>. For a typical Premium user consuming 4 GB, that's $2.16/user saved on data. Plus the opex saving on breakage. The blended saving per user across all tiers is approximately <strong>$2.90/user/month</strong>.</p>
+<p>Option C's advantage per user on COGS: <strong>$2.26 − $1.36 = $0.90/GB</strong> (rebuilt 2026-06-02 with corrected rate sheet). For a typical Premium user consuming 4 GB, that's $3.60/user saved on data. The blended saving per user across all tiers is approximately <strong>$4.86/user/month</strong> (at ~5.4 GB blended consumption).</p>
 
 <p>Option C's fixed platform fee: <strong>$5,000/month</strong> (directional estimate — not a real quote).</p>
 
-<p>Crossover point: $5,000 / $2.90 = <strong>1,724 users</strong>.</p>
+<p>Crossover point: $5,000 / $4.86 = <strong>~1,029 users</strong> (was 1,724 at old rates — crossover is now earlier because absolute COGS saving per user is larger).</p>
 
 <table>
   <tr><th>User count</th><th>Option A monthly profit est.</th><th>Option C monthly profit est.</th><th>Verdict</th></tr>
-  <tr><td>500 users</td><td>+$4,360</td><td>-$550</td><td class="red-text">A wins decisively</td></tr>
-  <tr><td>1,000 users</td><td>+$8,720</td><td>+$4,100</td><td class="red-text">A wins</td></tr>
-  <tr><td>1,724 users (crossover)</td><td>+$15,033</td><td>+$15,000</td><td class="amber-text">Break even</td></tr>
-  <tr><td>2,500 users</td><td>+$21,800</td><td>+$24,500</td><td class="green-text">C wins by ~$2,700/mo</td></tr>
-  <tr><td>5,000 users</td><td>+$43,600</td><td>+$59,500</td><td class="green-text">C wins by ~$15,900/mo</td></tr>
+  <tr><td>500 users</td><td>+$1,760</td><td>-$810</td><td class="red-text">A wins decisively</td></tr>
+  <tr><td>1,000 users</td><td>+$3,520</td><td>+$3,380</td><td class="red-text">A wins narrowly</td></tr>
+  <tr><td>~1,029 users (crossover)</td><td>+$3,622</td><td>+$3,626</td><td class="amber-text">Break even</td></tr>
+  <tr><td>2,500 users</td><td>+$8,800</td><td>+$15,950</td><td class="green-text">C wins by ~$7,150/mo</td></tr>
+  <tr><td>5,000 users</td><td>+$17,600</td><td>+$36,900</td><td class="green-text">C wins by ~$19,300/mo</td></tr>
 </table>
+<p style="font-size:12px; color:var(--ink-soft);">Rebuilt 2026-06-02 with corrected rate sheet. Option A blended ARPU $17.52, COGS 5.4 GB × $2.26/GB = $12.20, opex $1.80 → $3.52/user. Option C COGS 5.4 × $1.36 = $7.34, minus $5,000 fixed platform.</p>
 
 <p><em>Note: All Option C figures are estimates using the −40% directional modifier. Real quotes may change these numbers significantly in either direction.</em></p>
 
@@ -188,7 +190,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
 
 <table>
   <tr><th>Flag</th><th>What it is</th><th>Risk level</th></tr>
-  <tr class="flag-row"><td>Option A pricing is not contracted</td><td>We have the wholesale supplier rate sheet but no signed contract. The $1.34/GB blended rate is our model assumption. Actual negotiated rate may be different — potentially better or worse.</td><td><span class="pill flagged">HIGH</span></td></tr>
+  <tr class="flag-row"><td>Option A pricing is not contracted</td><td>We have the wholesale supplier rate sheet but no signed contract. The $2.26/GB blended rate is our corrected model assumption (rebuilt 2026-06-02; old $1.34/GB was wrong SKU). Actual negotiated rate may differ.</td><td><span class="pill flagged">HIGH</span></td></tr>
   <tr class="flag-row"><td>Option B breakage tax is estimated</td><td>15% breakage on unused inventory is an assumption of what would happen if we pre-buy more than users consume. Real terms would be negotiated.</td><td><span class="pill open">MEDIUM</span></td></tr>
   <tr class="flag-row"><td>Option C −40% is a directional estimate</td><td>Based on supplier margin analysis, not an actual quote from eSIM Access, eSIM Go, or Telnyx. Real quotes may be materially different in either direction.</td><td><span class="pill flagged">HIGH</span></td></tr>
   <tr class="flag-row"><td>$5,000/mo platform fee for Option C</td><td>This is an estimated monthly access fee for a direct API contract with an upstream eSIM provider. Actual fee structure may be very different (per-SIM activation fee, tiered, or zero for volume players).</td><td><span class="pill open">MEDIUM</span></td></tr>

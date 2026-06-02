@@ -118,7 +118,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <ul>
   <li><a href="#why">1. Why this tab matters</a></li>
   <li><a href="#data">2. Per-tier carryover rules (verified numbers)</a></li>
-  <li><a href="#aiko">3. Aiko's $4.03 breakdown — worked example</a></li>
+  <li><a href="#aiko">3. Aiko's $6.78 breakdown — worked example (rebuilt 2026-06-02)</a></li>
   <li><a href="#perception">4. The perception problem — Aiko's churn spiral</a></li>
   <li><a href="#ux-fix">5. The UX fix — "You saved $1.97 vs PAYG"</a></li>
   <li><a href="#gifting">6. Balraj's gifting idea</a></li>
@@ -165,25 +165,25 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <!-- ===== 2. DATA TABLE ===== -->
 <h2 id="data">2. Per-tier carryover rules (verified numbers)</h2>
 
-<p>Numbers below are read from the source spreadsheet at exact blended wholesale rate of <strong>$1.3425/GB</strong>. The spreadsheet uses the precise figure, not the rounded $1.34 — this matters at scale. Do not round this number in any downstream calculation.</p>
+<p>Numbers below are rebuilt 2026-06-02 with corrected rate sheet at exact blended wholesale rate of <strong>$2.26/GB</strong> (corrected from invalidated $1.3425/GB; old assumption sourced from wrong SKU). Carry liability = carried GB × blended cost at the moment of redemption.</p>
 
 <table>
   <tr><th>Tier</th><th>Carry %</th><th>Cap</th><th>GB Carried/user/mo</th><th>$ Liability/user</th><th>Verdict</th></tr>
   <tr class="excellent"><td><strong>Economy</strong></td><td>0%</td><td>—</td><td>0</td><td>$0</td><td><span class="pill excellent">No liability</span></td></tr>
   <tr class="excellent"><td><strong>Roster Bundle</strong></td><td>0%</td><td>—</td><td>0</td><td>$0</td><td><span class="pill excellent">No liability</span></td></tr>
   <tr class="excellent"><td><strong>Refuel</strong></td><td>0%</td><td>—</td><td>0</td><td>$0</td><td><span class="pill excellent">No liability</span></td></tr>
-  <tr class="caution"><td><strong>Premium Economy</strong></td><td>50%</td><td>1 month</td><td>3 GB</td><td><strong>$4.03</strong></td><td><span class="pill caution">Manageable</span></td></tr>
-  <tr class="caution"><td><strong>Business</strong></td><td>70%</td><td>1 month</td><td>5.78 GB</td><td><strong>$7.77</strong></td><td><span class="pill caution">Manageable</span></td></tr>
-  <tr class="caution"><td><strong>Cockpit</strong></td><td>100%</td><td>Annual</td><td>4.8 GB</td><td><strong>$6.45</strong></td><td><span class="pill caution">Monitor</span></td></tr>
-  <tr class="caution"><td><strong>First</strong></td><td>100%</td><td>2 months</td><td>15 GB</td><td><strong>$20.13</strong></td><td><span class="pill caution">Watch</span></td></tr>
-  <tr class="risk"><td><strong>First Suite</strong></td><td>100%</td><td>2 months</td><td>26.8 GB</td><td><strong>$35.99</strong></td><td><span class="pill risk">Concentration risk</span></td></tr>
+  <tr class="caution"><td><strong>Premium Economy</strong></td><td>50%</td><td>1 month</td><td>3 GB</td><td><strong>$6.78</strong></td><td><span class="pill caution">Manageable</span></td></tr>
+  <tr class="caution"><td><strong>Business</strong></td><td>70%</td><td>1 month</td><td>5.78 GB</td><td><strong>$13.06</strong></td><td><span class="pill caution">Manageable</span></td></tr>
+  <tr class="caution"><td><strong>Cockpit</strong></td><td>100%</td><td>Annual</td><td>4.8 GB</td><td><strong>$10.85</strong></td><td><span class="pill caution">Monitor</span></td></tr>
+  <tr class="caution"><td><strong>First</strong></td><td>100%</td><td>2 months</td><td>15 GB</td><td><strong>$33.90</strong></td><td><span class="pill caution">Watch</span></td></tr>
+  <tr class="risk"><td><strong>First Suite</strong></td><td>100%</td><td>2 months</td><td>26.8 GB</td><td><strong>$60.57</strong></td><td><span class="pill risk">Concentration risk</span></td></tr>
 </table>
 
 <div class="callout">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C9A03B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
   <div class="callout-body">
-    <strong>Rounding note — read carefully</strong>
-    <p>The spreadsheet uses $1.3425/GB (exact blended rate at 75% Asia/Pacific, 20% Europe, 5% Americas geo mix). The $4.03 figure for Premium is 3 GB x $1.3425 = $4.0275, rounded to $4.03. If you use $1.34 instead of $1.3425, you get $4.02 — a $0.01 error per user that compounds to $50/month at 5,000 Premium users. Always use the exact figure.</p>
+    <strong>Rate correction note (2026-06-02)</strong>
+    <p>Old $1.3425/GB invalidated; corrected to $2.26/GB using actual per-country 1GB/7-day Fixed bundle rates (rebuilt 2026-06-02 with corrected rate sheet). The $6.78 figure for Premium is 3 GB × $2.26 = $6.78 exactly. All liability dollar figures in this document use the corrected $2.26/GB blended rate.</p>
   </div>
 </div>
 
@@ -192,7 +192,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 </div>
 
 <!-- ===== 3. AIKO WORKED EXAMPLE ===== -->
-<h2 id="aiko">3. Aiko's $4.03 breakdown — full worked example</h2>
+<h2 id="aiko">3. Aiko's $6.78 breakdown — full worked example (rebuilt 2026-06-02)</h2>
 
 <div class="callout" style="background:#FFFBF0; border-color: var(--gold);">
   <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -221,7 +221,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <li>
     <div>
       <strong>Unused balance</strong><br>
-      10 GB pool minus 4 GB used = <strong>6 GB unused</strong>. Under 0% carryover, these expire and we keep the margin (about $8.06 pure margin from unused capacity). Under Premium's 50% carry rule, exactly half carries forward.
+      10 GB pool minus 4 GB used = <strong>6 GB unused</strong>. Under 0% carryover, these expire and we keep the margin (about $13.56 pure margin from unused capacity at $2.26/GB). Under Premium's 50% carry rule, exactly half carries forward.
     </div>
   </li>
   <li>
@@ -234,15 +234,15 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
     <div>
       <strong>Our liability</strong><br>
       We owe Aiko 3 GB of future data that we have not yet paid our supplier for. When she uses those 3 GB, we trigger a top-up call to the supplier API and pay them.<br><br>
-      <strong>3 GB x $1.3425/GB = $4.0275 ≈ $4.03</strong><br><br>
-      This $4.03 is NOT a loss. It is a deferred cost — a service we collected revenue for but have not yet paid the supplier for. It sits as a liability until redeemed or expired.
+      <strong>3 GB x $2.26/GB = $6.78</strong><br><br>
+      This $6.78 is NOT a loss. It is a deferred cost — a service we collected revenue for but have not yet paid the supplier for. It sits as a liability until redeemed or expired. (Rebuilt 2026-06-02 with corrected rate sheet; old figure $4.03 at invalidated $1.3425/GB.)
     </div>
   </li>
 </ol>
 
 <div class="discussion-block">
-  <h4>The $4.03 is our cost, not a selling price — this tripped us up early</h4>
-  <p>There was initial confusion about whether $4.03 is what we owe the supplier or what we charge the user. It is our cost from the wholesale supplier. Aiko already paid us $18.99 in full. The $4.03 is the future out-of-pocket we will incur when she redeems those 3 GB. We do not charge her again — she already paid for this. The liability is purely on the cost side of our books.</p>
+  <h4>The $6.78 is our cost, not a selling price — this tripped us up early</h4>
+  <p>There was initial confusion about whether the carry liability is what we owe the supplier or what we charge the user. It is our cost from the wholesale supplier. Aiko already paid us $18.99 in full. The $6.78 (3 GB × $2.26/GB, rebuilt 2026-06-02 with corrected rate sheet) is the future out-of-pocket we will incur when she redeems those 3 GB. We do not charge her again — she already paid for this. The liability is purely on the cost side of our books.</p>
 </div>
 
 <!-- ===== 4. PERCEPTION PROBLEM ===== -->
@@ -319,8 +319,8 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <h3>Why gifting solves three problems at once</h3>
 <table>
   <tr><th>Win</th><th>Mechanism</th><th>Impact</th></tr>
-  <tr class="excellent"><td><strong>1. Liability shrinks</strong></td><td>Aiko gifts her 3 GB carryover to her mother. We incur the $4.03 COGS — but we were going to incur it anyway when she redeemed it herself. The liability disappears from the books.</td><td>Carryover pool clears faster. Balance sheet improves.</td></tr>
-  <tr class="excellent"><td><strong>2. Viral acquisition</strong></td><td>Aiko's mother gets a free 3 GB trial of Peanut. She experiences the product, installs the app, and has a 7-day expiry window that forces her to activate. She either converts or we incur $4.03 with zero conversion.</td><td>At 2% conversion rate: $134 LTV vs $4.03 cost = 33x ROI on a cost we were going to incur anyway.</td></tr>
+  <tr class="excellent"><td><strong>1. Liability shrinks</strong></td><td>Aiko gifts her 3 GB carryover to her mother. We incur the $6.78 COGS — but we were going to incur it anyway when she redeemed it herself. The liability disappears from the books.</td><td>Carryover pool clears faster. Balance sheet improves.</td></tr>
+  <tr class="excellent"><td><strong>2. Viral acquisition</strong></td><td>Aiko's mother gets a free 3 GB trial of Peanut. She experiences the product, installs the app, and has a 7-day expiry window that forces her to activate. She either converts or we incur $6.78 with zero conversion.</td><td>At 2% conversion rate: $134 LTV vs $6.78 cost = 20x ROI on a cost we were going to incur anyway.</td></tr>
   <tr class="excellent"><td><strong>3. Perception churn eliminated</strong></td><td>"I gave Mum data" completely replaces "I wasted 6 GB." The emotional experience of the unused balance transforms from negative to positive.</td><td>Churn rate preserved or improved. LTV protected.</td></tr>
 </table>
 
@@ -352,8 +352,8 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <tr><th>Plan</th><th>Unused GB/mo</th><th>Carry %</th><th>Expired GB</th><th>Expired margin/user/mo</th><th>Verdict</th></tr>
   <tr class="excellent"><td><strong>Economy</strong></td><td>0</td><td>0%</td><td>0</td><td>$0</td><td><span class="pill excellent">Full PAYG, n/a</span></td></tr>
   <tr class="excellent"><td><strong>Roster Bundle</strong></td><td>0</td><td>0%</td><td>0</td><td>$0</td><td><span class="pill excellent">Per-flight, n/a</span></td></tr>
-  <tr class="excellent"><td><strong>Premium Economy</strong></td><td>6 GB</td><td>50%</td><td>3 GB</td><td><span class="green-text">$4.03</span></td><td><span class="pill excellent">By design</span></td></tr>
-  <tr class="excellent"><td><strong>Business</strong></td><td>8.25 GB</td><td>70%</td><td>2.48 GB</td><td><span class="green-text">$3.32</span></td><td><span class="pill excellent">By design</span></td></tr>
+  <tr class="excellent"><td><strong>Premium Economy</strong></td><td>6 GB</td><td>50%</td><td>3 GB</td><td><span class="green-text">$6.78</span></td><td><span class="pill excellent">By design</span></td></tr>
+  <tr class="excellent"><td><strong>Business</strong></td><td>8.25 GB</td><td>70%</td><td>2.48 GB</td><td><span class="green-text">$5.60</span></td><td><span class="pill excellent">By design</span></td></tr>
   <tr><td><strong>First</strong></td><td>15 GB</td><td>100%</td><td>0</td><td>$0</td><td><span class="pill open">No expiry margin</span></td></tr>
   <tr><td><strong>First Suite</strong></td><td>26.8 GB</td><td>100%</td><td>0</td><td>$0</td><td><span class="pill open">No expiry margin</span></td></tr>
   <tr><td><strong>Cockpit</strong></td><td>4.8 GB</td><td>100%</td><td>0</td><td>$0</td><td><span class="pill open">No expiry margin</span></td></tr>
@@ -376,10 +376,10 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <h3>Modeling four expiry windows for First Suite (the highest-liability tier)</h3>
 <table>
   <tr><th>Window</th><th>User redemption rate</th><th>Expired GB/mo</th><th>Expired margin/user/mo</th><th>Verdict</th></tr>
-  <tr><td>60 days</td><td>80% used</td><td>~5 GB</td><td>$6.71</td><td><span class="pill open">Low capture</span></td></tr>
-  <tr class="rejected-box"><td><del><strong>30 days (original rec)</strong></del></td><td>50% used</td><td>~13 GB</td><td>$17.45</td><td><span class="pill flagged">REJECTED — see section 9</span></td></tr>
-  <tr><td>14 days</td><td>25% used</td><td>~20 GB</td><td>$26.85</td><td><span class="pill flagged">Too aggressive</span></td></tr>
-  <tr><td>7 days</td><td>10% used</td><td>~24 GB</td><td>$32.22</td><td><span class="pill flagged">PR risk</span></td></tr>
+  <tr><td>60 days</td><td>80% used</td><td>~5 GB</td><td>$11.30</td><td><span class="pill open">Low capture</span></td></tr>
+  <tr class="rejected-box"><td><del><strong>30 days (original rec)</strong></del></td><td>50% used</td><td>~13 GB</td><td>$29.38</td><td><span class="pill flagged">REJECTED — see section 9</span></td></tr>
+  <tr><td>14 days</td><td>25% used</td><td>~20 GB</td><td>$45.20</td><td><span class="pill flagged">Too aggressive</span></td></tr>
+  <tr><td>7 days</td><td>10% used</td><td>~24 GB</td><td>$54.24</td><td><span class="pill flagged">PR risk</span></td></tr>
 </table>
 
 <div class="callout" style="border-color: var(--red); background: #FFF5F5;">
@@ -404,8 +404,8 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <h3>The real comparison: 30-day vs 2-month policy</h3>
 <table>
   <tr><th>Metric</th><th>30-day expiry policy</th><th>2-month cap (current)</th><th>Difference</th></tr>
-  <tr><td>Steady-state expired margin at month 3+</td><td>~$17.45/user from non-redemption</td><td>~$35.99/user from 2-month expiry</td><td>2-month cap generates MORE expired margin long-term</td></tr>
-  <tr><td>Peak balance sheet liability (per user)</td><td>~$18 (30-day accumulation)</td><td>~$72 (2 months accumulating)</td><td>2-month cap has 4x higher peak liability</td></tr>
+  <tr><td>Steady-state expired margin at month 3+</td><td>~$29.38/user from non-redemption</td><td>~$60.57/user from 2-month expiry</td><td>2-month cap generates MORE expired margin long-term</td></tr>
+  <tr><td>Peak balance sheet liability (per user)</td><td>~$30 (30-day accumulation)</td><td>~$121 (2 months accumulating)</td><td>2-month cap has ~4x higher peak liability</td></tr>
   <tr><td>Marketing headline</td><td>"Carry up to 30 days"</td><td><strong>"2 full months of carryover"</strong></td><td>2-month is dramatically better marketing</td></tr>
   <tr><td>User perception</td><td>"Tight window, feels stingy"</td><td><strong>"Genuinely generous policy"</strong></td><td>2-month wins on perception</td></tr>
   <tr class="recommended"><td><strong>Recommendation</strong></td><td><span class="pill flagged">Rejected</span></td><td><span class="pill excellent">Keep 2-month cap</span></td><td>Right answer is the current policy</td></tr>
@@ -415,7 +415,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <strong>Final position (locked):</strong> Keep 2-month carryover cap for First and First Suite. Do not add a short expiry window. The marketing wins ("2 full months of carryover") outweigh the liability timing concern. In steady state, expired margin from the 2-month cap is actually higher than the 30-day alternative. Balraj's intuition was correct; the initial recommendation was wrong.
 </div>
 
-<blockquote>The balance sheet peak of $72 vs $18 sounds alarming until you realize it resolves itself naturally within 2 months as users fly. The key operational requirement is to hold enough liquid cash to cover the peak liability at all times — approximately $50K at 5,000 users.</blockquote>
+<blockquote>The balance sheet peak of $121 vs $30 sounds alarming until you realize it resolves itself naturally within 2 months as users fly. The key operational requirement is to hold enough liquid cash to cover the peak liability at all times — approximately $22K at 5,000 users (rebuilt 2026-06-02 with corrected rate sheet).</blockquote>
 
 <!-- ===== 10. SAME-SIM ===== -->
 <h2 id="same-sim">10. Risk 2 — same-SIM dynamic allocation (technical architecture)</h2>
@@ -481,14 +481,14 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <h3>UAE cost math</h3>
 <table>
   <tr><th>Item</th><th>Amount</th></tr>
-  <tr><td>Wholesale rate for UAE data (estimated)</td><td>~$1.40/GB</td></tr>
+  <tr><td>Wholesale rate for UAE data (Tier-B corrected rate, rebuilt 2026-06-02)</td><td>~$1.99/GB</td></tr>
   <tr><td>Average carryover redeemed in UAE per Premium user</td><td>~3 GB/mo</td></tr>
-  <tr><td>Our cost for UAE redemption</td><td>~$4.20/user/mo</td></tr>
-  <tr><td>Expired margin we sacrifice (we were keeping $4.03 if they did not redeem)</td><td>$4.03</td></tr>
-  <tr class="excellent"><td><strong>Net trade: UAE redemption vs no redemption</strong></td><td><strong>$0.17/user/mo extra cost</strong></td></tr>
+  <tr><td>Our cost for UAE redemption</td><td>~$5.97/user/mo</td></tr>
+  <tr><td>Expired margin we sacrifice (we were keeping $6.78 if they did not redeem)</td><td>$6.78</td></tr>
+  <tr class="excellent"><td><strong>Net trade: UAE redemption vs no redemption</strong></td><td><strong>$0.81/user/mo SAVING</strong> — UAE data costs less than the blended carry liability</td></tr>
 </table>
 
-<blockquote>For $0.17 per user per month, we transform "data I wasted last month" into "data I used at home in Dubai." That is an extraordinary retention trade. The marketing line writes itself: "Premium gives you 10 GB for travel plus your leftovers come home with you — use on your next trip, at home in UAE, or gift to family."</blockquote>
+<blockquote>At corrected rates, UAE redemption actually costs us $0.81 less per user than the blended carry liability we would otherwise hold. UAE Tier-B ($1.99/GB) is cheaper than the blended average ($2.26/GB), so routing carryover to UAE reduces our expected COGS. The retention value of UAE redemption is therefore pure upside — we transform "data I wasted" into "data I used at home" at a net COGS improvement.</blockquote>
 
 <!-- ===== 12. CONCENTRATION RISK ===== -->
 <h2 id="concentration">12. First Suite concentration risk</h2>
@@ -497,22 +497,22 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
   <div class="callout-body">
     <strong>First Suite is 3% of users but a disproportionate share of carryover liability</strong>
-    <p>At $35.99/user, First Suite generates nearly 9x the per-user liability of Premium. At 100K users with the modeled 3% Suite penetration, this single tier creates $108K in floating liability on its own.</p>
+    <p>At $60.57/user (rebuilt 2026-06-02), First Suite generates nearly 9x the per-user liability of Premium. At 100K users with the modeled 3% Suite penetration, this single tier creates $121K in floating liability on its own.</p>
   </div>
 </div>
 
-<h3>Per-tier liability contribution at scale</h3>
+<h3>Per-tier liability contribution at scale (rebuilt 2026-06-02 with corrected rate sheet)</h3>
 <table>
   <tr><th>Tier</th><th>Liability/user</th><th>At 5K users (steady state mix)</th><th>At 100K users</th></tr>
-  <tr><td>Premium Economy (13% mix)</td><td>$4.03</td><td>$26,195</td><td>$523,900</td></tr>
-  <tr><td>Business (8%)</td><td>$7.77</td><td>$31,080</td><td>$621,600</td></tr>
-  <tr><td>First (3%)</td><td>$20.13</td><td>$30,195</td><td>$603,900</td></tr>
-  <tr class="risk"><td><strong>First Suite (2%)</strong></td><td><strong>$35.99</strong></td><td>$35,990</td><td><strong>$719,800</strong></td></tr>
-  <tr><td>Cockpit (3%)</td><td>$6.45</td><td>$9,675</td><td>$193,500</td></tr>
-  <tr class="caution"><td><strong>Total across all tiers</strong></td><td></td><td><strong>~$133,135</strong></td><td><strong>~$2.66M</strong></td></tr>
+  <tr><td>Premium Economy (13% mix)</td><td>$6.78</td><td>$4,407</td><td>$88,140</td></tr>
+  <tr><td>Business (8%)</td><td>$13.06</td><td>$5,224</td><td>$104,480</td></tr>
+  <tr><td>First (3%)</td><td>$33.90</td><td>$5,085</td><td>$101,700</td></tr>
+  <tr class="risk"><td><strong>First Suite (2%)</strong></td><td><strong>$60.57</strong></td><td>$6,057</td><td><strong>$121,140</strong></td></tr>
+  <tr><td>Cockpit (3%)</td><td>$10.85</td><td>$1,628</td><td>$32,550</td></tr>
+  <tr class="caution"><td><strong>Total across all tiers</strong></td><td></td><td><strong>~$22,401</strong></td><td><strong>~$448K</strong></td></tr>
 </table>
 
-<p>At 5K users the total carryover liability is approximately $133K. The operational requirement is to hold a cash reserve equal to this amount at all times. At 100K users, this becomes $2.66M — a material balance sheet item that requires proper CFO-level management. At Year 1 scale (under 1,000 users), it is entirely manageable in a spreadsheet.</p>
+<p>At 5K users the total carryover liability is approximately $22K (rebuilt 2026-06-02 with corrected rate sheet). The operational requirement is to hold a cash reserve equal to this amount at all times. At 100K users, this becomes ~$448K — a material balance sheet item that requires proper CFO-level management. At Year 1 scale (under 1,000 users), it is entirely manageable in a spreadsheet.</p>
 
 <!-- ===== 13. BOOKKEEPING ===== -->
 <h2 id="bookkeeping">13. Accounting + bookkeeping deep-dive (self-funded owner guide)</h2>
@@ -547,28 +547,28 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 
 <div class="journal-entry">
   <div class="header">Entry 3 — January (as data is consumed): COGS</div>
-  <div class="debit">DR COGS (Supplier Cost) ... $5.37</div>
-  <div class="credit">CR Accounts Payable (Supplier) ... $5.37</div>
+  <div class="debit">DR COGS (Supplier Cost) ... $9.04</div>
+  <div class="credit">CR Accounts Payable (Supplier) ... $9.04</div>
   <br>
-  <em style="font-family:inherit; font-size:12px; color:#888;">4 GB used x $1.3425/GB = $5.37. We record this when Aiko triggers each top-up call. The supplier bills us at month-end or per-trigger depending on contract terms.</em>
+  <em style="font-family:inherit; font-size:12px; color:#888;">4 GB used x $2.26/GB = $9.04. We record this when Aiko triggers each top-up call. The supplier bills us at month-end or per-trigger depending on contract terms. (Rebuilt 2026-06-02 with corrected rate sheet; old figure $5.37 at invalidated $1.3425/GB.)</em>
 </div>
 
 <div class="journal-entry">
   <div class="header">Entry 4 — February 1: Carryover liability recognized</div>
-  <div class="debit">DR Carryover Data Reserve ... $4.03</div>
-  <div class="credit">CR Service Liability (Carryover) ... $4.03</div>
+  <div class="debit">DR Carryover Data Reserve ... $6.78</div>
+  <div class="credit">CR Service Liability (Carryover) ... $6.78</div>
   <br>
-  <em style="font-family:inherit; font-size:12px; color:#888;">3 GB carried forward x $1.3425/GB = $4.03. We record the future obligation to deliver this data. When Aiko redeems it, we debit Service Liability and credit Accounts Payable (Supplier).</em>
+  <em style="font-family:inherit; font-size:12px; color:#888;">3 GB carried forward x $2.26/GB = $6.78. We record the future obligation to deliver this data. When Aiko redeems it, we debit Service Liability and credit Accounts Payable (Supplier). (Rebuilt 2026-06-02 with corrected rate sheet; old figure $4.03 at invalidated $1.3425/GB.)</em>
 </div>
 
-<h3>Aiko's full January P&L summary</h3>
+<h3>Aiko's full January P&L summary (rebuilt 2026-06-02 with corrected rate sheet)</h3>
 <table>
   <tr><th>Line item</th><th>Amount</th></tr>
   <tr><td>Revenue recognized (full subscription)</td><td class="green-text">+$18.99</td></tr>
-  <tr><td>COGS — data delivered (4 GB x $1.3425)</td><td class="red-text">-$5.37</td></tr>
-  <tr class="excellent"><td><strong>Gross profit — recognized this month</strong></td><td><strong>+$12.62</strong></td></tr>
-  <tr><td>Carryover liability created (3 GB x $1.3425)</td><td class="red-text">-$4.03 (future obligation)</td></tr>
-  <tr class="caution"><td><strong>Economic profit net of future obligation</strong></td><td><strong>+$8.59</strong></td></tr>
+  <tr><td>COGS — data delivered (4 GB x $2.26)</td><td class="red-text">-$9.04</td></tr>
+  <tr class="excellent"><td><strong>Gross profit — recognized this month</strong></td><td><strong>+$9.95</strong></td></tr>
+  <tr><td>Carryover liability created (3 GB x $2.26)</td><td class="red-text">-$6.78 (future obligation)</td></tr>
+  <tr class="caution"><td><strong>Economic profit net of future obligation</strong></td><td><strong>+$3.17</strong></td></tr>
 </table>
 
 <h3>Software recommendations by stage</h3>
@@ -763,8 +763,8 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <tr class="excellent"><td><strong>Zero cash refund overhead</strong></td><td>No refund processing, no Stripe disputes, no customer support tickets about refund amounts. Clean books at cancellation.</td></tr>
   <tr class="excellent"><td><strong>No ghost accounts</strong></td><td>Carry does not linger in a dormant account after cancellation. The balance is either gifted or forfeited at the moment of cancel. Zero orphaned liability.</td></tr>
   <tr class="excellent"><td><strong>Forced gifting CTA at peak intent</strong></td><td>Cancellation is the moment a user is most likely to think about people in their life. "Give it to Mum" is a natural instinct at goodbye. We surface it at exactly the right time.</td></tr>
-  <tr class="excellent"><td><strong>Viral acquisition hook</strong></td><td>Each gifted GB at cancellation = one new user trying Peanut for free. At 2% conversion, that is a $134 LTV acquisition that cost us $4.03 we were going to write off anyway. 33x ROI on a cancelled user's last act.</td></tr>
-  <tr class="excellent"><td><strong>Pure margin if she forfeits</strong></td><td>If Aiko declines to gift, the 3 GB is gone. We collected $18.99 for Premium, paid $5.37 in COGS for her 4 GB of actual usage, and kept the $4.03 deferred cost as recovered margin. Full economic cleanup at one event.</td></tr>
+  <tr class="excellent"><td><strong>Viral acquisition hook</strong></td><td>Each gifted GB at cancellation = one new user trying Peanut for free. At 2% conversion, that is a $134 LTV acquisition that cost us $6.78 we were going to write off anyway. 20x ROI on a cancelled user's last act. (Rebuilt 2026-06-02; old $4.03/33x used invalidated rate.)</td></tr>
+  <tr class="excellent"><td><strong>Pure margin if she forfeits</strong></td><td>If Aiko declines to gift, the 3 GB is gone. We collected $18.99 for Premium, paid $9.04 in COGS for her 4 GB of actual usage, and kept the $6.78 deferred cost as recovered margin. Full economic cleanup at one event. (Rebuilt 2026-06-02.)</td></tr>
   <tr class="excellent"><td><strong>Emotionally positive last moment</strong></td><td>"I gave Mum data before I left" is a positive brand memory. Even in cancellation, the user feels good about Peanut. This matters for reactivation probability and word-of-mouth after cancel.</td></tr>
 </table>
 
@@ -816,13 +816,13 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     <strong>Takeaway 1 — Premium and Business carry design is correct</strong>
   </div>
-  <p style="margin: 4px 0 16px 26px; font-size: 14px;">50% and 70% partial carryover generates $4.03 and $3.32 per user per month in expired margin. This is intentional and valuable. Do not change these parameters. The partial carry is the mechanism by which these tiers generate above-average margin per subscriber relative to full-carry tiers.</p>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">50% and 70% partial carryover generates $6.78 and $5.60 per user per month in expired margin (rebuilt 2026-06-02 with corrected rate sheet). This is intentional and valuable. Do not change these parameters. The partial carry is the mechanism by which these tiers generate above-average margin per subscriber relative to full-carry tiers.</p>
 
   <div class="icon-row">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     <strong>Takeaway 2 — First Suite concentration risk is real but the 2-month cap is fine</strong>
   </div>
-  <p style="margin: 4px 0 16px 26px; font-size: 14px;">First Suite at $35.99/user is the biggest per-user liability in the model. At 3% penetration of 100K users, that is $108K from one tier. However, the 2-month cap means the liability resolves itself within two billing cycles. The key operational requirement is holding liquid cash equal to the total carryover balance at all times. The math long-term is the same as a 30-day window; only peak timing differs.</p>
+  <p style="margin: 4px 0 16px 26px; font-size: 14px;">First Suite at $60.57/user (rebuilt 2026-06-02) is the biggest per-user liability in the model. At 3% penetration of 100K users, that is $121K from one tier. However, the 2-month cap means the liability resolves itself within two billing cycles. The key operational requirement is holding liquid cash equal to the total carryover balance at all times. The math long-term is the same as a 30-day window; only peak timing differs.</p>
 
   <div class="icon-row">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -902,7 +902,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 </div>
 
 <div class="footer-note">
-  Tab 20 — Carryover Liability In-Depth Blueprint · Peanut eSIM · 2026-06-02 · Numbers verified from Google Sheet ID 1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU at exact $1.3425/GB blended rate. Discussion content sourced from session notes 2026-06-02. Wholesale supplier references sanitized per public repo policy. No investor framing — written for self-funded owner-operator.
+  Tab 20 — Carryover Liability In-Depth Blueprint · Peanut eSIM · 2026-06-02 · Numbers rebuilt 2026-06-02 with corrected rate sheet — $2.26/GB blended (was invalidated $1.3425/GB). Discussion content sourced from session notes 2026-06-02. Wholesale supplier references sanitized per public repo policy. No investor framing — written for self-funded owner-operator.
 </div>
 
 </div>

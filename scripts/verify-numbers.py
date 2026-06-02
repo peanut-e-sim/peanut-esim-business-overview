@@ -26,12 +26,16 @@ ROOT_INDEX = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'ind
 # Severity: 'error' blocks commit. 'warn' just logs.
 STALE_RULES = [
     # Old wholesale cost
-    # NOTE 2026-06-02: $1.34/GB was itself INVALIDATED (sourced from wrong SKU — Europe Lite regional
-    # bundle, not per-country 1GB/7d Fixed). Corrected range under review: $0.50–$3.56/GB pending
-    # supplier negotiation. New deliverables should cite the range, not a point estimate.
-    # Old $1.20 and $2.13 rules below remain as legacy guards against earlier point estimates.
-    (r'\$1\.20\s*/\s*GB(?![^<]{0,40}payment processing)', 'Stale wholesale cost ($1.20/GB) — use scenario range $0.50–$3.56/GB pending supplier negotiation', 'error'),
-    (r'\$2\.13\s*/\s*GB', 'Stale blended cost ($2.13/GB) — use scenario range $0.50–$3.56/GB pending supplier negotiation', 'warn'),
+    # 2026-06-02 model rebuild: $1.34/GB invalidated (was Europe Lite regional bundle, not the
+    # per-country 1GB/7d Fixed SKU the business actually buys). New master from rate-sheet rework:
+    # Tier-A $2.29, Tier-B $1.99, Tier-C $2.83 → blended $2.26/GB at 75/20/5 country mix.
+    # Scenario range: $0.32 (negotiated 1-2d SKU) up to $2.37 (pessimistic geo-mix).
+    (r'\$\s*1\.34(?!\d)(?:\s*/\s*GB|\s+(?:blended|wholesale|cost|per\s*GB))', 'Stale blended cost ($1.34/GB) — was Europe Lite regional bundle. New master: $2.26/GB at 75/20/5 mix', 'error'),
+    (r'\$\s*1\.3425(?!\d)', 'Stale blended cost ($1.3425/GB) — was Europe Lite regional bundle. New master: $2.26/GB', 'error'),
+    (r'\$\s*0\.85\s*/\s*GB(?!\w)', 'Stale Tier-A cost ($0.85/GB) — wrong SKU. New: $2.29/GB', 'error'),
+    (r'\$\s*8\.50?\s*/\s*GB(?!\w)', 'Stale Tier-C cost ($8.50/GB) — wrong SKU. New: $2.83/GB', 'error'),
+    (r'\$\s*1\.20\s*/\s*GB(?![^<]{0,40}payment processing)', 'Stale wholesale cost ($1.20/GB) — legacy point estimate. Current master: $2.26/GB at 75/20/5 mix', 'error'),
+    (r'\$\s*2\.13\s*/\s*GB', 'Stale blended cost ($2.13/GB) — legacy point estimate. Current master: $2.26/GB at 75/20/5 mix', 'warn'),
 
     # Old refuel price
     (r'(?<!\d)\$5\.99(?:\s|<)', 'Stale price ($5.99) — likely old Economy 1.2x or old refuel', 'warn'),

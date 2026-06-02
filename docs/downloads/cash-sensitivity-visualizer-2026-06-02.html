@@ -132,7 +132,7 @@
 <!-- SECTION 1: REFUEL ATTACH SENSITIVITY -->
 <section>
   <h2 class="section-title"><span class="num">1</span>Refuel Attach Sensitivity @ 1,000 Users</h2>
-  <p class="section-sub">Refuel ($4.99/GB top-up) is the highest-margin product at 73% gross margin. The question is: how many subscribers will tap "add 1 GB" when they run out? The range matters enormously — at 1,000 users, the 5% → 30% attach span produces a <strong>$912/mo swing</strong> in net profit (25pp × 1,000 users × $3.65 net per event).</p>
+  <p class="section-sub">Refuel ($4.99/GB top-up) is a strong-margin product at ~55% gross margin (rebuilt 2026-06-02 with corrected rate sheet; old 73% used invalidated $1.34/GB). The question is: how many subscribers will tap "add 1 GB" when they run out? The range matters — at 1,000 users, the 5% → 30% attach span produces a <strong>$682/mo swing</strong> in net profit (25pp × 1,000 users × $2.73 net per event).</p>
 
   <div class="stat-row">
     <div class="stat-box red">
@@ -167,29 +167,29 @@
       <tbody>
         <tr><td>5%</td><td>$250</td><td>$67</td><td>$182</td><td style="color:var(--red);">-$365</td></tr>
         <tr><td>10%</td><td>$499</td><td>$134</td><td>$365</td><td style="color:var(--red);">-$182</td></tr>
-        <tr class="row-highlight"><td><strong>15% (breakeven)</strong></td><td>$749</td><td>$201</td><td><strong>$547</strong></td><td style="color:var(--green);"><strong>$0</strong></td></tr>
-        <tr><td>20%</td><td>$998</td><td>$269</td><td>$730</td><td style="color:var(--green);">+$182</td></tr>
-        <tr><td>25%</td><td>$1,248</td><td>$336</td><td>$912</td><td style="color:var(--green);">+$365</td></tr>
-        <tr class="row-green"><td><strong>30%</strong></td><td><strong>$1,497</strong></td><td>$402</td><td><strong>$1,095</strong></td><td style="color:var(--green);"><strong>+$548</strong></td></tr>
+        <tr class="row-highlight"><td><strong>15% (breakeven)</strong></td><td>$749</td><td>$339</td><td><strong>$410</strong></td><td style="color:var(--green);"><strong>$0</strong></td></tr>
+        <tr><td>20%</td><td>$998</td><td>$452</td><td>$546</td><td style="color:var(--green);">+$136</td></tr>
+        <tr><td>25%</td><td>$1,248</td><td>$565</td><td>$683</td><td style="color:var(--green);">+$273</td></tr>
+        <tr class="row-green"><td><strong>30%</strong></td><td><strong>$1,497</strong></td><td>$678</td><td><strong>$819</strong></td><td style="color:var(--green);"><strong>+$409</strong></td></tr>
       </tbody>
     </table>
-    <p style="font-size:12px; color:var(--muted); margin:10px 0 0;">Source: Tab 22 rows 4–10. @ 1,000 users. Refuel price $4.99/GB, COGS ~$1.34/GB. 15% attach is the inflection point where refuel moves from drag to neutral.</p>
+    <p style="font-size:12px; color:var(--muted); margin:10px 0 0;">Source: Tab 22 rows 4–10. @ 1,000 users. Refuel price $4.99/GB, COGS $2.26/GB (rebuilt 2026-06-02 with corrected rate sheet; old $1.34/GB invalidated). 15% attach is the inflection point where refuel moves from drag to neutral.</p>
   </div>
 </section>
 
 <!-- SECTION 2: FAILED eSIM COST -->
 <section>
   <h2 class="section-title"><span class="num">2</span>Failed-eSIM Cost — Corrected Policy</h2>
-  <p class="section-sub">The raw sheet shows $4.00 per failed activation. That figure is wrong for our actual policy. The real blended cost is ~$10.80 per failure.</p>
+  <p class="section-sub">The raw sheet shows $4.00 per failed activation. That figure is wrong for our actual policy. The real blended cost is ~$12.63 per failure (rebuilt 2026-06-02 with corrected rate sheet; old $10.80 used invalidated $1.34/GB).</p>
 
   <div class="card red-card">
     <strong>Sheet shows $4.00 per failure — this was based on a generic refund assumption. Our locked policy is different:</strong>
     <ul style="margin:10px 0 0; font-size:14px; line-height:1.8;">
-      <li>Goodwill = <strong>extra GB credit</strong> (not cash). 2 GB goodwill credit = ~$2.69 supplier cost.</li>
+      <li>Goodwill = <strong>extra GB credit</strong> (not cash). 2 GB goodwill credit = ~$4.52 supplier cost (at $2.26/GB — rebuilt 2026-06-02; old $2.69 at invalidated $1.34/GB).</li>
       <li>User-error failures capped at 3/year per user — beyond that, no goodwill issued.</li>
       <li>Reissue cost (new eSIM provisioning + support time) = ~$3-5.</li>
       <li>Estimated refund scenario (genuine carrier failure) = ~$5 credit, not full cash refund.</li>
-      <li><strong>Blended cost per failure ≈ $10.80</strong> = $2.69 (goodwill 2GB × $1.34) + ~$4.00 (reissue + support time midpoint) + ~$4.11 (partial refund where applicable, weighted by frequency)</li>
+      <li><strong>Blended cost per failure ≈ $12.63</strong> = $4.52 (goodwill 2GB × $2.26, corrected 2026-06-02) + ~$4.00 (reissue + support time midpoint) + ~$4.11 (partial refund where applicable, weighted by frequency)</li>
     </ul>
   </div>
 
@@ -201,8 +201,8 @@
     </div>
     <div class="failure-box">
       <h4>Corrected blended cost</h4>
-      <div class="f-val" style="color:var(--amber);">~$10.80</div>
-      <p>Includes supplier COGS for goodwill GB + support time + reissue cost + partial credit where applicable. Use this for financial modeling.</p>
+      <div class="f-val" style="color:var(--amber);">~$12.63</div>
+      <p>Includes supplier COGS for goodwill GB + support time + reissue cost + partial credit where applicable. Use this for financial modeling. (Rebuilt 2026-06-02 with corrected rate sheet.)</p>
     </div>
   </div>
 
@@ -215,7 +215,7 @@
     </ul>
     <p style="margin:14px 0 6px; font-size:13px; color:var(--muted); font-style:italic; padding-top:10px; border-top:1px dashed var(--line);">— above this line is preventable (70% of failures) · below is not —</p>
     <ul class="prevention-list" style="margin-top:0;">
-      <li><span class="pct">~30%</span><div>Genuine carrier/supplier issues. Not preventable — but $10.80/case is manageable at scale.</div></li>
+      <li><span class="pct">~30%</span><div>Genuine carrier/supplier issues. Not preventable — but $12.63/case is manageable at scale.</div></li>
     </ul>
   </div>
 </section>

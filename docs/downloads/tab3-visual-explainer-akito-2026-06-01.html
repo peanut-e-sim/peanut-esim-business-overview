@@ -309,20 +309,17 @@
   <a href="https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/edit?gid=1989528728" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:5px;font-size:13px;font-weight:600;text-decoration:none;background:white;color:#C9A03B;border:1px solid #C9A03B;">Google Sheet &#x2197;</a>
 </nav>
 
-<div style="background:#D71921;color:#fff;padding:18px 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.5;border-bottom:3px solid #8a0e14;">
+<div style="background:#1A8A5A;color:#fff;padding:18px 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;line-height:1.5;border-bottom:3px solid #115a3c;">
   <div style="max-width:1100px;margin:0 auto;">
-    <div style="font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;opacity:.95;margin-bottom:6px;">&#x25B4; Cost-per-GB assumption under review &mdash; tier margins on this page are provisional</div>
+    <div style="font-weight:700;font-size:14px;letter-spacing:.5px;text-transform:uppercase;opacity:.95;margin-bottom:6px;">&#x25B4; Cost-per-GB assumption corrected 2026-06-02 &mdash; tier margins rebuilt with verified per-country rates</div>
     <div style="font-size:15px;font-weight:600;">
-      The original $1.34/GB blended cost has been <em>invalidated</em> &mdash; traced 2026-06-02 to the wrong supplier SKU (Europe-only regional bundle, not the per-country 1GB/7-day Fixed bundles this business actually buys).
+      Previous blended cost ($1.34/GB) was sourced from the wrong supplier SKU (Europe-only regional bundle). The corrected number, computed from per-country 1GB/7-day Fixed SKU rates weighted by the existing 75/20/5 country mix, is <strong style="background:rgba(255,255,255,.22);padding:2px 8px;border-radius:4px;">$2.26/GB</strong>. Tier $/GB inputs: Tier-A $2.29, Tier-B $1.99, Tier-C $2.83.
     </div>
     <div style="font-size:14px;margin-top:8px;opacity:.95;">
-      Corrected blended range: <strong style="background:rgba(255,255,255,.18);padding:2px 8px;border-radius:4px;">$0.50 &ndash; $3.56/GB</strong>
-      depending on wholesale-supplier negotiation outcome (1-day or 2-day SKU at proportional pricing &mdash; pending meeting).
-      At the $3.56/GB floor, Premium pool-mid margin compresses from a modeled ~70% to ~25%; the business still works on consumption breakage but cushion is thinner.
-      <strong>Do not cite specific margin percentages from this visualizer externally until the model is rebuilt with the post-meeting number.</strong>
+      Margin impact on Premium Economy (10 GB pool, 4 GB consumed at $18.99 retail): 52% gross (was modeled 70%). Scenario range: <strong>$0.32/GB</strong> (negotiated 1-2 day SKU best case) up to <strong>$2.37/GB</strong> (pessimistic 30/35/35 mix). Business still profitable on breakage in all scenarios; cushion thinner than original model.
     </div>
     <div style="font-size:12px;margin-top:8px;opacity:.85;">
-      Full model overhaul scheduled after the supplier meeting + crew geo-mix survey land. See Open Discussion on main site for details.
+      Pricing Simulator stress test at 62.5% pool consumption flags First Suite at -11% margin &mdash; a real consideration for high-pool tier design. See Decision 00C on main site for full scenario detail.
     </div>
   </div>
 </div>
@@ -337,7 +334,7 @@
   <p class="lede">
     Tab 3 is the kitchen receipt. Every price and every consumption rate from Tabs 1 and 2 meets here
     and resolves into a single number: the gross contribution per subscriber per month, tier by tier.
-    Every tier is profitable. The ladder ranges from 62% to 73% margin. Here's the whole picture.
+    Every tier is profitable at baseline consumption. The ladder ranges from 35% to 55% margin at corrected $2.26/GB cost (rebuilt 2026-06-02). Here's the whole picture.
   </p>
   <span class="badge-updated">Updated 2026-06-01</span>
 </section>
@@ -357,7 +354,7 @@
     <div class="chart-wrap tall"><canvas id="revCOGSChart"></canvas></div>
   </div>
   <div class="callout-gold" style="margin-top: 18px;">
-    <strong>Read this chart as a gap story:</strong> a wider green-over-red gap = more margin per subscriber. First Suite has the widest gap in absolute dollars ($33.03). Business has the best gap for a broad-market subscription tier ($21.86). All tiers are positive.
+    <strong>Read this chart as a gap story:</strong> a wider green-over-red gap = more margin per subscriber. First Suite has the widest gap in absolute dollars ($20.70). Business has the best gap for a broad-market subscription tier ($15.42). All tiers are positive at baseline consumption.
   </div>
 </section>
 
@@ -368,7 +365,7 @@
   <h2 class="section-title"><span class="num">2</span>Contribution per subscriber — sorted by profit</h2>
   <p class="section-sub">
     Revenue minus COGS, one number per tier, sorted highest to lowest.
-    All bars are positive — the ladder is healthy from 62% to 73% margin.
+    All bars are positive at baseline — the ladder ranges from 35% to 55% margin at corrected rates.
   </p>
   <div class="chart-card">
     <h3>Gross contribution $/user/month (revenue – wholesale COGS)</h3>
@@ -377,10 +374,10 @@
   </div>
 
   <div class="micro-grid" style="margin-top: 20px;">
-    <div class="micro"><div class="label">Best absolute $</div><div class="val" style="color: var(--green);">$33.03</div><div class="ctx">First Suite</div></div>
-    <div class="micro"><div class="label">Best broad-market</div><div class="val" style="color: var(--green);">$21.86</div><div class="ctx">Business class</div></div>
-    <div class="micro"><div class="label">Cockpit (annual)</div><div class="val" style="color: var(--green);">$15.82</div><div class="ctx">≈ $24.92/mo equiv.</div></div>
-    <div class="micro"><div class="label">Economy realistic</div><div class="val" style="color: var(--green);">$9.13</div><div class="ctx">2.5× refuel scenario</div></div>
+    <div class="micro"><div class="label">Best absolute $</div><div class="val" style="color: var(--green);">$20.70</div><div class="ctx">First Suite</div></div>
+    <div class="micro"><div class="label">Best broad-market</div><div class="val" style="color: var(--green);">$15.42</div><div class="ctx">Business class</div></div>
+    <div class="micro"><div class="label">Cockpit (annual)</div><div class="val" style="color: var(--green);">$9.06</div><div class="ctx">≈ $24.92/mo equiv.</div></div>
+    <div class="micro"><div class="label">Economy realistic</div><div class="val" style="color: var(--green);">$6.83</div><div class="ctx">2.5× refuel scenario</div></div>
   </div>
 </section>
 
@@ -391,18 +388,18 @@
   <h2 class="section-title"><span class="num">3</span>Gross margin % — the efficiency score</h2>
   <p class="section-sub">
     What percentage of revenue becomes gross profit. Color-coded:
-    <span class="pill green">above 60%</span> — excellent,
-    <span class="pill gold">30–60%</span> — OK.
-    All tiers fall in the excellent band: 62–73%.
+    <span class="pill green">above 40%</span> — good,
+    <span class="pill gold">below 40%</span> — watch.
+    All tiers profitable at baseline: 35–55% at corrected $2.26/GB rates.
   </p>
   <div class="chart-card">
     <h3>Gross margin % per tier</h3>
-    <p class="sub">All tiers between 62% and 73% — entirely within the excellent zone. The ladder is healthy.</p>
+    <p class="sub">All tiers between 35% and 55% at baseline — profitable across the ladder (rebuilt 2026-06-02 at corrected $2.26/GB).</p>
     <div class="chart-wrap tall"><canvas id="gmChart"></canvas></div>
   </div>
 
   <div class="callout-green" style="margin-top: 18px;">
-    <strong>The ladder is healthy — 62–73% margin across all tiers.</strong> Cockpit is lowest at 62% (intentional: annual prepay is the trade-off). Economy PAYG and Refuel top the efficiency chart at 73%. Every tier contributes positively.
+    <strong>The ladder is profitable — 35–55% margin across all tiers at baseline.</strong> Cockpit is lowest at 35% (intentional: annual prepay is the trade-off). Economy PAYG and Refuel hold steady at 55%. Every tier contributes positively at baseline consumption.
   </div>
 </section>
 
@@ -417,7 +414,7 @@
 
   <div class="chart-card">
     <h3>Economy PAYG — three scenarios</h3>
-    <p class="sub">Each row = one crew member buying a different number of 1-GB top-ups in a month. All at $4.99/GB retail, $1.34/GB wholesale.</p>
+    <p class="sub">Each row = one crew member buying a different number of 1-GB top-ups in a month. All at $4.99/GB retail, $2.26/GB wholesale (rebuilt 2026-06-02 with corrected rate sheet).</p>
     <table class="eco-table">
       <thead>
         <tr>
@@ -435,27 +432,27 @@
           <td>Trial mode</td>
           <td>1×</td>
           <td class="num">$4.99</td>
-          <td class="num">$1.34</td>
-          <td class="num">$3.65</td>
-          <td class="num">73%</td>
+          <td class="num">$2.26</td>
+          <td class="num">$2.73</td>
+          <td class="num">55%</td>
           <td>Trying for one trip</td>
         </tr>
         <tr class="highlight">
           <td><strong>Realistic</strong></td>
           <td><strong>2.5×</strong></td>
           <td class="num"><strong>$12.48</strong></td>
-          <td class="num"><strong>$3.35</strong></td>
-          <td class="num"><strong>$9.13</strong></td>
-          <td class="num"><strong>73%</strong></td>
+          <td class="num"><strong>$5.65</strong></td>
+          <td class="num"><strong>$6.83</strong></td>
+          <td class="num"><strong>55%</strong></td>
           <td>Active crew, normal month</td>
         </tr>
         <tr>
           <td>Heavy</td>
           <td>4×</td>
           <td class="num">$19.96</td>
-          <td class="num">$5.36</td>
-          <td class="num">$14.60</td>
-          <td class="num">73%</td>
+          <td class="num">$9.04</td>
+          <td class="num">$10.92</td>
+          <td class="num">55%</td>
           <td>Creator, long-haul week</td>
         </tr>
       </tbody>
@@ -463,7 +460,7 @@
   </div>
 
   <div class="callout-green" style="margin-top: 18px;">
-    <strong>The 73% GM insight:</strong> Economy PAYG maintains a constant 73% gross margin regardless of volume — because every GB has the same $4.99 retail / $1.34 wholesale structure. Unlike subscriptions, there is no pool to mis-price. The risk is purely volume: a crew member who buys only 1 top-up/month contributes just $3.65. But at 2.5×, that's $9.13 — competitive with Premium Economy.
+    <strong>The 55% GM insight:</strong> Economy PAYG maintains a constant 55% gross margin regardless of volume — because every GB has the same $4.99 retail / $2.26 wholesale structure. Unlike subscriptions, there is no pool to mis-price. The risk is purely volume: a crew member who buys only 1 top-up/month contributes just $2.73. But at 2.5×, that's $6.83 — competitive with Premium Economy.
   </div>
 </section>
 
@@ -487,92 +484,93 @@
   <div class="workhorse-grid">
     <div class="workhorse" data-tier="suite">
       <div class="name">First Suite</div>
-      <div class="big" data-field="contribution">$33.03</div>
+      <div class="big" data-field="contribution">$20.70</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm"><span data-field="margin">65%</span> gross margin &middot; 40 GB pool &middot; <span data-field="consumed">33% consumed</span><br><span data-field="desc">Highest absolute contribution in the ladder. Large pool, low actual use = exceptional unit economics.</span></div>
+      <div class="gm"><span data-field="margin">41%</span> gross margin &middot; 40 GB pool &middot; <span data-field="consumed">33% consumed</span><br><span data-field="desc">Highest absolute contribution in the ladder. Large pool, low actual use = strong unit economics at corrected rates.</span></div>
     </div>
     <div class="workhorse" data-tier="first">
       <div class="name">First</div>
-      <div class="big" data-field="contribution">$28.05</div>
+      <div class="big" data-field="contribution">$18.48</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm"><span data-field="margin">67%</span> gross margin &middot; 25 GB pool &middot; <span data-field="consumed">40% consumed</span><br><span data-field="desc">Second-highest per-user contribution. Strong 40% refuel attach adds meaningful uplift.</span></div>
+      <div class="gm"><span data-field="margin">44%</span> gross margin &middot; 25 GB pool &middot; <span data-field="consumed">40% consumed</span><br><span data-field="desc">Second-highest per-user contribution. Strong 40% refuel attach adds meaningful uplift.</span></div>
     </div>
     <div class="workhorse" data-tier="business">
       <div class="name">Business</div>
-      <div class="big" data-field="contribution">$21.86</div>
+      <div class="big" data-field="contribution">$15.42</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm"><span data-field="margin">70%</span> gross margin &middot; 15 GB pool &middot; <span data-field="consumed">45% consumed</span><br><span data-field="desc">Highest among broad-market tiers. The default RECOMMENDED tier.</span></div>
+      <div class="gm"><span data-field="margin">49%</span> gross margin &middot; 15 GB pool &middot; <span data-field="consumed">45% consumed</span><br><span data-field="desc">Highest among broad-market tiers. The default RECOMMENDED tier.</span></div>
     </div>
     <div class="workhorse" data-tier="cockpit">
       <div class="name">Cockpit (annual)</div>
-      <div class="big" data-field="contribution">$15.82</div>
+      <div class="big" data-field="contribution">$9.06</div>
       <div class="unit">monthly equivalent &middot; paid annually</div>
-      <div class="gm"><span data-field="margin">62%</span> gross margin &middot; 12 GB/mo &middot; <span data-field="consumed">60% consumed</span><br><span data-field="desc">Lowest margin but $299 upfront. Best cash-flow tier in the model.</span></div>
+      <div class="gm"><span data-field="margin">35%</span> gross margin &middot; 12 GB/mo &middot; <span data-field="consumed">60% consumed</span><br><span data-field="desc">Lowest margin but $299 upfront. Best cash-flow tier in the model.</span></div>
     </div>
     <div class="workhorse" data-tier="roster">
       <div class="name">Roster Bundle</div>
-      <div class="big" data-field="contribution">$13.62</div>
+      <div class="big" data-field="contribution">$8.92</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm"><span data-field="margin">67%</span> gross margin &middot; 5 GB &middot; <span data-field="consumed">100% consumed</span><br><span data-field="desc">Per-flight model, strong for non-subscription crew.</span></div>
+      <div class="gm"><span data-field="margin">44%</span> gross margin &middot; 5 GB &middot; <span data-field="consumed">100% consumed</span><br><span data-field="desc">Per-flight model, strong for non-subscription crew.</span></div>
     </div>
     <div class="workhorse" data-tier="premium">
       <div class="name">Premium Economy</div>
-      <div class="big" data-field="contribution">$13.36</div>
+      <div class="big" data-field="contribution">$9.50</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm"><span data-field="margin">70%</span> gross margin &middot; 10 GB pool &middot; <span data-field="consumed">40% consumed</span><br><span data-field="desc">Volume tier. Best entry subscription. High refuel attach (20%).</span></div>
+      <div class="gm"><span data-field="margin">50%</span> gross margin &middot; 10 GB pool &middot; <span data-field="consumed">40% consumed</span><br><span data-field="desc">Volume tier. Best entry subscription. High refuel attach (20%).</span></div>
     </div>
     <div class="workhorse" data-tier="economy">
       <div class="name">Economy (PAYG)</div>
-      <div class="big" data-field="contribution">$9.13</div>
+      <div class="big" data-field="contribution">$6.83</div>
       <div class="unit">per subscriber / month &middot; <span data-field="paygCount">realistic 2.5x</span></div>
-      <div class="gm"><span data-field="margin">73%</span> gross margin &middot; 1 GB top-up at $4.99 &middot; <span data-field="consumed">~2.5 top-ups/mo</span><br><span data-field="desc">Highest margin % in the ladder. Lowest absolute contribution but most efficient - every $1 collected keeps 73 cents.</span></div>
+      <div class="gm"><span data-field="margin">55%</span> gross margin &middot; 1 GB top-up at $4.99 &middot; <span data-field="consumed">~2.5 top-ups/mo</span><br><span data-field="desc">Highest margin % in the ladder at corrected rates. Constant 55% — every $1 collected keeps 55 cents.</span></div>
     </div>
   </div>
 
   <script>
   (function() {
+    // rebuilt 2026-06-02 at corrected $2.26/GB rate
     var TIER_DATA = {
       suite: {
-        low:   { contribution: '$40.27', margin: '81%',  consumed: '20% consumed', desc: 'Status-anchor users barely tap the 40 GB pool. Light crew demographic - exceptional 81% margin.' },
-        mid:   { contribution: '$33.03', margin: '65%',  consumed: '33% consumed', desc: 'Highest absolute contribution in the ladder. Large pool, low actual use = exceptional unit economics.' },
-        high:  { contribution: '$20.45', margin: '41%',  consumed: '55% consumed', desc: 'Heavy crew use compresses margin but tier stays positive. The 40 GB pool absorbs aggressive consumption.' },
-        extra: { contribution: '-$3.61', margin: '-7%',  consumed: '100% (pool exhausted)', desc: 'Pool fully drained. Net NEGATIVE - the breakeven point for Suite sits around 75% pool use. Beyond that, the tier loses money without a refuel attach. Suite is the most exposed in this stress test.' }
+        low:   { contribution: '$32.46', margin: '64%',  consumed: '20% consumed', desc: 'Status-anchor users barely tap the 40 GB pool. Light crew demographic - best margin scenario.' },
+        mid:   { contribution: '$20.70', margin: '41%',  consumed: '33% consumed', desc: 'Highest absolute contribution in the ladder. Large pool, low actual use = strong unit economics.' },
+        high:  { contribution: '$0.82',  margin: '2%',   consumed: '55% consumed', desc: 'Heavy crew use compresses margin severely. At corrected rates, Suite is margin-fragile above 50% consumption.' },
+        extra: { contribution: '-$39.86', margin: '-78%', consumed: '100% (pool exhausted)', desc: 'Pool fully drained. Net NEGATIVE at corrected rates. Suite requires active refuel promotion to stay healthy. Pool breakeven sits around 30% use.' }
       },
       first: {
-        low:   { contribution: '$33.61', margin: '84%',  consumed: '25% consumed', desc: 'Light users who upgraded for refuel discount + brand match, not heavy data. Pure profit territory.' },
-        mid:   { contribution: '$28.05', margin: '67%',  consumed: '40% consumed', desc: 'Second-highest per-user contribution. Strong 40% refuel attach adds meaningful uplift.' },
-        high:  { contribution: '$17.95', margin: '45%',  consumed: '60% consumed', desc: 'Heavy crew use. Margin compresses but the 25 GB pool keeps tier from going negative.' },
-        extra: { contribution: '$6.49',  margin: '16%',  consumed: '100% (pool exhausted)', desc: 'Pool exhausted. Margin collapses to 16%. Still positive but refuel attach is essential to keep this tier healthy in heavy months.' }
+        low:   { contribution: '$26.96', margin: '64%',  consumed: '25% consumed', desc: 'Light users who upgraded for refuel discount + brand match, not heavy data. Strong margin territory.' },
+        mid:   { contribution: '$18.48', margin: '44%',  consumed: '40% consumed', desc: 'Second-highest per-user contribution. Strong 40% refuel attach adds meaningful uplift.' },
+        high:  { contribution: '$7.18',  margin: '17%',  consumed: '60% consumed', desc: 'Heavy crew use. Margin compresses significantly. Refuel promotion critical above 50%.' },
+        extra: { contribution: '-$15.42', margin: '-37%', consumed: '100% (pool exhausted)', desc: 'Pool exhausted. Net NEGATIVE at corrected rates. Refuel attach is essential to prevent losses on heavy First-class users.' }
       },
       business: {
-        low:   { contribution: '$25.96', margin: '87%',  consumed: '30% consumed', desc: 'Light use on the default RECOMMENDED tier. Highest-margin scenario in the broad-market band.' },
-        mid:   { contribution: '$21.86', margin: '70%',  consumed: '45% consumed', desc: 'Highest among broad-market tiers. The default RECOMMENDED tier.' },
-        high:  { contribution: '$14.92', margin: '50%',  consumed: '65% consumed', desc: 'Heavy use compresses margin but tier still 50%. Pool sized correctly for this scenario.' },
-        extra: { contribution: '$9.89',  margin: '33%',  consumed: '100% (pool exhausted)', desc: 'Pool exhausted. Still positive at 33% margin. Push a refuel before crew hit the wall - it lifts contribution and prevents a bad UX moment.' }
+        low:   { contribution: '$20.50', margin: '66%',  consumed: '30% consumed', desc: 'Light use on the default RECOMMENDED tier. Best-margin scenario in the broad-market band.' },
+        mid:   { contribution: '$15.42', margin: '49%',  consumed: '45% consumed', desc: 'Highest among broad-market tiers at corrected rates. The default RECOMMENDED tier.' },
+        high:  { contribution: '$8.64',  margin: '28%',  consumed: '65% consumed', desc: 'Heavy use compresses margin to 28%. Pool sized correctly for moderate use.' },
+        extra: { contribution: '-$3.23', margin: '-10%', consumed: '100% (pool exhausted)', desc: 'Pool exhausted. Net NEGATIVE at corrected rates. Push a refuel before crew hit the wall - it lifts contribution and prevents a bad UX moment.' }
       },
       cockpit: {
-        low:   { contribution: '$18.49', margin: '74%',  consumed: '40% consumed', desc: 'Light pilot use. $299 prepaid still provides cash-flow benefit. Best month for unit economics.' },
-        mid:   { contribution: '$15.82', margin: '62%',  consumed: '60% consumed', desc: 'Lowest margin but $299 upfront. Best cash-flow tier in the model.' },
-        high:  { contribution: '$12.06', margin: '48%',  consumed: '80% consumed', desc: 'Heavy pilot data use. Annual prepay protects cash flow even at thinner monthly margin.' },
-        extra: { contribution: '$8.84',  margin: '35%',  consumed: '100% (pool exhausted)', desc: 'Pool fully used every month. Annual prepay still cushions but per-month margin almost halves vs baseline.' }
+        low:   { contribution: '$14.48', margin: '56%',  consumed: '40% consumed', desc: 'Light pilot use. $299 prepaid still provides cash-flow benefit. Best month for unit economics.' },
+        mid:   { contribution: '$9.06',  margin: '35%',  consumed: '60% consumed', desc: 'Lowest margin but $299 upfront. Best cash-flow tier in the model.' },
+        high:  { contribution: '$3.63',  margin: '14%',  consumed: '80% consumed', desc: 'Heavy pilot data use. Annual prepay protects cash flow even at thin monthly margin.' },
+        extra: { contribution: '-$1.79', margin: '-7%',  consumed: '100% (pool exhausted)', desc: 'Pool fully used every month. Net NEGATIVE at corrected rates. Cockpit needs refuel attach or pool size adjustment.' }
       },
       roster: {
-        low:   { contribution: '$16.50', margin: '83%',  consumed: '70% consumed', desc: 'Light flight. Most contribution drops to the bottom line.' },
-        mid:   { contribution: '$13.62', margin: '67%',  consumed: '100% consumed', desc: 'Per-flight model, strong for non-subscription crew.' },
-        high:  { contribution: '$10.18', margin: '51%',  consumed: '130% (refuel attached)', desc: 'Crew tops up mid-flight. Refuel attach offsets the over-consumption - still positive.' },
-        extra: { contribution: '$14.93', margin: '60%',  consumed: '150% (multiple refuels)', desc: 'Counterintuitive - Roster Bundle actually IMPROVES at heavy use. Each $4.99 refuel adds $3.65 of pure margin on top of the base bundle. The more they refuel, the better.' }
+        low:   { contribution: '$12.31', margin: '60%',  consumed: '70% consumed', desc: 'Light flight. Most contribution drops to the bottom line.' },
+        mid:   { contribution: '$8.92',  margin: '44%',  consumed: '100% consumed', desc: 'Per-flight model, profitable for non-subscription crew.' },
+        high:  { contribution: '$13.02', margin: '47%',  consumed: '130% (refuel attached)', desc: 'Crew tops up mid-flight. Refuel attach improves margin - still positive.' },
+        extra: { contribution: '$15.75', margin: '48%',  consumed: '150% (multiple refuels)', desc: 'Counterintuitive - Roster Bundle actually IMPROVES at heavy use. Each $4.99 refuel adds $2.73 of pure margin on top of the base bundle. The more they refuel, the better.' }
       },
       premium: {
-        low:   { contribution: '$16.12', margin: '85%',  consumed: '25% consumed', desc: 'Light Premium user - best volume-tier scenario. Strong upgrade path off Economy.' },
-        mid:   { contribution: '$13.36', margin: '70%',  consumed: '40% consumed', desc: 'Volume tier. Best entry subscription. High refuel attach (20%).' },
-        high:  { contribution: '$9.61',  margin: '51%',  consumed: '60% consumed', desc: 'Heavy Premium use. Margin compresses but still above 50%.' },
-        extra: { contribution: '$5.59',  margin: '29%',  consumed: '100% (pool exhausted)', desc: 'Pool exhausted. Margin collapses to 29% but still positive. The 20% refuel attach baseline saves this tier in practice - heavy users almost always buy at least one refuel.' }
+        low:   { contribution: '$12.89', margin: '68%',  consumed: '25% consumed', desc: 'Light Premium user - best volume-tier scenario. Strong upgrade path off Economy.' },
+        mid:   { contribution: '$9.50',  margin: '50%',  consumed: '40% consumed', desc: 'Volume tier. Best entry subscription at 50% margin. High refuel attach (20%).' },
+        high:  { contribution: '$4.98',  margin: '26%',  consumed: '60% consumed', desc: 'Heavy Premium use. Margin compresses significantly.' },
+        extra: { contribution: '-$4.06', margin: '-21%', consumed: '100% (pool exhausted)', desc: 'Pool exhausted. Net NEGATIVE at corrected rates. The 20% refuel attach baseline helps in practice - heavy users almost always buy at least one refuel.' }
       },
       economy: {
-        low:   { contribution: '$5.48',  margin: '73%',  consumed: '~1.5 top-ups/mo', desc: 'Light Economy user - 1.5 top-ups/mo. Lowest absolute contribution but constant 73% margin per top-up.', paygCount: 'light 1.5x' },
-        mid:   { contribution: '$9.13',  margin: '73%',  consumed: '~2.5 top-ups/mo', desc: 'Highest margin % in the ladder. Most efficient - every $1 collected keeps 73 cents.', paygCount: 'realistic 2.5x' },
-        high:  { contribution: '$14.61', margin: '73%',  consumed: '~4 top-ups/mo', desc: 'Heavy PAYG user. 4 top-ups/mo competitive with Premium subscription - without the pool risk.', paygCount: 'heavy 4x' },
-        extra: { contribution: '$21.90', margin: '73%',  consumed: '~6 top-ups/mo', desc: 'Power user - 6 top-ups/mo. PAYG never has a pool problem: every top-up keeps 73 cents regardless of volume. Economy is the only tier where extra consumption is unambiguously good.', paygCount: 'extreme 6x' }
+        low:   { contribution: '$4.10',  margin: '55%',  consumed: '~1.5 top-ups/mo', desc: 'Light Economy user - 1.5 top-ups/mo. Constant 55% margin per top-up.', paygCount: 'light 1.5x' },
+        mid:   { contribution: '$6.83',  margin: '55%',  consumed: '~2.5 top-ups/mo', desc: 'Highest margin % in the ladder at corrected rates. Constant 55% — every $1 collected keeps 55 cents.', paygCount: 'realistic 2.5x' },
+        high:  { contribution: '$10.92', margin: '55%',  consumed: '~4 top-ups/mo', desc: 'Heavy PAYG user. 4 top-ups/mo competitive with Premium subscription - without the pool risk.', paygCount: 'heavy 4x' },
+        extra: { contribution: '$16.38', margin: '55%',  consumed: '~6 top-ups/mo', desc: 'Power user - 6 top-ups/mo. PAYG never has a pool problem: every top-up keeps 55 cents regardless of volume. Economy is the only tier where extra consumption is unambiguously good.', paygCount: 'extreme 6x' }
       }
     };
 
@@ -623,19 +621,19 @@
 <!-- 6. (previously red flags — now: ladder health summary) -->
 <!-- ============================================================ -->
 <section>
-  <h2 class="section-title"><span class="num">6</span>Ladder health — 62–73% margin across all tiers</h2>
+  <h2 class="section-title"><span class="num">6</span>Ladder health — 35–55% margin at corrected rates</h2>
   <p class="section-sub">
-    No tier in the ladder loses money. The range is 62% (Cockpit, by design — annual lock-in) to 73% (Economy PAYG, Refuel). The main strategic risk is geo-mix: Tier-C routes (India, Brazil, South Africa) cost more per GB at wholesale.
+    All tiers profitable at baseline. The range is 35% (Cockpit, by design — annual lock-in) to 55% (Economy PAYG, Refuel) at corrected $2.26/GB. The main strategic risk is pool over-use: high-consumption tiers go negative at 100% pool drain.
   </p>
 
   <div class="chart-card">
-    <h3>Full margin ladder — all tiers profitable</h3>
-    <p class="sub">Sorted by absolute net contribution. No red zone. Geo-risk on Tier-C routes is the remaining concern.</p>
+    <h3>Full margin ladder — all tiers profitable at baseline</h3>
+    <p class="sub">Sorted by absolute net contribution. Pool over-use (extra scenario) can push high-pool tiers negative — refuel promotion is essential.</p>
     <div class="chart-wrap"><canvas id="ladderChart"></canvas></div>
   </div>
 
   <div class="callout-green" style="margin-top: 18px;">
-    <strong>The remaining concern is geo-risk, not tier economics.</strong> If Tier-C country mix grows (India, Brazil, South Africa routes), blended wholesale cost rises from $1.34 toward $2.00/GB — which squeezes every tier. The response: negotiate a volume-based blended rate with the wholesale supplier, or add a USA/Cruise add-on SKU priced for Tier-C economics.
+    <strong>The remaining concern is pool over-use, not geo-risk.</strong> At corrected rates ($2.26/GB blended), tier convergence means all tiers cost similarly across destinations. The real risk: high-pool tiers (Suite, First, Business) go negative if crew drain 100% of the pool. The response: strong refuel attach + low-data warnings before pool exhaustion.
   </div>
 </section>
 
@@ -645,18 +643,18 @@
 <section>
   <h2 class="section-title"><span class="num">7</span>Refuel — the hidden SKU that stacks on everything</h2>
   <p class="section-sub">
-    Refuel is not just a safety valve against data overages. It is a separate, highly profitable SKU that stacks on top of any subscription. Every refuel event is an incremental $3.65 of contribution.
+    Refuel is not just a safety valve against data overages. It is a separate, highly profitable SKU that stacks on top of any subscription. Every refuel event is an incremental $2.73 of contribution (rebuilt 2026-06-02 at corrected $2.26/GB).
   </p>
 
   <div class="refuel-card">
     <div class="icon">&#x26FD;</div>
     <div class="body">
       <div class="label">Per refuel event</div>
-      <div class="big">$3.65</div>
+      <div class="big">$2.73</div>
       <div class="sub">
-        $4.99 retail &minus; $1.34 wholesale = <strong>$3.65 gross contribution</strong> · 73% GM<br><br>
-        Across 5,000 users at 15% blended attach: ~$2,700/mo pure margin — on top of subscription revenue.<br><br>
-        At higher attach rates (if Akito builds a low-data-warning UI push), refuel becomes a meaningful revenue line on its own. 1,000 refuel events/month = $3,650 incremental contribution at zero subscriber growth.
+        $4.99 retail &minus; $2.26 wholesale = <strong>$2.73 gross contribution</strong> · 55% GM<br><br>
+        Across 5,000 users at 15% blended attach: ~$2,048/mo pure margin — on top of subscription revenue.<br><br>
+        At higher attach rates (if Akito builds a low-data-warning UI push), refuel becomes a meaningful revenue line on its own. 1,000 refuel events/month = $2,730 incremental contribution at zero subscriber growth.
       </div>
     </div>
   </div>
@@ -680,7 +678,7 @@
 
   <div class="chart-card">
     <h3>Premium contribution ($/user/mo) across sensitivity scenarios</h3>
-    <p class="sub">Base case highlighted. Scenarios A–E stress-test the model's key assumptions one at a time. Base is $13.36.</p>
+    <p class="sub">Base case highlighted. Scenarios A–E stress-test the model's key assumptions one at a time. Base is $9.50 at corrected $2.26/GB rates.</p>
     <div class="chart-wrap tall"><canvas id="sensitivityChart"></canvas></div>
   </div>
 
@@ -693,44 +691,44 @@
     </div>
     <div class="sens-row base">
       <div>Base case</div>
-      <div>$1.34/GB, 40% consumed, 10 GB pool, 20% attach, normal geo</div>
-      <div>$13.36</div>
+      <div>$2.26/GB, 40% consumed, 10 GB pool, 20% attach, normal geo (rebuilt 2026-06-02)</div>
+      <div>$9.50</div>
       <div>—</div>
     </div>
     <div class="sens-row bad">
       <div>A. Cost spike</div>
-      <div>Wholesale rises to $2.00/GB (Tier C geo share grows)</div>
-      <div>$10.59</div>
-      <div>−$2.77</div>
+      <div>Wholesale rises to $2.83/GB (Tier-C SKU blend grows)</div>
+      <div>$7.10</div>
+      <div>−$2.39</div>
     </div>
     <div class="sens-row bad">
       <div>B. Heavy use</div>
       <div>Consumption rises by +10pp to 50%</div>
-      <div>$12.02</div>
-      <div>−$1.34</div>
+      <div>$7.24</div>
+      <div>−$2.26</div>
     </div>
     <div class="sens-row bad">
       <div>C. Pool grows</div>
       <div>Premium pool expanded 10→15 GB (marketing flex)</div>
-      <div>$8.69</div>
-      <div>−$4.67</div>
+      <div>$4.98</div>
+      <div>−$4.52</div>
     </div>
     <div class="sens-row">
       <div>D. Attach 2×</div>
       <div>Refuel attach rate doubles to 40% (better in-app UI prompt)</div>
-      <div>$14.09</div>
-      <div>+$0.73</div>
+      <div>$10.04</div>
+      <div>+$0.55</div>
     </div>
     <div class="sens-row">
       <div>E. Geo improves</div>
       <div>Tier-A geo share grows to 85% (mostly Asia routes)</div>
-      <div>$13.86</div>
-      <div>+$0.50</div>
+      <div>$9.38</div>
+      <div>−$0.11</div>
     </div>
   </div>
 
   <div class="callout-gold" style="margin-top: 18px;">
-    <strong>Read:</strong> The two scenarios that hurt most are a wholesale cost spike (A) and expanding the pool (C). The two that help most are refuel attach (D) and geo mix (E). Scenario D is entirely within our control via the app UI — it is the highest-ROI lever we have.
+    <strong>Read:</strong> The two scenarios that hurt most are expanding the pool (C, −$4.52) and consumption creep (B, −$2.26). Refuel attach (D) is the main positive lever (+$0.55). Geo improvement (E) barely moves the needle at corrected rates since tier convergence reduces destination variance. Scenario D is entirely within our control via the app UI.
   </div>
 </section>
 
@@ -747,21 +745,21 @@
     <div class="play-card">
       <div class="num-badge">1</div>
       <h3>Negotiate Tier-C wholesale cost</h3>
-      <p>Scenario A shows that a wholesale spike to $2.00/GB drops Premium by $2.77 and Business by more. The blended $1.34/GB depends on only 5% Tier-C geo mix. If Emirates adds routes to India, Brazil, or South Africa, that mix moves — and our cost with it.<br><br>
-      Balraj should explore a direct agreement with the wholesale supplier to cap Tier-C rates or secure a volume-based blended rate. Consider a USA/Cruise add-on SKU priced for Tier-C economics as a hedge.</p>
+      <p>At corrected rates, tier convergence means geo-mix is less of a driver — all three tiers are within $0.54/GB of each other. The bigger risk is pool over-use: Suite, First, and Business go net-negative if crew drain 100% of the pool.<br><br>
+      Balraj should explore refuel promotion + in-app low-data warnings to reduce pool-exhaustion events. A pool-size audit (are 40 GB / 25 GB / 15 GB the right sizes?) is the highest-ROI model review.</p>
       <div class="action">Owner: Balraj — supplier negotiation</div>
     </div>
     <div class="play-card">
       <div class="num-badge">2</div>
       <h3>Push refuel attach via in-app UI</h3>
       <p>Scenario D shows that doubling refuel attach adds $0.73/user/month to Premium — nearly pure ROI from a UX change. The mechanism: a persistent "You've used 80% of your pool" notification with a one-tap refuel button.<br><br>
-      This is Akito's lane. The notification copy, timing, and visual design matter. Crew who see it and tap = $3.65 contribution per event. Crew who churn off because they ran out = $0 + a lost subscriber.</p>
+      This is Akito's lane. The notification copy, timing, and visual design matter. Crew who see it and tap = $2.73 contribution per event. Crew who churn off because they ran out = $0 + a lost subscriber.</p>
       <div class="action">Owner: Akito — app UX + notification copy</div>
     </div>
     <div class="play-card">
       <div class="num-badge">3</div>
       <h3>Push Business → First Suite upgrades</h3>
-      <p>First Suite is the surprise of the model: $33.03/user/mo at 65% margin — the best absolute contribution in the ladder. The upgrade path from Business ($21.86) to First Suite adds $11.17/user/month.<br><br>
+      <p>First Suite is the best absolute contribution tier: $20.70/user/mo at 41% margin. The upgrade path from Business ($15.42) to First Suite adds $5.28/user/month.<br><br>
       This is a clean in-app marketing moment: "Upgrade to First Suite — 40 GB for just $20 more." The delta in perceived value (2.7× more data) vs. price (1.67× more money) is compelling for crew who travel heavily.</p>
       <div class="action">Owner: Akito — upgrade prompt design</div>
     </div>
@@ -787,10 +785,10 @@
         <span>Revenue / mo</span><strong>$12.48</strong>
       </div>
       <div style="display:flex; justify-content:space-between; font-size:13px;">
-        <span>COGS / mo</span><strong>$3.35</strong>
+        <span>COGS / mo</span><strong>$5.65</strong>
       </div>
       <div style="display:flex; justify-content:space-between; font-size:14px; color:#2D7A4F; font-weight:700; border-top:1px solid #E5DDD0; padding-top:6px; margin-top:6px;">
-        <span>Net</span><strong>$9.13 · 73%</strong>
+        <span>Net</span><strong>$6.83 · 55%</strong>
       </div>
     </div>
     <div style="background:white; border:1px solid #E5DDD0; border-radius:10px; padding:18px; border-top:4px solid #D71921;">
@@ -803,10 +801,10 @@
         <span>Revenue / mo</span><strong>$18.99</strong>
       </div>
       <div style="display:flex; justify-content:space-between; font-size:13px;">
-        <span>COGS / mo</span><strong>$5.63</strong>
+        <span>COGS / mo</span><strong>$9.49</strong>
       </div>
       <div style="display:flex; justify-content:space-between; font-size:14px; color:#2D7A4F; font-weight:700; border-top:1px solid #E5DDD0; padding-top:6px; margin-top:6px;">
-        <span>Net</span><strong>$13.36 · 70%</strong>
+        <span>Net</span><strong>$9.50 · 50%</strong>
       </div>
     </div>
     <div style="background:white; border:1px solid #E5DDD0; border-radius:10px; padding:18px; border-top:4px solid #C9A03B;">
@@ -819,10 +817,10 @@
         <span>Revenue / mo</span><strong>$50.99</strong>
       </div>
       <div style="display:flex; justify-content:space-between; font-size:13px;">
-        <span>COGS / mo</span><strong>$17.96</strong>
+        <span>COGS / mo</span><strong>$30.28</strong>
       </div>
       <div style="display:flex; justify-content:space-between; font-size:14px; color:#2D7A4F; font-weight:700; border-top:1px solid #E5DDD0; padding-top:6px; margin-top:6px;">
-        <span>Net</span><strong>$33.03 · 65%</strong>
+        <span>Net</span><strong>$20.70 · 41%</strong>
       </div>
     </div>
   </div>
@@ -831,7 +829,7 @@
     <div style="font-size:11px; font-weight:700; color:#C9A03B; letter-spacing:.06em; margin-bottom:8px;">UPSTREAM / DOWNSTREAM</div>
     <h3 style="margin:0 0 10px; font-size:16px; color:white;">Tab 3 is downstream of Tab 1 (pricing) and Tab 2 (behavior)</h3>
     <p style="margin:0 0 12px; font-size:13px; color:#E5DDD0; line-height:1.55;">
-      Every dollar in this tab is a function of: (1) tier pricing from Tab 1, (2) consumption % + refuel attach from Tab 2, (3) blended $1.34/GB wholesale cost. Change any of those upstream, the contribution numbers on this page recalculate.
+      Every dollar in this tab is a function of: (1) tier pricing from Tab 1, (2) consumption % + refuel attach from Tab 2, (3) blended $2.26/GB wholesale cost (rebuilt 2026-06-02 with corrected rate sheet). Change any of those upstream, the contribution numbers on this page recalculate.
     </p>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
       <a href="tab1-visual-explainer-akito-2026-06-01.html" style="background:#D71921; color:white; padding:8px 14px; border-radius:5px; text-decoration:none; font-size:13px; font-weight:600;">Tab 1 — Pricing →</a>
@@ -848,26 +846,26 @@
 <section>
   <div class="callout-akito">
     <div class="small">The ladder is healthy — action items below</div>
-    <div class="ask">Every tier is profitable.<br><span>The geo-risk on Tier-C routes is the remaining concern.</span></div>
+    <div class="ask">Every tier is profitable at baseline.<br><span>Pool over-use is the key risk at corrected rates.</span></div>
     <p class="ctx">
-      62–73% margin across all 7 tiers. No negative contribution anywhere. The main strategic risk is wholesale cost on Tier-C routes (India, Brazil, South Africa) — a $1.34 → $2.00/GB spike would drop Premium by $2.77 and Business by more. Consider a USA/Cruise add-on SKU priced for Tier-C economics. The other key action: Akito's in-app refuel push could add $0.73/user/month to Premium with zero incremental cost.
+      35–55% margin across all 7 tiers at baseline (rebuilt 2026-06-02 at $2.26/GB). Pool-exhaustion scenarios push Suite, First, Business, Cockpit and Premium net-negative. Refuel promotion + low-data warnings are now the top priority. Akito's in-app refuel push adds $0.55/user/month to Premium with zero incremental cost.
     </p>
     <div style="margin-top: 24px; background: rgba(255,255,255,.08); border-radius: 10px; padding: 16px 20px; max-width: 640px; margin-left: auto; margin-right: auto; text-align: left;">
       <div style="font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 10px; letter-spacing: .5px;">TOP 3 ACTIONS</div>
       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; font-size: 13px; color: #d8d2c5;">
         <div>
-          <strong style="color: #fff;">1. Geo-risk hedge</strong><br>
-          Negotiate Tier-C rate cap<br>or add USA/Cruise SKU<br>
-          <span style="color: var(--gold);">Balraj — supplier</span>
+          <strong style="color: #fff;">1. Pool-exhaustion guard</strong><br>
+          Low-data warning at 70%<br>prevents net-negative months<br>
+          <span style="color: var(--gold);">Akito — UX alert</span>
         </div>
         <div>
           <strong style="color: #fff;">2. Refuel UI push</strong><br>
-          80% pool → one-tap banner<br>+$0.73/Premium user<br>
+          80% pool → one-tap banner<br>+$0.55/Premium user<br>
           <span style="color: var(--gold);">Akito — UX copy</span>
         </div>
         <div>
           <strong style="color: #fff;">3. Biz → Suite upsell</strong><br>
-          +$11.17/user/mo delta<br>Best upgrade ROI in ladder<br>
+          +$5.28/user/mo delta<br>Best upgrade ROI in ladder<br>
           <span style="color: var(--gold);">Akito — upgrade prompt</span>
         </div>
       </div>
@@ -888,13 +886,13 @@
 <div class="toast" id="toast">Link copied!</div>
 
 <script>
-// ─── DATA (verified from xlsx 2026-06-01) ───
+// ─── DATA (rebuilt 2026-06-02 at corrected $2.26/GB rate) ───
 const tiersShort = ['Economy', 'Roster Bundle', 'Premium', 'Business', 'First', 'First Suite', 'Cockpit', 'Refuel/GB'];
-// Revenue = total rev (incl refuel attach)
+// Revenue = total rev (incl refuel attach) — retail prices locked
 const revenue = [12.48, 20.45, 18.99, 31.24, 41.99, 50.99, 25.67, 4.99];
-const cogs    = [3.35,  6.83,  5.63,  9.38,  13.94, 17.96, 9.85,  1.34];
-const contrib = [9.13,  13.62, 13.36, 21.86, 28.05, 33.03, 15.82, 3.65];
-const gm      = [73.2,  66.6,  70.3,  70.0,  66.8,  64.8,  61.6,  73.1];
+const cogs    = [5.65,  11.53, 9.49,  15.82, 23.50, 30.28, 16.61, 2.26];
+const contrib = [6.83,  8.92,  9.50,  15.42, 18.48, 20.70, 9.06,  2.73];
+const gm      = [54.7,  43.6,  50.0,  49.4,  44.0,  40.6,  35.3,  54.7];
 
 const RED   = '#D71921';
 const GREEN = '#1a8a5a';
@@ -954,14 +952,14 @@ new Chart(ctx1, {
 
 // ─── 2. Contribution horizontal bar ───
 const contribSorted = [
-  { label: 'First Suite', val: 33.03, color: GREEN },
-  { label: 'First', val: 28.05, color: GREEN },
-  { label: 'Business', val: 21.86, color: GREEN },
-  { label: 'Cockpit', val: 15.82, color: GREEN },
-  { label: 'Roster Bundle', val: 13.62, color: GREEN },
-  { label: 'Premium Economy', val: 13.36, color: GREEN },
-  { label: 'Economy (realistic)', val: 9.13, color: GREEN },
-  { label: 'Refuel/GB', val: 3.65, color: GOLD },
+  { label: 'First Suite', val: 20.70, color: GREEN },
+  { label: 'First', val: 18.48, color: GREEN },
+  { label: 'Business', val: 15.42, color: GREEN },
+  { label: 'Premium Economy', val: 9.50, color: GREEN },
+  { label: 'Cockpit', val: 9.06, color: GREEN },
+  { label: 'Roster Bundle', val: 8.92, color: GREEN },
+  { label: 'Economy (realistic)', val: 6.83, color: GREEN },
+  { label: 'Refuel/GB', val: 2.73, color: GOLD },
 ];
 const ctx2 = document.getElementById('contributionChart').getContext('2d');
 new Chart(ctx2, {
@@ -1005,8 +1003,8 @@ new Chart(ctx3, {
     labels: tiersShort,
     datasets: [{
       data: gm,
-      backgroundColor: gm.map(v => v >= 60 ? 'rgba(26,138,90,0.75)' : 'rgba(201,160,59,0.75)'),
-      borderColor: gm.map(v => v >= 60 ? GREEN : GOLD),
+      backgroundColor: gm.map(v => v >= 40 ? 'rgba(26,138,90,0.75)' : 'rgba(201,160,59,0.75)'),
+      borderColor: gm.map(v => v >= 40 ? GREEN : GOLD),
       borderWidth: 1.5,
       borderRadius: 4,
     }]
@@ -1024,8 +1022,8 @@ new Chart(ctx3, {
     scales: {
       x: { grid: { display: false } },
       y: {
-        min: 55,
-        max: 80,
+        min: 25,
+        max: 65,
         ticks: { callback: v => v + '%' },
         grid: { color: 'rgba(0,0,0,0.05)' }
       }
@@ -1034,8 +1032,8 @@ new Chart(ctx3, {
 });
 
 // ─── 6. Ladder health chart ───
-const ladderTiers = ['First Suite', 'First', 'Business', 'Cockpit', 'Roster Bundle', 'Premium', 'Economy (realistic)'];
-const ladderContrib = [33.03, 28.05, 21.86, 15.82, 13.62, 13.36, 9.13];
+const ladderTiers = ['First Suite', 'First', 'Business', 'Premium', 'Cockpit', 'Roster Bundle', 'Economy (realistic)'];
+const ladderContrib = [20.70, 18.48, 15.42, 9.50, 9.06, 8.92, 6.83];
 const ctx6 = document.getElementById('ladderChart').getContext('2d');
 new Chart(ctx6, {
   type: 'bar',
@@ -1070,15 +1068,15 @@ new Chart(ctx6, {
 
 // ─── 7. Refuel stack chart ───
 const refuelTiers = ['Roster Bundle', 'Premium', 'Business', 'First', 'First Suite', 'Cockpit'];
-const baseContrib2 = [13.62, 13.36, 21.86, 28.05, 33.03, 15.82];
-// Refuel uplift = attach% × $3.65 net per refuel
+const baseContrib2 = [8.92, 9.50, 15.42, 18.48, 20.70, 9.06];
+// Refuel uplift = attach% × $2.73 net per refuel (rebuilt 2026-06-02 at $2.26/GB)
 const refuelUpliftDollar = [
-  (0.10 * 3.65).toFixed(2)*1,   // Roster 10%  → $0.365
-  (0.20 * 3.65).toFixed(2)*1,   // Premium 20% → $0.73
-  (0.25 * 3.65).toFixed(2)*1,   // Business 25%→ $0.9125
-  (0.40 * 3.65).toFixed(2)*1,   // First 40%   → $1.46
-  (0.20 * 3.65).toFixed(2)*1,   // Suite 20%   → $0.73
-  (0.15 * 3.65).toFixed(2)*1,   // Cockpit 15% → $0.5475
+  (0.10 * 2.73).toFixed(2)*1,   // Roster 10%  → $0.273
+  (0.20 * 2.73).toFixed(2)*1,   // Premium 20% → $0.546
+  (0.25 * 2.73).toFixed(2)*1,   // Business 25%→ $0.683
+  (0.40 * 2.73).toFixed(2)*1,   // First 40%   → $1.092
+  (0.20 * 2.73).toFixed(2)*1,   // Suite 20%   → $0.546
+  (0.15 * 2.73).toFixed(2)*1,   // Cockpit 15% → $0.410
 ];
 
 const ctx7 = document.getElementById('refuelStackChart').getContext('2d');
@@ -1124,14 +1122,14 @@ new Chart(ctx7, {
   }
 });
 
-// ─── 8. Sensitivity chart (base $13.36) ───
+// ─── 8. Sensitivity chart (base $9.50 at corrected $2.26/GB, rebuilt 2026-06-02) ───
 const ctx8 = document.getElementById('sensitivityChart').getContext('2d');
 new Chart(ctx8, {
   type: 'bar',
   data: {
     labels: ['D. Refuel 2x', 'E. Geo improves', 'Base case (current)', 'B. Heavy use', 'A. Cost spike', 'C. Pool grows'],
     datasets: [{
-      data: [14.09, 13.86, 13.36, 12.02, 10.59, 8.69],
+      data: [10.04, 9.38, 9.50, 7.24, 7.10, 4.98],
       backgroundColor: ['rgba(26,138,90,0.7)', 'rgba(26,138,90,0.6)', 'rgba(26,138,90,0.9)', 'rgba(215,25,33,0.55)', 'rgba(215,25,33,0.7)', 'rgba(215,25,33,0.8)'],
       borderColor: [GREEN, GREEN, GREEN, RED, RED, RED],
       borderWidth: [1.5, 1.5, 2.5, 1.5, 1.5, 1.5],

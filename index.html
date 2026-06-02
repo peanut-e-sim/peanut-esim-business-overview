@@ -4072,48 +4072,76 @@
       <div class="dec-status"><span class="lang en">STATUS · OPEN · DEPENDS ON SAMURAI ONBOARDING TIMELINE</span><span class="lang jp">ステータス ・ 未決 ・ Samurai オンボーディング期間に依存</span></div>
     </div>
 
-    <div class="decision-card yellow">
-      <div class="dec-meta"><span class="lang en">DECISION 00C · BLENDED COST-PER-GB ASSUMPTION · INVALIDATED &mdash; UNDER REVIEW</span><span class="lang jp">判断 00C ・ ブレンド原価/GB の前提 ・ 無効化 &mdash; 見直し中</span></div>
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 00C · BLENDED COST-PER-GB ASSUMPTION CORRECTED &mdash; MODEL REBUILT ✓</span><span class="lang jp">判断 00C ・ ブレンド原価/GB を補正 &mdash; モデル再構築完了 ✓</span></div>
       <h3>
         <span class="lang en">What is our actual wholesale cost per GB &mdash; and what does that do to tier margins?</span>
         <span class="lang jp">実際のホールセール原価/GB は何か &mdash; そしてそれが各ティアのマージンにどう影響するか？</span>
       </h3>
-      <p style="background:#FAF6F0;padding:10px 14px;border-left:3px solid #FFC107;font-size:13.5px;color:#4A4A4A;margin-top:8px;">
-        <span class="lang en"><strong>Status 2026-06-02:</strong> The $1.34/GB blended cost used throughout the 22-tab financial model and 20 deliverable HTMLs is <em>invalidated</em>. Traced to wrong supplier SKU during per-country rate extraction: $1.34 was the &ldquo;Europe Lite&rdquo; regional bundle price, not the per-country 1GB/7-day Fixed bundles this business actually buys (just-in-time top-ups, no inventory).</span>
-        <span class="lang jp"><strong>2026-06-02 時点:</strong> 22 タブの財務モデルと 20 件の HTML 成果物全体で使用している $1.34/GB のブレンド原価は<em>無効</em>。国別レート抽出時に誤った SKU 由来と判明:$1.34 は「Europe Lite」地域バンドル価格であり、このビジネスが実際に購入する国別 1GB/7日 Fixed バンドル（在庫なしのジャストインタイム top-up）の価格ではなかった。</span>
+      <p style="background:#FAF6F0;padding:10px 14px;border-left:3px solid var(--accent);font-size:13.5px;color:#4A4A4A;margin-top:8px;">
+        <span class="lang en"><strong>Resolved 2026-06-02:</strong> The previous $1.34/GB blended cost was structurally wrong &mdash; sourced from the &ldquo;Europe Lite&rdquo; regional bundle SKU, not the per-country 1GB/7-day Fixed bundles this business actually buys (just-in-time top-ups, no inventory). The full model has been rebuilt against the correct SKU. The corrected blended cost at the existing 75/20/5 country mix is <strong>$2.26/GB</strong>.</span>
+        <span class="lang jp"><strong>2026-06-02 解決:</strong> 旧 $1.34/GB のブレンド原価は構造的に誤り &mdash; 「Europe Lite」地域バンドル SKU 由来であり、このビジネスが実際に購入する国別 1GB/7日 Fixed バンドル（在庫なしのジャストインタイム top-up）の価格ではなかった。正しい SKU でモデル全体を再構築。既存の 75/20/5 国別ミックスでのブレンド原価は<strong>$2.26/GB</strong>。</span>
       </p>
       <div class="dec-impact">
-        <strong><span class="lang en">Corrected range &mdash; depends on supplier negotiation outcome:</span><span class="lang jp">補正後レンジ &mdash; サプライヤー交渉結果に依存:</span></strong>
+        <strong><span class="lang en">Updated tier $/GB inputs (from per-country 1GB/7d Fixed SKU, eSIM Go rate sheet):</span><span class="lang jp">更新後の Tier 別 $/GB（国別 1GB/7日 Fixed SKU、eSIM Go レートシート由来）:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead>
+            <tr>
+              <th><span class="lang en">Bucket</span><span class="lang jp">バケット</span></th>
+              <th><span class="lang en">Country list</span><span class="lang jp">対象国</span></th>
+              <th><span class="lang en">Old $/GB</span><span class="lang jp">旧 $/GB</span></th>
+              <th><span class="lang en">New $/GB</span><span class="lang jp">新 $/GB</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Tier-A</td><td>JP, UK, SG, MY, HK, KR, US</td><td>$0.85</td><td><strong>$2.29</strong></td></tr>
+            <tr><td>Tier-B</td><td>CA, AU, NZ, VN, UAE</td><td>$1.40</td><td><strong>$1.99</strong></td></tr>
+            <tr><td>Tier-C</td><td>IN, BR, SA, ZA</td><td>$8.50</td><td><strong>$2.83</strong></td></tr>
+            <tr style="background:#FAF6F0;"><td><strong>Blended (75/20/5)</strong></td><td>&mdash;</td><td>$1.34</td><td><strong>$2.26</strong></td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 14px; font-size: 13px; color: var(--text-2);">
+          <span class="lang en"><strong>Note on Tier-C surprise:</strong> The old $8.50/GB for Tier-C came from the wrong SKU. Per-country 1GB/7d rates for IN/BR/SA/ZA are actually $2.92/$3.06/$1.99/$3.36 &mdash; averaging $2.83/GB. SG and KR are not on the per-country sheet; priced via Asia regional bundle at $2.96 (flag for supplier Q2.8).</span>
+          <span class="lang jp"><strong>Tier-C の驚き:</strong> 旧 $8.50/GB は誤った SKU 由来。IN/BR/SA/ZA の 国別 1GB/7日 レートは実際には $2.92/$3.06/$1.99/$3.36 &mdash; 平均 $2.83/GB。SG と KR は国別シートに存在せず、Asia 地域バンドル $2.96 で値付け（サプライヤー Q2.8 でフラグ）。</span>
+        </p>
+        <strong style="display:block;margin-top:18px;"><span class="lang en">Scenario range (sensitivity to supplier negotiation + geo-mix):</span><span class="lang jp">シナリオレンジ（サプライヤー交渉＋地理ミックス感度）:</span></strong>
         <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
           <thead>
             <tr>
               <th><span class="lang en">Scenario</span><span class="lang jp">シナリオ</span></th>
-              <th><span class="lang en">Blended cost/GB</span><span class="lang jp">ブレンド原価/GB</span></th>
-              <th><span class="lang en">Premium pool-mid margin</span><span class="lang jp">Premium プール中央消費時マージン</span></th>
+              <th><span class="lang en">Blended $/GB</span><span class="lang jp">ブレンド $/GB</span></th>
+              <th><span class="lang en">Premium gross margin</span><span class="lang jp">Premium 粗利率</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr><td><span class="lang en">Best (supplier agrees to 1-day SKU at proportional pricing)</span><span class="lang jp">ベスト（1日 SKU を比例価格で供給合意）</span></td><td><strong>~$0.50</strong></td><td><strong>~89%</strong></td></tr>
-            <tr><td><span class="lang en">Base (status quo &mdash; current 1GB/7d Fixed SKU)</span><span class="lang jp">ベース（現状 &mdash; 既存 1GB/7日 Fixed SKU）</span></td><td><strong>$3.56</strong></td><td><strong>~25%</strong></td></tr>
-            <tr><td><span class="lang en">Worst (geo-mix skews more African per crew survey)</span><span class="lang jp">ワースト（クルー調査でアフリカ比率上振れの場合）</span></td><td><strong>$4.50+</strong></td><td><strong>&lt;20%</strong></td></tr>
+            <tr style="background:#E8F8EF;"><td><strong><span class="lang en">Negotiated 1-2 day SKU (Q2.8 best case)</span><span class="lang jp">交渉成立 1-2日 SKU（Q2.8 ベスト）</span></strong></td><td><strong>$0.32</strong></td><td><strong>93%</strong></td></tr>
+            <tr><td><span class="lang en">Optimistic / current base (75/20/5)</span><span class="lang jp">楽観 / 現行ベース（75/20/5）</span></td><td><strong>$2.26</strong></td><td><strong>52%</strong></td></tr>
+            <tr><td><span class="lang en">Realistic (40/40/20 wider Emirates spread)</span><span class="lang jp">リアル（40/40/20 より広い分散）</span></td><td><strong>$2.28</strong></td><td><strong>52%</strong></td></tr>
+            <tr><td><span class="lang en">Pessimistic (30/35/35 heavier expensive)</span><span class="lang jp">悲観（30/35/35 高コスト国比率増）</span></td><td><strong>$2.37</strong></td><td><strong>50%</strong></td></tr>
           </tbody>
         </table>
         <p style="margin-top: 14px; font-size: 13.5px;">
-          <span class="lang en">Business still works on consumption breakage in all scenarios (most crew use only ~30% of pool on 1-2 day layovers) but the modeled cushion is materially thinner than what is currently shown on Tab 1, 3, 14-22 visualizers and blueprints.</span>
-          <span class="lang jp">どのシナリオでも消費 breakage（クルーは 1-2 日のレイオーバーでプール残量の約 30% しか使わない）でビジネスは成立。ただし現在 Tab 1, 3, 14-22 のビジュアライザー・ブループリントで示しているマージンの余裕は実際よりも厚く見えている。</span>
+          <span class="lang en">Margin compression vs original $1.34 model is significant but the business still works on consumption breakage in all scenarios (most crew use 30-40% of pool on 1-2 day layovers). The Pricing Simulator's 62.5%-pool stress test does flag First Suite at -11% margin &mdash; a real consideration for the high-pool tier design.</span>
+          <span class="lang jp">$1.34 旧モデルとの比較でマージン圧縮は大きいが、消費 breakage（クルーは 1-2 日のレイオーバーでプール残量の 30-40% を使用）でビジネスはどのシナリオでも成立。Pricing Simulator の 62.5%プール ストレステストでは First Suite が -11% マージン &mdash; ハイプール ティア設計の実課題。</span>
         </p>
-        <strong style="display:block;margin-top:14px;"><span class="lang en">Interim actions taken 2026-06-02:</span><span class="lang jp">2026-06-02 暫定対応:</span></strong>
+        <strong style="display:block;margin-top:18px;"><span class="lang en">Changes propagated 2026-06-02:</span><span class="lang jp">2026-06-02 伝播済み変更:</span></strong>
         <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
-          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: #FFC107; font-weight: 700;">?</span><strong><span class="lang en">Red warning banner added</span><span class="lang jp">赤色警告バナー追加</span></strong> <span class="lang en">to <a href="docs/downloads/tab1-visual-explainer-akito-2026-06-01.html">Tab 1 visualizer</a> + <a href="docs/downloads/tab3-visual-explainer-akito-2026-06-01.html">Tab 3 visualizer</a> &mdash; do not cite specific margin %s externally until rebuilt.</span><span class="lang jp">&mdash; <a href="docs/downloads/tab1-visual-explainer-akito-2026-06-01.html">Tab 1 ビジュアライザー</a>と <a href="docs/downloads/tab3-visual-explainer-akito-2026-06-01.html">Tab 3 ビジュアライザー</a>に追加。再構築までマージン具体値の外部引用禁止。</span></li>
-          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: #FFC107; font-weight: 700;">?</span><strong><span class="lang en">Full model overhaul deferred</span><span class="lang jp">フルモデル改修は延期</span></strong> <span class="lang en">until two inputs land: (a) supplier meeting outcome (agenda Q2.8 asks for 1-2 day SKU), (b) Akito's crew geo-mix survey result. Rebuilding now on the unvalidated $3.56 risks anchoring on a second wrong number (lesson from $1.34).</span><span class="lang jp">2 つのインプット確定まで延期: (a) サプライヤー会議結果（議題 Q2.8 で 1-2 日 SKU 要請中）、(b) Akito のクルー地理ミックス調査結果。未検証の $3.56 で今すぐ再構築すると、第二の誤った数値に anchor するリスク（$1.34 の教訓）。</span></li>
-          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: #FFC107; font-weight: 700;">?</span><strong><span class="lang en">Pre-commit hook updated</span><span class="lang jp">プリコミットフック更新</span></strong> <span class="lang en">to reflect the new scenario-range guidance (previously hardcoded $1.34 as the &ldquo;correct&rdquo; value).</span><span class="lang jp">新しいシナリオレンジガイダンスを反映（以前は $1.34 を「正解」値としてハードコード）。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><strong><span class="lang en">Google Sheet master rebuilt</span><span class="lang jp">Google Sheet マスター再構築</span></strong> <span class="lang en">: README & Assumptions C27:C29 updated with corrected tier prices, C31 (BLENDED COST / GB) cascades to all 22 tabs. Scenarios A34-A37 reference the master. 4th scenario added: Negotiated 1-2 day SKU.</span><span class="lang jp">: README & Assumptions C27:C29 を補正後 Tier 価格で更新、C31（BLENDED COST / GB）が全 22 タブにカスケード。シナリオ A34-A37 はマスターを参照。4 番目のシナリオ追加: 交渉成立 1-2日 SKU。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><strong><span class="lang en">Logic tabs 5-12 cascade</span><span class="lang jp">Logic タブ 5-12 カスケード</span></strong> <span class="lang en">: Economy/Premium/Business/First/Suite/Cockpit/Refuel cost-per-GB cells now reference master C31 instead of hardcoded $1.34.</span><span class="lang jp">: Economy/Premium/Business/First/Suite/Cockpit/Refuel の原価/GB セルが、ハードコードされた $1.34 ではなくマスター C31 を参照。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><strong><span class="lang en">Tab 1 + Tab 3 visualizers</span><span class="lang jp">Tab 1 ＋ Tab 3 ビジュアライザー</span></strong> <span class="lang en">: green correction banner shows new $2.26/GB master and scenario range. <a href="docs/downloads/tab1-visual-explainer-akito-2026-06-01.html">Tab 1</a> · <a href="docs/downloads/tab3-visual-explainer-akito-2026-06-01.html">Tab 3</a>.</span><span class="lang jp">: 緑色の補正バナーで新 $2.26/GB マスターとシナリオレンジを表示。<a href="docs/downloads/tab1-visual-explainer-akito-2026-06-01.html">Tab 1</a> ・ <a href="docs/downloads/tab3-visual-explainer-akito-2026-06-01.html">Tab 3</a>。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><strong><span class="lang en">Blueprints + tier-specific plan pages</span><span class="lang jp">ブループリント＋ティア別プラン頁</span></strong> <span class="lang en">: rebuilt with corrected costs and recomputed margins (Premium 50%, Business 49%, First 44%, Suite 41%, Cockpit 35%).</span><span class="lang jp">: 補正原価と再計算マージン（Premium 50%、Business 49%、First 44%、Suite 41%、Cockpit 35%）で再構築。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><strong><span class="lang en">Pre-commit hook updated</span><span class="lang jp">プリコミットフック更新</span></strong> <span class="lang en">: now flags $1.34 as a stale value (was previously hardcoded as &ldquo;correct&rdquo;).</span><span class="lang jp">: $1.34 を旧値としてフラグ（以前は「正解」としてハードコード）。</span></li>
         </ul>
         <p style="margin-top: 14px; padding: 10px 14px; background: var(--surface); border-left: 3px solid var(--accent); font-size: 13.5px; color: var(--text-2);">
-          <span class="lang en"><strong>Why a council decided this approach:</strong> Ran the question through llm-council (5 advisors). 3 of 5 reviewers picked the &ldquo;minimal interim, defer full overhaul&rdquo; option as strongest. The Expansionist's &ldquo;do full overhaul now to use as supplier negotiation asset&rdquo; was unanimously flagged as the biggest blind spot &mdash; building on an unvalidated geo-mix risks repeating the $1.34 anchoring error. Full transcript saved locally.</span>
-          <span class="lang jp"><strong>llm-council でこの方針を決定:</strong> 質問を llm-council（5 名のアドバイザー）に通した。5 名中 3 名のレビュアーが「最小限の暫定対応、フル改修は延期」を最強と評価。Expansionist の「サプライヤー交渉資産として今すぐフル改修」案は全員一致で最大のブラインドスポットと指摘 &mdash; 未検証の地理ミックスの上に構築するのは $1.34 アンカリング誤りの再演リスク。フルトランスクリプトはローカル保存。</span>
+          <span class="lang en"><strong>Pending validation:</strong> The 75/20/5 country mix is still Akito's estimate. Crew geo-mix survey (5-10 crew last-3-months layover destinations) will validate or shift the active scenario. Supplier meeting Q2.8 outcome determines whether the Negotiated scenario ($0.32/GB blended, 93% Premium margin) becomes achievable.</span>
+          <span class="lang jp"><strong>検証待ち:</strong> 75/20/5 国別ミックスは依然として Akito の推定値。クルー地理ミックス調査（直近3ヶ月のレイオーバー先 5-10 名分）でアクティブシナリオを検証 / シフト。サプライヤー会議 Q2.8 の結果で、交渉シナリオ（ブレンド $0.32/GB、Premium マージン 93%）が達成可能か決まる。</span>
+        </p>
+        <p style="margin-top: 14px; padding: 10px 14px; background: var(--surface); border-left: 3px solid var(--accent); font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>How this was decided:</strong> Council pass (llm-council, 5 advisors) initially recommended deferring the full rework until supplier meeting + crew survey landed, to avoid anchoring on a second unvalidated number. User then explicitly overrode that recommendation (&ldquo;do everything&rdquo;) on the basis that the price-list correction is the most important input. Model rebuilt as scenario range rather than point estimate, addressing the council's anchoring concern.</span>
+          <span class="lang jp"><strong>判断プロセス:</strong> 当初 llm-council（5 名のアドバイザー）はサプライヤー会議＋クルー調査結果を待つ最小限対応を推奨（第二の未検証数値へのアンカリング回避）。Balraj が「全部やって」と明示的に上書き判断（価格表補正が最重要インプット）。アンカリング懸念に対応するため、ポイント推定ではなくシナリオレンジで再構築。</span>
         </p>
       </div>
-      <div class="dec-status"><span class="lang en">STATUS · OPEN · DEPENDS ON SUPPLIER MEETING OUTCOME + CREW GEO-MIX SURVEY</span><span class="lang jp">ステータス ・ 未決 ・ サプライヤー会議結果 ＋ クルー地理ミックス調査に依存</span></div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · Model rebuilt 2026-06-02 with corrected per-country rates; geo-mix still pending Akito's crew survey</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02 に補正済み国別レートで再構築完了；地理ミックスは Akito のクルー調査待ち</span></div>
     </div>
 
     <div class="decision-card yellow">
@@ -4719,8 +4747,8 @@
         <span class="lang jp">Tier-C エクスポージャーからマージンを守るため、「USA Pack」や「Cruise Pack」アドオンを提供するか？</span>
       </h3>
       <p>
-        <span class="lang en">Tier-C routes (USA, Cruise, Caribbean) cost $8.50/GB vs $0.85/GB for Tier-A. A 5% increase in Tier-C consumption changes blended cost from $1.34 → $1.74 (+30%). Realistic layover-weighted geo mix may be closer to 40/40/20 (Tier-A/B/C), not the model's 75/20/5 assumption.</span>
-        <span class="lang jp">Tier-C 路線（米国・クルーズ・カリブ）は $8.50/GB（Tier-A は $0.85/GB）。Tier-C 消費が 5% 増えるだけでブレンドコストが $1.34 → $1.74（+30%）に変化。実際のレイオーバー加重ジオミックスは、モデルの 75/20/5 仮定ではなく 40/40/20（Tier-A/B/C）に近い可能性がある。</span>
+        <span class="lang en"><strong>Premise revised 2026-06-02:</strong> The original USA/Cruise Pack rationale assumed Tier-C cost $8.50/GB vs Tier-A $0.85/GB (10x spread). After the rate-sheet rework, Tier-C is $2.83/GB vs Tier-A $2.29/GB &mdash; only a 1.2x spread. The "geo-risk add-on" thesis is materially weaker now. At the 75/20/5 base, a 5% increase in Tier-C consumption shifts blended cost from $2.26 to $2.29 (+1.3%, not the +30% the old model implied). USA-pack as a margin shield is much less compelling. Reframe as a UX clarity product (clear coverage by region) rather than a margin product, OR shelve until Akito's geo-mix survey confirms whether Tier-C share is actually a problem.</span>
+        <span class="lang jp"><strong>2026-06-02 前提見直し:</strong> 当初の USA/Cruise Pack の根拠は、Tier-C $8.50/GB と Tier-A $0.85/GB（10倍差）の前提だった。レートシート再構築後、Tier-C は $2.83/GB、Tier-A は $2.29/GB &mdash; 1.2 倍差のみ。「地理リスク アドオン」というテーゼは大幅に弱体化。75/20/5 ベースで Tier-C 消費が 5% 増えてもブレンドは $2.26 → $2.29（+1.3%、旧モデルが示唆した +30% ではない）。マージン シールド としての USA Pack はずっと魅力が低い。マージン製品ではなく UX 明瞭製品（地域別カバレッジの明示）として再フレーム、または Akito の地理ミックス調査で Tier-C 比率が実際に問題か確認するまで棚上げ。</span>
       </p>
       <div class="dec-impact">
         <strong><span class="lang en">Options to evaluate:</span><span class="lang jp">検討すべき選択肢:</span></strong>
@@ -10557,7 +10585,7 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <tr><td>1. Cost floor</td><td>wholesale supplier's actual wholesale (real rate sheet) for 1-GB short-trip plans: $0.56–1.25/GB in cheap zones (HK/Korea/Japan/Singapore/USA/UK). At $4.99 retail = 75-89% gross margin on typical crew trips.</td></tr>
 <tr><td>2. Market middle</td><td>Airalo 1 GB / 7-day USA ~$4.50, Roamless ~$4.00, Crew SIM $3-7 depending on country. We sit in the fair-middle, not the discount race.</td></tr>
 <tr><td>3. Psychological</td><td>Under-$5 = impulse purchase zone. $5.99 = considered purchase. The 9-cents rule matters here.</td></tr>
-<tr><td>4. Upsell anchor</td><td>3 top-ups in a month = $14.97 → that's <em>more</em> than Premium Economy ($17.99 for 10 GB). The user does the math, upgrades.</td></tr>
+<tr><td>4. Upsell anchor</td><td>3 top-ups in a month = $14.97 → that's <em>close to</em> Premium Economy ($18.99 for 10 GB). The user does the math, upgrades.</td></tr>
 <tr><td>5. Crew fit</td><td>1 GB matches 1 layover. Selling 10 GB to a 1-trip crew traveler feels wasteful → churn risk.</td></tr>
 </table>
 
@@ -10608,7 +10636,7 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <h3>2.3 Premium Economy</h3>
 <table>
 <tr><th>Field</th><th>Value</th></tr>
-<tr><td>Price</td><td><strong>$17.99/month</strong> (was $12.99 placeholder)</td></tr>
+<tr><td>Price</td><td><strong>$18.99/month</strong> (raised from $17.99 in Sweep #1, originally $12.99 placeholder)</td></tr>
 <tr><td>Pool</td><td>10 GB monthly</td></tr>
 <tr><td>Carryover</td><td>50% × 1 month</td></tr>
 <tr><td>Coverage</td><td>Global pool — works in any country on supplier network</td></tr>
@@ -10618,9 +10646,9 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <tr><td>Status</td><td><span class="pill locked">Locked</span></td></tr>
 </table>
 
-<h4>Why the price was bumped from $12.99 to $17.99</h4>
+<h4>Why the price was bumped from $12.99 to $18.99</h4>
 <p>The original $12.99 placeholder was <em>cheaper</em> than Roster Bundle ($19.95 for 5 flights). A crew member looking at the price card would see "Premium Economy is cheaper AND works anywhere" and choose it 100% of the time — cannibalizing Roster Bundle, which is the wedge feature.</p>
-<p><strong>$17.99 sits $2 below Roster Bundle</strong>, signaling "cheaper but you trade away auto-arming" — clean positioning, no cannibalization.</p>
+<p><strong>$18.99 sits just under $1 below Roster Bundle</strong>, signaling "cheaper but you trade away auto-arming" — clean positioning, no cannibalization.</p>
 
 <h4>The 1-GB refill UX mechanic</h4>
 <p>Users see <strong>only 1 GB active at a time</strong>. When that GB runs out, they tap "Refill from pool" to get the next GB. The pool is always visible (transparency), but refill requires manual action.</p>
@@ -10636,15 +10664,15 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 </table>
 <blockquote>Breakage we earn from honest forgetfulness is fair revenue. Breakage we earn from hidden mechanics is fraud.</blockquote>
 
-<h4>Per-user economics at $17.99</h4>
+<h4>Per-user economics at $18.99 (rebuilt 2026-06-02 with corrected rate sheet)</h4>
 <table>
 <tr><th>Line</th><th>Value</th></tr>
-<tr><td>Subscription revenue</td><td>$17.99</td></tr>
+<tr><td>Subscription revenue</td><td>$18.99</td></tr>
 <tr><td>GB consumed (40% friction)</td><td>4.0 GB</td></tr>
-<tr><td>Wholesale COGS at $1.34/GB blended</td><td>$5.36</td></tr>
-<tr><td>Gross profit (subscription)</td><td>$12.63 (70% margin)</td></tr>
-<tr><td>+ Refuel (20% attach × $4.99)</td><td>+$0.93 net</td></tr>
-<tr><td><strong>Total per user / mo</strong></td><td><strong>$13.56 (71% margin)</strong></td></tr>
+<tr><td>Wholesale COGS at $2.26/GB blended</td><td>$9.04</td></tr>
+<tr><td>Gross profit (subscription)</td><td>$9.95 (52% margin)</td></tr>
+<tr><td>+ Refuel (20% attach × $4.99)</td><td>+$0.55 net</td></tr>
+<tr><td><strong>Total per user / mo</strong></td><td><strong>$10.50 (53% margin on $19.99 total rev)</strong></td></tr>
 </table>
 
 <h3>2.4 Business ⭐ RECOMMENDED</h3>
@@ -10858,7 +10886,7 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <tr><th>Tier</th><th>Price</th><th>Pool</th><th>Per-GB</th><th>Carry</th><th>Mix %</th></tr>
 <tr><td>Economy (PAYG)</td><td>$4.99 / 1 GB top-up</td><td>per-purchase</td><td>$4.99</td><td>none</td><td>50%</td></tr>
 <tr><td>Roster Bundle</td><td>$3.99/flight (cap $39.99)</td><td>per-flight</td><td>n/a</td><td>none</td><td>18%</td></tr>
-<tr><td>Premium Economy</td><td>$17.99/mo</td><td>10 GB</td><td>$1.80</td><td>50% × 1mo</td><td>13%</td></tr>
+<tr><td>Premium Economy</td><td>$18.99/mo</td><td>10 GB</td><td>$1.90</td><td>50% × 1mo</td><td>13%</td></tr>
 <tr><td>Business ⭐</td><td>$29.99/mo</td><td>15 GB</td><td>$2.00</td><td>70% × 1mo</td><td>8%</td></tr>
 <tr><td>First</td><td>$39.99/mo</td><td>25 GB</td><td>$1.60</td><td>100% × 2mo</td><td>3%</td></tr>
 <tr><td>First Suite</td><td>$49.99/mo</td><td>40 GB</td><td><strong>$1.25</strong></td><td>100% × 2mo</td><td>2%</td></tr>
@@ -11135,15 +11163,16 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 <p>The full output of Tab 3 — one row per tier, all 7 plans + the Cockpit annual row recomputed to a monthly equivalent.</p>
 <table>
 <tr><th>Tier</th><th>Revenue</th><th>GB Consumed</th><th>eSIM COGS</th><th>Refuel Net</th><th>Total Rev</th><th>Total COGS</th><th>Gross Profit</th><th>Gross Margin</th><th>Net Margin</th></tr>
-<tr><td>Economy (PAYG)</td><td>$4.99</td><td>1.0</td><td>$1.34</td><td>$0.00</td><td>$4.99</td><td>$1.34</td><td>$3.65</td><td>73.1%</td><td>36.0%</td></tr>
-<tr><td>Roster Bundle</td><td>$19.95</td><td>5.0</td><td>$6.71</td><td>$0.37</td><td>$20.45</td><td>$6.84</td><td>$13.60</td><td>66.5%</td><td>59.9%</td></tr>
-<tr><td>Premium Economy</td><td>$17.99</td><td>4.0</td><td>$5.37</td><td>$0.73</td><td>$18.99</td><td>$5.64</td><td>$13.35</td><td>70.3%</td><td>63.2%</td></tr>
-<tr><td><strong>Business ⭐</strong></td><td><strong>$29.99</strong></td><td><strong>6.75</strong></td><td><strong>$9.06</strong></td><td><strong>$0.91</strong></td><td><strong>$31.24</strong></td><td><strong>$9.40</strong></td><td><strong>$21.84</strong></td><td><strong>69.9%</strong></td><td><strong>65.6%</strong></td></tr>
-<tr><td>First</td><td>$39.99</td><td>13.5</td><td>$18.12</td><td>$1.46</td><td>$41.99</td><td>$18.66</td><td>$23.33</td><td>55.5%</td><td>52.3%</td></tr>
-<tr><td><strong>First Suite</strong></td><td><strong>$49.99</strong></td><td><strong>13.2</strong></td><td><strong>$17.72</strong></td><td><strong>$0.73</strong></td><td><strong>$50.99</strong></td><td><strong>$17.99</strong></td><td><strong>$33.00</strong></td><td><strong>64.7%</strong></td><td><strong>62.1%</strong></td></tr>
-<tr><td>Cockpit (annual → monthly)</td><td>$24.92</td><td>7.2</td><td>$9.66</td><td>$0.55</td><td>$25.67</td><td>$9.87</td><td>$15.80</td><td>61.6%</td><td>56.3%</td></tr>
+<tr><td>Economy (PAYG, 2.5× mo)</td><td>$12.48</td><td>2.5</td><td>$5.65</td><td>$0.00</td><td>$12.48</td><td>$5.65</td><td>$6.83</td><td>54.7%</td><td>40.3%</td></tr>
+<tr><td>Roster Bundle</td><td>$19.95</td><td>5.0</td><td>$11.29</td><td>$0.20</td><td>$20.32</td><td>$11.46</td><td>$8.86</td><td>43.6%</td><td>34.7%</td></tr>
+<tr><td>Premium Economy</td><td>$18.99</td><td>4.0</td><td>$9.04</td><td>$0.55</td><td>$19.99</td><td>$9.49</td><td>$10.50</td><td>52.5%</td><td>43.5%</td></tr>
+<tr><td><strong>Business </strong></td><td><strong>$29.99</strong></td><td><strong>6.75</strong></td><td><strong>$15.25</strong></td><td><strong>$0.69</strong></td><td><strong>$31.24</strong></td><td><strong>$15.81</strong></td><td><strong>$15.43</strong></td><td><strong>49.4%</strong></td><td><strong>43.6%</strong></td></tr>
+<tr><td>First</td><td>$39.99</td><td>10.0</td><td>$22.60</td><td>$0.96</td><td>$41.74</td><td>$23.39</td><td>$18.35</td><td>44.0%</td><td>39.7%</td></tr>
+<tr><td><strong>First Suite</strong></td><td><strong>$49.99</strong></td><td><strong>13.2</strong></td><td><strong>$29.83</strong></td><td><strong>$0.41</strong></td><td><strong>$50.74</strong></td><td><strong>$30.17</strong></td><td><strong>$20.57</strong></td><td><strong>40.5%</strong></td><td><strong>37.0%</strong></td></tr>
+<tr><td>Cockpit (annual → monthly)</td><td>$24.92</td><td>7.2</td><td>$16.27</td><td>$0.60</td><td>$26.02</td><td>$16.77</td><td>$9.25</td><td>35.5%</td><td>28.6%</td></tr>
 </table>
-<div class="hero-tier"><strong>The hero tier:</strong> First Suite — $33.00 gross profit per user per month, highest absolute profit on the entire ladder. Customers who upgrade from Business to First Suite are worth an extra $11.18/user/month in profit.</div>
+<p style="font-size:13px;color:#888;margin-top:-12px;"><em>Table rebuilt 2026-06-02 with corrected rate sheet data ($2.26/GB blended). Old COGS figures at $1.34/GB invalidated. See Decision 00C above for scenarios.</em></p>
+<div class="hero-tier"><strong>The hero tier:</strong> First Suite — $20.57 gross profit per user per month, highest absolute profit on the entire ladder (rebuilt 2026-06-02). Customers who upgrade from Business to First Suite are worth an extra $5.14/user/month in profit.</div>
 
 <h3 id="bp3-insights">4. Strategic insights</h3>
 
@@ -11151,28 +11180,28 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 <p>At <strong>$33.00 gross profit / user / month</strong>, First Suite generates more absolute profit than any other tier — beating even Cockpit's annual prepay on a monthly-equivalent basis. The reason is structural: First Suite has the same friction-capped consumption as First (~13 GB) but a $10 higher retail price. The pool went from 25 GB to 40 GB on paper, but actual GB delivered stayed flat. <strong>Pool expansion is free; price expansion is profit.</strong></p>
 
 <h4>4.2 Business is the default RECOMMENDED tier</h4>
-<p>Business sits at the sweet spot: <strong>70% gross margin, $21.84 profit per user</strong>, the highest absolute profit among the broad-market tiers. It's the "everyone should buy this" tier on the price card — high enough that ARPU is meaningful, low enough that broad crew demographics can afford it. This is why it carries the RECOMMENDED flag in the app.</p>
+<p>Business sits at the sweet spot: <strong>49% gross margin, $15.43 profit per user</strong> (rebuilt 2026-06-02 with corrected rate sheet) — the highest absolute profit among the broad-market tiers. It's the "everyone should buy this" tier on the price card — high enough that ARPU is meaningful, low enough that broad crew demographics can afford it. This is why it carries the RECOMMENDED flag in the app.</p>
 
 <h4>4.3 First is the weakest tier on margin</h4>
-<p>First's net margin is just <strong>52.3%</strong> — the lowest of any subscription tier. The reason: heavy users on First push consumption to 13.5 GB (54% of the 25 GB pool), and at $1.34/GB blended that's $18+ of COGS against just $39.99 revenue. First's job is positional — it bridges Business to First Suite on the price ladder.</p>
+<p>First's net margin is just <strong>39.7%</strong> — the lowest of any subscription tier. The reason: heavy users on First push consumption to 10 GB (40% of the 25 GB pool), and at $2.26/GB blended that's $22+ of COGS against just $39.99 revenue. First's job is positional — it bridges Business to First Suite on the price ladder.</p>
 <blockquote>First is the "ladder rung" tier. Its purpose is to make First Suite look reasonable. We accept thinner margins here because it pulls Business buyers up.</blockquote>
 
 <h4>4.4 Economy is a volume play</h4>
-<p>At <strong>$3.65 gross profit per top-up</strong>, Economy needs 2.5+ purchases per month to compete with even the cheapest subscription tier. A user who buys 2 top-ups in a month delivers $7.30 — less than half of Premium Economy. The strategic role of Economy is twofold: (1) <strong>acquisition</strong> — a $4.99 try-it price has near-zero friction, and (2) <strong>upsell anchor</strong> — once users buy 3 top-ups in a month ($14.97), they realize Premium Economy ($17.99 for 10 GB) is a better deal and convert.</p>
+<p>At <strong>$2.73 gross profit per top-up</strong> (rebuilt 2026-06-02), Economy needs 2.5+ purchases per month to compete with even the cheapest subscription tier. A user who buys 2 top-ups in a month delivers $5.46 — less than half of Premium Economy. The strategic role of Economy is twofold: (1) <strong>acquisition</strong> — a $4.99 try-it price has near-zero friction, and (2) <strong>upsell anchor</strong> — once users buy 3 top-ups in a month ($14.97), they realize Premium Economy ($18.99 for 10 GB) is a better deal and convert.</p>
 
 <h4>4.5 Cockpit is about cash flow, not per-user max profit</h4>
-<p>At $25.67 monthly-equivalent revenue and $15.80 gross profit, Cockpit underperforms Business ($21.84) and First Suite ($33.00) on a per-user-per-month basis. <strong>That's by design.</strong> Cockpit's value is <strong>$299 collected upfront on day 1</strong> — strong cash flow, zero churn for 12 months, predictable annual revenue stream. The annual lock-in matters more than per-month margin maximization.</p>
+<p>At $26.02 monthly-equivalent revenue and $9.25 gross profit (rebuilt 2026-06-02), Cockpit underperforms Business ($15.43) and First Suite ($20.57) on a per-user-per-month basis. <strong>That's by design.</strong> Cockpit's value is <strong>$299 collected upfront on day 1</strong> — strong cash flow, zero churn for 12 months, predictable annual revenue stream. The annual lock-in matters more than per-month margin maximization.</p>
 
-<h4>4.6 The upgrade arithmetic</h4>
+<h4>4.6 The upgrade arithmetic (rebuilt 2026-06-02 with corrected rate sheet)</h4>
 <table>
 <tr><th>Upgrade path</th><th>Profit delta</th><th>Annual delta per user</th></tr>
-<tr><td>Economy → Premium Economy</td><td>+$9.70/mo</td><td>+$116/yr</td></tr>
-<tr><td>Premium Economy → Business</td><td>+$8.49/mo</td><td>+$102/yr</td></tr>
-<tr><td>Business → First</td><td>+$1.49/mo</td><td>+$18/yr (weak)</td></tr>
-<tr><td><strong>Business → First Suite</strong></td><td><strong>+$11.18/mo</strong></td><td><strong>+$134/yr</strong></td></tr>
-<tr><td>First → First Suite</td><td>+$9.67/mo</td><td>+$116/yr</td></tr>
+<tr><td>Economy → Premium Economy</td><td>+$3.67/mo</td><td>+$44/yr</td></tr>
+<tr><td>Premium Economy → Business</td><td>+$4.93/mo</td><td>+$59/yr</td></tr>
+<tr><td>Business → First</td><td>+$2.92/mo</td><td>+$35/yr</td></tr>
+<tr><td><strong>Business → First Suite</strong></td><td><strong>+$5.14/mo</strong></td><td><strong>+$62/yr</strong></td></tr>
+<tr><td>First → First Suite</td><td>+$2.22/mo</td><td>+$27/yr (weak)</td></tr>
 </table>
-<p><strong>Implication:</strong> the strongest in-app upgrade prompt to design is <strong>Business → First Suite</strong>, skipping First entirely. Marketing should funnel Business users directly to First Suite, not nudge them through First.</p>
+<p><strong>Implication:</strong> the strongest in-app upgrade prompt to design is <strong>Business → First Suite</strong> (+$5.14/mo), skipping First entirely. Marketing should funnel Business users directly to First Suite, not nudge them through First. Note that absolute upgrade deltas are smaller than the old $1.34/GB model showed — the funnel argument still holds but each conversion is worth less than previously calculated.</p>
 
 <h3 id="bp3-downstream">5. Downstream consumption — how Tab 3 feeds the rest</h3>
 <p>Tab 3 is the per-user math factory. Every scaling tab downstream multiplies these per-user numbers by user counts, lifetime, or growth curves.</p>
@@ -11243,32 +11272,32 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 </table>
 
 <h4 style="color:#4A2D75;">Scenario 3 — Wholesale supplier raises prices (the big one)</h4>
-<p>If blended wholesale rises <strong>$1.34 → $2.00</strong> (50% supplier hike):</p>
+<p>If blended wholesale rises <strong>$2.26 → $3.00</strong> (33% supplier hike, rebuilt 2026-06-02 against corrected baseline):</p>
 <table>
-<tr><th>Tier</th><th>Profit now ($1.34)</th><th>Profit at $2.00</th><th>Δ margin</th></tr>
-<tr><td>Premium</td><td>$13.35 (70%)</td><td>$10.95 (58%)</td><td>−12 pts</td></tr>
-<tr><td>Business</td><td>$21.84 (70%)</td><td>$17.39 (56%)</td><td>−14 pts</td></tr>
-<tr><td>First</td><td>$23.33 (56%)</td><td>$14.43 (34%)</td><td><strong>−22 pts</strong> ⚠</td></tr>
-<tr><td>First Suite</td><td>$33.00 (65%)</td><td>$24.29 (48%)</td><td>−17 pts</td></tr>
+<tr><th>Tier</th><th>Profit now ($2.26)</th><th>Profit at $3.00</th><th>Δ margin</th></tr>
+<tr><td>Premium</td><td>$10.50 (52%)</td><td>$7.54 (38%)</td><td>−15 pts</td></tr>
+<tr><td>Business</td><td>$15.43 (49%)</td><td>$10.43 (33%)</td><td>−16 pts</td></tr>
+<tr><td>First</td><td>$18.35 (44%)</td><td>$10.95 (26%)</td><td><strong>−18 pts</strong></td></tr>
+<tr><td>First Suite</td><td>$20.57 (41%)</td><td>$10.80 (21%)</td><td><strong>−19 pts</strong></td></tr>
 </table>
-<p><strong>Insight:</strong> First gets crushed if wholesale rises. Strong argument for moving direct to eSIM Access supplier at scale.</p>
+<p><strong>Insight:</strong> First and First Suite get crushed if wholesale rises further. Strong argument for landing the negotiated 1-2 day SKU (Q2.8) or moving direct to upstream at scale.</p>
 
 <h4 style="color:#4A2D75;">Scenario 4 — Mix shift toward heavy tiers</h4>
 <p>If First grows from <strong>3% → 6%</strong> of users:</p>
 <table>
 <tr><th>Metric</th><th>At 3% First</th><th>At 6% First</th><th>Δ annual</th></tr>
-<tr><td>First tier contribution at 100K users</td><td>$70,080</td><td>$140,160</td><td><strong>+$70,080/yr</strong></td></tr>
+<tr><td>First tier contribution at 100K users</td><td>$55,050</td><td>$110,100</td><td><strong>+$55,050/yr</strong></td></tr>
 </table>
-<p>Net positive on revenue, but First has the lowest margin (56%) — blended margin will dip.</p>
+<p>Net positive on revenue, but First has the lowest sub-margin (44% rebuilt 2026-06-02) — blended margin will dip.</p>
 
 <h4 style="color:#4A2D75;">Scenario 5 — Price war / Premium drop</h4>
-<p>If we drop Premium from <strong>$17.99 → $14.99</strong>:</p>
+<p>If we drop Premium from <strong>$18.99 → $14.99</strong>:</p>
 <table>
-<tr><th>Metric</th><th>$17.99</th><th>$14.99</th><th>Δ</th></tr>
-<tr><td>Gross profit/user</td><td>$13.35</td><td>$10.35</td><td>−$3.00</td></tr>
-<tr><td>Volume increase needed to break even</td><td>—</td><td><strong>+29%</strong></td><td>To match dollar profit</td></tr>
+<tr><th>Metric</th><th>$18.99</th><th>$14.99</th><th>Δ</th></tr>
+<tr><td>Gross profit/user</td><td>$10.50</td><td>$6.50</td><td>−$4.00</td></tr>
+<tr><td>Volume increase needed to break even</td><td>—</td><td><strong>+62%</strong></td><td>To match dollar profit (much steeper than old model — corrected costs make discounting more expensive)</td></tr>
 </table>
-<p><strong>Insight:</strong> Premium is fragile to price drops. Don't promo Premium — promo Roster Bundle or Business instead.</p>
+<p><strong>Insight:</strong> Premium is much more fragile to price drops at corrected cost than the old model suggested. Don't promo Premium — promo Roster Bundle or Business instead.</p>
 
 <h4 style="color:#4A2D75;">Response playbook</h4>
 <table>
@@ -11382,13 +11411,13 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
   <a href="docs/downloads/pricing-simulator-blueprint-2026-06-02.html" target="_blank" style="display:inline-block; background:white; color:#B07A1F; border:1px solid #B07A1F; padding:12px 22px; border-radius:6px; text-decoration:none; font-weight:600; font-size:15px;">Open Tab 4 Blueprint &#8599;</a>
 </div>
 <div style="background:#FFFBF0; border-left:4px solid #C9A03B; padding:16px 20px; font-size:14px; color:#5a4a14; border-radius:0 6px 6px 0;">
-  <strong>Key findings from the Tab 4 discussion (2026-06-02):</strong>
+  <strong>Key findings from the Tab 4 discussion (rebuilt 2026-06-02 with corrected rate sheet):</strong>
   <ul style="margin:10px 0 0; padding-left:20px; line-height:1.8;">
-    <li>Current rate $1.34/GB blended (75/20/5 geo mix) is verified. Target $0.30/GB and ceiling $0.20/GB are theoretical estimates, not supplier quotes.</li>
-    <li>Aiko on Premium at $1.34/GB: $5.36 COGS, $17.99 retail, 70% margin. At $0.30/GB: $1.20 COGS, same $17.99 retail, 93% margin. +$4.16/user/month, zero retail change.</li>
-    <li>Blended savings across tier mix at $0.30/GB target: ~$5.56/user/month. At 5K users = +$27,800/mo. At 100K users = +$556K/mo.</li>
+    <li>Current rate $2.26/GB blended at 75/20/5 geo mix — corrected 2026-06-02 from the invalid $1.34/GB Europe Lite figure. Target $0.32/GB (Q2.8 negotiated 1-2 day SKU) and ceiling $0.20/GB (direct supplier) are theoretical estimates, not supplier quotes.</li>
+    <li>Aiko on Premium at $2.26/GB: $9.04 COGS, $18.99 retail, 52% margin. At $0.32/GB (Q2.8 best case): $1.28 COGS, same $18.99 retail, 93% margin. +$7.76/user/month, zero retail change.</li>
+    <li>Blended savings across tier mix at $0.32/GB target: ~$8.80/user/month. At 5K users = +$44K/mo. At 100K users = +$880K/mo.</li>
     <li>4 trigger conditions before this tab becomes active: ~5K users, alternative supplier identified, supplier meeting scheduled, actual quoted rate received.</li>
-    <li>Don't use this tab to justify promotional price drops. Margin loss from discounting is certain; user growth is not. The model never recovers below $17.99 Premium.</li>
+    <li>Don't use this tab to justify promotional price drops. Margin loss from discounting is certain; user growth is not. With the corrected $2.26/GB cost, the model never recovers below $18.99 Premium.</li>
   </ul>
 </div>
 </div>
@@ -11679,42 +11708,42 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
     <a href="docs/downloads/plan-economy-2026-06-01.html" target="_blank" style="display:block; background:white; border:1px solid #E5DDD0; border-top:3px solid #9e9e9e; border-radius:8px; padding:14px; text-decoration:none; transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
       <div style="font-size:11px; color:#9e9e9e; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Tier 1 · PAYG</div>
       <div style="font-weight:700; font-size:15px; color:#1A1A1A;">Economy</div>
-      <div style="font-size:12px; color:#666; margin-top:4px;">$4.99/GB · 89% margin</div>
+      <div style="font-size:12px; color:#666; margin-top:4px;">$4.99/GB · 55% margin</div>
     </a>
     <a href="docs/downloads/plan-roster-bundle-2026-06-01.html" target="_blank" style="display:block; background:white; border:1px solid #E5DDD0; border-top:3px solid #0a5f5f; border-radius:8px; padding:14px; text-decoration:none; transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
       <div style="font-size:11px; color:#0a5f5f; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Tier 2 · Per-flight</div>
       <div style="font-weight:700; font-size:15px; color:#1A1A1A;">Roster Bundle</div>
-      <div style="font-size:12px; color:#666; margin-top:4px;">$3.99/flight · 55%</div>
+      <div style="font-size:12px; color:#666; margin-top:4px;">$3.99/flight · 44%</div>
     </a>
     <a href="docs/downloads/plan-premium-2026-06-01.html" target="_blank" style="display:block; background:white; border:1px solid #E5DDD0; border-top:3px solid #1a5ea0; border-radius:8px; padding:14px; text-decoration:none; transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
       <div style="font-size:11px; color:#1a5ea0; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Tier 3 · Monthly</div>
       <div style="font-weight:700; font-size:15px; color:#1A1A1A;">Premium Economy</div>
-      <div style="font-size:12px; color:#666; margin-top:4px;">$17.99/mo · 62%</div>
+      <div style="font-size:12px; color:#666; margin-top:4px;">$18.99/mo · 52%</div>
     </a>
     <a href="docs/downloads/plan-business-2026-06-01.html" target="_blank" style="display:block; background:white; border:1px solid #E5DDD0; border-top:3px solid #C9A03B; border-radius:8px; padding:14px; text-decoration:none; transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
       <div style="font-size:11px; color:#8a6420; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Tier 4 ⭐ REC.</div>
       <div style="font-weight:700; font-size:15px; color:#1A1A1A;">Business</div>
-      <div style="font-size:12px; color:#8a6420; margin-top:4px;">$29.99/mo · 63%</div>
+      <div style="font-size:12px; color:#8a6420; margin-top:4px;">$29.99/mo · 49%</div>
     </a>
     <a href="docs/downloads/plan-first-2026-06-01.html" target="_blank" style="display:block; background:white; border:1px solid #E5DDD0; border-top:3px solid #D71921; border-radius:8px; padding:14px; text-decoration:none; transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
       <div style="font-size:11px; color:#D71921; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Tier 5 🚨 FLAG</div>
       <div style="font-weight:700; font-size:15px; color:#1A1A1A;">First</div>
-      <div style="font-size:12px; color:#D71921; margin-top:4px;">$39.99/mo · −0.3%</div>
+      <div style="font-size:12px; color:#D71921; margin-top:4px;">$39.99/mo · 44%</div>
     </a>
     <a href="docs/downloads/plan-first-suite-2026-06-01.html" target="_blank" style="display:block; background:white; border:1px solid #E5DDD0; border-top:3px solid #7a1a1a; border-radius:8px; padding:14px; text-decoration:none; transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
       <div style="font-size:11px; color:#D71921; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Tier 6 🚨 FLAG</div>
       <div style="font-weight:700; font-size:15px; color:#1A1A1A;">First Suite</div>
-      <div style="font-size:12px; color:#D71921; margin-top:4px;">$49.99/mo · −28%</div>
+      <div style="font-size:12px; color:#D71921; margin-top:4px;">$49.99/mo · 41%</div>
     </a>
     <a href="docs/downloads/plan-cockpit-2026-06-01.html" target="_blank" style="display:block; background:white; border:1px solid #E5DDD0; border-top:3px solid #1A1A1A; border-radius:8px; padding:14px; text-decoration:none; transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
       <div style="font-size:11px; color:#1A1A1A; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Tier 7 · Annual</div>
       <div style="font-weight:700; font-size:15px; color:#1A1A1A;">Cockpit</div>
-      <div style="font-size:12px; color:#666; margin-top:4px;">$299/yr · 73%</div>
+      <div style="font-size:12px; color:#666; margin-top:4px;">$299/yr · 35%</div>
     </a>
     <a href="docs/downloads/plan-refuel-2026-06-01.html" target="_blank" style="display:block; background:#f0fff4; border:1px solid #a8e0b0; border-top:3px solid #2e7d32; border-radius:8px; padding:14px; text-decoration:none; transition:transform .15s,box-shadow .15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 16px rgba(0,0,0,.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
       <div style="font-size:11px; color:#2e7d32; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Add-on ⛽</div>
       <div style="font-weight:700; font-size:15px; color:#1A1A1A;">Refuel</div>
-      <div style="font-size:12px; color:#2e7d32; margin-top:4px;">$4.99/GB · 73%</div>
+      <div style="font-size:12px; color:#2e7d32; margin-top:4px;">$4.99/GB · 55%</div>
     </a>
   </div>
 </div>

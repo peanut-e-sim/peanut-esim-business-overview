@@ -78,7 +78,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <div class="meta">Prepared 2026-06-01 · Captures full discussion, decisions, modeling corrections, and open items · Owners: Balraj + Akito</div>
 
 <div class="lede">
-  <strong>What this tab tells you:</strong> Peanut has exceptional unit economics. At $0.75 blended CAC, every tier produces an LTV:CAC ratio between 32x and 760x. The business earns back its acquisition cost in under 2 days per Premium user. The real risk is not the math — it is whether word-of-mouth alone can compound to 5,000 users within 24 months.
+  <strong>What this tab tells you:</strong> Peanut has exceptional unit economics. At $0.75 blended CAC, every tier produces an LTV:CAC ratio between 24x and 415x (rebuilt 2026-06-02 with corrected rate sheet; old 32x-760x used invalidated $1.34/GB). The business earns back its acquisition cost in under 3 days per Premium user. The real risk is not the math — it is whether word-of-mouth alone can compound to 5,000 users within 24 months.
 </div>
 
 <div class="toc">
@@ -150,7 +150,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 
 <div class="fix-box">
   <strong>Cockpit modeling correction — important to document</strong><br>
-  An earlier version of the model applied the monthly churn formula to Cockpit: <code>1 / (monthly churn %) = lifetime</code>. But Cockpit has no monthly churn — it is annual prepay. Applying any monthly churn rate to Cockpit produces absurd results (e.g., at 0.6% monthly "churn" = 167-month lifetime, which is 14 years). This was a modeling error. The correction: use the realistic observed lifetime of annual-prepay products (~36 months, based on ~70% renewal rate after Year 1). LTV = $15.82/month × 36 months = $569.52.
+  An earlier version of the model applied the monthly churn formula to Cockpit: <code>1 / (monthly churn %) = lifetime</code>. But Cockpit has no monthly churn — it is annual prepay. Applying any monthly churn rate to Cockpit produces absurd results (e.g., at 0.6% monthly "churn" = 167-month lifetime, which is 14 years). This was a modeling error. The correction: use the realistic observed lifetime of annual-prepay products (~36 months, based on ~70% renewal rate after Year 1). LTV = $8.65/month × 36 months = $311.40 (rebuilt 2026-06-02 with corrected rate sheet; old $15.82/mo at invalidated $1.34/GB).
 </div>
 
 <h2 id="cac-data">4. CAC structure and the fix (key discussion)</h2>
@@ -180,18 +180,18 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 </div>
 
 <h2 id="ltv-table">5. Full LTV:CAC table (verified contributions)</h2>
-<p>Gross profit contributions per tier are verified from the source xlsx (Per-Tier Unit Economics tab) at $1.34/GB blended rate (75/20/5 geo mix). CAC = $0.75 for all tiers.</p>
+<p>Gross profit contributions per tier are rebuilt 2026-06-02 with corrected rate sheet at $2.26/GB blended (old $1.34/GB invalidated; 75/20/5 geo mix). CAC = $0.75 for all tiers.</p>
 
 <table>
   <tr><th>Tier</th><th>Gross profit/mo</th><th>Lifetime</th><th>LTV</th><th>CAC</th><th>LTV:CAC</th><th>Payback (mo)</th><th>Verdict</th></tr>
-  <tr class="excellent"><td>Economy</td><td>$9.13</td><td>5.6 mo</td><td>$51</td><td>$0.75</td><td><strong>68x</strong></td><td>0.08 mo (2.5 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
-  <tr class="excellent"><td>Roster Bundle</td><td>$13.62</td><td>10 mo</td><td>$136</td><td>$0.75</td><td><strong>181x</strong></td><td>0.06 mo (1.8 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
-  <tr class="excellent"><td>Premium Economy</td><td>$13.36</td><td>10 mo</td><td>$134</td><td>$0.75</td><td><strong>179x</strong></td><td>0.06 mo (1.7 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
-  <tr class="excellent"><td>Business</td><td>$21.86</td><td>11.1 mo</td><td>$243</td><td>$0.75</td><td><strong>324x</strong></td><td>0.03 mo (1.0 day)</td><td><span class="pill excellent">Excellent</span></td></tr>
-  <tr class="excellent"><td>First</td><td>$28.05</td><td>12.5 mo</td><td>$351</td><td>$0.75</td><td><strong>468x</strong></td><td>0.027 mo (0.8 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
-  <tr class="excellent"><td>First Suite</td><td>$33.03</td><td>14.3 mo</td><td>$472</td><td>$0.75</td><td><strong>629x</strong></td><td>0.023 mo (0.7 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
-  <tr class="cockpit-special"><td><strong>Cockpit</strong> (annual prepay)</td><td>$15.82/mo equiv</td><td>36 mo (corrected)</td><td>$570</td><td>$0.75</td><td><strong>760x</strong></td><td>0.047 mo (1.4 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
-  <tr class="excellent"><td>Refuel (add-on)</td><td>$3.65</td><td>6.7 mo</td><td>$24</td><td>$0.75</td><td><strong>32x</strong></td><td>0.21 mo (6 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Economy</td><td>$6.83</td><td>5.6 mo</td><td>$38</td><td>$0.75</td><td><strong>51x</strong></td><td>0.110 mo (3.3 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Roster Bundle</td><td>$8.69</td><td>10 mo</td><td>$87</td><td>$0.75</td><td><strong>116x</strong></td><td>0.086 mo (2.6 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Premium Economy</td><td>$9.95</td><td>10 mo</td><td>$100</td><td>$0.75</td><td><strong>133x</strong></td><td>0.075 mo (2.3 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Business</td><td>$14.73</td><td>11.1 mo</td><td>$164</td><td>$0.75</td><td><strong>219x</strong></td><td>0.051 mo (1.5 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>First</td><td>$17.39</td><td>12.5 mo</td><td>$217</td><td>$0.75</td><td><strong>289x</strong></td><td>0.043 mo (1.3 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>First Suite</td><td>$20.16</td><td>14.3 mo</td><td>$288</td><td>$0.75</td><td><strong>384x</strong></td><td>0.037 mo (1.1 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="cockpit-special"><td><strong>Cockpit</strong> (annual prepay)</td><td>$8.65/mo equiv</td><td>36 mo (corrected)</td><td>$311</td><td>$0.75</td><td><strong>415x</strong></td><td>0.087 mo (2.6 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
+  <tr class="excellent"><td>Refuel (add-on)</td><td>$2.73</td><td>6.7 mo</td><td>$18</td><td>$0.75</td><td><strong>24x</strong></td><td>0.275 mo (8.3 days)</td><td><span class="pill excellent">Excellent</span></td></tr>
 </table>
 
 <blockquote>Note: All payback periods are sub-month. Compare to a typical consumer subscription startup: $50 CAC, $5/month profit = 10-month payback. Peanut's equivalent is under 2 days.</blockquote>
@@ -248,7 +248,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
     <text x="323" y="67" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#ffc0c0">$18.99/mo</text>
     <!-- Arrow: monthly profit -->
     <line x1="380" y1="55" x2="430" y2="55" stroke="#2D7A4F" stroke-width="1.5" marker-end="url(#bpa3)"/>
-    <text x="405" y="47" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" fill="#2D7A4F">$13.36/mo</text>
+    <text x="405" y="47" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" fill="#2D7A4F">$9.95/mo</text>
     <!-- Peanut -->
     <circle cx="470" cy="55" r="35" fill="#2D7A4F"/>
     <text x="470" y="49" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#fff">Peanut</text>
@@ -257,7 +257,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
     <line x1="507" y1="55" x2="553" y2="55" stroke="#888" stroke-width="1.5" marker-end="url(#bpa2)"/>
     <!-- LTV box -->
     <rect x="558" y="35" width="58" height="40" rx="6" fill="#faf6ec" stroke="#C9A03B" stroke-width="1.5"/>
-    <text x="587" y="52" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="11" font-weight="800" fill="#B07A1F">$134</text>
+    <text x="587" y="52" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="11" font-weight="800" fill="#B07A1F">$100</text>
     <text x="587" y="66" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#888">LTV</text>
     <defs>
       <marker id="bpa" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#C9A03B"/></marker>
@@ -270,23 +270,24 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <table>
   <tr><th>Event</th><th>Amount</th><th>Cumulative</th></tr>
   <tr><td>Akito tells Yuki → she signs up</td><td>−$0.75 (CAC)</td><td>−$0.75</td></tr>
-  <tr><td>Month 1: Yuki pays $18.99</td><td>+$13.36 gross profit</td><td>+$12.61</td></tr>
-  <tr><td>Month 2</td><td>+$13.36</td><td>+$25.97</td></tr>
-  <tr><td>...</td><td>+$13.36/mo</td><td>...</td></tr>
-  <tr><td>Month 10 (avg lifetime ends)</td><td>+$13.36</td><td>+$133.25 net</td></tr>
-  <tr style="background:#e8f4e8; font-weight:700;"><td><strong>Total return on $0.75 invested</strong></td><td><strong>$133.25 net profit</strong></td><td><strong>LTV:CAC = 179x</strong></td></tr>
+  <tr><td>Month 1: Yuki pays $18.99</td><td>+$9.95 gross profit</td><td>+$9.20</td></tr>
+  <tr><td>Month 2</td><td>+$9.95</td><td>+$19.15</td></tr>
+  <tr><td>...</td><td>+$9.95/mo</td><td>...</td></tr>
+  <tr><td>Month 10 (avg lifetime ends)</td><td>+$9.95</td><td>+$99.25 net</td></tr>
+  <tr style="background:#e8f4e8; font-weight:700;"><td><strong>Total return on $0.75 invested</strong></td><td><strong>$99.25 net profit</strong></td><td><strong>LTV:CAC = 133x (rebuilt 2026-06-02)</strong></td></tr>
 </table>
 
 <p>Now what if Yuki upgrades from Premium Economy to Business after 3 months?</p>
 
 <table>
   <tr><th>Phase</th><th>Monthly profit</th><th>Duration</th><th>Contribution</th></tr>
-  <tr><td>Premium Economy (M1-M3)</td><td>$13.36</td><td>3 months</td><td>$40.08</td></tr>
-  <tr><td>Business (M4-M11)</td><td>$21.86</td><td>8 months</td><td>$174.88</td></tr>
-  <tr style="background:#e8f4e8; font-weight:700;"><td><strong>Total LTV with upgrade</strong></td><td></td><td>11 months</td><td><strong>$214.96</strong></td></tr>
+  <tr><td>Premium Economy (M1-M3)</td><td>$9.95</td><td>3 months</td><td>$29.85</td></tr>
+  <tr><td>Business (M4-M11)</td><td>$14.73</td><td>8 months</td><td>$117.84</td></tr>
+  <tr style="background:#e8f4e8; font-weight:700;"><td><strong>Total LTV with upgrade</strong></td><td></td><td>11 months</td><td><strong>$147.69</strong></td></tr>
 </table>
+<p style="font-size:12px; color:var(--ink-soft);">Rebuilt 2026-06-02 with corrected rate sheet. Old $214.96 used invalidated $1.34/GB.</p>
 
-<p>The $0.75 CAC is spent once. The upgrade adds $80.88 LTV at zero additional cost. This is the power of the tier ladder.</p>
+<p>The $0.75 CAC is spent once. The upgrade adds $48.44 LTV at zero additional cost ($147.69 - $99.25). This is the power of the tier ladder.</p>
 
 <h2 id="lemonade">8. The lemonade stand payback analogy</h2>
 
@@ -297,8 +298,8 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <p>Applied to Peanut, Premium tier:</p>
 <ul>
   <li>Posters (CAC): $0.75</li>
-  <li>Each lemonade (monthly profit): $13.36</li>
-  <li>Payback: $0.75 / $13.36 = 0.056 months = approximately 1.7 days</li>
+  <li>Each lemonade (monthly profit): $9.95 (rebuilt 2026-06-02)</li>
+  <li>Payback: $0.75 / $9.95 = 0.075 months = approximately 2.3 days</li>
   <li>Everything after day 2 of a user's active month = pure profit</li>
 </ul>
 
@@ -356,9 +357,9 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 <h2 id="takeaway">12. Strategic takeaway</h2>
 
 <ol>
-  <li><strong>The unit economics are a structural advantage — use them in investor conversations.</strong> A 179x LTV:CAC ratio on the main subscription tier is genuinely exceptional. Most consumer SaaS businesses would be excited with 10x. Peanut's structural advantage (low CAC via WOM + high margin via breakage) creates an unusually efficient business. This should be front and center in any pitch.</li>
+  <li><strong>The unit economics are a structural advantage — use them in investor conversations.</strong> A 133x LTV:CAC ratio on the main subscription tier is genuinely exceptional (rebuilt 2026-06-02 with corrected rate sheet; old 179x at invalidated $1.34/GB). Most consumer SaaS businesses would be excited with 10x. Peanut's structural advantage (low CAC via WOM + margin via breakage) creates an unusually efficient business. This should be front and center in any pitch.</li>
   <li><strong>Instrument the referral loop from day one.</strong> Since scale velocity is the main risk, Balraj needs to measure referral rate (new user / existing user) every month from M1. Track this as a core KPI, not a nice-to-have. If the referral rate is below 0.3 at M3, either the product isn't driving WOM (product quality issue) or we're not in the right community (acquisition quality issue). Either way, it needs diagnosis before M6.</li>
-  <li><strong>The upgrade funnel is worth more than it looks.</strong> Because CAC is the same ($0.75) regardless of tier, every Economy-to-subscription upgrade is pure LTV at zero additional cost. An Economy user who upgrades to Business after 2 months adds +$192 LTV for free. This makes the in-app conversion nudge (show Premium value after 3 PAYG purchases) one of the highest-ROI product features in the entire roadmap.</li>
+  <li><strong>The upgrade funnel is worth more than it looks.</strong> Because CAC is the same ($0.75) regardless of tier, every Economy-to-subscription upgrade is pure LTV at zero additional cost. An Economy user who upgrades to Business after 2 months adds +$126 LTV for free (rebuilt 2026-06-02; old $192 used invalidated $1.34/GB). This makes the in-app conversion nudge (show Premium value after 3 PAYG purchases) one of the highest-ROI product features in the entire roadmap.</li>
 </ol>
 
 <h2 id="queue">13. Open items / queue</h2>
@@ -373,7 +374,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 </table>
 
 <div class="footer-note">
-  Tab 18 — LTV-CAC + Churn In-Depth Blueprint · Peanut eSIM · 2026-06-01 · Cockpit lifetime corrected from 167 months (formula error) to 36 months (annual prepay realistic lifetime). CAC corrected from $3.85 (included phantom paid channels) to $0.75 (WOM + referral only). All tier contributions verified from source xlsx at $1.34/GB blended rate.
+  Tab 18 — LTV-CAC + Churn In-Depth Blueprint · Peanut eSIM · 2026-06-01 · Cockpit lifetime corrected from 167 months (formula error) to 36 months (annual prepay realistic lifetime). CAC corrected from $3.85 (included phantom paid channels) to $0.75 (WOM + referral only). All tier contributions rebuilt 2026-06-02 with corrected rate sheet at $2.26/GB blended (old $1.34/GB invalidated).
 </div>
 
 </div>

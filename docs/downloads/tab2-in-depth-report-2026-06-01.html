@@ -97,9 +97,9 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 <h4>The three named archetypes — what their P&amp;L looks like</h4>
 <table>
 <tr><th>Character</th><th>Typical tier</th><th>Monthly revenue</th><th>Monthly contribution to us</th></tr>
-<tr><td><strong>Maya</strong> — light tourist</td><td>Economy PAYG (2.5 top-ups/mo)</td><td>$12.48</td><td><strong>$9.13</strong> · 73% margin</td></tr>
-<tr><td><strong>Aiko</strong> — average commuter</td><td>Premium ($18.99 + refuel)</td><td>$18.99</td><td><strong>$13.36</strong> · 70% margin</td></tr>
-<tr><td><strong>Yuki</strong> — heavy long-hauler</td><td>First Suite ($49.99 + refuel)</td><td>$50.99</td><td><strong>$33.03</strong> · 65% margin</td></tr>
+<tr><td><strong>Maya</strong> — light tourist</td><td>Economy PAYG (2.5 top-ups/mo)</td><td>$12.48</td><td><strong>$6.83</strong> · 55% margin (rebuilt 2026-06-02)</td></tr>
+<tr><td><strong>Aiko</strong> — average commuter</td><td>Premium ($18.99 + refuel)</td><td>$18.99</td><td><strong>$9.95</strong> · 52% margin (rebuilt 2026-06-02)</td></tr>
+<tr><td><strong>Yuki</strong> — heavy long-hauler</td><td>First Suite ($49.99 + refuel)</td><td>$50.99</td><td><strong>$21.16</strong> · 41% margin (rebuilt 2026-06-02)</td></tr>
 </table>
 <p style="font-size:13px; color:#666;">These are the same characters used in the Tab 1 and Tab 2 visualizers. Same person, same math — consistent across all deliverables.</p>
 
@@ -129,14 +129,14 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 <table>
 <tr><th>Tier</th><th>Attach %</th><th>Refuel revenue/user/mo</th><th>Refuel COGS</th><th>Notes</th></tr>
 <tr><td>Economy (PAYG)</td><td>N/A</td><td>$0.00</td><td>—</td><td>PAYG only — every purchase IS a refuel</td></tr>
-<tr><td>Roster Bundle</td><td>10%</td><td>$0.50</td><td>$0.13</td><td>Per-flight users top up sometimes</td></tr>
-<tr><td><strong>Premium</strong></td><td><strong>20%</strong></td><td>$1.00</td><td>$0.27</td><td>Sweet spot — small pool meets friction often</td></tr>
-<tr><td>Business</td><td>25%</td><td>$1.25</td><td>$0.34</td><td>Heavier users, more refuel events</td></tr>
-<tr><td><strong>First</strong></td><td><strong>40%</strong></td><td>$2.00</td><td>$0.54</td><td>Highest — pilots burn through big pools</td></tr>
-<tr><td>First Suite</td><td>20%</td><td>$1.00</td><td>$0.27</td><td>Big pool dilutes attach trigger</td></tr>
-<tr><td>Cockpit (annual)</td><td>15%</td><td>$0.75</td><td>$0.20</td><td>Pre-committed annual users refuel less</td></tr>
+<tr><td>Roster Bundle</td><td>10%</td><td>$0.50</td><td>$0.23</td><td>Per-flight users top up sometimes</td></tr>
+<tr><td><strong>Premium</strong></td><td><strong>20%</strong></td><td>$1.00</td><td>$0.45</td><td>Sweet spot — small pool meets friction often</td></tr>
+<tr><td>Business</td><td>25%</td><td>$1.25</td><td>$0.56</td><td>Heavier users, more refuel events</td></tr>
+<tr><td><strong>First</strong></td><td><strong>40%</strong></td><td>$2.00</td><td>$0.90</td><td>Highest — pilots burn through big pools</td></tr>
+<tr><td>First Suite</td><td>20%</td><td>$1.00</td><td>$0.45</td><td>Big pool dilutes attach trigger</td></tr>
+<tr><td>Cockpit (annual)</td><td>15%</td><td>$0.75</td><td>$0.34</td><td>Pre-committed annual users refuel less</td></tr>
 </table>
-<p>Each refuel margin is 73% (revenue $4.99 − COGS $1.34 = $3.65 net). The First tier alone generates ~$2/user/mo of pure-margin refuel revenue.</p>
+<p>Each refuel margin is 55% (revenue $4.99 − COGS $2.26 = $2.73 net; rebuilt 2026-06-02 with corrected rate sheet). The First tier alone generates ~$2/user/mo of high-margin refuel revenue.</p>
 
 <h2 id="friction">4. The 1-GB refill UX (the key insight)</h2>
 <p>Users see <strong>only 1 GB active at a time</strong>. When that GB runs out, they tap "Refill from pool" to get the next GB. The pool is always visible (transparency), but refill requires manual action.</p>
@@ -175,11 +175,11 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 <p>Tab 10 (Carryover Liability) tracks this aging properly. Tab 2 shows only the monthly snapshot.</p>
 
 <h4>Breakage in dollars (Premium Economy example)</h4>
-<p>3 GB breakage × $1.34 blended wholesale = <strong>$4.02 of pure profit per Premium user per month</strong> <em>(updated 2026-06-01: blended cost revised from $1.20 to $1.34/GB after geo mix recalibration to 75/20/5)</em>.</p>
+<p>3 GB breakage × $2.26 blended wholesale = <strong>$6.78 of pure profit per Premium user per month</strong> (rebuilt 2026-06-02 with corrected rate sheet; old figure was $4.02 at stale $1.34/GB). Breakage profit increases with the corrected rate because the GB cost to us was previously understated.</p>
 <table>
 <tr><th>Scale</th><th>Premium users (13%)</th><th>Monthly breakage profit</th><th>Annual</th></tr>
-<tr><td>10,000 users</td><td>1,300</td><td>$5,226</td><td>$62,712</td></tr>
-<tr><td>100,000 users</td><td>13,000</td><td>$52,260</td><td><strong>$627,120</strong></td></tr>
+<tr><td>10,000 users</td><td>1,300</td><td>$8,814</td><td>$105,768</td></tr>
+<tr><td>100,000 users</td><td>13,000</td><td>$88,140</td><td><strong>$1,057,680</strong></td></tr>
 </table>
 
 <h2 id="downstream">6. How Tab 2 feeds the rest of the model</h2>
@@ -198,16 +198,16 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 
 <blockquote>Tab 2 is the factory floor. Every other tab is a different report from the same factory. Change ANY number in Tab 2 and the entire workbook recalculates.</blockquote>
 
-<h4>Verified per-tier monthly contribution — what Tab 3 produces from Tab 2's inputs</h4>
+<h4>Verified per-tier monthly contribution — what Tab 3 produces from Tab 2's inputs (rebuilt 2026-06-02)</h4>
 <table>
-<tr><th>Tier</th><th>Revenue</th><th>COGS @ $1.34/GB</th><th>Net contribution</th><th>Margin</th></tr>
-<tr><td>Economy (PAYG, 2.5×)</td><td>$12.48</td><td>$3.35</td><td><strong>$9.13</strong></td><td>73%</td></tr>
-<tr><td>Roster Bundle</td><td>$20.45</td><td>$6.83</td><td><strong>$13.62</strong></td><td>67%</td></tr>
-<tr><td>Premium Economy</td><td>$18.99</td><td>$5.63</td><td><strong>$13.36</strong></td><td>70%</td></tr>
-<tr><td>Business</td><td>$31.24</td><td>$9.38</td><td><strong>$21.86</strong></td><td>70%</td></tr>
-<tr><td>First</td><td>$41.99</td><td>$13.94</td><td><strong>$28.05</strong></td><td>67%</td></tr>
-<tr><td>First Suite</td><td>$50.99</td><td>$17.96</td><td><strong>$33.03</strong></td><td>65%</td></tr>
-<tr><td>Cockpit (mo equiv)</td><td>$25.67</td><td>$9.85</td><td><strong>$15.82</strong></td><td>62%</td></tr>
+<tr><th>Tier</th><th>Revenue</th><th>COGS @ $2.26/GB</th><th>Net contribution</th><th>Margin</th></tr>
+<tr><td>Economy (PAYG, 2.5×)</td><td>$12.48</td><td>$5.65</td><td><strong>$6.83</strong></td><td>55%</td></tr>
+<tr><td>Roster Bundle</td><td>$20.45</td><td>$11.30</td><td><strong>$9.15</strong></td><td>45%</td></tr>
+<tr><td>Premium Economy</td><td>$18.99</td><td>$9.04</td><td><strong>$9.95</strong></td><td>52%</td></tr>
+<tr><td>Business</td><td>$31.24</td><td>$15.25</td><td><strong>$15.99</strong></td><td>51%</td></tr>
+<tr><td>First</td><td>$41.99</td><td>$22.60</td><td><strong>$19.39</strong></td><td>46%</td></tr>
+<tr><td>First Suite</td><td>$50.99</td><td>$29.83</td><td><strong>$21.16</strong></td><td>41%</td></tr>
+<tr><td>Cockpit (mo equiv)</td><td>$25.67</td><td>$16.27</td><td><strong>$9.40</strong></td><td>37%</td></tr>
 </table>
 <p>These are <strong>verified from the Google Sheet</strong> (the locked model). Change Tab 2's consumption rates or refuel attach % — these contribution numbers shift. That's the dependency chain.</p>
 <p style="margin-top:14px;">

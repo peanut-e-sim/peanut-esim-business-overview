@@ -120,22 +120,22 @@ tr.base td { background: #faf6ec; font-weight: 600; }
 </table>
 
 <h2 id="data">4. Verified contributions per tier (from source xlsx)</h2>
-<p>These gross profit contributions per user per month are the numbers used in the worked example. Verified from the xlsx at $1.34/GB blended rate (75/20/5 geo mix).</p>
+<p>These gross profit contributions per user per month are the numbers used in the worked example. Rebuilt 2026-06-02 with corrected rate sheet at $2.26/GB blended (old $1.34/GB invalidated; 75/20/5 geo mix).</p>
 
 <table>
   <tr><th>Tier</th><th>Monthly revenue</th><th>Gross profit/user/mo</th><th>Source</th></tr>
-  <tr><td>Economy (realistic: 2.5 top-ups/mo)</td><td>$12.48</td><td>$9.13</td><td>Per-Tier Unit Economics tab + Economy Logic tab</td></tr>
-  <tr><td>Roster Bundle</td><td>$19.99</td><td>$13.62</td><td>Behavior Sensitivity tab, confirmed against Roster Bundle Logic</td></tr>
-  <tr><td>Premium Economy</td><td>$18.99</td><td>$13.36</td><td>Behavior Sensitivity tab, confirmed against Premium Economy Logic</td></tr>
-  <tr><td>Business</td><td>$29.99</td><td>$21.86</td><td>Behavior Sensitivity tab, confirmed against Business Logic</td></tr>
-  <tr><td>First</td><td>$39.99</td><td>$28.05</td><td>Behavior Sensitivity tab, confirmed against First Logic</td></tr>
-  <tr><td>First Suite</td><td>$49.99</td><td>$33.03</td><td>Behavior Sensitivity tab, confirmed against First Suite Logic</td></tr>
-  <tr><td>Cockpit (monthly equivalent)</td><td>$24.92</td><td>$15.82</td><td>Behavior Sensitivity tab, confirmed against Cockpit Logic</td></tr>
+  <tr><td>Economy (realistic: 2.5 top-ups/mo)</td><td>$12.48</td><td>$6.83</td><td>Per-Tier Unit Economics tab + Economy Logic tab</td></tr>
+  <tr><td>Roster Bundle</td><td>$19.99</td><td>$8.69</td><td>Behavior Sensitivity tab, confirmed against Roster Bundle Logic</td></tr>
+  <tr><td>Premium Economy</td><td>$18.99</td><td>$9.95</td><td>Behavior Sensitivity tab, confirmed against Premium Economy Logic</td></tr>
+  <tr><td>Business</td><td>$29.99</td><td>$14.73</td><td>Behavior Sensitivity tab, confirmed against Business Logic</td></tr>
+  <tr><td>First</td><td>$39.99</td><td>$17.39</td><td>Behavior Sensitivity tab, confirmed against First Logic</td></tr>
+  <tr><td>First Suite</td><td>$49.99</td><td>$20.16</td><td>Behavior Sensitivity tab, confirmed against First Suite Logic</td></tr>
+  <tr><td>Cockpit (monthly equivalent)</td><td>$24.92</td><td>$8.65</td><td>Behavior Sensitivity tab, confirmed against Cockpit Logic</td></tr>
 </table>
 
 <div class="discussion-block">
   <h4>Important note on Economy contribution</h4>
-  <p>The $9.13 contribution for Economy uses the "realistic 2.5 top-ups/month" assumption, meaning revenue of $12.48 (2.5 × $4.99), not a single $4.99 transaction. A one-and-done Economy user who buys once generates $3.65 gross profit on that one transaction. The "realistic Economy user" buys 2.5 times per month. This is an estimate — actual average purchase frequency must be validated post-launch.</p>
+  <p>The $6.83 contribution for Economy (rebuilt 2026-06-02) uses the "realistic 2.5 top-ups/month" assumption, meaning revenue of $12.48 (2.5 × $4.99), not a single $4.99 transaction. A one-and-done Economy user who buys once generates $2.73 gross profit on that one transaction ($4.99 - $2.26). The "realistic Economy user" buys 2.5 times per month. This is an estimate — actual average purchase frequency must be validated post-launch.</p>
 </div>
 
 <h2 id="discussion">5. The discussion we had</h2>
@@ -144,8 +144,8 @@ tr.base td { background: #faf6ec; font-weight: 600; }
   <h4>Discussion — the key finding: tier mix dominates archetype mix</h4>
   <p>We set up the tab expecting both layers (archetype mix and tier mix) to have roughly equal impact on profit. The discovery was that tier mix is the dominant variable. Here is why:</p>
   <ul>
-    <li>Archetype differences affect how many GB are consumed from a fixed pool. But the gross margin percentage stays roughly stable (73% across most tiers) regardless of consumption rate. Consuming more GB increases COGS but also enables refuel revenue at the same margin. The net per-user profit doesn't change dramatically between a Casual Traveler and a Power Crew on the same tier.</li>
-    <li>Tier differences affect revenue directly and massively. The delta between an Economy user ($9.13 contribution) and a Business user ($21.86 contribution) is $12.73/user/month — 140% more per user for choosing a different plan. No archetype difference comes close to this magnitude.</li>
+    <li>Archetype differences affect how many GB are consumed from a fixed pool. But the gross margin percentage stays roughly stable (44-55% across most tiers, rebuilt 2026-06-02 with corrected rate sheet) regardless of consumption rate. Consuming more GB increases COGS but also enables refuel revenue at the same margin. The net per-user profit doesn't change dramatically between a Casual Traveler and a Power Crew on the same tier.</li>
+    <li>Tier differences affect revenue directly and massively. The delta between an Economy user ($6.83 contribution, rebuilt 2026-06-02) and a Business user ($14.73 contribution) is $7.90/user/month — 116% more per user for choosing a different plan. No archetype difference comes close to this magnitude.</li>
     <li>Therefore: every dollar invested in converting Economy users to subscription tiers delivers roughly 5-10x the return vs investing in reducing churn of high-consumption users.</li>
   </ul>
 </div>
@@ -170,40 +170,40 @@ tr.base td { background: #faf6ec; font-weight: 600; }
 <h2 id="worked">6. Worked example — 100 users, two worlds</h2>
 <p>This is the single most important worked example in the entire model. Same 100 users, same supplier costs. The only variable is which tier they pick.</p>
 
-<h4>World 1: Launch Reality — 80% on Economy</h4>
+<h4>World 1: Launch Reality — 80% on Economy (rebuilt 2026-06-02)</h4>
 <table>
   <tr><th>Tier</th><th>Users</th><th>Contribution/user</th><th>Total</th></tr>
-  <tr><td>Economy</td><td>80</td><td>$9.13</td><td>$730.40</td></tr>
-  <tr><td>Roster Bundle</td><td>10</td><td>$13.62</td><td>$136.20</td></tr>
-  <tr><td>Premium Economy</td><td>5</td><td>$13.36</td><td>$66.80</td></tr>
-  <tr><td>Business</td><td>3</td><td>$21.86</td><td>$65.58</td></tr>
-  <tr><td>First</td><td>1</td><td>$28.05</td><td>$28.05</td></tr>
-  <tr><td>First Suite</td><td>1</td><td>$33.03</td><td>$33.03</td></tr>
-  <tr><td>Cockpit</td><td>0</td><td>$15.82</td><td>$0.00</td></tr>
-  <tr class="base"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td></td><td><strong>$1,060/month</strong></td></tr>
+  <tr><td>Economy</td><td>80</td><td>$6.83</td><td>$546.40</td></tr>
+  <tr><td>Roster Bundle</td><td>10</td><td>$8.69</td><td>$86.90</td></tr>
+  <tr><td>Premium Economy</td><td>5</td><td>$9.95</td><td>$49.75</td></tr>
+  <tr><td>Business</td><td>3</td><td>$14.73</td><td>$44.19</td></tr>
+  <tr><td>First</td><td>1</td><td>$17.39</td><td>$17.39</td></tr>
+  <tr><td>First Suite</td><td>1</td><td>$20.16</td><td>$20.16</td></tr>
+  <tr><td>Cockpit</td><td>0</td><td>$8.65</td><td>$0.00</td></tr>
+  <tr class="base"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td></td><td><strong>$765/month</strong></td></tr>
 </table>
 
-<h4>World 2: Ladder Climbers — 35% on Economy</h4>
+<h4>World 2: Ladder Climbers — 35% on Economy (rebuilt 2026-06-02)</h4>
 <table>
   <tr><th>Tier</th><th>Users</th><th>Contribution/user</th><th>Total</th></tr>
-  <tr><td>Economy</td><td>35</td><td>$9.13</td><td>$319.55</td></tr>
-  <tr><td>Roster Bundle</td><td>22</td><td>$13.62</td><td>$299.64</td></tr>
-  <tr><td>Premium Economy</td><td>18</td><td>$13.36</td><td>$240.48</td></tr>
-  <tr><td>Business</td><td>12</td><td>$21.86</td><td>$262.32</td></tr>
-  <tr><td>First</td><td>5</td><td>$28.05</td><td>$140.25</td></tr>
-  <tr><td>First Suite</td><td>3</td><td>$33.03</td><td>$99.09</td></tr>
-  <tr><td>Cockpit</td><td>5</td><td>$15.82</td><td>$79.10</td></tr>
-  <tr class="best"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td></td><td><strong>$1,440/month</strong></td></tr>
+  <tr><td>Economy</td><td>35</td><td>$6.83</td><td>$239.05</td></tr>
+  <tr><td>Roster Bundle</td><td>22</td><td>$8.69</td><td>$191.18</td></tr>
+  <tr><td>Premium Economy</td><td>18</td><td>$9.95</td><td>$179.10</td></tr>
+  <tr><td>Business</td><td>12</td><td>$14.73</td><td>$176.76</td></tr>
+  <tr><td>First</td><td>5</td><td>$17.39</td><td>$86.95</td></tr>
+  <tr><td>First Suite</td><td>3</td><td>$20.16</td><td>$60.48</td></tr>
+  <tr><td>Cockpit</td><td>5</td><td>$8.65</td><td>$43.25</td></tr>
+  <tr class="best"><td><strong>TOTAL</strong></td><td><strong>100</strong></td><td></td><td><strong>$977/month</strong></td></tr>
 </table>
 
-<blockquote>The lift from Launch Reality to Ladder Climbers: +$380/month on 100 users (+37%). At 5,000 users this becomes +$19,000/month or approximately $228,000/year. The source is tier conversion, not user growth.</blockquote>
+<blockquote>The lift from Launch Reality to Ladder Climbers: +$212/month on 100 users (+28%, rebuilt 2026-06-02). At 5,000 users this becomes +$10,600/month or approximately $127,200/year. The source is tier conversion, not user growth.</blockquote>
 
 <h2 id="conclusion">7. The conclusion (what we decided)</h2>
 
 <p>The discussion produced a clear, decisive conclusion:</p>
 
 <ol>
-  <li><strong>Conclusion 1 — Tier mix is the primary profit lever.</strong> The tab confirmed that converting Economy users to any subscription tier is more valuable than almost any other operational improvement. A 1% shift in the Economy percentage at 5,000 users = $50 × ($13.36 − $9.13) = ~$2,115/month permanently. This is not incremental — it compounds with user count.</li>
+  <li><strong>Conclusion 1 — Tier mix is the primary profit lever.</strong> The tab confirmed that converting Economy users to any subscription tier is more valuable than almost any other operational improvement. A 1% shift in the Economy percentage at 5,000 users = $50 × ($9.95 − $6.83) = ~$1,560/month permanently (rebuilt 2026-06-02). This is not incremental — it compounds with user count.</li>
   <li><strong>Conclusion 2 — The PAYG Trap is the primary risk.</strong> Not the One-and-Done archetype. If users are perfectly happy buying $4.99 top-ups forever and never feel the need to subscribe, we are in the PAYG Trap. The product design (the 3-PAYG purchases = Premium Economy upsell nudge) is specifically designed to prevent this.</li>
   <li><strong>Conclusion 3 — Archetype mix should be monitored but not over-optimized.</strong> There is not much point spending marketing budget to attract Power Crew over Crew Standard — the per-user profit difference is small. Focus acquisition on crew (not casual travelers) to avoid One-and-Done, but within that constraint, any crew archetype is fine.</li>
 </ol>
@@ -239,7 +239,7 @@ tr.base td { background: #faf6ec; font-weight: 600; }
 </table>
 
 <div class="footer-note">
-  Tab 17 — Behavior Sensitivity In-Depth Blueprint · Peanut eSIM · 2026-06-01 · Contributions verified from source xlsx at $1.34/GB blended rate (75/20/5 geo mix). All tier scenario percentages are modeling assumptions, not measured data.
+  Tab 17 — Behavior Sensitivity In-Depth Blueprint · Peanut eSIM · 2026-06-01 · Contributions rebuilt 2026-06-02 with corrected rate sheet at $2.26/GB blended (old $1.34/GB invalidated). All tier scenario percentages are modeling assumptions, not measured data.
 </div>
 
 </div>

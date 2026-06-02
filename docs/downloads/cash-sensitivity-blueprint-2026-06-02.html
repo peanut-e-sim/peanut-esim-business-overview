@@ -99,25 +99,26 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 </div>
 
 <h2 id="tldr">TLDR</h2>
-<p>Refuel attach at 15%+ makes the top-up mechanic cash-positive on top of subscriptions — push for 20%+ as the healthy operating target. Failed-eSIM true cost is ~$10.80 (not the $4.00 the sheet shows) because our actual policy is GB credit goodwill, not cash refund — but 70% of failures are preventable with better UX. Cockpit annual prepay creates real working capital float that reduces founder cash injection need — at 100 Cockpit users, you arrive at month 2 with $14,950 already in the bank. The original Cockpit cash advantage calculation in the sheet was buggy (compared annual revenue totals instead of timing float), and the fix changes the D column to <code>C/2</code> with a new E column for 4% interest income.</p>
+<p>Refuel attach at 15%+ makes the top-up mechanic cash-positive on top of subscriptions — push for 20%+ as the healthy operating target. Failed-eSIM true cost is ~$12.63 (not the $4.00 the sheet shows; old $10.80 used invalidated $1.34/GB — rebuilt 2026-06-02) because our actual policy is GB credit goodwill, not cash refund — but 70% of failures are preventable with better UX. Cockpit annual prepay creates real working capital float that reduces founder cash injection need — at 100 Cockpit users, you arrive at month 2 with $14,950 already in the bank. The original Cockpit cash advantage calculation in the sheet was buggy (compared annual revenue totals instead of timing float), and the fix changes the D column to <code>C/2</code> with a new E column for 4% interest income.</p>
 
 <h2 id="refuel">Section 1 — Refuel Attach Sensitivity (@ 1,000 Users)</h2>
 
-<p>Refuel is the $4.99/GB top-up product. At 73% gross margin it's the highest-margin SKU in the catalog. The sensitivity analysis asks: what happens to monthly profit as the percentage of users who buy a refuel in a given month changes?</p>
+<p>Refuel is the $4.99/GB top-up product. At ~55% gross margin it's a strong-margin SKU in the catalog (rebuilt 2026-06-02 at $2.26/GB; old 73% figure used invalidated $1.34/GB). The sensitivity analysis asks: what happens to monthly profit as the percentage of users who buy a refuel in a given month changes?</p>
 
 <table>
   <tr><th>Refuel Attach %</th><th>Monthly Revenue</th><th>Monthly COGS</th><th>Net Profit</th><th>Net Margin Impact</th></tr>
-  <tr class="risk"><td>5%</td><td>$250</td><td>$67</td><td>$182</td><td class="red-text">-$365</td></tr>
-  <tr class="risk"><td>10%</td><td>$499</td><td>$134</td><td>$365</td><td class="red-text">-$182</td></tr>
-  <tr class="highlight"><td><strong>15% (breakeven)</strong></td><td>$749</td><td>$201</td><td><strong>$547</strong></td><td class="green-text"><strong>$0</strong></td></tr>
-  <tr><td>20%</td><td>$998</td><td>$269</td><td>$730</td><td class="green-text">+$182</td></tr>
-  <tr><td>25%</td><td>$1,248</td><td>$336</td><td>$912</td><td class="green-text">+$365</td></tr>
-  <tr class="excellent"><td><strong>30%</strong></td><td>$1,497</td><td>$403</td><td><strong>$1,094</strong></td><td class="green-text"><strong>+$547</strong></td></tr>
+  <tr class="risk"><td>5%</td><td>$250</td><td>$113</td><td>$137</td><td class="red-text">-$273</td></tr>
+  <tr class="risk"><td>10%</td><td>$499</td><td>$226</td><td>$273</td><td class="red-text">-$137</td></tr>
+  <tr class="highlight"><td><strong>15% (breakeven)</strong></td><td>$749</td><td>$339</td><td><strong>$410</strong></td><td class="green-text"><strong>$0</strong></td></tr>
+  <tr><td>20%</td><td>$998</td><td>$452</td><td>$546</td><td class="green-text">+$136</td></tr>
+  <tr><td>25%</td><td>$1,248</td><td>$565</td><td>$683</td><td class="green-text">+$273</td></tr>
+  <tr class="excellent"><td><strong>30%</strong></td><td>$1,497</td><td>$678</td><td><strong>$819</strong></td><td class="green-text"><strong>+$409</strong></td></tr>
 </table>
+<p style="font-size:12px; color:var(--ink-soft);">Rebuilt 2026-06-02 with corrected rate sheet at $2.26/GB. COGS = attach count × $2.26. 15% attach = 150 refuels × $2.26 = $339 COGS.</p>
 
 <div class="discussion-block">
   <h4>What the "Net Margin Impact" column means</h4>
-  <p>The impact column shows the delta vs the 15% neutral baseline. At 5% attach, we're $365/mo below neutral — Refuel is a drag. At 30%, we're $547/mo above neutral. The range from worst to best case is $912/mo at 1,000 users — that's $11K/year swing from this one variable alone.</p>
+  <p>The impact column shows the delta vs the 15% neutral baseline. At 5% attach, we're $273/mo below neutral — Refuel is a drag. At 30%, we're $409/mo above neutral. The range from worst to best case is $682/mo at 1,000 users — that's ~$8K/year swing from this one variable alone (rebuilt 2026-06-02 with corrected rate sheet; old $912/$11K used invalidated $1.34/GB).</p>
 </div>
 
 <h3>What drives attach rate</h3>
@@ -138,25 +139,25 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
 </div>
 
 <div class="fix-box">
-  <strong>CORRECT (locked policy):</strong> ~$10.80 blended cost per failure. Breakdown:
+  <strong>CORRECT (locked policy):</strong> ~$12.63 blended cost per failure (rebuilt 2026-06-02 with corrected rate sheet; old $10.80 used invalidated $1.34/GB). Breakdown:
   <ul style="margin:8px 0 0;">
-    <li>2 GB goodwill credit (at $1.34/GB blended) = ~$2.69 supplier cost</li>
+    <li>2 GB goodwill credit (at $2.26/GB blended, corrected 2026-06-02) = ~$4.52 supplier cost</li>
     <li>Reissue + support time = ~$3–5 (includes support agent time for manual fix)</li>
     <li>Partial credit where applicable (genuine carrier failure, not user error) = ~$3–5</li>
-    <li>Blended across genuine vs user-error failures = ~$10.80</li>
+    <li>Blended across genuine vs user-error failures = ~$12.63</li>
   </ul>
 </div>
 
-<h3>Cost table — corrected to $10.80</h3>
+<h3>Cost table — corrected to $12.63 (rebuilt 2026-06-02)</h3>
 <table>
   <tr><th>Failure Rate</th><th>Failed/mo @ 1K users</th><th>Monthly Cost (corrected)</th><th>Annual Cost</th></tr>
-  <tr><td>1.0%</td><td>30</td><td>$324</td><td>$3,888</td></tr>
-  <tr><td>2.0%</td><td>60</td><td>$648</td><td>$7,776</td></tr>
-  <tr class="highlight"><td><strong>3.0%</strong></td><td>90</td><td><strong>$972</strong></td><td><strong>$11,664</strong></td></tr>
-  <tr class="caution"><td>5.0%</td><td>150</td><td>$1,620</td><td>$19,440</td></tr>
-  <tr class="risk"><td>8.0%</td><td>240</td><td>$2,592</td><td>$31,104</td></tr>
+  <tr><td>1.0%</td><td>30</td><td>$379</td><td>$4,548</td></tr>
+  <tr><td>2.0%</td><td>60</td><td>$758</td><td>$9,096</td></tr>
+  <tr class="highlight"><td><strong>3.0%</strong></td><td>90</td><td><strong>$1,137</strong></td><td><strong>$13,644</strong></td></tr>
+  <tr class="caution"><td>5.0%</td><td>150</td><td>$1,895</td><td>$22,740</td></tr>
+  <tr class="risk"><td>8.0%</td><td>240</td><td>$3,031</td><td>$36,372</td></tr>
 </table>
-<p style="font-size:12px; color:var(--ink-soft);">Note: sheet shows raw $4.00 × volume. Corrected figures use $10.80 blended. The shape of the curve is unchanged — only the magnitude is 2.7x higher.</p>
+<p style="font-size:12px; color:var(--ink-soft);">Note: sheet shows raw $4.00 × volume. Corrected figures use $12.63 blended (rebuilt 2026-06-02 with corrected rate sheet; old $10.80 used invalidated $1.34/GB). Shape of curve unchanged — magnitude ~3.2x over raw $4.00.</p>
 
 <h3>The 70% preventability opportunity</h3>
 
@@ -228,7 +229,7 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
   <tr class="caution">
     <td>Confirm blended failure cost with real support data post-launch</td>
     <td>Balraj</td>
-    <td>Track support ticket type, resolution cost, and goodwill issuance in months 1–3. Replace $10.80 estimate with measured value.</td>
+    <td>Track support ticket type, resolution cost, and goodwill issuance in months 1–3. Replace $12.63 estimate (rebuilt 2026-06-02 with corrected rate sheet) with measured value.</td>
     <td><span class="pill open">Post-launch</span></td>
   </tr>
   <tr class="caution">
@@ -244,9 +245,9 @@ code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13p
     <td><span class="pill open">Pre-launch</span></td>
   </tr>
   <tr>
-    <td>Update sheet failure cost to $10.80</td>
+    <td>Update sheet failure cost to $12.63</td>
     <td>Balraj</td>
-    <td>Replace $4.00 in Tab 22 failure cost column with $10.80 blended estimate. Add note explaining policy basis.</td>
+    <td>Replace $4.00 in Tab 22 failure cost column with $12.63 blended estimate (rebuilt 2026-06-02 with corrected rate sheet). Add note explaining policy basis.</td>
     <td><span class="pill open">Model update</span></td>
   </tr>
 </table>

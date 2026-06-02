@@ -255,7 +255,7 @@
   <div class="body">
     <div class="label">Status: Parked</div>
     <h3>Year-2 reference material — not for current decisions</h3>
-    <p>This tool is built for someone who has already negotiated a new wholesale rate. We have not had that conversation yet. Until we sit down with the wholesale supplier at ~5K users and have alternatives in hand, the scenarios below are theoretical. The one thing that IS useful now: understanding that our current 70% margins leave enormous room — we should not be tempted to drop retail prices to acquire users.</p>
+    <p>This tool is built for someone who has already negotiated a new wholesale rate. We have not had that conversation yet. Until we sit down with the wholesale supplier at ~5K users and have alternatives in hand, the scenarios below are theoretical. The one thing that IS useful now: understanding that our current margins (35%–55% rebuilt 2026-06-02) leave significant room for improvement through supplier negotiation — we should not be tempted to drop retail prices to acquire users.</p>
   </div>
 </div>
 
@@ -268,16 +268,16 @@
     <div class="scenario-card active">
       <div class="s-tag">Scenario A · CURRENT</div>
       <h3>Today's Blended Rate</h3>
-      <div class="big-num red">$1.34/GB</div>
-      <p>75% Tier-A / 20% Tier-B / 5% Tier-C geo mix. This is the rate baked into the entire P&amp;L model. Premium = $5.36 COGS for 4 GB.</p>
-      <div class="condition">Model default — verified from source sheet</div>
+      <div class="big-num red">$2.26/GB</div>
+      <p>75% Tier-A / 20% Tier-B / 5% Tier-C geo mix. Rebuilt 2026-06-02 with corrected rate sheet data. Premium = $9.04 COGS for 4 GB. Old $1.34/GB invalidated — see Decision 00C.</p>
+      <div class="condition">Model corrected 2026-06-02 — verified from source sheet</div>
     </div>
 
     <div class="scenario-card">
       <div class="s-tag">Scenario B · TARGET</div>
       <h3>After Negotiation</h3>
       <div class="big-num gold" style="color: var(--amber);">$0.30/GB</div>
-      <p>Estimated rate if we negotiate volume discount at 5K+ activations/month. Premium COGS drops from $5.36 to $1.20. Margin jumps from 70% to 93%.</p>
+      <p>Estimated rate if we negotiate volume discount at 5K+ activations/month. Premium COGS drops from $9.04 to $1.20. Margin jumps from 52% to 93%.</p>
       <div class="condition">Theoretical — requires supplier meeting + alternatives</div>
     </div>
 
@@ -304,13 +304,14 @@
     </div>
   </div>
 
+  <p style="font-size:13px;color:#888;margin-bottom:8px;"><em>COGS rebuilt 2026-06-02 using $2.26/GB blended (corrected rate sheet). Consumed GB per tier from Tab 2 behavior. Old $1.34/GB COGS invalidated — see Decision 00C.</em></p>
   <table class="matrix">
     <thead>
       <tr>
         <th>Tier</th>
         <th>Pool (GB)</th>
         <th>Current Retail</th>
-        <th>COGS @ $1.34</th>
+        <th>COGS @ $2.26 <span style="font-size:10px;font-weight:400;">(rebuilt)</span></th>
         <th>Margin Now</th>
         <th>COGS @ $0.30</th>
         <th>Margin @ $0.30</th>
@@ -323,8 +324,8 @@
         <td><strong>Economy</strong> (PAYG)</td>
         <td>1 GB</td>
         <td>$4.99</td>
-        <td>$1.34</td>
-        <td>73%</td>
+        <td>$2.26</td>
+        <td>55%</td>
         <td>$0.30</td>
         <td class="green-tag" style="display:table-cell;">94%</td>
         <td>$0.20</td>
@@ -332,21 +333,21 @@
       </tr>
       <tr>
         <td><strong>Roster Bundle</strong></td>
-        <td>~1.8 GB</td>
+        <td>~1 GB/flight</td>
         <td>$3.99/flight</td>
-        <td>$2.41</td>
-        <td>40%</td>
-        <td>$0.54</td>
-        <td>86%</td>
-        <td>$0.36</td>
-        <td>91%</td>
+        <td>$2.26</td>
+        <td>43%</td>
+        <td>$0.30</td>
+        <td>92%</td>
+        <td>$0.20</td>
+        <td>95%</td>
       </tr>
       <tr class="highlight">
         <td><strong>Premium Economy</strong></td>
-        <td>4 GB</td>
+        <td>10 GB</td>
         <td>$18.99</td>
-        <td>$5.36</td>
-        <td>70%</td>
+        <td>$9.04</td>
+        <td>52%</td>
         <td>$1.20</td>
         <td>93%</td>
         <td>$0.80</td>
@@ -354,43 +355,43 @@
       </tr>
       <tr>
         <td><strong>Business</strong></td>
-        <td>8 GB</td>
+        <td>15 GB</td>
         <td>$29.99</td>
-        <td>$10.72</td>
-        <td>64%</td>
-        <td>$2.40</td>
-        <td>92%</td>
-        <td>$1.60</td>
+        <td>$15.25</td>
+        <td>49%</td>
+        <td>$2.03</td>
+        <td>93%</td>
+        <td>$1.35</td>
         <td>95%</td>
       </tr>
       <tr>
         <td><strong>First</strong></td>
-        <td>15 GB</td>
-        <td>$49.99</td>
-        <td>$20.10</td>
-        <td>60%</td>
-        <td>$4.50</td>
-        <td>91%</td>
+        <td>25 GB</td>
+        <td>$39.99</td>
+        <td>$22.60</td>
+        <td>43%</td>
         <td>$3.00</td>
-        <td>94%</td>
+        <td>92%</td>
+        <td>$2.00</td>
+        <td>95%</td>
       </tr>
       <tr>
         <td><strong>First Suite</strong></td>
-        <td>25 GB</td>
-        <td>$69.99</td>
-        <td>$33.50</td>
-        <td>52%</td>
-        <td>$7.50</td>
-        <td>89%</td>
-        <td>$5.00</td>
-        <td>93%</td>
+        <td>40 GB</td>
+        <td>$49.99</td>
+        <td>$29.83</td>
+        <td>40%</td>
+        <td>$3.96</td>
+        <td>92%</td>
+        <td>$2.64</td>
+        <td>95%</td>
       </tr>
       <tr>
         <td><strong>Cockpit</strong> (annual)</td>
-        <td>6 GB/mo</td>
+        <td>12 GB/mo</td>
         <td>$299/yr</td>
-        <td>$9.65/mo</td>
-        <td>61%</td>
+        <td>$16.27/mo</td>
+        <td>35%</td>
         <td>$2.16/mo</td>
         <td>91%</td>
         <td>$1.44/mo</td>
@@ -411,8 +412,8 @@
 
     <div class="we-row">
       <div class="we-cell">
-        <div class="label">Wholesale @ $1.34/GB</div>
-        <div class="value">$5.36</div>
+        <div class="label">Wholesale @ $2.26/GB <span style="font-size:10px;">(rebuilt 2026-06-02)</span></div>
+        <div class="value">$9.04</div>
         <div style="font-size:12px;opacity:.6;margin-top:3px;">COGS today</div>
       </div>
       <div class="we-arrow">→</div>
@@ -424,8 +425,8 @@
       <div class="we-arrow">→</div>
       <div class="we-cell">
         <div class="label">Margin today</div>
-        <div class="value">70%</div>
-        <div style="font-size:12px;opacity:.6;margin-top:3px;">$12.63 net</div>
+        <div class="value">52%</div>
+        <div style="font-size:12px;opacity:.6;margin-top:3px;">$9.95 net</div>
       </div>
     </div>
 
@@ -451,7 +452,7 @@
 
     <div style="margin-top: 24px; padding: 16px 18px; background: rgba(255,255,255,.08); border-radius: 10px;">
       <div style="font-size:12px; color: var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px;">The math that matters</div>
-      <div style="font-size: 22px; font-weight: 700; color: #fff;">+$4.16 extra profit per Aiko, per month</div>
+      <div style="font-size: 22px; font-weight: 700; color: #fff;">+$7.84 extra profit per Aiko, per month <span style="font-size:13px;font-weight:400;opacity:.7;">(rebuilt 2026-06-02)</span></div>
       <div style="font-size: 14px; opacity: .75; margin-top: 4px;">Same user, same price, same service. Just a better supply deal.</div>
     </div>
   </div>
@@ -460,44 +461,44 @@
 <!-- NEGOTIATION SAVINGS SUMMARY -->
 <section>
   <h2 class="section-title"><span class="num">4</span>Negotiation Savings Per User (at $0.30/GB)</h2>
-  <p class="section-sub">Per-tier savings if we get from $1.34/GB to $0.30/GB. No retail price change — we pocket the difference.</p>
+  <p class="section-sub">Per-tier savings if we get from $2.26/GB (rebuilt 2026-06-02) to $0.30/GB. No retail price change — we pocket the difference.</p>
 
   <div class="savings-grid">
     <div class="savings-card">
       <div class="tier-name">Premium Economy</div>
-      <div class="saving-num">+$4.16</div>
-      <div class="saving-sub">per user / month</div>
+      <div class="saving-num">+$7.84</div>
+      <div class="saving-sub">per user / month <span style="font-size:10px;">(rebuilt 2026-06-02)</span></div>
     </div>
     <div class="savings-card">
       <div class="tier-name">Business</div>
-      <div class="saving-num">+$8.32</div>
-      <div class="saving-sub">per user / month</div>
+      <div class="saving-num">+$13.23</div>
+      <div class="saving-sub">per user / month <span style="font-size:10px;">(rebuilt 2026-06-02)</span></div>
     </div>
     <div class="savings-card">
       <div class="tier-name">First</div>
-      <div class="saving-num">+$15.60</div>
-      <div class="saving-sub">per user / month</div>
+      <div class="saving-num">+$19.60</div>
+      <div class="saving-sub">per user / month <span style="font-size:10px;">(rebuilt 2026-06-02)</span></div>
     </div>
     <div class="savings-card">
       <div class="tier-name">First Suite</div>
-      <div class="saving-num">+$26.00</div>
-      <div class="saving-sub">per user / month</div>
+      <div class="saving-num">+$25.87</div>
+      <div class="saving-sub">per user / month <span style="font-size:10px;">(rebuilt 2026-06-02)</span></div>
     </div>
     <div class="savings-card" style="border-color: var(--red); background: #fff5f5;">
       <div class="tier-name" style="color: var(--red);">At 5,000 users</div>
-      <div class="saving-num" style="color: var(--red);">~$28K</div>
-      <div class="saving-sub">extra margin / month</div>
+      <div class="saving-num" style="color: var(--red);">~$44K</div>
+      <div class="saving-sub">extra margin / month <span style="font-size:10px;">(rebuilt)</span></div>
     </div>
     <div class="savings-card" style="border-color: var(--red); background: #fff5f5;">
       <div class="tier-name" style="color: var(--red);">At 100,000 users</div>
-      <div class="saving-num" style="color: var(--red);">~$556K</div>
-      <div class="saving-sub">extra margin / month</div>
+      <div class="saving-num" style="color: var(--red);">~$880K</div>
+      <div class="saving-sub">extra margin / month <span style="font-size:10px;">(rebuilt)</span></div>
     </div>
   </div>
 
   <div class="chart-card">
-    <h3>Extra Monthly Profit vs User Base (at $0.30/GB vs $1.34/GB)</h3>
-    <p class="sub">Blended savings estimate across realistic tier mix — pure margin gain, zero retail price change</p>
+    <h3>Extra Monthly Profit vs User Base (at $0.30/GB vs $2.26/GB)</h3>
+    <p class="sub">Blended savings estimate across realistic tier mix — pure margin gain, zero retail price change (rebuilt 2026-06-02)</p>
     <div class="chart-wrap">
       <canvas id="savingsChart"></canvas>
     </div>
@@ -511,15 +512,15 @@
 
   <div class="insight-box">
     <strong>Pricing is NOT the lever. Supplier negotiation is.</strong>
-    Our current 70% margins are good. 93% margins are extraordinary. The path from one to the other is not a UI change or a pricing war — it is a single supplier conversation that requires ~5K users and a credible alternative in our back pocket. Don't drop retail prices to acquire users. Build the user base, then negotiate.
+    Our current margins (35%–55% rebuilt 2026-06-02) are serviceable. 93% margins are the target after supplier negotiation. The path from one to the other is not a UI change or a pricing war — it is a single supplier conversation that requires ~5K users and a credible alternative in our back pocket. Don't drop retail prices to acquire users. Build the user base, then negotiate.
   </div>
 
   <div class="callout-gold">
-    <strong>What the simulator actually tells us:</strong> At current wholesale costs, our retail prices are already well-optimized. The next 23 percentage points of margin improvement come entirely from procurement, not pricing. This is why Tab 15 (Procurement Options) is more urgent than Tab 4.
+    <strong>What the simulator actually tells us:</strong> At current wholesale costs ($2.26/GB rebuilt 2026-06-02), our retail prices are serviceable but there is substantial room for margin improvement. The path to 70%+ gross margins comes entirely from procurement, not pricing. This is why Tab 15 (Procurement Options) is more urgent than Tab 4.
   </div>
 
   <div class="callout-red">
-    <strong>The trap to avoid:</strong> Do not use this simulator to justify a promotional price drop. A 20% discount to "get users faster" costs $2.52/user/month in lost margin at current rates — and you would need to re-raise prices after, creating churn. The math never recovers at sub-$18.99 Premium pricing.
+    <strong>The trap to avoid:</strong> Do not use this simulator to justify a promotional price drop. A 20% discount to "get users faster" costs ~$3.80/user/month in lost margin at current rates — and you would need to re-raise prices after, creating churn. The math never recovers at sub-$18.99 Premium pricing.
   </div>
 </section>
 
@@ -555,7 +556,7 @@
 </main>
 
 <footer>
-  Peanut eSIM · Tab 4 Pricing Simulator Visualizer · 2026-06-02 · Numbers based on $1.34/GB blended wholesale rate from source model. Scenarios at $0.30 and $0.20/GB are theoretical estimates pending supplier negotiation.
+  Peanut eSIM · Tab 4 Pricing Simulator Visualizer · 2026-06-02 · Numbers rebuilt 2026-06-02 using $2.26/GB blended wholesale rate (old $1.34/GB invalidated — see Decision 00C). Scenarios at $0.30 and $0.20/GB are theoretical estimates pending supplier negotiation.
 </footer>
 
 <script>
@@ -567,8 +568,8 @@ new Chart(marginCtx, {
     labels: ['Economy', 'Roster Bundle', 'Premium Economy', 'Business', 'First', 'First Suite'],
     datasets: [
       {
-        label: 'Margin @ $1.34/GB (current)',
-        data: [73, 40, 70, 64, 60, 52],
+        label: 'Margin @ $2.26/GB (current — rebuilt 2026-06-02)',
+        data: [55, 43, 52, 49, 43, 40],
         backgroundColor: 'rgba(215,25,33,0.75)',
         borderRadius: 4,
       },
@@ -606,7 +607,7 @@ new Chart(marginCtx, {
 // Savings scale chart
 const savingsCtx = document.getElementById('savingsChart').getContext('2d');
 const users = [100, 500, 1000, 2000, 5000, 10000, 50000, 100000];
-const savings = users.map(u => Math.round(u * 5.56)); // blended ~$5.56/user/mo saving
+const savings = users.map(u => Math.round(u * 8.80)); // blended ~$8.80/user/mo saving (rebuilt 2026-06-02 from $2.26/GB to $0.30/GB)
 new Chart(savingsCtx, {
   type: 'line',
   data: {
