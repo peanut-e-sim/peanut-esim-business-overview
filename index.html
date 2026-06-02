@@ -9530,6 +9530,10 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
   <p class="lang jp" style="margin:0 0 16px;font-size:13px;color:#888;">14&#20491;&#12398;&#35443;&#32048;&#12489;&#12461;&#12517;&#12513;&#12531;&#12488; &#x2014; &#21508;&#12479;&#12502;&#12398;&#12502;&#12523;&#12540;&#12503;&#12522;&#12531;&#12488;&#12434;&#12501;&#12523;&#12473;&#12463;&#12522;&#12540;&#12531;&#12391;&#38283;&#12367;&#12290;</p>
 </div>
 
+<p style="background:#FAF6F0;padding:10px 14px;border-left:3px solid #C9A03B;font-size:13px;color:#666;margin:14px 0;">
+  <span class="lang en">Sheet previews require the Google Sheet to be shared as "Anyone with the link can view" in Google Sheets share settings. If previews show a "Sign in" prompt, update sharing.</span><span class="lang jp">シートプレビューを表示するには、Google Sheets の共有設定で「リンクを知っている全員が閲覧可能」に設定する必要があります。サインインプロンプトが表示される場合は共有設定を更新してください。</span>
+</p>
+
 <div class="blueprint-index" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:0 0 24px;">
 
   <!-- Tab 1 -->
@@ -9537,10 +9541,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 1</span><span class="lang jp">&#12479;&#12502;1</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Pricing Architecture</span><span class="lang jp">&#12503;&#12521;&#12452;&#12471;&#12531;&#12464;&#35373;&#35336;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">The 7-tier ladder, locked pricing logic.</span><span class="lang jp">7&#27573;&#38542;&#12486;&#12451;&#12450;&#12392;&#30906;&#23450;&#20385;&#26684;&#12525;&#12472;&#12483;&#12463;&#12290;</span></p>
-    <a href="docs/downloads/tab1-in-depth-report-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/tab1-in-depth-report-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="1965814368" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 2 -->
@@ -9548,10 +9558,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 2</span><span class="lang jp">&#12479;&#12502;2</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">User Behavior</span><span class="lang jp">&#12518;&#12540;&#12470;&#12540;&#34ành;&#21205;&#12514;&#12487;&#12523;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">4 archetypes, per-tier consumption rates, refuel attach.</span><span class="lang jp">4&#39006;&#22411;&#12539;&#12486;&#12451;&#12450;&#21029;&#28040;&#36027;&#29575;&#12539;&#12522;&#12501;&#12451;&#12523;&#25509;&#32154;&#29575;&#12290;</span></p>
-    <a href="docs/downloads/tab2-in-depth-report-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/tab2-in-depth-report-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="122228681" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 3 -->
@@ -9559,10 +9575,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 3</span><span class="lang jp">&#12479;&#12502;3</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Per-Tier Unit Economics</span><span class="lang jp">&#12486;&#12451;&#12450;&#21029;&#12518;&#12491;&#12483;&#12488;&#32076;&#28168;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Per-user profit math for every tier.</span><span class="lang jp">&#21508;&#12486;&#12451;&#12450;&#12398;&#12518;&#12540;&#12470;&#12540;1&#20154;&#12354;&#12383;&#12426;&#21033;&#30410;&#35336;&#31639;&#12290;</span></p>
-    <a href="docs/downloads/tab3-in-depth-report-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/tab3-in-depth-report-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="1989528728" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 4 -->
@@ -9570,10 +9592,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 4</span><span class="lang jp">&#12479;&#12502;4</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Pricing Simulator</span><span class="lang jp">&#20385;&#26684;&#12471;&#12511;&#12517;&#12524;&#12540;&#12479;&#12540;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">What to charge at any wholesale cost (PARKED).</span><span class="lang jp">&#21367;&#12467;&#12473;&#12488;&#12395;&#23550;&#12377;&#12427;&#36969;&#27491;&#23567;&#22770;&#20385;&#26684;&#12398;&#31639;&#20986;&#65288;&#20445;&#30041;&#20013;&#65289;&#12290;</span></p>
-    <a href="docs/downloads/pricing-simulator-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/pricing-simulator-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="1038263603" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 13 -->
@@ -9581,10 +9609,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 13</span><span class="lang jp">&#12479;&#12502;13</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Costs &amp; Burn</span><span class="lang jp">&#12467;&#12473;&#12488;&#12539;&#12496;&#12540;&#12531;&#12524;&#12540;&#12488;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Operating cost template (PARKED &#x2014; $0 actual spend).</span><span class="lang jp">&#36939;&#21942;&#12467;&#12473;&#12488;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;&#65288;&#20445;&#30041;&#20013; &#x2014; &#23455;&#25903;&#20986;$0&#65289;&#12290;</span></p>
-    <a href="docs/downloads/costs-and-burn-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/costs-and-burn-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="2044299200" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 14 -->
@@ -9592,10 +9626,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 14</span><span class="lang jp">&#12479;&#12502;14</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Volume Scenarios</span><span class="lang jp">&#12508;&#12522;&#12517;&#12540;&#12512;&#12471;&#12490;&#12522;&#12458;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Scale math from 100 to 100K users + Yuki&#39;s 12-month ladder journey.</span><span class="lang jp">100&#12288;&#65374;10&#19975;&#12518;&#12540;&#12470;&#12540;&#12398;&#12473;&#12465;&#12540;&#12523;&#35336;&#31639; + Yuki&#12398;12&#12465;&#26376;&#12486;&#12451;&#12450;&#36275;&#36981;&#27508;&#12290;</span></p>
-    <a href="docs/downloads/volume-scenarios-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/volume-scenarios-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="764115747" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 15 -->
@@ -9603,10 +9643,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 15</span><span class="lang jp">&#12479;&#12502;15</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Procurement Options</span><span class="lang jp">&#35519;&#36798;&#12458;&#12503;&#12471;&#12519;&#12531;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Pay-per-order vs bulk vs direct, crossover at 1,724 users.</span><span class="lang jp">&#37117;&#24230;&#30330;&#27880;&#12539;&#12496;&#12523;&#12463;&#12539;&#30452;&#25509;&#20837;&#12428;&#27604;&#36611;&#12289;&#25439;&#30410;&#20998;&#23525;&#28857;1,724&#12518;&#12540;&#12470;&#12540;&#12290;</span></p>
-    <a href="docs/downloads/procurement-options-blueprint-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/procurement-options-blueprint-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="365798945" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 16 -->
@@ -9614,10 +9660,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 16</span><span class="lang jp">&#12479;&#12502;16</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">24-Month Rollout</span><span class="lang jp">24&#12465;&#26376;&#12525;&#12540;&#12489;&#12510;&#12483;&#12503;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Time-axis P&amp;L with milestones + ARPU sensitivity.</span><span class="lang jp">&#12510;&#12452;&#12523;&#12473;&#12488;&#12540;&#12531;&#20184;&#12365;&#26178;&#31995;&#21015;P&amp;L + ARPU&#24863;&#24230;&#20998;&#26512;&#12290;</span></p>
-    <a href="docs/downloads/tab16-rollout-blueprint-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/tab16-rollout-blueprint-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="1298477019" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 17 -->
@@ -9625,10 +9677,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 17</span><span class="lang jp">&#12479;&#12502;17</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Behavior Sensitivity</span><span class="lang jp">&#34ành;&#21205;&#24863;&#24230;&#20998;&#26512;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Archetype mix + tier mix scenarios.</span><span class="lang jp">&#39006;&#22411;&#12511;&#12483;&#12463;&#12539;&#12486;&#12451;&#12450;&#12511;&#12483;&#12463;&#12473;&#12398;&#12471;&#12490;&#12522;&#12458;&#20998;&#26512;&#12290;</span></p>
-    <a href="docs/downloads/behavior-sensitivity-blueprint-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/behavior-sensitivity-blueprint-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="1582940831" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 18 -->
@@ -9636,10 +9694,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 18</span><span class="lang jp">&#12479;&#12502;18</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">LTV-CAC + Churn</span><span class="lang jp">LTV-CAC&#12539;&#12481;&#12515;&#12540;&#12531;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Lemonade payback analogy, per-tier ratios.</span><span class="lang jp">Lemonade&#12506;&#12452;&#12496;&#12483;&#12463;&#27604;&#21682;&#12289;&#12486;&#12451;&#12450;&#21029;LTV/CAC&#27604;&#29575;&#12290;</span></p>
-    <a href="docs/downloads/ltv-cac-blueprint-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/ltv-cac-blueprint-2026-06-01.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="1843650581" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 19 -->
@@ -9647,10 +9711,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 19</span><span class="lang jp">&#12479;&#12502;19</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Per-Tier Geo Mix</span><span class="lang jp">&#12486;&#12451;&#12450;&#21029;&#22320;&#22996;&#12511;&#12483;&#12463;&#12473;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Maya vs Yuki &#x2014; where data is consumed = where we lose or win.</span><span class="lang jp">Maya vs Yuki &#x2014; &#12487;&#12540;&#12479;&#28040;&#36027;&#22320;&#22996;&#12364;&#21213;&#25562;&#12434;&#20998;&#12369;&#12427;&#12290;</span></p>
-    <a href="docs/downloads/per-tier-geo-mix-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/per-tier-geo-mix-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="1147968391" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 20 -->
@@ -9658,10 +9728,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 20</span><span class="lang jp">&#12479;&#12502;20</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Carryover Liability</span><span class="lang jp">&#32230;&#36942;&#36523;&#20debt;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Universal Carry Rule, gift-only exit, edge cases locked.</span><span class="lang jp">&#27005;&#29992;&#12461;&#12515;&#12522;&#12540;&#12523;&#12540;&#12523;&#12539;&#12462;&#12501;&#12488;&#23554;&#29992;&#20986;&#21475;&#12539;&#12456;&#12483;&#12472;&#12465;&#12540;&#12473;&#30906;&#23450;&#12290;</span></p>
-    <a href="docs/downloads/carryover-liability-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/carryover-liability-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="1527695157" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 21 -->
@@ -9669,10 +9745,16 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 21</span><span class="lang jp">&#12479;&#12502;21</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Strategic Scenarios</span><span class="lang jp">&#25136;&#30053;&#12471;&#12490;&#12522;&#12458;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">8-feature moat, hybrid Crew SIM defense, expansion sequence.</span><span class="lang jp">8&#27231;&#33021;&#12398;&#22230;&#12289;Crew SIM&#38450;&#34907;&#12495;&#12452;&#12502;&#12522;&#12483;&#12489;&#12289;&#25324;&#24373;&#12471;&#12540;&#12465;&#12531;&#12473;&#12290;</span></p>
-    <a href="docs/downloads/strategic-scenarios-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/strategic-scenarios-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="8178445" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
   <!-- Tab 22 -->
@@ -9680,13 +9762,50 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
     <div style="font-size:11px;color:#888;font-weight:600;letter-spacing:.05em;"><span class="lang en">TAB 22</span><span class="lang jp">&#12479;&#12502;22</span></div>
     <h4 style="margin:6px 0 8px;color:#1A1A1A;font-size:15px;"><span class="lang en">Cash + Sensitivity</span><span class="lang jp">&#12461;&#12515;&#12483;&#12471;&#12517;&#12539;&#24863;&#24230;&#20998;&#26512;</span></h4>
     <p style="font-size:13px;color:#4A4A4A;margin:0 0 12px;line-height:1.5;"><span class="lang en">Refuel sensitivity, failed eSIM cost, Cockpit cash advantage.</span><span class="lang jp">&#12522;&#12501;&#12451;&#12523;&#24863;&#24230;&#12539;eSIM&#22833;&#25562;&#12467;&#12473;&#12488;&#12539;Cockpit&#12461;&#12515;&#12483;&#12471;&#12517;&#20248;&#20301;&#12290;</span></p>
-    <a href="docs/downloads/cash-sensitivity-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
-    </a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+      <a href="docs/downloads/cash-sensitivity-blueprint-2026-06-02.html" target="_blank" style="display:inline-flex;align-items:center;gap:5px;color:#D71921;font-weight:600;font-size:13px;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="10" height="13" rx="1" stroke="#D71921" stroke-width="1.4"/><path d="M5 1v4h6" stroke="#D71921" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 5l4-4" stroke="#D71921" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="lang en">Open Blueprint</span><span class="lang jp">&#38283;&#12367;</span>
+      </a>
+      <button type="button" class="bp-sheet-toggle" data-bp-gid="2138474499" style="background:white;color:#2D7A4F;border:1px solid #2D7A4F;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;">
+        <span class="lang en">Show Sheet &#x2193;</span><span class="lang jp">&#12471;&#12540;&#12488;&#34920;&#31034; &#x2193;</span>
+      </button>
+    </div>
+    <div class="bp-sheet-embed" style="display:none;margin-top:12px;border:1px solid #E5DDD0;border-radius:6px;overflow:hidden;"></div>
   </div>
 
 </div>
+
+<script>
+(function() {
+  document.querySelectorAll('.bp-sheet-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var card = btn.closest('.bp-card');
+      var embedDiv = card.querySelector('.bp-sheet-embed');
+      var gid = btn.getAttribute('data-bp-gid');
+      var isOpen = embedDiv.style.display !== 'none';
+      if (isOpen) {
+        embedDiv.style.display = 'none';
+        btn.querySelector('.lang.en').textContent = 'Show Sheet ↓';
+        btn.querySelector('.lang.jp').textContent = 'シート表示 ↓';
+      } else {
+        if (!embedDiv.querySelector('iframe')) {
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://docs.google.com/spreadsheets/d/1IIC8omFDKxAwL_YaHKN34GvqSb4ROUY_QHRkNJ7RdfU/htmlembed?single=true&gid=' + gid + '&widget=true&headers=false';
+          iframe.style.width = '100%';
+          iframe.style.height = '500px';
+          iframe.style.border = '0';
+          iframe.loading = 'lazy';
+          embedDiv.appendChild(iframe);
+        }
+        embedDiv.style.display = 'block';
+        btn.querySelector('.lang.en').textContent = 'Hide Sheet ↑';
+        btn.querySelector('.lang.jp').textContent = 'シートを隠す ↑';
+      }
+    });
+  });
+})();
+</script>
 
 <div style="display:flex;align-items:center;gap:8px;margin:0 0 28px;">
   <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" stroke="#888" stroke-width="1.4"/><path d="M8 5v3.5l2 2" stroke="#888" stroke-width="1.4" stroke-linecap="round"/></svg>
