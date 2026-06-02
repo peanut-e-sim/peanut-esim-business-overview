@@ -3687,7 +3687,7 @@
   </header>
 
   <section style="border-bottom: none;">
-    <div class="sec-label"><span class="lang en">13 OPEN · 9 RESOLVED · 22 TOTAL</span><span class="lang jp">未決 13 ・ 解決済 9 ・ 全 22 件</span></div>
+    <div class="sec-label"><span class="lang en">12 OPEN · 10 RESOLVED · 22 TOTAL</span><span class="lang jp">未決 12 ・ 解決済 10 ・ 全 22 件</span></div>
 
     <div class="dec-filter-bar" id="decFilterBar" style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 24px;padding:14px;background:#FAF6F0;border-radius:8px;border:1px solid #E5DDD0;">
       <div style="flex:0 0 100%;font-size:11px;font-weight:600;color:#888;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;">
@@ -3699,33 +3699,35 @@
       </button>
       <button type="button" class="dec-filter-btn" data-dec-filter="red" style="padding:8px 14px;border-radius:6px;border:1px solid #D71921;background:white;color:#D71921;font-weight:600;font-size:13px;cursor:pointer;">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#D71921;margin-right:6px;vertical-align:middle;"></span><span class="lang en">Red — Blocking</span><span class="lang jp">赤 — ブロッカー</span>
-        <span class="dec-count" style="margin-left:6px;opacity:.7;">3</span>
+        <span class="dec-count" style="margin-left:6px;opacity:.7;">2</span>
       </button>
       <button type="button" class="dec-filter-btn" data-dec-filter="amber" style="padding:8px 14px;border-radius:6px;border:1px solid #C9A03B;background:white;color:#C9A03B;font-weight:600;font-size:13px;cursor:pointer;">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C9A03B;margin-right:6px;vertical-align:middle;"></span><span class="lang en">Amber — Needs alignment</span><span class="lang jp">琥珀 — 要協議</span>
-        <span class="dec-count" style="margin-left:6px;opacity:.7;">3</span>
+        <span class="dec-count" style="margin-left:6px;opacity:.7;">2</span>
       </button>
       <button type="button" class="dec-filter-btn" data-dec-filter="yellow" style="padding:8px 14px;border-radius:6px;border:1px solid #FFC107;background:white;color:#A07700;font-weight:600;font-size:13px;cursor:pointer;">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFC107;margin-right:6px;vertical-align:middle;"></span><span class="lang en">Yellow — Open discussion</span><span class="lang jp">黄 — 議論中</span>
-        <span class="dec-count" style="margin-left:6px;opacity:.7;">7</span>
+        <span class="dec-count" style="margin-left:6px;opacity:.7;">8</span>
       </button>
       <button type="button" class="dec-filter-btn" data-dec-filter="resolved" style="padding:8px 14px;border-radius:6px;border:1px solid #2D7A4F;background:white;color:#2D7A4F;font-weight:600;font-size:13px;cursor:pointer;">
         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#2D7A4F;margin-right:6px;vertical-align:middle;"></span><span class="lang en">Resolved ✓</span><span class="lang jp">解決済 ✓</span>
-        <span class="dec-count" style="margin-left:6px;opacity:.7;">9</span>
+        <span class="dec-count" style="margin-left:6px;opacity:.7;">10</span>
       </button>
     </div>
 
     <script>
-    (function() {
+    document.addEventListener('DOMContentLoaded', function() {
       const filterBar = document.getElementById('decFilterBar');
       if (!filterBar) return;
       const buttons = filterBar.querySelectorAll('.dec-filter-btn');
-      const cards = filterBar.parentElement.querySelectorAll('.decision-card');
+      const section = filterBar.closest('section');
+      if (!section) return;
+      const cards = section.querySelectorAll('.decision-card');
 
       function applyFilter(filter) {
         cards.forEach(card => {
-          // resolved cards have inline style with linear-gradient (accent background)
-          const isResolved = card.getAttribute('style') && card.getAttribute('style').includes('linear-gradient');
+          const inlineStyle = card.getAttribute('style') || '';
+          const isResolved = inlineStyle.indexOf('linear-gradient') !== -1;
           let matches = false;
           if (filter === 'all') matches = true;
           else if (filter === 'resolved') matches = isResolved;
@@ -3737,11 +3739,10 @@
       }
 
       buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', function() {
           const filter = btn.getAttribute('data-dec-filter');
           buttons.forEach(b => {
             b.classList.remove('active');
-            // reset to outline style
             const color = b.getAttribute('data-dec-filter');
             if (color === 'all') { b.style.background = 'white'; b.style.color = '#1A1A1A'; }
             else if (color === 'red') { b.style.background = 'white'; b.style.color = '#D71921'; }
@@ -3750,7 +3751,6 @@
             else if (color === 'resolved') { b.style.background = 'white'; b.style.color = '#2D7A4F'; }
           });
           btn.classList.add('active');
-          // active state: solid background
           if (filter === 'all') { btn.style.background = '#1A1A1A'; btn.style.color = 'white'; }
           else if (filter === 'red') { btn.style.background = '#D71921'; btn.style.color = 'white'; }
           else if (filter === 'amber') { btn.style.background = '#C9A03B'; btn.style.color = 'white'; }
@@ -3759,39 +3759,46 @@
           applyFilter(filter);
         });
       });
-    })();
+    });
     </script>
 
-    <div class="decision-card red">
-      <div class="dec-meta"><span class="lang en">DECISION 00 · LEGAL ENTITY NAME</span><span class="lang jp">判断 00 ・ 法人正式名称</span></div>
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 00 · LEGAL ENTITY NAME ✓</span><span class="lang jp">判断 00 ・ 法人正式名称 ✓</span></div>
       <a class="dec-ref" href="#phase-1-item-1">Phase 1 · Item 1</a>
       <h3>
         <span class="lang en">What's the legal name of the LLC?</span>
         <span class="lang jp">LLC の正式名称をどうするか？</span>
       </h3>
       <p>
-        <span class="lang en">Before we file with Stripe Atlas (Phase 1 / Item 1), we need to lock in the exact legal entity name. This is what appears on every contract, the Mercury bank account, the Stripe merchant statement, the Apple Developer account, and the Form 1065 partnership return each year. <strong>The brand name shown on the app and website can be different</strong> — but the legal name is permanent (changing it later requires filing an amendment + paying a fee).</span>
-        <span class="lang jp">Stripe Atlas での申請（フェーズ1 / Item 1）前に、LLC の正式名称を確定する必要があります。これは全契約書、Mercury 銀行口座、Stripe 加盟店明細、Apple Developer アカウント、毎年の Form 1065 パートナーシップ申告書に表示されます。<strong>アプリ・ウェブ上のブランド名は別でOK</strong>ですが、法人正式名称は永続的（後で変更するには修正申請＋費用が必要）。</span>
+        <span class="lang en">Resolved <strong>2026-06-02</strong> by Balraj. Holding-co pattern (Alphabet/Google, Meta/Facebook, Block/Square) — legal entity and brand are separate.</span>
+        <span class="lang jp"><strong>2026-06-02</strong> に Balraj により決定。ホールディング・カンパニー型（Alphabet/Google、Meta/Facebook、Block/Square と同様）— 法人名とブランド名を分離。</span>
       </p>
       <div class="dec-impact">
-        <strong><span class="lang en">Options to discuss with Akito:</span><span class="lang jp">Akito と検討すべき選択肢:</span></strong>
+        <strong><span class="lang en">Resolution:</span><span class="lang jp">結論:</span></strong>
         <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
-          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">•</span><strong>Peanut eSIM LLC</strong> <span class="lang en">— closest to the brand, clear product identity</span><span class="lang jp">— ブランド名に最も近く、商品アイデンティティが明確</span></li>
-          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">•</span><strong>Peanut Connect LLC</strong> <span class="lang en">— broader, allows future expansion beyond eSIM (roaming, IoT, etc.)</span><span class="lang jp">— より広範、eSIM 以外（ローミング・IoT 等）への将来展開に対応</span></li>
-          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">•</span><strong>Peanut Mobile LLC</strong> <span class="lang en">— positions us as a mobile connectivity brand</span><span class="lang jp">— モバイル通信ブランドとして位置付け</span></li>
-          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">•</span><span class="lang en">Other suggestion from you or Akito</span><span class="lang jp">あなたまたは Akito からの別案</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><strong>Spicy Kiwi LLC</strong> <span class="lang en">— legal entity (Delaware). Used on all contracts, Mercury banking, Form 1065 filings.</span><span class="lang jp">— 法人名（デラウェア州）。全契約・Mercury銀行・Form 1065 で使用。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><strong>Peanut eSIM</strong> <span class="lang en">— consumer-facing brand. Filed as DBA (Doing Business As) under Spicy Kiwi LLC in Delaware.</span><span class="lang jp">— 消費者向けブランド名。デラウェア州で Spicy Kiwi LLC の DBA（Doing Business As）として登録。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><strong><span class="lang en">Stripe Statement Descriptor</span><span class="lang jp">Stripe 加盟店明細表示</span></strong> <span class="lang en">— set to "PEANUT ESIM" so customer credit card statements show the brand, not the parent.</span><span class="lang jp">— 「PEANUT ESIM」に設定し、顧客のクレジットカード明細に親会社ではなくブランド名を表示。</span></li>
         </ul>
+        <p style="margin-top: 14px; padding: 10px 14px; background: var(--surface); border-left: 3px solid var(--warning); font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Pre-filing actions:</strong> (1) Verify "Spicy Kiwi LLC" name availability in Delaware Division of Corporations registry. (2) File "Peanut eSIM" DBA under Spicy Kiwi LLC in Delaware before launch.</span>
+          <span class="lang jp"><strong>申請前のアクション:</strong> (1) デラウェア州 Division of Corporations にて「Spicy Kiwi LLC」の名称利用可能性を確認。(2) ローンチ前にデラウェアで Spicy Kiwi LLC の DBA「Peanut eSIM」を登録。</span>
+        </p>
       </div>
-      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · BLOCKS PHASE 1 ITEM 1</span><span class="lang jp">ステータス ・ Akito と要協議 ・ フェーズ1 Item 1 のブロッカー</span></div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · Spicy Kiwi LLC locked 2026-06-02</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02 に Spicy Kiwi LLC で確定</span></div>
     </div>
 
-    <div class="decision-card amber">
-      <div class="dec-meta"><span class="lang en">DECISION 00B · TRADEMARK FILING</span><span class="lang jp">判断 00B ・ 商標出願</span></div>
+    <div class="decision-card yellow">
+      <div class="dec-meta"><span class="lang en">DECISION 00B · TRADEMARK FILING · DEFERRED</span><span class="lang jp">判断 00B ・ 商標出願 ・ 保留</span></div>
       <a class="dec-ref" href="#phase-1-item-2">Phase 1 · Item 2</a>
       <h3>
         <span class="lang en">Do we file a trademark for "Peanut eSIM" at all?</span>
         <span class="lang jp">「Peanut eSIM」の商標を出願するかどうか？</span>
       </h3>
+      <p style="background:#FAF6F0;padding:10px 14px;border-left:3px solid #FFC107;font-size:13.5px;color:#4A4A4A;margin-top:8px;">
+        <span class="lang en"><strong>Status 2026-06-02:</strong> Balraj decided to defer trademark filing. Not a launch blocker — will revisit post-launch once brand traction is proven. Risk accepted: someone could file "Peanut eSIM" first and force a rebrand.</span>
+        <span class="lang jp"><strong>2026-06-02 時点:</strong> Balraj により商標出願を保留。ローンチのブロッカーではない — ローンチ後にブランド浸透が確認できた段階で再検討。リスクを許容:他社が先に「Peanut eSIM」を出願し、リブランド強制となる可能性あり。</span>
+      </p>
       <p>
         <span class="lang en">A trademark legally protects the brand name in specific business categories. Without it, anyone could register "Peanut eSIM" tomorrow and force us to rebrand. But it costs money and takes 8–12 months to grant (protection backdates to filing date). <strong>Yes/no decision first</strong>, then scope.</span>
         <span class="lang jp">商標は、特定の事業カテゴリーにおいてブランド名を法的に保護します。出願しなければ、明日にでも他社が「Peanut eSIM」を登録し、我々のリブランドを強要できる状態。ただし費用がかかり、登録まで 8〜12 ヶ月（保護は出願日に遡及）。<strong>まず Yes/No の判断</strong>、それから範囲の判断。</span>
