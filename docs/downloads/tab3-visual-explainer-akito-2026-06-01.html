@@ -140,9 +140,30 @@
     background: var(--green);
   }
   .workhorse .name { font-weight: 700; font-size: 15px; color: #15633f; margin-bottom: 4px; }
-  .workhorse .big { font-size: 36px; font-weight: 700; letter-spacing: -1px; color: var(--green); line-height: 1.1; }
+  .workhorse .big { font-size: 36px; font-weight: 700; letter-spacing: -1px; color: var(--green); line-height: 1.1; transition: color 0.2s ease; }
   .workhorse .unit { font-size: 12px; color: var(--muted); margin-top: 2px; }
   .workhorse .gm { font-size: 13px; color: #444; margin-top: 8px; }
+
+  /* Scenario toggle */
+  .scenario-toggle {
+    display: flex; gap: 8px; justify-content: center;
+    margin-top: 20px; flex-wrap: wrap;
+  }
+  .scenario-toggle button {
+    font: inherit; cursor: pointer; padding: 10px 22px;
+    background: white; color: var(--green);
+    border: 2px solid var(--green); border-radius: 999px;
+    font-weight: 600; font-size: 14px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .scenario-toggle button:hover { background: #f0f9f4; }
+  .scenario-toggle button.active {
+    background: var(--green); color: white;
+  }
+  .scenario-label {
+    text-align: center; font-size: 12px; color: var(--muted);
+    margin-top: 6px; font-style: italic;
+  }
 
   /* Refuel SKU */
   .refuel-card {
@@ -431,50 +452,128 @@
     These tiers generate the most absolute profit per user. If mix skews here, Peanut makes serious money. The whole ladder is green — but these are the ones to push.
   </p>
 
+  <div class="scenario-toggle" role="tablist" aria-label="Consumption scenario">
+    <button type="button" data-scenario="low">Low consumption</button>
+    <button type="button" data-scenario="mid" class="active">Mid (baseline)</button>
+    <button type="button" data-scenario="high">High consumption</button>
+  </div>
+  <div class="scenario-label">Toggle to see how contribution shifts if crew use less or more of their pool than the Tab 2 baseline.</div>
+
   <div class="workhorse-grid">
-    <div class="workhorse">
+    <div class="workhorse" data-tier="suite">
       <div class="name">First Suite</div>
-      <div class="big">$33.03</div>
+      <div class="big" data-field="contribution">$33.03</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm">65% gross margin · 40 GB pool · 33% consumed<br>Highest absolute contribution in the ladder. Large pool, low actual use = exceptional unit economics.</div>
+      <div class="gm"><span data-field="margin">65%</span> gross margin &middot; 40 GB pool &middot; <span data-field="consumed">33% consumed</span><br><span data-field="desc">Highest absolute contribution in the ladder. Large pool, low actual use = exceptional unit economics.</span></div>
     </div>
-    <div class="workhorse">
+    <div class="workhorse" data-tier="first">
       <div class="name">First</div>
-      <div class="big">$28.05</div>
+      <div class="big" data-field="contribution">$28.05</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm">67% gross margin · 25 GB pool · 40% consumed<br>Second-highest per-user contribution. Strong 40% refuel attach adds meaningful uplift.</div>
+      <div class="gm"><span data-field="margin">67%</span> gross margin &middot; 25 GB pool &middot; <span data-field="consumed">40% consumed</span><br><span data-field="desc">Second-highest per-user contribution. Strong 40% refuel attach adds meaningful uplift.</span></div>
     </div>
-    <div class="workhorse">
+    <div class="workhorse" data-tier="business">
       <div class="name">Business</div>
-      <div class="big">$21.86</div>
+      <div class="big" data-field="contribution">$21.86</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm">70% gross margin · 15 GB pool · 45% consumed<br>Highest among broad-market tiers. The default RECOMMENDED tier.</div>
+      <div class="gm"><span data-field="margin">70%</span> gross margin &middot; 15 GB pool &middot; <span data-field="consumed">45% consumed</span><br><span data-field="desc">Highest among broad-market tiers. The default RECOMMENDED tier.</span></div>
     </div>
-    <div class="workhorse">
+    <div class="workhorse" data-tier="cockpit">
       <div class="name">Cockpit (annual)</div>
-      <div class="big">$15.82</div>
-      <div class="unit">monthly equivalent · paid annually</div>
-      <div class="gm">62% gross margin · 12 GB/mo · 60% consumed<br>Lowest margin but $299 upfront. Best cash-flow tier in the model.</div>
+      <div class="big" data-field="contribution">$15.82</div>
+      <div class="unit">monthly equivalent &middot; paid annually</div>
+      <div class="gm"><span data-field="margin">62%</span> gross margin &middot; 12 GB/mo &middot; <span data-field="consumed">60% consumed</span><br><span data-field="desc">Lowest margin but $299 upfront. Best cash-flow tier in the model.</span></div>
     </div>
-    <div class="workhorse">
+    <div class="workhorse" data-tier="roster">
       <div class="name">Roster Bundle</div>
-      <div class="big">$13.62</div>
+      <div class="big" data-field="contribution">$13.62</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm">67% gross margin · 5 GB · 100% consumed<br>Per-flight model, strong for non-subscription crew.</div>
+      <div class="gm"><span data-field="margin">67%</span> gross margin &middot; 5 GB &middot; <span data-field="consumed">100% consumed</span><br><span data-field="desc">Per-flight model, strong for non-subscription crew.</span></div>
     </div>
-    <div class="workhorse">
+    <div class="workhorse" data-tier="premium">
       <div class="name">Premium Economy</div>
-      <div class="big">$13.36</div>
+      <div class="big" data-field="contribution">$13.36</div>
       <div class="unit">per subscriber / month</div>
-      <div class="gm">70% gross margin · 10 GB pool · 40% consumed<br>Volume tier. Best entry subscription. High refuel attach (20%).</div>
+      <div class="gm"><span data-field="margin">70%</span> gross margin &middot; 10 GB pool &middot; <span data-field="consumed">40% consumed</span><br><span data-field="desc">Volume tier. Best entry subscription. High refuel attach (20%).</span></div>
     </div>
-    <div class="workhorse">
+    <div class="workhorse" data-tier="economy">
       <div class="name">Economy (PAYG)</div>
-      <div class="big">$9.13</div>
-      <div class="unit">per subscriber / month · realistic 2.5×</div>
-      <div class="gm">73% gross margin · 1 GB top-up at $4.99 · ~2.5 top-ups/mo<br>Highest margin % in the ladder. Lowest absolute contribution but most efficient — every $1 collected keeps 73¢.</div>
+      <div class="big" data-field="contribution">$9.13</div>
+      <div class="unit">per subscriber / month &middot; <span data-field="paygCount">realistic 2.5x</span></div>
+      <div class="gm"><span data-field="margin">73%</span> gross margin &middot; 1 GB top-up at $4.99 &middot; <span data-field="consumed">~2.5 top-ups/mo</span><br><span data-field="desc">Highest margin % in the ladder. Lowest absolute contribution but most efficient - every $1 collected keeps 73 cents.</span></div>
     </div>
   </div>
+
+  <script>
+  (function() {
+    var TIER_DATA = {
+      suite: {
+        low:  { contribution: '$40.27', margin: '81%', consumed: '20% consumed', desc: 'Status-anchor users barely tap the 40 GB pool. Light crew demographic - exceptional 81% margin.' },
+        mid:  { contribution: '$33.03', margin: '65%', consumed: '33% consumed', desc: 'Highest absolute contribution in the ladder. Large pool, low actual use = exceptional unit economics.' },
+        high: { contribution: '$20.45', margin: '41%', consumed: '55% consumed', desc: 'Heavy crew use compresses margin but tier stays positive. The 40 GB pool absorbs aggressive consumption.' }
+      },
+      first: {
+        low:  { contribution: '$33.61', margin: '84%', consumed: '25% consumed', desc: 'Light users who upgraded for refuel discount + brand match, not heavy data. Pure profit territory.' },
+        mid:  { contribution: '$28.05', margin: '67%', consumed: '40% consumed', desc: 'Second-highest per-user contribution. Strong 40% refuel attach adds meaningful uplift.' },
+        high: { contribution: '$17.95', margin: '45%', consumed: '60% consumed', desc: 'Heavy crew use. Margin compresses but the 25 GB pool keeps tier from going negative.' }
+      },
+      business: {
+        low:  { contribution: '$25.96', margin: '87%', consumed: '30% consumed', desc: 'Light use on the default RECOMMENDED tier. Highest-margin scenario in the broad-market band.' },
+        mid:  { contribution: '$21.86', margin: '70%', consumed: '45% consumed', desc: 'Highest among broad-market tiers. The default RECOMMENDED tier.' },
+        high: { contribution: '$14.92', margin: '50%', consumed: '65% consumed', desc: 'Heavy use compresses margin but tier still 50%. Pool sized correctly for this scenario.' }
+      },
+      cockpit: {
+        low:  { contribution: '$18.49', margin: '74%', consumed: '40% consumed', desc: 'Light pilot use. $299 prepaid still provides cash-flow benefit. Best month for unit economics.' },
+        mid:  { contribution: '$15.82', margin: '62%', consumed: '60% consumed', desc: 'Lowest margin but $299 upfront. Best cash-flow tier in the model.' },
+        high: { contribution: '$12.06', margin: '48%', consumed: '80% consumed', desc: 'Heavy pilot data use. Annual prepay protects cash flow even at thinner monthly margin.' }
+      },
+      roster: {
+        low:  { contribution: '$16.50', margin: '83%', consumed: '70% consumed', desc: 'Light flight. Most contribution drops to the bottom line.' },
+        mid:  { contribution: '$13.62', margin: '67%', consumed: '100% consumed', desc: 'Per-flight model, strong for non-subscription crew.' },
+        high: { contribution: '$10.18', margin: '51%', consumed: '130% (refuel attached)', desc: 'Crew tops up mid-flight. Refuel attach offsets the over-consumption - still positive.' }
+      },
+      premium: {
+        low:  { contribution: '$16.12', margin: '85%', consumed: '25% consumed', desc: 'Light Premium user - best volume-tier scenario. Strong upgrade path off Economy.' },
+        mid:  { contribution: '$13.36', margin: '70%', consumed: '40% consumed', desc: 'Volume tier. Best entry subscription. High refuel attach (20%).' },
+        high: { contribution: '$9.61', margin: '51%', consumed: '60% consumed', desc: 'Heavy Premium use. Margin compresses but still above 50%.' }
+      },
+      economy: {
+        low:  { contribution: '$5.48', margin: '73%', consumed: '~1.5 top-ups/mo', desc: 'Light Economy user - 1.5 top-ups/mo. Lowest absolute contribution but constant 73% margin per top-up.', paygCount: 'light 1.5x' },
+        mid:  { contribution: '$9.13', margin: '73%', consumed: '~2.5 top-ups/mo', desc: 'Highest margin % in the ladder. Most efficient - every $1 collected keeps 73 cents.', paygCount: 'realistic 2.5x' },
+        high: { contribution: '$14.61', margin: '73%', consumed: '~4 top-ups/mo', desc: 'Heavy PAYG user. 4 top-ups/mo competitive with Premium subscription - without the pool risk.', paygCount: 'heavy 4x' }
+      }
+    };
+
+    function setScenario(scenario) {
+      document.querySelectorAll('.workhorse').forEach(function(card) {
+        var tier = card.getAttribute('data-tier');
+        var data = TIER_DATA[tier] && TIER_DATA[tier][scenario];
+        if (!data) return;
+        card.querySelectorAll('[data-field]').forEach(function(el) {
+          var field = el.getAttribute('data-field');
+          if (data[field] !== undefined) el.textContent = data[field];
+        });
+        var bigEl = card.querySelector('.big');
+        if (bigEl) {
+          if (scenario === 'low')  bigEl.style.color = '#0e7a44';
+          if (scenario === 'mid')  bigEl.style.color = '';
+          if (scenario === 'high') bigEl.style.color = '#b88a00';
+        }
+      });
+      document.querySelectorAll('.scenario-toggle button').forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-scenario') === scenario);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.scenario-toggle button').forEach(function(b) {
+        b.addEventListener('click', function() {
+          setScenario(b.getAttribute('data-scenario'));
+        });
+      });
+    });
+  })();
+  </script>
 
   <p style="font-size:13px; color:#666; margin-top:14px; font-style:italic;">
     Note on consumption %: the 40%, 45%, 33% etc. numbers come from Tab 2 (User Behavior). They're estimates based on the 1-GB refill UX friction model, not measured data yet. Real consumption will be tracked in app analytics months 1-3 post-launch.
