@@ -1,0 +1,1283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — Tab 14 Volume Scenarios (for Akito)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #e8e2d6;
+    --card: #ffffff;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+    --green: #2D7A4F;
+    --amber: #B07A1F;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  a { color: var(--red); }
+
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--red); color: #fff;
+    padding: 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  header.bar .title { font-weight: 700; letter-spacing: .2px; font-size: 16px; }
+  header.bar .title small { display:block; font-weight: 400; opacity:.85; font-size:12px; margin-top:2px;}
+  header.bar button {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.5);
+    color: #fff; font: inherit;
+    padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    transition: background .15s ease;
+    font-size: 13px;
+  }
+  header.bar button:hover { background: rgba(255,255,255,.28); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 56px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero {
+    font-size: clamp(28px, 4.2vw, 44px);
+    line-height: 1.15; margin: 0 0 14px;
+    letter-spacing: -.5px;
+  }
+  h1.hero .accent { color: var(--red); }
+  p.lede {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: #2a2a2a; max-width: 760px; margin: 0;
+  }
+  h2.section-title {
+    font-size: clamp(22px, 2.6vw, 28px);
+    margin: 0 0 6px; letter-spacing: -.2px;
+  }
+  h2.section-title .num {
+    display: inline-block;
+    width: 30px; height: 30px; line-height: 30px;
+    border-radius: 50%; background: var(--ink); color: #fff;
+    font-size: 14px; text-align: center; margin-right: 10px;
+    vertical-align: middle;
+  }
+  p.section-sub {
+    color: var(--muted); max-width: 720px; margin: 0 0 22px; font-size: 15px;
+  }
+
+  .chart-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; box-shadow: var(--shadow);
+  }
+  .chart-card h3 { margin: 0 0 4px; font-size: 16px; }
+  .chart-card p.sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .chart-wrap { position: relative; height: 320px; }
+
+  .two-col {
+    display: grid; gap: 18px;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } }
+
+  .we-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 10px; }
+  .we-table th, .we-table td {
+    text-align: left; padding: 9px 11px; border-bottom: 1px solid var(--line);
+  }
+  .we-table th { background: #faf6ec; font-weight: 600; color: #5a4a14; font-size: 12px; letter-spacing: .3px; text-transform: uppercase; }
+  .we-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .we-table tr.total td { font-weight: 700; background: #fdf5e3; }
+  .we-table tr.highlight td { background: #f0faf5; }
+
+  .callout-big {
+    margin-top: 30px;
+    background: linear-gradient(135deg, var(--ink) 0%, #2a2a2a 100%);
+    color: #fff; border-radius: 18px; padding: 36px 28px;
+    text-align: center;
+  }
+  .callout-big .small { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .callout-big .big-num { font-size: clamp(40px, 7vw, 64px); font-weight: 700; letter-spacing: -1.5px; color: #fff; line-height: 1.05; }
+  .callout-big .big-num span { color: var(--gold); }
+  .callout-big .ctx { color: #d8d2c5; max-width: 580px; margin: 14px auto 0; font-size: 15px; }
+
+  .pill {
+    display: inline-block; font-size: 11px; padding: 3px 9px;
+    border-radius: 999px; background: var(--ink); color: #fff;
+    letter-spacing: .3px; font-weight: 600;
+  }
+  .pill.gold { background: var(--gold); color: var(--ink); }
+  .pill.green { background: #e0f2e7; color: var(--green); }
+  .pill.red { background: #fbe0e0; color: var(--red); }
+  .pill.amber { background: #fbefd9; color: var(--amber); }
+
+  .micro-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    margin-top: 16px;
+  }
+  .micro {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px; text-align: center;
+  }
+  .micro .label { font-size: 11px; color: var(--muted); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 4px; }
+  .micro .val { font-size: 22px; font-weight: 700; letter-spacing: -.5px; }
+  .micro .ctx { font-size: 12px; color: #555; margin-top: 4px; }
+
+  .tier-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 8px;
+    font-size: 12px; font-weight: 600;
+    background: #f3eedf; color: #5a4a14;
+    white-space: nowrap;
+  }
+
+  /* Tier mix donut breakdown */
+  .blend-row {
+    display: flex; align-items: center; gap: 10px;
+    margin: 8px 0; font-size: 14px;
+  }
+  .blend-bar-wrap { flex: 1; background: #f3eedf; border-radius: 4px; height: 22px; overflow: hidden; }
+  .blend-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; color: #fff; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .blend-label { width: 130px; font-size: 13px; color: #444; }
+  .blend-contrib { width: 70px; text-align: right; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; }
+
+  /* Yuki journey */
+  .journey-wrap {
+    position: relative; padding-left: 28px;
+  }
+  .journey-wrap::before {
+    content: ''; position: absolute;
+    left: 10px; top: 20px; bottom: 20px;
+    width: 2px; background: linear-gradient(180deg, #e5ddd0 0%, var(--gold) 40%, var(--red) 100%);
+  }
+  .journey-step {
+    position: relative; margin-bottom: 12px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 14px 16px;
+    box-shadow: var(--shadow);
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .journey-step.upgrade { border-left: 4px solid var(--red); }
+  .journey-step .dot {
+    position: absolute; left: -24px; top: 16px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--line); border: 2px solid var(--card);
+  }
+  .journey-step.upgrade .dot { background: var(--red); }
+  .journey-step .month { min-width: 44px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: .5px; margin-top: 2px; }
+  .journey-step .info { flex: 1; }
+  .journey-step .info .tier-name { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .journey-step .info .why { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .journey-step .price-tag {
+    font-size: 18px; font-weight: 700; letter-spacing: -.5px; color: var(--ink);
+    white-space: nowrap; margin-top: 0;
+  }
+  .journey-step.upgrade .price-tag { color: var(--red); }
+
+  /* Nudge cards */
+  .nudge-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .nudge-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 18px;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .nudge-card .num-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--red); color: #fff; font-size: 12px; font-weight: 700;
+  }
+  .nudge-card .header { display: flex; align-items: center; gap: 10px; }
+  .nudge-card .trigger { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 600; }
+  .nudge-card .prompt-text {
+    font-size: 13px; background: #f0faf5; border-left: 3px solid var(--green);
+    padding: 10px 12px; border-radius: 0 6px 6px 0;
+    color: #1a3a2a; font-style: italic; line-height: 1.5;
+  }
+  .nudge-card .transition {
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12px;
+  }
+  .nudge-card .why-it-works { font-size: 12px; color: var(--muted); }
+
+  /* Roadmap */
+  .roadmap-phase {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 18px; margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    display: flex; align-items: flex-start; gap: 18px;
+  }
+  .roadmap-phase .phase-badge {
+    min-width: 64px; height: 64px; border-radius: 12px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; color: #fff;
+    background: var(--ink);
+  }
+  .roadmap-phase .phase-badge small { font-size: 10px; font-weight: 400; margin-top: 2px; opacity: .8; }
+  .roadmap-phase.v1 .phase-badge { background: var(--red); }
+  .roadmap-phase.v11 .phase-badge { background: var(--gold); color: var(--ink); }
+  .roadmap-phase.v12 .phase-badge { background: var(--green); }
+  .roadmap-phase.v2 .phase-badge { background: var(--ink); }
+  .roadmap-phase .content h4 { margin: 0 0 4px; font-size: 16px; }
+  .roadmap-phase .content p { margin: 0 0 8px; font-size: 14px; color: #444; }
+
+  /* Warning / callout boxes */
+  .warn-box {
+    background: #fff8e6; border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0; padding: 16px 18px; margin: 18px 0;
+    font-size: 14px; color: #5a4a14;
+  }
+  .warn-box strong { color: #3a2a00; }
+  .info-box {
+    background: #f0faf5; border-left: 4px solid var(--green);
+    border-radius: 0 8px 8px 0; padding: 16px 18px; margin: 18px 0;
+    font-size: 14px; color: #1a3a2a;
+  }
+  .flag-box {
+    background: #fbe0e0; border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0; padding: 16px 18px; margin: 18px 0;
+    font-size: 14px; color: #5a0000;
+  }
+
+  /* Arrow-right SVG inline */
+  .arrow-right { display: inline-block; vertical-align: middle; margin: 0 4px; }
+
+  .we-step {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .we-step .step-num { display:inline-block; font-size: 11px; letter-spacing: 1.5px; color: var(--red); font-weight: 700; margin-bottom: 4px; }
+  .we-step h3 { margin: 0 0 8px; font-size: 18px; }
+
+  footer { color: var(--muted); font-size: 12px; text-align: center; margin-top: 50px; border-top: 1px solid var(--line); padding-top: 20px; }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: #fff; padding: 10px 18px;
+    border-radius: 999px; font-size: 13px; opacity: 0;
+    transition: opacity .25s ease; pointer-events: none; z-index: 100;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="title">
+    Peanut eSIM — Volume Scenarios
+    <small>Tab 14 of the P&amp;L model · for Akito · 2026-06-02</small>
+  </div>
+  <button id="copyBtn" type="button">Copy share link</button>
+</header>
+
+<main>
+
+<!-- ===== SECTION 1 — HERO ===== -->
+<section class="first">
+  <h1 class="hero">Volume Scenarios — <span class="accent">scale math</span> from 100 to 100K users.</h1>
+  <p class="lede">
+    What the business looks like at each stage. Take the per-user economics from Tab 3, multiply by user counts, and you get the total P&amp;L at any scale. This page walks through the verified numbers, the hidden assumption that makes the model <em>understate</em> the endgame, and the 7 in-app tactics that drive users up the pricing ladder.
+  </p>
+  <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;">
+    <span class="pill green">Numbers verified from source xlsx 2026-06-02</span>
+    <span class="pill amber">OPEX is $0 today — model placeholder only</span>
+  </div>
+</section>
+
+<!-- ===== SECTION 2 — THE $12.48 MAGIC NUMBER ===== -->
+<section>
+  <h2 class="section-title"><span class="num">2</span>The $12.48 magic number</h2>
+  <p class="section-sub">
+    Every user is a mix of tiers. At the model's baseline mix (50% Economy / 18% Roster / 13% Premium / 8% Business / 3% First / 2% Suite / 3% Cockpit), the weighted contribution per user per month works out to exactly $12.48. Here is how each tier contributes to that number.
+  </p>
+
+  <div class="two-col">
+    <div class="chart-card">
+      <h3>Tier mix at baseline (% of users)</h3>
+      <p class="sub">Baseline cabin-class mix from Tab 1 — what the model assumes about who's buying what</p>
+      <div class="chart-wrap">
+        <canvas id="tierMixChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Each tier's contribution to $12.48</h3>
+      <p class="sub">Mix % × gross profit per user = weighted contribution. All seven tiers add up to the blended $12.48.</p>
+      <div class="chart-wrap">
+        <canvas id="contribChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blend breakdown bars -->
+  <div class="chart-card" style="margin-top: 18px;">
+    <h3>Tier-by-tier contribution breakdown</h3>
+    <p class="sub">How each tier's mix and unit profit combine to build the $12.48 blended figure</p>
+    <div style="margin-top: 14px;">
+
+      <div class="blend-row">
+        <div class="blend-label">Economy</div>
+        <div class="blend-bar-wrap">
+          <div class="blend-bar-fill" style="width:37%; background:#9e9e9e;">50% x $9.13</div>
+        </div>
+        <div class="blend-contrib">= $4.57</div>
+      </div>
+
+      <div class="blend-row">
+        <div class="blend-label">Roster Bundle</div>
+        <div class="blend-bar-wrap">
+          <div class="blend-bar-fill" style="width:20%; background:#0a5f5f;">18% x $13.62</div>
+        </div>
+        <div class="blend-contrib">= $2.45</div>
+      </div>
+
+      <div class="blend-row">
+        <div class="blend-label">Premium Economy</div>
+        <div class="blend-bar-wrap">
+          <div class="blend-bar-fill" style="width:14%; background:#1a5ea0;">13% x $13.36</div>
+        </div>
+        <div class="blend-contrib">= $1.74</div>
+      </div>
+
+      <div class="blend-row">
+        <div class="blend-label">Business</div>
+        <div class="blend-bar-wrap">
+          <div class="blend-bar-fill" style="width:14%; background:#C9A03B;">8% x $21.86</div>
+        </div>
+        <div class="blend-contrib">= $1.75</div>
+      </div>
+
+      <div class="blend-row">
+        <div class="blend-label">First</div>
+        <div class="blend-bar-wrap">
+          <div class="blend-bar-fill" style="width:7%; background:#D71921;">3% x $28.05</div>
+        </div>
+        <div class="blend-contrib">= $0.84</div>
+      </div>
+
+      <div class="blend-row">
+        <div class="blend-label">First Suite</div>
+        <div class="blend-bar-wrap">
+          <div class="blend-bar-fill" style="width:5%; background:#7a1a1a;">2% x $33.03</div>
+        </div>
+        <div class="blend-contrib">= $0.66</div>
+      </div>
+
+      <div class="blend-row">
+        <div class="blend-label">Cockpit</div>
+        <div class="blend-bar-wrap">
+          <div class="blend-bar-fill" style="width:4%; background:#1A1A1A;">3% x $15.82</div>
+        </div>
+        <div class="blend-contrib">= $0.47</div>
+      </div>
+
+      <div style="margin-top: 14px; padding: 12px 14px; background: #fdf5e3; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 17px;">
+        <span>Total blended contribution / user / mo</span>
+        <span style="color: var(--red); font-size: 22px;">$12.48</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 3 — SCALE LADDER ===== -->
+<section>
+  <h2 class="section-title"><span class="num">3</span>The scale ladder — monthly gross at each milestone</h2>
+  <p class="section-sub">
+    Log-scale bar chart. Each bar is verified: users × $12.48 blended = monthly gross. At 100K users, that is $1.25M per month, $15M per year — before any OPEX.
+  </p>
+
+  <div class="chart-card">
+    <h3>Monthly gross profit across 6 scale milestones (log scale)</h3>
+    <p class="sub">Bars show verified monthly gross. Numbers above each bar = annual run rate at that scale.</p>
+    <div class="chart-wrap" style="height: 370px;">
+      <canvas id="scaleLadderChart"></canvas>
+    </div>
+  </div>
+
+  <div class="micro-grid" style="margin-top: 20px;">
+    <div class="micro">
+      <div class="label">Beta</div>
+      <div class="val">100</div>
+      <div class="ctx">users</div>
+      <div class="val" style="font-size:16px; color: var(--muted);">$1.2K/mo</div>
+    </div>
+    <div class="micro">
+      <div class="label">Soft Launch</div>
+      <div class="val">1K</div>
+      <div class="ctx">users</div>
+      <div class="val" style="font-size:16px; color: var(--muted);">$12.5K/mo</div>
+    </div>
+    <div class="micro">
+      <div class="label">Crew Network</div>
+      <div class="val">5K</div>
+      <div class="ctx">users</div>
+      <div class="val" style="font-size:16px; color: var(--gold);">$62K/mo</div>
+    </div>
+    <div class="micro">
+      <div class="label">Multi-Airline</div>
+      <div class="val">20K</div>
+      <div class="ctx">users</div>
+      <div class="val" style="font-size:16px; color: var(--gold);">$250K/mo</div>
+    </div>
+    <div class="micro">
+      <div class="label">Regional</div>
+      <div class="val">50K</div>
+      <div class="ctx">users</div>
+      <div class="val" style="font-size:16px; color: var(--red);">$624K/mo</div>
+    </div>
+    <div class="micro">
+      <div class="label">Full Vision</div>
+      <div class="val" style="color: var(--red);">100K</div>
+      <div class="ctx">users</div>
+      <div class="val" style="font-size:16px; color: var(--red);">$1.25M/mo</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 4 — WORKED EXAMPLE 1,000 USERS ===== -->
+<section>
+  <h2 class="section-title"><span class="num">4</span>Worked example — 1,000 users</h2>
+  <p class="section-sub">
+    Step by step: split 1,000 users by the baseline tier mix, apply each tier's verified unit contribution, sum the results. This is exactly what the spreadsheet does.
+  </p>
+
+  <div class="we-step">
+    <div class="step-num">STEP 1</div>
+    <h3>Split 1,000 users by tier mix</h3>
+    <table class="we-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>% of users</th>
+          <th class="num"># of users</th>
+          <th class="num">Gross profit / user / mo</th>
+          <th class="num">Tier total / mo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tier-badge" style="background:#f3eedf; color:#5a4a14;">Economy</span></td>
+          <td>50%</td>
+          <td class="num">500</td>
+          <td class="num">$9.13</td>
+          <td class="num">$4,565</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge" style="background:#e6f2f2; color:#0a5f5f;">Roster Bundle</span></td>
+          <td>18%</td>
+          <td class="num">180</td>
+          <td class="num">$13.62</td>
+          <td class="num">$2,452</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge" style="background:#e6eef8; color:#1a5ea0;">Premium Economy</span></td>
+          <td>13%</td>
+          <td class="num">130</td>
+          <td class="num">$13.36</td>
+          <td class="num">$1,737</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge" style="background:#fdf0d4; color:#7a5800;">Business</span></td>
+          <td>8%</td>
+          <td class="num">80</td>
+          <td class="num">$21.86</td>
+          <td class="num">$1,749</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge" style="background:#fbe0e0; color:#a01218;">First</span></td>
+          <td>3%</td>
+          <td class="num">30</td>
+          <td class="num">$28.05</td>
+          <td class="num">$842</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge" style="background:#fbe0e0; color:#7a1a1a;">First Suite</span></td>
+          <td>2%</td>
+          <td class="num">20</td>
+          <td class="num">$33.03</td>
+          <td class="num">$661</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge" style="background:#e5e5e5; color:#1A1A1A;">Cockpit</span></td>
+          <td>3%</td>
+          <td class="num">30</td>
+          <td class="num">$15.82</td>
+          <td class="num">$475</td>
+        </tr>
+        <tr class="total">
+          <td colspan="4"><strong>Total monthly gross profit (1,000 users)</strong></td>
+          <td class="num"><strong>$12,479</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="we-step">
+    <div class="step-num">STEP 2 — SCALE TO ANNUAL</div>
+    <h3>Annual picture at 1,000 users</h3>
+    <table class="we-table">
+      <tbody>
+        <tr>
+          <td>Monthly gross profit</td>
+          <td class="num">$12,479</td>
+        </tr>
+        <tr>
+          <td>Annual gross profit</td>
+          <td class="num"><strong>$149,748</strong></td>
+        </tr>
+        <tr class="highlight">
+          <td>
+            <strong>OPEX note: $0 real spend today</strong><br>
+            <small style="color: var(--muted);">The model carries a $1.80/user/mo placeholder = $1,800/mo at 1K users. As of 2026-06-02 there is no actual OPEX. At $0 real OPEX, gross = net.</small>
+          </td>
+          <td class="num" style="color: var(--green);"><strong>Gross = Net<br>today</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout-big">
+    <div class="small">1,000 users, verified</div>
+    <div class="big-num">$<span>149</span>K/yr</div>
+    <div class="ctx">Annual gross profit at 1,000 active users ($149,748/yr verified). At 100K users = <strong>$14,977,200/yr</strong> (verified). The math is linear — there is no curve, no breakage plateau, no ceiling in sight.</div>
+  </div>
+</section>
+
+<!-- ===== SECTION 5 — HIDDEN ASSUMPTION: MIX EVOLUTION ===== -->
+<section>
+  <h2 class="section-title"><span class="num">5</span>The hidden assumption — tier mix evolves at scale</h2>
+  <p class="section-sub">
+    The model holds a flat $12.48 across all six scenarios. But real user behavior changes as the platform matures. Early users try Economy. Loyal users climb to Premium, Business, Cockpit. The result: the model is <em>conservative</em> — it understates the endgame by $3.2M/yr at 100K users.
+  </p>
+
+  <div class="two-col">
+    <div class="chart-card">
+      <h3>Economy mix shrinks as users mature</h3>
+      <p class="sub">From 65% Economy (Beta) to 25% Economy (100K) — as users climb the ladder, blended profit per user rises from $11.47 to $15.20.</p>
+      <div class="chart-wrap">
+        <canvas id="mixEvolutionChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Blended profit per user rises with scale</h3>
+      <p class="sub">Model assumes flat $12.48 throughout. Realistic evolution produces $15.20/user at 100K. The gap is $3.2M/yr at full scale.</p>
+      <div class="chart-wrap">
+        <canvas id="blendedPerUserChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card" style="margin-top: 18px;">
+    <h3>Dollar impact: model vs realistic tier evolution</h3>
+    <p class="sub">Same user counts, different mix assumptions. The delta grows as scale increases.</p>
+    <table class="we-table">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th class="num">Users</th>
+          <th class="num">Model says (flat $12.48)</th>
+          <th class="num">Realistic (evolving mix)</th>
+          <th class="num">Difference</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Beta</td>
+          <td class="num">100</td>
+          <td class="num">$1,248/mo</td>
+          <td class="num">$1,147/mo</td>
+          <td class="num" style="color: var(--muted);">-$100/mo</td>
+        </tr>
+        <tr>
+          <td>Soft Launch</td>
+          <td class="num">1,000</td>
+          <td class="num">$12,479/mo</td>
+          <td class="num">$12,060/mo</td>
+          <td class="num" style="color: var(--muted);">-$420/mo</td>
+        </tr>
+        <tr>
+          <td>Crew Network</td>
+          <td class="num">5,000</td>
+          <td class="num">$62,405/mo</td>
+          <td class="num">$67,500/mo</td>
+          <td class="num" style="color: var(--green);">+$5K/mo</td>
+        </tr>
+        <tr>
+          <td>Multi-Airline</td>
+          <td class="num">20,000</td>
+          <td class="num">$249,620/mo</td>
+          <td class="num">$286,000/mo</td>
+          <td class="num" style="color: var(--green);">+$36K/mo</td>
+        </tr>
+        <tr class="total">
+          <td>Full Vision (annual)</td>
+          <td class="num">100,000</td>
+          <td class="num"><strong>$15M/yr</strong></td>
+          <td class="num"><strong>$18.2M/yr</strong></td>
+          <td class="num" style="color: var(--green); font-size: 16px;"><strong>+$3.2M/yr</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn-box">
+    <strong>Why the model uses flat $12.48:</strong> Because tier mix evolution depends on how well the ladder nudges perform — something we don't know yet. The flat assumption is correct for a conservative base case. The realistic evolution is upside — earn it by building the nudges.
+  </div>
+</section>
+
+<!-- ===== SECTION 6 — YUKI'S JOURNEY ===== -->
+<section>
+  <h2 class="section-title"><span class="num">6</span>Yuki's 12-month journey</h2>
+  <p class="section-sub">
+    Yuki is a new Emirates cabin crew member. She signs up in January. Over 12 months she naturally climbs four tiers — from $4.99/month to $29.99/month. This is the canonical story of how a single user becomes 6x more valuable with zero additional acquisition cost.
+  </p>
+
+  <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding: 16px; background: var(--card); border-radius: 12px; border: 1px solid var(--line);">
+    <!-- Human silhouette SVG -->
+    <svg width="48" height="64" viewBox="0 0 48 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="14" r="10" fill="#C9A03B"/>
+      <path d="M4 58 C4 40 8 34 24 34 C40 34 44 40 44 58" fill="#D71921"/>
+      <line x1="24" y1="34" x2="24" y2="52" stroke="#D71921" stroke-width="2"/>
+      <line x1="16" y1="42" x2="32" y2="42" stroke="#D71921" stroke-width="2"/>
+    </svg>
+    <div>
+      <div style="font-weight: 700; font-size: 18px;">Yuki — new Emirates cabin crew</div>
+      <div style="color: var(--muted); font-size: 14px;">Signs up January · Climbs 4 tiers in 12 months · From $4.99/mo to $29.99/mo</div>
+    </div>
+    <div style="margin-left: auto; text-align: right;">
+      <div style="font-size: 12px; color: var(--muted);">Revenue growth</div>
+      <div style="font-size: 28px; font-weight: 700; color: var(--red);">6x</div>
+      <div style="font-size: 12px; color: var(--muted);">same user, no extra acquisition</div>
+    </div>
+  </div>
+
+  <div class="journey-wrap">
+
+    <div class="journey-step">
+      <div class="dot"></div>
+      <div class="month">Jan</div>
+      <div class="info">
+        <div class="tier-name">Economy — first trip trial</div>
+        <div class="why">Just trying it for one layover. No commitment.</div>
+      </div>
+      <div class="price-tag">$4.99</div>
+    </div>
+
+    <div class="journey-step">
+      <div class="dot"></div>
+      <div class="month">Feb</div>
+      <div class="info">
+        <div class="tier-name">Economy — two flights, two top-ups</div>
+        <div class="why">Bought again on second trip. PAYG habit forming.</div>
+      </div>
+      <div class="price-tag">$12.48</div>
+    </div>
+
+    <div class="journey-step">
+      <div class="dot"></div>
+      <div class="month">Mar</div>
+      <div class="info">
+        <div class="tier-name">Economy — three flights, running out of data</div>
+        <div class="why">Hitting data limits on layovers. Frustration building.</div>
+      </div>
+      <div class="price-tag">$19.96</div>
+    </div>
+
+    <div class="journey-step upgrade">
+      <div class="dot"></div>
+      <div class="month">Apr</div>
+      <div class="info">
+        <div class="tier-name">
+          <svg class="arrow-right" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Upgrade: Roster Bundle
+        </div>
+        <div class="why">Nudge #2 fires: "You fly 5x/month — sync your roster and save."</div>
+      </div>
+      <div class="price-tag">$19.95</div>
+    </div>
+
+    <div class="journey-step">
+      <div class="dot"></div>
+      <div class="month">May</div>
+      <div class="info">
+        <div class="tier-name">Roster Bundle — settled in</div>
+        <div class="why">Auto-arming at each layover. Low friction, great UX.</div>
+      </div>
+      <div class="price-tag">$19.95</div>
+    </div>
+
+    <div class="journey-step upgrade">
+      <div class="dot"></div>
+      <div class="month">Jun</div>
+      <div class="info">
+        <div class="tier-name">
+          <svg class="arrow-right" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Upgrade: Premium Economy
+        </div>
+        <div class="why">Wants predictable monthly cost. One plan, works anywhere.</div>
+      </div>
+      <div class="price-tag">$17.99</div>
+    </div>
+
+    <div class="journey-step">
+      <div class="dot"></div>
+      <div class="month">Jul–Sep</div>
+      <div class="info">
+        <div class="tier-name">Premium Economy — comfortable stretch</div>
+        <div class="why">Happy user. Recommends to two colleagues. Zero churn signal.</div>
+      </div>
+      <div class="price-tag">$17.99/mo</div>
+    </div>
+
+    <div class="journey-step upgrade">
+      <div class="dot"></div>
+      <div class="month">Oct</div>
+      <div class="info">
+        <div class="tier-name">
+          <svg class="arrow-right" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Upgrade: Business
+        </div>
+        <div class="why">Promoted to senior crew. Longer routes. Hit 80% pool — nudge #3 fires. Moves to Business 15 GB pool.</div>
+      </div>
+      <div class="price-tag">$29.99</div>
+    </div>
+
+    <div class="journey-step">
+      <div class="dot"></div>
+      <div class="month">Nov–Dec</div>
+      <div class="info">
+        <div class="tier-name">Business — heavy user, here to stay</div>
+        <div class="why">Senior crew schedule, long-haul routes, high data needs. Strong retention signal.</div>
+      </div>
+      <div class="price-tag">$29.99/mo</div>
+    </div>
+
+  </div>
+
+  <!-- Journey chart -->
+  <div class="chart-card" style="margin-top: 24px;">
+    <h3>Yuki's monthly spend over 12 months</h3>
+    <p class="sub">4 tier upgrades, zero acquisition cost after M1. Revenue per user went from $4.99 to $29.99 — same person.</p>
+    <div class="chart-wrap">
+      <canvas id="yukiChart"></canvas>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>The key number:</strong> Over 12 months Yuki generates approximately $239 in gross contribution. A user who stays Economy all year generates $60. The ladder is worth <strong>$180 more per user, per year</strong> — zero extra cost to acquire.
+  </div>
+</section>
+
+<!-- ===== SECTION 7 — THE 7 LADDER NUDGES ===== -->
+<section>
+  <h2 class="section-title"><span class="num">7</span>The 7 ladder nudges</h2>
+  <p class="section-sub">
+    In-app prompts triggered by real user behavior. Each nudge fires at exactly the right moment — when the user's own actions create the opening. Not spam. Behavior-driven, honest, math-first.
+  </p>
+
+  <div class="nudge-grid">
+
+    <div class="nudge-card">
+      <div class="header">
+        <div class="num-badge">1</div>
+        <div>
+          <div style="font-weight: 700; font-size: 15px;">After 3rd refuel</div>
+          <div class="trigger">Trigger: $14.97 cumulative PAYG spend</div>
+        </div>
+      </div>
+      <div class="prompt-text">"You've spent $14.97 on top-ups. Premium is $17.99 for 10 GB. Switch?"</div>
+      <div class="transition">
+        <span class="tier-badge" style="background:#f3eedf;">Economy</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tier-badge" style="background:#e6eef8; color:#1a5ea0;">Premium</span>
+      </div>
+      <div class="why-it-works">The math is undeniable — user has already proven they will spend the money.</div>
+    </div>
+
+    <div class="nudge-card">
+      <div class="header">
+        <div class="num-badge">2</div>
+        <div>
+          <div style="font-weight: 700; font-size: 15px;">After roster sync</div>
+          <div class="trigger">Trigger: user uploads their monthly roster</div>
+        </div>
+      </div>
+      <div class="prompt-text">"You fly 6x this month. Roster Bundle = $23.94 vs $29.94 PAYG. Save?"</div>
+      <div class="transition">
+        <span class="tier-badge" style="background:#f3eedf;">Economy</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tier-badge" style="background:#e6f2f2; color:#0a5f5f;">Roster Bundle</span>
+      </div>
+      <div class="why-it-works">Behavior data triggers it — we know exactly how many flights they have.</div>
+    </div>
+
+    <div class="nudge-card">
+      <div class="header">
+        <div class="num-badge">3</div>
+        <div>
+          <div style="font-weight: 700; font-size: 15px;">Hit 80% of pool</div>
+          <div class="trigger">Trigger: data pool at 80% consumed</div>
+        </div>
+      </div>
+      <div class="prompt-text">"You're nearly out of data. Refuel now or upgrade to Business for 15 GB?"</div>
+      <div class="transition">
+        <span class="tier-badge" style="background:#e6eef8; color:#1a5ea0;">Premium</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tier-badge" style="background:#fdf0d4; color:#7a5800;">Business</span>
+      </div>
+      <div class="why-it-works">Pain in the moment. The user is already feeling the constraint.</div>
+    </div>
+
+    <div class="nudge-card">
+      <div class="header">
+        <div class="num-badge">4</div>
+        <div>
+          <div style="font-weight: 700; font-size: 15px;">3-month anniversary</div>
+          <div class="trigger">Trigger: 90 days active as a subscriber</div>
+        </div>
+      </div>
+      <div class="prompt-text">"You've been flying with us 3 months. Annual Cockpit = $299 — save $360 vs monthly. Ready?"</div>
+      <div class="transition">
+        <span class="tier-badge" style="background:#fdf0d4; color:#7a5800;">Business</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tier-badge" style="background:#e5e5e5; color:#1A1A1A;">Cockpit Annual</span>
+      </div>
+      <div class="why-it-works">Proven loyal user. Ready to commit to a year. Cash flow benefit for us.</div>
+    </div>
+
+    <div class="nudge-card">
+      <div class="header">
+        <div class="num-badge">5</div>
+        <div>
+          <div style="font-weight: 700; font-size: 15px;">First long-haul detected</div>
+          <div class="trigger">Trigger: route flagged as long-haul in roster</div>
+        </div>
+      </div>
+      <div class="prompt-text">"Long-haul flight detected. First plan covers 50 GB pool — enough for the whole trip."</div>
+      <div class="transition">
+        <span class="tier-badge" style="background:#e6eef8; color:#1a5ea0;">Premium</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tier-badge" style="background:#fbe0e0; color:#a01218;">First</span>
+      </div>
+      <div class="why-it-works">Route-triggered. We know the crew member's schedule from the roster.</div>
+    </div>
+
+    <div class="nudge-card">
+      <div class="header">
+        <div class="num-badge">6</div>
+        <div>
+          <div style="font-weight: 700; font-size: 15px;">Promoted to Purser</div>
+          <div class="trigger">Trigger: status upgrade detected (profile / crew badge)</div>
+        </div>
+      </div>
+      <div class="prompt-text">"Senior crew? First Suite includes layover concierge access and a status badge."</div>
+      <div class="transition">
+        <span class="tier-badge" style="background:#fbe0e0; color:#a01218;">First</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tier-badge" style="background:#fbe0e0; color:#7a1a1a;">First Suite</span>
+      </div>
+      <div class="why-it-works">Status-triggered. Feels like a reward, not a sales pitch.</div>
+    </div>
+
+    <div class="nudge-card">
+      <div class="header">
+        <div class="num-badge">7</div>
+        <div>
+          <div style="font-weight: 700; font-size: 15px;">Year 1 renewal</div>
+          <div class="trigger">Trigger: 30 days before Cockpit annual renewal</div>
+        </div>
+      </div>
+      <div class="prompt-text">"Renew Cockpit for Year 2? Lock in your price + 5% loyalty credit."</div>
+      <div class="transition">
+        <span class="tier-badge" style="background:#e5e5e5; color:#1A1A1A;">Cockpit Year 1</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tier-badge" style="background:#e0f2e7; color:#2D7A4F;">Retention</span>
+      </div>
+      <div class="why-it-works">Anniversary moment. Loyalty credit is cheap; retention is priceless.</div>
+    </div>
+
+  </div>
+
+  <div class="info-box" style="margin-top: 24px;">
+    <strong>Anti-patterns we are NOT doing:</strong> No "upgrade!" banners everywhere (users mute them). No cost comparison hidden. No forced upgrade after X days. No penalty for downgrading. One-way ratchet — climb by choice only, never by coercion.
+  </div>
+</section>
+
+<!-- ===== SECTION 8 — IMPLEMENTATION ROADMAP ===== -->
+<section>
+  <h2 class="section-title"><span class="num">8</span>Implementation roadmap</h2>
+  <p class="section-sub">
+    Build in order of payoff-per-effort. Nudge #1 (refuel trigger) is the highest-leverage feature in the entire product.
+  </p>
+
+  <div class="roadmap-phase v1">
+    <div class="phase-badge">v1.0<small>Launch</small></div>
+    <div class="content">
+      <h4>Nudges #1 + #3 — Refuel trigger + Pool 80%</h4>
+      <p>The two highest-leverage nudges. Nudge #1 converts Economy PAYG users to Premium before they realize they could have subscribed all along. Nudge #3 catches users at peak frustration and presents the upgrade exactly when they want it.</p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="pill" style="background:#fbe0e0; color:#a01218;">2 weeks dev</span>
+        <span class="pill green">Highest ROI</span>
+        <span class="pill gold">SHIP THIS FIRST</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase v11">
+    <div class="phase-badge">v1.1<small>+4 weeks</small></div>
+    <div class="content">
+      <h4>Nudges #2 + #4 — Roster sync + 3-month anniversary</h4>
+      <p>Nudge #2 converts roster-upload users to Roster Bundle immediately — very visible payoff because it requires the roster feature to already be live. Nudge #4 starts the Cockpit pipeline for proven loyalists.</p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="pill" style="background:#fbefd9; color:#7a5800;">1 week dev</span>
+        <span class="pill gold">Requires roster sync to be live</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase v12">
+    <div class="phase-badge">v1.2<small>+8 weeks</small></div>
+    <div class="content">
+      <h4>Nudges #5 + #7 — Long-haul detection + Year-1 renewal</h4>
+      <p>Nudge #5 requires route classification from the roster OCR output. Nudge #7 is a simple scheduled notification at day 335 of the Cockpit annual. Both are low engineering effort once the data layers exist.</p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="pill" style="background:#e0f2e7; color:#2D7A4F;">2-3 weeks dev</span>
+        <span class="pill" style="background: var(--ink);">Route classification required</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="roadmap-phase v2">
+    <div class="phase-badge">v2.0<small>+6 months</small></div>
+    <div class="content">
+      <h4>Nudge #6 — Senior crew / Purser detection</h4>
+      <p>Requires either self-reported crew rank in the profile or integration with airline HR data (longer-term). This is the most complex nudge — needs a reliable signal that a user's status has changed. Worth building once we have the crew profile layer established.</p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="pill" style="background: var(--ink);">1 month dev</span>
+        <span class="pill amber">Crew profile layer required</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 9 — HONEST READS + AKITO ASK ===== -->
+<section>
+  <h2 class="section-title"><span class="num">9</span>The honest reads — and one ask for Akito</h2>
+  <p class="section-sub">
+    Two things to keep front-of-mind when sharing this model with anyone.
+  </p>
+
+  <div class="two-col">
+
+    <div class="flag-box" style="border-radius: 8px; margin: 0;">
+      <div style="display: flex; align-items: flex-start; gap: 10px;">
+        <!-- Warning triangle SVG -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0; margin-top:2px;">
+          <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="12" y1="9" x2="12" y2="13" stroke="#D71921" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="17" x2="12.01" y2="17" stroke="#D71921" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <strong style="display: block; margin-bottom: 8px; font-size: 16px;">OPEX = $0 today (model placeholder only)</strong>
+          <p style="margin: 0; font-size: 14px;">The model carries $1.80/user/mo as an operating cost placeholder. As of 2026-06-02, there is no real OPEX. Stripe fees, AWS, support — none of it is actually being spent yet. At $0 real OPEX, gross profit = net profit. Do not present the placeholder-OPEX net numbers to investors as real — they are a stress-test input, not an actual expense line.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box" style="border-radius: 8px; margin: 0;">
+      <div style="display: flex; align-items: flex-start; gap: 10px;">
+        <!-- Lock icon SVG -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0; margin-top:2px;">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke="#B07A1F" stroke-width="2"/>
+          <path d="M7 11V7a5 5 0 0110 0v4" stroke="#B07A1F" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <strong style="display: block; margin-bottom: 8px; font-size: 16px;">The 5K to 20K jump is the hardest part</strong>
+          <p style="margin: 0 0 8px; font-size: 14px;">Emirates has ~22,000 cabin crew. At 25% penetration we hit ~5,500 users — close to the Month 24 target. Getting to 20,000 users means leaving Emirates and onboarding Etihad, JAL, ANA, Qatar Airways. Each airline is a new partnership, new onboarding push, new word-of-mouth network from scratch.</p>
+          <p style="margin: 0; font-size: 14px; color: var(--amber);"><strong>This is the moment we stop being "the Emirates eSIM" and become "Crew Universal eSIM."</strong> That positioning shift is the hardest transition in the entire 100K plan.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chart-card" style="margin-top: 24px; border-left: 4px solid var(--gold);">
+    <h3 style="color: var(--amber);">
+      <!-- Plane icon SVG -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
+        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#C9A03B"/>
+      </svg>
+      Ask for Akito — airline expansion sequencing
+    </h3>
+    <p style="font-size: 14px; color: #444; margin: 0;">
+      The model treats all users identically regardless of which airline they fly for. But the <em>cost</em> of acquiring each airline cohort varies enormously — some need formal partnerships, some are word-of-mouth spillover. Before we build the multi-airline version of the deck:
+    </p>
+    <ul style="font-size: 14px; color: #444; margin: 12px 0 0 20px; line-height: 1.8;">
+      <li>Which airline after Emirates has the best crew connectivity to Akito's network?</li>
+      <li>Is Etihad crew reachable through the same layover-chat channels as Emirates?</li>
+      <li>What's the realistic timeline from "Emirates at 5K" to "Etihad cohort added"?</li>
+      <li>Does JAL/ANA crew community require Japanese-language onboarding? (Akito leads this.)</li>
+    </ul>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  Peanut eSIM · Tab 14 Volume Scenarios Visualizer · Built 2026-06-02 · Numbers verified from Peanut-eSIM-PL-Model-2026-05-31.xlsx · "wholesale supplier" = wholesale data supplier (sanitized for public repo)
+</footer>
+
+<div class="toast" id="toast">Link copied</div>
+
+<script>
+// Copy link button
+document.getElementById('copyBtn').addEventListener('click', function() {
+  navigator.clipboard.writeText(window.location.href).catch(() => {});
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+});
+
+// ─── Chart: Tier mix donut ───
+const tierMixCtx = document.getElementById('tierMixChart').getContext('2d');
+new Chart(tierMixCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Economy', 'Roster Bundle', 'Premium Economy', 'Business', 'First', 'First Suite', 'Cockpit'],
+    datasets: [{
+      data: [50, 18, 13, 8, 3, 2, 3],
+      backgroundColor: ['#9e9e9e', '#0a5f5f', '#1a5ea0', '#C9A03B', '#D71921', '#7a1a1a', '#1A1A1A'],
+      borderWidth: 2,
+      borderColor: '#FAF6F0'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'right', labels: { font: { size: 12 }, boxWidth: 12, padding: 10 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw}%` } }
+    }
+  }
+});
+
+// ─── Chart: Tier contribution ───
+const contribCtx = document.getElementById('contribChart').getContext('2d');
+new Chart(contribCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Economy', 'Roster', 'Premium', 'Business', 'First', 'Suite', 'Cockpit'],
+    datasets: [{
+      label: 'Contribution to $12.48',
+      data: [4.57, 2.45, 1.74, 1.75, 0.84, 0.66, 0.47],
+      backgroundColor: ['#9e9e9e', '#0a5f5f', '#1a5ea0', '#C9A03B', '#D71921', '#7a1a1a', '#1A1A1A'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` $${ctx.raw.toFixed(2)} contribution` } }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { callback: v => '$' + v.toFixed(2) },
+        grid: { color: '#f0ece2' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ─── Chart: Scale ladder (log scale) ───
+const scaleCtx = document.getElementById('scaleLadderChart').getContext('2d');
+new Chart(scaleCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Beta\n(100)', 'Soft Launch\n(1K)', 'Crew Network\n(5K)', 'Multi-Airline\n(20K)', 'Regional\n(50K)', '100K Target\n(100K)'],
+    datasets: [{
+      label: 'Monthly Gross Profit',
+      data: [1248, 12479, 62405, 249620, 624050, 1247900],
+      backgroundColor: ['#9e9e9e', '#0a5f5f', '#C9A03B', '#C9A03B', '#D71921', '#D71921'],
+      borderRadius: 8,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => {
+            const v = ctx.raw;
+            if (v >= 1000000) return ` $${(v/1000000).toFixed(2)}M/mo`;
+            if (v >= 1000) return ` $${(v/1000).toFixed(0)}K/mo`;
+            return ` $${v.toLocaleString()}/mo`;
+          },
+          afterLabel: ctx => {
+            const annual = ctx.raw * 12;
+            if (annual >= 1000000) return `Annual: $${(annual/1000000).toFixed(1)}M/yr`;
+            return `Annual: $${(annual/1000).toFixed(0)}K/yr`;
+          }
+        }
+      },
+      datalabels: { display: false }
+    },
+    scales: {
+      y: {
+        type: 'logarithmic',
+        ticks: {
+          callback: v => {
+            if (v >= 1000000) return '$' + (v/1000000).toFixed(1) + 'M';
+            if (v >= 1000) return '$' + (v/1000).toFixed(0) + 'K';
+            return '$' + v;
+          }
+        },
+        grid: { color: '#f0ece2' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ─── Chart: Mix evolution (stacked bar) ───
+const mixCtx = document.getElementById('mixEvolutionChart').getContext('2d');
+new Chart(mixCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Beta\n(100)', 'Soft Launch\n(1K)', 'Model\nBaseline', 'Crew Network\n(5K)', 'Multi-Airline\n(20K)', 'Mature\n(100K)'],
+    datasets: [
+      { label: 'Economy', data: [65, 55, 50, 40, 30, 25], backgroundColor: '#9e9e9e' },
+      { label: 'Roster', data: [5, 20, 18, 25, 25, 22], backgroundColor: '#0a5f5f' },
+      { label: 'Premium', data: [20, 13, 13, 18, 22, 25], backgroundColor: '#1a5ea0' },
+      { label: 'Business', data: [10, 8, 8, 10, 12, 15], backgroundColor: '#C9A03B' },
+      { label: 'First+', data: [0, 3, 5, 5, 7, 9], backgroundColor: '#D71921' },
+      { label: 'Cockpit', data: [0, 1, 3, 2, 4, 5], backgroundColor: '#1A1A1A' },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 10, padding: 8 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}%` } }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false } },
+      y: { stacked: true, ticks: { callback: v => v + '%' }, grid: { color: '#f0ece2' } }
+    }
+  }
+});
+
+// ─── Chart: Blended per user at each stage ───
+const blendedCtx = document.getElementById('blendedPerUserChart').getContext('2d');
+new Chart(blendedCtx, {
+  type: 'line',
+  data: {
+    labels: ['Beta\n(100)', 'Soft Launch\n(1K)', 'Model\nBaseline', 'Crew Network\n(5K)', 'Multi-Airline\n(20K)', 'Mature\n(100K)'],
+    datasets: [
+      {
+        label: 'Model (flat $12.48)',
+        data: [12.48, 12.48, 12.48, 12.48, 12.48, 12.48],
+        borderColor: '#9e9e9e',
+        borderDash: [6, 4],
+        borderWidth: 2,
+        pointRadius: 3,
+        fill: false,
+        tension: 0
+      },
+      {
+        label: 'Realistic (evolving mix)',
+        data: [11.47, 12.06, 12.48, 13.50, 14.30, 15.20],
+        borderColor: '#D71921',
+        backgroundColor: 'rgba(215, 25, 33, 0.08)',
+        borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: '#D71921',
+        fill: true,
+        tension: 0.35
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { size: 12 }, boxWidth: 14, padding: 12 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: $${ctx.raw.toFixed(2)}/user/mo` } }
+    },
+    scales: {
+      y: {
+        min: 9, max: 17,
+        ticks: { callback: v => '$' + v.toFixed(2) },
+        grid: { color: '#f0ece2' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ─── Chart: Yuki's journey ───
+const yukiCtx = document.getElementById('yukiChart').getContext('2d');
+new Chart(yukiCtx, {
+  type: 'line',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [{
+      label: "Yuki's monthly spend",
+      data: [4.99, 12.48, 19.96, 19.95, 19.95, 17.99, 17.99, 17.99, 17.99, 29.99, 29.99, 29.99],
+      borderColor: '#D71921',
+      backgroundColor: 'rgba(215, 25, 33, 0.07)',
+      borderWidth: 2.5,
+      pointRadius: [4, 4, 4, 8, 4, 8, 4, 4, 4, 8, 4, 4],
+      pointBackgroundColor: [
+        '#9e9e9e','#9e9e9e','#9e9e9e',
+        '#D71921',
+        '#0a5f5f',
+        '#D71921',
+        '#1a5ea0','#1a5ea0','#1a5ea0',
+        '#D71921',
+        '#C9A03B','#C9A03B'
+      ],
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` $${ctx.raw.toFixed(2)}/mo`,
+          afterLabel: ctx => {
+            const upgrades = {3: 'Upgrade: Roster Bundle', 5: 'Upgrade: Premium Economy', 9: 'Upgrade: Business'};
+            return upgrades[ctx.dataIndex] || '';
+          }
+        }
+      }
+    },
+    scales: {
+      y: {
+        min: 0, max: 35,
+        ticks: { callback: v => '$' + v },
+        grid: { color: '#f0ece2' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>

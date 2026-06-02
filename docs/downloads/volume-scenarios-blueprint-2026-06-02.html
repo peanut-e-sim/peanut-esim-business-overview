@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 14 Volume Scenarios: In-Depth Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 52px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 14px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.flagged { background: #FBE0E0; color: var(--red); }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.decision-box { background: white; border: 1px solid var(--line); padding: 18px 22px; margin: 16px 0; border-radius: 4px; }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+tr.best td { background: #e8f4e8; font-weight: 600; color: var(--green); }
+tr.worst td { background: #fff0f0; color: #888; }
+tr.base td { background: #faf6ec; font-weight: 600; }
+tr.total td { background: #fdf5e3; font-weight: 700; }
+.flag-row td:first-child { border-left: 3px solid var(--amber); }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.amber-text { color: var(--amber); font-weight: 600; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+
+/* Warning box */
+.warn-box { background: #fff8e6; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 14px; color: #5a4a14; }
+.flag-box { background: #fbe0e0; border-left: 4px solid var(--red); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 14px; color: #5a0000; }
+.info-box { background: #f0faf5; border-left: 4px solid var(--green); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; font-size: 14px; color: #1a3a2a; }
+
+/* Yuki table */
+tr.upgrade-row td { background: #fff0f0; font-weight: 600; }
+tr.upgrade-row td:first-child { border-left: 3px solid var(--red); }
+
+@media (max-width: 640px) {
+  .container { padding: 24px 16px 80px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 20px; }
+  table { font-size: 13px; }
+  td, th { padding: 8px 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 14 BLUEPRINT — Volume Scenarios — Peanut eSIM (2026-06-02)</span>
+  <button onclick="navigator.clipboard.writeText(window.location.href).catch(()=>{})" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.5);color:#fff;padding:7px 14px;border-radius:999px;cursor:pointer;font-size:13px;">Copy link</button>
+</div>
+
+<div class="container">
+
+<h1>Tab 14 — Volume Scenarios: In-Depth Blueprint</h1>
+<div class="meta">Prepared 2026-06-02 &middot; Captures full discussion, decisions, and open items &middot; Numbers verified from source xlsx &middot; Owners: Balraj + Akito</div>
+
+<div class="lede">
+  <strong>What this tab tells you:</strong> Take the per-user economics from Tab 3, multiply by user counts at different scales, and you get the total business P&amp;L at 100 / 1K / 5K / 20K / 50K / 100K users. The key question answered here: <em>when does this business "work"? What is the win condition?</em> The tab also contains a worked example showing exactly how the blended $12.48 per user is calculated, and the OPEX placeholder caveat that matters most.
+</div>
+
+<div class="toc">
+<strong>Contents</strong>
+<ul>
+  <li><a href="#why">1. Why this tab matters</a></li>
+  <li><a href="#data">2. The verified data — all 6 scenarios</a></li>
+  <li><a href="#discussion">3. The discussion we had</a></li>
+  <li><a href="#yuki">4. Yuki's 12-month journey (canonical example)</a></li>
+  <li><a href="#nudges">5. The 7 ladder nudges</a></li>
+  <li><a href="#5kto20k">6. The 5K to 20K jump — the hardest phase</a></li>
+  <li><a href="#flags">7. The honest flags</a></li>
+  <li><a href="#takeaway">8. Strategic takeaway</a></li>
+  <li><a href="#queue">9. Open items / queue</a></li>
+</ul>
+</div>
+
+<!-- ─── 1. WHY ─── -->
+<h2 id="why">1. Why this tab matters</h2>
+
+<p>Tabs 1 through 13 build the per-user machine — what we charge, what it costs us, what we keep per user per month. Tab 14 is the first tab that asks: <em>multiply that by N users — what does the whole business look like?</em></p>
+
+<p>The answer tells you the win condition. If the answer at 1,000 users is $150K/yr, and you know word-of-mouth can get you to 1,000 users in 12-18 months, you know the business "works" well before needing outside capital. If the answer at 100K users is $15M/yr, you know what the prize is at full scale.</p>
+
+<p>Three things make this tab interesting beyond the simple multiplication:</p>
+<ul>
+  <li>The blended $12.48 figure is not a given — it is the product of a specific tier mix assumption. Change the mix and you change the number.</li>
+  <li>The model holds the mix flat across all scale scenarios. That is a deliberate conservative assumption, but it understates the realistic endgame by $3.2M/yr.</li>
+  <li>The path from 5K to 20K users is structurally different from 0 to 5K — it requires expanding beyond Emirates crew entirely.</li>
+</ul>
+
+<!-- ─── 2. DATA ─── -->
+<h2 id="data">2. The verified data — all 6 scenarios</h2>
+
+<p>All figures verified from Peanut-eSIM-PL-Model-2026-05-31.xlsx, Volume Scenarios tab, 2026-06-02. The per-user blended contribution is $12.48 throughout (flat baseline mix assumption).</p>
+
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>Active Users</th>
+    <th>Monthly Gross</th>
+    <th>Annual Gross</th>
+    <th>Per-user blended</th>
+    <th>Stage context</th>
+  </tr>
+  <tr class="worst">
+    <td><strong>Beta — early testing</strong></td>
+    <td>100</td>
+    <td>$1,248/mo</td>
+    <td>$14,977/yr</td>
+    <td>$12.48</td>
+    <td>Internal alpha users, friends, initial crew contacts</td>
+  </tr>
+  <tr>
+    <td><strong>Soft Launch — Emirates seed</strong></td>
+    <td>1,000</td>
+    <td>$12,479/mo</td>
+    <td>$149,748/yr</td>
+    <td>$12.48</td>
+    <td>Word-of-mouth across initial Emirates crew cohort</td>
+  </tr>
+  <tr>
+    <td><strong>Crew Network — Emirates + Etihad</strong></td>
+    <td>5,000</td>
+    <td>$62,405/mo</td>
+    <td>$748,860/yr</td>
+    <td>$12.48</td>
+    <td>Month 24 target. 25% Emirates penetration.</td>
+  </tr>
+  <tr class="base">
+    <td><strong>Multi-Airline — + JAL + ANA</strong></td>
+    <td>20,000</td>
+    <td>$249,620/mo</td>
+    <td>$2,995,440/yr</td>
+    <td>$12.48</td>
+    <td>Beyond Emirates. Multi-airline model established.</td>
+  </tr>
+  <tr class="best">
+    <td><strong>Regional Scale</strong></td>
+    <td>50,000</td>
+    <td>$624,050/mo</td>
+    <td>$7,488,600/yr</td>
+    <td>$12.48</td>
+    <td>Multiple airline partnerships, regional brand recognition</td>
+  </tr>
+  <tr class="best">
+    <td><strong>100K Target — full vision</strong></td>
+    <td>100,000</td>
+    <td>$1,247,900/mo</td>
+    <td>$14,977,200/yr</td>
+    <td>$12.48</td>
+    <td>"Crew Universal eSIM" — the full thesis realized</td>
+  </tr>
+</table>
+
+<div class="warn-box">
+  <strong>OPEX caveat (applies to all rows above):</strong> The spreadsheet model carries $1.80/user/month as a placeholder OPEX. This produces a "Monthly OPEX" line of $180 at 100 users and $180,000 at 100K users. <em>As of 2026-06-02 there is no real OPEX.</em> The figures above are gross profit = net profit at current reality. The model's net profit line after placeholder OPEX is a stress-test simulation, not a real expense.
+</div>
+
+<!-- ─── 3. DISCUSSION ─── -->
+<h2 id="discussion">3. The discussion we had</h2>
+
+<h3>3.1 The $12.48 baseline — how it is built</h3>
+
+<div class="discussion-block">
+  <h4>What we worked through</h4>
+  <p>The $12.48 is a weighted average: for each of the 7 tiers, take the gross profit that one subscriber generates per month (from Tab 3), multiply by that tier's percentage of total users (from Tab 1), and sum. The baseline mix is 50% Economy / 18% Roster / 13% Premium / 8% Business / 3% First / 2% Suite / 3% Cockpit.</p>
+</div>
+
+<table>
+  <tr>
+    <th>Tier</th>
+    <th>% of users</th>
+    <th>Gross profit / user / mo</th>
+    <th>Weighted contribution</th>
+  </tr>
+  <tr><td>Economy</td><td>50%</td><td>$9.13</td><td>$4.57</td></tr>
+  <tr><td>Roster Bundle</td><td>18%</td><td>$13.62</td><td>$2.45</td></tr>
+  <tr><td>Premium Economy</td><td>13%</td><td>$13.36</td><td>$1.74</td></tr>
+  <tr><td>Business</td><td>8%</td><td>$21.86</td><td>$1.75</td></tr>
+  <tr><td>First</td><td>3%</td><td>$28.05</td><td>$0.84</td></tr>
+  <tr><td>First Suite</td><td>2%</td><td>$33.03</td><td>$0.66</td></tr>
+  <tr><td>Cockpit</td><td>3%</td><td>$15.82</td><td>$0.47</td></tr>
+  <tr class="total"><td colspan="3"><strong>Total blended contribution</strong></td><td><strong>$12.48</strong></td></tr>
+</table>
+
+<h3>3.2 The hidden assumption — tier mix evolves with scale</h3>
+
+<div class="discussion-block">
+  <h4>What we discussed</h4>
+  <p>The model holds $12.48 flat across all 6 scenarios. We identified this as a deliberate conservative assumption that is mathematically correct for a base case, but is likely wrong directionally. Real user cohorts start Economy-heavy (Beta) and mature toward higher tiers over time. Early adopters tend to be experimental; loyal users climb the ladder.</p>
+  <p>The key insight: if tier mix evolves toward subscriptions as the platform matures, the model <em>understates the endgame</em>. At 100K users with the realistic mature mix, the annual gross is $18.2M, not $15M — a $3.2M/yr gap.</p>
+</div>
+
+<table>
+  <tr>
+    <th>Stage</th>
+    <th>Economy</th>
+    <th>Roster</th>
+    <th>Premium</th>
+    <th>Business</th>
+    <th>First + Suite</th>
+    <th>Cockpit</th>
+    <th>Blended / user / mo</th>
+  </tr>
+  <tr class="worst"><td>Beta (100)</td><td>65%</td><td>5%</td><td>20%</td><td>10%</td><td>0%</td><td>0%</td><td>$11.47</td></tr>
+  <tr><td>Soft Launch (1K)</td><td>55%</td><td>20%</td><td>13%</td><td>8%</td><td>3%</td><td>1%</td><td>$12.06</td></tr>
+  <tr class="base"><td><strong>Model assumes</strong></td><td>50%</td><td>18%</td><td>13%</td><td>8%</td><td>5%</td><td>3%</td><td>$12.48</td></tr>
+  <tr><td>Crew Network (5K)</td><td>40%</td><td>25%</td><td>18%</td><td>10%</td><td>6%</td><td>3%</td><td>$13.50</td></tr>
+  <tr><td>Multi-Airline (20K)</td><td>30%</td><td>25%</td><td>22%</td><td>12%</td><td>7%</td><td>4%</td><td>$14.30</td></tr>
+  <tr class="best"><td>Mature (100K)</td><td>25%</td><td>22%</td><td>25%</td><td>15%</td><td>9%</td><td>5%</td><td>$15.20</td></tr>
+</table>
+
+<div class="decision-box">
+  <strong>The dollar impact of evolving mix:</strong>
+  <table style="margin: 10px 0 0;">
+    <tr>
+      <th>Stage</th>
+      <th>Model says</th>
+      <th>Realistic</th>
+      <th>Difference</th>
+    </tr>
+    <tr><td>Beta (100)</td><td>$1,248/mo</td><td>$1,147/mo</td><td style="color: var(--ink-soft);">-$100/mo (conservative early)</td></tr>
+    <tr><td>Soft Launch (1K)</td><td>$12,479/mo</td><td>$12,060/mo</td><td style="color: var(--ink-soft);">-$420/mo</td></tr>
+    <tr><td>Crew Network (5K)</td><td>$62,405/mo</td><td>$67,500/mo</td><td class="green-text">+$5K/mo</td></tr>
+    <tr><td>Multi-Airline (20K)</td><td>$249,620/mo</td><td>$286,000/mo</td><td class="green-text">+$36K/mo</td></tr>
+    <tr class="total"><td>Full Vision (100K, annual)</td><td>$15M/yr</td><td>$18.2M/yr</td><td class="green-text" style="font-size:15px;">+$3.2M/yr upside</td></tr>
+  </table>
+</div>
+
+<h3>3.3 What drives tier mix evolution — the 7 nudges</h3>
+
+<p>Tier mix does not evolve by accident. It evolves because in-app nudges fire at the right moment and make the math undeniable. We identified 7 specific triggers during this session. They are detailed in Section 5. The core insight: the product team that builds these nudges unlocks the $3.2M/yr gap. The product team that doesn't build them leaves the model flat at $15M.</p>
+
+<h3>3.4 The OPEX placeholder discussion</h3>
+
+<div class="discussion-block">
+  <h4>What we confirmed</h4>
+  <p>The Tab 1 OPEX line carries $1.80/user/mo (Stripe fees $1.20 + cloud $0.15 + support $0.30 + SMS $0.05 + hosting $0.10). This is a modeled estimate, not a real expense line. As of 2026-06-02 none of these costs exist — the app is not live, no real Stripe transactions, no real AWS bill.</p>
+  <p>The decision: present gross = net in all real-world discussions. Use the $1.80/user model for stress-testing only. Never quote the net-after-placeholder-OPEX number as if it is the real profit.</p>
+</div>
+
+<!-- ─── 4. YUKI ─── -->
+<h2 id="yuki">4. Yuki's 12-month journey — the canonical progression story</h2>
+
+<p>Yuki is a new Emirates cabin crew member. She signs up in January on Economy (PAYG). By October she is on Business. By end of year she is generating $29.99/month — six times her January revenue — with zero additional acquisition cost. This is the core narrative of how the tier ladder creates value.</p>
+
+<table>
+  <tr>
+    <th>Month</th>
+    <th>Tier</th>
+    <th>Why she switched</th>
+    <th>Monthly payment</th>
+    <th>Running annual total</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>Economy ($4.99 PAYG)</td>
+    <td>Just trying it for one trip</td>
+    <td>$4.99</td>
+    <td>$4.99</td>
+  </tr>
+  <tr>
+    <td>February</td>
+    <td>Economy</td>
+    <td>2 flights, 2 top-ups — PAYG habit forming</td>
+    <td>$12.48</td>
+    <td>$17.47</td>
+  </tr>
+  <tr>
+    <td>March</td>
+    <td>Economy</td>
+    <td>Running out of data on layovers — frustration building</td>
+    <td>$19.96</td>
+    <td>$37.43</td>
+  </tr>
+  <tr class="upgrade-row">
+    <td><strong>April</strong></td>
+    <td><strong>Roster Bundle (nudge #2)</strong></td>
+    <td>"I fly 5x/month — let me sync my roster." Roster sync nudge fires.</td>
+    <td><strong>$19.95</strong></td>
+    <td>$57.38</td>
+  </tr>
+  <tr>
+    <td>May</td>
+    <td>Roster Bundle</td>
+    <td>Auto-arming at each layover working perfectly. No action needed.</td>
+    <td>$19.95</td>
+    <td>$77.33</td>
+  </tr>
+  <tr class="upgrade-row">
+    <td><strong>June</strong></td>
+    <td><strong>Premium Economy (self-upgrade)</strong></td>
+    <td>Wants one predictable monthly cost, works anywhere</td>
+    <td><strong>$17.99</strong></td>
+    <td>$95.32</td>
+  </tr>
+  <tr>
+    <td>July</td>
+    <td>Premium Economy</td>
+    <td>Comfortable. Recommends app to two colleagues.</td>
+    <td>$17.99</td>
+    <td>$113.31</td>
+  </tr>
+  <tr>
+    <td>August</td>
+    <td>Premium Economy</td>
+    <td>Settled in. Low churn signal.</td>
+    <td>$17.99</td>
+    <td>$131.30</td>
+  </tr>
+  <tr>
+    <td>September</td>
+    <td>Premium Economy</td>
+    <td>Promoted to senior crew. Routes getting longer.</td>
+    <td>$17.99</td>
+    <td>$149.29</td>
+  </tr>
+  <tr class="upgrade-row">
+    <td><strong>October</strong></td>
+    <td><strong>Business (nudge #3)</strong></td>
+    <td>Hit 80% of pool mid-month. Nudge fires: "Upgrade to Business for 15 GB?"</td>
+    <td><strong>$29.99</strong></td>
+    <td>$179.28</td>
+  </tr>
+  <tr>
+    <td>November</td>
+    <td>Business</td>
+    <td>Senior crew schedule. Long-haul. High data needs.</td>
+    <td>$29.99</td>
+    <td>$209.27</td>
+  </tr>
+  <tr>
+    <td>December</td>
+    <td>Business</td>
+    <td>Heavy user, strong retention signal. Annual Cockpit candidate.</td>
+    <td>$29.99</td>
+    <td>$239.26</td>
+  </tr>
+</table>
+
+<div class="decision-box">
+  <strong>Yuki's 12-month summary:</strong>
+  <ul style="margin: 10px 0 0;">
+    <li>Total spend across 12 months: <strong>$239.26</strong></li>
+    <li>If she had stayed Economy all year (avg 2 top-ups/mo): approximately $60/yr</li>
+    <li>Ladder value over Economy baseline: <strong>+$179/yr — same user, zero extra acquisition cost</strong></li>
+    <li>Tier rungs climbed: Economy → Roster Bundle → Premium Economy → Business (4 rungs in 12 months)</li>
+    <li>Revenue multiple: $4.99/mo (January) → $29.99/mo (October) = <strong>6x more revenue per month from the same person</strong></li>
+  </ul>
+</div>
+
+<!-- ─── 5. NUDGES ─── -->
+<h2 id="nudges">5. The 7 ladder nudges — product mechanism for tier progression</h2>
+
+<p>These are in-app triggers. Each fires at a specific behavioral moment and presents a math-first case for upgrading. None are forced, none are deceptive, all are reversible. The philosophy: show the user that the upgrade is obviously in their financial interest, then let them decide.</p>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Trigger</th>
+    <th>Prompt shown to user</th>
+    <th>Tier transition</th>
+    <th>Why it works</th>
+  </tr>
+  <tr>
+    <td><strong>1</strong></td>
+    <td>After 3rd refuel ($14.97 cumulative PAYG spend)</td>
+    <td>"You've spent $14.97 on top-ups. Premium is $17.99 for 10 GB. Switch?"</td>
+    <td>Economy → Premium</td>
+    <td>The math is undeniable. User has proven they will spend the money. $3.02 more = 10x the data.</td>
+  </tr>
+  <tr>
+    <td><strong>2</strong></td>
+    <td>After roster sync upload (6+ flights detected)</td>
+    <td>"You fly 6x this month. Roster Bundle = $23.94 vs $29.94 PAYG. Save?"</td>
+    <td>Economy → Roster Bundle</td>
+    <td>Behavior data triggers it. We know their schedule from the roster. Hyper-personalized.</td>
+  </tr>
+  <tr>
+    <td><strong>3</strong></td>
+    <td>Hit 80% of monthly data pool</td>
+    <td>"You're nearly out of data. Refuel now or upgrade to Business for 15 GB?"</td>
+    <td>Premium → Business</td>
+    <td>Pain in the moment. The user is already experiencing the constraint and is most receptive.</td>
+  </tr>
+  <tr>
+    <td><strong>4</strong></td>
+    <td>3-month subscriber anniversary</td>
+    <td>"You've been flying with us 3 months. Annual Cockpit = $299 — save $360 vs monthly. Ready?"</td>
+    <td>Business → Cockpit annual</td>
+    <td>Proven loyal user. 3 months shows intention. Annual prepay = day-1 cash flow for us.</td>
+  </tr>
+  <tr>
+    <td><strong>5</strong></td>
+    <td>First long-haul flight detected in roster</td>
+    <td>"Long-haul flight detected. First plan covers 50 GB pool — enough for the whole trip."</td>
+    <td>Premium → First</td>
+    <td>Route-triggered from roster data. Relevant at exactly the right moment.</td>
+  </tr>
+  <tr>
+    <td><strong>6</strong></td>
+    <td>Senior crew / Purser badge detected in profile</td>
+    <td>"Senior crew? First Suite includes layover concierge access and a status badge."</td>
+    <td>First → First Suite</td>
+    <td>Status-triggered. Feels like a recognition, not a sales pitch. Identity-aligned.</td>
+  </tr>
+  <tr>
+    <td><strong>7</strong></td>
+    <td>Year 1 renewal (30 days before Cockpit annual expires)</td>
+    <td>"Renew Cockpit for Year 2? Lock in your price + 5% loyalty credit."</td>
+    <td>Retention — Cockpit → Cockpit Year 2</td>
+    <td>Anniversary moment. Loyalty credit is cheap; retention at year 2 is highly valuable.</td>
+  </tr>
+</table>
+
+<h3>Implementation phasing</h3>
+<table>
+  <tr>
+    <th>Phase</th>
+    <th>Nudges included</th>
+    <th>Dev effort</th>
+    <th>Priority rationale</th>
+  </tr>
+  <tr class="base"><td><strong>v1.0 (launch)</strong></td><td>#1 (refuel trigger) + #3 (pool 80%)</td><td>2 weeks</td><td>Highest payoff / effort. No feature dependencies. Ship with the app.</td></tr>
+  <tr><td>v1.1 (4 weeks post-launch)</td><td>#2 (roster sync) + #4 (3-month anniversary)</td><td>1 week</td><td>Requires roster feature live. Anniversary is a scheduled notification — low effort.</td></tr>
+  <tr><td>v1.2 (8 weeks post-launch)</td><td>#5 (long-haul detection) + #7 (year-1 renewal)</td><td>2-3 weeks</td><td>Needs route classification layer from roster OCR. Year-1 renewal is a day-335 scheduled push.</td></tr>
+  <tr><td>v2.0 (6 months post-launch)</td><td>#6 (status/promotion detection)</td><td>1 month</td><td>Requires crew profile / rank data. Most complex signal to obtain reliably.</td></tr>
+</table>
+
+<h3>Anti-patterns — what we explicitly decided NOT to do</h3>
+<ul>
+  <li>No "upgrade!" banners everywhere — users mute them, they erode trust</li>
+  <li>No hidden cost comparison — honesty about the math is a differentiator vs competitors</li>
+  <li>No forced upgrade after X days — cabin crew hate forced anything (they operate on strict schedules already)</li>
+  <li>No charge for downgrades — one-way ratchet by choice only. A user who tries Business and goes back to Premium should be able to do so freely.</li>
+</ul>
+
+<!-- ─── 6. 5K TO 20K ─── -->
+<h2 id="5kto20k">6. The 5K to 20K jump — the hardest growth phase</h2>
+
+<div class="discussion-block">
+  <h4>What we discussed</h4>
+  <p>Emirates Airlines employs approximately 22,000 cabin crew. At 25% penetration — which is an aggressive but achievable target via word-of-mouth in a close-knit professional community — that gives us approximately 5,500 users. The Month 24 target is 5,000 users, which aligns with this ceiling.</p>
+  <p>Getting to 20,000 users means the Emirates ceiling is not enough. We must expand to other airlines: Etihad, JAL, ANA, Qatar Airways, potentially Singapore Airlines and Cathay Pacific. Each airline represents a separate word-of-mouth network, a different cultural onboarding dynamic, and potentially a new partnership relationship.</p>
+  <p>The core tension: from 0 to 5K, the product markets itself through Emirates crew room conversations and Instagram. From 5K to 20K, we need a new acquisition engine and a new brand positioning — "not just Emirates eSIM, but Crew Universal eSIM." That is a different product story to tell.</p>
+</div>
+
+<table>
+  <tr>
+    <th>Scale phase</th>
+    <th>What drives growth</th>
+    <th>Risk</th>
+  </tr>
+  <tr><td>0 to 1K (Beta + Soft Launch)</td><td>Akito's personal network, Harikai influencer, Emirates crew Instagram</td><td>Word-of-mouth velocity unknown. Could take 6-18 months.</td></tr>
+  <tr><td>1K to 5K (Crew Network)</td><td>Product-led growth. Crew recommend to crew. Roster feature creates stickiness.</td><td>Churn rate in Economy tier determines whether 5K is reachable.</td></tr>
+  <tr class="base"><td><strong>5K to 20K (Multi-Airline)</strong></td><td>New airline partnerships. New crew communities. Brand repositioning.</td><td>This is the pivot point. Emirates ceiling = ~5.5K. Must break out by M24 + 6 months.</td></tr>
+  <tr><td>20K to 100K (Regional Scale)</td><td>Multiple airlines live. Brand recognized across aviation. Organic + referral flywheel.</td><td>Logistics, support, multi-airline account management complexity.</td></tr>
+</table>
+
+<div class="warn-box">
+  <strong>The strategic challenge at 5K:</strong> The model shows the math as linear — just add more users and revenue scales. The actual difficulty is acquiring the next airline cohort. Etihad crew operate differently from Emirates crew. JAL/ANA crew likely require Japanese-language onboarding (Akito is the right person to lead this). Each airline adds a non-trivial partnership overhead that is not modeled in Tab 14.
+</div>
+
+<!-- ─── 7. FLAGS ─── -->
+<h2 id="flags">7. The honest flags</h2>
+
+<div class="flag-box">
+  <div style="display: flex; gap: 10px; align-items: flex-start;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0; margin-top:2px;">
+      <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="12" y1="9" x2="12" y2="13" stroke="#D71921" stroke-width="2" stroke-linecap="round"/>
+      <line x1="12" y1="17" x2="12.01" y2="17" stroke="#D71921" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <strong>Flag 1 — OPEX is a placeholder, not real cost</strong>
+      <p style="margin: 6px 0 0;">The model's $1.80/user/month OPEX line is a modeled estimate covering Stripe fees, AWS, support amortization, SMS costs, and dev tools. As of launch day there is literally $0 of this being spent. The model shows a "Monthly Net Profit" figure that deducts this placeholder. Do not cite that net figure in early-stage conversations — cite gross, which equals real net today.</p>
+    </div>
+  </div>
+</div>
+
+<div class="warn-box">
+  <strong>Flag 2 — Linear scaling is optimistic beyond 5K</strong>
+  <p style="margin: 8px 0 0;">The model multiplies one blended per-user number across all scale steps. In reality, scaling from 5K to 20K requires airline expansion costs (partnership development, localization, new onboarding flows) that are not captured anywhere in the model. The $249K/mo at 20K users is gross data revenue — it does not include any business development cost to acquire the Etihad, JAL, or ANA partnerships.</p>
+</div>
+
+<div class="warn-box">
+  <strong>Flag 3 — Tier mix evolution is modeled as directional, not predictive</strong>
+  <p style="margin: 8px 0 0;">The "realistic tier mix evolution" table in Section 3.2 is the authors' estimate of how user behavior changes as a platform matures. It is consistent with general SaaS patterns but has zero validation for crew-specific eSIM behavior. The 7 nudges are the mechanism — but whether Nudge #1 achieves a 10% conversion rate or a 25% conversion rate is unknown until A/B testing is live.</p>
+</div>
+
+<!-- ─── 8. TAKEAWAY ─── -->
+<h2 id="takeaway">8. Strategic takeaway</h2>
+
+<p>Tab 14 is the simplest tab to read and the hardest to act on. The math is clean: users × $12.48 = total gross. The hard part is getting to each user count milestone.</p>
+
+<p>Three decisions emerge from this session:</p>
+
+<table>
+  <tr>
+    <th>Decision</th>
+    <th>What it means</th>
+    <th>Owner</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td><strong>Build nudge #1 at v1.0 launch</strong></td>
+    <td>The refuel-to-Premium trigger (after 3 top-ups) is the single highest-leverage feature in the product. It converts proven PAYG spenders at exactly the right moment. 2 weeks dev, best possible ROI.</td>
+    <td>Balraj (product spec), dev team</td>
+    <td><span class="pill locked">Decided</span></td>
+  </tr>
+  <tr>
+    <td><strong>Present gross = net in all real-world discussions</strong></td>
+    <td>Do not show the $1.80/user OPEX-deducted net in pitch materials or to investors. OPEX = $0 today. Gross is the honest number.</td>
+    <td>Balraj</td>
+    <td><span class="pill locked">Decided</span></td>
+  </tr>
+  <tr>
+    <td><strong>Model tier mix evolution as a separate scenario</strong></td>
+    <td>Add a new column or scenario tab that models the $15.20/user endgame (mature 100K mix) alongside the flat $12.48 base. Shows upside potential honestly.</td>
+    <td>Balraj</td>
+    <td><span class="pill open">Queued</span></td>
+  </tr>
+</table>
+
+<blockquote>
+  The $12.48 is not fate — it is the floor. Every nudge that works, every user that climbs a rung, pushes it higher. The model conservatively shows $15M at 100K. The realistic ceiling is $18.2M. The delta is earned by the product team, not assumed.
+</blockquote>
+
+<!-- ─── 9. QUEUE ─── -->
+<h2 id="queue">9. Open items / queue</h2>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Detail</th>
+    <th>Owner</th>
+    <th>Priority</th>
+  </tr>
+  <tr>
+    <td>Akito: airline expansion sequencing</td>
+    <td>Which airline after Emirates has the best crew connectivity to Akito's network? Is Etihad reachable through same layover-chat channels? What is the realistic timeline from "Emirates at 5K" to "Etihad cohort live"? Does JAL/ANA crew require Japanese-language onboarding?</td>
+    <td>Akito</td>
+    <td><span class="pill open">High</span></td>
+  </tr>
+  <tr>
+    <td>Model tier mix evolution as scenario</td>
+    <td>Add a "Realistic tier mix" column to Tab 14 showing the $15.20/user endgame at 100K. Currently the sheet only shows flat $12.48. The evolving mix table exists in the discussion — it should be in the model.</td>
+    <td>Balraj</td>
+    <td><span class="pill open">Medium</span></td>
+  </tr>
+  <tr>
+    <td>Nudge #1 product spec</td>
+    <td>Write the exact product spec for the "after 3rd refuel" trigger — trigger condition, message copy, deep link to Premium upgrade, A/B test plan. Required for dev handoff at v1.0.</td>
+    <td>Balraj + Akito</td>
+    <td><span class="pill open">High</span></td>
+  </tr>
+  <tr>
+    <td>Model airline expansion costs</td>
+    <td>Tab 14 currently has no cost for acquiring airline partnerships (Etihad, JAL, ANA). These are real costs (travel, legal, time). Consider adding a "partnership overhead" line to the 20K+ scenarios.</td>
+    <td>Balraj</td>
+    <td><span class="pill open">Low</span></td>
+  </tr>
+  <tr>
+    <td>Validate nudge conversion assumptions</td>
+    <td>The tier mix evolution table assumes nudges work at a meaningful rate. We have no data yet. Set up A/B framework so we can measure conversion from Nudge #1 and #3 in the first 30 days post-launch.</td>
+    <td>Balraj</td>
+    <td><span class="pill open">Medium</span></td>
+  </tr>
+</table>
+
+<div class="footer-note">
+  <strong>Source:</strong> Peanut-eSIM-PL-Model-2026-05-31.xlsx, Volume Scenarios tab, verified 2026-06-02.<br>
+  <strong>Sanitization note:</strong> "wholesale supplier" throughout = the actual wholesale data supplier (name redacted for public repo).<br>
+  <strong>Prepared by:</strong> Balraj (system/ops) + Akito-referenced context. Built 2026-06-02.
+</div>
+
+</div><!-- /.container -->
+</body>
+</html>
