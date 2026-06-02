@@ -85,6 +85,32 @@
     color: var(--muted); max-width: 720px; margin: 0 0 22px; font-size: 15px;
   }
 
+  /* Burn-rate toggle */
+  .burn-toggle {
+    display: flex; gap: 8px; justify-content: center;
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .burn-toggle button {
+    font: inherit; cursor: pointer; padding: 10px 22px;
+    background: white; color: var(--green);
+    border: 2px solid var(--green); border-radius: 999px;
+    font-weight: 600; font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .burn-toggle button:hover { background: #f0f9f4; }
+  .burn-toggle button.active { background: var(--green); color: white; }
+  .burn-toggle button[data-burn="11000"] {
+    color: var(--gold); border-color: var(--gold);
+  }
+  .burn-toggle button[data-burn="11000"]:hover { background: #fff8e6; }
+  .burn-toggle button[data-burn="11000"].active {
+    background: var(--gold); color: white;
+  }
+  .burn-label {
+    text-align: center; font-size: 12px; color: var(--muted);
+    margin: -4px 0 14px; font-style: italic;
+  }
+
   /* Chart cards */
   .chart-card {
     background: var(--card); border: 1px solid var(--line);
@@ -449,19 +475,24 @@
 <section>
   <h2 class="section-title"><span class="num">4</span>Cumulative cash position</h2>
   <p class="section-sub">
-    This chart models the $11K/mo fixed burn (salaries, infra, ops) <strong style="color:#C9A03B;">— this is a placeholder, not actual tracked spend.</strong> The sheet's Net column does NOT show this cost.
-    The trough — deepest negative — hits around M5-M6 <em>under this assumption</em>. The crossing back to zero is the estimated breakeven.
+    This chart subtracts a monthly fixed burn from net contribution. Toggle below to switch between the realistic "no salaries" baseline ($6K/mo for infra + legal + misc) and the stress-test "with founder salaries" scenario ($11K/mo). <strong style="color:#C9A03B;">Burn is a placeholder either way — not actual tracked spend.</strong>
   </p>
 
+  <div class="burn-toggle" role="tablist" aria-label="Fixed burn assumption">
+    <button type="button" data-burn="6000" class="active">No founder salaries ($6K/mo)</button>
+    <button type="button" data-burn="11000">With salaries ($11K/mo)</button>
+  </div>
+  <div class="burn-label">$6K = $3K infra + $2K legal + $1K misc (no founder draws). $11K adds $5K founder salaries.</div>
+
   <div class="chart-card">
-    <h3>Cumulative cash (net contribution minus $11K/mo fixed burn) <span style="background:#C9A03B;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:6px;">PLACEHOLDER</span></h3>
-    <p class="sub">Fixed burn = placeholder. Will be updated when real expenses are tracked. Trough ~M5-M6 at approx. -$30K cumulative. Zero crossing ~M11-M12 — all conditional on $11K/mo assumption.</p>
+    <h3>Cumulative cash (net contribution minus <span data-field="burnLabel">$6K/mo</span> fixed burn) <span style="background:#C9A03B;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:6px;">PLACEHOLDER</span></h3>
+    <p class="sub">Fixed burn = placeholder. Trough <span data-field="troughLabel">~$22K at M6</span>. Zero crossing <span data-field="crossLabel">between M10 and M11</span>. Both move when you switch scenarios above.</p>
     <div class="chart-wrap tall"><canvas id="cumulativeChart"></canvas></div>
   </div>
 
   <div class="callout-gold" style="margin-top:18px;">
-    <strong>What this means for funding:</strong> The cumulative trough is approximately -$30,000 (M5-M6).
-    That is the minimum runway you need to get to true breakeven. Months 1-11 consume roughly $55,000-65,000 total
+    <strong>What this means for funding:</strong> The cumulative trough is approximately <span data-field="troughDollar">-$22,366</span> (<span data-field="troughMonth">M6</span>).
+    That is the minimum runway to true breakeven. Months 1 to the zero crossing consume roughly <span data-field="totalBurn">~$22K</span> total
     (fixed burn outpacing contribution). Every dollar raised above that is growth capital for faster user acquisition.
   </div>
 </section>
@@ -472,8 +503,7 @@
 <section>
   <h2 class="section-title"><span class="num">5</span>The "TRUE breakeven" estimate <span style="background:#C9A03B;color:#fff;font-size:13px;font-weight:700;padding:2px 10px;border-radius:4px;margin-left:8px;vertical-align:middle;">PLACEHOLDER ASSUMPTION</span></h2>
   <p class="section-sub">
-    The sheet's Net column looks good by M6. But that column only subtracts COGS — not the $11K/mo
-    fixed burn placeholder. Here's what the two breakeven estimates mean — <strong>neither is confirmed until real costs are tracked.</strong>
+    The sheet's Net column looks good by M6. But that column only subtracts COGS — not the fixed burn placeholder. Here's what the two breakeven estimates mean — <strong>neither is confirmed until real costs are tracked.</strong> Use the toggle in Section 4 to flip between $6K and $11K burn assumptions.
   </p>
 
   <div class="breakeven-block">
@@ -484,35 +514,37 @@
         <div class="detail">
           Monthly net contribution &gt; $0 after subtracting data COGS from revenue. The spreadsheet turns green here.
           This means you are no longer paying your wholesale supplier more than you earn — but you haven't paid
-          yourself or your server bills yet.
+          your server bills (or yourself, if you choose to) yet.
         </div>
       </div>
     </div>
     <div class="be-row">
       <div class="icon">&#9888;&#65039;</div>
       <div class="body">
-        <div class="label">Estimated breakeven (IF $11K/mo fixed burn holds) <span class="pill pill-red">M11-M12 · ~2,000 users</span> <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;">PLACEHOLDER</span></div>
+        <div class="label">Estimated breakeven (IF fixed burn holds at <span data-field="burnLabelShort">$6K/mo</span>) <span class="pill pill-red" data-field="crossPill">M10-M11 &middot; ~1,800 users</span> <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-left:4px;">PLACEHOLDER</span></div>
         <div class="detail">
-          IF fixed costs land around $11,000/month (~$5K salaries, ~$3K cloud/API/SMS infra, ~$2K legal/compliance, ~$1K misc), net contribution would cover them by M11-M12. <strong>No actual expenses have been incurred yet as of 2026-06-01.</strong> This timeline will be updated once real costs are tracked.
+          <strong>Default scenario — no founder salaries ($6K/mo):</strong> ~$3K cloud/API/SMS infra, ~$2K legal/compliance, ~$1K misc. Net contribution covers this by M10-M11.<br><br>
+          <strong>Stress test — with founder salaries ($11K/mo, adds $5K founder draw):</strong> Net contribution covers this by M14-M15 instead.<br><br>
+          <strong>No actual expenses have been incurred yet as of 2026-06-01.</strong> Real OPEX is closer to $200-500/mo today. Both estimates here are conservative placeholders.
         </div>
       </div>
     </div>
     <div class="be-row">
       <div class="icon">&#9989;</div>
       <div class="body">
-        <div class="label">Why the gap matters for investors <span class="pill pill-green">Action: raise for M11-M12</span></div>
+        <div class="label">Why the gap matters for investors <span class="pill pill-green">Action: raise <span data-field="raiseDollar">~$25K</span> as buffer</span></div>
         <div class="detail">
-          When fundraising, use the estimated breakeven range (M11-M12, ~$55-65K cumulative burn — <strong>based on $11K/mo placeholder</strong>).
+          When fundraising, cite the cumulative trough (<span data-field="raiseTrough">~$22K at M6</span> in the active scenario) — that is the minimum runway needed.
           Citing M6 as breakeven will destroy credibility in any serious investor meeting.
-          The $11K fixed burn line is a placeholder estimate in the cash model — update it before showing to investors once real costs are known.
+          Update the burn line before showing to investors once real costs are tracked.
         </div>
       </div>
     </div>
   </div>
 
   <div class="chart-card" style="margin-top:18px;">
-    <h3>Paper Net vs Estimated Net (after $11K/mo fixed burn placeholder) — same 24-month window</h3>
-    <p class="sub">Gold = contribution net. Red dashed = estimated net after $11K/mo placeholder burn. <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;">PLACEHOLDER</span> Fixed burn = not real data. Gap closes at M11-M12 <em>under this assumption</em>.</p>
+    <h3>Paper Net vs Estimated Net (after <span data-field="burnLabel2">$6K/mo</span> fixed burn placeholder) — same 24-month window</h3>
+    <p class="sub">Gold = contribution net. Red dashed = estimated net after fixed burn. <span style="background:#C9A03B;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;">PLACEHOLDER</span> Burn is not real data; toggle in Section 4 to compare scenarios.</p>
     <div class="chart-wrap"><canvas id="breakevenChart"></canvas></div>
   </div>
 </section>
@@ -752,7 +784,7 @@ var users = [50, 95, 150, 230, 320, 450, 640, 860, 1100, 1450, 1770, 2100, 2300,
 // M1=526, M3=1580, M6=4738, M9=11500, M12=22113, M15=29500, M18=36800, M21=45200, M24=52650
 var netContrib = [526, 1000, 1580, 2420, 3370, 4738, 6740, 9050, 11500, 15300, 18600, 22113, 24200, 27200, 29500, 32100, 34500, 36800, 39400, 42300, 45200, 47600, 50100, 52650];
 
-var fixedBurn = 11000;
+var fixedBurn = 6000; // Default: no founder salaries scenario
 
 // True net (contrib - burn)
 var trueNet = netContrib.map(function(v){ return v - fixedBurn; });
@@ -834,13 +866,13 @@ new Chart(growthCtx, {
 
 // ─── CHART 2: Cumulative Cash ──────────────────────────────────
 var cumCtx = document.getElementById('cumulativeChart').getContext('2d');
-new Chart(cumCtx, {
+var cumChart = new Chart(cumCtx, {
   type: 'line',
   data: {
     labels: months,
     datasets: [
       {
-        label: 'Cumulative cash (net - $11K/mo burn)',
+        label: 'Cumulative cash (net - $6K/mo burn)',
         data: cumulative,
         borderColor: '#1a8a5a',
         backgroundColor: function(ctx) {
@@ -894,7 +926,7 @@ new Chart(cumCtx, {
 
 // ─── CHART 3: Breakeven comparison ────────────────────────────
 var beCtx = document.getElementById('breakevenChart').getContext('2d');
-new Chart(beCtx, {
+var beChart = new Chart(beCtx, {
   type: 'line',
   data: {
     labels: months,
@@ -911,7 +943,7 @@ new Chart(beCtx, {
         tension: 0.4
       },
       {
-        label: 'TRUE Net (after $11K/mo burn)',
+        label: 'TRUE Net (after $6K/mo burn)',
         data: trueNet,
         borderColor: '#D71921',
         backgroundColor: 'rgba(215,25,33,0.06)',
@@ -948,6 +980,84 @@ new Chart(beCtx, {
       }
     }
   }
+});
+
+// ─── BURN TOGGLE: switch between $6K (no salaries) and $11K (with salaries) ───
+function recalcBurn(burn) {
+  var net = netContrib.map(function(v){ return v - burn; });
+  var cum = [];
+  var run = 0;
+  net.forEach(function(v){ run += v; cum.push(Math.round(run)); });
+  var troughIdx = 0, troughVal = cum[0];
+  for (var i = 1; i < cum.length; i++) {
+    if (cum[i] < troughVal) { troughVal = cum[i]; troughIdx = i; }
+  }
+  var crossIdx = -1;
+  for (var i = 0; i < cum.length; i++) {
+    if (cum[i] >= 0) { crossIdx = i; break; }
+  }
+  return { net: net, cum: cum, troughIdx: troughIdx, troughVal: troughVal, crossIdx: crossIdx };
+}
+
+function setBurn(burn) {
+  var r = recalcBurn(burn);
+  var burnK = '$' + (burn/1000) + 'K/mo';
+  var troughMonth = 'M' + (r.troughIdx + 1);
+  var troughKShort = '~$' + Math.abs(Math.round(r.troughVal/1000)) + 'K';
+  var troughLabel = troughKShort + ' at ' + troughMonth;
+  var troughDollar = '-$' + Math.abs(r.troughVal).toLocaleString();
+  var crossLabel, crossPill, raiseDollar;
+  if (r.crossIdx > 0) {
+    crossLabel = 'between M' + r.crossIdx + ' and M' + (r.crossIdx + 1);
+    crossPill = 'M' + r.crossIdx + '-M' + (r.crossIdx + 1) + ' · ~' + users[r.crossIdx - 1].toLocaleString() + ' users';
+  } else {
+    crossLabel = 'within 24-month window';
+    crossPill = 'M' + (r.crossIdx + 1) + ' · ~' + users[r.crossIdx].toLocaleString() + ' users';
+  }
+  raiseDollar = '~$' + (Math.ceil(Math.abs(r.troughVal) / 5000) * 5) + 'K';
+
+  var updates = {
+    burnLabel: burnK,
+    burnLabel2: burnK,
+    burnLabelShort: burnK,
+    troughLabel: troughLabel,
+    crossLabel: crossLabel,
+    troughDollar: troughDollar,
+    troughMonth: troughMonth,
+    totalBurn: troughKShort,
+    crossPill: crossPill,
+    raiseDollar: raiseDollar,
+    raiseTrough: troughDollar + ' at ' + troughMonth
+  };
+
+  document.querySelectorAll('[data-field]').forEach(function(el) {
+    var f = el.getAttribute('data-field');
+    if (updates[f] !== undefined) el.textContent = updates[f];
+  });
+
+  if (typeof cumChart !== 'undefined' && cumChart) {
+    cumChart.data.datasets[0].data = r.cum;
+    cumChart.data.datasets[0].label = 'Cumulative cash (net - ' + burnK + ' burn)';
+    cumChart.update();
+  }
+  if (typeof beChart !== 'undefined' && beChart) {
+    beChart.data.datasets[1].data = r.net;
+    beChart.data.datasets[1].label = 'TRUE Net (after ' + burnK + ' burn)';
+    beChart.update();
+  }
+
+  document.querySelectorAll('.burn-toggle button').forEach(function(b) {
+    b.classList.toggle('active', parseInt(b.getAttribute('data-burn'), 10) === burn);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.burn-toggle button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setBurn(parseInt(b.getAttribute('data-burn'), 10));
+    });
+  });
+  setBurn(6000); // initialize to default
 });
 
 // ─── CHART 4: Sensitivity grouped bar ─────────────────────────
