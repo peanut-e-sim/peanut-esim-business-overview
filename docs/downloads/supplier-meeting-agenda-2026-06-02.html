@@ -261,15 +261,17 @@
 <!-- ============================================================ -->
 <section>
   <h2><span class="num">1</span>Baseline &mdash; what are we paying today?</h2>
-  <p class="sub">Establish the actual current terms before anything else.</p>
+  <p class="sub">We already have the <em>Standard</em> rate sheet they shared (eSIM Go format). These questions probe what&apos;s NOT on that sheet.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">1.1</td><td>Can you share the full rate card by country/region for our current account tier?</td><td class="why">We model $1.34/GB blended at a 75/20/5 geo mix. Need actual per-country numbers to validate.</td></tr>
-      <tr><td class="num-col">1.2</td><td>What account tier are we currently on, and what triggers a move to a better tier?</td><td class="why">We believe we&apos;re a downstream sub-reseller. Want explicit clarity.</td></tr>
-      <tr><td class="num-col">1.3</td><td>Are there any fixed monthly platform / minimum commitment fees we&apos;re paying today?</td><td class="why">Common to find hidden fees buried in published rates.</td></tr>
-      <tr><td class="num-col">1.4</td><td>What are your standard payment terms &mdash; Net 30, prepay, on-demand?</td><td class="why">Affects working capital model and our Cockpit-prepay float math.</td></tr>
-      <tr><td class="num-col">1.5</td><td>Is the rate we see the <strong>consumed-GB</strong> rate, or <strong>provisioned-GB</strong>? Where does breakage go?</td><td class="why">Core economic question. Consumed-GB billing makes our carryover liability zero cost; provisioned makes it real.</td></tr>
+      <tr><td class="num-col">1.1</td><td>The rate sheet you shared is labelled &ldquo;Standard.&rdquo; What other rate tiers exist above this &mdash; Premium, Volume, Strategic, Direct? What does it take to qualify for each?</td><td class="why">&ldquo;Standard&rdquo; usually implies better rates exist for larger customers. We want to know the ceiling, not just the floor.</td></tr>
+      <tr><td class="num-col">1.2</td><td>The shared sheet blocks UAE-resident users. What&apos;s the workaround for serving Emirates crew based in DXB? Is there a UAE-specific rate or an alternate plan?</td><td class="why">100% of our launch userbase is UAE-resident. If the published rate doesn&apos;t apply to them, we need the actual rate that does.</td></tr>
+      <tr><td class="num-col">1.3</td><td>Have any rates on the shared sheet changed since you sent it? How do we get notified of future rate-sheet updates?</td><td class="why">We&apos;ve baked the rate-sheet numbers into our 24-month financial model. Surprise increases would break that.</td></tr>
+      <tr><td class="num-col">1.4</td><td>Are there fixed monthly platform / minimum-commitment / activation fees on top of the per-GB rates on the sheet?</td><td class="why">Common to find hidden fees that don&apos;t show up on the published per-country rate sheet.</td></tr>
+      <tr><td class="num-col">1.5</td><td>What account tier are we currently on, and what triggers a move to a better tier (volume, time, commitment)?</td><td class="why">Our 24-month rollout needs a concrete &ldquo;when do we earn a better deal&rdquo; answer.</td></tr>
+      <tr><td class="num-col">1.6</td><td>What are your standard payment terms &mdash; Net 30, prepay, on-demand?</td><td class="why">Affects working capital model and our Cockpit-prepay float math.</td></tr>
+      <tr><td class="num-col">1.7</td><td>Is the rate on the sheet the <strong>consumed-GB</strong> rate, or <strong>provisioned-GB</strong>? Where does breakage go &mdash; back to us or kept by you?</td><td class="why">Core economic question. Consumed-GB billing makes our carryover liability zero cost; provisioned makes it real.</td></tr>
     </tbody>
   </table>
 </section>
