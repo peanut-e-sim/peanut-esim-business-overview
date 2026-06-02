@@ -247,158 +247,158 @@
   <div class="meta">
     <div class="item"><div class="label">Prepared</div><div class="value">2026-06-02</div></div>
     <div class="item"><div class="label">Meeting attendee</div><div class="value">Balraj (CFO)</div></div>
-    <div class="item"><div class="label">Current scale</div><div class="value">~50 users (M1 cohort)</div></div>
-    <div class="item"><div class="label">12-month target</div><div class="value">2,100 users</div></div>
-    <div class="item"><div class="label">24-month target</div><div class="value">5,000 users</div></div>
-    <div class="item"><div class="label">Current blended cost</div><div class="value">$1.34/GB (modeled)</div></div>
+    <div class="item"><div class="label">Beta launch</div><div class="value">15 Aug 2026 (5 Emirates crew)</div></div>
+    <div class="item"><div class="label">Public launch</div><div class="value">1 Sept 2026</div></div>
+    <div class="item"><div class="label">12-month target</div><div class="value">2,100 users (M12)</div></div>
+    <div class="item"><div class="label">24-month target</div><div class="value">5,000 users (M24)</div></div>
+    <div class="item"><div class="label">Supplier role</div><div class="value">Tier-3 sub-reseller of eSIM Go</div></div>
+    <div class="item"><div class="label">Current blended cost</div><div class="value">$1.34/GB (modeled, unverified)</div></div>
   </div>
 </header>
 
 <div class="strategic-note">
-  <strong>Strategic framing:</strong> the relationship is small today but we&apos;re modeling for 5,000 users by M24 and 100K longer-term. The two answers that matter most are <strong>(a) when do we earn a real discount tier</strong>, and <strong>(b) is billing consumed-GB or provisioned-GB</strong>. Get those even if you get nothing else. Do <em>not</em> reveal our procurement Option C ($5K/mo direct alternative) &mdash; that&apos;s our unspoken leverage.
+  <strong>Strategic framing.</strong> Samurai is a Tier-3 sub-reseller of eSIM Go with a ~40% markup. We already have the Standard rate sheet. The three answers that matter most: <strong>(1) the UAE workaround that lets us actually launch</strong>, <strong>(2) whether their API exposes eSIM Go&apos;s same-SIM top-up (Refuel mechanic)</strong>, and <strong>(3) the migration path to eSIM Go direct if we outgrow them</strong>. Everything else is secondary. Do <em>not</em> reveal that we&apos;ve modeled the 3.5&times; profit jump from going direct &mdash; that&apos;s our silent leverage.
 </div>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">1</span>Baseline &mdash; what are we paying today?</h2>
-  <p class="sub">We already have the <em>Standard</em> rate sheet they shared (eSIM Go format). These questions probe what&apos;s NOT on that sheet.</p>
+  <h2><span class="num">1</span>UAE launch block &mdash; the launch-blocking question</h2>
+  <p class="sub">The Standard rate sheet you shared <strong>blocks UAE-resident users</strong>. 100% of our launch userbase is Emirates cabin crew based in DXB. Without a clear answer here we cannot ship.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">1.1</td><td>The rate sheet you shared is labelled &ldquo;Standard.&rdquo; What other rate tiers exist above this &mdash; Premium, Volume, Strategic, Direct? What does it take to qualify for each?</td><td class="why">&ldquo;Standard&rdquo; usually implies better rates exist for larger customers. We want to know the ceiling, not just the floor.</td></tr>
-      <tr><td class="num-col">1.2</td><td>The shared sheet blocks UAE-resident users. What&apos;s the workaround for serving Emirates crew based in DXB? Is there a UAE-specific rate or an alternate plan?</td><td class="why">100% of our launch userbase is UAE-resident. If the published rate doesn&apos;t apply to them, we need the actual rate that does.</td></tr>
-      <tr><td class="num-col">1.3</td><td>Have any rates on the shared sheet changed since you sent it? How do we get notified of future rate-sheet updates?</td><td class="why">We&apos;ve baked the rate-sheet numbers into our 24-month financial model. Surprise increases would break that.</td></tr>
-      <tr><td class="num-col">1.4</td><td>Are there fixed monthly platform / minimum-commitment / activation fees on top of the per-GB rates on the sheet?</td><td class="why">Common to find hidden fees that don&apos;t show up on the published per-country rate sheet.</td></tr>
-      <tr><td class="num-col">1.5</td><td>What account tier are we currently on, and what triggers a move to a better tier (volume, time, commitment)?</td><td class="why">Our 24-month rollout needs a concrete &ldquo;when do we earn a better deal&rdquo; answer.</td></tr>
-      <tr><td class="num-col">1.6</td><td>What are your standard payment terms &mdash; Net 30, prepay, on-demand?</td><td class="why">Affects working capital model and our Cockpit-prepay float math.</td></tr>
-      <tr><td class="num-col">1.7</td><td>Is the rate on the sheet the <strong>consumed-GB</strong> rate, or <strong>provisioned-GB</strong>? Where does breakage go &mdash; back to us or kept by you?</td><td class="why">Core economic question. Consumed-GB billing makes our carryover liability zero cost; provisioned makes it real.</td></tr>
+      <tr><td class="num-col">1.1</td><td>Which specific plans on the Standard sheet ARE usable by UAE-resident users? List the SKUs, country plans, and the per-GB rate that applies.</td><td class="why">We need a defined SKU list, not a verbal &ldquo;we&apos;ll figure it out.&rdquo;</td></tr>
+      <tr><td class="num-col">1.2</td><td>If we ship a beta to 5 Emirates crew (DXB addresses, UAE SIM cards in their phones) on 15 Aug 2026, will the eSIMs install and activate on your platform end-to-end?</td><td class="why">Launch target is 1 Sept 2026. This is a yes/no go/no-go question.</td></tr>
+      <tr><td class="num-col">1.3</td><td>If your Standard plans can&apos;t serve UAE crew, can you re-route us via an eSIM Go plan SKU that does &mdash; and at what rate?</td><td class="why">eSIM Go is your upstream; they have UAE-friendly inventory. If you can&apos;t serve us, can they?</td></tr>
+      <tr><td class="num-col">1.4</td><td>Does the UAE block apply only to the eSIM profile residency, or also to the user&apos;s data plan when roaming OUT of the UAE? (e.g., Emirates crew on a London layover &mdash; do they consume from a UAE-blocked profile?)</td><td class="why">Need to know if the block is residency-only or session-active too. Changes the workaround completely.</td></tr>
+      <tr><td class="num-col">1.5</td><td>If we go live with the workaround you propose, are there ongoing constraints we need to design around (e.g., user must be physically outside UAE before activating)?</td><td class="why">UX consequence &mdash; if true, we need an onboarding screen warning the user.</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">2</span>Volume discount triggers</h2>
-  <p class="sub">When do we earn a better rate? What does the staircase look like?</p>
+  <h2><span class="num">2</span>Same-SIM Refuel &mdash; the moat question</h2>
+  <p class="sub">Refuel ($4.99 retail, $3.65 net margin per event) is one of the 8-feature moats vs Crew SIM. The mechanic only works if your reseller API exposes eSIM Go&apos;s same-SIM top-up endpoint.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">2.1</td><td>What&apos;s your published volume-discount schedule? At what monthly GB or $-spend do we move tier?</td><td class="why">Need this number to know exactly when to come back and renegotiate.</td></tr>
-      <tr><td class="num-col">2.2</td><td>If we commit to X GB/month for 12 months, what discount can you offer?</td><td class="why">Tests appetite for volume commitment vs pay-as-you-go.</td></tr>
-      <tr><td class="num-col">2.3</td><td>Do you offer prepay discounts (e.g., 6/12-month bulk credits)?</td><td class="why">Our Cockpit annual prepay can fund inventory prepay if the discount is meaningful.</td></tr>
-      <tr><td class="num-col">2.4</td><td>At our current ~50 active users, are there ANY pricing improvements available, or do we need to hit real volume first?</td><td class="why">Sets honest expectation. If &ldquo;no&rdquo; &mdash; we grow first, not negotiate now.</td></tr>
-      <tr><td class="num-col">2.5</td><td>If we reach 1,500 / 5,000 / 10,000 active users in 12&ndash;24 months, what tier would that put us in?</td><td class="why">Anchors a future trajectory and creates a target for them to compete for.</td></tr>
+      <tr><td class="num-col">2.1</td><td>Does your reseller API expose eSIM Go&apos;s <strong>same-SIM data top-up</strong> endpoint &mdash; or does &ldquo;adding more GB&rdquo; require a re-install / new QR code?</td><td class="why">This single answer determines whether Refuel is a 1-tap UX or a 30-step UX. Crew SIM doesn&apos;t have this &mdash; it&apos;s our moat.</td></tr>
+      <tr><td class="num-col">2.2</td><td>Latency from purchase to GB being usable on the active eSIM profile?</td><td class="why">UX promise is sub-30 seconds. Anything over 2 minutes kills the feature.</td></tr>
+      <tr><td class="num-col">2.3</td><td>Can a single eSIM profile hold multiple concurrent data pools &mdash; subscription pool + refuel pool + carryover pool &mdash; with separate expiry rules?</td><td class="why">This is the architecture under our Tab 20 carryover liability + dynamic allocation model. If your API forces a single pool, we have to redesign.</td></tr>
+      <tr><td class="num-col">2.4</td><td>Per-top-up minimums (500 MB? 1 GB?) or activation fees that change the unit economics on a $4.99 / 1 GB sale?</td><td class="why">If your minimum is 2 GB, the $4.99 refuel SKU breaks.</td></tr>
+      <tr><td class="num-col">2.5</td><td>If same-SIM top-up isn&apos;t exposed today, what&apos;s the roadmap and timeline? Is it something you&apos;d build for us if we commit volume?</td><td class="why">Opens the door to a co-build commitment.</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">3</span>Cost model &amp; billing mechanics</h2>
-  <p class="sub">The plumbing &mdash; how money flows between us, what happens to unused inventory, how partial GBs are tracked.</p>
+  <h2><span class="num">3</span>Path to eSIM Go direct &mdash; the existential question</h2>
+  <p class="sub">You sit between us and eSIM Go (your upstream). Our model says going direct = 3.5&times; the net profit at 5K users. Either you close that gap, or you become a stepping stone we eventually leave.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">3.1</td><td>When a user&apos;s data pool carries over to next month, are we billed for carried-over GB at original-month rate or current-month rate?</td><td class="why">Affects how we model deferred-revenue cost on the balance sheet (Tab 20).</td></tr>
-      <tr><td class="num-col">3.2</td><td>Does an unused pool that expires after our policy window cost us anything?</td><td class="why">Our &ldquo;free margin from carry expiry&rdquo; thesis (~$132K/yr at 5K users) depends on this answer.</td></tr>
-      <tr><td class="num-col">3.3</td><td>How is partial-GB consumption tracked and billed &mdash; to the nearest MB, or rounded up to whole GBs?</td><td class="why">Material for high-volume Tier-C exposure.</td></tr>
-      <tr><td class="num-col">3.4</td><td>Are there any per-activation fees on top of the per-GB rate?</td><td class="why">Common hidden cost &mdash; verify before signing anything.</td></tr>
-      <tr><td class="num-col">3.5</td><td>What&apos;s the billing reconciliation cycle, and can we get usage data via API daily/hourly?</td><td class="why">Needed for real-time COGS in our P&amp;L.</td></tr>
+      <tr><td class="num-col">3.1</td><td>What customer tier exists ABOVE Standard in your structure &mdash; Premium, Volume, Strategic Partner? What are the rate differences and qualification thresholds?</td><td class="why">If &ldquo;Standard&rdquo; is what they call our pricing today, there&apos;s by definition something better above it. We want the number.</td></tr>
+      <tr><td class="num-col">3.2</td><td>At what monthly volume (GB consumed or $-spend) do we move from Standard to the next tier? Numbers, not promises.</td><td class="why">Drives our 24-month rollout planning. We need a concrete &ldquo;at 1.2K users you&apos;re here, at 5K users you&apos;re there&rdquo; map.</td></tr>
+      <tr><td class="num-col">3.3</td><td>Would you introduce us directly to eSIM Go when our volume warrants it, on terms that preserve your value-add as integration partner?</td><td class="why">This is the relationship-defining question. If yes, you have a long-term partner. If no, we&apos;re looking for the exit.</td></tr>
+      <tr><td class="num-col">3.4</td><td>If we choose to migrate to eSIM Go direct in Year 2, what&apos;s the contract notice, termination cost, and data/account migration process?</td><td class="why">Procurement Option C readiness. We need to know the door is unlocked before we walk through it.</td></tr>
+      <tr><td class="num-col">3.5</td><td>Would you consider a co-investment structure: we commit a volume floor, you commit a rate ceiling, both for 12 months?</td><td class="why">Tests whether they want a transactional or strategic relationship.</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">4</span>Geographic coverage &amp; Tier-C exposure</h2>
-  <p class="sub">The single biggest cost-side risk in our model. If Tier-C mix shifts, every tier compresses.</p>
+  <h2><span class="num">4</span>Specific country rates &mdash; not on the sheet</h2>
+  <p class="sub">We have the Standard country rate sheet. What we don&apos;t have: validation that those numbers are stable, and clarity on the countries that actually drive our P&amp;L.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">4.1</td><td>What countries do you classify as Tier-C (premium-cost destinations)? Can we get the full list?</td><td class="why">We assume 5% Tier-C in our model. Need the actual country list to verify against Emirates&apos; 67 destinations.</td></tr>
-      <tr><td class="num-col">4.2</td><td>Specifically: per-GB rate in India, Brazil, South Africa, and the United States?</td><td class="why">Our highest-exposure markets. The $2.00/GB stress scenario assumes Tier-C drift.</td></tr>
-      <tr><td class="num-col">4.3</td><td>If our geo mix shifts to 15% Tier-C, what happens to our blended rate?</td><td class="why">Supplier-side test of our internal sensitivity model.</td></tr>
-      <tr><td class="num-col">4.4</td><td>Do you have any way to cap or hedge Tier-C cost exposure (e.g., a fixed-blend offering)?</td><td class="why">Would significantly de-risk margin &mdash; one of three procurement options we&apos;re modeling.</td></tr>
-      <tr><td class="num-col">4.5</td><td>If we launch a USA-focused or Cruise-focused SKU, can you offer a flat per-GB rate?</td><td class="why">Direct enablement of the geo-risk add-on SKU we have planned.</td></tr>
+      <tr><td class="num-col">4.1</td><td>For our anchor Tier-C markets &mdash; India, Brazil, South Africa, USA &mdash; please confirm the exact per-GB rate you bill us, and whether each rate is &ldquo;Standard&rdquo; or carries a surcharge.</td><td class="why">These four countries drive our $1.34/GB blended cost assumption. If any one moves materially, our entire margin compresses.</td></tr>
+      <tr><td class="num-col">4.2</td><td>Have any rates on the Standard sheet changed since you sent it? How are we notified of changes?</td><td class="why">We&apos;ve baked the sheet into our model. Surprise increases would break Tab 16 (24-month rollout).</td></tr>
+      <tr><td class="num-col">4.3</td><td>Are there countries on Emirates&apos; 67-destination network that are NOT on your Standard sheet at all? (We&apos;ll send the list before the meeting.)</td><td class="why">Any unsupported country = bad UX for the crew who layovers there. We need a fallback plan.</td></tr>
+      <tr><td class="num-col">4.4</td><td>Do you offer a regional bundle SKU (e.g., Europe-fixed, SE-Asia-fixed) at a flat per-GB rate?</td><td class="why">Crew SIM does this. We&apos;d like the option for the Cockpit annual plan.</td></tr>
+      <tr><td class="num-col">4.5</td><td>If we add a USA/Cruise-focused product (Tier-C-heavy traffic), is there a custom SKU you&apos;d build for us at a discounted flat rate?</td><td class="why">Directly enables our geo-risk add-on SKU in the roadmap.</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">5</span>Failed activations &amp; support SLA</h2>
-  <p class="sub">Failed eSIMs cost us ~$10.80 each in the model. Who eats what?</p>
+  <h2><span class="num">5</span>Billing mechanics &mdash; consumed vs provisioned, carryover, breakage</h2>
+  <p class="sub">This single section determines whether our Tab 20 carryover liability is zero ($0 cost on unused inventory) or material ($132K/yr at 5K users).</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">5.1</td><td>What&apos;s your refund / credit policy when a user&apos;s eSIM fails to activate?</td><td class="why">We blended-cost this at $10.80/failure. Align expectations.</td></tr>
-      <tr><td class="num-col">5.2</td><td>If failure is due to device incompatibility (not user error), do we get credited?</td><td class="why">30% of failures in our model. Need to know whether we eat the cost or pass it through.</td></tr>
-      <tr><td class="num-col">5.3</td><td>What&apos;s your support SLA &mdash; initial response time, resolution time, escalation path?</td><td class="why">For our customer-facing AI Support feature we need 1st-response SLAs we can promise users.</td></tr>
-      <tr><td class="num-col">5.4</td><td>Is there a goodwill GB allowance for failed activations, or is each one a separate transaction?</td><td class="why">Affects how we structure our &ldquo;credit, not refund&rdquo; customer policy.</td></tr>
-      <tr><td class="num-col">5.5</td><td>What&apos;s the typical activation-failure rate you see across your customer base?</td><td class="why">Calibrates whether our 5&ndash;10% assumption is reasonable.</td></tr>
+      <tr><td class="num-col">5.1</td><td>Are we billed on <strong>consumed GB</strong> (only what the user actually downloads) or <strong>provisioned GB</strong> (the full pool allocated)?</td><td class="why">If consumed: carryover is zero-cost to us, expired data = free margin. If provisioned: every unused GB is a cost we eat.</td></tr>
+      <tr><td class="num-col">5.2</td><td>When a user&apos;s monthly pool expires unused, who keeps the unconsumed GB &mdash; does it auto-credit back to us, or is it gone?</td><td class="why">Our &ldquo;~$132K/yr free margin from carry expiry&rdquo; thesis (Tab 20) depends on this.</td></tr>
+      <tr><td class="num-col">5.3</td><td>If a user carries 3 GB into next month and uses it then, are we billed at original-month rate or current-month rate?</td><td class="why">If rates change between months, this is material. Affects Tab 20 deferred-revenue accounting.</td></tr>
+      <tr><td class="num-col">5.4</td><td>Granularity of consumption tracking &mdash; nearest MB, KB, or rounded up to whole GBs?</td><td class="why">At 100K users, rounding-up adds real cost.</td></tr>
+      <tr><td class="num-col">5.5</td><td>Billing reconciliation cycle (monthly invoice, real-time stream)? Can we pull usage data via API for our COGS dashboard?</td><td class="why">Needed for real-time P&amp;L. Without it, COGS is always a lagging indicator.</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">6</span>Same-SIM dynamic allocation (Refuel)</h2>
-  <p class="sub">Refuel is a major margin driver ($3.65 net per event). The whole feature depends on supplier-side support.</p>
+  <h2><span class="num">6</span>Failed-eSIM economics</h2>
+  <p class="sub">Tab 22 models $10.80 blended cost per failure (vs $4.00 raw sheet figure). 70% of failures we believe are preventable with UX. Need to align with you on what you eat vs what we eat.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">6.1</td><td>Does your platform support <strong>same-SIM data top-up</strong> &mdash; user buys 1 GB and it appears in the existing eSIM profile without re-installation?</td><td class="why">Our Refuel feature ($3.65/event margin) depends on this.</td></tr>
-      <tr><td class="num-col">6.2</td><td>What&apos;s the latency between purchase and the new GB being usable on the device?</td><td class="why">UX critical &mdash; we need to deliver &ldquo;tap &rarr; refuel ready&rdquo; in under 30 seconds.</td></tr>
-      <tr><td class="num-col">6.3</td><td>Are there any per-top-up fees or minimum increments (e.g., 500 MB minimum)?</td><td class="why">Affects whether we can sell 1 GB top-ups profitably.</td></tr>
-      <tr><td class="num-col">6.4</td><td>Can a single eSIM profile hold multiple concurrent data pools (e.g., subscription + refuel)?</td><td class="why">Architecturally important for our Tab 20 dynamic allocation model.</td></tr>
-      <tr><td class="num-col">6.5</td><td>Is there a maximum number of top-ups per eSIM per month/year?</td><td class="why">Affects how aggressively we can push refuel attach.</td></tr>
+      <tr><td class="num-col">6.1</td><td>When a user&apos;s eSIM fails to install (failed QR scan, device incompatibility, APN misconfiguration) &mdash; what&apos;s your credit/refund policy to us?</td><td class="why">Our $10.80 cost assumption needs to be reconciled with your actual credit policy.</td></tr>
+      <tr><td class="num-col">6.2</td><td>If the failure is on YOUR side (provisioning bug, upstream eSIM Go issue), do we get auto-credited or do we have to request?</td><td class="why">If we have to chase every credit, the per-failure cost grows.</td></tr>
+      <tr><td class="num-col">6.3</td><td>What&apos;s the typical activation-failure rate across your customer base today? (We&apos;re modeling 5&ndash;10%.)</td><td class="why">Calibrates whether our model assumption is reasonable.</td></tr>
+      <tr><td class="num-col">6.4</td><td>Do you offer a pre-approved goodwill GB credit pool we can draw from for customer-facing refunds, or is every refund a separate request?</td><td class="why">Our customer-facing policy is &ldquo;GB credit, not cash refund.&rdquo; Easier if we have a pool to draw from.</td></tr>
+      <tr><td class="num-col">6.5</td><td>Apple Universal Link installation flow &mdash; is your platform compatible? What&apos;s the failure rate vs traditional QR code?</td><td class="why">Our roadmap commits to Apple Universal Link (no Carrier Entitlement). If your platform doesn&apos;t support it, this is a launch blocker.</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">7</span>API, provisioning, operations</h2>
-  <p class="sub">Engineering reality check. Before any commitment, we need this concrete.</p>
+  <h2><span class="num">7</span>API access, sandbox &amp; integration</h2>
+  <p class="sub">We have ~6 weeks to integrate before the 15 Aug beta and 1 Sept launch. We need API access this week, not after a contract.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">7.1</td><td>Can we get full API documentation, including provisioning, usage-query, and refund endpoints?</td><td class="why">Need this before any commitment &mdash; drives integration timeline.</td></tr>
-      <tr><td class="num-col">7.2</td><td>What&apos;s your historical uptime SLA, and what&apos;s the credit if you breach it?</td><td class="why">Risk model for our customer commitments.</td></tr>
-      <tr><td class="num-col">7.3</td><td>Is there a sandbox / test environment for our integration work?</td><td class="why">Required for Phase 1 of our build.</td></tr>
-      <tr><td class="num-col">7.4</td><td>How long does it take to provision a new eSIM profile end-to-end?</td><td class="why">Affects &ldquo;signup &rarr; activated&rdquo; UX timing in our onboarding flow.</td></tr>
-      <tr><td class="num-col">7.5</td><td>Do you support both QR-code and Apple Universal Link installation?</td><td class="why">Our roadmap commits to Apple Universal Link (no Carrier Entitlement).</td></tr>
+      <tr><td class="num-col">7.1</td><td>Can we get full API documentation right now &mdash; including provisioning, usage-query, same-SIM top-up, and refund endpoints?</td><td class="why">No documentation = no integration = no launch. This is a blocking dependency.</td></tr>
+      <tr><td class="num-col">7.2</td><td>Sandbox / test environment available immediately for our dev work, before any production commitment?</td><td class="why">We test against sandbox in July, production in mid-Aug. Need access by Friday.</td></tr>
+      <tr><td class="num-col">7.3</td><td>End-to-end provisioning time for a new eSIM profile &mdash; typical and 99th-percentile worst case?</td><td class="why">Affects &ldquo;signup &rarr; activated&rdquo; UX promise. Anything over 60 seconds breaks onboarding flow.</td></tr>
+      <tr><td class="num-col">7.4</td><td>Historical uptime SLA, and what credit do we receive if you breach it?</td><td class="why">Affects what we can promise our crew. Their onboarding fail rate = our churn.</td></tr>
+      <tr><td class="num-col">7.5</td><td>Escalation path for production incidents &mdash; named contact, response-time SLA, weekend coverage?</td><td class="why">Emirates crew operate 24/7 globally. Failures will happen at 03:00 GMT.</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">8</span>Multi-airline expansion (Y2&ndash;Y3)</h2>
-  <p class="sub">Roadmap: Etihad Y2 &rarr; JAL + ANA Y2 &rarr; Singapore, Cathay, Qatar Y3. Does the supplier scale with us?</p>
+  <h2><span class="num">8</span>Multi-airline &amp; multi-brand expansion (Y2&ndash;Y3)</h2>
+  <p class="sub">Locked roadmap: Etihad Y2, JAL+ANA Y2, Singapore+Cathay+Qatar Y3. Each may be a different brand, hosted under the same supplier infrastructure.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">8.1</td><td>If we expand from Emirates-only to Etihad + JAL + ANA in Year 2, does that require contract restructuring on your end?</td><td class="why">We don&apos;t want a surprise renegotiation when we scale.</td></tr>
-      <tr><td class="num-col">8.2</td><td>Can we operate multiple branded products (e.g., one for Emirates crew, one for JAL crew) under the same account?</td><td class="why">Affects how we structure brand portfolio expansion.</td></tr>
-      <tr><td class="num-col">8.3</td><td>Do you have direct relationships with JP / SG / HK / AU / QA carriers we&apos;d benefit from referencing?</td><td class="why">Multi-airline expansion targets these countries &mdash; supplier-side network matters.</td></tr>
-      <tr><td class="num-col">8.4</td><td>What&apos;s your view on us building a regional pricing strategy (different retail per airline market)?</td><td class="why">Supplier-side opinion is useful even if their answer is &ldquo;do what you want.&rdquo;</td></tr>
+      <tr><td class="num-col">8.1</td><td>Can we operate multiple <strong>differently-branded products</strong> (Peanut for Emirates, separate brand for JAL/ANA crew, etc.) under the same Samurai account, with separate billing / analytics / SKU sets?</td><td class="why">Brand portfolio strategy. We don&apos;t want a separate contract per airline.</td></tr>
+      <tr><td class="num-col">8.2</td><td>If we add Japan-focused service in Y2, do you have eSIM Go-side Japan inventory at competitive rates, or do we need to source JP plans elsewhere?</td><td class="why">JAL+ANA = Tokyo home base. JP rates have to work.</td></tr>
+      <tr><td class="num-col">8.3</td><td>Does adding airlines (i.e., adding user pools tied to different home countries) trigger a contract restructure, account split, or new commercial terms?</td><td class="why">We want to know the scaling friction before we hit it.</td></tr>
+      <tr><td class="num-col">8.4</td><td>Can different brands have different per-GB cost basis if they&apos;re routed via different upstream paths (e.g., a JP brand routes via a Japan-native carrier for better local rates)?</td><td class="why">Geographic arbitrage at the supplier layer could materially improve unit economics.</td></tr>
     </tbody>
   </table>
 </section>
 
 <!-- ============================================================ -->
 <section>
-  <h2><span class="num">9</span>Strategic / contractual</h2>
-  <p class="sub">The clauses that matter at scale. Most won&apos;t be volunteered &mdash; we ask explicitly.</p>
+  <h2><span class="num">9</span>Contractual clauses worth asking about explicitly</h2>
+  <p class="sub">None of these will be volunteered. Asking is the leverage.</p>
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">9.1</td><td>Do you offer exclusivity clauses, and what would those cost us / earn us?</td><td class="why">Future leverage point.</td></tr>
-      <tr><td class="num-col">9.2</td><td>Is there an MFN (most-favored-nation) clause &mdash; same rates as your best customer at our volume?</td><td class="why">Standard wholesale clause. Worth asking.</td></tr>
-      <tr><td class="num-col">9.3</td><td>If we wanted to switch to a direct wholesale provider in Year 2, what&apos;s the contract notice period and termination cost?</td><td class="why">Critical for our procurement Option C path.</td></tr>
-      <tr><td class="num-col">9.4</td><td>Can we get a written commitment that pricing is locked for the next 12 months?</td><td class="why">Reduces model risk on our 24-month rollout.</td></tr>
-      <tr><td class="num-col">9.5</td><td>Are you open to a co-marketing arrangement (e.g., we mention you as our infrastructure partner)?</td><td class="why">Non-cash value worth quantifying if it&apos;s on offer.</td></tr>
+      <tr><td class="num-col">9.1</td><td>MFN (most-favored-nation) &mdash; same rates as your best customer at our volume tier. Will you offer this?</td><td class="why">Standard ask. Floor under future rate increases.</td></tr>
+      <tr><td class="num-col">9.2</td><td>12-month rate lock on the rates we agree today &mdash; will you commit in writing?</td><td class="why">Tab 16 (24-month rollout) needs a stable cost basis to be credible.</td></tr>
+      <tr><td class="num-col">9.3</td><td>Exclusivity clause &mdash; if we commit to you exclusively for cabin-crew vertical for 12 months, what do we get? (Better rate? Priority support? Co-marketing?)</td><td class="why">Tests their willingness to commit something real for our exclusivity.</td></tr>
+      <tr><td class="num-col">9.4</td><td>Termination clause &mdash; notice period, exit cost, account-data migration to a successor provider?</td><td class="why">We have to know the door is unlocked. Especially given the Tier-3 sub-reseller risk.</td></tr>
+      <tr><td class="num-col">9.5</td><td>Can we publicly reference eSIM Go (your upstream) as our infrastructure partner in marketing materials?</td><td class="why">Credibility lever for airline conversations (Etihad, JAL/ANA, etc.). eSIM Go is a known brand &mdash; you may or may not be.</td></tr>
     </tbody>
   </table>
 </section>
@@ -407,50 +407,60 @@
 <div class="checklist">
 <section>
   <h2><span class="num">10</span>What we want to walk out with</h2>
-  <p class="sub">End-of-meeting checklist. Tick what you got. Anything unchecked = follow-up email.</p>
+  <p class="sub">End-of-meeting checklist. Tick what you got. Anything unchecked = follow-up email same day.</p>
   <div class="check-row">
     <input type="checkbox" id="c1">
-    <label for="c1" class="item-label">Full rate card by country</label>
-    <span class="status">received / promised by ____ / refused</span>
+    <label for="c1" class="item-label">UAE workaround: defined SKUs that work for Emirates crew (or written commitment to send within 48h)</label>
+    <span class="status">launch blocker</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c2">
-    <label for="c2" class="item-label">Documented volume-discount schedule</label>
-    <span class="status">received / promised by ____ / refused</span>
+    <label for="c2" class="item-label">Same-SIM top-up API endpoint: yes / no / roadmap with timeline</label>
+    <span class="status">Refuel moat</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c3">
-    <label for="c3" class="item-label">Billing model confirmed (consumed vs provisioned)</label>
-    <span class="status">consumed / provisioned / open</span>
+    <label for="c3" class="item-label">Customer-tier ladder ABOVE Standard documented (Premium, Volume, Strategic + thresholds)</label>
+    <span class="status">discount path</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c4">
-    <label for="c4" class="item-label">Same-SIM Refuel technical confirmation</label>
-    <span class="status">yes / no / roadmap</span>
+    <label for="c4" class="item-label">Willingness to introduce us directly to eSIM Go at scale &mdash; explicit answer</label>
+    <span class="status">existential</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c5">
-    <label for="c5" class="item-label">Failed-activation credit policy in writing</label>
-    <span class="status">confirmed / not confirmed</span>
+    <label for="c5" class="item-label">Billing model confirmed in writing: consumed-GB or provisioned-GB</label>
+    <span class="status">Tab 20 dep</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c6">
-    <label for="c6" class="item-label">API access + sandbox</label>
-    <span class="status">granted / promised by ____ / refused</span>
+    <label for="c6" class="item-label">India / Brazil / South Africa / USA per-GB rates confirmed against sheet</label>
+    <span class="status">Tier-C anchor</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c7">
-    <label for="c7" class="item-label">Tier-C cost cap or hedge offer</label>
-    <span class="status">available / not available</span>
+    <label for="c7" class="item-label">API docs + sandbox access granted (before any contract)</label>
+    <span class="status">Aug 15 dep</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c8">
-    <label for="c8" class="item-label">12-month price-lock commitment</label>
-    <span class="status">yes / no / negotiable</span>
+    <label for="c8" class="item-label">Failed-activation credit policy in writing</label>
+    <span class="status">$10.80 model</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c9">
-    <label for="c9" class="item-label">Next-step commitment date</label>
+    <label for="c9" class="item-label">Apple Universal Link compatibility confirmed (yes/no/workaround)</label>
+    <span class="status">install UX</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c10">
+    <label for="c10" class="item-label">12-month rate lock on the Standard sheet rates</label>
+    <span class="status">model stability</span>
+  </div>
+  <div class="check-row">
+    <input type="checkbox" id="c11">
+    <label for="c11" class="item-label">Next-step commitment date scheduled</label>
     <span class="status">scheduled for ____</span>
   </div>
 </section>
@@ -462,12 +472,13 @@
   <h2><span class="num">!</span>Strategic tone notes</h2>
   <p class="sub">How to run the conversation, not just what to ask.</p>
   <ul>
-    <li><strong>Frame trajectory, not current scale.</strong> Open by acknowledging we&apos;re small today (~50 users) but modeling 5,000 by M24 and 100K longer-term. Suppliers compete for trajectory, not snapshots.</li>
-    <li><strong>Do not reveal Option C.</strong> Our $5K/mo direct-wholesale alternative is silent leverage. If they sense it, our negotiating position evaporates.</li>
-    <li><strong>The two answers that matter most:</strong> (a) when do we earn a real discount tier, (b) is the billing model consumed-GB or provisioned-GB. Get those even if you walk out with nothing else.</li>
-    <li><strong>Listen for what they don&apos;t volunteer.</strong> Exclusivity, MFN, and termination terms usually don&apos;t come up unless explicitly asked. Their absence is the leverage point.</li>
-    <li><strong>Anchor on the future, close on the present.</strong> Spend 70% of the conversation on 5K/10K/100K-user economics, 30% on what changes today. The first conversation rarely produces a new price &mdash; it produces a relationship that earns one.</li>
-    <li><strong>Take notes by section number.</strong> Section 1 answers go on page 1, etc. Send a written follow-up the same day summarizing what you heard &mdash; that&apos;s how verbal commitments become contractual.</li>
+    <li><strong>Lead with the UAE question (Section 1).</strong> If they can&apos;t serve UAE-resident crew, every other answer is academic. Frame it bluntly: &ldquo;The Standard sheet you sent blocks UAE users; my entire launch userbase is UAE-resident. Help us solve this first.&rdquo;</li>
+    <li><strong>Do not reveal the eSIM Go direct math.</strong> Don&apos;t mention that we&apos;ve modeled the 3.5&times; profit jump from going direct, and don&apos;t mention the &ldquo;Option C&rdquo; in our procurement analysis. If they sense the threat, they harden &mdash; we want them open and competitive.</li>
+    <li><strong>Frame trajectory, not current scale.</strong> Open by acknowledging we&apos;re small today (~50 users) but modeling 5,000 by M24 and Etihad/JAL/ANA in Y2. Suppliers commit better terms for a trajectory than for a snapshot.</li>
+    <li><strong>Three answers matter most.</strong> (1) UAE workaround, (2) same-SIM Refuel API, (3) introduction path to eSIM Go direct. Get those even if everything else is &ldquo;we&apos;ll get back to you.&rdquo;</li>
+    <li><strong>Listen for what they don&apos;t volunteer.</strong> MFN, exclusivity, termination cost, and 12-month rate locks won&apos;t come up unless asked. Their silence on these IS the leverage we identify.</li>
+    <li><strong>Take notes by section number.</strong> Section 1 answers go on page 1, etc. Send a written summary email same day &mdash; that&apos;s how verbal commitments become contractual.</li>
+    <li><strong>End on the calendar.</strong> Don&apos;t leave without a date for the next conversation. &ldquo;Let me get my engineer in our next call to verify the API specifics &mdash; can we do Thursday?&rdquo;</li>
   </ul>
 </section>
 </div>
