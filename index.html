@@ -3716,50 +3716,64 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const filterBar = document.getElementById('decFilterBar');
-      if (!filterBar) return;
-      const buttons = filterBar.querySelectorAll('.dec-filter-btn');
-      const section = filterBar.closest('section');
-      if (!section) return;
-      const cards = section.querySelectorAll('.decision-card');
+    (function initDecisionFilter() {
+      function init() {
+        const filterBar = document.getElementById('decFilterBar');
+        if (!filterBar) { console.warn('[dec-filter] No filter bar found'); return; }
+        const buttons = filterBar.querySelectorAll('.dec-filter-btn');
+        // Robust card lookup: find every .decision-card inside the open tab content
+        const tab = document.querySelector('[data-tab-content="open"]');
+        const cards = tab ? tab.querySelectorAll('.decision-card') : document.querySelectorAll('.decision-card');
+        console.log('[dec-filter] Initialized:', { buttons: buttons.length, cards: cards.length });
 
-      function applyFilter(filter) {
-        cards.forEach(card => {
-          const inlineStyle = card.getAttribute('style') || '';
-          const isResolved = inlineStyle.indexOf('linear-gradient') !== -1;
-          let matches = false;
-          if (filter === 'all') matches = true;
-          else if (filter === 'resolved') matches = isResolved;
-          else if (filter === 'red') matches = !isResolved && card.classList.contains('red');
-          else if (filter === 'amber') matches = !isResolved && card.classList.contains('amber');
-          else if (filter === 'yellow') matches = !isResolved && card.classList.contains('yellow');
-          card.style.display = matches ? '' : 'none';
+        function applyFilter(filter) {
+          let shown = 0, hidden = 0;
+          cards.forEach(card => {
+            const inlineStyle = card.getAttribute('style') || '';
+            const isResolved = inlineStyle.indexOf('linear-gradient') !== -1;
+            let matches = false;
+            if (filter === 'all') matches = true;
+            else if (filter === 'resolved') matches = isResolved;
+            else if (filter === 'red') matches = !isResolved && card.classList.contains('red');
+            else if (filter === 'amber') matches = !isResolved && card.classList.contains('amber');
+            else if (filter === 'yellow') matches = !isResolved && card.classList.contains('yellow');
+            if (matches) { card.style.removeProperty('display'); shown++; }
+            else { card.style.setProperty('display', 'none', 'important'); hidden++; }
+          });
+          console.log('[dec-filter] Applied', filter, '→ shown:', shown, 'hidden:', hidden);
+        }
+
+        buttons.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const filter = btn.getAttribute('data-dec-filter');
+            buttons.forEach(b => {
+              b.classList.remove('active');
+              const color = b.getAttribute('data-dec-filter');
+              if (color === 'all') { b.style.background = 'white'; b.style.color = '#1A1A1A'; }
+              else if (color === 'red') { b.style.background = 'white'; b.style.color = '#D71921'; }
+              else if (color === 'amber') { b.style.background = 'white'; b.style.color = '#C9A03B'; }
+              else if (color === 'yellow') { b.style.background = 'white'; b.style.color = '#A07700'; }
+              else if (color === 'resolved') { b.style.background = 'white'; b.style.color = '#2D7A4F'; }
+            });
+            btn.classList.add('active');
+            if (filter === 'all') { btn.style.background = '#1A1A1A'; btn.style.color = 'white'; }
+            else if (filter === 'red') { btn.style.background = '#D71921'; btn.style.color = 'white'; }
+            else if (filter === 'amber') { btn.style.background = '#C9A03B'; btn.style.color = 'white'; }
+            else if (filter === 'yellow') { btn.style.background = '#FFC107'; btn.style.color = '#1A1A1A'; }
+            else if (filter === 'resolved') { btn.style.background = '#2D7A4F'; btn.style.color = 'white'; }
+            applyFilter(filter);
+          });
         });
       }
 
-      buttons.forEach(btn => {
-        btn.addEventListener('click', function() {
-          const filter = btn.getAttribute('data-dec-filter');
-          buttons.forEach(b => {
-            b.classList.remove('active');
-            const color = b.getAttribute('data-dec-filter');
-            if (color === 'all') { b.style.background = 'white'; b.style.color = '#1A1A1A'; }
-            else if (color === 'red') { b.style.background = 'white'; b.style.color = '#D71921'; }
-            else if (color === 'amber') { b.style.background = 'white'; b.style.color = '#C9A03B'; }
-            else if (color === 'yellow') { b.style.background = 'white'; b.style.color = '#A07700'; }
-            else if (color === 'resolved') { b.style.background = 'white'; b.style.color = '#2D7A4F'; }
-          });
-          btn.classList.add('active');
-          if (filter === 'all') { btn.style.background = '#1A1A1A'; btn.style.color = 'white'; }
-          else if (filter === 'red') { btn.style.background = '#D71921'; btn.style.color = 'white'; }
-          else if (filter === 'amber') { btn.style.background = '#C9A03B'; btn.style.color = 'white'; }
-          else if (filter === 'yellow') { btn.style.background = '#FFC107'; btn.style.color = '#1A1A1A'; }
-          else if (filter === 'resolved') { btn.style.background = '#2D7A4F'; btn.style.color = 'white'; }
-          applyFilter(filter);
-        });
-      });
-    });
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        // DOM already parsed — run immediately
+        init();
+      }
+    })();
     </script>
 
     <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
