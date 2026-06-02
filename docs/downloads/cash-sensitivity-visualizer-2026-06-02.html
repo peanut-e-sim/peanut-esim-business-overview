@@ -132,7 +132,7 @@
 <!-- SECTION 1: REFUEL ATTACH SENSITIVITY -->
 <section>
   <h2 class="section-title"><span class="num">1</span>Refuel Attach Sensitivity @ 1,000 Users</h2>
-  <p class="section-sub">Refuel ($4.99/GB top-up) is the highest-margin product at 73% gross margin. The question is: how many subscribers will tap "add 1 GB" when they run out? The range matters enormously.</p>
+  <p class="section-sub">Refuel ($4.99/GB top-up) is the highest-margin product at 73% gross margin. The question is: how many subscribers will tap "add 1 GB" when they run out? The range matters enormously — at 1,000 users, the 5% → 30% attach span produces a <strong>$912/mo swing</strong> in net profit (25pp × 1,000 users × $3.65 net per event).</p>
 
   <div class="stat-row">
     <div class="stat-box red">
@@ -161,7 +161,7 @@
           <th>Monthly Refuel Revenue</th>
           <th>Monthly Refuel COGS</th>
           <th>Net Refuel Profit</th>
-          <th>Net Margin Impact</th>
+          <th>vs 15% Breakeven</th>
         </tr>
       </thead>
       <tbody>
@@ -189,7 +189,7 @@
       <li>User-error failures capped at 3/year per user — beyond that, no goodwill issued.</li>
       <li>Reissue cost (new eSIM provisioning + support time) = ~$3-5.</li>
       <li>Estimated refund scenario (genuine carrier failure) = ~$5 credit, not full cash refund.</li>
-      <li><strong>Blended cost per failure ≈ $10.80</strong> (supplier COGS + support time + goodwill GB value + partial refund where applicable)</li>
+      <li><strong>Blended cost per failure ≈ $10.80</strong> = $2.69 (goodwill 2GB × $1.34) + ~$4.00 (reissue + support time midpoint) + ~$4.11 (partial refund where applicable, weighted by frequency)</li>
     </ul>
   </div>
 
@@ -212,6 +212,9 @@
       <li><span class="pct">~30%</span><div>Device incompatibility — user's phone doesn't support eSIM. <strong>Fix: device check at signup.</strong></div></li>
       <li><span class="pct">~25%</span><div>QR code scan failure — user screenshots instead of scanning directly. <strong>Fix: in-app QR scanner.</strong></div></li>
       <li><span class="pct">~15%</span><div>APN misconfiguration. <strong>Fix: AI Support agent with step-by-step guide.</strong></div></li>
+    </ul>
+    <p style="margin:14px 0 6px; font-size:13px; color:var(--muted); font-style:italic; padding-top:10px; border-top:1px dashed var(--line);">— above this line is preventable (70% of failures) · below is not —</p>
+    <ul class="prevention-list" style="margin-top:0;">
       <li><span class="pct">~30%</span><div>Genuine carrier/supplier issues. Not preventable — but $10.80/case is manageable at scale.</div></li>
     </ul>
   </div>
