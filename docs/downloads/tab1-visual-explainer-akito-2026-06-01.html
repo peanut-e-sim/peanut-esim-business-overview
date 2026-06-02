@@ -360,8 +360,9 @@
 <section>
   <h2 class="section-title"><span class="num">2</span>How we actually make profit: breakage</h2>
   <p class="section-sub">
-    Crew rarely burn their full pool. They pay for 10 GB, use ~4 GB, carry a bit forward, and the rest evaporates.
-    Every unused gig is margin we never owed our supplier.
+    Crew rarely burn their full pool. They pay for 10 GB, use ~4 GB, and the carryover goes one of four places:
+    used on the next trip, used at home in UAE, gifted to family, or expired as pure margin.
+    Every unused gig is margin we never owed our supplier — unless they redeem it intelligently.
   </p>
 
   <div class="breakage">
@@ -380,9 +381,78 @@
     </div>
 
     <div class="takeaway">
-      <strong>The trick:</strong> We charged for 10 GB but only paid our supplier for ~4 GB used this month + 3 GB
-      reserved for next month. Those last 3 GB? Pure profit. Across thousands of crew, that's the whole business model.
+      <strong>The trick:</strong> We charged for 10 GB but only paid our supplier for ~4 GB used this month + at most
+      3 GB carried into next month. The remaining 3 GB? Expires as pure margin. Below: what happens to those 3 carried GB.
     </div>
+  </div>
+
+  <!-- The 4 scenarios for the carried 3 GB -->
+  <h3 style="margin: 32px 0 8px; font-size: 18px;">What happens to Aiko's 3 GB carry — 4 scenarios</h3>
+  <p class="section-sub" style="margin-bottom: 16px;">
+    The carryover pool is a flexible balance in our system. Each scenario routes the same 3 GB differently.
+    Locked policy: cancellation = gift-only exit (no cash refunds). UAE redemption and gifting both ship in v1.1–1.2.
+  </p>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 14px;">
+
+    <!-- Scenario A: Next-trip use -->
+    <div style="background: white; border: 1px solid #E5DDD0; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: .05em; color: #666;">SCENARIO A</div>
+      <h4 style="margin: 6px 0 8px; font-size: 16px;">Use on her next trip</h4>
+      <p style="font-size: 13px; color: #555; line-height: 1.5;">Aiko flies Bangkok in March. We route her 3 GB carry to her travel eSIM. She uses it normally.</p>
+      <ul style="font-size: 13px; padding-left: 18px; margin: 8px 0; line-height: 1.6;">
+        <li>Our COGS: 3 × $1.34 = <strong>$4.02</strong></li>
+        <li>User happy. No "wasted data" feeling.</li>
+        <li>Liability shrinks normally.</li>
+      </ul>
+      <div style="font-size: 12px; color: #2D7A4F; font-weight: 600; margin-top: 8px;">Net P&L impact: neutral (paid as planned)</div>
+    </div>
+
+    <!-- Scenario B: UAE redemption -->
+    <div style="background: white; border: 1px solid #E5DDD0; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: .05em; color: #666;">SCENARIO B · UAE</div>
+      <h4 style="margin: 6px 0 8px; font-size: 16px;">Use at home in UAE</h4>
+      <p style="font-size: 13px; color: #555; line-height: 1.5;">Aiko's du plan runs out at home. She allocates 3 GB carry to a UAE-roaming eSIM (v1.2 feature) and uses it in Dubai.</p>
+      <ul style="font-size: 13px; padding-left: 18px; margin: 8px 0; line-height: 1.6;">
+        <li>Our COGS: 3 × $1.40 = <strong>$4.20</strong> (UAE is Tier-B)</li>
+        <li>Daily engagement habit forms — huge retention win.</li>
+        <li>Eliminates "wasted data" perception entirely.</li>
+      </ul>
+      <div style="font-size: 12px; color: #2D7A4F; font-weight: 600; margin-top: 8px;">Net P&L impact: -$0.18 vs A · retention boost worth $30+ LTV</div>
+    </div>
+
+    <!-- Scenario C: Gift to mom -->
+    <div style="background: white; border: 1px solid #E5DDD0; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: .05em; color: #666;">SCENARIO C · GIFT</div>
+      <h4 style="margin: 6px 0 8px; font-size: 16px;">Gift to her mom in India</h4>
+      <p style="font-size: 13px; color: #555; line-height: 1.5;">Aiko gifts her 3 GB to her mom (v1.1 feature). We route allocation to a new eSIM India profile. Mom installs Peanut to receive it.</p>
+      <ul style="font-size: 13px; padding-left: 18px; margin: 8px 0; line-height: 1.6;">
+        <li>Our COGS: 3 × $0.85 = <strong>$2.55</strong> (India is Tier-A cheap)</li>
+        <li>Mom becomes hot acquisition lead — potential LTV $134.</li>
+        <li>Aiko emotional engagement +++ (helping family).</li>
+      </ul>
+      <div style="font-size: 12px; color: #2D7A4F; font-weight: 600; margin-top: 8px;">Net P&L impact: -$1.47 + viral acquisition channel</div>
+    </div>
+
+    <!-- Scenario D: Quit (cancellation) -->
+    <div style="background: white; border: 1px solid #E5DDD0; border-radius: 8px; padding: 16px;">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: .05em; color: #666;">SCENARIO D · CANCEL</div>
+      <h4 style="margin: 6px 0 8px; font-size: 16px;">Aiko cancels Peanut entirely</h4>
+      <p style="font-size: 13px; color: #555; line-height: 1.5;">She taps cancel. App prompts: "Want to gift your 3 GB before you go?" Her choice:</p>
+      <ul style="font-size: 13px; padding-left: 18px; margin: 8px 0; line-height: 1.6;">
+        <li>If she gifts → see Scenario C economics (viral hook + small cost)</li>
+        <li>If she forfeits → <strong>3 GB never delivered = $4.02 pure margin retained</strong></li>
+        <li>No cash refund. No ghost account. Clean books.</li>
+      </ul>
+      <div style="font-size: 12px; color: #2D7A4F; font-weight: 600; margin-top: 8px;">Net P&L impact: +$4.02 if forfeited (pure profit)</div>
+    </div>
+
+  </div>
+
+  <div class="takeaway" style="margin-top: 22px;">
+    <strong>The full picture:</strong> Carryover is not just "data we owe." It's a flexible currency that drives engagement (Scenario B),
+    viral acquisition (C), and clean cancellation economics (D). The "expiry trick" (100% carry with 30-day expiry on premium tiers)
+    + the 3-channel redemption mechanic = the real business model. Premium feels generous. We capture margin anyway.
   </div>
 </section>
 
