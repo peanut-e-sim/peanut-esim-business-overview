@@ -926,6 +926,9 @@
     border-left: 4px solid var(--accent);
   }
   .decision-card.urgent { border-left-color: var(--warning); }
+  .decision-card.amber { border-left: 4px solid var(--warning); }
+  .decision-card.yellow { border-left: 4px solid #FFC107; }
+  .decision-card.red { border-left: 4px solid var(--danger, #D71921); }
   .decision-card .dec-meta {
     font-family: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono", Consolas, monospace;
     font-size: 10.5px;
@@ -2663,7 +2666,7 @@
       <button class="tab-btn" data-tab="open">
         <span class="lang en">Open Discussion</span>
         <span class="lang jp">未決事項</span>
-        <span class="count" id="openCount">7</span>
+        <span class="count" id="openCount">13</span>
       </button>
       <button class="tab-btn" data-tab="balraj">
         <span>Balraj</span>
@@ -2800,8 +2803,8 @@
         <div class="tier-label"><span class="lang en">TIER 2 · AGGREGATOR</span><span class="lang jp">TIER 2 ・ アグリゲーター</span></div>
         <h3><span class="lang en">eSIM aggregators</span><span class="lang jp">eSIMアグリゲーター</span></h3>
         <p>
-          <span class="lang en">The middleman layer. They've stitched together wholesale roaming deals with hundreds of MNOs and run the technical plumbing (SM-DP+ servers, billing, eSIM profiles). They expose all of that as a single API. Names: 1GLOBAL, eSIM Go, Telna, Truphone, MobileX — and <strong>Samurai Wifi</strong> (Akito's contact) sits at or just below this tier.</span>
-          <span class="lang jp">中間層の事業者。世界中の数百社のMNOと卸売りローミング契約をまとめて結び、技術基盤（SM-DP+サーバー、課金、eSIMプロファイル発行）も自社で運用。それらを単一のAPIとして提供します。代表例: 1GLOBAL、eSIM Go、Telna、Truphone、MobileX — そしてAkitoが紹介してくれた <strong>Samurai Wifi</strong> もこの層、あるいはそのすぐ下に位置します。</span>
+          <span class="lang en">The middleman layer. They've stitched together wholesale roaming deals with hundreds of MNOs and run the technical plumbing (SM-DP+ servers, billing, eSIM profiles). They expose all of that as a single API. Names: 1GLOBAL, eSIM Go, Telna, Truphone, MobileX — and <strong>wholesale supplier</strong> (Akito's contact) sits at or just below this tier.</span>
+          <span class="lang jp">中間層の事業者。世界中の数百社のMNOと卸売りローミング契約をまとめて結び、技術基盤（SM-DP+サーバー、課金、eSIMプロファイル発行）も自社で運用。それらを単一のAPIとして提供します。代表例: 1GLOBAL、eSIM Go、Telna、Truphone、MobileX — そしてAkitoが紹介してくれた <strong>wholesale supplier</strong> もこの層、あるいはそのすぐ下に位置します。</span>
         </p>
       </div>
       <div class="tier you">
@@ -3684,9 +3687,9 @@
   </header>
 
   <section style="border-bottom: none;">
-    <div class="sec-label"><span class="lang en">OPEN · 19 ITEMS</span><span class="lang jp">未決 ・ 19件</span></div>
+    <div class="sec-label"><span class="lang en">13 OPEN · 9 RESOLVED · 22 TOTAL</span><span class="lang jp">未決 13 ・ 解決済 9 ・ 全 22 件</span></div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card red">
       <div class="dec-meta"><span class="lang en">DECISION 00 · LEGAL ENTITY NAME</span><span class="lang jp">判断 00 ・ 法人正式名称</span></div>
       <a class="dec-ref" href="#phase-1-item-1">Phase 1 · Item 1</a>
       <h3>
@@ -3709,7 +3712,7 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · BLOCKS PHASE 1 ITEM 1</span><span class="lang jp">ステータス ・ Akito と要協議 ・ フェーズ1 Item 1 のブロッカー</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card amber">
       <div class="dec-meta"><span class="lang en">DECISION 00B · TRADEMARK FILING</span><span class="lang jp">判断 00B ・ 商標出願</span></div>
       <a class="dec-ref" href="#phase-1-item-2">Phase 1 · Item 2</a>
       <h3>
@@ -3756,7 +3759,7 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · BLOCKS PHASE 1 ITEM 2</span><span class="lang jp">ステータス ・ Akito と要協議 ・ フェーズ1 Item 2 のブロッカー</span></div>
     </div>
 
-    <div class="decision-card">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 00C · GOVERNING LAW</span><span class="lang jp">判断 00C ・ 準拠法</span></div>
       <a class="dec-ref" href="#phase-1-item-4">Phase 1 · Item 4</a>
       <h3>
@@ -3779,7 +3782,7 @@
       <div class="dec-status"><span class="lang en">STATUS · ALIGNED (Balraj) · TO CONFIRM WITH AKITO</span><span class="lang jp">ステータス ・ Balraj 合意済 ・ Akito 要確認</span></div>
     </div>
 
-    <div class="decision-card">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 00E · REFUND WINDOW</span><span class="lang jp">判断 00E ・ 返金期限</span></div>
       <a class="dec-ref" href="#phase-1-item-4">Phase 1 · Item 4</a>
       <h3>
@@ -3805,7 +3808,7 @@
       <div class="dec-status"><span class="lang en">STATUS · DEFAULTED TO 30 DAYS · CONFIRM BEFORE LAWYER REVIEW</span><span class="lang jp">ステータス ・ 30日デフォルト ・ 弁護士レビュー前に確認</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card red">
       <div class="dec-meta"><span class="lang en">DECISION 01 · APPLE 30% CUT</span><span class="lang jp">判断 01 ・ Apple 30% 手数料</span></div>
       <a class="dec-ref" href="#phase-1-item-7">Phase 1 · Item 7</a>
       <h3><span class="lang en">IAP vs Web vs Hybrid checkout</span><span class="lang jp">IAP vs Web vs ハイブリッド決済</span></h3>
@@ -3837,23 +3840,21 @@
       <div class="dec-status"><span class="lang en">STATUS · DEFERRED UNTIL SCALE</span><span class="lang jp">ステータス ・ スケール後に再検討</span></div>
     </div>
 
-    <div class="decision-card">
-      <div class="dec-meta"><span class="lang en">DECISION 03 · AGGREGATOR STRATEGY</span><span class="lang jp">判断 03 ・ アグリゲーター戦略</span></div>
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 03 · AGGREGATOR STRATEGY ✓</span><span class="lang jp">判断 03 ・ アグリゲーター戦略 ✓</span></div>
       <a class="dec-ref" href="#phase-0-item-2">Phase 0 · Item 2</a>
-      <h3><span class="lang en">Samurai Wifi exclusive, or multi-source from launch?</span><span class="lang jp">Samurai Wifi 単独 vs 複数アグリゲーター</span></h3>
+      <h3><span class="lang en">Single wholesale supplier for launch vs multi-source from day 1?</span><span class="lang jp">ローンチは単独卸仕入先 vs 初日から複数調達？</span></h3>
       <p>
-        <span class="lang en">Single-aggregator means simpler tech and tighter relationship. Multi gives margin flexibility and fallback. Pending Samurai's answers to our partner questionnaire (see Akito tab).</span>
-        <span class="lang jp">単独アグリゲーターなら技術がシンプルで関係も深まる。複数なら柔軟性と冗長性。Samurai への質問リストの回答待ち（Akito タブ参照）。</span>
+        <span class="lang en">Resolved 2026-06-02 during P&amp;L deep-dive sessions with Balraj.</span>
+        <span class="lang jp">Balraj との P&amp;L 詳細セッションにて 2026-06-02 に決定。</span>
       </p>
       <div class="dec-impact">
-        <strong><span class="lang en">Impact:</span><span class="lang jp">インパクト:</span></strong>
-        <span class="lang en"> Defines launch complexity. Leaning single for launch, plan for multi.</span>
-        <span class="lang jp">ローンチ時の複雑性を決定。初期は単独、後で複数化が定石。</span>
+        <strong><span class="lang en">Resolution: Single wholesale supplier for launch (proves model, lowest risk). Direct supplier research complete (eSIM Access, eSIM Go, Telnyx identified as alternatives). Switch to direct procurement triggers around 25,000 active users. Until then, stay on the current wholesale supplier.</span><span class="lang jp">結論: ローンチは単独卸仕入先で進める（モデル検証・最低リスク）。直接調達先のリサーチ完了（eSIM Access, eSIM Go, Telnyx を代替候補として特定済み）。直接調達への切り替えトリガーはアクティブユーザー 25,000 名前後。それまでは現卸仕入先を継続。</span></strong>
       </div>
-      <div class="dec-status"><span class="lang en">STATUS · WAITING FOR SAMURAI RESPONSES</span><span class="lang jp">ステータス ・ Samurai の回答待ち</span></div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · 2026-06-02</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card red">
       <div class="dec-meta"><span class="lang en">DECISION 04 · UAE-CUSTOMER COMPLIANCE RISK</span><span class="lang jp">判断 04 ・ UAE 顧客販売リスク</span></div>
       <a class="dec-ref" href="#phase-0-item-2">Phase 0 · Item 2</a>
       <h3>
@@ -3879,8 +3880,8 @@
       <div class="dec-status"><span class="lang en">STATUS · DILIGENCE REQUIRED ON ALL 6 ACTIVE PROVIDERS</span><span class="lang jp">ステータス ・ アクティブ 6 社全てに確認必要</span></div>
     </div>
 
-    <div class="decision-card urgent">
-      <div class="dec-meta"><span class="lang en">DECISION 05 · DAY-1 WEDGE VS CREW SIM</span><span class="lang jp">判断 05 ・ Crew SIM に対する初日アドバンテージ</span></div>
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 05 · DAY-1 WEDGE VS CREW SIM ✓</span><span class="lang jp">判断 05 ・ Crew SIM に対する初日アドバンテージ ✓</span></div>
       <a class="dec-ref" href="#phase-0-item-6">Phase 0 · Item 6</a>
       <h3>
         <span class="lang en">What's our day-1 reason for an Emirates crew member to choose Peanut over Crew SIM?</span>
@@ -3903,7 +3904,7 @@
           <tbody>
             <tr>
               <td><strong><span class="lang en">A. Better price (original lean — ❌ now ruled out)</span><span class="lang jp">A. 低価格（当初の意向 — ❌ 棄却）</span></strong></td>
-              <td><span class="lang en">Lean on Samurai rates; undercut Crew SIM</span><span class="lang jp">Samurai のレートを活かし Crew SIM を下回る</span></td>
+              <td><span class="lang en">Lean on wholesale supplier rates; undercut Crew SIM</span><span class="lang jp">wholesale supplier のレートを活かし Crew SIM を下回る</span></td>
               <td><span class="lang en">Crew SIM is already at $1.50/GB on most major destinations (USA, UK, Thailand, Europe). Undercutting by 10-20% won't move the needle and starts a price war we can't afford.</span><span class="lang jp">Crew SIM は既に主要国（USA, UK, タイ, 欧州）で $1.50/GB。10-20% 下回ってもインパクト薄く、勝てない価格競争を招くだけ。</span></td>
             </tr>
             <tr>
@@ -3931,7 +3932,7 @@
       <div class="dec-status"><span class="lang en">STATUS · REVISED 2026-05-22 · TO CONFIRM WITH AKITO · INFORMS PHASE 2 ITEM 1 (BRAND STRATEGY) + ITEM 10 (PRICING)</span><span class="lang jp">ステータス ・ 2026-05-22 改訂 ・ Akito と要確認 ・ Phase 2 Item 1（ブランド戦略）+ Item 10（価格）に影響</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 06 · BRAND VOICE &amp; TONE</span><span class="lang jp">判断 06 ・ ブランドボイス＆トーン</span></div>
       <a class="dec-ref" href="#phase-2-item-1">Phase 2 · Item 1</a>
       <h3>
@@ -3978,7 +3979,7 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 2 ITEM 1 (BRAND STRATEGY)</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2 Item 1（ブランド戦略）に影響</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 07 · APP DESIGN APPROACH</span><span class="lang jp">判断 07 ・ アプリデザインのアプローチ</span></div>
       <a class="dec-ref" href="#phase-2-item-4">Phase 2 · Item 4</a>
       <h3>
@@ -4036,7 +4037,7 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · BLOCKS PHASE 2 ITEM 5 + PHASE 3 SCOPING</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2 Item 5 ＋ Phase 3 スコープを左右</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card amber">
       <div class="dec-meta"><span class="lang en">DECISION 09 · CREW ROSTER DATA HANDLING</span><span class="lang jp">判断 09 ・ 乗務員スケジュールデータの取扱い</span></div>
       <a class="dec-ref" href="#phase-2-item-5">Phase 2 · Item 5</a>
       <h3>
@@ -4064,7 +4065,7 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 3 ARCHITECTURE</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 3 アーキテクチャに直結</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 10 · APP AVAILABILITY (INVITE-ONLY vs OPEN)</span><span class="lang jp">判断 10 ・ アプリの公開モデル（招待制 vs オープン）</span></div>
       <a class="dec-ref" href="#phase-2-item-7">Phase 2 · Item 7</a>
       <h3>
@@ -4091,7 +4092,7 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 2 ITEM 7 (STORE ASSETS) + 6 (MARKETING SITE)</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2 Item 7（ストア素材）＋ Item 6（マーケサイト）に影響</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 11 · MARKETING WEBSITE MODEL</span><span class="lang jp">判断 11 ・ マーケサイトのモデル</span></div>
       <a class="dec-ref" href="#phase-2-item-6">Phase 2 · Item 6</a>
       <h3>
@@ -4115,7 +4116,7 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · DOWNSTREAM OF DECISION 10</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Decision 10 に依存</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 13 · 3-YEAR SOM TARGET (MARKET-CAPTURE AMBITION)</span><span class="lang jp">判断 13 ・ 3 年間の SOM 目標（市場獲得の野心度）</span></div>
       <a class="dec-ref" href="#phase-0-item-7">Phase 0 · Item 7</a>
       <h3>
@@ -4217,7 +4218,7 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 2-5 SPEND DECISIONS</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2〜5 の支出判断に影響</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 15 · CAPITAL SPLIT FORMULA (BALRAJ × AKITO)</span><span class="lang jp">判断 15 ・ 資本配分の方式（Balraj × Akito）</span></div>
       <a class="dec-ref" href="#phase-0-item-9">Phase 0 · Item 9</a>
       <h3>
@@ -4225,8 +4226,8 @@
         <span class="lang jp">$15K〜$25K の資金を Balraj と Akito でどう負担するか？</span>
       </h3>
       <p>
-        <span class="lang en"><strong>Updated 2026-05-24:</strong> LLC is confirmed as multi-member (Balraj + Akito, ~50/50). Equity formalization happens in the founder agreement (Phase 0 Item 5), which must be signed before the Atlas filing. Time-vs-money equivalence: Akito brings the Samurai contact + crew network access; Balraj brings dev + ops + design time.</span>
-        <span class="lang jp"><strong>2026-05-24 更新：</strong>LLC は複数構成員（Balraj + Akito、~50/50）に確定。持分の正式化は創業者合意書（Phase 0 Item 5）で行い、Atlas 申請前に署名必須。時間と現金の等価性：Akito は Samurai 接点 + クルーネットワークへのアクセス、Balraj は開発 + 運用 + デザイン工数を提供。</span>
+        <span class="lang en"><strong>Updated 2026-05-24:</strong> LLC is confirmed as multi-member (Balraj + Akito, ~50/50). Equity formalization happens in the founder agreement (Phase 0 Item 5), which must be signed before the Atlas filing. Time-vs-money equivalence: Akito brings the wholesale supplier contact + crew network access; Balraj brings dev + ops + design time.</span>
+        <span class="lang jp"><strong>2026-05-24 更新：</strong>LLC は複数構成員（Balraj + Akito、~50/50）に確定。持分の正式化は創業者合意書（Phase 0 Item 5）で行い、Atlas 申請前に署名必須。時間と現金の等価性：Akito は wholesale supplier 接点 + クルーネットワークへのアクセス、Balraj は開発 + 運用 + デザイン工数を提供。</span>
       </p>
       <div class="dec-impact">
         <strong><span class="lang en">Three options:</span><span class="lang jp">3 つの選択肢:</span></strong>
@@ -4264,7 +4265,7 @@
       <div class="dec-status"><span class="lang en">STATUS · LOCKED 2026-05-24 · MULTI-MEMBER (~50/50) · FOUNDER AGREEMENT (Phase 0 Item 5) IS NOW A BLOCKER BEFORE ATLAS FILING</span><span class="lang jp">ステータス ・ 確定 2026-05-24 ・ 複数構成員（~50/50）・創業者合意書（Phase 0 Item 5）が Atlas 申請前のブロッカーに昇格</span></div>
     </div>
 
-    <div class="decision-card urgent">
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 16 · US CPA ENGAGEMENT</span><span class="lang jp">判断 16 ・ 米国 CPA との契約</span></div>
       <a class="dec-ref" href="#phase-1-item-14">Phase 1 · Item 14</a>
       <h3>
@@ -4460,8 +4461,8 @@
     <span class="doc-tag akito">AKITO · TASK LIST</span>
     <h1 class="lang en">What's on <em>Akito's</em> plate.</h1>
     <h1 class="lang jp">Akito の<em>タスク一覧</em>。</h1>
-    <p class="lead lang en">Mostly the Samurai Wifi diligence track. Includes the forwardable partner questionnaire (EN + JP) ready to copy.</p>
-    <p class="lead lang jp">主に Samurai Wifi のデューデリジェンス。下記に転送用のパートナー確認質問リスト（英語・日本語）を用意。</p>
+    <p class="lead lang en">Mostly the wholesale supplier diligence track. Includes the forwardable partner questionnaire (EN + JP) ready to copy.</p>
+    <p class="lead lang jp">主に wholesale supplier のデューデリジェンス。下記に転送用のパートナー確認質問リスト（英語・日本語）を用意。</p>
   </header>
 
   <section style="border-bottom: none;">
@@ -4473,11 +4474,11 @@
         <span class="task-pill waiting">WAITING</span>
       </div>
       <div class="task-header">
-        <h3><span class="lang en">Forward partner questionnaire to Samurai Wifi</span><span class="lang jp">Samurai Wifi にパートナー確認質問リストを転送</span></h3>
+        <h3><span class="lang en">Forward partner questionnaire to wholesale supplier</span><span class="lang jp">wholesale supplier にパートナー確認質問リストを転送</span></h3>
       </div>
       <p>
-        <span class="lang en">10 standard partner-onboarding questions. Copy in your preferred language below and forward. Their answers determine whether we move forward with Samurai or compare with a Tier-2 aggregator.</span>
-        <span class="lang jp">10項目の標準的なパートナー確認質問。下記から優先言語でコピーして転送。Samurai の回答内容で、提携を進めるか Tier-2 のアグリゲーターと比較するかを判断。</span>
+        <span class="lang en">10 standard partner-onboarding questions. Copy in your preferred language below and forward. Their answers determine whether we move forward with wholesale supplier or compare with a Tier-2 aggregator.</span>
+        <span class="lang jp">10項目の標準的なパートナー確認質問。下記から優先言語でコピーして転送。wholesale supplier の回答内容で、提携を進めるか Tier-2 のアグリゲーターと比較するかを判断。</span>
       </p>
 
       <!-- Context: why we're asking — for Akito's understanding -->
@@ -4487,8 +4488,8 @@
           <span class="lang jp">背景 ・ なぜ我々がこの質問をするのか</span>
         </div>
         <p>
-          <span class="lang en">After going through the wholesale price list Samurai sent (9,091 SKUs), two things stood out that we want to clarify before signing anything:</span>
-          <span class="lang jp">Samurai から送られてきた卸価格リスト（9,091 SKU）を精査したところ、契約前に確認しておきたい点が2つ出てきました。</span>
+          <span class="lang en">After going through the wholesale price list wholesale supplier sent (9,091 SKUs), two things stood out that we want to clarify before signing anything:</span>
+          <span class="lang jp">wholesale supplier から送られてきた卸価格リスト（9,091 SKU）を精査したところ、契約前に確認しておきたい点が2つ出てきました。</span>
         </p>
         <ol class="ctx-points">
           <li>
@@ -4496,34 +4497,34 @@
               <span class="lang en">Margin is exactly 40% flat across all 9,091 products.</span>
               <span class="lang jp">マージンが全 9,091 SKU で ぴったり 40% に固定されている。</span>
             </strong>
-            <span class="lang en">A real Tier-1/Tier-2 aggregator with direct MNO roaming agreements would have variable margins by carrier and region (50% in some places, 30% in others) because cost of capacity differs per MNO. A perfectly uniform 40% across thousands of products looks like a flat markup that Samurai has layered on top of inventory they bought from someone above them.</span>
-            <span class="lang jp">本来、MNOとの直接ローミング契約を持つ Tier-1 / Tier-2 のアグリゲーターであれば、地域・キャリアによって仕入れコストが異なるため、マージンも変動するのが普通（50%だったり、30%だったり）。9,000以上の商品で完全に均一な40%というのは、誰か上流から仕入れた在庫に Samurai が一律のマージンを乗せている、という見え方になる。</span>
+            <span class="lang en">A real Tier-1/Tier-2 aggregator with direct MNO roaming agreements would have variable margins by carrier and region (50% in some places, 30% in others) because cost of capacity differs per MNO. A perfectly uniform 40% across thousands of products looks like a flat markup that wholesale supplier has layered on top of inventory they bought from someone above them.</span>
+            <span class="lang jp">本来、MNOとの直接ローミング契約を持つ Tier-1 / Tier-2 のアグリゲーターであれば、地域・キャリアによって仕入れコストが異なるため、マージンも変動するのが普通（50%だったり、30%だったり）。9,000以上の商品で完全に均一な40%というのは、誰か上流から仕入れた在庫に wholesale supplier が一律のマージンを乗せている、という見え方になる。</span>
           </li>
           <li>
             <strong>
               <span class="lang en">Pricing is in Chinese Yuan (CNY), not Thai Baht.</span>
               <span class="lang jp">価格表の通貨が、タイバーツではなく中国元（CNY）。</span>
             </strong>
-            <span class="lang en">If Samurai sourced eSIM data directly from their own roaming agreements as a Thai company, we'd expect pricing in THB or USD. CNY pricing strongly suggests the actual data source is a Chinese aggregator (likely eSIM Access or a similar Chinese player), and Samurai is reselling that to us.</span>
-            <span class="lang jp">タイの企業として自社のローミング契約から直接 eSIM データを調達しているのであれば、価格は THB か USD で表記されるのが自然。CNY 表記ということは、実際の調達元は中国系のアグリゲーター（eSIM Access あたり）で、Samurai はそれを我々に転売している、という構図に見える。</span>
+            <span class="lang en">If wholesale supplier sourced eSIM data directly from their own roaming agreements as a Thai company, we'd expect pricing in THB or USD. CNY pricing strongly suggests the actual data source is a Chinese aggregator (likely eSIM Access or a similar Chinese player), and wholesale supplier is reselling that to us.</span>
+            <span class="lang jp">タイの企業として自社のローミング契約から直接 eSIM データを調達しているのであれば、価格は THB か USD で表記されるのが自然。CNY 表記ということは、実際の調達元は中国系のアグリゲーター（eSIM Access あたり）で、wholesale supplier はそれを我々に転売している、という構図に見える。</span>
           </li>
         </ol>
         <p>
-          <span class="lang en"><strong>What this means:</strong> if our reading is right, Samurai is a Tier-3 sub-reseller (not a Tier-2 aggregator). That puts Peanut eSIM in Tier-4 — four layers from the source — and our margin gets squeezed by an extra layer that wouldn't exist if we went direct to the Tier-2 provider above Samurai.</span>
-          <span class="lang jp"><strong>この読みが正しいとすると:</strong> Samurai は Tier-2 のアグリゲーターではなく、Tier-3 のサブリセラー、ということになります。すると Peanut eSIM は Tier-4 のポジションで、本来必要のない中間層が1つ挟まる分、マージンが圧迫される。</span>
+          <span class="lang en"><strong>What this means:</strong> if our reading is right, wholesale supplier is a Tier-3 sub-reseller (not a Tier-2 aggregator). That puts Peanut eSIM in Tier-4 — four layers from the source — and our margin gets squeezed by an extra layer that wouldn't exist if we went direct to the Tier-2 provider above wholesale supplier.</span>
+          <span class="lang jp"><strong>この読みが正しいとすると:</strong> wholesale supplier は Tier-2 のアグリゲーターではなく、Tier-3 のサブリセラー、ということになります。すると Peanut eSIM は Tier-4 のポジションで、本来必要のない中間層が1つ挟まる分、マージンが圧迫される。</span>
         </p>
         <div class="ctx-not-dealbreaker">
           <strong><span class="lang en">Important — this is NOT a dealbreaker:</span><span class="lang jp">重要 ・ これはディールブレイカーではない:</span></strong>
           <ul>
-            <li><span class="lang en">Akito's existing relationship with Samurai is real value (huge asset)</span><span class="lang jp">Akito と Samurai の既存の関係性は大きな資産</span></li>
+            <li><span class="lang en">Akito's existing relationship with wholesale supplier is real value (huge asset)</span><span class="lang jp">Akito と wholesale supplier の既存の関係性は大きな資産</span></li>
             <li><span class="lang en">Smooth onboarding for us</span><span class="lang jp">スムーズなオンボーディング</span></li>
             <li><span class="lang en">A large catalog (9k+ SKUs covers basically everywhere we'd want to launch)</span><span class="lang jp">9,000以上のSKUで、ローンチしたい全地域をほぼカバー</span></li>
             <li><span class="lang en">Possibly better support than a big anonymous Tier-2 aggregator</span><span class="lang jp">顔の見えない Tier-2 の大手より、サポートが手厚い可能性</span></li>
           </ul>
         </div>
         <p>
-          <span class="lang en"><strong>That's why we're asking these specific questions.</strong> If Samurai answers "we source directly from MNOs" — we move forward confidently. If they answer "we buy from X aggregator" — we know who's above them, can compare X's direct rates to Samurai's, and decide whether the relationship is worth the margin gap.</span>
-          <span class="lang jp"><strong>だから具体的にこの質問をしている。</strong>Samurai が「MNOから直接調達している」と答えれば、自信を持って進められる。「X というアグリゲーターから仕入れている」と答えれば、上流が分かるので、X 直接のレートと比較して、Samurai との関係性にマージン差を払う価値があるか判断できる。</span>
+          <span class="lang en"><strong>That's why we're asking these specific questions.</strong> If wholesale supplier answers "we source directly from MNOs" — we move forward confidently. If they answer "we buy from X aggregator" — we know who's above them, can compare X's direct rates to wholesale supplier's, and decide whether the relationship is worth the margin gap.</span>
+          <span class="lang jp"><strong>だから具体的にこの質問をしている。</strong>wholesale supplier が「MNOから直接調達している」と答えれば、自信を持って進められる。「X というアグリゲーターから仕入れている」と答えれば、上流が分かるので、X 直接のレートと比較して、wholesale supplier との関係性にマージン差を払う価値があるか判断できる。</span>
         </p>
       </div>
 
@@ -4533,7 +4534,7 @@
           <span class="label">QUESTIONNAIRE · ENGLISH</span>
           <button class="copy-btn" onclick="copyQ('q-en', this)"><span class="text-default">📋 Copy</span><span class="check">✓ Copied</span></button>
         </div>
-        <div class="questionnaire" id="q-en">Dear Samurai Wifi team,
+        <div class="questionnaire" id="q-en">Dear wholesale supplier team,
 
 Thank you again for sharing the wholesale price list. Before we move forward with the partnership on the Peanut eSIM side, we'd appreciate if you could answer a few standard partner-onboarding questions so we can plan our launch accordingly.
 
@@ -4577,7 +4578,7 @@ Akito</div>
           <span class="label">確認質問リスト ・ 日本語</span>
           <button class="copy-btn" onclick="copyQ('q-jp', this)"><span class="text-default">📋 コピー</span><span class="check">✓ コピー済</span></button>
         </div>
-        <div class="questionnaire" id="q-jp">Samurai Wifi ご担当者様
+        <div class="questionnaire" id="q-jp">wholesale supplier ご担当者様
 
 お世話になっております。
 先日は卸価格リストをお送りいただき、誠にありがとうございました。
@@ -4627,11 +4628,11 @@ Akito</div>
         <span class="task-pill todo">TO DO</span>
       </div>
       <div class="task-header">
-        <h3><span class="lang en">Confirm Samurai's operating history + reseller count</span><span class="lang jp">Samurai の事業継続期間とリセラー数を確認</span></h3>
+        <h3><span class="lang en">Confirm wholesale supplier's operating history + reseller count</span><span class="lang jp">wholesale supplier の事業継続期間とリセラー数を確認</span></h3>
       </div>
       <p>
-        <span class="lang en">From your direct conversation: how long has BS Mobile / Samurai operated the eSIM business? How many reseller partners do they currently work with? Signals financial stability.</span>
-        <span class="lang jp">直接の会話で確認: BS Mobile / Samurai が eSIM 事業を開始してからの期間、現在の取引リセラー数。財務的安定性のシグナル。</span>
+        <span class="lang en">From your direct conversation: how long has BS Mobile / wholesale supplier operated the eSIM business? How many reseller partners do they currently work with? Signals financial stability.</span>
+        <span class="lang jp">直接の会話で確認: BS Mobile / wholesale supplier が eSIM 事業を開始してからの期間、現在の取引リセラー数。財務的安定性のシグナル。</span>
       </p>
     </div>
 
@@ -4781,6 +4782,10 @@ Akito</div>
     <h1 class="lang jp"><em>アイデア</em>から<em>ローンチ</em>までの全行程。</h1>
     <p class="lead lang en">8 phases. Live dashboard — updated as we work through each item. Phase 0 partially closed (7/12); Phases 1 &amp; 2 starting.</p>
     <p class="lead lang jp">全8フェーズ。各項目を進めるたびに更新されるライブダッシュボード。フェーズ0は一部完了（7/12）、フェーズ1・2開始中。</p>
+    <p class="lead" style="margin-top: 12px; background: var(--surface); padding: 14px; border-left: 4px solid var(--accent); font-size: 14px;">
+      <span class="lang en"><strong>Last sync:</strong> 2026-06-02. Phases 0-2 updated to reflect P&amp;L deep-dive locks: Universal Carry Rule, 8-feature moat strategy, self-funded stance (no fundraise), $0.75 blended CAC, Cockpit cash advantage as funding mechanism, dynamic SIM allocation architecture.</span>
+      <span class="lang jp"><strong>最終更新:</strong> 2026-06-02. フェーズ 0-2 を P&amp;L 詳細セッションでの決定事項に基づき更新: ユニバーサルキャリールール、8機能モート戦略、自己資金型（資金調達なし）、CAC $0.75 ブレンド、Cockpit キャッシュアドバンテージを資金エンジンとして、同一SIM ダイナミック割当アーキ。</span>
+    </p>
   </header>
 
   <!-- Overview Table -->
@@ -4813,8 +4818,8 @@ Akito</div>
         { n: 8, en: 'Unit economics model', jp: 'ユニットエコノミクスモデル', def: 'done' },
         { n: 9, en: 'Financial runway model', jp: '資金繰り（ランウェイ）モデル', def: 'done' },
         { n: 10, en: 'Risk register', jp: 'リスク登録簿', def: 'done' },
-        { n: 11, en: 'Plan portfolio design', jp: 'プラン ポートフォリオ設計', owner: 'both' },
-        { n: 12, en: 'Live financial workbook', jp: '財務シミュレーション（継続更新型）', owner: 'balraj' },
+        { n: 11, en: 'Plan portfolio design', jp: 'プラン ポートフォリオ設計', def: 'done', owner: 'both' },
+        { n: 12, en: 'Live financial workbook', jp: '財務シミュレーション（継続更新型）', def: 'done', owner: 'balraj' },
         { n: 13, en: 'Residual UAE compliance', jp: 'UAE 残余コンプライアンス', owner: 'both' }
       ]},
       { num: 1, en: 'Legal & Corporate', jp: '法務・法人設立', stat: 'starting', items: [
@@ -4827,7 +4832,7 @@ Akito</div>
         { n: 7, en: 'Stripe US merchant account', jp: 'Stripe US 加盟店アカウント', owner: 'balraj' },
         { n: 8, en: 'Apple Developer account', jp: 'Apple Developer アカウント', owner: 'balraj' },
         { n: 9, en: 'Google Play Console', jp: 'Google Play Console', owner: 'balraj' },
-        { n: 10, en: 'Aggregator MSA (Samurai or alt)', jp: 'アグリゲーター MSA（Samurai または代替）', def: 'hold', owner: 'both' },
+        { n: 10, en: 'Aggregator MSA (wholesale supplier or alt)', jp: 'アグリゲーター MSA（wholesale supplier または代替）', def: 'hold', owner: 'both' },
         { n: 11, en: 'Business insurance (E&O + cyber)', jp: '事業保険（E&O + サイバー）', def: 'hold', owner: 'balraj' },
         { n: 12, en: 'EIN registration confirmation', jp: 'EIN（連邦雇用主番号）取得確認', owner: 'balraj' },
         { n: 13, en: 'Delaware annual franchise tax + report', jp: 'デラウェア州 年次フランチャイズ税＋報告書', owner: 'balraj' },
@@ -4846,7 +4851,12 @@ Akito</div>
         { n: 6, en: 'Marketing website design', jp: 'マーケティング Web サイトデザイン', owner: 'balraj' },
         { n: 7, en: 'App Store + Play Store assets', jp: 'App Store + Play Store 素材（スクショ・コピー・プレビュー動画）', owner: 'akito' },
         { n: 8, en: 'Email + receipt templates', jp: 'メール・領収書テンプレート', owner: 'akito' },
-        { n: 9, en: 'Social media kit + brand guidelines', jp: 'SNS キット + ブランドガイドライン', owner: 'akito' }
+        { n: 9, en: 'Social media kit + brand guidelines', jp: 'SNS キット + ブランドガイドライン', owner: 'akito' },
+        { n: 10, en: 'Refuel → Premium nudge UI', jp: 'リフュール→プレミアムへの誘導 UI', owner: 'balraj' },
+        { n: 11, en: 'Carryover bucket display (FIFO, multi-bucket pool view)', jp: '繰越バケット表示（FIFO・複数バケット プール）', owner: 'balraj' },
+        { n: 12, en: 'Gifting flow UX (give carry to family/colleague)', jp: 'ギフト機能 UX（家族・同僚にデータ贈与）', owner: 'balraj' },
+        { n: 13, en: 'Cancellation gift-only modal', jp: '解約時ギフトのみ画面', owner: 'balraj' },
+        { n: 14, en: '"Saved $X vs PAYG" framing (replaces "GB unused")', jp: '"PAYG比$X節約" 表示（"GB残" の置換）', owner: 'balraj' }
       ]},
       { num: 3, en: 'Tech Build', jp: '技術開発', stat: 'upcoming', items: [
         { n: 1, en: 'Backend architecture (Supabase / Firebase / custom Node)', jp: 'バックエンド アーキテクチャ判断', owner: 'balraj' },
@@ -4866,7 +4876,14 @@ Akito</div>
         { n: 15, en: 'Admin dashboard (users, refunds, KPIs)', jp: '管理ダッシュボード（ユーザー・返金・KPI）', owner: 'balraj' },
         { n: 16, en: 'Error monitoring (Sentry)', jp: 'エラー監視（Sentry）', owner: 'balraj' },
         { n: 17, en: 'Backup + disaster recovery', jp: 'バックアップ + 障害復旧', owner: 'balraj' },
-        { n: 18, en: 'Security review / pen test', jp: 'セキュリティ レビュー / ペネトレーション テスト', owner: 'balraj' }
+        { n: 18, en: 'Security review / pen test', jp: 'セキュリティ レビュー / ペネトレーション テスト', owner: 'balraj' },
+        { n: 19, en: 'Same-SIM dynamic allocation architecture (top-up via supplier API)', jp: '同一SIMダイナミック割当アーキ（サプライヤーAPI経由トップアップ）', owner: 'balraj' },
+        { n: 20, en: 'Carryover state engine (Universal Carry Rule)', jp: '繰越ステートエンジン（ユニバーサルキャリールール）', owner: 'balraj' },
+        { n: 21, en: 'Expiry notification system (7-day + 3-day push + email)', jp: '失効通知（7日前・3日前 プッシュ＋メール）', owner: 'balraj' },
+        { n: 22, en: 'Gifting backend (carry-pool routing to recipient eSIM)', jp: 'ギフト機能バックエンド（繰越プール→受取eSIM経路）', def: 'hold', owner: 'balraj' },
+        { n: 23, en: 'UAE redemption routing (carry → UAE-roaming eSIM profile)', jp: 'UAEデータ利用機能（繰越→UAEローミングeSIM）', def: 'hold', owner: 'balraj' },
+        { n: 24, en: 'AI Support agent (install / refund / top-up chat)', jp: 'AIサポート（インストール・返金・トップアップ チャット）', def: 'hold', owner: 'balraj' },
+        { n: 25, en: 'Failed-activation UX investments (in-app QR scanner, device check, ~$1K + 2wk dev to drop failure 5%→1%)', jp: 'アクティベーション失敗UX投資（アプリ内QRスキャナ・端末互換チェック）', owner: 'balraj' }
       ]},
       { num: 4, en: 'Beta & Pre-launch', jp: 'ベータ・ローンチ準備', stat: 'upcoming', items: [
         { n: 1, en: 'Beta tester recruitment (20–50 crew)', jp: 'ベータテスター募集（クルー 20〜50 名）', owner: 'akito' },
@@ -4888,30 +4905,30 @@ Akito</div>
         { n: 3, en: 'Onboarding flow monitoring', jp: 'オンボーディング フロー監視', owner: 'balraj' },
         { n: 4, en: 'Sales analytics', jp: '売上アナリティクス', owner: 'balraj' },
         { n: 5, en: 'Conversion funnel optimization', jp: 'コンバージョン ファネル最適化', owner: 'both' },
-        { n: 6, en: 'Word-of-mouth amplification (referrals)', jp: '口コミ拡散（リファラル）', owner: 'akito' },
+        { n: 6, en: 'Word-of-mouth + $5 referral bonus (15% allocation, locked CAC = $0.75)', jp: '口コミ + $5紹介報酬（15%配分・固定CAC $0.75）', owner: 'akito' },
         { n: 7, en: 'Crew lounge poster + QR campaign (DXB T3)', jp: 'クルーラウンジ ポスター + QR キャンペーン（DXB T3）', owner: 'akito' },
         { n: 8, en: 'NPS + structured feedback', jp: 'NPS + 構造化フィードバック', owner: 'balraj' },
         { n: 9, en: 'Press / media outreach', jp: 'プレス / メディア露出', owner: 'akito' },
-        { n: 10, en: 'Pricing iteration on real demand', jp: '実需に基づく価格反復', owner: 'both' }
+        { n: 10, en: 'Pricing iteration (pricing IS locked — only adjust if Crew SIM undercuts; defend by tier per Decision 05)', jp: '価格反復（価格は固定 — Crew SIM が値下げ攻撃した場合のみ調整。Decision 05 のティア別防御方針に従う）', owner: 'both' }
       ]},
       { num: 6, en: 'Public Launch & Growth', jp: '本格ローンチ・成長', stat: 'upcoming', items: [
         { n: 1, en: 'Open the gates (remove invite-only)', jp: 'ゲート開放（招待制を解除）', owner: 'both' },
-        { n: 2, en: 'Paid ad campaigns (Instagram + TikTok + Meta)', jp: '有料広告（Instagram + TikTok + Meta）', owner: 'akito' },
+        { n: 2, en: 'Paid ad campaigns (PARKED at launch — Decision 20. Revisit only if word-of-mouth growth stalls >6 months)', jp: '有料広告（ローンチ時保留 — Decision 20。口コミ成長が6ヶ月超停滞時のみ再検討）', def: 'hold', owner: 'akito' },
         { n: 3, en: 'ASO optimization', jp: 'ASO 最適化', owner: 'akito' },
         { n: 4, en: 'SEO content engine (per-country pages)', jp: 'SEO コンテンツ生産（国別ページ）', owner: 'akito' },
         { n: 5, en: 'Influencer / crew creator partnerships', jp: 'インフルエンサー / クルー クリエイター提携', owner: 'akito' },
         { n: 6, en: 'Referral programme (public, gamified)', jp: 'リファラル プログラム（公開・ゲーミフィケーション）', owner: 'balraj' },
         { n: 7, en: 'Etihad outreach (next airline)', jp: 'Etihad へのアプローチ（2 社目）', owner: 'akito' },
         { n: 8, en: 'PR push (Khaleej Times, The National)', jp: 'PR 活動（Khaleej Times、The National）', owner: 'akito' },
-        { n: 9, en: 'Loyalty / subscription unlock (yearly plan)', jp: 'ロイヤルティ / サブスク開放（年額プラン）', owner: 'both' },
+        { n: 9, en: 'Cockpit annual unlock — primary growth lever ($149K extra working capital per 1K Cockpit users, locked retention)', jp: 'Cockpit 年額プラン解禁 — 主要成長ドライバー（1000Cockpitユーザーあたり $149K の運転資金、固定リテンション）', owner: 'both' },
         { n: 10, en: 'Revenue dashboard (real KPIs)', jp: '売上ダッシュボード（実 KPI）', owner: 'balraj' }
       ]},
       { num: 7, en: 'Scale & Strategic', jp: 'スケール・戦略', stat: 'upcoming', items: [
-        { n: 1, en: 'Multi-airline expansion (JAL, ANA, Singapore, Qatar)', jp: '複数航空会社展開（JAL・ANA・Singapore・Qatar）', owner: 'akito' },
+        { n: 1, en: 'Multi-airline expansion sequence: Etihad (Y2) → JAL+ANA (Y2) → Singapore+Cathay+Qatar (Y3). Triggers at 5K user milestone per Tab 21.', jp: '複数航空会社展開: Etihad（Y2）→ JAL+ANA（Y2）→ Singapore+Cathay+Qatar（Y3）。Tab 21 に基づき 5K ユーザー時点で起動。', owner: 'akito' },
         { n: 2, en: 'Michelin recs layer launch (the moat)', jp: 'ミシュラン式レコメンド層（参入障壁）', owner: 'both' },
         { n: 3, en: 'B2B partnership conversations (Emirates HR)', jp: 'B2B 提携協議（Emirates HR）', owner: 'akito' },
         { n: 4, en: 'International base expansion (JFK, LHR)', jp: '海外ベース拡張（JFK、ロンドン LHR）', owner: 'both' },
-        { n: 5, en: 'Series A fundraise (optional)', jp: 'シリーズ A 調達（任意）', owner: 'balraj' },
+        { n: 5, en: 'Self-funded scaling (NO fundraise — Decision 14. Cockpit prepay funds operations.)', jp: '自己資金スケール（外部資金調達なし — Decision 14。Cockpit 年額がオペレーション資金）', def: 'done', owner: 'balraj' },
         { n: 6, en: 'First team hires (support → eng → marketing)', jp: '初期チーム採用', owner: 'both' },
         { n: 7, en: 'Office + ops structure (when team > 5)', jp: 'オフィス + 運営体制（5 名超で検討）', owner: 'balraj' },
         { n: 8, en: 'Adjacent product lines (data API, consumer brand)', jp: '隣接プロダクト', owner: 'both' },
@@ -5224,19 +5241,19 @@ Mercury（米国法人銀行口座）
         <h3><span class="lang en">Item 2 — Aggregator Diligence (Provider Pipeline)</span><span class="lang jp">Item 2 — アグリゲーター精査（プロバイダー候補一覧）</span></h3>
       </div>
       <p class="ri-desc">
-        <span class="lang en">Originally just Samurai Wifi. Expanded into a multi-provider benchmark after the price-list analysis raised flags. Goal: parallel diligence on 8 candidates so we have 3+ real quotes to compare and use as leverage. <strong>Samurai's 9,091-SKU list still anchors the comparison</strong> (flat 40% margin + CNY pricing = likely Tier-3 sub-reseller). <strong>Important new pattern emerged today:</strong> 2 of the 8 providers (eSIM Go, BNESIM) explicitly block UAE end-user purchases — that's a real regulatory signal we need every candidate to answer (see Open Discussion · Decision 04).<br><br><strong>Update 2026-05-24:</strong> Samurai's actual eSIM upstream is <strong>Billion Connect</strong> (HK), not Vision Inc. — confirmed by "Billion Connect Carrier" labels in 5,294 rows of Samurai's own price file. Vision Inc. is the upstream for Samurai's separate pocket-WiFi business only. Direct-go target for margin recovery is now Billion Connect.</span>
-        <span class="lang jp">当初は Samurai Wifi のみ対象。価格表分析で疑問点が出たため、複数プロバイダーのベンチマークに拡大。目的:並行して 8 社を精査し、3 社以上のリアルな見積もりで比較・交渉材料を確保。<strong>Samurai の 9,091 SKU 価格表は引き続き比較の基準</strong>（40% 固定マージン + CNY 表記 = Tier-3 サブリセラーの可能性）。<strong>本日判明した重要パターン:</strong> 8 社中 2 社（eSIM Go, BNESIM）が UAE 国内ユーザーへの販売を明示的にブロック — 規制シグナルとして全候補に確認必要（Open Discussion · 判断 04 参照）。<br><br><strong>更新 2026-05-24:</strong> Samurai の実際の eSIM 上流は Vision Inc. ではなく <strong>Billion Connect</strong>（香港）— Samurai 自身の価格ファイル内 5,294 行に「Billion Connect Carrier」とラベル付けされていることで確認。Vision Inc. は Samurai のポケット WiFi 事業の上流のみ。マージン回復のための直接交渉先は Billion Connect。</span>
+        <span class="lang en">Originally just wholesale supplier. Expanded into a multi-provider benchmark after the price-list analysis raised flags. Goal: parallel diligence on 8 candidates so we have 3+ real quotes to compare and use as leverage. <strong>wholesale supplier's 9,091-SKU list still anchors the comparison</strong> (flat 40% margin + CNY pricing = likely Tier-3 sub-reseller). <strong>Important new pattern emerged today:</strong> 2 of the 8 providers (eSIM Go, BNESIM) explicitly block UAE end-user purchases — that's a real regulatory signal we need every candidate to answer (see Open Discussion · Decision 04).<br><br><strong>Update 2026-05-24:</strong> wholesale supplier's actual eSIM upstream is <strong>Billion Connect</strong> (HK), not Vision Inc. — confirmed by "Billion Connect Carrier" labels in 5,294 rows of wholesale supplier's own price file. Vision Inc. is the upstream for wholesale supplier's separate pocket-WiFi business only. Direct-go target for margin recovery is now Billion Connect.</span>
+        <span class="lang jp">当初は wholesale supplier のみ対象。価格表分析で疑問点が出たため、複数プロバイダーのベンチマークに拡大。目的:並行して 8 社を精査し、3 社以上のリアルな見積もりで比較・交渉材料を確保。<strong>wholesale supplier の 9,091 SKU 価格表は引き続き比較の基準</strong>（40% 固定マージン + CNY 表記 = Tier-3 サブリセラーの可能性）。<strong>本日判明した重要パターン:</strong> 8 社中 2 社（eSIM Go, BNESIM）が UAE 国内ユーザーへの販売を明示的にブロック — 規制シグナルとして全候補に確認必要（Open Discussion · 判断 04 参照）。<br><br><strong>更新 2026-05-24:</strong> wholesale supplier の実際の eSIM 上流は Vision Inc. ではなく <strong>Billion Connect</strong>（香港）— wholesale supplier 自身の価格ファイル内 5,294 行に「Billion Connect Carrier」とラベル付けされていることで確認。Vision Inc. は wholesale supplier のポケット WiFi 事業の上流のみ。マージン回復のための直接交渉先は Billion Connect。</span>
       </p>
       <div class="ri-explainer">
         <div class="ri-explainer-tag"><span class="lang en">📖 What is this &amp; why we need it</span><span class="lang jp">📖 これは何で、なぜ必要なのか</span></div>
-        <p class="lang en">Think of this as picking our supplier. Every travel eSIM brand has to buy from a wholesale supplier — we don't run our own cell towers. Right now we use Samurai WiFi (Thailand), but they mark up the real supplier (Billion Connect, HK) by 40%. This item is the research to find 3+ alternative suppliers so we have real quotes to compare, and either negotiate Samurai down or switch to direct.</p>
-        <p class="lang jp">Think of this as picking our supplier. Every travel eSIM brand has to buy from a wholesale supplier — we don't run our own cell towers. Right now we use Samurai WiFi (Thailand), but they mark up the real supplier (Billion Connect, HK) by 40%. This item is the research to find 3+ alternative suppliers so we have real quotes to compare, and either negotiate Samurai down or switch to direct.</p>
+        <p class="lang en">Think of this as picking our supplier. Every travel eSIM brand has to buy from a wholesale supplier — we don't run our own cell towers. Right now we use wholesale supplier WiFi (Thailand), but they mark up the real supplier (Billion Connect, HK) by 40%. This item is the research to find 3+ alternative suppliers so we have real quotes to compare, and either negotiate wholesale supplier down or switch to direct.</p>
+        <p class="lang jp">Think of this as picking our supplier. Every travel eSIM brand has to buy from a wholesale supplier — we don't run our own cell towers. Right now we use wholesale supplier WiFi (Thailand), but they mark up the real supplier (Billion Connect, HK) by 40%. This item is the research to find 3+ alternative suppliers so we have real quotes to compare, and either negotiate wholesale supplier down or switch to direct.</p>
       </div>
 
       <div class="ri-callout">
         <strong><span class="lang en">🔁 Upstream re-verified — 2026-05-24</span><span class="lang jp">🔁 上流再確認 — 2026-05-24</span></strong>
-        <span class="lang en"> Akito's earlier intel naming Vision Inc. as Samurai's eSIM upstream was REFUTED today. Real eSIM upstream = <strong>Billion Connect</strong> (HK aggregator, billionconnect.net). Direct contact: Cecilia Hsin Cheng (Singapore office). Source: Samurai price file "Matching Carrier" column. Full report at <code>/Downloads/Peanut eSIM/upstream-supplier-verification-2026-05-24.md</code>.</span>
-        <span class="lang jp"> Vision Inc. を Samurai の eSIM 上流とした Akito の以前の情報は、本日反証された。実際の eSIM 上流は <strong>Billion Connect</strong>（香港アグリゲーター、billionconnect.net）。直接窓口:Cecilia Hsin Cheng（シンガポール拠点）。情報源:Samurai 価格ファイルの「Matching Carrier」列。詳細レポート:<code>/Downloads/Peanut eSIM/upstream-supplier-verification-2026-05-24.md</code>。</span>
+        <span class="lang en"> Akito's earlier intel naming Vision Inc. as wholesale supplier's eSIM upstream was REFUTED today. Real eSIM upstream = <strong>Billion Connect</strong> (HK aggregator, billionconnect.net). Direct contact: Cecilia Hsin Cheng (Singapore office). Source: wholesale supplier price file "Matching Carrier" column. Full report at <code>/Downloads/Peanut eSIM/upstream-supplier-verification-2026-05-24.md</code>.</span>
+        <span class="lang jp"> Vision Inc. を wholesale supplier の eSIM 上流とした Akito の以前の情報は、本日反証された。実際の eSIM 上流は <strong>Billion Connect</strong>（香港アグリゲーター、billionconnect.net）。直接窓口:Cecilia Hsin Cheng（シンガポール拠点）。情報源:wholesale supplier 価格ファイルの「Matching Carrier」列。詳細レポート:<code>/Downloads/Peanut eSIM/upstream-supplier-verification-2026-05-24.md</code>。</span>
       </div>
 
       <table class="mini-table" style="margin-top: 14px;">
@@ -5251,15 +5268,15 @@ Mercury（米国法人銀行口座）
         <tbody>
           <tr>
             <td>1</td>
-            <td><strong>Samurai Wifi</strong></td>
-            <td>🟡 <span class="lang en">Open · waiting on Akito → Samurai</span><span class="lang jp">未回答 ・ Akito → Samurai 待ち</span></td>
+            <td><strong>wholesale supplier</strong></td>
+            <td>🟡 <span class="lang en">Open · waiting on Akito → wholesale supplier</span><span class="lang jp">未回答 ・ Akito → wholesale supplier 待ち</span></td>
             <td><span class="lang en">9,091 SKUs received. 10-question diligence sent.</span><span class="lang jp">9,091 SKU 受領。確認質問 10 件送付済。</span></td>
           </tr>
           <tr class="pick">
             <td>2</td>
             <td><strong>eSIM Access</strong> <span class="lang en">(Redtea Mobile, China)</span><span class="lang jp">（Redtea Mobile・中国）</span></td>
             <td>✅ <span class="lang en">Account live, prices in hand</span><span class="lang jp">アカウント開設済、価格データ取得済</span></td>
-            <td><span class="lang en">2,808 SKUs in USD. Suspected upstream behind Samurai.</span><span class="lang jp">USD 表記 2,808 SKU。Samurai の上流と推定。</span></td>
+            <td><span class="lang en">2,808 SKUs in USD. Suspected upstream behind wholesale supplier.</span><span class="lang jp">USD 表記 2,808 SKU。wholesale supplier の上流と推定。</span></td>
           </tr>
           <tr>
             <td>3</td>
@@ -5299,16 +5316,16 @@ Mercury（米国法人銀行口座）
           </tr>
           <tr class="pick">
             <td>9</td>
-            <td><strong>Billion Connect</strong> <span class="lang en">(Hong Kong — confirmed Samurai upstream)</span><span class="lang jp">（香港 ・ Samurai 上流として確認済）</span></td>
+            <td><strong>Billion Connect</strong> <span class="lang en">(Hong Kong — confirmed wholesale supplier upstream)</span><span class="lang jp">（香港 ・ wholesale supplier 上流として確認済）</span></td>
             <td>🆕 <span class="lang en">REAL upstream · direct outreach queued</span><span class="lang jp">真の上流 ・ 直接コンタクト準備中</span></td>
-            <td><span class="lang en"><strong>REAL upstream</strong> — direct contact: Cecilia Hsin Cheng, Singapore office. Source: Samurai price file "Matching Carrier" column (5,294 rows labeled "Billion Connect Carrier"). Going direct = margin recovery vs Samurai's 40% flat markup.</span><span class="lang jp"><strong>真の上流</strong> — 直接窓口:Cecilia Hsin Cheng（シンガポール拠点）。情報源:Samurai 価格ファイル「Matching Carrier」列（5,294 行に「Billion Connect Carrier」と表記）。直接契約 = Samurai の 40% 固定マージン回避。</span></td>
+            <td><span class="lang en"><strong>REAL upstream</strong> — direct contact: Cecilia Hsin Cheng, Singapore office. Source: wholesale supplier price file "Matching Carrier" column (5,294 rows labeled "Billion Connect Carrier"). Going direct = margin recovery vs wholesale supplier's 40% flat markup.</span><span class="lang jp"><strong>真の上流</strong> — 直接窓口:Cecilia Hsin Cheng（シンガポール拠点）。情報源:wholesale supplier 価格ファイル「Matching Carrier」列（5,294 行に「Billion Connect Carrier」と表記）。直接契約 = wholesale supplier の 40% 固定マージン回避。</span></td>
           </tr>
         </tbody>
       </table>
 
       <div class="verdict-box" style="margin-top: 14px;">
         <strong><span class="lang en">Next milestone</span><span class="lang jp">次のマイルストーン</span></strong>
-        <p><span class="lang en">When 3+ providers come back with real net pricing, we can finally compare Samurai's CNY-flat-margin offer against actual wholesale rates and decide: stay with Samurai (Akito's relationship) or move to a direct provider. Decision 03 unblocks.</span><span class="lang jp">3 社以上から実際の純価格が出揃った時点で、Samurai の CNY 固定マージンと比較し、Samurai 継続（Akito の関係優先）か直接プロバイダーへの切替を判断可能に。Decision 03 のブロック解除。</span></p>
+        <p><span class="lang en">When 3+ providers come back with real net pricing, we can finally compare wholesale supplier's CNY-flat-margin offer against actual wholesale rates and decide: stay with wholesale supplier (Akito's relationship) or move to a direct provider. Decision 03 unblocks.</span><span class="lang jp">3 社以上から実際の純価格が出揃った時点で、wholesale supplier の CNY 固定マージンと比較し、wholesale supplier 継続（Akito の関係優先）か直接プロバイダーへの切替を判断可能に。Decision 03 のブロック解除。</span></p>
       </div>
       <div class="ri-notes">
         <button class="ri-notes-toggle" data-phase="0" data-item="2" type="button">
@@ -5675,7 +5692,7 @@ Mercury（米国法人銀行口座）
         <tbody>
           <tr>
             <td>1</td>
-            <td><span class="lang en">Samurai relationship breaks or rates worsen</span><span class="lang jp">Samurai との関係崩壊・価格悪化</span></td>
+            <td><span class="lang en">wholesale supplier relationship breaks or rates worsen</span><span class="lang jp">wholesale supplier との関係崩壊・価格悪化</span></td>
             <td><span class="lang en">High</span><span class="lang jp">高</span></td>
             <td><span class="lang en">Med</span><span class="lang jp">中</span></td>
             <td><span class="lang en">Multi-aggregator strategy — keep eSIM Access, Airalo, Nomad pipelines warm</span><span class="lang jp">複数アグリゲーター戦略 — eSIM Access・Airalo・Nomad のパイプを常時温める</span></td>
@@ -5734,7 +5751,7 @@ Mercury（米国法人銀行口座）
             <td><span class="lang en">Key-person risk — Akito leaves</span><span class="lang jp">キーパーソンリスク — Akito 離脱</span></td>
             <td><span class="lang en">High</span><span class="lang jp">高</span></td>
             <td><span class="lang en">Low</span><span class="lang jp">低</span></td>
-            <td><span class="lang en">Founder agreement (Phase 0 Item 5) with vesting, Samurai contact documented</span><span class="lang jp">創業者合意書（Phase 0 Item 5）+ ベスティング、Samurai 連絡先を文書化</span></td>
+            <td><span class="lang en">Founder agreement (Phase 0 Item 5) with vesting, wholesale supplier contact documented</span><span class="lang jp">創業者合意書（Phase 0 Item 5）+ ベスティング、wholesale supplier 連絡先を文書化</span></td>
             <td><span class="lang en">Both</span><span class="lang jp">両者</span></td>
           </tr>
           <tr>
@@ -6373,7 +6390,7 @@ Mercury（米国法人銀行口座）
         <tr><td>7</td><td><span class="lang en">Stripe US merchant account</span><span class="lang jp">Stripe US 加盟店アカウント</span></td><td>🔴 <span class="lang en">After #1</span><span class="lang jp">#1 後</span></td><td>$0</td></tr>
         <tr><td>8</td><td><span class="lang en">Apple Developer account</span><span class="lang jp">Apple Developer アカウント</span></td><td>🔴 <span class="lang en">After #1</span><span class="lang jp">#1 後</span></td><td>$99/yr</td></tr>
         <tr><td>9</td><td><span class="lang en">Google Play Console</span><span class="lang jp">Google Play Console</span></td><td>🔴 <span class="lang en">After #1</span><span class="lang jp">#1 後</span></td><td>$25</td></tr>
-        <tr><td>10</td><td><span class="lang en">Aggregator MSA (Samurai or alt)</span><span class="lang jp">アグリゲーター MSA（Samurai または代替）</span></td><td>🟡 <span class="lang en">Blocked on Phase 0 Item 2</span><span class="lang jp">フェーズ0 Item 2 に依存</span></td><td>TBD</td></tr>
+        <tr><td>10</td><td><span class="lang en">Aggregator MSA (wholesale supplier or alt)</span><span class="lang jp">アグリゲーター MSA（wholesale supplier または代替）</span></td><td>🟡 <span class="lang en">Blocked on Phase 0 Item 2</span><span class="lang jp">フェーズ0 Item 2 に依存</span></td><td>TBD</td></tr>
         <tr><td>11</td><td><span class="lang en">Business insurance (E&amp;O + cyber)</span><span class="lang jp">事業保険（E&amp;O + サイバー）</span></td><td>⏸ <span class="lang en">Defer post-launch</span><span class="lang jp">ローンチ後に保留</span></td><td>$1–3K/yr</td></tr>
       </tbody>
     </table>
@@ -6747,7 +6764,7 @@ Mercury（米国法人銀行口座）
       <h4><span class="lang en">What we discussed</span><span class="lang jp">議論したこと</span></h4>
       <ul class="ri-bullets">
         <li><span class="lang en">Comply with GDPR (stricter) → auto-covers UAE PDPL</span><span class="lang jp">GDPR（より厳格）に準拠 → UAE PDPL も自動的にカバー</span></li>
-        <li><span class="lang en">Vendor DPAs needed: Samurai, Stripe, Apple, Google, Mercury, hosting, analytics</span><span class="lang jp">DPA 必要なベンダー:Samurai、Stripe、Apple、Google、Mercury、ホスティング、解析ツール</span></li>
+        <li><span class="lang en">Vendor DPAs needed: wholesale supplier, Stripe, Apple, Google, Mercury, hosting, analytics</span><span class="lang jp">DPA 必要なベンダー:wholesale supplier、Stripe、Apple、Google、Mercury、ホスティング、解析ツール</span></li>
         <li><span class="lang en">DPO probably NOT required for us (low-scale processing)</span><span class="lang jp">DPO 任命はおそらく不要（処理規模が小さい）</span></li>
         <li><span class="lang en">Data deletion + export flows → built during Phase 3 (Tech Build)</span><span class="lang jp">データ削除・エクスポートフロー → フェーズ 3（技術開発）で実装</span></li>
         <li><span class="lang en">72-hour breach notification process (GDPR + UAE PDPL)</span><span class="lang jp">72 時間以内の侵害通知プロセス（GDPR + UAE PDPL）</span></li>
@@ -6959,9 +6976,9 @@ Mercury（米国法人銀行口座）
     <div class="roadmap-item" id="phase-1-item-10">
       <div class="ri-head">
         <span class="ri-status waiting"><span class="lang en">BLOCKED · PHASE 0 ITEM 2</span><span class="lang jp">ブロック中 ・ Phase 0 Item 2 待</span></span>
-        <h3><span class="lang en">Item 10 — Aggregator MSA (Samurai or alt)</span><span class="lang jp">Item 10 — アグリゲーター MSA（Samurai または代替）</span></h3>
+        <h3><span class="lang en">Item 10 — Aggregator MSA (wholesale supplier or alt)</span><span class="lang jp">Item 10 — アグリゲーター MSA（wholesale supplier または代替）</span></h3>
       </div>
-      <p class="ri-desc"><span class="lang en">Master Services Agreement with our wholesale eSIM aggregator. Cannot be signed until we have Samurai's responses to the diligence questionnaire (Phase 0 Item 2).</span><span class="lang jp">卸 eSIM アグリゲーターとのマスター契約。Samurai がパートナー確認質問リスト（Phase 0 Item 2）に回答してから締結可能。</span></p>
+      <p class="ri-desc"><span class="lang en">Master Services Agreement with our wholesale eSIM aggregator. Cannot be signed until we have wholesale supplier's responses to the diligence questionnaire (Phase 0 Item 2).</span><span class="lang jp">卸 eSIM アグリゲーターとのマスター契約。wholesale supplier がパートナー確認質問リスト（Phase 0 Item 2）に回答してから締結可能。</span></p>
       <div class="ri-explainer">
         <div class="ri-explainer-tag"><span class="lang en">📖 What is this &amp; why we need it</span><span class="lang jp">📖 これは何で、なぜ必要なのか</span></div>
         <p class="lang en">Think of this as the supplier contract. Master Services Agreement = the legal document binding us and the wholesale eSIM supplier. Defines: what we buy, what we pay, who's liable when an eSIM fails, how either side can exit. Without this signed, we technically can't sell their eSIMs as a real business.</p>
@@ -6969,7 +6986,7 @@ Mercury（米国法人銀行口座）
       </div>
       <ul class="ri-bullets">
         <li><span class="lang en">Vendor DPA template being drafted (Item 5 background agent) to attach to the MSA</span><span class="lang jp">MSA に添付する ベンダー DPA テンプレートを作成中（Item 5 のバックグラウンドエージェント）</span></li>
-        <li class="pending"><span class="lang en">Samurai exclusive vs multi-aggregator → <strong>Open Discussion · Decision 03</strong></span><span class="lang jp">Samurai 独占 vs 複数アグリゲーター → <strong>未決事項 ・ 判断 03</strong></span></li>
+        <li class="pending"><span class="lang en">wholesale supplier exclusive vs multi-aggregator → <strong>Open Discussion · Decision 03</strong></span><span class="lang jp">wholesale supplier 独占 vs 複数アグリゲーター → <strong>未決事項 ・ 判断 03</strong></span></li>
       </ul>
       <div class="ri-notes">
         <button class="ri-notes-toggle" data-phase="1" data-item="10" type="button">
@@ -7173,7 +7190,7 @@ Mercury（米国法人銀行口座）
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 17 — NDA + contractor agreement templates</span><span class="lang jp">Item 17 — NDA・業務委託契約のテンプレート</span></h3>
       </div>
-      <p class="ri-desc"><span class="lang en">Mutual NDA template (for vendor conversations like Samurai/Airalo), contractor agreement template (for any designer/developer/marketer we hire short-term), and IP-assignment clause (so anything they make belongs to the LLC, not them personally). Cheap to set up now; expensive when something goes wrong without them.</span><span class="lang jp">相互 NDA テンプレート（Samurai / Airalo などベンダー協議用）、業務委託契約テンプレート（短期で雇うデザイナー / 開発者 / マーケター用）、IP 譲渡条項（成果物の所有権が個人ではなく LLC に帰属）。今作れば安価、トラブル時に無いと高くつく。</span></p>
+      <p class="ri-desc"><span class="lang en">Mutual NDA template (for vendor conversations like wholesale supplier/Airalo), contractor agreement template (for any designer/developer/marketer we hire short-term), and IP-assignment clause (so anything they make belongs to the LLC, not them personally). Cheap to set up now; expensive when something goes wrong without them.</span><span class="lang jp">相互 NDA テンプレート（wholesale supplier / Airalo などベンダー協議用）、業務委託契約テンプレート（短期で雇うデザイナー / 開発者 / マーケター用）、IP 譲渡条項（成果物の所有権が個人ではなく LLC に帰属）。今作れば安価、トラブル時に無いと高くつく。</span></p>
       <div class="ri-explainer">
         <div class="ri-explainer-tag"><span class="lang en">📖 What is this &amp; why we need it</span><span class="lang jp">📖 これは何で、なぜ必要なのか</span></div>
         <p class="lang en">Think of this as the 'before we talk to anyone outside the two founders' toolkit. NDA = Non-Disclosure Agreement, used before sharing confidential info with potential designers, developers, advisors. Contractor agreement = used when actually hiring someone for a paid gig. Free templates exist; we just need a lawyer to bless them once.</p>
@@ -7653,7 +7670,7 @@ Mercury（米国法人銀行口座）
         <span class="ri-status new"><span class="lang en">🆕 NEW · 2026-05-22</span><span class="lang jp">🆕 新規 ・ 2026-05-22</span></span>
         <h3><span class="lang en">Item 10 — Plan &amp; pricing strategy</span><span class="lang jp">Item 10 — プラン・価格戦略</span></h3>
       </div>
-      <p class="ri-desc"><span class="lang en">The product structure question: do we sell <strong>per-country fixed plans</strong> (like Airalo), <strong>regional bundles</strong> (Europe / Asia), <strong>unlimited daily</strong> (like Holafly), <strong>monthly subscriptions</strong>, <strong>pay-as-you-fly</strong> (auto-generated from roster), or some hybrid? Plus the pricing curve: how much above Samurai wholesale? Undercut Crew SIM by how much? Tiers for crew seniority? This decision drives the entire SKU catalog, the UI of the plan browser, and the smart-pricing engine in Phase 3.</span><span class="lang jp">プロダクト構成の判断:<strong>国別固定プラン</strong>（Airalo 型）、<strong>地域パック</strong>（欧州・アジア）、<strong>無制限デイリー</strong>（Holafly 型）、<strong>月額サブスク</strong>、<strong>運行スケジュール連動の従量制</strong>（ロスター自動生成）、それともハイブリッド? 加えて価格設定:Samurai 卸値より何%上乗せ?Crew SIM を何%下回る?乗務員勤続年数で階層化?この判断が SKU カタログ全体、プラン閲覧画面の UX、Phase 3 のスマート価格エンジン全てを規定する。</span></p>
+      <p class="ri-desc"><span class="lang en">The product structure question: do we sell <strong>per-country fixed plans</strong> (like Airalo), <strong>regional bundles</strong> (Europe / Asia), <strong>unlimited daily</strong> (like Holafly), <strong>monthly subscriptions</strong>, <strong>pay-as-you-fly</strong> (auto-generated from roster), or some hybrid? Plus the pricing curve: how much above wholesale supplier wholesale? Undercut Crew SIM by how much? Tiers for crew seniority? This decision drives the entire SKU catalog, the UI of the plan browser, and the smart-pricing engine in Phase 3.</span><span class="lang jp">プロダクト構成の判断:<strong>国別固定プラン</strong>（Airalo 型）、<strong>地域パック</strong>（欧州・アジア）、<strong>無制限デイリー</strong>（Holafly 型）、<strong>月額サブスク</strong>、<strong>運行スケジュール連動の従量制</strong>（ロスター自動生成）、それともハイブリッド? 加えて価格設定:wholesale supplier 卸値より何%上乗せ?Crew SIM を何%下回る?乗務員勤続年数で階層化?この判断が SKU カタログ全体、プラン閲覧画面の UX、Phase 3 のスマート価格エンジン全てを規定する。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>$0 (internal)</strong></span></div>
     </div>
 
@@ -7767,7 +7784,7 @@ Mercury（米国法人銀行口座）
         <span class="ri-status waiting"><span class="lang en">BLOCKED · DECISION 03</span><span class="lang jp">ブロック中 ・ Decision 03 待</span></span>
         <h3><span class="lang en">Item 3 — eSIM provisioning API integration</span><span class="lang jp">Item 3 — eSIM プロビジョニング API 連携</span></h3>
       </div>
-      <p class="ri-desc"><span class="lang en">The plumbing that converts "user clicked Buy" into "QR code on screen + working eSIM." API surface depends entirely on which aggregator wins Decision 03 (Samurai vs direct). Whoever it is, we need: catalog sync, plan purchase, QR / activation code retrieval, usage queries, top-up, refund.</span><span class="lang jp">「ユーザーが Buy を押した」を「画面上に QR コード + 動作する eSIM」へ変換する裏側の配管。API 仕様は Decision 03（Samurai vs 直接プロバイダー）の結論次第。共通必須機能:カタログ同期・プラン購入・QR / アクティベーションコード取得・使用量照会・トップアップ・返金。</span></p>
+      <p class="ri-desc"><span class="lang en">The plumbing that converts "user clicked Buy" into "QR code on screen + working eSIM." API surface depends entirely on which aggregator wins Decision 03 (wholesale supplier vs direct). Whoever it is, we need: catalog sync, plan purchase, QR / activation code retrieval, usage queries, top-up, refund.</span><span class="lang jp">「ユーザーが Buy を押した」を「画面上に QR コード + 動作する eSIM」へ変換する裏側の配管。API 仕様は Decision 03（wholesale supplier vs 直接プロバイダー）の結論次第。共通必須機能:カタログ同期・プラン購入・QR / アクティベーションコード取得・使用量照会・トップアップ・返金。</span></p>
       <div class="meta-row"><span><span class="lang en">COST</span><span class="lang jp">費用</span><strong>TBD</strong></span></div>
     </div>
 
@@ -8637,7 +8654,7 @@ Mercury（米国法人銀行口座）
       <div class="tl-item done">
         <div class="tl-day"><span class="lang en">DAY 21+</span><span class="lang jp">DAY 21+</span></div>
         <h4><span class="lang en">Ready to take revenue</span><span class="lang jp">売上受付準備完了</span></h4>
-        <p><span class="lang en">Peanut eSIM LLC is fully operational. You can sign contracts (e.g., with Samurai), publish the app, accept payments globally.</span><span class="lang jp">Peanut eSIM LLC が完全稼働。契約締結（例:Samurai と）、アプリ公開、世界中からの決済受付が可能に。</span></p>
+        <p><span class="lang en">Peanut eSIM LLC is fully operational. You can sign contracts (e.g., with wholesale supplier), publish the app, accept payments globally.</span><span class="lang jp">Peanut eSIM LLC が完全稼働。契約締結（例:wholesale supplier と）、アプリ公開、世界中からの決済受付が可能に。</span></p>
       </div>
     </div>
   </section>
@@ -8762,7 +8779,7 @@ Mercury（米国法人銀行口座）
         </tr>
         <tr>
           <td><span class="lang en">You lent the LLC $20K, or the LLC lent you $20K</span><span class="lang jp">あなたが LLC に $20K 貸付、または逆方向</span></td>
-          <td><span class="lang en">LLC paid Samurai $5K wholesale</span><span class="lang jp">LLC が Samurai に $5K の卸価格を支払い</span></td>
+          <td><span class="lang en">LLC paid wholesale supplier $5K wholesale</span><span class="lang jp">LLC が wholesale supplier に $5K の卸価格を支払い</span></td>
         </tr>
         <tr>
           <td><span class="lang en">LLC bought your laptop from you for $1K</span><span class="lang jp">LLC があなたのラップトップを $1K で購入</span></td>
@@ -8934,7 +8951,7 @@ Mercury（米国法人銀行口座）
       <div>
         <div class="doc-meta"><span class="lang en">HTML · 2,603 WORDS · 2 LAWYER FLAGS</span><span class="lang jp">HTML · 2,603 語 · 弁護士確認2箇所</span></div>
         <h3><span class="lang en">Privacy Policy</span><span class="lang jp">プライバシーポリシー</span></h3>
-        <p><span class="lang en">GDPR + UAE PDPL compliant. Data collection, retention, sharing with Samurai/Stripe/Apple/Google, data-subject rights, 72-hr breach notification.</span><span class="lang jp">GDPR + UAE PDPL 準拠。データ収集、保持、Samurai/Stripe/Apple/Google との共有、データ主体権利、72 時間侵害通知。</span></p>
+        <p><span class="lang en">GDPR + UAE PDPL compliant. Data collection, retention, sharing with wholesale supplier/Stripe/Apple/Google, data-subject rights, 72-hr breach notification.</span><span class="lang jp">GDPR + UAE PDPL 準拠。データ収集、保持、wholesale supplier/Stripe/Apple/Google との共有、データ主体権利、72 時間侵害通知。</span></p>
       </div>
       <a href="docs/privacy-policy.html" target="_blank" class="doc-download">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -8964,7 +8981,7 @@ Mercury（米国法人銀行口座）
       <div>
         <div class="doc-meta"><span class="lang en">HTML · 5,090 WORDS · 4 LAWYER FLAGS</span><span class="lang jp">HTML · 5,090 語 · 弁護士確認4箇所</span></div>
         <h3><span class="lang en">Vendor DPA Template</span><span class="lang jp">ベンダー DPA テンプレート</span></h3>
-        <p><span class="lang en">Data Processing Agreement template for attaching to vendor contracts (primary use: Samurai MSA). GDPR Art. 28 + UAE PDPL aligned. 15 numbered sections + 3 fillable annexes + signature blocks.</span><span class="lang jp">ベンダー契約に添付する Data Processing Agreement テンプレート（主用途:Samurai MSA）。GDPR 第 28 条 + UAE PDPL 準拠。15 セクション + 記入可能 3 附属書 + 署名欄。</span></p>
+        <p><span class="lang en">Data Processing Agreement template for attaching to vendor contracts (primary use: wholesale supplier MSA). GDPR Art. 28 + UAE PDPL aligned. 15 numbered sections + 3 fillable annexes + signature blocks.</span><span class="lang jp">ベンダー契約に添付する Data Processing Agreement テンプレート（主用途:wholesale supplier MSA）。GDPR 第 28 条 + UAE PDPL 準拠。15 セクション + 記入可能 3 附属書 + 署名欄。</span></p>
       </div>
       <a href="docs/vendor-dpa-template.html" target="_blank" class="doc-download">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -9064,7 +9081,7 @@ Mercury（米国法人銀行口座）
       </div>
       <table class="cost-category-table">
         <tr><td class="cost-item">Item 1 — UAE Regulatory research</td><td class="cost-detail"><span class="lang en">Google Deep Research (free)</span><span class="lang jp">Google Deep Research（無料）</span></td><td class="cost-amount free">$0</td></tr>
-        <tr><td class="cost-item">Item 2 — Samurai diligence</td><td class="cost-detail"><span class="lang en">Akito's relationship + questionnaire</span><span class="lang jp">Akito の人脈 + 確認質問</span></td><td class="cost-amount free">$0</td></tr>
+        <tr><td class="cost-item">Item 2 — wholesale supplier diligence</td><td class="cost-detail"><span class="lang en">Akito's relationship + questionnaire</span><span class="lang jp">Akito の人脈 + 確認質問</span></td><td class="cost-amount free">$0</td></tr>
         <tr><td class="cost-item">Item 3 — Pricing benchmark</td><td class="cost-detail"><span class="lang en">Research agent ran the scrape</span><span class="lang jp">調査エージェントが収集</span></td><td class="cost-amount free">$0</td></tr>
         <tr><td class="cost-item">Items 4 + 5</td><td class="cost-detail"><span class="lang en">Skipped / parked</span><span class="lang jp">保留中</span></td><td class="cost-amount deferred">—</td></tr>
       </table>
@@ -9087,7 +9104,7 @@ Mercury（米国法人銀行口座）
         <tr><td class="cost-item">Item 7 — Stripe US account</td><td class="cost-detail"><span class="lang en">Auto with Atlas · $5K credit included</span><span class="lang jp">Atlas で自動 · $5K クレジット付与</span></td><td class="cost-amount free">$0</td></tr>
         <tr><td class="cost-item">Item 8 — Apple Developer (first year)</td><td class="cost-detail"><span class="lang en">$99/year, paid annually</span><span class="lang jp">年 $99</span></td><td class="cost-amount">$99</td></tr>
         <tr><td class="cost-item">Item 9 — Google Play Console</td><td class="cost-detail"><span class="lang en">One-time, lifetime</span><span class="lang jp">一回限り、終身</span></td><td class="cost-amount">$25</td></tr>
-        <tr><td class="cost-item">Item 10 — Aggregator deposit (if required)</td><td class="cost-detail"><span class="lang en">TBD on Samurai response</span><span class="lang jp">Samurai 回答待ち</span></td><td class="cost-amount tbd">$0 – $10K</td></tr>
+        <tr><td class="cost-item">Item 10 — Aggregator deposit (if required)</td><td class="cost-detail"><span class="lang en">TBD on wholesale supplier response</span><span class="lang jp">wholesale supplier 回答待ち</span></td><td class="cost-amount tbd">$0 – $10K</td></tr>
       </table>
     </div>
   </section>
@@ -9141,7 +9158,7 @@ Mercury（米国法人銀行口座）
       <table class="cost-category-table">
         <tr><td class="cost-item">Apple 30% (if IAP route)</td><td class="cost-detail"><span class="lang en">15% on subs year 2+ · See Decision 01</span><span class="lang jp">サブスク 2 年目以降 15% · 判断 01 参照</span></td><td class="cost-amount">$4.50</td></tr>
         <tr><td class="cost-item">Stripe processing</td><td class="cost-detail"><span class="lang en">2.9% + $0.30 per transaction</span><span class="lang jp">取引あたり 2.9% + $0.30</span></td><td class="cost-amount">$0.45</td></tr>
-        <tr><td class="cost-item">Aggregator wholesale (Samurai estimate)</td><td class="cost-detail"><span class="lang en">~40% of retail at flat margin</span><span class="lang jp">小売価格の約 40%（フラットマージン）</span></td><td class="cost-amount">$5.00</td></tr>
+        <tr><td class="cost-item">Aggregator wholesale (wholesale supplier estimate)</td><td class="cost-detail"><span class="lang en">~40% of retail at flat margin</span><span class="lang jp">小売価格の約 40%（フラットマージン）</span></td><td class="cost-amount">$5.00</td></tr>
         <tr><td class="cost-item"><strong style="color: var(--accent);"><span class="lang en">Our gross margin</span><span class="lang jp">粗利益</span></strong></td><td class="cost-detail"><span class="lang en">~34% net (or ~50% if Hybrid IAP-skip route)</span><span class="lang jp">約 34%（ハイブリッド IAP 回避なら約 50%）</span></td><td class="cost-amount pick">$5.05</td></tr>
       </table>
     </div>
@@ -9161,7 +9178,7 @@ Mercury（米国法人銀行口座）
       <table class="cost-category-table">
         <tr><td class="cost-item">Item 11 — Business insurance (E&amp;O + cyber)</td><td class="cost-detail"><span class="lang en">Buy at ~100 paying customers</span><span class="lang jp">有料顧客 100 名前後で取得</span></td><td class="cost-amount deferred">$1K – $3K/yr</td></tr>
         <tr><td class="cost-item">Apple Carrier Entitlement application</td><td class="cost-detail"><span class="lang en">Apply at ~10K users · Free to apply</span><span class="lang jp">10K ユーザー時点で申請 · 申請無料</span></td><td class="cost-amount free">$0</td></tr>
-        <tr><td class="cost-item">Multi-aggregator integration</td><td class="cost-detail"><span class="lang en">Once Samurai partnership is proven</span><span class="lang jp">Samurai 提携が確立してから</span></td><td class="cost-amount tbd">TBD</td></tr>
+        <tr><td class="cost-item">Multi-aggregator integration</td><td class="cost-detail"><span class="lang en">Once wholesale supplier partnership is proven</span><span class="lang jp">wholesale supplier 提携が確立してから</span></td><td class="cost-amount tbd">TBD</td></tr>
       </table>
     </div>
   </section>
@@ -9323,7 +9340,7 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 <h4>The 5-layer pricing logic behind $4.99</h4>
 <table>
 <tr><th>Layer</th><th>Rationale</th></tr>
-<tr><td>1. Cost floor</td><td>Samurai's actual wholesale (real rate sheet) for 1-GB short-trip plans: $0.56–1.25/GB in cheap zones (HK/Korea/Japan/Singapore/USA/UK). At $4.99 retail = 75-89% gross margin on typical crew trips.</td></tr>
+<tr><td>1. Cost floor</td><td>wholesale supplier's actual wholesale (real rate sheet) for 1-GB short-trip plans: $0.56–1.25/GB in cheap zones (HK/Korea/Japan/Singapore/USA/UK). At $4.99 retail = 75-89% gross margin on typical crew trips.</td></tr>
 <tr><td>2. Market middle</td><td>Airalo 1 GB / 7-day USA ~$4.50, Roamless ~$4.00, Crew SIM $3-7 depending on country. We sit in the fair-middle, not the discount race.</td></tr>
 <tr><td>3. Psychological</td><td>Under-$5 = impulse purchase zone. $5.99 = considered purchase. The 9-cents rule matters here.</td></tr>
 <tr><td>4. Upsell anchor</td><td>3 top-ups in a month = $14.97 → that's <em>more</em> than Premium Economy ($17.99 for 10 GB). The user does the math, upgrades.</td></tr>
@@ -9353,7 +9370,7 @@ This document captures the full reasoning and locked decisions behind <strong>Ta
 
 <h4>5-flight worked example</h4>
 <table>
-<tr><th>City</th><th>Samurai wholesale cost</th><th>PAYG price ($4.99)</th><th>Bundle price ($3.99)</th></tr>
+<tr><th>City</th><th>wholesale supplier wholesale cost</th><th>PAYG price ($4.99)</th><th>Bundle price ($3.99)</th></tr>
 <tr><td>Tokyo</td><td>$0.90</td><td>$4.99</td><td>$3.99</td></tr>
 <tr><td>Singapore</td><td>$0.83</td><td>$4.99</td><td>$3.99</td></tr>
 <tr><td>London</td><td>$1.25</td><td>$4.99</td><td>$3.99</td></tr>
@@ -9951,7 +9968,7 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 <tr><td><strong>Tab 6 — 24-Month Rollout</strong></td><td>Per-user × monthly growth curve</td><td>24-month revenue + profit projection</td></tr>
 <tr><td><strong>Tab 8 — LTV-CAC + Churn</strong></td><td>Per-user gross profit × expected lifetime (1 / churn)</td><td>LTV per tier; LTV/CAC ratio</td></tr>
 <tr><td><strong>Tab 10 — Carryover Liability</strong></td><td>Connected via Tab 2's GB Consumed → unused → deferred breakage</td><td>Carryover aging schedule</td></tr>
-<tr><td><strong>Tab 11 — Strategic Scenarios</strong></td><td>Re-runs per-tier economics under Samurai vs direct supplier paths</td><td>Strategic supplier comparison</td></tr>
+<tr><td><strong>Tab 11 — Strategic Scenarios</strong></td><td>Re-runs per-tier economics under wholesale supplier vs direct supplier paths</td><td>Strategic supplier comparison</td></tr>
 <tr><td><strong>Tab 12 — Cash + Sensitivity</strong></td><td>Per-user × scenarios × cash conversion timing</td><td>Cash flow + runway sensitivity</td></tr>
 </table>
 <blockquote>Change ANY single number in Tab 3 — wholesale $/GB, OPEX, refuel attach — and the entire downstream P&amp;L cascades. That's why every Tab 3 input is sourced from Tab 1 or Tab 2, never hardcoded here.</blockquote>
@@ -9961,7 +9978,7 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
 <tr><th>Input</th><th>Confidence</th><th>Why</th></tr>
 <tr><td>Retail prices (Tab 1)</td><td><span class="pill high">High</span></td><td>Locked decisions, every tier reviewed in detail.</td></tr>
 <tr><td>GB Consumed per tier (Tab 2)</td><td><span class="pill medium">Medium</span></td><td>Per-tier estimates from friction model. Not yet validated by real app analytics.</td></tr>
-<tr><td>Wholesale $/GB ($1.34)</td><td><span class="pill medium">Medium</span></td><td>Real Samurai rate sheet × placeholder 75/20/5 country mix. Bucket prices are real; mix is Akito-validated estimate.</td></tr>
+<tr><td>Wholesale $/GB ($1.34)</td><td><span class="pill medium">Medium</span></td><td>Real wholesale supplier rate sheet × placeholder 75/20/5 country mix. Bucket prices are real; mix is Akito-validated estimate.</td></tr>
 <tr><td>Refuel attach % per tier</td><td><span class="pill low">Low</span></td><td>Educated guesses. Need post-launch app analytics for ground truth.</td></tr>
 <tr><td>OPEX $1.80/user/mo</td><td><span class="pill medium">Medium</span></td><td>Payment fees well-modeled; support cost is flat-line placeholder that should be phase-based.</td></tr>
 <tr><td>Refuel price $4.99</td><td><span class="pill high">High</span></td><td>Locked at Economy parity to close the subscriber-backdoor exploit.</td></tr>
@@ -10678,8 +10695,8 @@ Tab 2 is the <strong>intelligence layer</strong> of the P&amp;L model — it pre
           <span class="lang jp">上流サプライヤー — Billion Connect（Vision Inc. ではない）</span>
         </div>
         <div class="update-desc">
-          <span class="lang en">Samurai WiFi's actual eSIM upstream is Billion Connect (HK aggregator), not Vision Inc. as previously believed. Confirmed via 'Billion Connect Carrier' label on 5,294 rows of Samurai's price file. Direct-go target for margin recovery: Cecilia Hsin Cheng at Billion Connect Singapore.</span>
-          <span class="lang jp">Samurai WiFi の実際の eSIM 上流サプライヤーは Billion Connect（香港アグリゲーター）であり、これまで推定されていた Vision Inc. ではない。Samurai 価格ファイルの 5,294 行に『Billion Connect Carrier』ラベルが記載されていることで確認。マージン回復のための直接交渉対象: Billion Connect シンガポール オフィス Cecilia Hsin Cheng 氏。</span>
+          <span class="lang en">wholesale supplier WiFi's actual eSIM upstream is Billion Connect (HK aggregator), not Vision Inc. as previously believed. Confirmed via 'Billion Connect Carrier' label on 5,294 rows of wholesale supplier's price file. Direct-go target for margin recovery: Cecilia Hsin Cheng at Billion Connect Singapore.</span>
+          <span class="lang jp">wholesale supplier WiFi の実際の eSIM 上流サプライヤーは Billion Connect（香港アグリゲーター）であり、これまで推定されていた Vision Inc. ではない。wholesale supplier 価格ファイルの 5,294 行に『Billion Connect Carrier』ラベルが記載されていることで確認。マージン回復のための直接交渉対象: Billion Connect シンガポール オフィス Cecilia Hsin Cheng 氏。</span>
         </div>
         <div class="update-meta">
           <span class="update-tag">SUPPLY CHAIN</span>
