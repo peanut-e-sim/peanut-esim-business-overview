@@ -26,8 +26,12 @@ ROOT_INDEX = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'ind
 # Severity: 'error' blocks commit. 'warn' just logs.
 STALE_RULES = [
     # Old wholesale cost
-    (r'\$1\.20\s*/\s*GB(?![^<]{0,40}payment processing)', 'Stale wholesale cost ($1.20/GB) — should be $1.34', 'error'),
-    (r'\$2\.13\s*/\s*GB', 'Stale blended cost ($2.13) — should be $1.34 unless comparing scenarios', 'warn'),
+    # NOTE 2026-06-02: $1.34/GB was itself INVALIDATED (sourced from wrong SKU — Europe Lite regional
+    # bundle, not per-country 1GB/7d Fixed). Corrected range under review: $0.50–$3.56/GB pending
+    # supplier negotiation. New deliverables should cite the range, not a point estimate.
+    # Old $1.20 and $2.13 rules below remain as legacy guards against earlier point estimates.
+    (r'\$1\.20\s*/\s*GB(?![^<]{0,40}payment processing)', 'Stale wholesale cost ($1.20/GB) — use scenario range $0.50–$3.56/GB pending supplier negotiation', 'error'),
+    (r'\$2\.13\s*/\s*GB', 'Stale blended cost ($2.13/GB) — use scenario range $0.50–$3.56/GB pending supplier negotiation', 'warn'),
 
     # Old refuel price
     (r'(?<!\d)\$5\.99(?:\s|<)', 'Stale price ($5.99) — likely old Economy 1.2x or old refuel', 'warn'),

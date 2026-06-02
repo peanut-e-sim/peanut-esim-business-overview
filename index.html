@@ -4073,6 +4073,50 @@
     </div>
 
     <div class="decision-card yellow">
+      <div class="dec-meta"><span class="lang en">DECISION 00C · BLENDED COST-PER-GB ASSUMPTION · INVALIDATED &mdash; UNDER REVIEW</span><span class="lang jp">判断 00C ・ ブレンド原価/GB の前提 ・ 無効化 &mdash; 見直し中</span></div>
+      <h3>
+        <span class="lang en">What is our actual wholesale cost per GB &mdash; and what does that do to tier margins?</span>
+        <span class="lang jp">実際のホールセール原価/GB は何か &mdash; そしてそれが各ティアのマージンにどう影響するか？</span>
+      </h3>
+      <p style="background:#FAF6F0;padding:10px 14px;border-left:3px solid #FFC107;font-size:13.5px;color:#4A4A4A;margin-top:8px;">
+        <span class="lang en"><strong>Status 2026-06-02:</strong> The $1.34/GB blended cost used throughout the 22-tab financial model and 20 deliverable HTMLs is <em>invalidated</em>. Traced to wrong supplier SKU during per-country rate extraction: $1.34 was the &ldquo;Europe Lite&rdquo; regional bundle price, not the per-country 1GB/7-day Fixed bundles this business actually buys (just-in-time top-ups, no inventory).</span>
+        <span class="lang jp"><strong>2026-06-02 時点:</strong> 22 タブの財務モデルと 20 件の HTML 成果物全体で使用している $1.34/GB のブレンド原価は<em>無効</em>。国別レート抽出時に誤った SKU 由来と判明:$1.34 は「Europe Lite」地域バンドル価格であり、このビジネスが実際に購入する国別 1GB/7日 Fixed バンドル（在庫なしのジャストインタイム top-up）の価格ではなかった。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Corrected range &mdash; depends on supplier negotiation outcome:</span><span class="lang jp">補正後レンジ &mdash; サプライヤー交渉結果に依存:</span></strong>
+        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
+          <thead>
+            <tr>
+              <th><span class="lang en">Scenario</span><span class="lang jp">シナリオ</span></th>
+              <th><span class="lang en">Blended cost/GB</span><span class="lang jp">ブレンド原価/GB</span></th>
+              <th><span class="lang en">Premium pool-mid margin</span><span class="lang jp">Premium プール中央消費時マージン</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="lang en">Best (supplier agrees to 1-day SKU at proportional pricing)</span><span class="lang jp">ベスト（1日 SKU を比例価格で供給合意）</span></td><td><strong>~$0.50</strong></td><td><strong>~89%</strong></td></tr>
+            <tr><td><span class="lang en">Base (status quo &mdash; current 1GB/7d Fixed SKU)</span><span class="lang jp">ベース（現状 &mdash; 既存 1GB/7日 Fixed SKU）</span></td><td><strong>$3.56</strong></td><td><strong>~25%</strong></td></tr>
+            <tr><td><span class="lang en">Worst (geo-mix skews more African per crew survey)</span><span class="lang jp">ワースト（クルー調査でアフリカ比率上振れの場合）</span></td><td><strong>$4.50+</strong></td><td><strong>&lt;20%</strong></td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 14px; font-size: 13.5px;">
+          <span class="lang en">Business still works on consumption breakage in all scenarios (most crew use only ~30% of pool on 1-2 day layovers) but the modeled cushion is materially thinner than what is currently shown on Tab 1, 3, 14-22 visualizers and blueprints.</span>
+          <span class="lang jp">どのシナリオでも消費 breakage（クルーは 1-2 日のレイオーバーでプール残量の約 30% しか使わない）でビジネスは成立。ただし現在 Tab 1, 3, 14-22 のビジュアライザー・ブループリントで示しているマージンの余裕は実際よりも厚く見えている。</span>
+        </p>
+        <strong style="display:block;margin-top:14px;"><span class="lang en">Interim actions taken 2026-06-02:</span><span class="lang jp">2026-06-02 暫定対応:</span></strong>
+        <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: #FFC107; font-weight: 700;">?</span><strong><span class="lang en">Red warning banner added</span><span class="lang jp">赤色警告バナー追加</span></strong> <span class="lang en">to <a href="docs/downloads/tab1-visual-explainer-akito-2026-06-01.html">Tab 1 visualizer</a> + <a href="docs/downloads/tab3-visual-explainer-akito-2026-06-01.html">Tab 3 visualizer</a> &mdash; do not cite specific margin %s externally until rebuilt.</span><span class="lang jp">&mdash; <a href="docs/downloads/tab1-visual-explainer-akito-2026-06-01.html">Tab 1 ビジュアライザー</a>と <a href="docs/downloads/tab3-visual-explainer-akito-2026-06-01.html">Tab 3 ビジュアライザー</a>に追加。再構築までマージン具体値の外部引用禁止。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: #FFC107; font-weight: 700;">?</span><strong><span class="lang en">Full model overhaul deferred</span><span class="lang jp">フルモデル改修は延期</span></strong> <span class="lang en">until two inputs land: (a) supplier meeting outcome (agenda Q2.8 asks for 1-2 day SKU), (b) Akito's crew geo-mix survey result. Rebuilding now on the unvalidated $3.56 risks anchoring on a second wrong number (lesson from $1.34).</span><span class="lang jp">2 つのインプット確定まで延期: (a) サプライヤー会議結果（議題 Q2.8 で 1-2 日 SKU 要請中）、(b) Akito のクルー地理ミックス調査結果。未検証の $3.56 で今すぐ再構築すると、第二の誤った数値に anchor するリスク（$1.34 の教訓）。</span></li>
+          <li style="padding: 5px 0 5px 18px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: #FFC107; font-weight: 700;">?</span><strong><span class="lang en">Pre-commit hook updated</span><span class="lang jp">プリコミットフック更新</span></strong> <span class="lang en">to reflect the new scenario-range guidance (previously hardcoded $1.34 as the &ldquo;correct&rdquo; value).</span><span class="lang jp">新しいシナリオレンジガイダンスを反映（以前は $1.34 を「正解」値としてハードコード）。</span></li>
+        </ul>
+        <p style="margin-top: 14px; padding: 10px 14px; background: var(--surface); border-left: 3px solid var(--accent); font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Why a council decided this approach:</strong> Ran the question through llm-council (5 advisors). 3 of 5 reviewers picked the &ldquo;minimal interim, defer full overhaul&rdquo; option as strongest. The Expansionist's &ldquo;do full overhaul now to use as supplier negotiation asset&rdquo; was unanimously flagged as the biggest blind spot &mdash; building on an unvalidated geo-mix risks repeating the $1.34 anchoring error. Full transcript saved locally.</span>
+          <span class="lang jp"><strong>llm-council でこの方針を決定:</strong> 質問を llm-council（5 名のアドバイザー）に通した。5 名中 3 名のレビュアーが「最小限の暫定対応、フル改修は延期」を最強と評価。Expansionist の「サプライヤー交渉資産として今すぐフル改修」案は全員一致で最大のブラインドスポットと指摘 &mdash; 未検証の地理ミックスの上に構築するのは $1.34 アンカリング誤りの再演リスク。フルトランスクリプトはローカル保存。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · OPEN · DEPENDS ON SUPPLIER MEETING OUTCOME + CREW GEO-MIX SURVEY</span><span class="lang jp">ステータス ・ 未決 ・ サプライヤー会議結果 ＋ クルー地理ミックス調査に依存</span></div>
+    </div>
+
+    <div class="decision-card yellow">
       <div class="dec-meta"><span class="lang en">DECISION 00B · TRADEMARK FILING · DEFERRED</span><span class="lang jp">判断 00B ・ 商標出願 ・ 保留</span></div>
       <a class="dec-ref" href="#phase-1-item-2">Phase 1 · Item 2</a>
       <h3>
