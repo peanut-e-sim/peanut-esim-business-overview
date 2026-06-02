@@ -486,6 +486,85 @@
     </div>
   </div>
 
+  <!-- HOW $1.34/GB IS CALCULATED — worked example -->
+  <div style="margin-top: 24px; padding: 20px; background: #1A1A1A; color: white; border-radius: 6px;">
+    <div style="font-weight: 700; font-size: 13px; color: #C9A03B; letter-spacing: .05em; margin-bottom: 8px;">HOW $1.34/GB IS CALCULATED</div>
+    <h3 style="margin: 0 0 10px; font-size: 17px; color: white;">100 GB of crew data — where does it physically get used?</h3>
+    <p style="font-size: 13.5px; line-height: 1.6; color: #E5DDD0; margin: 0 0 14px;">
+      Take 100 GB of total crew data consumption in a month. Based on the 75/20/5 split, here's where every GB physically lands and what our wholesale supplier charges us:
+    </p>
+
+    <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; background: #2A2A2A; border-radius: 4px; overflow: hidden; margin-bottom: 14px;">
+      <thead>
+        <tr style="background: #0F0F0F;">
+          <th style="padding: 8px 12px; text-align: left; color: #888; font-weight: 600;">Where it lands</th>
+          <th style="padding: 8px 12px; text-align: center; color: #888; font-weight: 600;">GB share</th>
+          <th style="padding: 8px 12px; text-align: center; color: #888; font-weight: 600;">×</th>
+          <th style="padding: 8px 12px; text-align: center; color: #888; font-weight: 600;">$/GB</th>
+          <th style="padding: 8px 12px; text-align: right; color: #888; font-weight: 600;">= cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 10px 12px; color: #E5DDD0;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1a8a5a;margin-right:8px;"></span><strong style="color:white;">Tier-A (Asia, Africa)</strong> · cheap</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">75 GB</td>
+          <td style="padding: 10px 12px; text-align: center; color: #888;">×</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">$0.85</td>
+          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: white;">$63.75</td>
+        </tr>
+        <tr style="background: #1F1F1F;">
+          <td style="padding: 10px 12px; color: #E5DDD0;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C9A03B;margin-right:8px;"></span><strong style="color:white;">Tier-B (Europe, AU/NZ)</strong> · medium</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">20 GB</td>
+          <td style="padding: 10px 12px; text-align: center; color: #888;">×</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">$1.40</td>
+          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: white;">$28.00</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px 12px; color: #E5DDD0;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#D71921;margin-right:8px;"></span><strong style="color:white;">Tier-C (USA, Cruise, S. America)</strong> · expensive</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">5 GB</td>
+          <td style="padding: 10px 12px; text-align: center; color: #888;">×</td>
+          <td style="padding: 10px 12px; text-align: center; color: white;">$8.50</td>
+          <td style="padding: 10px 12px; text-align: right; font-weight: 700; color: #FFC107;">$42.50</td>
+        </tr>
+        <tr style="background: #2D7A4F;">
+          <td style="padding: 12px; color: white; font-weight: 700;">Total cost for 100 GB</td>
+          <td style="padding: 12px; text-align: center; color: white; font-weight: 700;">100 GB</td>
+          <td style="padding: 12px;"></td>
+          <td style="padding: 12px; text-align: center; color: white; font-weight: 700;">avg</td>
+          <td style="padding: 12px; text-align: right; color: white; font-weight: 700; font-size: 16px;">$134.25</td>
+        </tr>
+        <tr style="background: #2D7A4F;">
+          <td colspan="4" style="padding: 8px 12px; color: white; font-weight: 700;">Per-GB blended cost = $134.25 ÷ 100 GB</td>
+          <td style="padding: 8px 12px; text-align: right; color: white; font-weight: 700; font-size: 18px;">$1.34 / GB</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size: 13px; color: #888; margin: 0 0 14px; line-height: 1.55;">
+      <strong style="color: white;">The Tier-C trap:</strong> only 5 GB lands in Tier-C, but it costs us $42.50 — a third of our total bill.
+      A small shift in mix (5% → 10% Tier-C) jumps blended cost from $1.34 → $1.77/GB (+32%). That's why we keep harping on the geo mix assumption.
+    </p>
+
+    <!-- Aiko worked example -->
+    <div style="background: #2A2A2A; padding: 16px; border-radius: 6px; margin-top: 16px;">
+      <div style="font-weight: 700; font-size: 13px; color: #C9A03B; letter-spacing: .05em; margin-bottom: 6px;">ONE-USER VIEW</div>
+      <h4 style="margin: 0 0 8px; color: white; font-size: 15px;">Aiko (Premium) consumes 4 GB this month — what does it cost us?</h4>
+      <p style="font-size: 13px; color: #E5DDD0; margin: 0 0 10px; line-height: 1.55;">
+        Aiko's data lands across the same 75/20/5 mix. So her 4 GB breaks down:
+      </p>
+      <ul style="font-size: 13px; color: #E5DDD0; padding-left: 20px; margin: 0; line-height: 1.7;">
+        <li>3.0 GB in Tier-A (Bangkok, Mumbai layovers) × $0.85 = <strong style="color:white;">$2.55</strong></li>
+        <li>0.8 GB in Tier-B (Paris stopover) × $1.40 = <strong style="color:white;">$1.12</strong></li>
+        <li>0.2 GB in Tier-C (NYC layover) × $8.50 = <strong style="color:#FFC107;">$1.70</strong></li>
+        <li style="list-style: none; margin-top: 6px; padding-top: 6px; border-top: 1px solid #444;"><strong style="color:#4CD964;">Total supplier cost for Aiko: $5.37</strong></li>
+      </ul>
+      <p style="font-size: 12.5px; color: #888; margin: 12px 0 0; line-height: 1.55;">
+        Aiko pays Peanut $17.99 → we keep ~$12.62 gross. Her single NYC layover (0.2 GB) cost us more than her entire 3 GB in Bangkok combined.
+        <strong style="color:white;">That's the Tier-C lesson in one user.</strong>
+      </p>
+    </div>
+  </div>
+
   <!-- WHERE THE 75% COMES FROM -->
   <div style="margin-top: 24px; padding: 20px; background: #FFF9E6; border-left: 4px solid #C9A03B; border-radius: 6px;">
     <h3 style="margin: 0 0 10px; font-size: 17px;">Where the 75% comes from (and what it actually should be)</h3>
