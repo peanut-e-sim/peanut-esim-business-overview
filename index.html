@@ -3983,33 +3983,31 @@
       <div class="dec-status"><span class="lang en">STATUS · PRINCIPLE LOCKED (Balraj) · TO CONFIRM WITH AKITO</span><span class="lang jp">ステータス ・ 原則ロック（Balraj） ・ Akito と要確認</span></div>
     </div>
 
-    <div class="decision-card urgent">
-      <div class="dec-meta"><span class="lang en">DECISION 08 · V1 FEATURE SCOPE</span><span class="lang jp">判断 08 ・ v1 機能スコープ</span></div>
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 08 · V1 FEATURE SCOPE ✓</span><span class="lang jp">判断 08 ・ v1 機能スコープ ✓</span></div>
       <a class="dec-ref" href="#phase-2-item-5">Phase 2 · Item 5</a>
       <h3>
         <span class="lang en">Which features ship on v1, and which get deferred to v1.x?</span>
         <span class="lang jp">v1 にどの機能を載せ、どれを v1.x に延ばすか？</span>
       </h3>
       <p>
-        <span class="lang en">Goal: ship a v1 that's tight enough to launch fast, but distinctive enough to earn the "first-choice eSIM for Emirates crew" position. The biggest specific question: does the schedule-upload smart-plan flow ship in v1 (it's our signature feature, justifies the brand) or v1.x (faster launch, less risk)?</span>
-        <span class="lang jp">目標:速く立ち上げられる程度にタイトな v1 でありつつ、「Emirates 乗務員にとっての第一選択 eSIM」のポジションを取れる程度に差別化されている v1 を出す。最大の論点:スケジュールアップロード式の自動プラン機能を v1 に入れる（差別化の要・ブランド納得感）か、v1.x に回す（速いローンチ・リスク低減）か？</span>
+        <span class="lang en">Resolved 2026-06-02 during P&amp;L deep-dive sessions with Balraj.</span>
+        <span class="lang jp">Balraj との P&amp;L 詳細セッションにて 2026-06-02 に決定。</span>
       </p>
       <div class="dec-impact">
-        <strong><span class="lang en">Working scope (to debate with Akito):</span><span class="lang jp">想定スコープ（Akito と協議）:</span></strong>
-        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
-          <thead><tr><th><span class="lang en">Feature</span><span class="lang jp">機能</span></th><th><span class="lang en">v1?</span><span class="lang jp">v1?</span></th><th><span class="lang en">Why</span><span class="lang jp">理由</span></th></tr></thead>
-          <tbody>
-            <tr><td><span class="lang en">Browse plans by country + buy eSIM</span><span class="lang jp">国別プラン閲覧＋ eSIM 購入</span></td><td>✅ v1</td><td><span class="lang en">Core wedge product</span><span class="lang jp">中核ウェッジ機能</span></td></tr>
-            <tr><td><span class="lang en">Crew verification at sign-up (email domain)</span><span class="lang jp">サインアップ時の乗務員認証（メールドメイン）</span></td><td>✅ v1</td><td><span class="lang en">Gatekeeping is the brand</span><span class="lang jp">ゲートキープがブランド</span></td></tr>
-            <tr><td><span class="lang en">My eSIMs + data usage + top-up</span><span class="lang jp">マイ eSIM ＋ データ使用量 ＋ トップアップ</span></td><td>✅ v1</td><td><span class="lang en">Required by Apple/Google</span><span class="lang jp">Apple / Google 必須</span></td></tr>
-            <tr class="pick"><td><strong><span class="lang en">Schedule-upload smart-plan ⭐ (signature)</span><span class="lang jp">スケジュールアップロード式自動プラン ⭐（シグネチャー機能）</span></strong></td><td><span class="lang en">?? v1 or v1.x — open</span><span class="lang jp">?? v1 か v1.x か — 未決</span></td><td><span class="lang en">This is what differentiates us from Crew SIM. But it's also the riskiest piece (OCR + pricing engine).</span><span class="lang jp">Crew SIM との最大の差別化要素。ただし OCR ＋ 価格エンジンで最もリスクが高い部分でもある。</span></td></tr>
-            <tr><td><span class="lang en">Crew-curated recommendations (Michelin layer)</span><span class="lang jp">乗務員キュレーション推薦（ミシュラン層）</span></td><td>⏸ v1.x or v2</td><td><span class="lang en">Needs critical mass of crew first</span><span class="lang jp">クルーの臨界数が貯まってから</span></td></tr>
-            <tr><td><span class="lang en">Push notifications (landed / data-low)</span><span class="lang jp">プッシュ通知（着陸時 / データ残量低下）</span></td><td>✅ v1</td><td><span class="lang en">Cheap, high-value</span><span class="lang jp">低コスト・高価値</span></td></tr>
-            <tr><td><span class="lang en">Referral / invite system</span><span class="lang jp">紹介・招待システム</span></td><td><span class="lang en">⏸ depends on Decision 10</span><span class="lang jp">⏸ Decision 10 次第</span></td><td><span class="lang en">Needed only if we go invite-only</span><span class="lang jp">招待制を選んだ場合のみ必要</span></td></tr>
-          </tbody>
-        </table>
+        <strong><span class="lang en">Resolution: v1.0 launch scope locked. v1.1+ defers Gifting, UAE redemption, AI Support, Crew Recs.</span><span class="lang jp">結論: v1.0 ローンチスコープ確定。Gifting・UAE 利用・AI サポート・Crew Recs は v1.1+ に延期。</span></strong>
+        <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Refuel → Premium nudge (highest-leverage profit lever)</span><span class="lang jp">リフュエル → Premium ナッジ（最高レバレッジの収益レバー）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Pool 80% warning (in-the-moment upgrade prompt)</span><span class="lang jp">プール 80% 警告（リアルタイムアップグレード促進）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Roster sync upgrade nudge</span><span class="lang jp">ロスター同期アップグレードナッジ</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Same-SIM dynamic allocation architecture</span><span class="lang jp">同一SIM 動的割り当てアーキテクチャ</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Carryover with Universal Carry Rule (downgrade preserves expiry, upgrade expands expiry)</span><span class="lang jp">ユニバーサルキャリーオーバールール（ダウングレードは有効期限保持、アップグレードは期限拡張）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Cancellation = gift-only exit (no cash refund; gift carryover to family/colleague)</span><span class="lang jp">解約 = ギフト専用出口（現金返金なし・繰越を家族/同僚へのギフトとしてのみ利用可）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">7-day + 3-day carry expiry notifications</span><span class="lang jp">繰越有効期限 7 日前 + 3 日前通知</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">"You saved $X vs PAYG" framing (NOT "X GB unused")</span><span class="lang jp">「従量課金比 $X 節約」フレーミング（「未使用 X GB」ではない）</span></li>
+        </ul>
       </div>
-      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · BLOCKS PHASE 2 ITEM 5 + PHASE 3 SCOPING</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2 Item 5 ＋ Phase 3 スコープを左右</span></div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · 2026-06-02</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02</span></div>
     </div>
 
     <div class="decision-card amber">
@@ -4146,51 +4144,21 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · DEFINES PHASE 6 + PHASE 7 SCOPE</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 6 + Phase 7 のスコープを規定</span></div>
     </div>
 
-    <div class="decision-card urgent">
-      <div class="dec-meta"><span class="lang en">DECISION 14 · WORKING BUDGET CEILING</span><span class="lang jp">判断 14 ・ 運転資金の上限</span></div>
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 14 · WORKING BUDGET CEILING ✓</span><span class="lang jp">判断 14 ・ 運転資金の上限 ✓</span></div>
       <a class="dec-ref" href="#phase-0-item-9">Phase 0 · Item 9</a>
       <h3>
         <span class="lang en">What's the maximum we're willing to spend $0 → break-even before re-evaluating?</span>
         <span class="lang jp">$0 から損益分岐点までに、再判断する前に投じる最大額をいくらに置くか？</span>
       </h3>
       <p>
-        <span class="lang en">Working budget ceiling is a stop-line, not a target — the number that triggers a re-evaluation conversation, not the number we plan to spend. Constrains every Phase 2–5 spending decision (designer hire vs AI, paid ads vs organic, freelance contractor vs DIY). Phase 0 Item 9 runway analysis estimates a $15K–$25K range to reach break-even on sweat-equity + AI-driven build.</span>
-        <span class="lang jp">運転資金の上限は「目標」ではなく「ストップライン」。これを超えたら再判断会議を開くトリガー額。Phase 2〜5 の全支出判断（デザイナー外注 vs AI、有料広告 vs オーガニック、業務委託 vs DIY）を規定。Phase 0 Item 9 のランウェイ分析では、自己労務 + AI 主導の構築で損益分岐到達まで $15K〜$25K のレンジ。</span>
+        <span class="lang en">Resolved 2026-06-02 during P&amp;L deep-dive sessions with Balraj.</span>
+        <span class="lang jp">Balraj との P&amp;L 詳細セッションにて 2026-06-02 に決定。</span>
       </p>
       <div class="dec-impact">
-        <strong><span class="lang en">Three options:</span><span class="lang jp">3 つの選択肢:</span></strong>
-        <table class="mini-table" style="margin-top: 12px; background: var(--surface);">
-          <thead>
-            <tr>
-              <th><span class="lang en">Option</span><span class="lang jp">選択肢</span></th>
-              <th><span class="lang en">Ceiling</span><span class="lang jp">上限</span></th>
-              <th><span class="lang en">What it allows</span><span class="lang jp">許容される使い方</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong><span class="lang en">A. Tight</span><span class="lang jp">A. タイト</span></strong></td>
-              <td>$15K</td>
-              <td><span class="lang en">Forces AI-only build, organic-only marketing. Highest discipline, slowest growth.</span><span class="lang jp">AI 構築オンリー、オーガニック マーケのみを強制。最も規律的、成長は最遅。</span></td>
-            </tr>
-            <tr class="pick">
-              <td><strong><span class="lang en">B. Mid ⭐ (Balraj lean)</span><span class="lang jp">B. ミドル ⭐（Balraj の意向）</span></strong></td>
-              <td>$20K</td>
-              <td><span class="lang en">Allows one freelance contractor if AI tools hit a ceiling + a small paid-ads test. Pragmatic balance.</span><span class="lang jp">AI ツールが頭打ちになった場合、フリーランス 1 名 + 有料広告の小規模テストを許容。実用的バランス。</span></td>
-            </tr>
-            <tr>
-              <td><strong><span class="lang en">C. Generous</span><span class="lang jp">C. ゆとり</span></strong></td>
-              <td>$25–30K</td>
-              <td><span class="lang en">Allows hiring a designer if AI tools fail + real paid-ad spend in soft launch. More optionality, more risk.</span><span class="lang jp">AI ツール失敗時にデザイナー採用 + ソフトローンチで本格的な有料広告を許容。選択肢は増えるがリスクも増。</span></td>
-            </tr>
-          </tbody>
-        </table>
-        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
-          <span class="lang en"><strong>Balraj's lean:</strong> Option B ($20K). $15K feels too tight for any contractor backup; $25K+ is more money than the thesis needs to validate at break-even.</span>
-          <span class="lang jp"><strong>Balraj の意向:</strong>選択肢 B（$20K）。$15K だと外注バックアップの余地がなく、$25K 超は損益分岐検証に対して過剰。</span>
-        </p>
+        <strong><span class="lang en">Resolution: Self-funded by Balraj + Akito. No outside fundraise planned. Cash is not a constraint. The Cockpit annual prepay mechanism is the working capital engine — at 1,000 Cockpit users it generates $149,500 of extra working capital + $5,980/yr interest income at 4% money-market rate. The business is structured to be cash-flow positive from day 1 once supplier costs are committed.</span><span class="lang jp">結論: Balraj + Akito の自己資金。外部調達の予定なし。現金はボトルネックではない。Cockpit 年間プリペイメカニズムが運転資本エンジンとなる — Cockpit ユーザー 1,000 名で追加運転資本 $149,500 + 4% マネーマーケットで年利収入 $5,980 を生み出す。仕入れコストが確定した時点から初日黒字化できる構造。</span></strong>
       </div>
-      <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 2-5 SPEND DECISIONS</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 2〜5 の支出判断に影響</span></div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · 2026-06-02</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02</span></div>
     </div>
 
     <div class="decision-card yellow">
@@ -4282,7 +4250,112 @@
       <div class="dec-status"><span class="lang en">STATUS · TO ALIGN WITH AKITO · INFORMS PHASE 1 ITEM 14</span><span class="lang jp">ステータス ・ Akito と要協議 ・ Phase 1 Item 14 に影響</span></div>
     </div>
 
-    <div class="sec-label" style="margin-top: 48px; color: var(--accent);"><span class="lang en">✓ RESOLVED · 2 ITEMS</span><span class="lang jp">✓ 解決済 ・ 2件</span></div>
+    <!-- NEW DECISION 17 -->
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 17 · CARRYOVER POLICY ✓</span><span class="lang jp">判断 17 ・ 繰越ポリシー ✓</span></div>
+      <a class="dec-ref" href="#phase-2-item-5">Phase 2 · Item 5</a>
+      <h3>
+        <span class="lang en">What are the rules for carryover data pools, expiry, and exit paths?</span>
+        <span class="lang jp">繰越データプールの有効期限ルールと出口パスをどう定めるか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Resolved 2026-06-02 during P&amp;L deep-dive sessions with Balraj.</span>
+        <span class="lang jp">Balraj との P&amp;L 詳細セッションにて 2026-06-02 に決定。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Resolution: Universal Carry Rule + cancellation gift-only exit locked.</span><span class="lang jp">結論: ユニバーサルキャリールール + 解約時ギフト専用出口を確定。</span></strong>
+        <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Universal Carry Rule: carryover pool keeps original expiry, EXCEPT upgrade to longer-expiry plan expands the carry's expiry to match</span><span class="lang jp">ユニバーサルキャリールール: 繰越プールは元の有効期限を保持。ただし、有効期限が長いプランへのアップグレード時は繰越の有効期限も合わせて拡張</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">No mid-cycle refunds on downgrade (industry standard)</span><span class="lang jp">ダウングレード時の中途返金なし（業界標準）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">7-day + 3-day expiry reminders via push + email</span><span class="lang jp">有効期限 7 日前 + 3 日前にプッシュ通知 + メールでリマインド</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Cancellation = gift-only exit (no cash refund; user can gift carryover to another user as the only exit path)</span><span class="lang jp">解約 = ギフト専用出口（現金返金なし・繰越データを他ユーザーへのギフトとしてのみ出口として利用可）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">FIFO usage: soonest-expiring carry burns first</span><span class="lang jp">FIFO 使用: 有効期限が最も早い繰越から先に消費</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">30-day expiry on carry transferred during downgrade (anti-gaming)</span><span class="lang jp">ダウングレード時に移転される繰越の有効期限は 30 日（不正利用防止）</span></li>
+        </ul>
+      </div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · 2026-06-02</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02</span></div>
+    </div>
+
+    <!-- NEW DECISION 18 -->
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 18 · GOODWILL &amp; REFUND POLICY ✓</span><span class="lang jp">判断 18 ・ グッドウィル&amp;返金ポリシー ✓</span></div>
+      <a class="dec-ref" href="#phase-1-item-4">Phase 1 · Item 4</a>
+      <h3>
+        <span class="lang en">What do we offer when an activation fails — cash refund, data credit, or nothing?</span>
+        <span class="lang jp">アクティベーション失敗時に何を提供するか — 現金返金、データクレジット、それとも何もなし？</span>
+      </h3>
+      <p>
+        <span class="lang en">Resolved 2026-06-02 during P&amp;L deep-dive sessions with Balraj.</span>
+        <span class="lang jp">Balraj との P&amp;L 詳細セッションにて 2026-06-02 に決定。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Resolution: Default goodwill = 2 GB extra data credit (not cash refund). Invest in activation UX to drop failure rate from 5% to 1%.</span><span class="lang jp">結論: デフォルトのグッドウィル = 追加 2GB データクレジット（現金返金なし）。アクティベーション UX に投資して失敗率を 5% から 1% に低下。</span></strong>
+        <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Default goodwill = 2 GB extra data credit (NOT cash refund)</span><span class="lang jp">デフォルトのグッドウィル = 追加 2GB データクレジット（現金返金ではない）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">User-error failures (wrong device, skipped QR scan, etc.) capped at 3 incidents per year</span><span class="lang jp">ユーザーエラーによる失敗（端末違い、QR スキャン省略等）は年 3 件上限</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">After 3 incidents, user self-serves (no support cost)</span><span class="lang jp">3 件以降はユーザーがセルフサービス対応（サポートコストなし）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Carrier/system errors = full refund + goodwill</span><span class="lang jp">キャリア/システムエラー = 全額返金 + グッドウィル</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Blended cost per failure: ~$10.80 (vs $24 worst case)</span><span class="lang jp">失敗 1 件あたりブレンドコスト: ~$10.80（最悪ケース $24 比）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Activation UX investment: in-app QR scanner + device compatibility check + AI Support agent — $1K + 2 weeks dev, drops failure rate from 5% to 1%</span><span class="lang jp">アクティベーション UX 投資: アプリ内 QR スキャナー + 端末互換性チェック + AI サポートエージェント — $1K + 開発 2 週間、失敗率 5% → 1% に低下</span></li>
+        </ul>
+      </div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · 2026-06-02</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02</span></div>
+    </div>
+
+    <!-- NEW DECISION 19 -->
+    <div class="decision-card amber">
+      <div class="dec-meta"><span class="lang en">DECISION 19 · GEO-RISK ADD-ON SKU</span><span class="lang jp">判断 19 ・ 地理リスク アドオン SKU</span></div>
+      <a class="dec-ref" href="#phase-0-item-7">Phase 0 · Item 7</a>
+      <h3>
+        <span class="lang en">Do we offer a "USA Pack" or "Cruise Pack" add-on to shield margin from Tier-C exposure?</span>
+        <span class="lang jp">Tier-C エクスポージャーからマージンを守るため、「USA Pack」や「Cruise Pack」アドオンを提供するか？</span>
+      </h3>
+      <p>
+        <span class="lang en">Tier-C routes (USA, Cruise, Caribbean) cost $8.50/GB vs $0.85/GB for Tier-A. A 5% increase in Tier-C consumption changes blended cost from $1.34 → $1.74 (+30%). Realistic layover-weighted geo mix may be closer to 40/40/20 (Tier-A/B/C), not the model's 75/20/5 assumption.</span>
+        <span class="lang jp">Tier-C 路線（米国・クルーズ・カリブ）は $8.50/GB（Tier-A は $0.85/GB）。Tier-C 消費が 5% 増えるだけでブレンドコストが $1.34 → $1.74（+30%）に変化。実際のレイオーバー加重ジオミックスは、モデルの 75/20/5 仮定ではなく 40/40/20（Tier-A/B/C）に近い可能性がある。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Options to evaluate:</span><span class="lang jp">検討すべき選択肢:</span></strong>
+        <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--warning); font-weight: 700;">A</span><span class="lang en">Offer "USA Pack" or "Cruise Pack" add-on at $9.99/mo for users with heavy Tier-C exposure</span><span class="lang jp">Tier-C エクスポージャーが高いユーザー向けに月 $9.99 の「USA Pack」または「Cruise Pack」アドオンを提供</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--warning); font-weight: 700;">B</span><span class="lang en">Route exclusion: base plans don't cover Tier-C, forces upgrade</span><span class="lang jp">路線除外: ベースプランは Tier-C をカバーせず、アップグレードを強制</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--warning); font-weight: 700;">C</span><span class="lang en">Accept blended cost risk; revisit if Tier-C share exceeds 20%</span><span class="lang jp">ブレンドコストリスクを受け入れ、Tier-C シェアが 20% 超なら再検討</span></li>
+        </ul>
+        <p style="margin-top: 12px; font-size: 13.5px; color: var(--text-2);">
+          <span class="lang en"><strong>Pending:</strong> Akito to gather 5-10 real crew layover destinations to validate actual geo mix before deciding.</span>
+          <span class="lang jp"><strong>保留中:</strong>決定前に Akito が実際のジオミックスを検証するため、実際の乗務員レイオーバー先 5-10 件を収集する。</span>
+        </p>
+      </div>
+      <div class="dec-status"><span class="lang en">STATUS · OPEN · PENDING AKITO GEO-MIX VALIDATION</span><span class="lang jp">ステータス ・ 未決 ・ Akito のジオミックス検証待ち</span></div>
+    </div>
+
+    <!-- NEW DECISION 20 -->
+    <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
+      <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 20 · CAC POSTURE ✓</span><span class="lang jp">判断 20 ・ CAC 戦略 ✓</span></div>
+      <a class="dec-ref" href="#phase-2-item-9">Phase 2 · Item 9</a>
+      <h3>
+        <span class="lang en">What's our launch acquisition strategy — paid, organic, or referral-led?</span>
+        <span class="lang jp">ローンチ時の獲得戦略は何か — 有料、オーガニック、それとも紹介主導？</span>
+      </h3>
+      <p>
+        <span class="lang en">Resolved 2026-06-02 during P&amp;L deep-dive sessions with Balraj.</span>
+        <span class="lang jp">Balraj との P&amp;L 詳細セッションにて 2026-06-02 に決定。</span>
+      </p>
+      <div class="dec-impact">
+        <strong><span class="lang en">Resolution: 85% organic (word-of-mouth) + 15% referral bonus ($5 credit per referrer). Blended CAC $0.75/user. Real risk is word-of-mouth SCALE velocity, not unit economics.</span><span class="lang jp">結論: 85% オーガニック（口コミ）+ 15% 紹介ボーナス（紹介者 1 名あたり $5 クレジット）。ブレンド CAC $0.75/ユーザー。実際のリスクは口コミのスケール速度であり、ユニットエコノミクスではない。</span></strong>
+        <ul style="margin-top: 10px; padding-left: 0; list-style: none;">
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Launch acquisition: 85% organic + 15% referral bonus ($5 credit per referrer)</span><span class="lang jp">ローンチ獲得: 85% オーガニック + 15% 紹介ボーナス（紹介者 $5 クレジット）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Blended CAC: $0.75/user (vs $3.85 in original model)</span><span class="lang jp">ブレンド CAC: $0.75/ユーザー（元モデルの $3.85 比）</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Paid social (Instagram/TikTok): 0% — FUTURE only, not in launch plan</span><span class="lang jp">有料ソーシャル（Instagram/TikTok）: 0% — 将来のみ、ローンチ計画には含まない</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Influencer/paid sponsorship: 0% — Harikai illustrator partnership is asset swap, not paid CAC</span><span class="lang jp">インフルエンサー/有料スポンサーシップ: 0% — Harikai イラストレーターとのパートナーシップはアセット交換であり、有料 CAC ではない</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Premium user pays back $0.75 CAC in ~2 days</span><span class="lang jp">Premium ユーザーは約 2 日で $0.75 の CAC を回収</span></li>
+          <li style="padding: 4px 0 4px 20px; position: relative; line-height: 1.65;"><span style="position: absolute; left: 0; color: var(--accent); font-weight: 700;">✓</span><span class="lang en">Revisit only if word-of-mouth growth stalls &gt; 6 months</span><span class="lang jp">口コミ成長が 6 ヶ月以上停滞した場合のみ再検討</span></li>
+        </ul>
+      </div>
+      <div class="dec-status" style="color: var(--accent);"><span class="lang en">STATUS · RESOLVED · 2026-06-02</span><span class="lang jp">ステータス ・ 解決済 ・ 2026-06-02</span></div>
+    </div>
+
+    <div class="sec-label" style="margin-top: 48px; color: var(--accent);"><span class="lang en">✓ RESOLVED · 9 ITEMS</span><span class="lang jp">✓ 解決済 ・ 9件</span></div>
 
     <div class="decision-card" style="border-left: 4px solid var(--accent); background: linear-gradient(90deg, var(--accent-soft), var(--surface));">
       <div class="dec-meta" style="color: var(--accent);"><span class="lang en">DECISION 12 · MARKETING + DISTRIBUTION CHANNELS ✓</span><span class="lang jp">判断 12 ・ マーケ・流通チャネル ✓</span></div>
@@ -4441,7 +4514,7 @@
   </header>
 
   <section style="border-bottom: none;">
-    <div class="sec-label"><span class="lang en">SAMURAI WIFI · DILIGENCE</span><span class="lang jp">SAMURAI WIFI ・ デューデリジェンス</span></div>
+    <div class="sec-label"><span class="lang en">WHOLESALE SUPPLIER · DILIGENCE</span><span class="lang jp">卸仕入先 ・ デューデリジェンス</span></div>
 
     <div class="task-card" data-task-id="a01">
       <div class="task-meta-row">
