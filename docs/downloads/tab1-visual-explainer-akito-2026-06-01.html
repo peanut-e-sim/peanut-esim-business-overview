@@ -486,8 +486,12 @@
   </div>
 
   <!-- HOW $1.34/GB IS CALCULATED — worked example -->
-  <div style="margin-top: 24px; padding: 20px; background: #1A1A1A; color: white; border-radius: 6px;">
-    <div style="font-weight: 700; font-size: 13px; color: #C9A03B; letter-spacing: .05em; margin-bottom: 8px;">HOW $1.34/GB IS CALCULATED</div>
+  <details style="margin-top: 24px; border-radius: 6px; overflow: hidden;">
+    <summary style="cursor: pointer; padding: 14px 20px; background: #1A1A1A; color: #C9A03B; font-size: 14px; font-weight: 700; letter-spacing: .05em; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none;">
+      <span>How $1.34/GB is calculated (click to expand)</span>
+      <span style="font-size: 12px; color: #888; font-weight: 500;">&#9660;</span>
+    </summary>
+  <div style="padding: 20px; background: #1A1A1A; color: white;">
     <h3 style="margin: 0 0 10px; font-size: 17px; color: white;">100 GB of crew data — where does it physically get used?</h3>
     <p style="font-size: 13.5px; line-height: 1.6; color: #E5DDD0; margin: 0 0 14px;">
       Take 100 GB of total crew data consumption in a month. Based on the 75/20/5 split, here's where every GB physically lands and what our wholesale supplier charges us:
@@ -563,16 +567,20 @@
       </p>
     </div>
   </div>
+  </details>
 
   <!-- WHERE THE 75% COMES FROM — visual version -->
-  <div style="margin-top: 24px; padding: 20px; background: #FFF9E6; border-left: 4px solid #C9A03B; border-radius: 6px;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-      <span style="background:#C9A03B;color:white;font-size:10px;font-weight:700;letter-spacing:.08em;padding:4px 10px;border-radius:12px;">PLACEHOLDER</span>
-      <h3 style="margin:0;font-size:18px;">Where the 75% comes from</h3>
-    </div>
-
+  <details style="margin-top: 24px; background: #FFF9E6; border-left: 4px solid #C9A03B; border-radius: 6px;">
+    <summary style="cursor: pointer; padding: 16px 20px; font-size: 15px; font-weight: 700; color: #1A1A1A; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none; gap: 10px; flex-wrap: wrap;">
+      <span style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span style="background:#C9A03B;color:white;font-size:10px;font-weight:700;letter-spacing:.08em;padding:4px 10px;border-radius:12px;">PLACEHOLDER</span>
+        <span style="font-size:18px;font-weight:700;">Where the 75% comes from</span>
+      </span>
+      <span style="font-size: 12px; color: #888; font-weight: 500; white-space:nowrap;">click to expand &#9660;</span>
+    </summary>
+  <div style="padding: 0 20px 20px;">
     <!-- Data sources as compact chips -->
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;margin-top:14px;">
       <div style="background:white;padding:10px 14px;border-radius:6px;border:1px solid #E5DDD0;flex:1;min-width:200px;">
         <div style="font-size:22px;font-weight:800;color:#1A1A1A;line-height:1;">67</div>
         <div style="font-size:11.5px;color:#666;margin-top:4px;">layover countries · turnarounds excluded</div>
@@ -631,6 +639,7 @@
       <div style="font-size:13px;line-height:1.45;">Pull 5–10 crew rosters · last 3 months · tally real layover destinations · we lock the scenario</div>
     </div>
   </div>
+  </details>
 </section>
 
 <!-- 4. Who buys what -->
@@ -703,29 +712,28 @@
     <div style="background: white; padding: 14px; border-radius: 6px; margin: 12px 0;">
       <div style="font-weight: 700; font-size: 13px; color: #1A1A1A; margin-bottom: 6px;">Blended ARPU = $13.21</div>
       <div style="font-size: 13px; color: #555; line-height: 1.55; margin-bottom: 10px;">
-        Average revenue per paying user per month, weighted by tier mix.
+        Average revenue per paying user per month, weighted by tier mix. Total = $17.52 raw weighted; shown proportionally below.
       </div>
-      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-        <thead>
-          <tr style="background: #FCFAF5; color: #666;">
-            <th style="padding: 6px 8px; text-align: left;">Tier</th>
-            <th style="padding: 6px 8px; text-align: center;">% users</th>
-            <th style="padding: 6px 8px; text-align: center;">×</th>
-            <th style="padding: 6px 8px; text-align: center;">Price</th>
-            <th style="padding: 6px 8px; text-align: right;">= weighted</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding: 4px 8px;">Economy (2.5× realistic)</td><td style="padding: 4px 8px; text-align: center;">50%</td><td style="padding: 4px 8px; text-align: center;">×</td><td style="padding: 4px 8px; text-align: center;">$12.48</td><td style="padding: 4px 8px; text-align: right;">$6.24</td></tr>
-          <tr><td style="padding: 4px 8px;">Roster Bundle</td><td style="padding: 4px 8px; text-align: center;">18%</td><td style="padding: 4px 8px; text-align: center;">×</td><td style="padding: 4px 8px; text-align: center;">$19.95</td><td style="padding: 4px 8px; text-align: right;">$3.59</td></tr>
-          <tr><td style="padding: 4px 8px;">Premium Economy</td><td style="padding: 4px 8px; text-align: center;">13%</td><td style="padding: 4px 8px; text-align: center;">×</td><td style="padding: 4px 8px; text-align: center;">$17.99</td><td style="padding: 4px 8px; text-align: right;">$2.34</td></tr>
-          <tr><td style="padding: 4px 8px;">Business</td><td style="padding: 4px 8px; text-align: center;">8%</td><td style="padding: 4px 8px; text-align: center;">×</td><td style="padding: 4px 8px; text-align: center;">$29.99</td><td style="padding: 4px 8px; text-align: right;">$2.40</td></tr>
-          <tr><td style="padding: 4px 8px;">First</td><td style="padding: 4px 8px; text-align: center;">3%</td><td style="padding: 4px 8px; text-align: center;">×</td><td style="padding: 4px 8px; text-align: center;">$39.99</td><td style="padding: 4px 8px; text-align: right;">$1.20</td></tr>
-          <tr><td style="padding: 4px 8px;">First Suite</td><td style="padding: 4px 8px; text-align: center;">2%</td><td style="padding: 4px 8px; text-align: center;">×</td><td style="padding: 4px 8px; text-align: center;">$49.99</td><td style="padding: 4px 8px; text-align: right;">$1.00</td></tr>
-          <tr><td style="padding: 4px 8px;">Cockpit ($299/yr ÷ 12)</td><td style="padding: 4px 8px; text-align: center;">3%</td><td style="padding: 4px 8px; text-align: center;">×</td><td style="padding: 4px 8px; text-align: center;">$24.92</td><td style="padding: 4px 8px; text-align: right;">$0.75</td></tr>
-          <tr style="background: #FAF6F0; font-weight: 700;"><td style="padding: 6px 8px;" colspan="4">Sum (after small refuel & rounding adjustments)</td><td style="padding: 6px 8px; text-align: right; color: #D71921;">~$13.21</td></tr>
-        </tbody>
-      </table>
+      <!-- Stacked bar: widths = tier_$ / 17.52 * 100 — Economy 6.24/17.52=35.6%, Roster 3.59/17.52=20.5%, Premium 2.34/17.52=13.4%, Business 2.40/17.52=13.7%, First 1.20/17.52=6.9%, Suite 1.00/17.52=5.7%, Cockpit 0.75/17.52=4.3% -->
+      <div style="display:flex;height:32px;border-radius:6px;overflow:hidden;margin:10px 0;" role="img" aria-label="ARPU tier breakdown stacked bar">
+        <div style="background:#d9d9d9;width:35.6%;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:11px;font-weight:700;" title="Economy $6.24">Econ</div>
+        <div style="background:#7AB8A0;width:20.5%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Roster $3.59">Roster</div>
+        <div style="background:#94B9C8;width:13.4%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Premium $2.34">Prem</div>
+        <div style="background:#D71921;width:13.7%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Business $2.40">Biz</div>
+        <div style="background:#b07729;width:6.9%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;" title="First $1.20">1st</div>
+        <div style="background:#C9A03B;width:5.7%;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:10px;font-weight:700;" title="Suite $1.00">Ste</div>
+        <div style="background:#1A1A1A;width:4.3%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;" title="Cockpit $0.75">Ckt</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:#555;margin-top:6px;">
+        <span><span style="display:inline-block;width:10px;height:10px;background:#d9d9d9;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Econ $6.24</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#7AB8A0;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Roster $3.59</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#94B9C8;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Prem $2.34</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#D71921;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Biz $2.40</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#b07729;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>First $1.20</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#C9A03B;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Suite $1.00</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#1A1A1A;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Cockpit $0.75</span>
+        <span style="font-weight:700;color:#D71921;margin-left:4px;">= ~$13.21 blended</span>
+      </div>
     </div>
 
     <div style="background: white; padding: 14px; border-radius: 6px; margin: 12px 0;">
@@ -733,27 +741,26 @@
       <div style="font-size: 13px; color: #555; line-height: 1.55; margin-bottom: 10px;">
         What we pay our wholesale supplier per user per month. Each tier consumes GB at the blended cost of $1.34/GB.
       </div>
-      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-        <thead>
-          <tr style="background: #FCFAF5; color: #666;">
-            <th style="padding: 6px 8px; text-align: left;">Tier</th>
-            <th style="padding: 6px 8px; text-align: center;">% users</th>
-            <th style="padding: 6px 8px; text-align: center;">GB consumed</th>
-            <th style="padding: 6px 8px; text-align: center;">× $1.34</th>
-            <th style="padding: 6px 8px; text-align: right;">= weighted</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding: 4px 8px;">Economy (2.5 GB)</td><td style="padding: 4px 8px; text-align: center;">50%</td><td style="padding: 4px 8px; text-align: center;">2.5</td><td style="padding: 4px 8px; text-align: center;">$3.35</td><td style="padding: 4px 8px; text-align: right;">$1.68</td></tr>
-          <tr><td style="padding: 4px 8px;">Roster (5 GB)</td><td style="padding: 4px 8px; text-align: center;">18%</td><td style="padding: 4px 8px; text-align: center;">5.0</td><td style="padding: 4px 8px; text-align: center;">$6.70</td><td style="padding: 4px 8px; text-align: right;">$1.21</td></tr>
-          <tr><td style="padding: 4px 8px;">Premium (4 GB)</td><td style="padding: 4px 8px; text-align: center;">13%</td><td style="padding: 4px 8px; text-align: center;">4.0</td><td style="padding: 4px 8px; text-align: center;">$5.36</td><td style="padding: 4px 8px; text-align: right;">$0.70</td></tr>
-          <tr><td style="padding: 4px 8px;">Business (6.75 GB)</td><td style="padding: 4px 8px; text-align: center;">8%</td><td style="padding: 4px 8px; text-align: center;">6.75</td><td style="padding: 4px 8px; text-align: center;">$9.05</td><td style="padding: 4px 8px; text-align: right;">$0.72</td></tr>
-          <tr><td style="padding: 4px 8px;">First (10 GB)</td><td style="padding: 4px 8px; text-align: center;">3%</td><td style="padding: 4px 8px; text-align: center;">10.0</td><td style="padding: 4px 8px; text-align: center;">$13.40</td><td style="padding: 4px 8px; text-align: right;">$0.40</td></tr>
-          <tr><td style="padding: 4px 8px;">Suite (13.2 GB)</td><td style="padding: 4px 8px; text-align: center;">2%</td><td style="padding: 4px 8px; text-align: center;">13.2</td><td style="padding: 4px 8px; text-align: center;">$17.69</td><td style="padding: 4px 8px; text-align: right;">$0.35</td></tr>
-          <tr><td style="padding: 4px 8px;">Cockpit (7.2 GB)</td><td style="padding: 4px 8px; text-align: center;">3%</td><td style="padding: 4px 8px; text-align: center;">7.2</td><td style="padding: 4px 8px; text-align: center;">$9.65</td><td style="padding: 4px 8px; text-align: right;">$0.29</td></tr>
-          <tr style="background: #FAF6F0; font-weight: 700;"><td style="padding: 6px 8px;" colspan="4">Sum</td><td style="padding: 6px 8px; text-align: right; color: #D71921;">~$5.10</td></tr>
-        </tbody>
-      </table>
+      <!-- Stacked bar: widths = tier_$ / 5.35 * 100 — Economy 1.68/5.35=31.4%, Roster 1.21/5.35=22.6%, Premium 0.70/5.35=13.1%, Business 0.72/5.35=13.5%, First 0.40/5.35=7.5%, Suite 0.35/5.35=6.5%, Cockpit 0.29/5.35=5.4% -->
+      <div style="display:flex;height:32px;border-radius:6px;overflow:hidden;margin:10px 0;" role="img" aria-label="COGS tier breakdown stacked bar">
+        <div style="background:#d9d9d9;width:31.4%;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:11px;font-weight:700;" title="Economy $1.68">Econ</div>
+        <div style="background:#7AB8A0;width:22.6%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Roster $1.21">Roster</div>
+        <div style="background:#94B9C8;width:13.1%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Premium $0.70">Prem</div>
+        <div style="background:#D71921;width:13.5%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;" title="Business $0.72">Biz</div>
+        <div style="background:#b07729;width:7.5%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;" title="First $0.40">1st</div>
+        <div style="background:#C9A03B;width:6.5%;display:flex;align-items:center;justify-content:center;color:#1A1A1A;font-size:10px;font-weight:700;" title="Suite $0.35">Ste</div>
+        <div style="background:#1A1A1A;width:5.4%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;font-weight:700;" title="Cockpit $0.29">Ckt</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:11px;color:#555;margin-top:6px;">
+        <span><span style="display:inline-block;width:10px;height:10px;background:#d9d9d9;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Econ $1.68</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#7AB8A0;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Roster $1.21</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#94B9C8;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Prem $0.70</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#D71921;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Biz $0.72</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#b07729;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>First $0.40</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#C9A03B;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Suite $0.35</span>
+        <span><span style="display:inline-block;width:10px;height:10px;background:#1A1A1A;border-radius:2px;vertical-align:middle;margin-right:3px;"></span>Cockpit $0.29</span>
+        <span style="font-weight:700;color:#D71921;margin-left:4px;">= ~$5.10 blended</span>
+      </div>
     </div>
 
     <div style="background: white; padding: 14px; border-radius: 6px; margin: 12px 0;">
