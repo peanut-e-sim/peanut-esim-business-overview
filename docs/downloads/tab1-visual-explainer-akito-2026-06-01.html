@@ -565,66 +565,72 @@
     </div>
   </div>
 
-  <!-- WHERE THE 75% COMES FROM -->
+  <!-- WHERE THE 75% COMES FROM — visual version -->
   <div style="margin-top: 24px; padding: 20px; background: #FFF9E6; border-left: 4px solid #C9A03B; border-radius: 6px;">
-    <h3 style="margin: 0 0 10px; font-size: 17px;">Where the 75% comes from (and what it actually should be)</h3>
-    <p style="font-size: 14px; line-height: 1.6; color: #4A4A4A; margin: 0 0 14px;">
-      <strong>Honest answer:</strong> the 75/20/5 split is a <strong>placeholder</strong>. It was set in the early model based on the assumption that
-      Emirates crew predominantly fly Asia-Pacific (cheap) routes. Real layover data tells a different story.
-    </p>
-
-    <div style="background: white; padding: 14px; border-radius: 6px; margin: 12px 0;">
-      <div style="font-weight: 700; font-size: 13px; color: #666; letter-spacing: .05em; margin-bottom: 8px;">DATA SOURCES WE PULLED FROM</div>
-      <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.65;">
-        <li><strong>Emirates Crew Layover Countries spreadsheet</strong> — 67 countries categorized as actual layover destinations (excludes turnarounds where crew fly in and out within 1-3 hours, e.g. Mumbai).</li>
-        <li><strong>DXB route research (2026-05-24)</strong> — 140 destinations across 85 countries, 6 continents. Top routes: London (146 weekly flights), Mumbai (turnaround, excluded), Bangkok (35/wk), Singapore (35/wk), JFK (14/wk).</li>
-        <li><strong>Country counts by cost bucket</strong> — Tier-A layover countries: ~31 (SE Asia + most of Africa). Tier-B: ~31 (all of Europe + JP, KR, China, Australia, NZ). Tier-C: 6 (USA, Canada, Mexico, Brazil, Argentina, Colombia — all 24-48h long-haul).</li>
-      </ul>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+      <span style="background:#C9A03B;color:white;font-size:10px;font-weight:700;letter-spacing:.08em;padding:4px 10px;border-radius:12px;">PLACEHOLDER</span>
+      <h3 style="margin:0;font-size:18px;">Where the 75% comes from</h3>
     </div>
 
-    <div style="background: white; padding: 14px; border-radius: 6px; margin: 12px 0;">
-      <div style="font-weight: 700; font-size: 13px; color: #666; letter-spacing: .05em; margin-bottom: 8px;">3 POSSIBLE SCENARIOS</div>
-      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px;">
-        <thead>
-          <tr style="background: #1A1A1A; color: white;">
-            <th style="padding: 8px 10px; text-align: left;">Scenario</th>
-            <th style="padding: 8px 10px; text-align: center;">Tier-A</th>
-            <th style="padding: 8px 10px; text-align: center;">Tier-B</th>
-            <th style="padding: 8px 10px; text-align: center;">Tier-C</th>
-            <th style="padding: 8px 10px; text-align: center;">Blended $/GB</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding: 8px 10px;"><strong>Optimistic</strong> (current model)</td>
-            <td style="padding: 8px 10px; text-align: center;">75%</td>
-            <td style="padding: 8px 10px; text-align: center;">20%</td>
-            <td style="padding: 8px 10px; text-align: center;">5%</td>
-            <td style="padding: 8px 10px; text-align: center;"><strong style="color: #2D7A4F;">$1.34</strong></td>
-          </tr>
-          <tr style="background: #FCFAF5;">
-            <td style="padding: 8px 10px;"><strong>Realistic</strong> (layover-weighted)</td>
-            <td style="padding: 8px 10px; text-align: center;">40%</td>
-            <td style="padding: 8px 10px; text-align: center;">40%</td>
-            <td style="padding: 8px 10px; text-align: center;">20%</td>
-            <td style="padding: 8px 10px; text-align: center;"><strong style="color: #C9A03B;">$2.60</strong></td>
-          </tr>
-          <tr>
-            <td style="padding: 8px 10px;"><strong>Pessimistic</strong> (heavy US/Europe crew)</td>
-            <td style="padding: 8px 10px; text-align: center;">30%</td>
-            <td style="padding: 8px 10px; text-align: center;">35%</td>
-            <td style="padding: 8px 10px; text-align: center;">35%</td>
-            <td style="padding: 8px 10px; text-align: center;"><strong style="color: #D71921;">$3.84</strong></td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Data sources as compact chips -->
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+      <div style="background:white;padding:10px 14px;border-radius:6px;border:1px solid #E5DDD0;flex:1;min-width:200px;">
+        <div style="font-size:22px;font-weight:800;color:#1A1A1A;line-height:1;">67</div>
+        <div style="font-size:11.5px;color:#666;margin-top:4px;">layover countries · turnarounds excluded</div>
+      </div>
+      <div style="background:white;padding:10px 14px;border-radius:6px;border:1px solid #E5DDD0;flex:1;min-width:200px;">
+        <div style="font-size:22px;font-weight:800;color:#1A1A1A;line-height:1;">140</div>
+        <div style="font-size:11.5px;color:#666;margin-top:4px;">DXB destinations · 85 countries</div>
+      </div>
+      <div style="background:white;padding:10px 14px;border-radius:6px;border:1px solid #E5DDD0;flex:1;min-width:200px;">
+        <div style="font-size:22px;font-weight:800;color:#D71921;line-height:1;">6</div>
+        <div style="font-size:11.5px;color:#666;margin-top:4px;">Tier-C countries · all 24-48h long-haul</div>
+      </div>
     </div>
 
-    <p style="margin: 14px 0 0; font-size: 13.5px; color: #4A4A4A; line-height: 1.6;">
-      <strong>What we need from Akito:</strong> pull 5–10 crew rosters from the last 3 months and tally actual layover destinations
-      (not turnarounds). That gives us the real time-weighted mix and tells us whether to use $1.34, $2.60, or $3.84/GB in the model.
-      <strong>Until then, the 75% is a working assumption, not validated data.</strong>
-    </p>
+    <!-- 3 scenarios as visual bars -->
+    <div style="background:white;padding:14px 16px;border-radius:6px;">
+      <div style="font-size:12px;font-weight:700;color:#666;letter-spacing:.05em;margin-bottom:10px;">3 SCENARIOS · BLENDED $/GB</div>
+
+      <!-- Scenario 1 -->
+      <div style="margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:3px;">
+          <strong>Optimistic</strong> <span style="color:#888;font-size:11.5px;">75 / 20 / 5</span>
+          <strong style="color:#2D7A4F;font-size:15px;">$1.34</strong>
+        </div>
+        <div style="height:10px;background:#EFE5D0;border-radius:5px;overflow:hidden;">
+          <div style="width:35%;height:100%;background:#2D7A4F;"></div>
+        </div>
+      </div>
+
+      <!-- Scenario 2 -->
+      <div style="margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:3px;">
+          <strong>Realistic</strong> <span style="color:#888;font-size:11.5px;">40 / 40 / 20 (layover-weighted)</span>
+          <strong style="color:#C9A03B;font-size:15px;">$2.60</strong>
+        </div>
+        <div style="height:10px;background:#EFE5D0;border-radius:5px;overflow:hidden;">
+          <div style="width:68%;height:100%;background:#C9A03B;"></div>
+        </div>
+      </div>
+
+      <!-- Scenario 3 -->
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;margin-bottom:3px;">
+          <strong>Pessimistic</strong> <span style="color:#888;font-size:11.5px;">30 / 35 / 35</span>
+          <strong style="color:#D71921;font-size:15px;">$3.84</strong>
+        </div>
+        <div style="height:10px;background:#EFE5D0;border-radius:5px;overflow:hidden;">
+          <div style="width:100%;height:100%;background:#D71921;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Akito ask -->
+    <div style="display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 14px;background:#1A1A1A;color:white;border-radius:6px;">
+      <div style="background:#C9A03B;color:#1A1A1A;font-size:11px;font-weight:700;letter-spacing:.05em;padding:3px 8px;border-radius:4px;white-space:nowrap;">AKITO →</div>
+      <div style="font-size:13px;line-height:1.45;">Pull 5–10 crew rosters · last 3 months · tally real layover destinations · we lock the scenario</div>
+    </div>
   </div>
 </section>
 
