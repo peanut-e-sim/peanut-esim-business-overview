@@ -27,7 +27,7 @@ ROOT_INDEX = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'ind
 STALE_RULES = [
     # Old wholesale cost
     (r'\$1\.20\s*/\s*GB(?![^<]{0,40}payment processing)', 'Stale wholesale cost ($1.20/GB) — should be $1.34', 'error'),
-    (r'\$2\.13\s*/\s*GB', 'Stale blended cost ($2.13) — should be $1.34', 'error'),
+    (r'\$2\.13\s*/\s*GB', 'Stale blended cost ($2.13) — should be $1.34 unless comparing scenarios', 'warn'),
 
     # Old refuel price
     (r'(?<!\d)\$5\.99(?:\s|<)', 'Stale price ($5.99) — likely old Economy 1.2x or old refuel', 'warn'),
@@ -99,6 +99,8 @@ ALLOWLIST_CONTEXT = [
     r'aspirational', r'invalidated',
     r'was \$', r'dropped from', r'was at', r'mix\)', r'unchanged',  # historical price refs
     r'considered price', r'impulse',  # pricing strategy discussion
+    r'shift in Tier', r'blows the', r'sensitivity', r'side-by-side',  # sensitivity scenarios
+    r'recalibrated from', r'original model',  # model evolution
 ]
 ALLOW_REGEX = re.compile('|'.join(ALLOWLIST_CONTEXT), re.IGNORECASE)
 
