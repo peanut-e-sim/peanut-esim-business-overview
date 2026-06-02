@@ -118,34 +118,17 @@
     border-color: var(--accent);
   }
 
-  /* Tab nav */
+  /* Tab nav — wraps to multiple rows instead of horizontal scroll */
   .tab-nav {
     display: flex;
-    gap: 4px;
+    flex-wrap: wrap;
+    gap: 4px 2px;
     margin-top: 12px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: #999 #f0f0f0;
     position: relative;
     padding-bottom: 4px;
+    row-gap: 6px;
   }
-  .tab-nav::-webkit-scrollbar { height: 6px; }
-  .tab-nav::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 3px; }
-  .tab-nav::-webkit-scrollbar-thumb { background: #999; border-radius: 3px; }
-  .tab-nav::-webkit-scrollbar-thumb:hover { background: #666; }
-  /* Right-edge fade hint so users know to scroll */
   .tab-nav-wrap { position: relative; }
-  .tab-nav-wrap::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 6px;
-    width: 32px;
-    background: linear-gradient(to right, transparent, #FAF6F0);
-    pointer-events: none;
-  }
   .tab-btn {
     padding: 11px 18px;
     background: transparent;
@@ -2705,6 +2688,11 @@
         <span class="lang en">Cost</span>
         <span class="lang jp">コスト</span>
       </button>
+      <button class="tab-btn" data-tab="supplier">
+        <span class="lang en">Supplier</span>
+        <span class="lang jp">サプライヤー</span>
+        <span class="count">27</span>
+      </button>
       <button class="tab-btn" data-tab="blueprint">
         <span class="lang en">📘 Blueprint</span>
         <span class="lang jp">📘 設計書</span>
@@ -3822,8 +3810,109 @@
       <div>
         <h4><span class="lang en">Why this flow matters strategically</span><span class="lang jp">このフローが戦略的に重要な理由</span></h4>
         <p>
-          <span class="lang en">The &ldquo;pool&rdquo; (10 GB, 25 GB, 40 GB depending on tier) is purely a counter in our database. We don&apos;t hold inventory at Samurai &mdash; every transaction is just-in-time. That means: <strong>no carryover liability, no balance-sheet aging, no bundle dormancy risk</strong>. The supplier never sees our pool model &mdash; they just see us provisioning 1 GB top-ups, one at a time. Our entire commercial structure (prepaid balance, per-order pricing, Refuel mechanic) flows from this single design choice.</span>
-          <span class="lang jp">「プール」（ティアにより 10GB / 25GB / 40GB）は当社データベース内の単なるカウンター。Samurai に在庫を保有することはない &mdash; すべての取引はジャストインタイム。これにより：<strong>繰越負債なし、貸借対照表のエイジングなし、バンドル休眠リスクなし</strong>。サプライヤーは当社のプールモデルを見ることはない &mdash; ただ 1GB ずつのトップアップを発行しているとしか見えない。当社の商業構造全体（プリペイドバランス、注文ごとの価格設定、リフューエルメカニクス）はこの設計判断から派生している。</span>
+          <span class="lang en">The &ldquo;pool&rdquo; (10 GB, 25 GB, 40 GB depending on tier) is purely a counter in our database. We don&apos;t hold inventory at the wholesale supplier &mdash; every transaction is just-in-time. That means: <strong>no carryover liability, no balance-sheet aging, no bundle dormancy risk</strong>. The supplier never sees our pool model &mdash; they just see us provisioning 1 GB top-ups, one at a time. Our entire commercial structure flows from this single design choice.</span>
+          <span class="lang jp">「プール」（ティアにより 10GB / 25GB / 40GB）は当社データベース内の単なるカウンター。卸サプライヤーに在庫を保有することはない &mdash; すべての取引はジャストインタイム。これにより：<strong>繰越負債なし、貸借対照表のエイジングなし、バンドル休眠リスクなし</strong>。サプライヤーは当社のプールモデルを見ることはない &mdash; ただ 1GB ずつのトップアップを発行しているとしか見えない。当社の商業構造全体はこの設計判断から派生している。</span>
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 13 — OPERATIONAL POLICIES (locked decisions from 2026-06-02 session) -->
+  <!-- ============================================================ -->
+  <section data-section-id="13">
+    <div class="sec-label">
+      <span class="lang en">13 / OPERATIONAL POLICIES</span>
+      <span class="lang jp">13 / 運営ポリシー</span>
+    </div>
+    <h2 class="lang en">The <em>four locked policies</em> that govern customer money.</h2>
+    <h2 class="lang jp">顧客のお金を支配する<em>4つの確定ポリシー</em>。</h2>
+    <p class="sec-intro">
+      <span class="lang en">Locked 2026-06-02. These rules answer: what happens when a customer cancels, when payment fails, when a refund is requested, and how we provision data behind the scenes. Each is a deliberate design choice and is now policy.</span>
+      <span class="lang jp">2026-06-02 確定。顧客がキャンセルした時、支払いが失敗した時、返金要求があった時、そして裏側でどのようにデータを発行するか。それぞれが意図的な設計判断であり、現時点ではポリシーとして固定。</span>
+    </p>
+
+    <!-- Policy 1: Provisioning model -->
+    <div class="method" style="margin-bottom:18px;">
+      <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);flex-shrink:0;font-weight:700;color:#2D8C7E;font-size:13px;">1</div>
+      <div>
+        <h4><span class="lang en">Provisioning model &mdash; 1 GB top-ups, just-in-time, always</span><span class="lang jp">発行モデル &mdash; 1 GB トップアップを、ジャストインタイムで、常に</span></h4>
+        <p>
+          <span class="lang en">Every interaction with our wholesale supplier is a <strong>single 1 GB bundle with 1-2 day validity</strong>, attached to the user&apos;s existing eSIM profile. We never pre-stock inventory. Pool sizes shown in the app UI (10 GB Premium, 25 GB First, 40 GB Suite) are <strong>internal credit counters</strong>, not physical bundles held at the supplier. Each &ldquo;top-up&rdquo; the user requests in-app triggers exactly one 1 GB supplier provision call.</span>
+          <span class="lang jp">卸サプライヤーとのすべてのやり取りは、<strong>1〜2日の有効期限を持つ1 GBバンドル単体</strong>であり、ユーザーの既存 eSIM プロファイルに紐付ける。在庫の事前確保は一切しない。アプリ UI のプール表示（Premium 10GB / First 25GB / Suite 40GB）は<strong>社内クレジットカウンター</strong>であり、サプライヤー側に保有する物理的バンドルではない。ユーザーがアプリ内で「トップアップ」を要求するたびに、1 GB のサプライヤー発行コールが1回トリガーされる。</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Policy 2: Cancellation -->
+    <div class="method" style="margin-bottom:18px;">
+      <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--peanut-soft);flex-shrink:0;font-weight:700;color:#B47A48;font-size:13px;">2</div>
+      <div>
+        <h4><span class="lang en">Cancellation &mdash; clean break at end of paid period</span><span class="lang jp">解約 &mdash; 課金済み期間の終わりにクリーンに終了</span></h4>
+        <p>
+          <span class="lang en">When a customer cancels their subscription, they retain access to whatever&apos;s already paid for (current month&apos;s remaining credits + any active eSIM bundles) until those naturally expire. After that, <strong>everything ends</strong>. No partial refund of the canceled month. No clawback of in-flight bundles. No reactivation discount.</span>
+          <span class="lang jp">サブスクリプション解約時、顧客はすでに支払済みのもの（当月の残クレジット + アクティブな eSIM バンドル）が自然に有効期限切れになるまでアクセスを保持。その後は<strong>すべて終了</strong>。解約月の部分返金なし。発行済みバンドルのクローバックなし。再加入割引なし。</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Policy 3: Refund -->
+    <div class="method" style="margin-bottom:18px;">
+      <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);flex-shrink:0;font-weight:700;color:#2D8C7E;font-size:13px;">3</div>
+      <div>
+        <h4><span class="lang en">Refund &mdash; goodwill GB for our fault, capped credits for customer fault</span><span class="lang jp">返金 &mdash; 当社責任は善意GB、顧客責任は上限付きクレジット</span></h4>
+        <p>
+          <span class="lang en"><strong>Our fault</strong> (failed activation, upstream supplier issue, our software bug): customer gets <em>goodwill GB credit</em>, not cash. Faster to resolve, keeps the customer engaged, recovers most of our supplier cost via the 60-day &ldquo;unstarted bundle&rdquo; refund window. <strong>Customer fault</strong> (lost SIM, wrong country bought, accidental purchase): capped at <em>3 refunds per year per customer</em>. After that, no refund &mdash; preventing abuse.</span>
+          <span class="lang jp"><strong>当社責任</strong>（アクティベーション失敗、上流サプライヤー問題、当社ソフトウェアバグ）：顧客には<em>善意 GB クレジット</em>を提供（現金返金ではない）。解決が早く、顧客のエンゲージメントを維持し、60日の「未開始バンドル」返金ウィンドウでサプライヤーコストの大半を回収可能。<strong>顧客責任</strong>（SIM 紛失、誤った国の購入、誤発注）：<em>顧客あたり年3回まで</em>。それ以降は返金なし &mdash; 悪用防止のため。</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Policy 4: Payment failure -->
+    <div class="method" style="margin-bottom:18px;">
+      <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--peanut-soft);flex-shrink:0;font-weight:700;color:#B47A48;font-size:13px;">4</div>
+      <div>
+        <h4><span class="lang en">Payment failure &mdash; the &ldquo;1 GB grace buffer&rdquo; rule</span><span class="lang jp">支払い失敗 &mdash; 「1 GB 猶予バッファ」ルール</span></h4>
+        <p>
+          <span class="lang en">When the monthly auto-charge fails (card declined, fraud hold, expired card):</span>
+          <span class="lang jp">月次自動課金が失敗した時（カード拒否、不正検知保留、有効期限切れ）：</span>
+        </p>
+        <ul style="margin-top:10px; padding-left:20px;">
+          <li style="margin-bottom:8px;">
+            <span class="lang en"><strong>Carryover from previous (paid) month: fully accessible.</strong> The customer paid for it &mdash; we never claw it back.</span>
+            <span class="lang jp"><strong>前（課金済）月からの繰越分：完全にアクセス可能。</strong>顧客がすでに支払い済みのもの &mdash; クローバックしない。</span>
+          </li>
+          <li style="margin-bottom:8px;">
+            <span class="lang en"><strong>Current month&apos;s pool: only a 1 GB grace buffer unlocked.</strong> Enough for one layover, gives the customer a chance to fix payment during travel.</span>
+            <span class="lang jp"><strong>当月のプール：1 GB 猶予バッファのみアンロック。</strong>1回のレイオーバー分。旅行中に支払いを修正する機会を与える。</span>
+          </li>
+          <li style="margin-bottom:8px;">
+            <span class="lang en"><strong>Beyond 1 GB: locked until payment is settled.</strong> No more top-ups. Auto-resolves when card clears.</span>
+            <span class="lang jp"><strong>1 GB を超える分：支払い完了までロック。</strong>追加トップアップ不可。カードが通れば自動解決。</span>
+          </li>
+          <li>
+            <span class="lang en"><strong>Max financial exposure per affected user: ~$1.34</strong> (one 1 GB bundle at supplier cost). Cleaner than a multi-day grace period.</span>
+            <span class="lang jp"><strong>影響を受けるユーザー1人あたりの最大財務リスク：約 $1.34</strong>（サプライヤーコストで1 GB バンドル1つ）。複数日の猶予期間より明確。</span>
+          </li>
+        </ul>
+        <p style="margin-top:10px;">
+          <span class="lang en">After ~60 days of unresolved non-payment: deactivate the eSIM via the supplier&apos;s API and close the account.</span>
+          <span class="lang jp">未払いが約60日続いた場合：サプライヤー API 経由で eSIM を無効化し、アカウントを閉鎖。</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Why this matters -->
+    <div class="method">
+      <div style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1 L10 6 H14 L10.5 9 L12 14 L8 11 L4 14 L5.5 9 L2 6 H6 Z" stroke="#2D8C7E" stroke-width="1.3" fill="none" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <h4><span class="lang en">Why these four policies together work</span><span class="lang jp">この4ポリシーが揃って機能する理由</span></h4>
+        <p>
+          <span class="lang en">Policy 1 (just-in-time provisioning) means we have <strong>no inventory liability</strong>. Policy 2 (clean-break cancellation) means our revenue recognition is straightforward. Policy 3 (goodwill GB for our fault, capped refunds for customer fault) lets us be generous when we&apos;re wrong without enabling abuse. Policy 4 (1 GB grace buffer) handles real-world payment friction (travel fraud holds, expired cards) without giving away unlimited free service. Together they keep our cost-of-service tight while still feeling fair to crew.</span>
+          <span class="lang jp">ポリシー 1（ジャストインタイム発行）により、<strong>在庫負債なし</strong>。ポリシー 2（クリーンブレイク解約）により、収益認識がシンプル。ポリシー 3（当社責任は善意 GB、顧客責任は上限付き返金）により、間違いに対しては寛大でいながら悪用を防止。ポリシー 4（1 GB 猶予バッファ）により、現実の支払い摩擦（旅行中の不正検知保留、有効期限切れ）に対応しつつ無制限の無料サービス提供を防ぐ。これら全てが揃って、サービス原価を抑えながらもクルーにとって公平に感じられる構造を維持。</span>
         </p>
       </div>
     </div>
@@ -9644,6 +9733,384 @@ Mercury（米国法人銀行口座）
       </div>
     </div>
   </section>
+
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ─── TAB: SUPPLIER (wholesale supplier meeting questions) ─── -->
+<!-- ============================================================ -->
+<div class="tab-content" data-tab-content="supplier">
+<div class="container">
+
+<style>
+  .supplier-tab .hero { background: white; border: 1px solid #E5DDD0; border-left: 4px solid #D71921; border-radius: 12px; padding: 28px 32px; margin-bottom: 28px; }
+  .supplier-tab .hero h1 { margin: 0 0 8px; font-size: 28px; }
+  .supplier-tab .hero .lead { color: #6b6b6b; margin: 0; }
+  .supplier-tab .section-block { background: white; border: 1px solid #E5DDD0; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .supplier-tab .section-block h2 { font-size: 22px; margin: 0 0 4px; color: #D71921; display: flex; align-items: baseline; gap: 12px; }
+  .supplier-tab .section-block h2 .badge { background: #D71921; color: white; padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 700; }
+  .supplier-tab .section-block .sec-sub { font-style: italic; color: #6b6b6b; font-size: 14px; margin: 0 0 16px; }
+  .supplier-tab .q-block { border-top: 1px solid #E5DDD0; padding-top: 18px; margin-top: 18px; }
+  .supplier-tab .q-block:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .supplier-tab .q-num { display: inline-block; background: #FAF6F0; color: #D71921; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 13px; margin-right: 8px; font-family: ui-monospace, monospace; }
+  .supplier-tab .q-text { font-weight: 600; font-size: 16px; color: #1A1A1A; margin: 0 0 12px; line-height: 1.5; }
+  .supplier-tab .q-grid { display: grid; gap: 10px; margin-top: 12px; }
+  .supplier-tab .q-row { display: grid; grid-template-columns: 130px 1fr; gap: 14px; padding: 10px 14px; background: #FAF6F0; border-radius: 6px; font-size: 14px; line-height: 1.6; }
+  .supplier-tab .q-row .lbl { font-weight: 700; color: #6b6b6b; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .supplier-tab .q-row.good { background: #E8F5EC; }
+  .supplier-tab .q-row.good .lbl { color: #1a8a5a; }
+  .supplier-tab .q-row.bad { background: #FDEAEC; }
+  .supplier-tab .q-row.bad .lbl { color: #C41E3A; }
+  .supplier-tab .frame-card { background: #E8F5EC; border-left: 4px solid #1a8a5a; border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
+  .supplier-tab .frame-card h3 { margin: 0 0 8px; color: #15633f; }
+  .supplier-tab .frame-card .script { background: white; padding: 16px; border-radius: 6px; margin-top: 10px; font-style: italic; line-height: 1.7; }
+  .supplier-tab .toc-row { padding: 8px 0; border-bottom: 1px dashed #E5DDD0; display: grid; grid-template-columns: 80px 1fr 60px; gap: 12px; font-size: 14px; }
+  .supplier-tab .toc-row:last-child { border-bottom: none; }
+  .supplier-tab .toc-row .toc-section { font-weight: 700; color: #D71921; }
+  @media (max-width: 700px) {
+    .supplier-tab .q-row { grid-template-columns: 1fr; gap: 4px; }
+    .supplier-tab .toc-row { grid-template-columns: 60px 1fr; }
+    .supplier-tab .toc-row .toc-count { display: none; }
+  }
+</style>
+
+<div class="supplier-tab">
+
+  <header class="hero">
+    <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:1.5px; color:#D71921; background:#fdeaec; padding:4px 10px; border-radius:4px; margin-bottom:12px;">INTERNAL · MEETING PREP</span>
+    <h1 class="lang en">Wholesale supplier &mdash; question set.</h1>
+    <h1 class="lang jp">卸サプライヤー &mdash; 質問集。</h1>
+    <p class="lead lang en">Every question Balraj walks into the supplier meeting with. Plain-English explanation per question, plus what a good vs bad answer sounds like and what we do with each outcome.</p>
+    <p class="lead lang jp">Balraj がサプライヤーミーティングに持っていく全質問。質問ごとに平易な英語の説明、良い回答 vs 悪い回答の例、それぞれの結果でとるアクション。</p>
+  </header>
+
+  <!-- Table of contents -->
+  <div class="section-block">
+    <h2><span class="lang en">Sections</span><span class="lang jp">セクション</span></h2>
+    <div class="toc-row"><span class="toc-section">Frame</span><span><span class="lang en">Opening positioning script Balraj delivers verbatim at the top of the meeting</span><span class="lang jp">ミーティング冒頭で Balraj がそのまま読み上げるポジショニングスクリプト</span></span><span class="toc-count">script</span></div>
+    <div class="toc-row"><span class="toc-section">A</span><span><span class="lang en">Rates &mdash; sheet confirmation, anchor countries, tier ladder, prepay balance commercial structure</span><span class="lang jp">レート &mdash; シート確認、アンカー国、ティア構造、プリペイドバランス商業構造</span></span><span class="toc-count">9 Q</span></div>
+    <div class="toc-row"><span class="toc-section">B</span><span><span class="lang en">API confirmation &mdash; sandbox, same-SIM top-up endpoint, latency, install method, timeline</span><span class="lang jp">API 確認 &mdash; サンドボックス、同一 SIM トップアップエンドポイント、レイテンシ、インストール方法、タイムライン</span></span><span class="toc-count">5 Q</span></div>
+    <div class="toc-row"><span class="toc-section">C</span><span><span class="lang en">Build technicals &mdash; webhooks, usage tracking, profile branding, multi-bundle, deactivation, error diagnostics</span><span class="lang jp">構築技術 &mdash; ウェブフック、使用量追跡、プロファイルブランディング、マルチバンドル、無効化、エラー診断</span></span><span class="toc-count">6 Q</span></div>
+    <div class="toc-row"><span class="toc-section">D</span><span><span class="lang en">Operations &amp; support &mdash; refund policy, SLA, uptime, coverage alerts</span><span class="lang jp">運営とサポート &mdash; 返金ポリシー、SLA、稼働率、カバレッジアラート</span></span><span class="toc-count">4 Q</span></div>
+    <div class="toc-row"><span class="toc-section">E</span><span><span class="lang en">Fees + admin &mdash; total fee structure, payment mechanics, contract + tax documents</span><span class="lang jp">手数料・管理 &mdash; 手数料総額、支払メカニクス、契約・税務書類</span></span><span class="toc-count">3 Q</span></div>
+  </div>
+
+  <!-- OPENING FRAME -->
+  <div class="frame-card">
+    <h3><span class="lang en">Opening frame &mdash; what to lead with (60 seconds)</span><span class="lang jp">冒頭フレーミング &mdash; 最初に伝えること（60秒）</span></h3>
+    <p><span class="lang en">Not a question. A positioning statement Balraj delivers at the start of the meeting to anchor Samurai&apos;s perception of who we are.</span><span class="lang jp">質問ではない。ミーティング冒頭で Balraj が当社の位置付けを Samurai に植え付けるためのポジショニング発言。</span></p>
+    <div class="script">
+      &ldquo;Thanks for getting on the call. Quick context before we dig in: we&apos;re Spicy Kiwi LLC &mdash; Delaware C-corp, brand is Peanut eSIM. Our wedge is Emirates cabin crew. We have a small beta planned with a handful of crew, then a wider public launch shortly after. We&apos;ve modeled the business out in detail and we&apos;re self-funded, so we&apos;re not in a hurry to take bad terms.<br><br>
+      What we want from this meeting is straightforward: confirm the actual rates we&apos;ll be billed at per country, confirm the commercial model (we&apos;re assuming pay-per-order, no minimums), and walk through the technical specs we need to build against. If those line up, we move fast. If not, we figure out the gap together.&rdquo;
+    </div>
+  </div>
+
+  <!-- SECTION A: RATES -->
+  <div class="section-block">
+    <h2><span class="badge">A</span><span class="lang en">Rates</span><span class="lang jp">レート</span></h2>
+    <p class="sec-sub"><span class="lang en">9 questions covering sheet confirmation, anchor country rates, tier ladder, prepay commercial structure, and the primary 1-2 day SKU negotiation ask.</span><span class="lang jp">シート確認、アンカー国レート、ティア構造、プリペイド商業構造、そして主要な 1-2 日 SKU 交渉依頼を含む9問。</span></p>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A1</span>Confirm in writing: the per-GB rates on your sheet ARE the rates we&apos;ll be billed at. No overlay, no markup at our account tier.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Is the rate sheet number what we actually pay, or are there hidden costs (markup, overlay, surcharge) bumping it up?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Our entire COGS model is built on this sheet. A 20% hidden markup destroys margin across all 7 tiers simultaneously. Lock it down before integration.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes, sheet rates are what you pay. No overlay.&rdquo; (ideally followed by written confirmation)</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Mostly,&rdquo; &ldquo;there&apos;s a small handling fee,&rdquo; &ldquo;Standard sheet is the floor, we add a margin.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A2</span>Build us a 1-day or 2-day Fixed SKU at proportional pricing &mdash; roughly 1/7 to 2/7 of the current 1GB/7day rate.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Crew never layover 7 days. Don&apos;t make us pay for validity we don&apos;t use. Build a 1-2 day SKU at 14-28% of current price.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Single biggest cost lever in the business. Every top-up = 1 GB. 70-85% supplier cost cut if achieved.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes, can build at roughly $X. Ships in 2-4 weeks.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;1GB/7day is the smallest, rates fixed.&rdquo; (forces fallback to 1-day Unlimited Lite)</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A3</span>Fallback if A2 declined: what discount can you offer on the existing 1GB/7day rate to reflect we only consume during 14-28% of validity?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>If you won&apos;t build a new SKU, give us a discount on the existing 7-day rate to reflect short-validity usage.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Same money saving, different mechanism. Even 20% off the 7-day rate is meaningful across thousands of monthly top-ups.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;20-30% off the published 7-day rate, given your usage pattern.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Rates are fixed by tier, no individual customer discounts.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A4</span>Here&apos;s the list of Emirates&apos; 68 layover countries. Confirm the rate on your sheet is current for each, and flag any countries where you don&apos;t support service.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>We&apos;ve compiled Emirates&apos; full destination list. Verify your sheet covers them all and rates are still current.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Ensures we don&apos;t model against stale numbers or quietly miss coverage on a major route.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Confirmed. All 68 supported. No rate changes since the sheet was sent.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Most are supported, let me get back to you.&rdquo; or quiet gaps in coverage we discover later.</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A5</span>Tier ladder &mdash; when we hit $25K/mo spend (Silver tier per your sheet), is the upgrade automatic or at your discretion?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Your sheet says Silver kicks in at $25K/mo. When we reach that, do we automatically get Silver rates or do we have to ask?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>The sheet says &ldquo;at sole discretion of eSIM Go.&rdquo; We want a written commitment that the upgrade is automatic, not a favor.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Automatic at the quarterly review &mdash; if your trailing 3-month average crosses $25K, you&apos;re on Silver next quarter.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Reviewed case-by-case, no guarantees.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A6</span>Our proposed commercial structure: prepaid USD balance. We wire $2K-$3K upfront, you debit per top-up, we top up when low, unused balance carries forward and is refundable on account close.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>We fund a USD balance with you. Each top-up debits our balance. Unused funds never expire.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Best for them (cash upfront, no AR risk). Best for us (control top-up timing, no surprise invoices). Eliminates &ldquo;will Peanut pay?&rdquo; concern.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes, prepaid balance is fine. We&apos;ll set it up with a $X minimum.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;We only operate on Net 30 invoice.&rdquo; (workable but worse for our working capital)</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A6a</span>Confirm: prepay balance has no expiry, is refundable on account closure, minimum top-up amount is $500 or smaller.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Protect us from &ldquo;use-it-or-lose-it&rdquo; trap. Let us top up in small amounts that match real cash flow.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Prevents the balance from becoming a constraint instead of a tool.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;No expiry. Refundable. $250 minimum top-ups.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Balance expires after 90 days. $5K minimum top-up.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A6b</span>Leverage moment: since we&apos;re funding your cash flow upfront with prepay, what discount can you offer on the per-GB rate vs Net 30 invoice?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>We&apos;re giving you cash before we use the service. That has value. What discount does it earn us?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Standard wholesale leverage. Cash-up-front buyers earn 5-10% in most B2B markets.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;5-10% off per-GB rate vs Net 30, in exchange for prepay.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Same rate either way.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">A7</span>Currency + FX: are rates USD-quoted? Wire / settlement fees on our end?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Confirm currency. Surface any payment-rail fees we&apos;d eat.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>At 5K users, $25 wire fees + FX add up. Surface them now.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;USD-quoted, ACH preferred (free), wire $25.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Quoted in local currency, FX risk yours, every payment incurs fees.&rdquo;</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION B: API CONFIRMATION -->
+  <div class="section-block">
+    <h2><span class="badge">B</span><span class="lang en">API confirmation</span><span class="lang jp">API 確認</span></h2>
+    <p class="sec-sub"><span class="lang en">5 questions confirming the technical capabilities we need to build the product. Every B question blocks something concrete on our side.</span><span class="lang jp">プロダクト構築に必要な技術機能を確認する5問。各 B 質問は当社側の具体的な構築要素をブロックする。</span></p>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B1</span>Sandbox + full API documentation &mdash; granted today? We need to start integration this week.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Give us docs + a test environment today so our engineer can start building. Not after contract signature &mdash; now.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Beta date is set by their onboarding timeline. Every week waiting for sandbox = a week of integration we don&apos;t get back.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes &mdash; dev portal URL is X, sign up with your email today.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;After contract signature only.&rdquo; (forces delay)</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B2</span>Same-SIM data top-up endpoint &mdash; does your API expose adding 1 GB to an existing eSIM profile, no re-install?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>When a user already has our eSIM installed, can we add data to it via API without making them scan a new QR code?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>This is the entire mechanic of our business model. Every transaction is a 1 GB top-up. If only re-install works, UX collapses.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes, exposed via /esim/topup endpoint. Call with eSIM ID + bundle SKU.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Only available via re-provisioning (new QR code each time).&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B3</span>Top-up latency &mdash; from API call to GB usable on the device, under 30 seconds achievable?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>How fast does &ldquo;tap to add data&rdquo; actually feel? We need under 30 seconds for the UX to work.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Crew lands with 5 minutes to clear immigration. Anything over 2 minutes = feature is dead, user uses airport WiFi instead.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Typical 5-15 seconds, 99th percentile under 30 seconds.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;A few minutes typically.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B4</span>Apple Universal Link install &mdash; supported, or restricted to QR-code only?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>When crew installs the eSIM, can they tap a link and have iOS install it (Universal Link), or do they scan a QR code?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Universal Link = 1 tap, 5 sec. QR = open camera, scan, confirm, install = 30-60 sec friction with high drop-off.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes, supported. Use this URL format: esim://activate?token=X&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;QR code only. Universal Link not supported.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B5</span>End-to-end timeline &mdash; sandbox + API docs today, contract in parallel, what&apos;s the realistic days/weeks to production-ready?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>How long from kickoff to live production access? We&apos;ll set our beta and launch dates based on this answer.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>This is the launch-date question framed without committing a deadline they can leverage.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;30 days from contract: production keys in 5 business days + 3 weeks of integration support.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Depends on a few factors&rdquo; / &ldquo;we&apos;ll do our best.&rdquo;</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION C: BUILD TECHNICALS -->
+  <div class="section-block">
+    <h2><span class="badge">C</span><span class="lang en">Build technicals</span><span class="lang jp">構築技術</span></h2>
+    <p class="sec-sub"><span class="lang en">6 questions covering the technical capabilities our engineer needs to actually build the app. All sanitized of business-model leaks (no &ldquo;pool UX&rdquo;, no &ldquo;moat&rdquo;, no internal product names).</span><span class="lang jp">エンジニアが実際にアプリを構築するために必要な技術機能をカバーする6問。ビジネスモデルの漏えいを排除済み（プール UX、モート、社内製品名なし）。</span></p>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C1</span>Webhooks &mdash; do you push events (bundle activated, expired, failed install) to a URL we provide, or do we have to poll?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>When something happens on a user&apos;s eSIM, do you call our server in real time? Or do we have to keep asking your API?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Real-time updates required for our support dashboard. Polling = wasteful + laggy UI.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes &mdash; webhooks for these events: X, Y, Z. Give us a URL, we POST JSON.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Poll our API every minute.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C2</span>Real-time usage data via API &mdash; per user, per bundle GB consumed, near-real-time, for support and billing reconciliation.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Can our support team and ops dashboard see how much data a customer has consumed right now?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>For customer support (when they call) and billing reconciliation (against your invoices). Yesterday&apos;s data isn&apos;t enough.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes &mdash; query our usage API, ~30 second lag from real usage.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Usage shows up in next day&apos;s data export.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C3</span>eSIM profile branding &mdash; when the eSIM installs on a phone, what brand name shows in iOS Settings? Can we control that per SKU?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>When user sees the eSIM in their phone settings, does it say &ldquo;Peanut&rdquo; or your name?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Brand visibility = trust. User pays Peanut. If they see your brand in Settings, they think they were scammed.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;You control the profile name per SKU. Pass a string in the provisioning call.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Profile label is locked to our system.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C4</span>One eSIM, many bundles over time &mdash; sequential AND concurrent. Same profile, repeatedly, across countries.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Can a customer install once, then receive country-specific bundles trip after trip for the lifetime of the eSIM? And hold two active simultaneously for multi-leg trips?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Sequential = foundation for monthly subscribers (install once, fresh country every trip). Concurrent = back-to-back multi-country trips without re-install.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes to both. Profile stays the same, bundles attach freely.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;One bundle at a time, must expire before next.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C5</span>eSIM deactivation &mdash; when customer churns, how do we shut off the eSIM via API? And do we get credited for unused bundles?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>When a customer cancels or stops paying, how do we cut off their service? Do unused bundles refund?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Needed for our churn handling + the 1 GB grace buffer policy + supplier cost recovery.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;DELETE /esim/{id} endpoint. Unused bundles auto-credit to your account.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;No cancel mechanism &mdash; bundles expire naturally.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C6</span>Failed-eSIM diagnostics &mdash; specific error codes + root cause categories returned by the API.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>When an activation fails, does your API tell us exactly WHY (device incompatible, carrier issue, APN problem)? Or just &ldquo;failed&rdquo;?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Most failed installs are preventable IF we can classify them. Generic &ldquo;failed&rdquo; = endless support tickets.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Yes &mdash; error code + category + recommended action in the response.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Generic error, check the logs.&rdquo;</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION D: OPS & SUPPORT -->
+  <div class="section-block">
+    <h2><span class="badge">D</span><span class="lang en">Operations &amp; support</span><span class="lang jp">運営とサポート</span></h2>
+    <p class="sec-sub"><span class="lang en">4 questions covering refunds, support SLAs, uptime, and outage notifications.</span><span class="lang jp">返金、サポート SLA、稼働率、停止通知の4問。</span></p>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">D1</span>Refund / credit policy &mdash; auto-credit on failed activation, or manual claim each time?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>When your platform fails to install an eSIM, do you automatically refund us, or do we file a claim each time?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>This is OUR money. Auto-credit = clean accounting. Manual = ops overhead.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Auto-credit on failures, even customer-fault.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Failures are on you, no refunds.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">D2</span>Production support SLA + escalation contact &mdash; P1 response time, named contact, 24/7 coverage?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>When something breaks at 3am, who do we call? How fast do they respond?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Crew operate 24/7 globally. Ticket queues are useless when 50 crew are stuck on a tarmac.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Named contact + phone + Slack. P1 response 1 hour, 24/7.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Open a ticket in our portal.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">D3</span>Public status page + historical uptime (last 12 months)?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Do you publish a status page like status.stripe.com? What&apos;s your uptime track record?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Their uptime = our uptime. We need to anticipate and diagnose outages, not guess.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;status.X.com, 99.95% uptime, maintenance emails 72h ahead.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;We don&apos;t publish uptime data.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">D4</span>Coverage / network status alerts &mdash; how do you notify us when a carrier drops coverage in a country?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Sometimes a country&apos;s coverage suddenly stops (regulatory, outage). How do you tell us?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>We sell crew the promise that data works in Country X. If coverage dies and we don&apos;t know, we sell bundles that fail.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Webhook + email within 30 min of any change, with reason and ETA.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Check our Change Control sheet quarterly.&rdquo;</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION E: FEES + ADMIN -->
+  <div class="section-block">
+    <h2><span class="badge">E</span><span class="lang en">Fees + admin</span><span class="lang jp">手数料・管理</span></h2>
+    <p class="sec-sub"><span class="lang en">3 questions covering total fee structure, payment mechanics safety nets, and contract + tax document requirements.</span><span class="lang jp">手数料総額、支払メカニクスのセーフティネット、契約・税務書類要件をカバーする3問。</span></p>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">E1</span>Total fee structure &mdash; every fee that could appear on our invoice beyond per-GB rates. Zero surprises.</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Beyond the per-GB rate, list every fee that could show up: activation, platform, monthly minimums, refund processing, FX, late payment, account fees.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Hidden fees compound at scale. Surface them upfront, in writing.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Per-GB rate is the only line.&rdquo; OR a written list of all fees.</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;We&apos;ll let you know if anything comes up.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">E2</span>Payment mechanics + safety net &mdash; auto-top-up, AR credit cap, late-payment grace period?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>If prepay balance: auto-top-up at threshold? If Net 30: AR credit cap + grace period before cutoff?</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>A busy weekend can deplete our balance. A delayed payment shouldn&apos;t shut us off immediately.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Auto-top-up at $500 threshold, 24h grace below zero.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;Balance hits zero, service stops immediately.&rdquo;</span></div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">E3</span>Contract + tax documents &mdash; what do we sign, what do you need from Spicy Kiwi LLC, how long does it take?</p>
+      <div class="q-grid">
+        <div class="q-row"><span class="lbl">Plain English</span><span>Paperwork: what contracts to sign, what documents to send (W-9, EIN, articles), how long the process takes.</span></div>
+        <div class="q-row"><span class="lbl">Why for us</span><span>Paperwork delays blow up timelines. Know on day 1 whether it&apos;s a 1-page click-through or 30-page MSA.</span></div>
+        <div class="q-row good"><span class="lbl">Good answer</span><span>&ldquo;Send W-9 + EIN, sign 4-page service agreement, production access in 5 business days.&rdquo;</span></div>
+        <div class="q-row bad"><span class="lbl">Bad answer</span><span>&ldquo;30-page MSA requires NDA first. 4-6 weeks legal review.&rdquo;</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FAF6F0; border-left:4px solid #6b6b6b; padding:14px 18px; margin-top:28px; font-size:13px; color:#4a4a4a;">
+    <strong>Source:</strong> The standalone printable agenda lives at <a href="docs/downloads/supplier-meeting-agenda-2026-06-02.html" target="_blank" style="color:#D71921; font-weight:600;">supplier-meeting-agenda-2026-06-02.html</a> &mdash; same content, optimized for print + checklist use in the meeting.
+  </div>
+
+</div>
 
 </div>
 </div>
