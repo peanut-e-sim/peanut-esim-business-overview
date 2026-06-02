@@ -275,8 +275,8 @@
     <div class="item"><div class="label">Prepared</div><div class="value">2026-06-02</div></div>
     <div class="item"><div class="label">Meeting attendee</div><div class="value">Balraj (CFO)</div></div>
     <div class="item"><div class="label">Selling entity</div><div class="value">Spicy Kiwi LLC (Delaware) &middot; DBA Peanut eSIM</div></div>
-    <div class="item"><div class="label">Beta launch (5 crew)</div><div class="value">15 Aug 2026</div></div>
-    <div class="item"><div class="label">Public launch</div><div class="value">1 Sept 2026</div></div>
+    <div class="item"><div class="label">Beta launch (5 crew)</div><div class="value">TBD (see Open Discussion 00A)</div></div>
+    <div class="item"><div class="label">Public launch</div><div class="value">TBD (see Open Discussion 00A)</div></div>
     <div class="item"><div class="label">Supplier role</div><div class="value">Tier-3 sub-reseller of eSIM Go</div></div>
     <div class="item"><div class="label">Status</div><div class="value">API keys agreed &middot; commercial pending</div></div>
     <div class="item"><div class="label">Goal of this meeting</div><div class="value">Lock pricing + commercial model + technical specs</div></div>
@@ -294,7 +294,7 @@
   <h3>Opening frame &mdash; what to lead with (60 seconds)</h3>
   <p>This is not a question. It&apos;s a positioning statement Balraj delivers at the start of the meeting. The goal is to anchor Samurai&apos;s perception of who we are, so the pricing conversation that follows happens on better ground.</p>
   <div class="script">
-    &ldquo;Thanks for getting on the call. Quick context before we dig in: we&apos;re Spicy Kiwi LLC &mdash; Delaware C-corp, brand is Peanut eSIM. Our wedge is Emirates cabin crew &mdash; we launch beta with 5 crew on 15 August, public on 1 September. We&apos;ve modeled this out 24 months in detail and we&apos;re self-funded, so we&apos;re not in a hurry to take bad terms.<br><br>
+    &ldquo;Thanks for getting on the call. Quick context before we dig in: we&apos;re Spicy Kiwi LLC &mdash; Delaware C-corp, brand is Peanut eSIM. Our wedge is Emirates cabin crew. We have a small beta planned with a handful of crew, then a wider public launch shortly after. We&apos;ve modeled the business out in detail and we&apos;re self-funded, so we&apos;re not in a hurry to take bad terms.<br><br>
     What we want from this meeting is straightforward: confirm the actual rates we&apos;ll be billed at per country, confirm the commercial model (we&apos;re assuming pay-per-order, no minimums), and walk through the technical specs we need to build against. If those line up, we move fast. If not, we figure out the gap together.&rdquo;
   </div>
   <p style="margin-top:14px; font-size:13px;"><strong>Why this framing:</strong> establishes we&apos;re a real entity, not a hobbyist; signals we&apos;re organized (24-month model); signals we have options (self-funded); puts pay-per-order on the table as our assumption rather than asking permission. Sets the meeting on equal footing.</p>
@@ -352,18 +352,18 @@
   <table class="qtbl">
     <thead><tr><th class="num-col">#</th><th>Question</th><th>Why we&apos;re asking</th></tr></thead>
     <tbody>
-      <tr><td class="num-col">4.1</td><td><strong>Same-SIM Refuel API.</strong> Does your reseller API expose eSIM Go&apos;s same-SIM data top-up endpoint &mdash; user buys 1 GB and it&apos;s added to the existing eSIM profile, no re-install? Yes / no / roadmap.</td><td class="why">This is THE moat question. Refuel is $4.99 retail, $3.65 net margin per event. Crew SIM doesn&apos;t have it. Without this endpoint, our biggest differentiator becomes a re-install flow that nobody uses.</td></tr>
+      <tr><td class="num-col">4.1</td><td><strong>Same-SIM data top-up endpoint.</strong> Does your reseller API expose a same-SIM top-up &mdash; add 1 GB to an existing eSIM profile without re-installation? Yes / no / roadmap.</td><td class="why">A re-install flow per top-up creates onboarding friction. We want a clean &ldquo;tap to add data&rdquo; UX, which only works if the existing profile can be topped up in-place.</td></tr>
       <tr><td class="num-col">4.2</td><td><strong>Apple Universal Link install.</strong> Does your platform support eSIM installation via Apple Universal Link (no QR scan required), or only the traditional QR code flow?</td><td class="why">Our roadmap commits to Universal Link for the install UX (no Carrier Entitlement needed). If they&apos;re QR-only, we need to plan for a worse install conversion rate.</td></tr>
       <tr><td class="num-col">4.3</td><td><strong>Billing model.</strong> Are we billed on <strong>GB consumed</strong> (real-time tracking of what the user actually downloads) or <strong>GB allocated</strong> (the full pool we sold to the customer)?</td><td class="why">Single answer determines whether Tab 20 carryover liability is $0 (consumed) or material (~$132K/yr at 5K users with allocated).</td></tr>
       <tr><td class="num-col">4.4</td><td><strong>Carryover.</strong> When a user uses only 4 GB of a 10 GB pool, what happens to the unused 6 GB at end of cycle &mdash; do we get credited, does it carry forward, does it expire? And if it carries, at what rate are we billed when used next month?</td><td class="why">Depends on 4.3 above. Determines how we account for it in Tab 20 deferred-revenue.</td></tr>
-      <tr><td class="num-col">4.5</td><td><strong>Multiple concurrent pools per eSIM.</strong> Can a single eSIM profile hold a subscription pool + refuel top-up pool + carryover pool with independent expiry rules per pool?</td><td class="why">Our Tab 20 dynamic allocation model assumes yes. If no, we redesign the UX (and lose the carryover-as-feature narrative).</td></tr>
+      <tr><td class="num-col">4.5</td><td><strong>Multiple concurrent data plans per eSIM profile.</strong> Can a single eSIM profile hold more than one active data plan at the same time (with independent expiry rules)? Or must one fully expire before the next can be attached?</td><td class="why">Affects how we handle customers who travel back-to-back to different countries without re-installing the eSIM each leg.</td></tr>
       <tr><td class="num-col">4.6</td><td><strong>Provisioning latency.</strong> What&apos;s the typical end-to-end time from API call to eSIM profile ready-to-install on a device? Typical case + 99th percentile?</td><td class="why">Drives the &ldquo;signup &rarr; activated&rdquo; UX promise. Anything &gt; 60 seconds breaks our onboarding flow.</td></tr>
-      <tr><td class="num-col">4.7</td><td><strong>Top-up latency.</strong> For a same-SIM refuel: from purchase confirmation to GB usable on the active device? We need &lt; 30 seconds for the UX promise.</td><td class="why">Refuel is sold as an instant in-airport top-up. 2 minutes kills the use case.</td></tr>
+      <tr><td class="num-col">4.7</td><td><strong>Top-up latency.</strong> For a same-SIM top-up: from purchase confirmation to GB usable on the active device? We need &lt; 30 seconds for the UX promise.</td><td class="why">Customers in unfamiliar cities expect data to work immediately after purchase. 2+ minutes feels broken.</td></tr>
       <tr><td class="num-col">4.8</td><td><strong>Sandbox &amp; documentation.</strong> Can we have sandbox access + full API docs (provisioning, usage-query, top-up, refund, cancel endpoints) THIS week?</td><td class="why">Engineering can&apos;t wait for a contract signature. We need to start building this week.</td></tr>
       <tr><td class="num-col">4.9</td><td><strong>Usage tracking + billing reconciliation.</strong> Can we pull per-user consumption data via API daily for our own COGS dashboard, and how do we reconcile that against your monthly invoice?</td><td class="why">Without real-time usage data, COGS in our P&amp;L is always lagging. Need to plan the dashboard against your data shape.</td></tr>
       <tr><td class="num-col">4.10</td><td><strong>Uptime SLA + incident escalation.</strong> What&apos;s your historical platform uptime, what credit do we get on a breach, and what&apos;s the escalation path for a production incident at 03:00 GMT (Emirates crew run 24/7 globally)?</td><td class="why">Emirates crew are airborne or in unfamiliar cities when things break. We can&apos;t tell them &ldquo;file a ticket.&rdquo; Need a real escalation contact and credit policy.</td></tr>
       <tr><td class="num-col">4.11</td><td><strong>White-labeling.</strong> When our crew installs the eSIM, what brand shows in the device&apos;s eSIM profile name &mdash; ours, yours, or eSIM Go&apos;s? Can we control that label per SKU?</td><td class="why">Brand visibility matters for trust. Crew should see &ldquo;Peanut&rdquo; in their iPhone Settings, not &ldquo;Samurai&rdquo; or &ldquo;eSIM Go.&rdquo;</td></tr>
-      <tr><td class="num-col">4.12</td><td><strong>Failed-eSIM diagnostics.</strong> When an activation fails, what diagnostic info does your API return &mdash; specific error codes, root-cause category (device incompatible, carrier issue, APN misconfig)? We need this to power our AI Support agent.</td><td class="why">Tab 22 says 70% of failures are preventable with UX. We can&apos;t prevent what we can&apos;t classify.</td></tr>
+      <tr><td class="num-col">4.12</td><td><strong>Failed-eSIM diagnostics.</strong> When an activation fails, what diagnostic info does your API return &mdash; specific error codes, root-cause category (device incompatible, carrier issue, APN misconfig)? We need this to power our support team.</td><td class="why">Most install failures are preventable if we can show the user a specific cause (e.g. &ldquo;your device doesn&apos;t support eSIM&rdquo; vs &ldquo;something went wrong&rdquo;). We can&apos;t prevent what we can&apos;t classify.</td></tr>
     </tbody>
   </table>
 </section>
@@ -403,7 +403,7 @@
   <div class="check-row">
     <input type="checkbox" id="c6">
     <label for="c6" class="item-label">Same-SIM Refuel API endpoint &mdash; yes / no / roadmap with date</label>
-    <span class="status">moat decision</span>
+    <span class="status">install UX</span>
   </div>
   <div class="check-row">
     <input type="checkbox" id="c7">
