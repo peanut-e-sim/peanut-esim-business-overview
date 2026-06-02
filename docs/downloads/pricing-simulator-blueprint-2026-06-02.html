@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 4 Pricing Simulator: Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+
+/* PARKED callout — prominent yellow */
+.parked-callout {
+  background: #FFF9E6;
+  border: 2px solid #C9A03B;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 24px 0 32px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.parked-callout .icon-wrap {
+  flex-shrink: 0; width: 44px; height: 44px;
+  background: #C9A03B; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.parked-callout .body { flex: 1; }
+.parked-callout .label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #7a5c1a; margin-bottom: 6px; }
+.parked-callout h3 { margin: 0 0 8px; font-size: 18px; color: #5a4a14; }
+.parked-callout p { margin: 0; font-size: 14px; color: #5a4a14; line-height: 1.6; }
+
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+tr.excellent td { background: #e8f4e8; }
+tr.caution td { background: #faf6ec; }
+tr.risk td { background: #fff0f0; }
+tr.highlight td { background: #fff8e6; font-weight: 600; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.parked { background: #F5F5F5; color: #666; }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.flagged { background: #FBE0E0; color: var(--red); }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.fix-box { background: #e0f2e7; border: 1px solid #a8d8b5; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.fix-box strong { color: var(--green); }
+.rejected-box { background: #FFF0F0; border: 1px solid #f5c0c0; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.rejected-box strong { color: var(--red); }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+.callout { background: white; border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin: 20px 0; display: flex; gap: 16px; align-items: flex-start; }
+.callout svg { flex-shrink: 0; margin-top: 2px; }
+.step-list { counter-reset: steps; list-style: none; padding: 0; margin: 16px 0; }
+.step-list li { counter-increment: steps; display: flex; gap: 14px; align-items: flex-start; padding: 12px 16px; border-bottom: 1px solid var(--line); background: white; }
+.step-list li::before { content: counter(steps); display: flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.gold-text { color: var(--amber); font-weight: 600; }
+code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+.chart-wrap { background: white; padding: 24px; border: 1px solid var(--line); border-radius: 6px; margin: 20px 0; }
+.chart-wrap canvas { max-height: 280px; }
+.big-insight {
+  background: var(--ink); color: white;
+  border-radius: 12px; padding: 28px 32px; margin: 28px 0;
+}
+.big-insight .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.big-insight .headline { font-size: clamp(20px, 3vw, 28px); font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 12px; }
+.big-insight p { font-size: 14px; opacity: .8; margin: 0; }
+@media (max-width: 600px) { .container { padding: 24px 16px 60px; } h1 { font-size: 28px; } }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 4 — Pricing Simulator Blueprint &nbsp;·&nbsp; Peanut eSIM 2026-06-02</span>
+  <a href="index.html" style="color:white;text-decoration:none;font-size:13px;opacity:.8;">← Back to hub</a>
+</div>
+
+<div class="container">
+
+<h1>Tab 4 — Pricing Simulator</h1>
+<div class="meta">Blueprint · Peanut eSIM P&amp;L Model · 2026-06-02</div>
+
+<div class="lede">This blueprint documents what Tab 4 is, what it tells us, why it is parked, and exactly what conditions must be true before it becomes a live decision tool. It is a companion to the visualizer, intended for Balraj's reference during any supplier negotiation.</div>
+
+<!-- PARKED CALLOUT -->
+<div class="parked-callout">
+  <div class="icon-wrap">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M12 12v5M12 7v1" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="body">
+    <div class="label">Status: Parked — Year-2 Reference Material</div>
+    <h3>This tool is built for someone who has already negotiated. We have not.</h3>
+    <p>As of 2026-06-02, all wholesale cost scenarios in this tab are theoretical. The $1.34/GB current rate is real and verified. The $0.30/GB and $0.20/GB scenarios are estimates of what volume discounts could look like — they are NOT quoted rates. Do not use this tab to make retail pricing decisions until a supplier negotiation has produced an actual lower rate.</p>
+  </div>
+</div>
+
+<div class="toc">
+  <strong>Contents</strong>
+  <ul>
+    <li><a href="#what">1. What Tab 4 Does</a></li>
+    <li><a href="#scenarios">2. The 3 Wholesale Scenarios</a></li>
+    <li><a href="#matrix">3. Pricing Matrix: Breakeven to 70% Margin</a></li>
+    <li><a href="#worked">4. Worked Example (Aiko on Premium)</a></li>
+    <li><a href="#negotiation">5. What Negotiation Would Unlock</a></li>
+    <li><a href="#insight">6. The Key Insight</a></li>
+    <li><a href="#when">7. When This Tab Becomes Active</a></li>
+    <li><a href="#open">8. Open Items</a></li>
+  </ul>
+</div>
+
+<!-- WHAT IT DOES -->
+<h2 id="what">1. What Tab 4 Does</h2>
+
+<p>Tab 4 answers a single question: <em>given any wholesale cost per GB, what retail price produces a target margin?</em> It works in three directions:</p>
+
+<ol>
+  <li><strong>Verify current margins</strong> — input $1.34/GB blended, see that $17.99 Premium produces 70% margin. This is the verification use case, and it is relevant now.</li>
+  <li><strong>Set prices for a new wholesale deal</strong> — input negotiated rate, see what margin each existing price produces. Decides whether to drop prices (pass on savings) or hold prices (pocket margin improvement). Current recommendation: pocket.</li>
+  <li><strong>Model "what if we charged differently"</strong> — explore hypothetical retail prices. This is the most dangerous use case — it requires both a new wholesale rate AND new retail price validation before acting.</li>
+</ol>
+
+<p>The tab is <em>not</em> a market-positioning tool. It does not look at competitor prices. It does not model demand elasticity. It is pure cost-based margin math.</p>
+
+<!-- THE 3 SCENARIOS -->
+<h2 id="scenarios">2. The 3 Wholesale Scenarios</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Rate</th>
+      <th>Status</th>
+      <th>Basis</th>
+      <th>Trigger</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="caution">
+      <td><strong>A — Current</strong></td>
+      <td>$1.34/GB blended</td>
+      <td><span class="pill locked">LIVE</span></td>
+      <td>Verified from source sheet. 75% Tier-A / 20% Tier-B / 5% Tier-C geo mix assumption.</td>
+      <td>No trigger needed — this is today's reality.</td>
+    </tr>
+    <tr>
+      <td><strong>B — Target</strong></td>
+      <td>$0.30/GB</td>
+      <td><span class="pill parked">PARKED</span></td>
+      <td>Directional estimate based on industry volume discounts at 5K+ activations/month.</td>
+      <td>Only becomes real after a supplier negotiation meeting with credible alternatives available.</td>
+    </tr>
+    <tr>
+      <td><strong>C — Ceiling</strong></td>
+      <td>$0.20/GB</td>
+      <td><span class="pill parked">PARKED</span></td>
+      <td>Theoretical ceiling for a direct infrastructure relationship at scale.</td>
+      <td>Only relevant at 100K+ users, likely Year 3+. Do not plan around this.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="discussion-block">
+  <h4>Why $0.30 and $0.20 are estimates, not facts</h4>
+  <p>These figures were derived from general eSIM wholesale pricing research, not from any supplier quote. Volume discount curves vary dramatically across suppliers. The actual negotiated rate at 5K users could be anywhere from $0.50 to $0.25/GB depending on commitment volume, exclusivity, and carrier mix. The only thing Tab 4 guarantees is that any improvement from $1.34 will produce dramatic margin gains — the exact number is unknown until we have the conversation.</p>
+</div>
+
+<!-- PRICING MATRIX -->
+<h2 id="matrix">3. Pricing Matrix: Breakeven to 70% Margin</h2>
+
+<p>For each tier, there are 4 margin reference points:</p>
+
+<ul>
+  <li><strong>Break-even price</strong> = COGS only (covers wholesale cost, nothing else)</li>
+  <li><strong>30% margin</strong> = COGS / 0.7 (viable but thin — covers some OPEX)</li>
+  <li><strong>50% margin</strong> = COGS / 0.5 (healthy — sector-standard SaaS range)</li>
+  <li><strong>70% margin</strong> = COGS / 0.3 (where we are today on most tiers)</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tier</th>
+      <th>COGS @ $1.34</th>
+      <th>Break-even</th>
+      <th>30% margin</th>
+      <th>50% margin</th>
+      <th>70% margin</th>
+      <th>Current retail</th>
+      <th>Current margin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Economy (1 GB)</td>
+      <td>$1.34</td>
+      <td>$1.34</td>
+      <td>$1.91</td>
+      <td>$2.68</td>
+      <td>$4.47</td>
+      <td>$4.99</td>
+      <td class="green-text">73%</td>
+    </tr>
+    <tr>
+      <td>Roster Bundle (~1.8 GB)</td>
+      <td>$2.41</td>
+      <td>$2.41</td>
+      <td>$3.44</td>
+      <td>$4.82</td>
+      <td>$8.03</td>
+      <td>$3.99/flight</td>
+      <td class="gold-text">40%</td>
+    </tr>
+    <tr class="highlight">
+      <td>Premium Economy (4 GB)</td>
+      <td>$5.36</td>
+      <td>$5.36</td>
+      <td>$7.66</td>
+      <td>$10.72</td>
+      <td>$17.87</td>
+      <td>$17.99</td>
+      <td class="green-text">70%</td>
+    </tr>
+    <tr>
+      <td>Business (8 GB)</td>
+      <td>$10.72</td>
+      <td>$10.72</td>
+      <td>$15.31</td>
+      <td>$21.44</td>
+      <td>$35.73</td>
+      <td>$29.99</td>
+      <td class="green-text">64%</td>
+    </tr>
+    <tr>
+      <td>First (15 GB)</td>
+      <td>$20.10</td>
+      <td>$20.10</td>
+      <td>$28.71</td>
+      <td>$40.20</td>
+      <td>$67.00</td>
+      <td>$49.99</td>
+      <td class="gold-text">60%</td>
+    </tr>
+    <tr class="risk">
+      <td>First Suite (25 GB)</td>
+      <td>$33.50</td>
+      <td>$33.50</td>
+      <td>$47.86</td>
+      <td>$67.00</td>
+      <td>$111.67</td>
+      <td>$69.99</td>
+      <td class="red-text">52%</td>
+    </tr>
+    <tr>
+      <td>Cockpit (6 GB/mo)</td>
+      <td>$9.65/mo</td>
+      <td>$115.80/yr</td>
+      <td>$165.43/yr</td>
+      <td>$231.60/yr</td>
+      <td>$386.00/yr</td>
+      <td>$299/yr</td>
+      <td class="green-text">61%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="discussion-block">
+  <h4>First Suite is the most sensitive tier</h4>
+  <p>At $1.34/GB and 25 GB pool, First Suite COGS is $33.50 — nearly half of the $69.99 retail price. This is why First Suite shows only 52% margin at 60% consumption. For a 70% margin target, First Suite would need to retail at $111.67 — far above any competitor equivalent. The realistic path: cut the pool to 18 GB (COGS $24.12, 65% margin at current retail) or raise price to $79.99 (71% margin at 25 GB). This is a Tab 1 / Tab 3 fix, not a Tab 4 fix.</p>
+</div>
+
+<!-- WORKED EXAMPLE -->
+<h2 id="worked">4. Worked Example: Aiko on Premium Economy</h2>
+
+<p>Aiko is a Premium Economy subscriber. She pays $17.99/month for 4 GB of pooled data. This is the most common subscription tier and the clearest illustration of what procurement improvement looks like.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scenario</th>
+      <th>Wholesale Rate</th>
+      <th>COGS (4 GB)</th>
+      <th>Retail</th>
+      <th>Gross Margin</th>
+      <th>Net per User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="caution">
+      <td><strong>Today</strong></td>
+      <td>$1.34/GB</td>
+      <td>$5.36</td>
+      <td>$17.99</td>
+      <td>70%</td>
+      <td>$12.63</td>
+    </tr>
+    <tr class="excellent">
+      <td><strong>After negotiation ($0.30)</strong></td>
+      <td>$0.30/GB</td>
+      <td>$1.20</td>
+      <td>$17.99</td>
+      <td>93%</td>
+      <td>$16.79</td>
+    </tr>
+    <tr>
+      <td><strong>Ceiling ($0.20)</strong></td>
+      <td>$0.20/GB</td>
+      <td>$0.80</td>
+      <td>$17.99</td>
+      <td>96%</td>
+      <td>$17.19</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The gain from negotiation: <strong>+$4.16/user/month</strong> (from $12.63 to $16.79). At 5,000 Premium subscribers, that is $20,800/month of pure margin improvement with zero retail price change, zero new users, zero marketing spend.</p>
+
+<!-- NEGOTIATION SAVINGS -->
+<h2 id="negotiation">5. What Negotiation Would Unlock</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tier</th>
+      <th>Extra Margin/User/Mo</th>
+      <th>At 1K users</th>
+      <th>At 5K users</th>
+      <th>At 100K users</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Premium Economy</td>
+      <td>+$4.16</td>
+      <td>+$4,160</td>
+      <td>+$20,800</td>
+      <td>+$416,000</td>
+    </tr>
+    <tr>
+      <td>Business</td>
+      <td>+$8.32</td>
+      <td>+$8,320</td>
+      <td>+$41,600</td>
+      <td>+$832,000</td>
+    </tr>
+    <tr>
+      <td>First</td>
+      <td>+$15.60</td>
+      <td>+$15,600</td>
+      <td>+$78,000</td>
+      <td>+$1,560,000</td>
+    </tr>
+    <tr>
+      <td>First Suite</td>
+      <td>+$26.00</td>
+      <td>+$26,000</td>
+      <td>+$130,000</td>
+      <td>+$2,600,000</td>
+    </tr>
+    <tr class="highlight">
+      <td><strong>Blended (all tiers, realistic mix)</strong></td>
+      <td>~+$5.56</td>
+      <td>~+$5,560</td>
+      <td>~+$27,800</td>
+      <td>~+$556,000</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The blended estimate uses the Tab 14 verified tier mix: 50% Economy (small pool, less impacted), 18% Roster Bundle, 13% Premium, 8% Business, 3% First, 2% Suite, 3% Cockpit. The per-user blended saving of ~$5.56/month is conservative because it weights Economy heavily.</p>
+
+<!-- KEY INSIGHT -->
+<h2 id="insight">6. The Key Insight</h2>
+
+<div class="big-insight">
+  <div class="label">Single most important takeaway</div>
+  <div class="headline">Pricing is not the lever. Supplier negotiation is.</div>
+  <p>Our current 70% gross margins are already strong. The next 23 percentage points of margin improvement do not come from a UI pricing change, a promotion, or a product decision. They come from a single supplier conversation that requires ~5,000 users and a credible alternative in hand. This is why Tab 15 (Procurement Options) is more operationally urgent than Tab 4.</p>
+</div>
+
+<h3>What this means for retail pricing today</h3>
+
+<p>Do not touch retail prices to acquire users. The math does not support it:</p>
+
+<div class="rejected-box">
+  <strong>Rejected: drop Premium to $14.99 "to grow faster"</strong>
+  <p>This costs $3.00/user/month in lost margin immediately. At 500 users, that is $1,500/month permanently lost. User growth from a price drop is uncertain; margin loss is guaranteed. And re-raising prices after a promotional period creates churn. The model does not recover.</p>
+</div>
+
+<div class="fix-box">
+  <strong>Correct approach: hold retail, grow word-of-mouth, negotiate later</strong>
+  <p>Keep $17.99 Premium, $29.99 Business. Every user acquired at current prices has the full 70% margin. Once volume reaches ~5K and we negotiate, the same users are now producing 93% margin. The improvement is automatic, retroactive, and permanent.</p>
+</div>
+
+<!-- WHEN IT BECOMES ACTIVE -->
+<h2 id="when">7. When This Tab Becomes Active</h2>
+
+<p>Four specific conditions must all be true before Tab 4 transitions from parked to active decision tool:</p>
+
+<ol class="step-list">
+  <li>
+    <div>
+      <strong>~5,000 active users</strong><br>
+      <span style="font-size:13px;color:#666;">This is the minimum volume needed to have negotiating credibility. Below 5K, suppliers have no incentive to offer meaningful discounts. The number is approximate — some suppliers move at 2K, some require 10K. Assess at 3K.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Alternative supplier identified</strong><br>
+      <span style="font-size:13px;color:#666;">A credible alternative in hand gives us BATNA (Best Alternative To Negotiated Agreement). Without a competing quote, we have no leverage. This is Step 1 of Tab 15's Phase 2 roadmap.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Supplier meeting scheduled</strong><br>
+      <span style="font-size:13px;color:#666;">The meeting itself is the trigger. Bring Tab 4 as a scenario simulator in the meeting. Show that at their proposed rate, our new margin target, and our user volume, here is what the math produces.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Actual quoted rate received</strong><br>
+      <span style="font-size:13px;color:#666;">Only then does the tab go live. Replace Scenario B's $0.30/GB with the real quoted number. Run the matrix. Decide whether to hold retail prices (pocket margin) or pass some savings to users (grow faster). Current recommendation: pocket.</span>
+    </div>
+  </li>
+</ol>
+
+<!-- OPEN ITEMS -->
+<h2 id="open">8. Open Items</h2>
+
+<table>
+  <thead>
+    <tr><th>Item</th><th>Owner</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Validate $0.30/GB target rate with comparable eSIM reseller benchmarks</td>
+      <td>Balraj</td>
+      <td><span class="pill parked">PARKED</span></td>
+    </tr>
+    <tr>
+      <td>Fix First Suite pricing before launch (separate from this tab)</td>
+      <td>Balraj + Akito</td>
+      <td><span class="pill open">OPEN</span></td>
+    </tr>
+    <tr>
+      <td>Identify 2-3 alternative eSIM Access suppliers for BATNA (Tab 15 Phase 2)</td>
+      <td>Balraj</td>
+      <td><span class="pill parked">PARKED — 5K trigger</span></td>
+    </tr>
+    <tr>
+      <td>Confirm actual geo mix from Akito's crew interviews (affects $1.34 accuracy)</td>
+      <td>Akito</td>
+      <td><span class="pill open">OPEN</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer-note">
+  Peanut eSIM · Tab 4 Pricing Simulator Blueprint · 2026-06-02<br>
+  Numbers use $1.34/GB verified from source model. $0.30 and $0.20 scenarios are directional estimates, not supplier quotes. Blueprint is companion to the Tab 4 Visualizer.
+</div>
+
+</div><!-- /container -->
+</body>
+</html>

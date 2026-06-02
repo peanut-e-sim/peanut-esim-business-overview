@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — Tab 4 Pricing Simulator Visualizer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --red-dark: #A01218;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #E8E2D6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --green-bg: #f0faf4;
+    --green-border: #a8d8b5;
+    --amber: #B07A1F;
+    --amber-bg: #FFFBF0;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+    --shadow-sm: 0 1px 3px rgba(26,26,26,.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; font-size: 16px; }
+
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--red); color: #fff;
+    padding: 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  header.bar .title { font-weight: 700; letter-spacing: .2px; font-size: 15px; }
+  header.bar .title small { display: block; font-weight: 400; opacity: .85; font-size: 12px; margin-top: 2px; }
+  header.bar a.back-btn {
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.5);
+    color: #fff; font: inherit; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    font-size: 13px; text-decoration: none; display: inline-block;
+  }
+  header.bar a.back-btn:hover { background: rgba(255,255,255,.28); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 52px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero { font-size: clamp(26px, 3.8vw, 42px); line-height: 1.12; margin: 0 0 14px; letter-spacing: -.5px; }
+  h1.hero .accent { color: var(--red); }
+  p.lede { font-size: clamp(15px, 1.7vw, 18px); color: #2a2a2a; max-width: 760px; margin: 0 0 18px; }
+
+  .badge {
+    display: inline-block; padding: 4px 12px;
+    background: #fff; border: 1px solid var(--gold); border-radius: 999px;
+    font-size: 12px; font-weight: 600; color: #7a5c1a; letter-spacing: .3px;
+  }
+  .badge.parked { background: #f5f5f5; border-color: #ccc; color: #666; }
+
+  /* PARKED callout — prominent yellow */
+  .parked-callout {
+    background: #FFF9E6;
+    border: 2px solid #C9A03B;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 24px 0 32px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .parked-callout .icon-wrap {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    background: #C9A03B;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .parked-callout .body { flex: 1; }
+  .parked-callout .label {
+    font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    color: #7a5c1a; margin-bottom: 6px;
+  }
+  .parked-callout h3 { margin: 0 0 8px; font-size: 18px; color: #5a4a14; }
+  .parked-callout p { margin: 0; font-size: 14px; color: #5a4a14; line-height: 1.6; }
+
+  h2.section-title {
+    font-size: clamp(20px, 2.4vw, 26px);
+    margin: 0 0 6px; letter-spacing: -.2px;
+  }
+  h2.section-title .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--ink); color: #fff;
+    font-size: 14px; margin-right: 10px; vertical-align: middle;
+  }
+  p.section-sub { color: var(--muted); max-width: 720px; margin: 0 0 22px; font-size: 15px; }
+
+  /* Scenario cards */
+  .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  @media (max-width: 760px) { .scenario-grid { grid-template-columns: 1fr; } }
+  .scenario-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px;
+    box-shadow: var(--shadow-sm);
+  }
+  .scenario-card.active { border: 2px solid var(--red); }
+  .scenario-card .s-tag { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; color: var(--muted); }
+  .scenario-card.active .s-tag { color: var(--red); }
+  .scenario-card h3 { margin: 0 0 6px; font-size: 17px; }
+  .scenario-card .big-num { font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 1.1; margin: 8px 0 4px; }
+  .scenario-card .big-num.red { color: var(--red); }
+  .scenario-card .big-num.green { color: var(--green); }
+  .scenario-card p { font-size: 13px; color: var(--muted); margin: 0; }
+  .scenario-card .condition { font-size: 11px; background: var(--amber-bg); border: 1px solid #E8D48A; border-radius: 6px; padding: 6px 10px; margin-top: 12px; color: #5a4a14; font-weight: 600; }
+
+  /* Chart cards */
+  .chart-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; box-shadow: var(--shadow); margin: 20px 0; }
+  .chart-card h3 { margin: 0 0 4px; font-size: 16px; }
+  .chart-card p.sub { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+  .chart-wrap { position: relative; height: 340px; }
+
+  /* Pricing matrix table */
+  table.matrix { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--card); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-sm); margin: 20px 0; }
+  table.matrix th { background: var(--ink); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; white-space: nowrap; }
+  table.matrix td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.matrix tr:nth-child(even) td { background: #FCFAF5; }
+  table.matrix tr.highlight td { background: #FFF9E6; font-weight: 700; }
+  table.matrix .current-tag { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 10px; font-weight: 700; background: #FBE0E0; color: var(--red); }
+  table.matrix .green-tag { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 10px; font-weight: 700; background: #D8F0E0; color: var(--green); }
+
+  /* Worked example */
+  .worked-example {
+    background: var(--ink); color: #fff;
+    border-radius: 14px; padding: 28px;
+    margin: 20px 0;
+  }
+  .worked-example .small-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .worked-example h3 { margin: 0 0 20px; font-size: 20px; font-weight: 700; }
+  .we-row { display: flex; gap: 16px; margin: 10px 0; flex-wrap: wrap; }
+  .we-cell { background: rgba(255,255,255,.08); border-radius: 8px; padding: 14px 18px; flex: 1; min-width: 140px; }
+  .we-cell .label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.6); margin-bottom: 4px; }
+  .we-cell .value { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+  .we-cell .value.gold { color: var(--gold); }
+  .we-cell .value.green { color: #5de8a0; }
+  .we-arrow { font-size: 22px; color: var(--gold); align-self: center; }
+
+  /* Savings table */
+  .savings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 20px 0; }
+  .savings-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .savings-card .tier-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 6px; }
+  .savings-card .saving-num { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; color: var(--green); line-height: 1.1; }
+  .savings-card .saving-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* Scale callout */
+  .scale-callout {
+    background: linear-gradient(135deg, #fff5f5, #fff);
+    border: 2px solid var(--red); border-radius: 14px;
+    padding: 28px; margin: 24px 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  @media (max-width: 640px) { .scale-callout { grid-template-columns: 1fr; } }
+  .scale-callout .sc-item .sc-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .scale-callout .sc-item .big { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -1px; color: var(--red); line-height: 1.1; }
+  .scale-callout .sc-item p { font-size: 14px; color: var(--ink); margin: 8px 0 0; }
+
+  /* Strategic insight */
+  .insight-box {
+    background: var(--green-bg); border-left: 4px solid var(--green);
+    border-radius: 6px; padding: 18px 22px; margin: 20px 0;
+    font-size: 15px; color: #1a4a2a;
+  }
+  .insight-box strong { display: block; font-size: 16px; margin-bottom: 6px; }
+
+  .callout-gold {
+    background: var(--amber-bg); border-left: 4px solid var(--gold);
+    border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #5a4a14;
+    margin: 16px 0;
+  }
+  .callout-red {
+    background: #fff5f5; border-left: 4px solid var(--red);
+    border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #5a1a1a;
+    margin: 16px 0;
+  }
+
+  /* Relevance timeline */
+  .relevance-timeline { display: flex; gap: 0; margin: 24px 0; flex-wrap: wrap; }
+  .rt-step {
+    flex: 1; min-width: 180px;
+    background: var(--card); border: 1px solid var(--line);
+    padding: 18px 20px; position: relative;
+  }
+  .rt-step:not(:last-child)::after {
+    content: '';
+    position: absolute; right: -1px; top: 50%;
+    transform: translateY(-50%);
+    width: 0; height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 12px solid var(--line);
+    z-index: 2;
+  }
+  .rt-step:first-child { border-radius: 10px 0 0 10px; }
+  .rt-step:last-child { border-radius: 0 10px 10px 0; }
+  .rt-step.done { background: #f8fdf8; border-color: var(--green-border); }
+  .rt-step.now { background: #fff9e6; border-color: #C9A03B; }
+  .rt-step.future { opacity: .65; }
+  .rt-step .step-tag { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+  .rt-step.done .step-tag { color: var(--green); }
+  .rt-step.now .step-tag { color: #7a5c1a; }
+  .rt-step.future .step-tag { color: var(--muted); }
+  .rt-step h4 { margin: 0 0 5px; font-size: 14px; }
+  .rt-step p { margin: 0; font-size: 12px; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 24px 22px; text-align: center; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div>
+    <div class="title">TAB 4 — Pricing Simulator</div>
+    <small>Wholesale cost scenarios · Margin targets · Peanut eSIM (2026-06-02)</small>
+  </div>
+  <a href="index.html" class="back-btn">← Back to hub</a>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="first">
+  <h1 class="hero">Pricing Simulator — <span class="accent">What Should We Charge</span> at Any Wholesale Cost?</h1>
+  <p class="lede">Tab 4 maps retail prices to wholesale cost scenarios. At current rates it's a verification tool. After a supplier negotiation, it becomes the margin playbook. Right now, it's parked.</p>
+  <span class="badge parked">Year 2+ Reference</span>
+</section>
+
+<!-- PARKED CALLOUT -->
+<div class="parked-callout">
+  <div class="icon-wrap">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M12 12v5M12 7v1" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="body">
+    <div class="label">Status: Parked</div>
+    <h3>Year-2 reference material — not for current decisions</h3>
+    <p>This tool is built for someone who has already negotiated a new wholesale rate. We have not had that conversation yet. Until we sit down with the wholesale supplier at ~5K users and have alternatives in hand, the scenarios below are theoretical. The one thing that IS useful now: understanding that our current 70% margins leave enormous room — we should not be tempted to drop retail prices to acquire users.</p>
+  </div>
+</div>
+
+<!-- THE 3 WHOLESALE SCENARIOS -->
+<section>
+  <h2 class="section-title"><span class="num">1</span>The 3 Wholesale Cost Scenarios</h2>
+  <p class="section-sub">Three reference points: where we are, where we could be after negotiation, and the ceiling if we go direct.</p>
+
+  <div class="scenario-grid">
+    <div class="scenario-card active">
+      <div class="s-tag">Scenario A · CURRENT</div>
+      <h3>Today's Blended Rate</h3>
+      <div class="big-num red">$1.34/GB</div>
+      <p>75% Tier-A / 20% Tier-B / 5% Tier-C geo mix. This is the rate baked into the entire P&amp;L model. Premium = $5.36 COGS for 4 GB.</p>
+      <div class="condition">Model default — verified from source sheet</div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="s-tag">Scenario B · TARGET</div>
+      <h3>After Negotiation</h3>
+      <div class="big-num gold" style="color: var(--amber);">$0.30/GB</div>
+      <p>Estimated rate if we negotiate volume discount at 5K+ activations/month. Premium COGS drops from $5.36 to $1.20. Margin jumps from 70% to 93%.</p>
+      <div class="condition">Theoretical — requires supplier meeting + alternatives</div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="s-tag">Scenario C · CEILING</div>
+      <h3>Direct eSIM Access</h3>
+      <div class="big-num green">$0.20/GB</div>
+      <p>Estimated rate going direct at 5K+ activations/month. Premium COGS = $0.80. Margin = 96%. The theoretical ceiling for a self-managed infrastructure path.</p>
+      <div class="condition">Theoretical — requires direct relationship + volume</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING MATRIX -->
+<section>
+  <h2 class="section-title"><span class="num">2</span>Per-Tier Pricing Matrix</h2>
+  <p class="section-sub">At each wholesale cost, what does break-even, 30%, 50%, and 70% margin look like vs. our current retail price?</p>
+
+  <div class="chart-card">
+    <h3>Margin Analysis by Tier and Wholesale Scenario</h3>
+    <p class="sub">Current retail locked — wholesale cost is the variable</p>
+    <div class="chart-wrap">
+      <canvas id="marginChart"></canvas>
+    </div>
+  </div>
+
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th>Tier</th>
+        <th>Pool (GB)</th>
+        <th>Current Retail</th>
+        <th>COGS @ $1.34</th>
+        <th>Margin Now</th>
+        <th>COGS @ $0.30</th>
+        <th>Margin @ $0.30</th>
+        <th>COGS @ $0.20</th>
+        <th>Margin @ $0.20</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Economy</strong> (PAYG)</td>
+        <td>1 GB</td>
+        <td>$4.99</td>
+        <td>$1.34</td>
+        <td>73%</td>
+        <td>$0.30</td>
+        <td class="green-tag" style="display:table-cell;">94%</td>
+        <td>$0.20</td>
+        <td>96%</td>
+      </tr>
+      <tr>
+        <td><strong>Roster Bundle</strong></td>
+        <td>~1.8 GB</td>
+        <td>$3.99/flight</td>
+        <td>$2.41</td>
+        <td>40%</td>
+        <td>$0.54</td>
+        <td>86%</td>
+        <td>$0.36</td>
+        <td>91%</td>
+      </tr>
+      <tr class="highlight">
+        <td><strong>Premium Economy</strong></td>
+        <td>4 GB</td>
+        <td>$17.99</td>
+        <td>$5.36</td>
+        <td>70%</td>
+        <td>$1.20</td>
+        <td>93%</td>
+        <td>$0.80</td>
+        <td>96%</td>
+      </tr>
+      <tr>
+        <td><strong>Business</strong></td>
+        <td>8 GB</td>
+        <td>$29.99</td>
+        <td>$10.72</td>
+        <td>64%</td>
+        <td>$2.40</td>
+        <td>92%</td>
+        <td>$1.60</td>
+        <td>95%</td>
+      </tr>
+      <tr>
+        <td><strong>First</strong></td>
+        <td>15 GB</td>
+        <td>$49.99</td>
+        <td>$20.10</td>
+        <td>60%</td>
+        <td>$4.50</td>
+        <td>91%</td>
+        <td>$3.00</td>
+        <td>94%</td>
+      </tr>
+      <tr>
+        <td><strong>First Suite</strong></td>
+        <td>25 GB</td>
+        <td>$69.99</td>
+        <td>$33.50</td>
+        <td>52%</td>
+        <td>$7.50</td>
+        <td>89%</td>
+        <td>$5.00</td>
+        <td>93%</td>
+      </tr>
+      <tr>
+        <td><strong>Cockpit</strong> (annual)</td>
+        <td>6 GB/mo</td>
+        <td>$299/yr</td>
+        <td>$9.65/mo</td>
+        <td>61%</td>
+        <td>$2.16/mo</td>
+        <td>91%</td>
+        <td>$1.44/mo</td>
+        <td>94%</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- WORKED EXAMPLE -->
+<section>
+  <h2 class="section-title"><span class="num">3</span>Worked Example: Aiko on Premium Economy</h2>
+  <p class="section-sub">What happens to the business when wholesale costs drop — using a single concrete subscriber.</p>
+
+  <div class="worked-example">
+    <div class="small-label">Aiko — Premium Economy · 4 GB pool</div>
+    <h3>The same $17.99 price. Completely different economics.</h3>
+
+    <div class="we-row">
+      <div class="we-cell">
+        <div class="label">Wholesale @ $1.34/GB</div>
+        <div class="value">$5.36</div>
+        <div style="font-size:12px;opacity:.6;margin-top:3px;">COGS today</div>
+      </div>
+      <div class="we-arrow">→</div>
+      <div class="we-cell">
+        <div class="label">Retail price</div>
+        <div class="value gold">$17.99</div>
+        <div style="font-size:12px;opacity:.6;margin-top:3px;">unchanged</div>
+      </div>
+      <div class="we-arrow">→</div>
+      <div class="we-cell">
+        <div class="label">Margin today</div>
+        <div class="value">70%</div>
+        <div style="font-size:12px;opacity:.6;margin-top:3px;">$12.63 net</div>
+      </div>
+    </div>
+
+    <div class="we-row" style="margin-top: 20px;">
+      <div class="we-cell">
+        <div class="label">Wholesale @ $0.30/GB</div>
+        <div class="value">$1.20</div>
+        <div style="font-size:12px;opacity:.6;margin-top:3px;">COGS after negotiation</div>
+      </div>
+      <div class="we-arrow">→</div>
+      <div class="we-cell">
+        <div class="label">Retail price</div>
+        <div class="value gold">$17.99</div>
+        <div style="font-size:12px;opacity:.6;margin-top:3px;">still unchanged</div>
+      </div>
+      <div class="we-arrow">→</div>
+      <div class="we-cell">
+        <div class="label">Margin after</div>
+        <div class="value green">93%</div>
+        <div style="font-size:12px;opacity:.6;margin-top:3px;">$16.79 net</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; padding: 16px 18px; background: rgba(255,255,255,.08); border-radius: 10px;">
+      <div style="font-size:12px; color: var(--gold); font-weight:700; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px;">The math that matters</div>
+      <div style="font-size: 22px; font-weight: 700; color: #fff;">+$4.16 extra profit per Aiko, per month</div>
+      <div style="font-size: 14px; opacity: .75; margin-top: 4px;">Same user, same price, same service. Just a better supply deal.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEGOTIATION SAVINGS SUMMARY -->
+<section>
+  <h2 class="section-title"><span class="num">4</span>Negotiation Savings Per User (at $0.30/GB)</h2>
+  <p class="section-sub">Per-tier savings if we get from $1.34/GB to $0.30/GB. No retail price change — we pocket the difference.</p>
+
+  <div class="savings-grid">
+    <div class="savings-card">
+      <div class="tier-name">Premium Economy</div>
+      <div class="saving-num">+$4.16</div>
+      <div class="saving-sub">per user / month</div>
+    </div>
+    <div class="savings-card">
+      <div class="tier-name">Business</div>
+      <div class="saving-num">+$8.32</div>
+      <div class="saving-sub">per user / month</div>
+    </div>
+    <div class="savings-card">
+      <div class="tier-name">First</div>
+      <div class="saving-num">+$15.60</div>
+      <div class="saving-sub">per user / month</div>
+    </div>
+    <div class="savings-card">
+      <div class="tier-name">First Suite</div>
+      <div class="saving-num">+$26.00</div>
+      <div class="saving-sub">per user / month</div>
+    </div>
+    <div class="savings-card" style="border-color: var(--red); background: #fff5f5;">
+      <div class="tier-name" style="color: var(--red);">At 5,000 users</div>
+      <div class="saving-num" style="color: var(--red);">~$28K</div>
+      <div class="saving-sub">extra margin / month</div>
+    </div>
+    <div class="savings-card" style="border-color: var(--red); background: #fff5f5;">
+      <div class="tier-name" style="color: var(--red);">At 100,000 users</div>
+      <div class="saving-num" style="color: var(--red);">~$556K</div>
+      <div class="saving-sub">extra margin / month</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Extra Monthly Profit vs User Base (at $0.30/GB vs $1.34/GB)</h3>
+    <p class="sub">Blended savings estimate across realistic tier mix — pure margin gain, zero retail price change</p>
+    <div class="chart-wrap">
+      <canvas id="savingsChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIC INSIGHT -->
+<section>
+  <h2 class="section-title"><span class="num">5</span>The Strategic Insight</h2>
+  <p class="section-sub">The single biggest takeaway from Tab 4 — relevant now, even though the tool is parked.</p>
+
+  <div class="insight-box">
+    <strong>Pricing is NOT the lever. Supplier negotiation is.</strong>
+    Our current 70% margins are good. 93% margins are extraordinary. The path from one to the other is not a UI change or a pricing war — it is a single supplier conversation that requires ~5K users and a credible alternative in our back pocket. Don't drop retail prices to acquire users. Build the user base, then negotiate.
+  </div>
+
+  <div class="callout-gold">
+    <strong>What the simulator actually tells us:</strong> At current wholesale costs, our retail prices are already well-optimized. The next 23 percentage points of margin improvement come entirely from procurement, not pricing. This is why Tab 15 (Procurement Options) is more urgent than Tab 4.
+  </div>
+
+  <div class="callout-red">
+    <strong>The trap to avoid:</strong> Do not use this simulator to justify a promotional price drop. A 20% discount to "get users faster" costs $2.52/user/month in lost margin at current rates — and you would need to re-raise prices after, creating churn. The math never recovers at sub-$17.99 Premium pricing.
+  </div>
+</section>
+
+<!-- WHEN THIS BECOMES RELEVANT -->
+<section>
+  <h2 class="section-title"><span class="num">6</span>When This Tab Becomes Relevant</h2>
+  <p class="section-sub">The specific conditions that move Tab 4 from "parked" to "active".</p>
+
+  <div class="relevance-timeline">
+    <div class="rt-step done">
+      <div class="step-tag">Done</div>
+      <h4>Build the model</h4>
+      <p>Tab 4 built, numbers verified. Scenarios modeled. Breakeven math complete.</p>
+    </div>
+    <div class="rt-step now">
+      <div class="step-tag">Now → 5K users</div>
+      <h4>Grow the base</h4>
+      <p>Accumulate users at current rates. Word-of-mouth only. No price promotions needed.</p>
+    </div>
+    <div class="rt-step future">
+      <div class="step-tag">~5K users</div>
+      <h4>Supplier meeting</h4>
+      <p>With volume and alternatives in hand, negotiate direct. Tab 4 becomes the negotiation deck.</p>
+    </div>
+    <div class="rt-step future">
+      <div class="step-tag">Post-negotiation</div>
+      <h4>Pocket the margin</h4>
+      <p>New rate in, same retail prices out. $28K+/mo extra profit falls straight to the bottom line.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Peanut eSIM · Tab 4 Pricing Simulator Visualizer · 2026-06-02 · Numbers based on $1.34/GB blended wholesale rate from source model. Scenarios at $0.30 and $0.20/GB are theoretical estimates pending supplier negotiation.
+</footer>
+
+<script>
+// Margin comparison chart
+const marginCtx = document.getElementById('marginChart').getContext('2d');
+new Chart(marginCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Economy', 'Roster Bundle', 'Premium Economy', 'Business', 'First', 'First Suite'],
+    datasets: [
+      {
+        label: 'Margin @ $1.34/GB (current)',
+        data: [73, 40, 70, 64, 60, 52],
+        backgroundColor: 'rgba(215,25,33,0.75)',
+        borderRadius: 4,
+      },
+      {
+        label: 'Margin @ $0.30/GB (target)',
+        data: [94, 86, 93, 92, 91, 89],
+        backgroundColor: 'rgba(26,138,90,0.75)',
+        borderRadius: 4,
+      },
+      {
+        label: 'Margin @ $0.20/GB (ceiling)',
+        data: [96, 91, 96, 95, 94, 93],
+        backgroundColor: 'rgba(201,160,59,0.75)',
+        borderRadius: 4,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}%`
+        }
+      }
+    },
+    scales: {
+      y: { min: 0, max: 100, ticks: { callback: v => v + '%' }, grid: { color: '#f0ece4' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Savings scale chart
+const savingsCtx = document.getElementById('savingsChart').getContext('2d');
+const users = [100, 500, 1000, 2000, 5000, 10000, 50000, 100000];
+const savings = users.map(u => Math.round(u * 5.56)); // blended ~$5.56/user/mo saving
+new Chart(savingsCtx, {
+  type: 'line',
+  data: {
+    labels: users.map(u => u >= 1000 ? (u/1000) + 'K' : u),
+    datasets: [{
+      label: 'Extra monthly profit after negotiation ($)',
+      data: savings,
+      borderColor: '#1a8a5a',
+      backgroundColor: 'rgba(26,138,90,0.1)',
+      borderWidth: 2.5,
+      fill: true,
+      tension: 0.4,
+      pointBackgroundColor: '#1a8a5a',
+      pointRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` +$${ctx.raw.toLocaleString()}/mo extra margin` } }
+    },
+    scales: {
+      y: {
+        ticks: { callback: v => '$' + (v >= 1000 ? (v/1000).toFixed(0) + 'K' : v) },
+        grid: { color: '#f0ece4' }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>

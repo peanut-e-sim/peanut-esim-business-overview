@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Peanut eSIM — Tab 13 Costs & Burn: Blueprint</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --red: #D71921;
+  --red-dark: #A01218;
+  --cream: #FAF6F0;
+  --gold: #C9A03B;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4A4A;
+  --line: #E5DDD0;
+  --green: #2D7A4F;
+  --amber: #B07A1F;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.6; }
+.copy-bar { position: sticky; top: 0; background: var(--red); color: white; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.copy-bar .title { font-weight: 600; letter-spacing: .02em; font-size: 15px; }
+.container { max-width: 960px; margin: 0 auto; padding: 40px 32px 120px; }
+h1 { font-size: 36px; margin: 0 0 8px; letter-spacing: -.01em; }
+h2 { font-size: 24px; margin: 48px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--red); color: var(--red-dark); }
+h3 { font-size: 19px; margin: 28px 0 8px; color: var(--ink); }
+h4 { font-size: 15px; margin: 18px 0 6px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .05em; }
+p, li { font-size: 15px; line-height: 1.65; }
+.meta { color: var(--ink-soft); font-size: 13px; margin-bottom: 24px; }
+.lede { font-size: 17px; color: var(--ink-soft); margin: 16px 0 32px; padding: 18px 22px; background: white; border-left: 4px solid var(--gold); }
+
+/* PARKED callout */
+.parked-callout {
+  background: #FFF9E6; border: 2px solid #C9A03B; border-radius: 12px;
+  padding: 24px 28px; margin: 24px 0 32px;
+  display: flex; gap: 18px; align-items: flex-start;
+}
+.parked-callout .icon-wrap {
+  flex-shrink: 0; width: 44px; height: 44px;
+  background: #C9A03B; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.parked-callout .body { flex: 1; }
+.parked-callout .label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #7a5c1a; margin-bottom: 6px; }
+.parked-callout h3 { margin: 0 0 8px; font-size: 18px; color: #5a4a14; }
+.parked-callout p { margin: 0; font-size: 14px; color: #5a4a14; line-height: 1.6; }
+
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; background: white; }
+th { background: var(--ink); color: white; text-align: left; padding: 10px 12px; font-weight: 600; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: #FCFAF5; }
+tr.excellent td { background: #e8f4e8; }
+tr.caution td { background: #faf6ec; }
+tr.risk td { background: #fff0f0; }
+tr.highlight td { background: #fff8e6; font-weight: 600; }
+.pill { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.pill.locked { background: #E0F2E7; color: var(--green); }
+.pill.parked { background: #F5F5F5; color: #666; }
+.pill.open { background: #FBEFD9; color: var(--amber); }
+.pill.placeholder { background: #FFF3CD; color: #856404; }
+blockquote { margin: 16px 0; padding: 12px 18px; background: white; border-left: 3px solid var(--gold); font-style: italic; color: var(--ink-soft); }
+.discussion-block { background: #FFFBF0; border-left: 4px solid var(--gold); padding: 16px 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.discussion-block h4 { margin-top: 0; color: #5a4a14; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.discussion-block p, .discussion-block li { font-size: 14px; color: #5a4a14; }
+.fix-box { background: #e0f2e7; border: 1px solid #a8d8b5; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.fix-box strong { color: var(--green); }
+.rejected-box { background: #FFF0F0; border: 1px solid #f5c0c0; padding: 14px 18px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+.rejected-box strong { color: var(--red); }
+.toc { background: white; padding: 18px 24px; border: 1px solid var(--line); margin: 24px 0 32px; }
+.toc ul { margin: 0; padding-left: 20px; }
+.toc li { margin: 5px 0; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--red-dark); }
+.toc a:hover { text-decoration: underline; }
+.step-list { counter-reset: steps; list-style: none; padding: 0; margin: 16px 0; }
+.step-list li { counter-increment: steps; display: flex; gap: 14px; align-items: flex-start; padding: 12px 16px; border-bottom: 1px solid var(--line); background: white; }
+.step-list li::before { content: counter(steps); display: flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; background: var(--red); color: white; border-radius: 50%; font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.green-text { color: var(--green); font-weight: 600; }
+.red-text { color: var(--red); font-weight: 600; }
+.gold-text { color: var(--amber); font-weight: 600; }
+code { background: #F0E8DD; padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+.footer-note { font-size: 13px; color: var(--ink-soft); margin-top: 60px; padding-top: 16px; border-top: 1px solid var(--line); }
+.big-insight { background: var(--ink); color: white; border-radius: 12px; padding: 28px 32px; margin: 28px 0; }
+.big-insight .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.big-insight .headline { font-size: clamp(20px, 3vw, 26px); font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 12px; }
+.big-insight p { font-size: 14px; opacity: .8; margin: 0; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .container { padding: 24px 16px 60px; } h1 { font-size: 28px; } }
+</style>
+</head>
+<body>
+
+<div class="copy-bar">
+  <span class="title">TAB 13 — Costs &amp; Burn Blueprint &nbsp;·&nbsp; Peanut eSIM 2026-06-02</span>
+  <a href="index.html" style="color:white;text-decoration:none;font-size:13px;opacity:.8;">← Back to hub</a>
+</div>
+
+<div class="container">
+
+<h1>Tab 13 — Costs &amp; Burn</h1>
+<div class="meta">Blueprint · Peanut eSIM P&amp;L Model · 2026-06-02</div>
+
+<div class="lede">Tab 13 is an expense tracking template. As of 2026-06-02 it holds a $11K/month placeholder that has never been spent. This blueprint explains what the tab should contain, how to populate it as real costs arrive, and why the current $0-burn state is a structural advantage to protect.</div>
+
+<!-- PARKED CALLOUT -->
+<div class="parked-callout">
+  <div class="icon-wrap">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/>
+      <path d="M12 7v5l3 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="body">
+    <div class="label">Status: Placeholder Only — $0 Spent as of 2026-06-02</div>
+    <h3>The $11K/mo OPEX in this tab is fictional. No real costs have been incurred.</h3>
+    <p>Balraj has not filed an LLC, purchased an Apple Developer account, hired anyone, or spent on marketing. The $11K figure is a template placeholder from an investor-grade model. This blueprint documents how Tab 13 should be built as real expenses begin — starting from a zero baseline, not from $11K.</p>
+  </div>
+</div>
+
+<div class="toc">
+  <strong>Contents</strong>
+  <ul>
+    <li><a href="#what">1. What Tab 13 Is Supposed to Do</a></li>
+    <li><a href="#placeholder">2. The $11K Placeholder Problem</a></li>
+    <li><a href="#categories">3. Cost Categories and Real Numbers</a></li>
+    <li><a href="#monthly-close">4. The Monthly Close Routine</a></li>
+    <li><a href="#cockpit">5. The Cockpit Cash Advantage</a></li>
+    <li><a href="#software">6. Accounting Software Stack</a></li>
+    <li><a href="#never">7. Why This Business May Never Need Outside Capital</a></li>
+    <li><a href="#open">8. Open Items</a></li>
+  </ul>
+</div>
+
+<!-- WHAT TAB 13 DOES -->
+<h2 id="what">1. What Tab 13 Is Supposed to Do</h2>
+
+<p>Tab 13 tracks the total cash going out of the business: fixed costs (registered agent, Apple account), variable costs (Stripe fees), one-time costs (LLC filing), and founder draws when applicable. It feeds into the P&amp;L model as the OPEX line.</p>
+
+<p>Its job is not to model costs — it is to <em>record</em> costs. Until a receipt exists, the number should be $0. The tab should look like a bank statement, not a projection spreadsheet.</p>
+
+<!-- THE PLACEHOLDER PROBLEM -->
+<h2 id="placeholder">2. The $11K Placeholder Problem</h2>
+
+<p>The original Tab 13 in the P&amp;L model contains a $11,000/month OPEX assumption. This figure drove several downstream calculations including:</p>
+
+<ul>
+  <li>A paper "breakeven" at approximately Month 11-12 in Tab 16</li>
+  <li>A framing of "the business will lose money for the first 6-9 months"</li>
+  <li>An investor-grade runway calculation that implied Balraj needed $60-100K in startup capital</li>
+</ul>
+
+<div class="rejected-box">
+  <strong>All of this is fiction.</strong>
+  <p>None of the $11K has been spent. There is no developer on payroll. There is no marketing budget. There are no servers, no SaaS tools, no office. The $11K was a placeholder inserted to make the model look like a "real" startup for investor review purposes. For an operator-run business built on word-of-mouth, it is completely wrong.</p>
+</div>
+
+<div class="fix-box">
+  <strong>The correct OPEX model:</strong>
+  <p>Record actual expenses row by row as they are incurred. Year 1 total real OPEX is likely under $1,000 (LLC filing + Apple account + Vivek address × 12 months). The model's $11K/month figure should be replaced with real numbers before any investor-facing use.</p>
+</div>
+
+<div class="discussion-block">
+  <h4>Why the $11K figure even exists</h4>
+  <p>The Tab 16 rollout model (which feeds from Tab 13) was built with an $1.80/user/month OPEX assumption — a scaled version of the $11K fixed cost spread over users. This number is also a placeholder. The correct OPEX at launch is $0/user/month fixed + Stripe variable fees only. Both the Tab 13 and Tab 16 OPEX assumptions should be treated as hypothetical until real costs are tracked.</p>
+</div>
+
+<!-- COST CATEGORIES -->
+<h2 id="categories">3. Cost Categories and Real Numbers</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Real Cost</th>
+      <th>Type</th>
+      <th>When</th>
+      <th>Wave Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="excellent">
+      <td><strong>Delaware LLC filing</strong></td>
+      <td>~$140 one-time</td>
+      <td>One-time setup</td>
+      <td>Before first sale or bank account</td>
+      <td>Startup Costs</td>
+    </tr>
+    <tr class="excellent">
+      <td><strong>Registered agent (annual)</strong></td>
+      <td>~$50/mo or $300-600/yr</td>
+      <td>Fixed recurring</td>
+      <td>With LLC filing</td>
+      <td>Administrative Expenses</td>
+    </tr>
+    <tr class="excellent">
+      <td><strong>Vivek TX address</strong></td>
+      <td>~$50/mo</td>
+      <td>Fixed recurring</td>
+      <td>Before Mercury + Stripe accounts</td>
+      <td>Administrative Expenses</td>
+    </tr>
+    <tr class="excellent">
+      <td><strong>Apple Developer Program</strong></td>
+      <td>$99/yr</td>
+      <td>Annual fixed</td>
+      <td>Before app submission</td>
+      <td>Software &amp; Subscriptions</td>
+    </tr>
+    <tr class="excellent">
+      <td><strong>Google Play</strong></td>
+      <td>$25 one-time</td>
+      <td>One-time</td>
+      <td>Before Android submission</td>
+      <td>Software &amp; Subscriptions</td>
+    </tr>
+    <tr>
+      <td><strong>Domain registrations</strong></td>
+      <td>~$15-25/yr per domain</td>
+      <td>Annual fixed</td>
+      <td>Brand name decision locked</td>
+      <td>Software &amp; Subscriptions</td>
+    </tr>
+    <tr>
+      <td><strong>Mercury business checking</strong></td>
+      <td>$0</td>
+      <td>Free</td>
+      <td>After LLC + EIN</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td><strong>Stripe processing fees</strong></td>
+      <td>2.9% + $0.30/txn</td>
+      <td>Variable (% of revenue)</td>
+      <td>From first sale</td>
+      <td>Payment Processing</td>
+    </tr>
+    <tr>
+      <td><strong>Wave Accounting</strong></td>
+      <td>$0 (Year 1)</td>
+      <td>Free</td>
+      <td>Now</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td><strong>Legal review (contract)</strong></td>
+      <td>$200-500 one-time</td>
+      <td>One-time</td>
+      <td>Before signing supplier agreement</td>
+      <td>Professional Services</td>
+    </tr>
+    <tr>
+      <td><strong>Marketing</strong></td>
+      <td>$0</td>
+      <td>Hold at $0</td>
+      <td>After organic unit economics proven</td>
+      <td>Marketing &amp; Advertising</td>
+    </tr>
+    <tr class="caution">
+      <td><strong>Total Year 1 estimate</strong></td>
+      <td>~$1,800-2,500</td>
+      <td>All-in</td>
+      <td>Full year 1</td>
+      <td>~$150-210/mo amortized</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note: eSIM wholesale COGS does NOT appear in Tab 13. It belongs in Tab 3 (unit economics) as cost of goods sold. Tab 13 is OPEX only.</p>
+
+<!-- MONTHLY CLOSE -->
+<h2 id="monthly-close">4. The Monthly Close Routine</h2>
+
+<p>This should take 1 hour per month, maximum. The routine keeps Tab 13 accurate without becoming a burden:</p>
+
+<ol class="step-list">
+  <li>
+    <div>
+      <strong>Export Mercury bank statement (PDF)</strong><br>
+      <span style="font-size:13px;color:#666;">Download the monthly statement. This is the source of truth — every business expense should flow through Mercury, never a personal card.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Log each transaction in Wave</strong><br>
+      <span style="font-size:13px;color:#666;">Match every bank line to a Wave category. Wave imports from bank automatically — just confirm or correct the category. Takes 10 minutes with clean bank data.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Update Tab 13 in the P&amp;L spreadsheet</strong><br>
+      <span style="font-size:13px;color:#666;">Add any new recurring costs as rows. Update the total OPEX cell. The model recalculates automatically. Keep categories identical to Wave for easy cross-reference.</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Check Stripe payout reconciliation</strong><br>
+      <span style="font-size:13px;color:#666;">Stripe dashboard shows net payouts (after fees). Confirm the payout landed in Mercury. Stripe fees for the month = total gross revenue × 2.9% + (number of transactions × $0.30).</span>
+    </div>
+  </li>
+  <li>
+    <div>
+      <strong>Run a 5-minute P&amp;L check</strong><br>
+      <span style="font-size:13px;color:#666;">Net profit = gross revenue - COGS - OPEX - Stripe fees. If this number is positive and growing, the business is healthy. The monthly close is done.</span>
+    </div>
+  </li>
+</ol>
+
+<!-- COCKPIT CASH ADVANTAGE -->
+<h2 id="cockpit">5. The Cockpit Cash Advantage</h2>
+
+<p>The Cockpit annual prepay plan ($299/yr) creates a structural cash float that reduces the need for startup capital. When a user pays $299 upfront:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>100 Cockpit users</th>
+      <th>500 Cockpit users</th>
+      <th>1,000 Cockpit users</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Annual prepay collected</td>
+      <td>$29,900</td>
+      <td>$149,500</td>
+      <td>$299,000</td>
+    </tr>
+    <tr>
+      <td>Average float held (D = C/2)</td>
+      <td>$14,950</td>
+      <td>$74,750</td>
+      <td>$149,500</td>
+    </tr>
+    <tr class="excellent">
+      <td>Annual interest @ 4% (Mercury)</td>
+      <td>$598/yr</td>
+      <td>$2,990/yr</td>
+      <td>$5,980/yr</td>
+    </tr>
+    <tr class="excellent">
+      <td>Runway at $0 OPEX</td>
+      <td>Infinite</td>
+      <td>Infinite</td>
+      <td>Infinite</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="discussion-block">
+  <h4>Why this matters for burn planning</h4>
+  <p>At $0 fixed OPEX, the Cockpit prepay does more than earn interest — it eliminates the concept of "runway." The business has no monthly cash outflow to sustain. Every Cockpit annual sold is an immediate positive cash event that funds all potential future fixed costs many times over. At 100 Cockpit users, the $14,950 float more than covers the entire estimated Year 1 OPEX of $2,500. This is why "push Cockpit from day one" is the single most leverage-efficient product decision in the model.</p>
+</div>
+
+<!-- SOFTWARE STACK -->
+<h2 id="software">6. Accounting Software Stack</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Cost</th>
+      <th>Use When</th>
+      <th>Covers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="excellent">
+      <td><strong>Wave Accounting</strong></td>
+      <td>Free</td>
+      <td>Year 1 — now</td>
+      <td>Expenses, invoices, P&amp;L reports, tax exports. Sufficient for &lt;$50K revenue.</td>
+    </tr>
+    <tr>
+      <td><strong>QuickBooks Simple Start</strong></td>
+      <td>$30/mo</td>
+      <td>When revenue &gt; $50K/yr</td>
+      <td>Better multi-user access, accountant collaboration, 1099 contractors, payroll integration.</td>
+    </tr>
+    <tr>
+      <td><strong>Gusto Payroll</strong></td>
+      <td>$40/mo base</td>
+      <td>When founders pay themselves a salary</td>
+      <td>W-2 payroll, tax filings, benefits. Only needed if switching from draws to salary structure.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- NEVER NEED CAPITAL -->
+<h2 id="never">7. Why This Business May Never Need Outside Capital</h2>
+
+<div class="big-insight">
+  <div class="label">Self-funded thesis</div>
+  <div class="headline">At $0 OPEX, every dollar of contribution is profit. There is no cash gap to bridge.</div>
+  <p>Most startups need capital because they spend before they earn — salaries, servers, and marketing eat cash for months before revenue arrives. Peanut has none of those costs at launch. The eSIM service is delivered via the wholesale supplier's infrastructure (no servers). Marketing is Akito's word-of-mouth (no budget). The founders take no salary (no payroll). The only costs that exist are incurred once and are trivially small. This makes Peanut self-funding from the first transaction.</p>
+</div>
+
+<div class="two-col">
+  <div>
+    <h3>What would require outside capital</h3>
+    <ul>
+      <li>Hiring a full-time developer before launch</li>
+      <li>Running paid ads before organic channels are maxed</li>
+      <li>Taking founder salaries before the business can support them</li>
+      <li>Building a customer service team before AI support is maxed</li>
+    </ul>
+    <p>None of these are Year 1 decisions. All of them are avoidable by design.</p>
+  </div>
+  <div>
+    <h3>What keeps burn at $0</h3>
+    <ul>
+      <li>No full-time hires — Akito and Balraj as founders</li>
+      <li>No paid marketing — crew WhatsApp network only</li>
+      <li>No custom infrastructure — wholesale eSIM provider handles delivery</li>
+      <li>No office — 100% remote, no Dubai co-working space</li>
+    </ul>
+    <p>Each line item is a decision to maintain, not an accident. Protect them deliberately.</p>
+  </div>
+</div>
+
+<!-- OPEN ITEMS -->
+<h2 id="open">8. Open Items</h2>
+
+<table>
+  <thead>
+    <tr><th>Item</th><th>Owner</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Delete $11K/mo placeholder from Tab 13, replace with $0 baseline</td>
+      <td>Balraj</td>
+      <td><span class="pill open">OPEN</span></td>
+    </tr>
+    <tr>
+      <td>File Delaware LLC (triggers real expenses — Apple, Vivek, agent)</td>
+      <td>Balraj</td>
+      <td><span class="pill open">OPEN — pre-launch</span></td>
+    </tr>
+    <tr>
+      <td>Open Mercury business checking (after EIN)</td>
+      <td>Balraj</td>
+      <td><span class="pill open">OPEN — after LLC</span></td>
+    </tr>
+    <tr>
+      <td>Set up Wave Accounting chart of accounts</td>
+      <td>Balraj</td>
+      <td><span class="pill open">OPEN — after LLC</span></td>
+    </tr>
+    <tr>
+      <td>Confirm operating agreement structure with Vivek (Balraj/Akito % split)</td>
+      <td>Balraj</td>
+      <td><span class="pill open">OPEN</span></td>
+    </tr>
+    <tr>
+      <td>Update Tab 16 OPEX assumption from $1.80/user placeholder to real figure once known</td>
+      <td>Balraj</td>
+      <td><span class="pill placeholder">PLACEHOLDER IN MODEL</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer-note">
+  Peanut eSIM · Tab 13 Costs &amp; Burn Blueprint · 2026-06-02<br>
+  $0 spent as of this date. The $11K/mo OPEX in the P&amp;L model is a placeholder. Real costs will be tracked in Wave and mirrored in Tab 13 row by row as incurred. Blueprint is companion to the Tab 13 Costs &amp; Burn Visualizer.
+</div>
+
+</div><!-- /container -->
+</body>
+</html>

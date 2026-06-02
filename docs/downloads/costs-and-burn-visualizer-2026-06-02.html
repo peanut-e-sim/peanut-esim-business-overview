@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peanut eSIM — Tab 13 Costs & Burn Visualizer</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --red: #D71921;
+    --red-dark: #A01218;
+    --gold: #C9A03B;
+    --cream: #FAF6F0;
+    --ink: #1A1A1A;
+    --muted: #6b6b6b;
+    --line: #E8E2D6;
+    --card: #ffffff;
+    --green: #1a8a5a;
+    --green-bg: #f0faf4;
+    --green-border: #a8d8b5;
+    --amber: #B07A1F;
+    --amber-bg: #FFFBF0;
+    --shadow: 0 1px 2px rgba(26,26,26,.05), 0 8px 24px rgba(26,26,26,.06);
+    --shadow-sm: 0 1px 3px rgba(26,26,26,.08);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--cream); color: var(--ink); }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.55; font-size: 16px; }
+
+  header.bar {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--red); color: #fff;
+    padding: 14px 22px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  }
+  header.bar .title { font-weight: 700; letter-spacing: .2px; font-size: 15px; }
+  header.bar .title small { display: block; font-weight: 400; opacity: .85; font-size: 12px; margin-top: 2px; }
+  header.bar a.back-btn {
+    background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.5);
+    color: #fff; font: inherit; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+    font-size: 13px; text-decoration: none; display: inline-block;
+  }
+  header.bar a.back-btn:hover { background: rgba(255,255,255,.28); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 22px 80px; }
+  section { margin: 52px 0; }
+  section.first { margin-top: 24px; }
+
+  h1.hero { font-size: clamp(26px, 3.8vw, 42px); line-height: 1.12; margin: 0 0 14px; letter-spacing: -.5px; }
+  h1.hero .accent { color: var(--red); }
+  p.lede { font-size: clamp(15px, 1.7vw, 18px); color: #2a2a2a; max-width: 760px; margin: 0 0 18px; }
+  .badge { display: inline-block; padding: 4px 12px; background: #fff; border: 1px solid var(--gold); border-radius: 999px; font-size: 12px; font-weight: 600; color: #7a5c1a; letter-spacing: .3px; }
+  .badge.parked { background: #f5f5f5; border-color: #ccc; color: #666; }
+  .badge.live { background: #f0faf4; border-color: var(--green-border); color: var(--green); }
+
+  /* PARKED callout */
+  .parked-callout {
+    background: #FFF9E6; border: 2px solid #C9A03B; border-radius: 12px;
+    padding: 24px 28px; margin: 24px 0 32px;
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .parked-callout .icon-wrap {
+    flex-shrink: 0; width: 44px; height: 44px;
+    background: #C9A03B; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .parked-callout .body { flex: 1; }
+  .parked-callout .label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #7a5c1a; margin-bottom: 6px; }
+  .parked-callout h3 { margin: 0 0 8px; font-size: 18px; color: #5a4a14; }
+  .parked-callout p { margin: 0; font-size: 14px; color: #5a4a14; line-height: 1.6; }
+
+  h2.section-title { font-size: clamp(20px, 2.4vw, 26px); margin: 0 0 6px; letter-spacing: -.2px; }
+  h2.section-title .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--ink); color: #fff;
+    font-size: 14px; margin-right: 10px; vertical-align: middle;
+  }
+  p.section-sub { color: var(--muted); max-width: 720px; margin: 0 0 22px; font-size: 15px; }
+
+  /* Category table */
+  table.cats { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-sm); margin: 20px 0; }
+  table.cats th { background: var(--ink); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 13px; }
+  table.cats td { padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.cats tr:nth-child(even) td { background: #FCFAF5; }
+  table.cats .cat-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  /* Cost category cards */
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin: 20px 0; }
+  .cat-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 20px;
+    box-shadow: var(--shadow-sm);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .cat-card .cc-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cat-card h4 { margin: 0 0 4px; font-size: 14px; font-weight: 700; }
+  .cat-card p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .cat-card .amount { font-size: 12px; font-weight: 700; margin-top: 8px; }
+  .cat-card .amount.zero { color: var(--green); }
+  .cat-card .amount.one-time { color: var(--amber); }
+  .cat-card .amount.recurring { color: var(--red-dark); }
+
+  /* $0 burn callout */
+  .zero-burn {
+    background: var(--ink); color: #fff;
+    border-radius: 14px; padding: 28px 32px; margin: 20px 0;
+    display: flex; gap: 28px; align-items: center; flex-wrap: wrap;
+  }
+  .zero-burn .big { font-size: clamp(48px, 8vw, 72px); font-weight: 700; letter-spacing: -3px; line-height: 1; color: #5de8a0; flex-shrink: 0; }
+  .zero-burn .txt { flex: 1; min-width: 200px; }
+  .zero-burn .txt .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 8px; }
+  .zero-burn .txt h3 { margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+  .zero-burn .txt p { margin: 0; font-size: 14px; opacity: .8; }
+
+  /* Cash float section */
+  .float-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  @media (max-width: 680px) { .float-grid { grid-template-columns: 1fr; } }
+  .float-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 20px; box-shadow: var(--shadow-sm);
+  }
+  .float-card .fc-tag { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .float-card h3 { margin: 0 0 6px; font-size: 16px; }
+  .float-card .big { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; margin: 8px 0 6px; }
+  .float-card p { font-size: 12px; color: var(--muted); margin: 0; }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; margin: 16px 0; }
+  .checklist li {
+    display: flex; gap: 12px; padding: 11px 14px;
+    background: var(--card); border: 1px solid var(--line); border-bottom: none;
+    font-size: 14px; align-items: flex-start;
+  }
+  .checklist li:first-child { border-radius: 8px 8px 0 0; }
+  .checklist li:last-child { border-bottom: 1px solid var(--line); border-radius: 0 0 8px 8px; }
+  .checklist li .ci-box {
+    width: 18px; height: 18px; border: 2px solid var(--line);
+    border-radius: 4px; flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .checklist li.done .ci-box { background: var(--green); border-color: var(--green); }
+
+  /* Accountant section */
+  .accountant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+  @media (max-width: 640px) { .accountant-grid { grid-template-columns: 1fr; } }
+  .acc-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 18px;
+  }
+  .acc-card h4 { margin: 0 0 10px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  .acc-card ul { margin: 0; padding-left: 18px; }
+  .acc-card li { font-size: 13px; margin: 5px 0; color: var(--ink); }
+
+  /* Honest read */
+  .honest-read {
+    background: #fff5f5; border: 2px solid var(--red);
+    border-radius: 12px; padding: 24px 28px; margin: 20px 0;
+  }
+  .honest-read .label { font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .honest-read h3 { margin: 0 0 12px; font-size: 20px; color: var(--red-dark); }
+  .honest-read p { margin: 0 0 12px; font-size: 15px; color: var(--ink); }
+  .honest-read p:last-child { margin-bottom: 0; }
+
+  .callout-green { background: var(--green-bg); border-left: 4px solid var(--green); border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #1a4a2a; margin: 16px 0; }
+  .callout-gold { background: var(--amber-bg); border-left: 4px solid var(--gold); border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #5a4a14; margin: 16px 0; }
+  .callout-red { background: #fff5f5; border-left: 4px solid var(--red); border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #5a1a1a; margin: 16px 0; }
+
+  footer { border-top: 1px solid var(--line); padding: 24px 22px; text-align: center; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div>
+    <div class="title">TAB 13 — Costs &amp; Burn</div>
+    <small>Expense tracking · Cash flow · Self-funding reality · Peanut eSIM (2026-06-02)</small>
+  </div>
+  <a href="index.html" class="back-btn">← Back to hub</a>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="first">
+  <h1 class="hero">Costs &amp; Burn — <span class="accent">What's Actually Going</span> Out the Door</h1>
+  <p class="lede">Tab 13 is the expense tracker. Right now it holds a $11K/mo placeholder that never happened. Here is what the tab should actually show — and how to build it as real expenses begin.</p>
+  <span class="badge parked">Template — Awaiting Real Expenses</span>
+</section>
+
+<!-- PARKED CALLOUT -->
+<div class="parked-callout">
+  <div class="icon-wrap">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/>
+      <path d="M12 7v5l3 3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="body">
+    <div class="label">Status: Placeholder Only — Not Real Data</div>
+    <h3>As of 2026-06-02, Balraj has spent $0 on the business.</h3>
+    <p>The $11K/month in the original Tab 13 is a fictional OPEX placeholder carried over from an investor-grade model template. No LLC has been filed. No developer has been hired. No tools have been purchased. This page documents what the tab should look like when real spending begins — and confirms that until it does, burn is zero and gross profit equals net profit.</p>
+  </div>
+</div>
+
+<!-- $0 BURN REALITY -->
+<section>
+  <h2 class="section-title"><span class="num">1</span>The Current Reality</h2>
+  <p class="section-sub">Pre-launch, pre-spend. Every dollar of contribution is currently profit.</p>
+
+  <div class="zero-burn">
+    <div class="big">$0</div>
+    <div class="txt">
+      <div class="label">Monthly burn today</div>
+      <h3>Zero OPEX. Zero burn. Gross = Net.</h3>
+      <p>No incorporated entity. No servers. No tools. No hires. No marketing spend. Every sale Peanut makes from day one drops directly to the bottom line — there is no cost infrastructure to cover first. This is genuinely unusual, and it is an advantage to protect for as long as possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COST CATEGORIES TO TRACK -->
+<section>
+  <h2 class="section-title"><span class="num">2</span>Cost Categories to Track from Day 1</h2>
+  <p class="section-sub">When spending begins, here are the buckets. Add rows to Tab 13 only as actual invoices arrive — never as projections.</p>
+
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cc-icon" style="background:#FBE0E0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div>
+        <h4>LLC Setup (One-time)</h4>
+        <p>Delaware LLC filing + registered agent. Texas virtual address via Vivek. Optional: operating agreement legal review.</p>
+        <div class="amount one-time">~$140 filing + $50/mo agent</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cc-icon" style="background:#E0F2E7;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a8a5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 3h-8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
+      </div>
+      <div>
+        <h4>App Store Accounts</h4>
+        <p>Apple Developer Program (annual). Google Play one-time fee. Both required before any app submission.</p>
+        <div class="amount one-time">$99/yr Apple + $25 Google (one-time)</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cc-icon" style="background:#E8E8F8;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      </div>
+      <div>
+        <h4>Banking + Payments</h4>
+        <p>Mercury business banking (free). Stripe payment processing (2.9% + $0.30/txn — only a cost when revenue exists).</p>
+        <div class="amount zero">$0 fixed / % of revenue</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cc-icon" style="background:#FFF3E0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B07A1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <div>
+        <h4>Design + Dev Tools</h4>
+        <p>Figma (free tier at start). GitHub (free for public). Only paid tools when team exceeds free tier. Wave accounting (free Year 1).</p>
+        <div class="amount zero">$0 to start</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cc-icon" style="background:#F5E6FF;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B3FA0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div>
+        <h4>Legal + Admin</h4>
+        <p>Vivek TX address ($50/mo). Operating agreement review if needed. Contract review for supplier agreement. UAE legal consult for structure.</p>
+        <div class="amount one-time">$50/mo Vivek + one-time consults</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cc-icon" style="background:#E0F2E7;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a8a5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div>
+        <h4>Marketing</h4>
+        <p>Currently $0. Word-of-mouth via Akito's crew network only. No paid channels until organic unit economics are proven. Budget: hold at $0 through Year 1.</p>
+        <div class="amount zero">$0 — hold</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cc-icon" style="background:#FFF5F5;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D71921" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div>
+        <h4>Supplier Costs</h4>
+        <p>Wholesale eSIM data cost (COGS — not an OPEX line). Any platform fees or deposits. These belong in COGS, not burn.</p>
+        <div class="amount recurring">% of revenue (COGS not OPEX)</div>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cc-icon" style="background:#E8E8F8;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a9 9 0 100-18 9 9 0 000 18z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div>
+        <h4>Founder Draws</h4>
+        <p>Balraj + Akito distributions if/when they begin paying themselves. Per LLC operating agreement: after covering all business costs. Track as owner draws, not salary, until payroll is set up.</p>
+        <div class="amount zero">$0 currently</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT BURN MEANS -->
+<section>
+  <h2 class="section-title"><span class="num">3</span>What "Burn" Actually Means</h2>
+  <p class="section-sub">Plain-English definition for a self-funded operator — not an investor-grade startup.</p>
+
+  <div class="callout-gold">
+    <strong>Monthly burn = total cash going out, including everything.</strong><br>
+    COGS (wholesale eSIM cost) + OPEX (tools, admin, salaries, marketing) + one-time spend / 12 (amortized). If you spend $200 on LLC filing and $99 on Apple Developer, your annualized burn for those items is ~$25/month. Add Stripe fees (% of revenue) and you have the full picture.
+  </div>
+
+  <table class="cats">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Example</th>
+        <th>Where it lives</th>
+        <th>Today</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>COGS</strong></td>
+        <td>Wholesale eSIM data purchased per user</td>
+        <td>Tab 3 (unit economics)</td>
+        <td>$0 pre-launch</td>
+      </tr>
+      <tr>
+        <td><strong>Fixed OPEX</strong></td>
+        <td>Registered agent fee, Apple Developer, Vivek address</td>
+        <td>Tab 13 (this tab)</td>
+        <td>$0 — none filed yet</td>
+      </tr>
+      <tr>
+        <td><strong>Variable OPEX</strong></td>
+        <td>Stripe fees (% of each transaction)</td>
+        <td>Tab 13 or P&amp;L blended</td>
+        <td>$0 — no revenue yet</td>
+      </tr>
+      <tr>
+        <td><strong>One-time</strong></td>
+        <td>LLC filing, Google Play $25, legal review</td>
+        <td>Tab 13 (year-1 row)</td>
+        <td>$0 — none spent yet</td>
+      </tr>
+      <tr>
+        <td><strong>Founder draws</strong></td>
+        <td>Balraj + Akito distributions</td>
+        <td>LLC operating agreement</td>
+        <td>$0</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- CASH FLOAT STRATEGY -->
+<section>
+  <h2 class="section-title"><span class="num">4</span>Cash Float Strategy — Self-Funding from Day 1</h2>
+  <p class="section-sub">The Cockpit annual prepay mechanism makes this business self-funding before it spends a dollar.</p>
+
+  <div class="float-grid">
+    <div class="float-card">
+      <div class="fc-tag">At 100 Cockpit users</div>
+      <h3>Extra Working Capital</h3>
+      <div class="big" style="color: var(--green);">$14,950</div>
+      <p>Annual prepay collected upfront. Float held in Mercury. Earns ~$598/yr at 4% money market.</p>
+    </div>
+    <div class="float-card">
+      <div class="fc-tag">At 1,000 Cockpit users</div>
+      <h3>Extra Working Capital</h3>
+      <div class="big" style="color: var(--red);">$149,500</div>
+      <p>$5,980/yr interest income. This alone covers 3-4 months of a hypothetical $50K salary.</p>
+    </div>
+    <div class="float-card" style="border-color: var(--green-border);">
+      <div class="fc-tag">The mechanism</div>
+      <h3>Cockpit = Cash Advance</h3>
+      <div class="big" style="color: var(--amber); font-size: 20px; padding-top: 8px;">Collect now, deliver monthly</div>
+      <p>$299 collected on signup, $24.92/mo cost recognized. Working capital lives in the business for up to 11 months interest-free.</p>
+    </div>
+  </div>
+
+  <div class="callout-green">
+    <strong>The key implication:</strong> At $0 fixed OPEX, the Cockpit prepay mechanism means Peanut is profitable from the first sale. There is no "burn runway" to calculate because there is no burn. The business does not need outside capital — ever — as long as the founders do not take draws that exceed net profit.
+  </div>
+</section>
+
+<!-- ACCOUNTANT CHECKLIST -->
+<section>
+  <h2 class="section-title"><span class="num">5</span>What to Send Your Accountant</h2>
+  <p class="section-sub">When real expenses begin, here is what to gather and how to categorize.</p>
+
+  <div class="accountant-grid">
+    <div class="acc-card">
+      <h4>Receipts to Collect</h4>
+      <ul>
+        <li>Delaware LLC filing confirmation</li>
+        <li>Registered agent annual invoice</li>
+        <li>Apple Developer Program receipt</li>
+        <li>Google Play one-time receipt</li>
+        <li>Domain registration receipts</li>
+        <li>Any design/dev tool invoices</li>
+        <li>Stripe monthly fee statements</li>
+        <li>Vivek TX address monthly confirmations</li>
+      </ul>
+    </div>
+    <div class="acc-card">
+      <h4>How to Categorize</h4>
+      <ul>
+        <li>LLC filing = startup cost (amortized)</li>
+        <li>Registered agent = admin expense</li>
+        <li>Apple / Google = software &amp; subscriptions</li>
+        <li>Domain = software &amp; subscriptions</li>
+        <li>Stripe fees = payment processing</li>
+        <li>Wholesale eSIM cost = COGS (not OPEX)</li>
+        <li>Founder draws = owner distributions</li>
+        <li>Legal consults = professional services</li>
+      </ul>
+    </div>
+  </div>
+
+  <ul class="checklist">
+    <li>
+      <div class="ci-box"></div>
+      <div>Open Mercury business checking account (linked to LLC EIN, not personal SSN)</div>
+    </li>
+    <li>
+      <div class="ci-box"></div>
+      <div>Set up Wave accounting (free) — create chart of accounts with the categories above</div>
+    </li>
+    <li>
+      <div class="ci-box"></div>
+      <div>Log every business expense as it occurs — screenshot + categorize same day</div>
+    </li>
+    <li>
+      <div class="ci-box"></div>
+      <div>Run a 1-hour monthly close: reconcile Wave to bank statement, confirm no unlogged items</div>
+    </li>
+    <li>
+      <div class="ci-box"></div>
+      <div>File Form 1065 (LLC partnership return) annually — Vivek/CPA handles; Balraj provides expense log</div>
+    </li>
+    <li>
+      <div class="ci-box"></div>
+      <div>Upgrade to QuickBooks ($30/mo) when revenue exceeds $50K/yr — not before</div>
+    </li>
+  </ul>
+</section>
+
+<!-- HONEST READ -->
+<section>
+  <h2 class="section-title"><span class="num">6</span>The Honest Read</h2>
+
+  <div class="honest-read">
+    <div class="label">For a self-funded operator</div>
+    <h3>Don't model burn until you have it. The $11K placeholder created investor optics that aren't real.</h3>
+    <p>The Tab 13 $11K/mo figure makes the model read like a venture-backed startup with a developer team and a marketing budget. That framing created a paper breakeven of ~Month 11-12, as though the business would "lose money" for a year before becoming profitable.</p>
+    <p><strong>The honest version:</strong> Gross = Net at $0 spend. There is no 6-month cash drain to survive. The first sale is profitable. The first month is profitable. The only scenario where this changes is if Balraj or Akito start paying themselves before the business has enough retained earnings to support it.</p>
+    <p>When real expenses arrive (LLC filing, Apple account), they are small enough to be covered by the first few sales. The $11K row should be deleted from Tab 13 and replaced with actual line items only as they are incurred.</p>
+  </div>
+
+  <div class="callout-gold">
+    <strong>Software stack recommendation:</strong>
+    Wave Accounting (free) for Year 1 — covers everything: invoices, expenses, profit &amp; loss, tax reports. Upgrade to QuickBooks Self-Employed ($15/mo) or QuickBooks Simple Start ($30/mo) when annual revenue exceeds $50K. No need for anything more expensive than that.
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Peanut eSIM · Tab 13 Costs &amp; Burn Visualizer · 2026-06-02 · The $11K/mo OPEX in the original model is a placeholder. As of this date, $0 has been spent on the business. This page documents the cost framework for when spending begins.
+</footer>
+
+</body>
+</html>
