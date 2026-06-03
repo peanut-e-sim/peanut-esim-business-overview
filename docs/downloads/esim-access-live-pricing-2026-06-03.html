@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eSIM Access — Live Wholesale Pricing & API Capabilities (2026-06-03)</title>
+<style>
+:root {
+  --ink: #1f1d1a;
+  --muted: #6b6358;
+  --warm-brown: #8c5a3c;
+  --warm-brown-soft: #f0e3d6;
+  --slate: #3b4a5a;
+  --slate-soft: #e1e6ec;
+  --paper: #fdfaf6;
+  --border: #e8dfd2;
+  --green: #2f7d4f;
+  --green-soft: #dff0e6;
+  --rose: #c97070;
+  --rose-soft: #f3e3e3;
+  --gold: #c9a227;
+  --gold-soft: #f7eecf;
+  --code: #f7f3ec;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0;
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+.wrap { max-width: 980px; margin: 0 auto; padding: 48px 28px 80px; }
+.eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; color: var(--warm-brown); font-weight: 700; margin-bottom: 12px; }
+h1 { font-size: 32px; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.01em; }
+.subtitle { font-size: 17px; color: var(--muted); margin: 0 0 32px; max-width: 720px; }
+h2 { font-size: 24px; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--warm-brown); }
+h3 { font-size: 18px; margin-top: 28px; color: var(--slate); }
+p { margin: 12px 0; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 28px; font-size: 14.5px; }
+th { text-align: left; background: var(--warm-brown-soft); padding: 10px 12px; font-weight: 700; border-bottom: 2px solid var(--warm-brown); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:hover td { background: var(--paper); }
+.tag-good { display: inline-block; padding: 2px 10px; border-radius: 12px; background: var(--green-soft); color: var(--green); font-size: 12px; font-weight: 700; }
+.tag-warn { display: inline-block; padding: 2px 10px; border-radius: 12px; background: var(--gold-soft); color: var(--gold); font-size: 12px; font-weight: 700; }
+.tag-bad { display: inline-block; padding: 2px 10px; border-radius: 12px; background: var(--rose-soft); color: var(--rose); font-size: 12px; font-weight: 700; }
+.card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 22px 26px; margin: 20px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+.card.warm { background: var(--warm-brown-soft); border-color: var(--warm-brown); }
+.card.green { background: var(--green-soft); border-color: var(--green); }
+.card.rose { background: var(--rose-soft); border-color: var(--rose); }
+.card h3 { margin-top: 0; }
+.tldr { font-size: 17px; line-height: 1.55; }
+.tldr strong { color: var(--warm-brown); }
+.pre {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px; line-height: 1.65;
+  background: var(--code); border: 1px solid var(--border); border-radius: 6px;
+  padding: 16px 20px; overflow-x: auto;
+  color: var(--slate);
+  white-space: pre;
+  margin: 16px 0;
+}
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 24px 0; }
+.kpi { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+.kpi .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 6px; }
+.kpi .value { font-size: 24px; font-weight: 700; color: var(--ink); }
+.kpi .delta { font-size: 13px; color: var(--green); margin-top: 4px; font-weight: 600; }
+.kpi .delta.bad { color: var(--rose); }
+ul li { margin: 6px 0; }
+.note { font-size: 13px; color: var(--muted); font-style: italic; }
+.footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">SUPPLIER INTELLIGENCE · LIVE PORTAL DATA · 2026-06-03</div>
+  <h1>eSIM Access — Live Wholesale Pricing &amp; API Capabilities</h1>
+  <p class="subtitle">Live data pulled from the eSIM Access reseller portal (console.esimaccess.com) on 2026-06-03 from an already-activated reseller account. Replaces estimated wholesale costs in the Walnut model and Peanut Decision 00C with real numbers.</p>
+
+  <div class="card warm">
+    <h3>The headline</h3>
+    <p class="tldr"><strong>eSIM Access is Tier 2.5 — one rung above Samurai (Tier 3), one rung below Flit's Korean MVNO (Tier 2).</strong> Real wholesale prices come in dramatically below the Peanut $2.26/GB Tier-3 assumption: <strong>UAE $1.28-1.50/GB</strong> (~33% cheaper than Samurai), <strong>Japan/Singapore/UK $0.34/GB</strong> on bulk plans (~85% cheaper), <strong>USA $0.50-0.66/GB</strong>. The Walnut Operator-advisor model assumed $1.34/GB blended Tier-2 — this is essentially confirmed for UAE and far exceeded everywhere else.</p>
+  </div>
+
+  <h2>Where eSIM Access sits in the supply chain</h2>
+
+  <div class="pre">TIER 1 — Network owners (own physical towers)
+        Etisalat (UAE) · KDDI (Japan) · T-Mobile (USA) · Vodafone UK · etc.
+                                  │
+                                  │ wholesale roaming deals
+                                  ▼
+TIER 2 — Real MVNO with carrier license (direct bilateral deals)
+        Flit / Harrie Inc — direct contracts with KDDI, China Mobile, LG U+
+                                  │
+                                  │ also sells wholesale to aggregators
+                                  ▼
+TIER 2.5 — Global aggregator (bundles 200+ Tier-1 deals into ONE API)   ← eSIM Access
+        eSIM Access · eSIM Go · iBASIS · Maya Mobile · Sparkle
+                                  │
+                                  │ sells API access to small operators
+                                  ▼
+TIER 3 — Pure reseller (buys from a Tier 2.5, adds ~40% markup)
+        Samurai
+                                  │
+                                  ▼
+TIER 4 — Sub-reseller (buys from Samurai, even worse margins)</div>
+
+  <h3>What this means in practice</h3>
+  <table>
+    <thead><tr><th>Market</th><th>Flit (Tier 2)</th><th>eSIM Access (Tier 2.5)</th><th>Samurai (Tier 3)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>UAE</strong></td><td>Tier 2.5 aggregator (no direct deal there)</td><td><strong>Tier 2.5 aggregator</strong></td><td>+40% markup on top</td></tr>
+      <tr><td>Japan / Korea / China</td><td>Tier 2 direct bilateral — cheapest</td><td>Tier 2.5 aggregator</td><td>+40% markup on top</td></tr>
+      <tr><td>Europe / USA / SEA</td><td>Tier 2.5 aggregator</td><td><strong>Tier 2.5 aggregator</strong></td><td>+40% markup on top</td></tr>
+    </tbody>
+  </table>
+  <p>For Peanut's home market UAE, Flit and eSIM Access sit on the exact same cost layer. Flit only has structural advantage in Japan/Korea/China where they hold direct bilateral roaming agreements. In every other market, Peanut-via-eSIM-Access is at cost parity with Flit-via-aggregator.</p>
+
+  <h2>Live wholesale pricing — 5 priority destinations</h2>
+  <p class="note">All prices in USD. "Per GB" is what you pay eSIM Access (your COGS). "Sug. retail" is their recommended end-customer price — always exactly 2× wholesale.</p>
+
+  <h3>🇦🇪 United Arab Emirates — 19 plans available</h3>
+  <table>
+    <thead><tr><th>Plan</th><th>Wholesale</th><th>Per GB</th><th>Sug. retail</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>1GB / 7 days</td><td>$1.75</td><td>$1.75</td><td>$3.50</td><td>Casual single-trip plan</td></tr>
+      <tr><td>3GB / 30 days</td><td>$5.00</td><td>$1.67</td><td>$10.00</td><td>Light monthly</td></tr>
+      <tr><td>5GB / 30 days</td><td>$8.00</td><td>$1.60</td><td>$16.00</td><td>—</td></tr>
+      <tr><td><strong>10GB / 30 days</strong></td><td><strong>$14.50</strong></td><td><strong>$1.45</strong></td><td>$29.00</td><td>Closest match to Peanut "Premium Economy" tier</td></tr>
+      <tr><td><strong>20GB / 30 days</strong></td><td><strong>$26.00</strong></td><td><strong>$1.30</strong></td><td>$52.00</td><td>Closest match to Peanut "Business" tier</td></tr>
+      <tr><td>5GB / Day (1-365 days)</td><td>$6.39</td><td>$1.28</td><td>$12.78</td><td><strong>Cheapest per-GB rate for UAE</strong></td></tr>
+      <tr><td>50GB / 180 days</td><td>$105.00</td><td>$2.10</td><td>$210.00</td><td>Worst per-GB — avoid</td></tr>
+    </tbody>
+  </table>
+
+  <h3>🇯🇵 Japan — 58 plans available (incl. multi-region bundles)</h3>
+  <table>
+    <thead><tr><th>Plan</th><th>Wholesale</th><th>Per GB</th><th>Sug. retail</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>1GB / 7 days</td><td>$0.70</td><td>$0.70</td><td>$1.40</td><td>Single layover</td></tr>
+      <tr><td>5GB / 30 days</td><td>$2.70</td><td>$0.54</td><td>$5.40</td><td>—</td></tr>
+      <tr><td>10GB / 30 days</td><td>$4.70</td><td>$0.47</td><td>$9.40</td><td>—</td></tr>
+      <tr><td>20GB / 30 days</td><td>$8.20</td><td>$0.41</td><td>$16.40</td><td>—</td></tr>
+      <tr><td><strong>50GB / 30 days</strong></td><td><strong>$17.00</strong></td><td><strong>$0.34</strong></td><td>$34.00</td><td><strong>Best per-GB rate</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>🇸🇬 Singapore — 46 plans available</h3>
+  <table>
+    <thead><tr><th>Plan</th><th>Wholesale</th><th>Per GB</th><th>Sug. retail</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>1GB / 7 days</td><td>$0.55</td><td>$0.55</td><td>$1.10</td><td>Single layover</td></tr>
+      <tr><td>5GB / 30 days</td><td>$2.41</td><td>$0.48</td><td>$4.82</td><td>—</td></tr>
+      <tr><td>10GB / 30 days</td><td>$4.70</td><td>$0.47</td><td>$9.40</td><td>—</td></tr>
+      <tr><td>20GB / 30 days</td><td>$8.20</td><td>$0.41</td><td>$16.40</td><td>—</td></tr>
+      <tr><td><strong>50GB / 30 days</strong></td><td><strong>$17.00</strong></td><td><strong>$0.34</strong></td><td>$34.00</td><td><strong>Best per-GB rate</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>🇬🇧 United Kingdom — 18 plans available</h3>
+  <table>
+    <thead><tr><th>Plan</th><th>Wholesale</th><th>Per GB</th><th>Sug. retail</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>1GB / 7 days</td><td>$0.57</td><td>$0.57</td><td>$1.14</td><td>Single layover</td></tr>
+      <tr><td>5GB / 30 days</td><td>$2.38</td><td>$0.48</td><td>$4.76</td><td>—</td></tr>
+      <tr><td>10GB / 30 days</td><td>$4.28</td><td>$0.43</td><td>$8.56</td><td>—</td></tr>
+      <tr><td>20GB / 30 days</td><td>$8.20</td><td>$0.41</td><td>$16.40</td><td>—</td></tr>
+      <tr><td><strong>50GB / 30 days</strong></td><td><strong>$17.00</strong></td><td><strong>$0.34</strong></td><td>$34.00</td><td><strong>Best per-GB rate</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>🇺🇸 United States — 37 plans available (incl. USIP variants)</h3>
+  <table>
+    <thead><tr><th>Plan</th><th>Wholesale</th><th>Per GB</th><th>Sug. retail</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>1GB / 7 days</td><td>$0.90</td><td>$0.90</td><td>$1.80</td><td>Single layover</td></tr>
+      <tr><td>5GB / 30 days</td><td>$3.40</td><td>$0.68</td><td>$6.80</td><td>—</td></tr>
+      <tr><td>10GB / 30 days</td><td>$6.63</td><td>$0.66</td><td>$13.26</td><td>—</td></tr>
+      <tr><td>15GB / 30 days</td><td>$8.50</td><td>$0.57</td><td>$17.00</td><td>—</td></tr>
+      <tr><td>20GB / 30 days</td><td>$12.43</td><td>$0.62</td><td>$24.86</td><td>—</td></tr>
+      <tr><td><strong>50GB / 30 days</strong></td><td><strong>$28.00</strong></td><td><strong>$0.56</strong></td><td>$56.00</td><td><strong>Best per-GB rate</strong></td></tr>
+      <tr><td>10GB / Day (1-365)</td><td>$4.95</td><td>$0.50</td><td>$9.90</td><td>Day-pass — best for unpredictable usage</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">USIP variants use US-local IP addresses (vs hkip = Hong Kong IP). For US-bound apps that geofence by IP, the USIP variant is the right pick despite slightly higher cost.</p>
+
+  <h2>Per-GB summary &amp; comparison to prior assumptions</h2>
+  <table>
+    <thead><tr><th>Market</th><th>Best per-GB on 10GB plan</th><th>Best per-GB on 20GB+</th><th>vs Peanut $2.26/GB assumed</th><th>vs Walnut $1.34/GB assumed</th></tr></thead>
+    <tbody>
+      <tr><td>UAE</td><td>$1.45</td><td>$1.28-1.30</td><td><span class="tag-good">~33% cheaper</span></td><td><span class="tag-good">~3% cheaper</span></td></tr>
+      <tr><td>Japan</td><td>$0.47</td><td>$0.34-0.41</td><td><span class="tag-good">~80% cheaper</span></td><td><span class="tag-good">~70% cheaper</span></td></tr>
+      <tr><td>Singapore</td><td>$0.47</td><td>$0.34-0.41</td><td><span class="tag-good">~80% cheaper</span></td><td><span class="tag-good">~70% cheaper</span></td></tr>
+      <tr><td>UK</td><td>$0.43</td><td>$0.34-0.41</td><td><span class="tag-good">~80% cheaper</span></td><td><span class="tag-good">~70% cheaper</span></td></tr>
+      <tr><td>USA</td><td>$0.66</td><td>$0.50-0.62</td><td><span class="tag-good">~70% cheaper</span></td><td><span class="tag-good">~55% cheaper</span></td></tr>
+    </tbody>
+  </table>
+  <p>The Walnut Operator model essentially predicted UAE pricing correctly and was overly pessimistic for international destinations. For a crew member spending 60% of their data in UAE and 40% in international layovers, blended COGS lands around <strong>$0.80-1.00/GB</strong>, not $1.34 or $2.26.</p>
+
+  <h2>API capabilities — three critical questions answered</h2>
+  <table>
+    <thead><tr><th>Question</th><th>Verdict</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Same-SIM top-up supported?</strong></td><td><span class="tag-good">YES</span></td><td>API v1.2 (Jul 2023) — "Top Up endpoint for adding data to existing eSIM profiles." Filter by <code>supportTopUpType</code> field per plan.</td></tr>
+      <tr><td><strong>Post-pay or pre-pay?</strong></td><td><span class="tag-warn">PRE-PAY ONLY</span></td><td>API v1.1 (Jun 2023) — forced switch: "Offline post-paying changed to online pre-paying." Fund a balance, orders deduct.</td></tr>
+      <tr><td><strong>Refund / cancel?</strong></td><td><span class="tag-good">YES — Cancel / Suspend / Unsuspend / Revoke</span></td><td>API v1.1 added all four endpoints.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Other API capabilities of note</h3>
+  <ul>
+    <li><strong>Webhooks</strong> for order status updates</li>
+    <li><strong>Low-balance webhooks at 25% and 10%</strong> remaining (added Mar 2025) — protects you from running dry mid-month</li>
+    <li><strong>Rate limit: 8 requests/second</strong> — generous for a crew-focused app</li>
+    <li><strong>SMS send to ICCID</strong> (v1.4, Mar 2024) — could power 2FA / activation reminders</li>
+    <li><strong>Country filter</strong> on plan queries — clean for app catalog</li>
+    <li><strong>Daypass plans</strong> with <code>periodNum</code> parameter (v1.5, Jul 2024)</li>
+    <li><strong>Slug as alias</strong> for package code (v1.3, Dec 2023) — friendlier IDs</li>
+  </ul>
+
+  <h2>Account state — eSIM Access</h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="label">Account</div><div class="value">Active</div><div class="delta">Signed up 21-May-2026</div></div>
+    <div class="kpi"><div class="label">Plans available</div><div class="value">2,811</div><div class="delta">200+ countries</div></div>
+    <div class="kpi"><div class="label">API keys</div><div class="value">Issued</div><div class="delta">AccessCode + SecretKey ready</div></div>
+    <div class="kpi"><div class="label">Balance</div><div class="value">$0</div><div class="delta bad">Needs first deposit</div></div>
+  </div>
+
+  <h2>What this changes about supplier strategy</h2>
+  <div class="card green">
+    <h3>What stays</h3>
+    <ul>
+      <li><strong>Aggregator-direct is still the right path</strong> — exactly what the Walnut council recommended.</li>
+      <li><strong>Tier-2.5 cost layer beats Tier-3 by ~33% on UAE and ~70-85% everywhere else.</strong></li>
+      <li><strong>API surface is complete</strong> for the planned Peanut feature set: ordering, top-up, refund/cancel, webhooks.</li>
+    </ul>
+  </div>
+
+  <div class="card warm">
+    <h3>What changes</h3>
+    <ul>
+      <li><strong>The Walnut "3-6 month Tier-2 vetting" timeline is moot.</strong> eSIM Access reseller account already exists and is API-ready. Integration can begin this week.</li>
+      <li><strong>Samurai negotiation is no longer urgent.</strong> Going Samurai = paying eSIM Access's prices + 40% markup for the same underlying supply.</li>
+      <li><strong>Flit's structural cost moat narrows.</strong> Flit only beats eSIM Access in Japan/Korea/China (direct bilateral countries). Everywhere else — including Peanut's home UAE market — both sit on the same Tier 2.5 layer.</li>
+      <li><strong>Operator advisor's "Tier-3 net contribution goes negative" warning is resolved</strong> by going aggregator-direct, before any pricing changes.</li>
+    </ul>
+  </div>
+
+  <div class="card rose">
+    <h3>What's still open</h3>
+    <ul>
+      <li>Pre-pay only model — needs working capital sitting in the account at all times (sized to ~30 days of forecast usage)</li>
+      <li>USIP vs non-USIP plan variants — pick which is right for your activation flow before catalog launch</li>
+      <li>Not all plans support top-up — must filter by <code>supportTopUpType</code> before exposing to users</li>
+      <li>Compare eSIM Access against the other Tier 2.5 aggregators (eSIM Go, Maya Mobile, Sparkle) when their partner-team replies hit the inbox</li>
+    </ul>
+  </div>
+
+  <h2>Recommended next moves</h2>
+  <table>
+    <thead><tr><th>When</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>This week</td><td>Deposit ~$100 → place 1-2 test eSIM orders in UAE + Japan → verify ordering, activation, top-up, cancel/refund end-to-end</td></tr>
+      <tr><td>This week</td><td>Take the Quinn / Telnyx call (already booked Thu 17:00-24:00 Dubai) — confirm if Telnyx wins on multi-country bundles, otherwise eSIM Access becomes default</td></tr>
+      <tr><td>Within 2 weeks</td><td>Filter the 2,811-plan catalog by <code>supportTopUpType=YES</code> for all priority countries; finalize Peanut SKU list against those</td></tr>
+      <tr><td>Within 2 weeks</td><td>Update Walnut xlsx assumptions: replace $1.34/GB blended with real $0.80-1.00/GB blended (60% UAE / 40% intl mix)</td></tr>
+      <tr><td>Within 2 weeks</td><td>Rebuild Peanut Decision 00C refund-policy math at the new aggregator cost (was at $2.26/GB)</td></tr>
+      <tr><td>Soft deprecate</td><td>Samurai negotiation track unless they can offer terms eSIM Access can't (volume rebates, dedicated AM, etc.)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    Source: Live data pull from console.esimaccess.com on 2026-06-03 from an active reseller account (signed up 21-May-2026). API docs at docs.esimaccess.com. Replaces prior Tier-3 wholesale assumptions in the Peanut + Walnut models.
+  </div>
+
+</div>
+</body>
+</html>
