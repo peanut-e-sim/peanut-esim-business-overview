@@ -56,7 +56,8 @@
   [data-tab-content="docs"] .container,
   [data-tab-content="cost"] .container,
   [data-tab-content="updates"] .container,
-  [data-tab-content="delaware"] .container { max-width: 1280px; }
+  [data-tab-content="delaware"] .container,
+  [data-tab-content="research"] .container { max-width: 1280px; }
 
   /* ─── TOPBAR (sticky) ─── */
   .topbar {
@@ -2692,6 +2693,11 @@
         <span class="lang en">Supplier</span>
         <span class="lang jp">サプライヤー</span>
         <span class="count">27</span>
+      </button>
+      <button class="tab-btn" data-tab="research">
+        <span class="lang en">🔬 Research</span>
+        <span class="lang jp">🔬 リサーチ</span>
+        <span class="count" id="researchCount">7</span>
       </button>
       <button class="tab-btn" data-tab="blueprint">
         <span class="lang en">📘 Blueprint</span>
@@ -10215,6 +10221,139 @@ Mercury（米国法人銀行口座）
 
 </div>
 
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ─── TAB: RESEARCH (competitive intel + supplier intel) ─── -->
+<!-- ============================================================ -->
+<div class="tab-content" data-tab-content="research">
+<div class="container">
+  <header class="hero">
+    <span class="doc-tag">PEANUT ESIM · RESEARCH</span>
+    <h1 class="lang en">Competitive &amp; supplier <em>intelligence</em>.</h1>
+    <h1 class="lang jp">競合・サプライヤー<em>インテリジェンス</em>。</h1>
+    <p class="lead lang en">Deep-dives on competitors, upstream wholesale suppliers, and category economics. Every research artifact lives here so we can re-read at decision time instead of re-researching.</p>
+    <p class="lead lang jp">競合、上流サプライヤー、業界エコノミクスの詳細調査。意思決定時に再調査しなくて済むよう、すべてここに集約。</p>
+  </header>
+
+  <section style="border-bottom: none;">
+    <div class="sec-label"><span class="lang en">COMPETITIVE TEARDOWNS · 1 FILE</span><span class="lang jp">競合分析 ・ 1 ファイル</span></div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: rgba(201, 112, 112, 0.12); color: var(--rose);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8" stroke-linecap="round"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · KOREAN MVNO · 2026-06-03 · HIGH THREAT</span><span class="lang jp">HTML · 韓国 MVNO · 2026-06-03 · 高脅威</span></div>
+        <h3><span class="lang en">Flit eSIM (SKYCREW) — Competitive Teardown</span><span class="lang jp">Flit eSIM (SKYCREW) — 競合分析</span></h3>
+        <p><span class="lang en">Korean MVNO Harrie Inc. launched SKYCREW Aug 2025 — "world's first crew-only eSIM." 4,580+ active crew users, 4.7★ App Store, 131% CAGR, zero VC. Now recruiting Emirates crew via English-language waitlist. Full company profile + pricing + Trustpilot review pulls + 8 Peanut implications.</span><span class="lang jp">韓国 MVNO Harrie Inc. が 2025年8月にローンチした「世界初の乗務員専用 eSIM」。乗務員ユーザー 4,580 人超、App Store 4.7★、CAGR 131%、外部資本ゼロ。現在エミレーツ乗務員を英語ウェイティングリストで募集中。会社プロフィール、価格、Trustpilot 評価、Peanut への 8 つの示唆を網羅。</span></p>
+      </div>
+      <a href="docs/downloads/flit-competitive-teardown-2026-06-03.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="sec-label" style="margin-top: 40px;"><span class="lang en">SUPPLIER INTELLIGENCE · 4 FILES</span><span class="lang jp">サプライヤー調査 ・ 4 ファイル</span></div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: var(--accent-soft); color: var(--accent);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9h18M9 21V9M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · 8 ALT SUPPLIERS · 2026-06-03 · TOP 3 RANKED</span><span class="lang jp">HTML · 代替 8 社 · 2026-06-03 · 上位 3 社</span></div>
+        <h3><span class="lang en">Supplier Alternatives Research</span><span class="lang jp">代替サプライヤー調査</span></h3>
+        <p><span class="lang en">8 alternative wholesale eSIM API suppliers benchmarked against the current candidate. Top 3 ranked. Includes Tier-2 direct options (eSIM Access, eSIM Go, Airalo Partner) and elimination notes on poor fits.</span><span class="lang jp">現候補に対して 8 社の代替 eSIM 卸 API サプライヤーを比較。上位 3 社をランク付け。Tier-2 直販オプション（eSIM Access、eSIM Go、Airalo Partner）および除外理由を含む。</span></p>
+      </div>
+      <a href="docs/downloads/supplier-alternatives-research-2026-06-03.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: var(--peanut-soft); color: var(--peanut);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · TIER-2 DIRECT · 2026-06-01</span><span class="lang jp">HTML · Tier-2 直販 · 2026-06-01</span></div>
+        <h3><span class="lang en">Direct Supplier Research</span><span class="lang jp">直販サプライヤー調査</span></h3>
+        <p><span class="lang en">Deep dive on Tier-2 direct suppliers — bypassing reseller markups. Who they are, what they cost, qualification requirements, and typical onboarding timelines.</span><span class="lang jp">Tier-2 直販サプライヤーの詳細分析 — リセラーマージンを回避。会社概要、コスト、認定要件、オンボーディング期間を網羅。</span></p>
+      </div>
+      <a href="docs/downloads/direct-supplier-research-2026-06-01.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: var(--violet-soft); color: var(--violet);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · INDUSTRY MAP · 2026-05-24</span><span class="lang jp">HTML · 業界マップ · 2026-05-24</span></div>
+        <h3><span class="lang en">Supplier Landscape</span><span class="lang jp">サプライヤー業界マップ</span></h3>
+        <p><span class="lang en">Mapping of the global eSIM wholesale supply chain — Tier-1 MNOs, Tier-2 aggregators, Tier-3 resellers. How the layers stack and where margin lives at each level.</span><span class="lang jp">グローバル eSIM 卸サプライチェーンのマッピング — Tier-1 MNO、Tier-2 アグリゲーター、Tier-3 リセラー。各層の構造とマージン構造を解説。</span></p>
+      </div>
+      <a href="docs/downloads/supplier-landscape-2026-05-24.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-icon" style="background: rgba(201, 162, 39, 0.12); color: var(--gold);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M5 9l7-7 7 7M5 15l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · MARGIN STACK AUDIT · 2026-05-31</span><span class="lang jp">HTML · マージン構造監査 · 2026-05-31</span></div>
+        <h3><span class="lang en">Wholesale Markup Audit</span><span class="lang jp">卸マージン監査</span></h3>
+        <p><span class="lang en">Audit of the typical wholesale markup ladder: MNO → aggregator → reseller → sub-reseller. Quantifies the cumulative margin tax of staying multiple hops below Tier-1 carriers.</span><span class="lang jp">典型的な卸マージンラダーの監査:MNO → アグリゲーター → リセラー → サブリセラー。Tier-1 から複数階層下にいることの累積マージン税負担を定量化。</span></p>
+      </div>
+      <a href="docs/downloads/wholesale-markup-audit-2026-05-31.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="sec-label" style="margin-top: 40px;"><span class="lang en">PRICING INTELLIGENCE · 2 FILES</span><span class="lang jp">価格インテリジェンス ・ 2 ファイル</span></div>
+
+    <div class="doc-card">
+      <div class="doc-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18M7 12l4-4 4 4 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">HTML · 4 COMPETITORS · 2026-06-01</span><span class="lang jp">HTML · 競合 4 社 · 2026-06-01</span></div>
+        <h3><span class="lang en">Competitor Pricing Research</span><span class="lang jp">競合価格調査</span></h3>
+        <p><span class="lang en">Live pricing snapshot from Airalo, Holafly, Crew SIM, and category peers. Plan structures, per-GB rates, geographic coverage. The narrative behind the raw benchmark xlsx.</span><span class="lang jp">Airalo、Holafly、Crew SIM、同業他社のライブ価格スナップショット。プラン構成、GB あたり料金、地理的カバレッジ。生データ xlsx の背景にあるナラティブ。</span></p>
+      </div>
+      <a href="docs/downloads/competitor-pricing-research-2026-06-01.html" target="_blank" class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M14 10l7-7M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Open</span><span class="lang jp">開く</span>
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linejoin="round"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="doc-meta"><span class="lang en">XLSX · 176 DATA POINTS · 2026-05-21</span><span class="lang jp">XLSX · 176 データポイント · 2026-05-21</span></div>
+        <h3><span class="lang en">Competitor Pricing Benchmark (raw)</span><span class="lang jp">競合価格ベンチマーク（生データ）</span></h3>
+        <p><span class="lang en">22 destinations × 4 competitors × 2 plan profiles = 176 data points + margin opportunity analysis sheet. The data behind the research narrative above.</span><span class="lang jp">22 都市 × 4 競合 × 2 プラン構成 = 176 データポイント + マージン機会分析シート。上記調査ナラティブの裏付けデータ。</span></p>
+      </div>
+      <a href="docs/downloads/Competitor_Pricing_Benchmark.xlsx" download class="doc-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="lang en">Download</span><span class="lang jp">DL</span>
+      </a>
+    </div>
+
+    <p style="margin-top: 32px; font-size: 13px; color: var(--ink-muted); font-style: italic;">
+      <span class="lang en">More research artifacts (Crew SIM intel, Emirates crew demographics, US enforcement tracker, Stripe approval stories) live in the internal research folder and will be added here as they are sanitized for public review.</span>
+      <span class="lang jp">追加のリサーチ資料（Crew SIM 詳細、エミレーツ乗務員デモグラフィック、米国規制トラッカー、Stripe 承認事例）は内部リサーチフォルダにあり、公開準備が整い次第ここに追加します。</span>
+    </p>
+  </section>
 </div>
 </div>
 

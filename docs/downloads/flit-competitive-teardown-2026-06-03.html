@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flit eSIM — Competitive Teardown | June 2026</title>
+<style>
+  :root {
+    --warm-brown: #6B4C35;
+    --light-brown: #A07850;
+    --cream: #F5EFE6;
+    --off-white: #FAF7F3;
+    --slate-dark: #2C3240;
+    --slate-mid: #4A5568;
+    --slate-light: #718096;
+    --accent-red: #C0392B;
+    --accent-amber: #E67E22;
+    --accent-green: #27AE60;
+    --accent-blue: #2980B9;
+    --border: #DDD0C0;
+    --card-bg: #FFFFFF;
+    --shadow: rgba(107, 76, 53, 0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--off-white);
+    color: var(--slate-dark);
+    line-height: 1.6;
+  }
+
+  /* ─── HEADER ─────────────────────────────────────── */
+  .doc-header {
+    background: linear-gradient(135deg, var(--slate-dark) 0%, #1a2030 100%);
+    padding: 48px 40px 40px;
+    border-bottom: 3px solid var(--warm-brown);
+  }
+  .doc-header .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--light-brown);
+    margin-bottom: 12px;
+  }
+  .doc-header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .doc-header .sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 14px;
+  }
+  .verdict-badge {
+    display: inline-block;
+    background: var(--accent-red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-top: 16px;
+  }
+
+  /* ─── LAYOUT ─────────────────────────────────────── */
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+  /* ─── SECTION ────────────────────────────────────── */
+  .section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 24px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-header:hover { background: #EDE3D6; }
+  .section-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--warm-brown);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--warm-brown);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    flex: 1;
+  }
+  .chevron {
+    font-size: 16px;
+    color: var(--light-brown);
+    transition: transform 0.2s;
+  }
+  .section-body {
+    padding: 24px;
+  }
+  .section.collapsed .section-body { display: none; }
+  .section.collapsed .chevron { transform: rotate(-90deg); }
+
+  /* ─── TABLE ──────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 12px 0;
+  }
+  th {
+    background: var(--cream);
+    color: var(--warm-brown);
+    font-weight: 700;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--border);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #EEE8E0;
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--off-white); }
+  td:first-child { font-weight: 600; color: var(--slate-mid); font-size: 13px; }
+
+  /* ─── LABELS / PILLS ─────────────────────────────── */
+  .pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .pill-red { background: #FDECEA; color: #C0392B; }
+  .pill-green { background: #EAFAF1; color: #27AE60; }
+  .pill-amber { background: #FEF9E7; color: #D68910; }
+  .pill-blue { background: #EBF5FB; color: #2980B9; }
+  .pill-grey { background: #F2F3F4; color: #626567; }
+
+  /* ─── CALLOUT BOXES ──────────────────────────────── */
+  .callout {
+    border-left: 4px solid var(--warm-brown);
+    background: var(--cream);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .callout.danger { border-color: var(--accent-red); background: #FDF0EF; }
+  .callout.warn { border-color: var(--accent-amber); background: #FEF9F0; }
+  .callout.good { border-color: var(--accent-green); background: #EDFBF2; }
+  .callout strong { display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--slate-mid); }
+
+  /* ─── QUOTE ──────────────────────────────────────── */
+  blockquote {
+    border-left: 3px solid var(--border);
+    padding: 10px 16px;
+    color: var(--slate-mid);
+    font-style: italic;
+    font-size: 14px;
+    margin: 10px 0;
+    background: var(--off-white);
+    border-radius: 0 6px 6px 0;
+  }
+  blockquote cite {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--slate-light);
+    font-style: normal;
+  }
+
+  /* ─── GRID ───────────────────────────────────────── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 12px 0; }
+  @media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  .stat-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--warm-brown);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-card .label { font-size: 11px; color: var(--slate-light); text-transform: uppercase; letter-spacing: 0.8px; }
+
+  /* ─── MOVE CARDS ─────────────────────────────────── */
+  .move-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 10px 0;
+    position: relative;
+    padding-left: 52px;
+  }
+  .move-num {
+    position: absolute;
+    left: 16px; top: 18px;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--slate-dark);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .move-card h4 { font-size: 14px; font-weight: 700; color: var(--slate-dark); margin-bottom: 6px; }
+  .move-card p { font-size: 13px; color: var(--slate-mid); }
+
+  /* ─── HEADING INSIDE SECTION ─────────────────────── */
+  h3 { font-size: 15px; font-weight: 700; color: var(--slate-dark); margin: 18px 0 8px; }
+  h3:first-child { margin-top: 0; }
+  p { font-size: 14px; color: var(--slate-mid); margin-bottom: 10px; }
+  ul { padding-left: 20px; }
+  li { font-size: 14px; color: var(--slate-mid); margin-bottom: 4px; }
+  li strong { color: var(--slate-dark); }
+
+  /* ─── INSTAGRAM BIO BOX ──────────────────────────── */
+  .insta-bio {
+    background: #FAFAFA;
+    border: 1px solid #DBDBDB;
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-family: -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 420px;
+  }
+  .insta-bio .handle { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+  .insta-bio .stats { display: flex; gap: 18px; margin-bottom: 10px; font-size: 13px; }
+  .insta-bio .stats span strong { font-size: 15px; font-weight: 700; }
+  .insta-bio .highlight { background: #FFF3CD; padding: 2px 5px; border-radius: 3px; font-weight: 600; }
+
+  /* ─── FOOTER ─────────────────────────────────────── */
+  .doc-footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 12px;
+    color: var(--slate-light);
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+  <div class="label">Competitive Intelligence · eSIM Market</div>
+  <h1>Flit eSIM — Complete Teardown</h1>
+  <div class="sub">Prepared: June 3, 2026 &nbsp;·&nbsp; Sources: Instagram, App Store, Google Play, flitmobile.com, D&amp;B, Wikipedia</div>
+  <div class="verdict-badge">Threat Level: HIGH</div>
+</div>
+
+<div class="container">
+
+  <!-- QUICK VERDICT -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">★</div>
+      <div class="section-title">One-Page Verdict</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="callout danger">
+        <strong>Bottom line</strong>
+        Flit is not a generic travel eSIM. It is the world's first crew-dedicated eSIM, launched August 2025, with 4,580+ active aviation crew users in Korea — and as of June 2026 has opened an Emirates crew waitlist. This is a direct competitor entering the exact same crew-first lane.
+      </div>
+
+      <div class="grid-3">
+        <div class="stat-card"><div class="num">4,580+</div><div class="label">Crew users in Korea</div></div>
+        <div class="stat-card"><div class="num">12+</div><div class="label">Airline crew plans</div></div>
+        <div class="stat-card"><div class="num">4.7★</div><div class="label">App Store (642 reviews)</div></div>
+        <div class="stat-card"><div class="num">85K</div><div class="label">Total downloads</div></div>
+        <div class="stat-card"><div class="num">₩0</div><div class="label">External investment (bootstrapped)</div></div>
+        <div class="stat-card"><div class="num">NOW</div><div class="label">Emirates waitlist open</div></div>
+      </div>
+
+      <div class="callout warn">
+        <strong>Critical window</strong>
+        Flit's entire product is Korean-language. Their Emirates waitlist uses 2 English sentences in an otherwise Korean Instagram bio. They have no English app, no English support, no USD pricing. This is Peanut's 6–12 month window to establish English-language crew ownership of Emirates before Flit can ship a localized product.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: ENTITY -->
+  <div class="section collapsed">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">1</div>
+      <div class="section-title">Entity Identification</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Field</th><th>Detail</th></tr>
+        <tr><td>Brand name</td><td>flit eSIM (플릿 이심)</td></tr>
+        <tr><td>Parent company</td><td>(주)해리 / HARRIE Inc.</td></tr>
+        <tr><td>CEO</td><td>Hyuk Jong Yeo (여혁종)</td></tr>
+        <tr><td>Founded</td><td>2016 (as Korea Cellular; renamed Harrie 2017)</td></tr>
+        <tr><td>Headquarters</td><td>5F, 49 Dongmak-ro 8-gil, Mapo-gu, Seoul 04073, Korea</td></tr>
+        <tr><td>MVNO host networks</td><td>LG U+ (domestic), KDDI (Japan), China Mobile</td></tr>
+        <tr><td>Common carrier license</td><td>Yes — obtained 2022 (기간통신사업자)</td></tr>
+        <tr><td>Wikipedia listing</td><td>Yes — South Korea MVNO list (PAYG, start 2016)</td></tr>
+        <tr><td>App ID</td><td>com.flitmobile / Apple ID 1669672934</td></tr>
+        <tr><td>Website</td><td>flitmobile.com</td></tr>
+        <tr><td>Email</td><td>support@flitmobile.com</td></tr>
+      </table>
+
+      <h3>Revenue trajectory (public, Korean corporate site)</h3>
+      <div class="grid-3">
+        <div class="stat-card"><div class="num">₩380M</div><div class="label">2018 Revenue (~$280K)</div></div>
+        <div class="stat-card"><div class="num">₩5.1B</div><div class="label">2021 Revenue (~$3.75M)</div></div>
+        <div class="stat-card"><div class="num">131%</div><div class="label">4-year CAGR</div></div>
+      </div>
+
+      <div class="callout good">
+        <strong>Bootstrapped</strong>
+        Harrie Inc. states publicly they have raised "0 external investment" and are 100% self-funded. This limits their internationalization speed but means they are not under VC pressure for scale. They move on their own timeline.
+      </div>
+
+      <h3>Instagram Profile</h3>
+      <div class="insta-bio">
+        <div class="handle">@flit.official</div>
+        <div class="stats">
+          <span><strong>4,428</strong><br>followers</span>
+          <span><strong>11</strong><br>following</span>
+        </div>
+        똑똑한 로밍, 플릿 이심 🌏<br>
+        해외여행 데이터로밍, 앱 하나로 끝!<br>
+        <span class="highlight">SKYCREW Emirates waitlist now open</span><br>
+        <span class="highlight">Get your free 1GB eSIM trial 👇</span><br>
+        bit.ly/49VNaww
+      </div>
+      <p style="margin-top:10px;font-size:12px;color:var(--slate-light)">Note: The two highlighted lines are the only English text in flit's entire public presence. This signals the Emirates expansion is a deliberate new market push.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: SERVICE & POSITIONING -->
+  <div class="section collapsed">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">2</div>
+      <div class="section-title">Service &amp; Positioning</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <h3>What they sell</h3>
+      <p>Travel eSIM data plans for Korean nationals traveling internationally. Data-only (no voice), with hotspot/tethering included. Korean phone number monitoring included — missed calls visible without roaming charges.</p>
+
+      <h3>Three distinct customer segments</h3>
+      <table>
+        <tr><th>Segment</th><th>Product</th><th>Verification</th><th>Unique feature</th></tr>
+        <tr><td>General travelers</td><td>Standard per-trip plans</td><td>None</td><td>145+ countries, 50+ plan types</td></tr>
+        <tr><td>Business travelers</td><td>Flit Partners (B2B)</td><td>Corporate email domain</td><td>7% permanent discount, expense receipts</td></tr>
+        <tr><td>Airline crew</td><td>SKYCREW <span class="pill pill-red">KEY</span></td><td>Airline email address</td><td>Crew-specific coverage, priority support, free device swap</td></tr>
+      </table>
+
+      <h3>Taglines (verbatim, translated)</h3>
+      <blockquote>
+        "Smart roaming, Flit — connect anywhere in the world in 3 minutes"
+        <cite>flitmobile.com homepage</cite>
+      </blockquote>
+      <blockquote>
+        "If you've traveled before — obviously Flit eSIM"
+        <cite>flitmobile.com hero subhead</cite>
+      </blockquote>
+      <blockquote>
+        "For cabin crew — the world's first crew eSIM. Layover data: easier, more affordable."
+        <cite>flitmobile.com/skycrew</cite>
+      </blockquote>
+      <blockquote>
+        "The global eSIM chosen even by aviation professionals"
+        <cite>flitmobile.com meta description</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- SECTION 3: PRODUCT DETAILS — PRICING DEEP DIVE -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">3</div>
+      <div class="section-title">Pricing &amp; Plans — Deep Dive (all 3 segments)</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+
+      <div class="callout">
+        <strong>Three distinct product lines</strong>
+        Flit sells under three pricing structures: <strong>SKYCREW</strong> (annual crew plan, airline-gated), <strong>General Consumer</strong> (per-trip travel eSIM), and <strong>Flit Partners</strong> (B2B corporate). Each has a separate pricing logic, target buyer, and acquisition mechanic.
+      </div>
+
+      <!-- ─── SKYCREW ─── -->
+      <h3 style="margin-top:24px;border-bottom:2px solid var(--warm-brown);padding-bottom:6px;">⚓ SKYCREW <span class="pill pill-red" style="vertical-align:middle;margin-left:8px;">CREW-ONLY</span></h3>
+      <p style="font-size:13px;color:var(--slate-light);">The only crew-dedicated commercial eSIM plan currently shipping anywhere in the world. Single-tier annual model. Launched Aug 11, 2025.</p>
+
+      <h3>SKYCREW core plan</h3>
+      <table>
+        <tr><th>Plan attribute</th><th>Detail</th></tr>
+        <tr><td>Price</td><td><strong>₩69,900 / year</strong> + crew coupons → ~<strong>$49 USD</strong> annual</td></tr>
+        <tr><td>Data allotment</td><td>20 GB total across 365 days</td></tr>
+        <tr><td>Effective rate</td><td><strong>~$2.45 / GB</strong> retail (₩3,495 / GB)</td></tr>
+        <tr><td>Effective monthly</td><td>~$4.08 / month equivalent if amortized</td></tr>
+        <tr><td>Daily allocation</td><td>None specified — total 20GB pool, use as needed</td></tr>
+        <tr><td>Hotspot / tethering</td><td>Included</td></tr>
+        <tr><td>Validity</td><td>365 days from activation (annual lock)</td></tr>
+        <tr><td>Verification</td><td>Airline email address (auto, no manual review)</td></tr>
+        <tr><td>Unused data</td><td>Refunded as Flit points (20GB plan only)</td></tr>
+        <tr><td>Top-up</td><td>In-app data extension during validity period</td></tr>
+        <tr><td>Free trial offer</td><td><strong>1GB free</strong> for new Emirates crew (Instagram bio, English-only offer)</td></tr>
+      </table>
+
+      <h3>Flit's own competitive positioning (verbatim from /skycrew)</h3>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Flit SKYCREW 20GB <span class="pill pill-green">Crew</span></th>
+          <th>Competitor "Mobi**"</th>
+          <th>Competitor "Flex**"</th>
+        </tr>
+        <tr><td>Price</td><td><strong>₩69,900</strong> + coupons (~$49)</td><td>₩102,100 / USD 90 (no KRW)</td><td>USD 90 (no KRW)</td></tr>
+        <tr><td>Duration</td><td>365 days</td><td>365 days</td><td>360 days</td></tr>
+        <tr><td>Data</td><td>20 GB</td><td>20 GB</td><td>36 GB</td></tr>
+        <tr><td>Per-GB equivalent</td><td><strong>$2.45/GB</strong></td><td>$4.50/GB</td><td>$2.50/GB</td></tr>
+        <tr><td>Coverage</td><td>All carrier destinations</td><td>116 countries</td><td>150 countries + some inflight</td></tr>
+        <tr><td>Crew-only?</td><td><span class="pill pill-green">Yes</span></td><td><span class="pill pill-red">No</span></td><td><span class="pill pill-red">No</span></td></tr>
+        <tr><td>Support</td><td>Korean phone + chat, crew priority queue</td><td>No live support, ticket-only</td><td>English chat only, no phone</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--slate-light);margin-top:4px;">Flit's "₩69,900 vs ₩102,100" pitch is a ~45% undercut against Mobi** at the same 20GB tier. They're using price compression as a moat against existing consumer eSIM brands.</p>
+
+      <h3>Per-airline plan variants (12+ airlines as of June 2026)</h3>
+      <p>Each airline has a route-tuned plan variant under the same SKYCREW umbrella. Same price, different country coverage based on that airline's actual route map.</p>
+      <p style="font-size:13px;line-height:1.8;">
+        <span class="pill pill-blue">KE</span> Korean Air ·
+        <span class="pill pill-blue">OZ</span> Asiana ·
+        <span class="pill pill-blue">7C</span> Jeju Air ·
+        <span class="pill pill-blue">TW</span> T'way ·
+        <span class="pill pill-blue">LJ</span> Jin Air ·
+        <span class="pill pill-blue">BX</span> Air Busan ·
+        <span class="pill pill-blue">RF</span> Aero K ·
+        <span class="pill pill-blue">ZE</span> Air Zeta ·
+        <span class="pill pill-blue">YP</span> Air Premia ·
+        <span class="pill pill-blue">RS</span> Air Seoul ·
+        <span class="pill pill-blue">WE</span> Parata/Trinity ·
+        <span class="pill pill-blue">KJ</span> KJ Airline ·
+        <span class="pill pill-green">CX</span> <strong>Cathay Pacific (NEW)</strong> ·
+        <span class="pill pill-red">EK</span> <strong>Emirates — waitlist open</strong>
+      </p>
+
+      <h3>SKYCREW crew-specific perks</h3>
+      <ul>
+        <li><strong>Airline email verification</strong> — closed community, crew-only access</li>
+        <li><strong>Free eSIM swap for aviation staff</strong> — device changes don't cost crew (added Mar 2026)</li>
+        <li><strong>Priority customer service queue</strong> — "항공인 우선연결" (aviation crew priority)</li>
+        <li><strong>Unused data → points refund</strong> — 20GB plan only, smart for crew who leave layovers early</li>
+        <li><strong>Data extension in-app</strong> — top up mid-layover if extended</li>
+        <li><strong>One-tap install (RSP push)</strong>, no QR scan — Android support added Mar 2026</li>
+      </ul>
+
+      <h3>SKYCREW traction</h3>
+      <div class="grid-2">
+        <div class="stat-card"><div class="num">4,580+</div><div class="label">Active crew users (Mar 2026)</div></div>
+        <div class="stat-card"><div class="num">1,100+</div><div class="label">Crew in first month post-launch</div></div>
+        <div class="stat-card"><div class="num">2/3</div><div class="label">Of one Korean carrier's crew using Flit</div></div>
+        <div class="stat-card"><div class="num">10.7 days</div><div class="label">Avg active layover days / month / user</div></div>
+      </div>
+
+      <div class="callout danger">
+        <strong>Emirates entry — live now</strong>
+        Instagram bio (the ONLY English text in their entire public presence): <em>"SKYCREW Emirates waitlist now open / Get your free 1GB eSIM trial 👇"</em> Bit.ly link confirmed live as of 2026-06-03. The waitlist page itself is Korean — meaning there is currently no English product behind the offer.
+      </div>
+
+      <!-- ─── GENERAL CONSUMER ─── -->
+      <h3 style="margin-top:28px;border-bottom:2px solid var(--warm-brown);padding-bottom:6px;">🌏 General Consumer Plans <span class="pill pill-blue" style="vertical-align:middle;margin-left:8px;">EVERYONE</span></h3>
+      <p style="font-size:13px;color:var(--slate-light);">Per-trip travel eSIM plans for Korean nationals. This is Flit's flagship pre-SKYCREW business — what they were known for from 2016–2025.</p>
+
+      <table>
+        <tr><th>Attribute</th><th>Detail</th></tr>
+        <tr><td>Pricing model</td><td>Per-trip — selectable country + duration + data cap</td></tr>
+        <tr><td>Plan structure</td><td>"Unlimited" with daily-cap model (standard for Korean eSIM market — e.g. 5GB/day, then slowed)</td></tr>
+        <tr><td>Coverage</td><td>145+ countries, ~50+ plan types</td></tr>
+        <tr><td>Voice plans</td><td>"Max+Plus" plans added Dec 2025 — voice-capable for select destinations</td></tr>
+        <tr><td>Hotspot / tethering</td><td>Included within high-speed allocation</td></tr>
+        <tr><td>Mid-trip top-up</td><td>Yes — extend plan in-app</td></tr>
+        <tr><td>Real-time usage</td><td>Visible inside app</td></tr>
+        <tr><td>Gifting</td><td>Buy multiple eSIMs, gift to travel companions</td></tr>
+        <tr><td>Loyalty</td><td><strong>2% point rewards</strong> on every purchase</td></tr>
+        <tr><td>Korean number monitoring</td><td>Wi-Fi calling + missed call notification — keep Korean number reachable without roaming</td></tr>
+        <tr><td>Payment</td><td>KRW only · Naver Pay · App Store / Google Play IAP</td></tr>
+        <tr><td>Activation</td><td>QR code OR one-tap install (Android one-tap launched Mar 2026)</td></tr>
+      </table>
+
+      <h3>Examples from app review verbatim (translated)</h3>
+      <blockquote>
+        "I thought '4-day 5GB' meant 5GB total but it's <strong>5GB PER DAY</strong>. So happy when I found out."
+        <cite>★★★★★ App Store KR — example of daily-cap "unlimited" model in practice</cite>
+      </blockquote>
+      <p style="font-size:12px;color:var(--slate-light);">The Korean eSIM market norm is "daily cap unlimited" — you get X GB at full speed per day, then throttle. This is how Flit's General plans work. SKYCREW is the only Flit plan using a total-pool model (20GB across 365 days).</p>
+
+      <!-- ─── PARTNERS B2B ─── -->
+      <h3 style="margin-top:28px;border-bottom:2px solid var(--warm-brown);padding-bottom:6px;">🏢 Flit Partners <span class="pill pill-amber" style="vertical-align:middle;margin-left:8px;">B2B</span></h3>
+      <p style="font-size:13px;color:var(--slate-light);">Corporate program for partner companies. Employees of named partner companies get a permanent discount on personal travel.</p>
+
+      <table>
+        <tr><th>Attribute</th><th>Detail</th></tr>
+        <tr><td>Discount</td><td><strong>7% permanent</strong> off retail for partner-company employees</td></tr>
+        <tr><td>Setup cost</td><td>Zero (employee pays own bill, gets discount auto-applied)</td></tr>
+        <tr><td>Verification</td><td>Corporate email domain</td></tr>
+        <tr><td>Receipts</td><td>Email receipt suitable for corporate expense reports</td></tr>
+        <tr><td>Active users</td><td><strong>950+</strong> corporate users (as of June 2026)</td></tr>
+        <tr><td>Named partners</td><td>Kakao Corp · KakaoBank · KakaoPay · Naver Corp · NHN Entertainment · Woori Bank · police/government entity</td></tr>
+      </table>
+
+      <div class="callout">
+        <strong>Quietly important</strong>
+        The Partners program is a zero-CAC distribution channel. Flit signs a deal with a corporate, then every employee who travels becomes a self-onboarding user. No marketing spend per acquisition. This is the institutional version of SKYCREW's airline-email verification model — gated by corporate identity instead of carrier identity.
+      </div>
+
+      <!-- ─── ECONOMIC ANALYSIS ─── -->
+      <h3 style="margin-top:28px;border-bottom:2px solid var(--warm-brown);padding-bottom:6px;">📊 Per-GB Economics — what this means for Peanut</h3>
+
+      <table>
+        <tr><th>Metric</th><th>Flit SKYCREW</th><th>Peanut planned</th><th>Walnut (simulation)</th></tr>
+        <tr><td>Retail $/GB</td><td><strong>$2.45/GB</strong></td><td>$1.90–$2.00/GB (Premium/Business tiers)</td><td>$2.00/GB (per-trip target)</td></tr>
+        <tr><td>Wholesale $/GB (est.)</td><td>~$0.50–0.80/GB (full MVNO economics)</td><td>$2.26/GB blended (Tier-3 reseller)</td><td>$1.40/GB Tier-3 → $1.34/GB Tier-2</td></tr>
+        <tr><td>Implied gross margin</td><td>~70%+</td><td>~12% at $2.26 wholesale</td><td>~30% Tier-3 → ~33% Tier-2</td></tr>
+        <tr><td>Billing model</td><td>Annual lock ($49/yr)</td><td>Monthly subscription tiers</td><td>Per-trip + optional $50/yr Guild</td></tr>
+        <tr><td>Working capital</td><td>Strong (annual upfront)</td><td>Weak (monthly)</td><td>Mixed</td></tr>
+      </table>
+
+      <div class="callout danger">
+        <strong>The structural disadvantage Peanut cannot ignore</strong>
+        Flit is a registered Korean MVNO with direct bilateral agreements (KDDI, China Mobile). Their wholesale cost is roughly 1/3 of Peanut's Tier-3 reseller cost. They can price at $2.45/GB and still earn 70%+ gross margin. Peanut at the same retail would lose money. <strong>The wedge cannot be price — it must be feature.</strong>
+      </div>
+
+      <h3>Three pricing implications for Peanut</h3>
+      <div class="move-card">
+        <div class="move-num">A</div>
+        <h4>Do not try to price-match Flit's $49/year</h4>
+        <p>At Peanut's $2.26/GB blended wholesale cost, matching Flit's $2.45/GB retail leaves only ~8% gross margin before Stripe, refunds, support, and fraud. The Operator-advisor's xlsx model shows this scenario goes negative at low trip frequency. Peanut's pricing floor on a 20GB-equivalent plan should be ~$79–89/year, not $49. Differentiate on roster awareness + layover intel + English UI, not on $/GB.</p>
+      </div>
+
+      <div class="move-card">
+        <div class="move-num">B</div>
+        <h4>Annual model is a wedge Peanut should consider for crew specifically</h4>
+        <p>Flit's $49/year annual single-purchase model gives them upfront working capital and zero monthly churn. Peanut's planned monthly subscription has the opposite cashflow profile. For the crew vertical specifically, consider mirroring an annual tier (e.g. "Crew Annual" at $89/yr for 30GB) alongside the monthly subscription. Annual buyers self-select for high engagement and don't need to be re-acquired every month.</p>
+      </div>
+
+      <div class="move-card">
+        <div class="move-num">C</div>
+        <h4>Match or beat the 1GB free trial — but in English</h4>
+        <p>Flit's Emirates waitlist offer is "1GB free trial." Peanut should run an exactly equivalent offer ("First 2GB free for Emirates crew — English app, USD pricing") and seed it through the same channels Flit cannot reach (English-speaking crew WhatsApp groups, EK Facebook pages). The offer is symmetric; the channel access is not. This is the cheapest competitive move available.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4: BRAND COPY -->
+  <div class="section collapsed">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">4</div>
+      <div class="section-title">Brand, Copy &amp; Voice</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <h3>Brand voice</h3>
+      <p>Korean-first, warm, personal, informal "우리" (we/our) tone. Heavy use of aviation vocabulary in SKYCREW copy: 레이오버 (layover), 취항지 (destination ports), 항공인 (aviation person). Emoji use: moderate. The SKYCREW page specifically says "진짜 Crew-Only 요금제" — "real Crew-Only plan" — distancing from generic travel eSIM competitors.</p>
+
+      <h3>Visual brand</h3>
+      <p>Deep navy primary, bright blue accent (#007AFF range), white background. Logo uses clean sans-serif wordmark. SKYCREW page uses sky gradient photography. App icon: stylized plane / connectivity motif.</p>
+
+      <h3>Notable copy lines (translated)</h3>
+      <blockquote>
+        "Every day a different sky — always the same connection. Today Paris, tomorrow Tokyo. The city changes, the data doesn't."
+        <cite>SKYCREW page hero</cite>
+      </blockquote>
+      <blockquote>
+        "Not an eSIM for travel. A plan designed around crew's flights and layovers. A real Crew-Only plan."
+        <cite>SKYCREW positioning</cite>
+      </blockquote>
+      <blockquote>
+        "세계 최초 항공인 전용 SKYCREW 플랜 오픈! 전세계 어디서든 플릿으로 비행하세요."
+        (World's first aviation-only SKYCREW plan open! Fly anywhere in the world with Flit.)
+        <cite>App Store changelog, v1.18.x, September 2025</cite>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- SECTION 5: REVIEWS -->
+  <div class="section collapsed">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">5</div>
+      <div class="section-title">Reviews &amp; Social Proof</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="grid-3">
+        <div class="stat-card"><div class="num">4.7</div><div class="label">App Store (642 reviews)</div></div>
+        <div class="stat-card"><div class="num">4.7</div><div class="label">Google Play (50K+ installs)</div></div>
+        <div class="stat-card"><div class="num">#69</div><div class="label">Google Play KR Travel (Top Free)</div></div>
+      </div>
+
+      <h3>Verbatim App Store Reviews (translated)</h3>
+
+      <blockquote>
+        "The price is cheaper than other services and it works everywhere we fly. I recommended it to my colleagues and they all switched from other services to Flit. 🤭 Thank you for making a plan at such a reasonable price!"
+        <cite>★★★★★ — Title: "Cabin crew eSIM is so good" · App Store KR · Oct 2025</cite>
+      </blockquote>
+
+      <blockquote>
+        "A fellow captain recommended it to me and it was a whole new world. I normally don't leave reviews but I'm genuinely moved. Switched from Mobi** and it's so much more convenient. Get rich!!"
+        <cite>★★★★★ — "Truly fast and convenient!" · App Store KR · Dec 2025</cite>
+      </blockquote>
+
+      <blockquote>
+        "Used in Shanghai, Melbourne, Nagoya — no drops anywhere. In China, KakaoTalk and Instagram work without a separate VPN even in crowded Nanjing Road."
+        <cite>★★★★★ — "Works great in China too" · App Store KR · Dec 2025</cite>
+      </blockquote>
+
+      <blockquote>
+        "I never leave reviews but I had to for this app. Using it from China right now. I thought '4-day 5GB' meant 5GB total but it's 5GB PER DAY. So happy when I found out. Highly recommend if you're on Instagram or streaming."
+        <cite>★★★★★ — "Never leave reviews, but this app" · App Store KR</cite>
+      </blockquote>
+
+      <blockquote>
+        "No QR scan, one-tap install, balance visible in real time, plan extensions... UI so clean even first-timers can do it. Switched from buying from web stores and never going back."
+        <cite>★★★★★ — "Travel prep: Flit eSIM" · App Store KR</cite>
+      </blockquote>
+
+      <div class="callout">
+        <strong>Pattern</strong>
+        Every crew review mentions peer recommendation as the discovery channel. Flit is spreading virally within Korean aviation crew networks. The same word-of-mouth dynamic will be the mechanism if/when they enter the Emirates crew market.
+      </div>
+
+      <h3>No Trustpilot, No English Reddit presence</h3>
+      <p>Flit has no Trustpilot profile (Korean-domestic product not indexed in Western review systems). No threads found on r/cabincrew, r/digitalnomad, or r/esim in English. This means the competitive threat is entirely invisible to English-speaking market watchers — including Peanut's potential investors and crew users.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6: INFRASTRUCTURE -->
+  <div class="section collapsed">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">6</div>
+      <div class="section-title">Infrastructure &amp; Technical Signals</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <tr><th>Item</th><th>Detail</th></tr>
+        <tr><td>MVNO type</td><td>Registered common carrier (기간통신사업자) since 2022 — full carrier license, not just reseller</td></tr>
+        <tr><td>Network partners</td><td>LG U+ (Korea), KDDI (Japan), China Mobile (China)</td></tr>
+        <tr><td>Provisioning</td><td>RSP push (GSMA Remote SIM Provisioning) — no QR code required. One-tap install.</td></tr>
+        <tr><td>iOS minimum</td><td>iOS 15.6</td></tr>
+        <tr><td>Android availability</td><td>Yes (one-tap install added March 2026)</td></tr>
+        <tr><td>Website stack</td><td>Astro (modern static site framework) — fast, modern</td></tr>
+        <tr><td>Corporate site</td><td>WordPress</td></tr>
+        <tr><td>Support chat</td><td>Channel Talk (visible at flitmobile.channel.io) + KakaoTalk direct link</td></tr>
+        <tr><td>Analytics</td><td>Naver verification tag + standard analytics</td></tr>
+        <tr><td>Payments</td><td>Korean won (KRW), Naver Pay, app store IAP</td></tr>
+        <tr><td>App size</td><td>73.7 MB (iOS), 43.8 MB (Android APK)</td></tr>
+      </table>
+
+      <div class="callout">
+        <strong>Supplier inference</strong>
+        Harrie Inc. is a registered Korean MVNO on LG U+. For international coverage, they either use eSIM Go, iBASIS, or a similar global eSIM wholesale roaming partner. The company also operates ESIM JAPAN (via KDDI), suggesting a direct bilateral agreement with KDDI rather than aggregator-only. Their 6-year MVNO track record and 2022 carrier license means they have real infrastructure, not a pure reseller arrangement.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: CREW vs GENERAL -->
+  <div class="section collapsed">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">7</div>
+      <div class="section-title">Crew-Specific vs General Traveler Signals</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="callout danger">
+        <strong>Verdict</strong>
+        Flit is NOT primarily a general travel eSIM. The SKYCREW product is a full standalone business unit with its own dedicated landing page, airline-specific plan variants, crew verification, priority support, and dedicated feature set. This is a crew-first company that also serves general travelers — not the reverse.
+      </div>
+
+      <table>
+        <tr><th>Crew Signal</th><th>Present?</th><th>Evidence</th></tr>
+        <tr><td>Crew-only plan</td><td><span class="pill pill-green">Yes</span></td><td>SKYCREW product at /skycrew</td></tr>
+        <tr><td>Layover language</td><td><span class="pill pill-green">Yes</span></td><td>"레이오버 데이터" throughout SKYCREW page</td></tr>
+        <tr><td>Airline verification</td><td><span class="pill pill-green">Yes</span></td><td>Airline email address required for SKYCREW</td></tr>
+        <tr><td>Per-airline plans</td><td><span class="pill pill-green">Yes</span></td><td>12 airlines, each with tailored coverage</td></tr>
+        <tr><td>eSIM swap (crew benefit)</td><td><span class="pill pill-green">Yes</span></td><td>Free device swap for aviation staff</td></tr>
+        <tr><td>Priority support queue</td><td><span class="pill pill-green">Yes</span></td><td>"항공인 우선연결" (aviation crew priority)</td></tr>
+        <tr><td>Crew reviews organic</td><td><span class="pill pill-green">Yes</span></td><td>Multiple reviews from pilots and cabin crew</td></tr>
+        <tr><td>Emirates expansion</td><td><span class="pill pill-green">Yes</span></td><td>Instagram bio, June 2026</td></tr>
+        <tr><td>Roster/schedule awareness</td><td><span class="pill pill-red">No</span></td><td>No schedule upload, no flight-aware planning</td></tr>
+        <tr><td>Layover intel / hotel recs</td><td><span class="pill pill-red">No</span></td><td>Data-only product, no destination content</td></tr>
+        <tr><td>English app interface</td><td><span class="pill pill-red">No</span></td><td>Korean only</td></tr>
+        <tr><td>Multi-nationality support</td><td><span class="pill pill-red">No</span></td><td>Korea-native product only</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 8: MOMENTUM -->
+  <div class="section collapsed">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">8</div>
+      <div class="section-title">Recent Activity &amp; Momentum</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <h3>App release cadence (2025–2026)</h3>
+      <table>
+        <tr><th>Version</th><th>Date</th><th>Key change</th></tr>
+        <tr><td>1.18.x</td><td>Sep–Oct 2025</td><td><strong>SKYCREW launched</strong> — "World's first crew eSIM"</td></tr>
+        <tr><td>1.19.x</td><td>Nov 2025</td><td>Max+Plus plans (voice-capable) added</td></tr>
+        <tr><td>1.20.x</td><td>Dec 2025</td><td>Bug fixes, eSIM registration for external purchases</td></tr>
+        <tr><td>1.21.x</td><td>Jan 2026</td><td>Installation status improvements</td></tr>
+        <tr><td>1.22.x</td><td>Mar 2026</td><td><strong>One-tap Android install; free eSIM swap for aviation</strong></td></tr>
+        <tr><td>1.23.x</td><td>Apr 2026</td><td>eSIM management improvements, bug fixes</td></tr>
+      </table>
+      <p style="font-size:12px;color:var(--slate-light);margin-top:6px">7 major versions in 7 months since SKYCREW launch — all focused on aviation crew features.</p>
+
+      <h3>Growth trajectory</h3>
+      <ul>
+        <li>Aug 11, 2025: SKYCREW launched</li>
+        <li>Within 1 month: 1,100+ crew users (1,000 pre-registered before launch)</li>
+        <li>By Mar 2026: 4,580+ crew users — 4x growth in 7 months</li>
+        <li>Mar 2026: 2/3 of one domestic Korean airline's crew using Flit</li>
+        <li>Q2 2026: Emirates waitlist open — first international crew market</li>
+        <li>App downloads: 85K total, 5,700 in last 30 days (~190/day)</li>
+        <li>Ranked #69 in Korea Travel (Top Free) on Google Play</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Velocity assessment</strong>
+        Flit went from 0 to 4,580 crew users in 7 months with a Korean-only product targeting Korean airlines. If they localize to English and open UAE, even 10% of that conversion rate applied to Emirates' 18,000+ cabin crew would be 1,800 users — larger than Crew SIM's entire user base.
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: THREAT ASSESSMENT -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">9</div>
+      <div class="section-title">Threat Assessment</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <h3>Feature comparison vs Peanut</h3>
+      <table>
+        <tr><th>Feature</th><th>Flit SKYCREW</th><th>Peanut (planned)</th></tr>
+        <tr><td>Crew-specific eSIM</td><td><span class="pill pill-green">Yes</span></td><td><span class="pill pill-green">Yes</span></td></tr>
+        <tr><td>Layover-optimized plans</td><td><span class="pill pill-green">Yes</span></td><td><span class="pill pill-green">Yes</span></td></tr>
+        <tr><td>Airline email verification</td><td><span class="pill pill-green">Yes</span></td><td>Planned</td></tr>
+        <tr><td>iOS + Android</td><td><span class="pill pill-green">Yes</span></td><td>iOS-first</td></tr>
+        <tr><td>English interface</td><td><span class="pill pill-red">No</span></td><td><span class="pill pill-green">Yes</span></td></tr>
+        <tr><td>USD pricing</td><td><span class="pill pill-red">No</span></td><td><span class="pill pill-green">Yes</span></td></tr>
+        <tr><td>Emirates crew</td><td>Waitlist only</td><td>Target from day 1</td></tr>
+        <tr><td>Roster upload / schedule awareness</td><td><span class="pill pill-red">No</span></td><td><span class="pill pill-green">Yes (core wedge)</span></td></tr>
+        <tr><td>Crew recs / layover intel</td><td><span class="pill pill-red">No</span></td><td><span class="pill pill-green">Yes</span></td></tr>
+        <tr><td>Community / social layer</td><td><span class="pill pill-red">No</span></td><td><span class="pill pill-green">Yes</span></td></tr>
+        <tr><td>Multi-airline (non-Korean)</td><td><span class="pill pill-red">No</span></td><td><span class="pill pill-green">Yes</span></td></tr>
+      </table>
+
+      <h3>What to learn from Flit</h3>
+      <ul>
+        <li><strong>Peer recommendation is the acquisition channel.</strong> Every Flit crew review cites a colleague recommendation. Build referral mechanics before launch, not after.</li>
+        <li><strong>Airline email verification = trust moat.</strong> Crew value the "crew-only" badge. Gate the full experience behind airline email from day 1.</li>
+        <li><strong>eSIM device swap is a real crew pain point.</strong> Build this feature. Crew upgrade phones and don't want to re-buy eSIMs.</li>
+        <li><strong>Priority support for crew is a differentiator.</strong> Flit explicitly advertises this. Peanut's AI support + crew-priority queue is a response to this pain.</li>
+        <li><strong>Unused data → points refund.</strong> Smart mechanic for crew who leave layovers early. Reduces price anxiety.</li>
+        <li><strong>"1GB free trial" as entry offer.</strong> Flit is using this exact offer for Emirates waitlist. Peanut should match or beat it as a launch acquisition offer.</li>
+        <li><strong>The crew segment is real and fast-growing.</strong> Flit's 4,580 in 7 months validates the hypothesis. This is not a niche — it's a measurable market.</li>
+      </ul>
+
+      <h3>What to avoid</h3>
+      <ul>
+        <li><strong>Korean-only interface.</strong> Emirates crew are 55+ nationalities. English is non-negotiable.</li>
+        <li><strong>No schedule integration.</strong> Flit requires manual country/duration selection. Peanut's roster upload removes this friction entirely.</li>
+        <li><strong>No layover content.</strong> Data-only utility. Peanut's recs + intel create lock-in that Flit has no answer to.</li>
+        <li><strong>No community.</strong> Flit is transactional. Peanut's crew recs and points ecosystem create switching costs.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 10: 30-DAY MOVES -->
+  <div class="section">
+    <div class="section-header" onclick="toggle(this)">
+      <div class="section-num">10</div>
+      <div class="section-title">3 Specific 30-Day Moves</div>
+      <span class="chevron">▾</span>
+    </div>
+    <div class="section-body">
+      <div class="callout danger">
+        <strong>Time-sensitive</strong>
+        Flit has the Emirates waitlist open but no English product. This window is estimated at 6–12 months before they can ship English localization. These three moves are sequenced to exploit that gap.
+      </div>
+
+      <div class="move-card">
+        <div class="move-num">1</div>
+        <h4>Seed Emirates crew networks before Flit ships an English app</h4>
+        <p>Flit's Emirates waitlist uses only 2 English sentences and links to a Korean-language page. Their English product does not exist yet. Target Emirates cabin crew WhatsApp groups, Facebook groups, and crew forums with a counter-offer: "First eSIM free" or "1GB free trial — English app, USD pricing, no Korean required." Goal: establish Peanut as the English-language crew eSIM of choice at DXB before Flit completes localization. Time window: approximately 6–12 months.</p>
+      </div>
+
+      <div class="move-card">
+        <div class="move-num">2</div>
+        <h4>Lock in "world's first English crew eSIM" positioning across all public assets</h4>
+        <p>Flit has claimed "세계 최초 승무원 전용 eSIM" (world's first crew-only eSIM) in Korean since August 2025. Peanut can legitimately claim "world's first crew eSIM built in English" or "world's first Emirates crew eSIM." Add this language to the App Store description, landing page hero, and all pitch deck slides this week. Once Flit ships English, this window closes. Don't let them claim it retroactively.</p>
+      </div>
+
+      <div class="move-card">
+        <div class="move-num">3</div>
+        <h4>Build the Flit comparison page as a sales tool</h4>
+        <p>Flit's SKYCREW comparison table is a template Peanut should replicate and invert. Create a comparison page (Peanut vs Flit, not indexed publicly initially) with: English app (Peanut: yes, Flit: no), USD pricing (yes/no), roster-aware plans (yes/no), layover intel (yes/no), multi-airline non-Korean support (yes/no). Deploy this as a direct response whenever crew mention Flit in any forum, and as a PDF attachment for crew group outreach. Flit's Korean-language barrier is the single most concrete competitive advantage to exploit.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<div class="doc-footer">
+  Competitive teardown prepared June 3, 2026 &nbsp;·&nbsp;
+  Sources: Instagram @flit.official · flitmobile.com · App Store KR · Google Play · AppBrain · Harrie Inc. corporate site · D&amp;B · Wikipedia MVNO list &nbsp;·&nbsp;
+  All prices and stats captured June 3, 2026
+</div>
+
+<script>
+function toggle(header) {
+  const section = header.parentElement;
+  section.classList.toggle('collapsed');
+}
+</script>
+
+</body>
+</html>
