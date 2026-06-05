@@ -2697,7 +2697,7 @@
       <button class="tab-btn" data-tab="samurai">
         <span class="lang en">Samurai</span>
         <span class="lang jp">Samurai</span>
-        <span class="count">11</span>
+        <span class="count">17</span>
       </button>
       <button class="tab-btn" data-tab="research">
         <span class="lang en">🔬 Research</span>
@@ -10447,6 +10447,91 @@ Mercury（米国法人銀行口座）
         <p>Shimizu's framing is that pricing is based on data volume, not validity &mdash; so a 1- or 2-day SKU at a proportional price isn't possible.</p>
         <p>But other suppliers (eSIM Access, Airalo, Holafly) <em>do</em> offer cheaper rates for shorter validity SKUs. That contradicts his framing &mdash; at the reseller level it's a commercial choice, not a carrier constraint.</p>
         <p><strong>We need to compare</strong> Samurai's rates against suppliers who offer short-validity SKUs and use that data at the next meeting.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION B: COMMERCIAL MODEL -->
+  <div class="section-block">
+    <h2><span class="badge">B</span>Commercial model</h2>
+    <p class="sec-sub">6 questions on billing unit, payment terms, credit limits, refund / failed-activation policy.</p>
+
+    <!-- B1 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B1</span>Could you confirm that pay-per-order (one eSIM provisioned = one charge, with no minimums or prepay commitment) is available for our account? If a different default applies, please describe it.</p>
+      <div class="answer-row jp"><span class="lbl">A · JP</span><span>API連携で可能です。</span></div>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Possible via API integration.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Pay-per-order is confirmed &mdash; if we sell 30 SKUs in a month, we pay for 30. No volume floor confirmed yet for the per-order billing itself.</p>
+        <p><strong>Open question for the meeting:</strong> confirm whether there's any monthly or quarterly minimum spend requirement (e.g. $500/month floor) on top of the per-order billing. Until that's confirmed, "no minimum" remains an assumption.</p>
+      </div>
+    </div>
+
+    <!-- B2 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B2</span>What is the unit of charge &mdash; per eSIM activation, per GB consumed, or per plan sold (e.g. a 5GB Europe SKU)?</p>
+      <div class="answer-row jp"><span class="lbl">A · JP</span><span>販売プランごとの設定です。</span></div>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Per sales plan.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Samurai bills per SKU sold, not per GB consumed.</p>
+        <p><strong>Canonical example:</strong> if user buys USA 1GB/1day, we pay $0.59 (before any A6 fees). If user uses 500MB out of that 1GB, we still pay the full $0.59 &mdash; no proration, no refund for unused data.</p>
+      </div>
+    </div>
+
+    <!-- B3 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B3</span>What are the standard payment terms &mdash; billed at time of provisioning, end-of-month invoice, Net 30, or prepay auto-deduct?</p>
+      <div class="answer-row jp"><span class="lbl">A · JP</span><span>MTG時に確定できれば幸いです。</span></div>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Hope to finalize at the meeting.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Two scenarios depending on what Samurai offers:</p>
+        <p><strong>Scenario A &mdash; pay-per-order:</strong> invoice monthly for what we sold. 30 orders of USA 1GB/1day = 30 &times; $0.59 = $17.70 owed. Best if Samurai gives no prepay discount.</p>
+        <p><strong>Scenario B &mdash; debit balance:</strong> wire $2,000&ndash;$3,000 upfront, each order auto-debits, remainder rolls forward. Best only if Samurai offers a prepay discount or removes per-order friction.</p>
+        <p><strong>Open questions for the meeting:</strong> minimum monthly order, balance validity / expiry, refund policy on closure, minimum top-up amount, prepay-vs-post-pay discount level.</p>
+      </div>
+    </div>
+
+    <!-- B4 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B4</span>If we choose to fund a larger prepaid balance upfront (for example $50K), what minimum prepay earns a discount, and what discount level should we expect?</p>
+      <div class="answer-row jp"><span class="lbl">A · JP</span><span>基本、当社は、御社が多売が可能な卸価格を設定するつもりですので、数量によって条件を変えるというようなことはしないです。</span></div>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Fundamentally, we'll be setting a wholesale price that lets you sell in volume &mdash; we don't change conditions based on quantity.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>No quantity discount confirmed (matches A4) &mdash; $50K prepay doesn't beat $1K prepay on per-GB.</p>
+        <p><strong>What we actually need to ask:</strong> is there any monthly minimum order requirement? If yes (e.g. $500/month), and we'll likely exceed that anyway, then:</p>
+        <p>1. Wire $1,000 upfront to start.<br>
+        2. Set a reorder threshold &mdash; when balance drops to ~$400&ndash;500, auto-trigger another $1,000 wire (the buffer absorbs 1&ndash;2 day international wire-clear time).<br>
+        3. Balance stays between $400 and $1,400 &mdash; never zero, never excess.</p>
+      </div>
+    </div>
+
+    <!-- B5 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B5</span>What is the credit limit / accounts-receivable cap on an account our size today, and how does that scale as we grow toward 5K active users?</p>
+      <div class="answer-row jp"><span class="lbl">A · JP</span><span>MTG時に確定できれば幸いです。</span></div>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Hope to finalize at the meeting.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Only matters if we go Net-30. Under prepay or pay-per-order, no AR balance exists so no credit limit needed.</p>
+        <p><strong>Strategy: phase the relationship.</strong> Start on prepay ($1,000 debit balance) to build a clean payment history with Samurai &mdash; they won't extend Net-30 to a brand-new account anyway. After ~6 months and 1K+ users, push to convert to <strong>Net-30 with a credit limit</strong> (e.g. $5K). At 5K+ users, push for Net-45 or Net-60.</p>
+        <p><strong>Why:</strong> Net-30 float at scale (~$5K sitting in our bank for 30 days each month) is free working capital &mdash; far more valuable than any small prepay discount.</p>
+      </div>
+    </div>
+
+    <!-- B6 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">B6</span>When an order fails to provision or activate, are credits issued automatically, or do we need to file a claim each time? If a claim is required, what's the typical turnaround?</p>
+      <div class="answer-row jp"><span class="lbl">A · JP</span><span>MTG時に確定できれば幸いです。</span></div>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Hope to finalize at the meeting.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Need to discuss in the meeting with a clearer summary first. Don't know enough about Samurai's API and what failure modes to expect to give a confident view yet.</p>
+        <p><strong>For the meeting:</strong> push for (1) auto-credit on any API-returned error code (clean failures), and (2) a defined manual-claim process with a turnaround SLA (e.g. 7 days) for disputed cases.</p>
       </div>
     </div>
 
