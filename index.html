@@ -2697,7 +2697,7 @@
       <button class="tab-btn" data-tab="samurai">
         <span class="lang en">Samurai</span>
         <span class="lang jp">Samurai</span>
-        <span class="count">17</span>
+        <span class="count">29</span>
       </button>
       <button class="tab-btn" data-tab="research">
         <span class="lang en">🔬 Research</span>
@@ -10532,6 +10532,173 @@ Mercury（米国法人銀行口座）
         <div class="view-lbl">BALRAJ'S VIEW</div>
         <p>Need to discuss in the meeting with a clearer summary first. Don't know enough about Samurai's API and what failure modes to expect to give a confident view yet.</p>
         <p><strong>For the meeting:</strong> push for (1) auto-credit on any API-returned error code (clean failures), and (2) a defined manual-claim process with a turnaround SLA (e.g. 7 days) for disputed cases.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION C: TECHNICAL -->
+  <div class="section-block">
+    <h2><span class="badge">C</span>Technical</h2>
+    <p class="sec-sub">12 questions on API top-up, install method, billing basis, sequential vs concurrent bundles, provisioning latency, usage data, uptime/SLA, profile branding, and error diagnostics.</p>
+
+    <!-- C1 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C1</span>Does your reseller API support same-SIM data top-ups &mdash; i.e. adding GB to an existing eSIM profile without requiring re-installation? If not currently available, is this on the roadmap?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Not currently available to end customers via the reseller API. It is on our roadmap. In the interim, our staff can perform top-ups manually on an existing profile.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>No API top-up means top-ups happen manually via Samurai staff today (with API "on the roadmap"). That's slow but workable for our model because we don't do real-time top-ups &mdash; we <strong>pre-provision</strong> at the start of each month based on the crew member's roster.</p>
+        <p><strong>The workable model:</strong></p>
+        <p>1. User uploads August roster on July 15 (Emirates publishes rosters 15 days early).<br>
+        2. Our system optimizes the bundle set (single-country + regional + Global 45 keep-alive insurance).<br>
+        3. All bundles pre-installed on her eSIM by July 31 (Samurai's 5&ndash;10 min manual provisioning is fine &mdash; we have days, not seconds).<br>
+        4. She installs the eSIM <strong>once</strong>, then travels through August with bundles auto-activating per country via first-network-connection.</p>
+        <p><strong>Open questions for the meeting:</strong></p>
+        <p>&bull; Confirm "validity starts at first network connection" (industry standard but unconfirmed for Samurai).<br>
+        &bull; Confirm Samurai staff can process 100+ provisioning requests per day as we scale.<br>
+        &bull; Push for an actual roadmap date for API top-up.</p>
+      </div>
+    </div>
+
+    <!-- C2 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C2</span>Does your platform support eSIM installation via Apple Universal Link, or is QR code currently the only install method?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Yes. Our platform supports installation via Apple Universal Link in addition to QR code.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Apple Universal Link confirmed by Samurai &mdash; one-tap install from our app. We can wrap it in any custom button ("Ready for London", "Install eSIM", etc.) and Apple's system sheet handles the actual provisioning.</p>
+        <p><strong>Both install models work:</strong></p>
+        <p>&bull; <strong>Pre-load monthly</strong> &mdash; install all SKUs on Day 0 from uploaded roster, button shows status only.<br>
+        &bull; <strong>Per-trip on-demand</strong> &mdash; button triggers install at trip time, ~10 sec.</p>
+        <p><strong>Open question:</strong> confirm Android install method (Universal Link is iOS-only; Android uses a different flow and Shimizu didn't address it).</p>
+      </div>
+    </div>
+
+    <!-- C3 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C3</span>Is billing based on GB consumed (real-time usage tracking) or GB allocated (the full pool sold to the customer)?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Billing is based on GB allocated &mdash; the full pool sold to the customer, not real-time consumption.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Restated from B2: billed on GB allocated, not consumed. User buys USA 1GB / 1 day for $0.59 &rarr; we pay $0.59 even if user uses 100MB. No metering, no proration, no refund.</p>
+      </div>
+    </div>
+
+    <!-- C4 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C4</span>When a customer uses only part of a bundle (e.g. 4GB out of a 10GB pool), what happens to the unused balance &mdash; credited back, carried forward, or expired at end of cycle? If it carries forward, at what rate is it billed when used in a later period?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Unused data expires at the end of the cycle. It is not credited back or carried forward.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>The "no carry-forward, no credit" rule only hurts us if we buy big pre-allocated pools. Our model avoids it entirely: we buy <strong>1GB SKUs on-demand</strong> because crew rarely use more than 1GB/day.</p>
+        <p>If a crew member needs more, we just add another 1GB. Slightly higher per-GB rate on small SKUs vs bulk, but the structural fit with crew usage patterns wins.</p>
+      </div>
+    </div>
+
+    <!-- C5 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C5</span>On a single installed eSIM profile, can a customer: (a) Sequentially purchase new country bundles over time after earlier ones expire (for the lifetime of the eSIM)? (b) Hold concurrent bundles for different countries with independent expiry?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>(a) Sequential bundles over the eSIM's lifetime: <strong>No</strong> &mdash; a customer cannot purchase a new country bundle on the same profile after an earlier one expires. (b) Concurrent bundles for different countries with independent expiry: <strong>Yes</strong> &mdash; this is supported, and it is the approach we recommend.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Two-part answer is the core constraint of our entire model:</p>
+        <p>&bull; <strong>C5(b) Yes</strong> &mdash; concurrent bundles allowed &rarr; we can layer country SKUs on a live eSIM.<br>
+        &bull; <strong>C5(a) No</strong> &mdash; once all bundles expire, the profile dies &rarr; user needs fresh install.</p>
+        <p><strong>The fix:</strong> keep at least one bundle alive at all times. Global 45 keep-alive ($2.45 / 30 days) buys us a 30-day "profile-alive insurance" so we can layer country SKUs freely on top without ever risking a dead profile.</p>
+      </div>
+    </div>
+
+    <!-- C6 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C6</span>What is the typical end-to-end provisioning latency &mdash; from API call to an eSIM profile being ready to install on the device &mdash; in the typical case and at the 99th percentile?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Typical provisioning latency is approximately 5&ndash;10 minutes from API call to the profile being ready to install.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>5&ndash;10 min provisioning is fine for our pre-load model (user uploads roster &rarr; we provision overnight &rarr; bundles ready by morning). Becomes a UX problem only for on-demand top-ups or walk-up emergencies.</p>
+        <p><strong>The architecture decision:</strong> use <strong>predictive pre-load</strong> &mdash; pre-load minimum SKUs at Day 0, then silently order the next bundle in the background when current usage hits ~70%. Latency happens invisibly. User never sees a spinner.</p>
+        <p><strong>Open questions for the meeting:</strong></p>
+        <p>&bull; 99th-percentile latency (5&ndash;10 min "typical" could hide a 30-min worst case).<br>
+        &bull; How real-time usage data flows back to us (C9 already a No &mdash; we'd be estimating from time-elapsed).</p>
+      </div>
+    </div>
+
+    <!-- C7 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C7</span>For same-SIM top-ups, what is the typical latency from purchase confirmation to the new GB being usable on the active device?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Same-SIM top-ups are processed manually by our staff rather than via API. Once a staff member picks up the request, the new GB is typically usable within 5&ndash;10 minutes.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>The 5&ndash;10 min is <strong>only</strong> Samurai's processing time once a staff member picks up the request. Full top-up time = staff response time + 5&ndash;10 min processing.</p>
+        <p><strong>Critical risk:</strong> Samurai's team is likely on Tokyo/Bangkok business hours. Our crew operate 24/7 globally &mdash; when crew lands at LAX 3am local, Samurai staff is asleep. Top-ups could take hours overnight or on weekends.</p>
+        <p><strong>Open question for the meeting:</strong> confirm staff response SLA across 24h coverage. Without this, manual top-ups are a real customer-facing risk.</p>
+      </div>
+    </div>
+
+    <!-- C8 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C8</span>Could we get sandbox access plus full API documentation (provisioning, usage queries, top-up, refund, and cancel endpoints) this week so engineering can begin building in parallel with the commercial discussion?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Yes &mdash; we can provide sandbox access and full API documentation (provisioning, usage queries, top-up, refund, and cancel endpoints), but a signed agreement is required first.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Sandbox + API docs locked behind a signed agreement is risky &mdash; means we'd commit before seeing what we're getting technically. Standard wholesale practice is NDA-based early access.</p>
+        <p><strong>Ask for the meeting:</strong> sandbox + docs under NDA before contract signature, so engineering can validate the API works for our model before we commit.</p>
+      </div>
+    </div>
+
+    <!-- C9 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C9</span>Can we pull per-user consumption data via API on a daily basis for our internal COGS dashboard, and how is that data reconciled against your monthly invoice?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Per-user consumption data is not available through our API. If you need it, our staff can retrieve it manually on a case-by-case basis upon request &mdash; there is no automated or scheduled (e.g. daily) feed.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>No automated per-user consumption data via API is a <strong>major gap</strong>. With it, we'd know who uses how much GB in which country in real time &mdash; enabling predictive pre-load, accurate COGS reconciliation, anomaly detection, and clean customer support.</p>
+        <p><strong>Workarounds we have:</strong></p>
+        <p>1. SKU lifecycle data (we track what we bought for which user &mdash; proxy, not real consumption).<br>
+        2. iOS cellular usage API (read device-side data with user permission).<br>
+        3. Manual queries to Samurai staff for spot-checks.</p>
+        <p><strong>Strong case for direct eSIM Access at v2.0</strong> &mdash; they expose per-user data via API. For now, we engineer around it.</p>
+      </div>
+    </div>
+
+    <!-- C10 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C10</span>Could you share your historical platform uptime, the credit policy for SLA breaches, and the escalation path for a production incident outside business hours? Our customer base operates 24/7 globally, so out-of-hours coverage matters.</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Our system operates 24/7, and our operations staff provide 24/7 coverage.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Samurai claims 24/7 ops but gave <strong>zero numbers</strong> &mdash; no uptime %, no SLA credit policy, no documented escalation path. "24/7 staff" could mean a junior on-call answering email at midnight, not real incident response.</p>
+        <p>Also contradicts C7 implication where manual top-ups depend on staff availability &mdash; if they really are 24/7, why didn't C7 say "5&ndash;10 min response any time"?</p>
+        <p><strong>Asks for the meeting:</strong></p>
+        <p>&bull; Historical uptime % (last 6 months).<br>
+        &bull; P1 incident response SLA (e.g. 15-min acknowledgment, 1-hour fix attempt).<br>
+        &bull; Credit policy on SLA breach (e.g. 10% account credit per hour down).<br>
+        &bull; Escalation path with names + phone numbers for out-of-hours.</p>
+      </div>
+    </div>
+
+    <!-- C11 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C11</span>When our customers install the eSIM, what brand name appears in the device's eSIM profile (e.g. in iPhone Settings)? Can we control that label per SKU to display our own brand?</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>The profile label cannot be controlled or set per SKU. However, the customer can rename the label after installation.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>Profile label is buried in iPhone Settings &rarr; Cellular and Apple's install sheet &mdash; users rarely see it. Status bar shows the <strong>network carrier</strong> (T-Mobile, EE, Vodafone), not Samurai's profile label.</p>
+        <p>Low priority overall. But worth one clean question at the meeting: <em>"What is the default profile label users will see in iPhone Settings after install?"</em></p>
+        <p>If default = "Bangkok Samurai" &rarr; push for neutral label like "Peanut" or generic "Mobile Data."<br>
+        If default = generic &rarr; leave it, focus leverage on bigger issues.</p>
+      </div>
+    </div>
+
+    <!-- C12 -->
+    <div class="q-block">
+      <p class="q-text"><span class="q-num">C12</span>On a failed activation, what diagnostic information does your API return &mdash; specific error codes, root-cause category (device incompatibility, carrier issue, APN misconfiguration)? This directly shapes how our support team handles failed installs.</p>
+      <div class="answer-row en"><span class="lbl">A · EN</span><span>Our API returns diagnostic information, including specific error codes. If the eSIM has not yet been activated, we can re-issue/resend it. If it has already been activated, it cannot be resent.</span></div>
+      <div class="view-box">
+        <div class="view-lbl">BALRAJ'S VIEW</div>
+        <p>This is normal industry behavior &mdash; eSIM Access, Airalo, all of them work the same way. The "already activated but failing" case is hard for everyone.</p>
+        <p><strong>One ask at the meeting:</strong> share the full error code dictionary, so our support team knows what each code maps to (device issue / carrier issue / billing issue / network not available).</p>
+        <p><strong>Priority: low.</strong> C12 is the most "normal" answer in the whole questionnaire.</p>
       </div>
     </div>
 
