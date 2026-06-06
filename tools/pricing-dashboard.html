@@ -631,6 +631,59 @@ const FLAGS = {
   'Pakistan':'🇵🇰','Morocco':'🇲🇦','Kenya':'🇰🇪'
 };
 
+// Curated landmark photos for the country background images.
+const CITY_IMAGES = {
+  "Japan": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1600&q=80",
+  "Australia": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1600&q=80",
+  "United Kingdom": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80",
+  "United States": "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1600&q=80",
+  "France": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1600&q=80",
+  "Thailand": "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1600&q=80",
+  "Singapore": "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1600&q=80",
+  "India": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80",
+  "South Korea": "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=1600&q=80",
+  "United Arab Emirates": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80",
+  "Italy": "https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=1600&q=80",
+  "Germany": "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1600&q=80",
+  "China mainland": "https://images.unsplash.com/photo-1473625247510-8ceb1760943f?w=1600&q=80",
+  "Hong Kong": "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1600&q=80",
+  "Indonesia": "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=1600&q=80",
+  "Malaysia": "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1600&q=80",
+  "Philippines": "https://images.unsplash.com/photo-1518439038741-cf6a96169a07?w=1600&q=80",
+  "Vietnam": "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1600&q=80",
+  "Turkey": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1600&q=80",
+  "Spain": "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=1600&q=80",
+  "Netherlands": "https://images.unsplash.com/photo-1534351590666-13e3e96c5017?w=1600&q=80",
+  "South Africa": "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=1600&q=80",
+  "Russia": "https://images.unsplash.com/photo-1520106212299-d99c443e4568?w=1600&q=80",
+  "Egypt": "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?w=1600&q=80",
+  "Saudi Arabia": "https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?w=1600&q=80",
+  "Brazil": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1600&q=80",
+  "Mexico": "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=1600&q=80",
+  "New Zealand": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80",
+  "Canada": "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=1600&q=80",
+  "Greece": "https://images.unsplash.com/photo-1503152394-c571994fd383?w=1600&q=80",
+  "Maldives": "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1600&q=80",
+  "Mauritius": "https://images.unsplash.com/photo-1581434145571-92bc3df18d2a?w=1600&q=80",
+  "Switzerland": "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1600&q=80",
+  "Czech Republic": "https://images.unsplash.com/photo-1541849546-216549ae216d?w=1600&q=80",
+  "Sri Lanka": "https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=1600&q=80",
+  "Argentina": "https://images.unsplash.com/photo-1589909202802-8f4aadce1849?w=1600&q=80",
+  "Taiwan": "https://images.unsplash.com/photo-1552979332-3c4cf2dd29f2?w=1600&q=80",
+  "Kenya": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=1600&q=80",
+  "Morocco": "https://images.unsplash.com/photo-1553244216-d9095d6c7b59?w=1600&q=80",
+  "Sweden": "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1600&q=80",
+  "Denmark": "https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=1600&q=80",
+  "Belgium": "https://images.unsplash.com/photo-1559113202-c916b8e44373?w=1600&q=80",
+  "Ireland": "https://images.unsplash.com/photo-1601563900042-21b41a807042?w=1600&q=80",
+  "Portugal": "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1600&q=80",
+  "Hungary": "https://images.unsplash.com/photo-1551867633-194f125bddfa?w=1600&q=80",
+  "Austria": "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=1600&q=80"
+};
+function cityImage(country) {
+  return CITY_IMAGES[country] || ('https://source.unsplash.com/1600x900/?' + encodeURIComponent(country) + ',skyline,city');
+}
+
 
 
 function speedBadge(s) {
@@ -768,12 +821,21 @@ function updateFlightPanel() {
   nameEl.textContent = (FLAGS[selectedCountry] || '') + ' ' + selectedCountry;
   countEl.textContent = flights.length + ' route' + (flights.length === 1 ? '' : 's');
   listEl.innerHTML = flights.map(function(f) {
-    const fno = f.f ? '<div style="color:#F3BE65;font-size:11px;margin-top:4px;font-family:ui-monospace,monospace;font-weight:600;">✈ ' + f.f + '</div>' : '';
-    const lo = f.l ? '<div style="color:#86EFAC;font-size:11px;margin-top:3px;font-weight:600;">🕒 Layover: ' + f.l + (f.n ? ' <span style="color:#94A3B8;font-weight:400;">— ' + f.n + '</span>' : '') + '</div>' : '';
-    return '<div class="flight-strip">' +
-      '<div style="font-weight:600;color:#F8FAFC;">DXB → ' + f.c + '</div>' +
-      '<div style="color:#94A3B8;font-size:12px;margin-top:2px;">' + f.a + '</div>' +
-      fno + lo +
+    const fno = f.f
+      ? '<div class="flex items-center gap-1.5 text-primary text-[11px] font-mono font-semibold mt-1.5"><span class="material-symbols-outlined text-[14px] mso-fill">flight_takeoff</span>' + f.f + '</div>'
+      : '';
+    const lo = f.l
+      ? '<div class="flex items-center gap-1.5 text-[#86EFAC] text-[11px] font-semibold mt-1"><span class="material-symbols-outlined text-[14px]">schedule</span>Layover: ' + f.l + (f.n ? ' <span class="text-on-surface-variant font-normal">— ' + f.n + '</span>' : '') + '</div>'
+      : '';
+    return '<div class="flight-strip flex items-start gap-3">' +
+      '<div class="w-10 h-10 rounded-xl bg-primary/15 border border-primary/25 flex items-center justify-center flex-shrink-0">' +
+        '<span class="material-symbols-outlined text-primary mso-fill text-[20px]">connecting_airports</span>' +
+      '</div>' +
+      '<div class="flex-1 min-w-0">' +
+        '<div class="font-semibold text-on-surface font-data-mono tracking-wide">DXB → ' + f.c + '</div>' +
+        '<div class="text-on-surface-variant text-[12px] mt-0.5 truncate">' + f.a + '</div>' +
+        fno + lo +
+      '</div>' +
     '</div>';
   }).join('');
 }
@@ -1034,23 +1096,40 @@ function renderRosterItinerary() {
 
     // Count how many selections of this country exist — show "Trip N" if >1
     const sameCountryCount = rosterSelections.filter(function(s){ return s.country === country; }).length;
-    const tripLabel = sameCountryCount > 1 ? ' <span style="color:#94A3B8;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
+    const tripLabel = sameCountryCount > 1 ? ' · Trip ' + sel.tripNum : '';
     const isExpanded = rosterExpanded.has(sel.id);
-    const expandedStyle = isExpanded ? 'background:rgba(212,162,76,0.18);' : 'background:rgba(255,255,255,0.04);';
-    html += '<div data-card-sid="' + sel.id + '" style="cursor:pointer;position:relative;' + expandedStyle + 'border:1px solid #D4A24C;border-left:4px solid #D4A24C;border-radius:8px;padding:12px 14px;min-width:200px;flex:1 1 220px;max-width:280px;">';
-    html += '<button data-sid="' + sel.id + '" title="Remove" style="position:absolute;top:6px;right:8px;background:transparent;border:0;color:#94A3B8;cursor:pointer;font-size:14px;font-weight:600;padding:2px 4px;">✕</button>';
-    html += '<div style="font-weight:600;font-size:14px;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + tripLabel + '</div>';
-    html += '<div style="font-size:12px;color:#F8FAFC;margin-bottom:2px;">' + routeStr + '</div>';
-    if (fno) html += '<div style="font-size:11px;font-family:ui-monospace,monospace;color:#F3BE65;font-weight:600;margin-bottom:4px;">✈ ' + fno + '</div>';
-    html += '<div style="font-size:12px;color:#86EFAC;font-weight:600;">🕒 ' + layoverStr + (layoverNote ? ' <span style="color:#94A3B8;font-weight:400;font-size:11px;">— ' + layoverNote + '</span>' : '') + '</div>';
-    html += pickedSection;
-    html += '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed rgba(212,162,76,0.35);font-size:11px;color:' + (isExpanded ? '#F3BE65' : '#94A3B8') + ';font-weight:600;text-align:center;">' + (isExpanded ? '▾ Hide plans' : '▸ Click to pick plans') + '</div>';
-    html += '</div>';
+    const flagCh = FLAGS[country] || '';
+    const mainCity = cities.length > 0 ? cities[0].c : country;
+    const img = cityImage(country);
+    const expClasses = isExpanded
+      ? 'ring-2 ring-primary shadow-[0_0_40px_rgba(212,162,76,0.30)]'
+      : 'border border-white/10';
+    const pickCount = pickedForSel.length;
 
-    // Add + separator between cards
-    if (idx < rosterSelections.length - 1) {
-      html += '<div style="display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;color:#94A3B8;min-width:24px;">+</div>';
+    html += '<div data-card-sid="' + sel.id + '" class="relative h-52 rounded-2xl overflow-hidden cursor-pointer group ' + expClasses + '" style="min-width:280px;flex:1 1 300px;max-width:360px;">';
+    html += '  <img src="' + img + '" alt="" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" loading="lazy" onerror="this.style.display=\'none\'">';
+    html += '  <div class="absolute inset-0 bg-gradient-to-t from-[#0a0e19] via-[#0a0e19]/50 to-transparent"></div>';
+    html += '  <button data-sid="' + sel.id + '" title="Remove" class="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-md text-white/90 flex items-center justify-center hover:bg-error/80 transition-colors"><span class="material-symbols-outlined text-[16px]">close</span></button>';
+    if (pickCount > 0) {
+      html += '  <div class="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-[#86EFAC]/20 border border-[#86EFAC]/40 backdrop-blur-md text-[#86EFAC] text-[10px] font-bold uppercase tracking-wider flex items-center gap-1"><span class="material-symbols-outlined text-[12px] mso-fill">check_circle</span>' + pickCount + ' picked</div>';
     }
+    html += '  <div class="absolute inset-0 p-5 flex flex-col justify-end gap-1.5">';
+    html += '    <span class="text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">' + flagCh + ' ' + country + tripLabel + '</span>';
+    html += '    <h4 class="text-[22px] font-bold text-white leading-tight font-data-mono tracking-tight">DXB → ' + mainCity + '</h4>';
+    if (cities.length > 1) {
+      html += '    <div class="text-[11px] text-on-surface-variant">+' + (cities.length - 1) + ' more in country</div>';
+    }
+    html += '    <div class="flex items-center gap-4 mt-1 text-[12px]">';
+    if (fno) {
+      html += '      <span class="flex items-center gap-1 font-mono text-primary font-semibold"><span class="material-symbols-outlined text-[14px] mso-fill">flight_takeoff</span>' + fno.split(',')[0].trim() + '</span>';
+    }
+    html += '      <span class="flex items-center gap-1 text-[#86EFAC] font-semibold"><span class="material-symbols-outlined text-[14px]">schedule</span>' + layoverStr + '</span>';
+    html += '    </div>';
+    html += '    <div class="mt-1 text-[11px] font-bold uppercase tracking-[0.10em] ' + (isExpanded ? 'text-primary' : 'text-on-surface-variant') + '">';
+    html += (isExpanded ? '▾ Tap to hide plans' : '▸ Tap to pick plans');
+    html += '    </div>';
+    html += '  </div>';
+    html += '</div>';
   });
   container.innerHTML = html;
 
@@ -1209,46 +1288,79 @@ function renderRoster() {
     });
 
     const top = plans.slice(0, 15);
-    const layoverColor = layoverDays === 0 ? '#94A3B8' : '#86EFAC';
+    const layoverColor = layoverDays === 0 ? 'text-on-surface-variant' : 'text-[#86EFAC]';
     const sameCount = rosterSelections.filter(function(s){ return s.country === country; }).length;
-    const tripLbl = sameCount > 1 ? ' <span style="color:#94A3B8;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
-    html += '<div style="margin-top:18px;padding:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;">' +
-      '<h3 style="font-size:15px;font-weight:600;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + tripLbl + '</h3>' +
-      (layoverLabel ? '<div style="font-size:12px;color:' + layoverColor + ';margin-bottom:10px;">🕒 ' + layoverLabel + (layoverDays > 0 ? ' &middot; recommended SKU validity: <strong>' + recommendedV + ' day' + (recommendedV > 1 ? 's' : '') + '</strong>' : '') + '</div>' : '');
+    const tripLbl = sameCount > 1 ? '<span class="text-on-surface-variant text-[13px] font-normal"> · Trip ' + sel.tripNum + '</span>' : '';
+    const img = cityImage(country);
+
+    html += '<div class="mt-6 rounded-3xl overflow-hidden border border-white/10 backdrop-blur-xl" style="background:rgba(255,255,255,0.04);">';
+    // Header strip with country name + city background
+    html += '  <div class="relative h-24 overflow-hidden">';
+    html += '    <img src="' + img + '" alt="" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="lazy" onerror="this.style.display=\'none\'">';
+    html += '    <div class="absolute inset-0 bg-gradient-to-r from-[#0a0e19] via-[#0a0e19]/60 to-transparent"></div>';
+    html += '    <div class="absolute inset-0 px-6 flex items-center justify-between">';
+    html += '      <div>';
+    html += '        <h3 class="text-[20px] font-bold text-white leading-tight">' + (FLAGS[country] || '') + ' ' + country + tripLbl + '</h3>';
+    if (layoverLabel) {
+      html += '        <div class="flex items-center gap-2 mt-1 text-[12px] ' + layoverColor + ' font-semibold">';
+      html += '          <span class="material-symbols-outlined text-[14px]">schedule</span>' + layoverLabel;
+      if (layoverDays > 0) html += ' · recommended <span class="text-primary font-bold">' + recommendedV + 'd</span>';
+      html += '        </div>';
+    }
+    html += '      </div>';
+    html += '      <div class="hidden md:flex flex-col items-end gap-1">';
+    html += '        <span class="text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">' + top.length + ' plans</span>';
+    html += '      </div>';
+    html += '    </div>';
+    html += '  </div>';
+    html += '  <div class="p-5 space-y-2">';
 
     if (top.length === 0) {
-      html += '<div class="muted">No plans match the current filters for this destination.</div>';
+      html += '    <div class="text-center text-on-surface-variant py-6 text-[14px]">No plans match the current filters for this destination.</div>';
     } else {
-      html += '<table style="width:100%;border-collapse:collapse;background:rgba(255,255,255,0.04);border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);">' +
-        '<thead><tr>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">✓</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Supplier</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Data</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Speed</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Days</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Price</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">SKU</th>' +
-        '</tr></thead><tbody>';
       top.forEach(function(p) {
-        const supTag = p.s === 'Sam' ? 'tag-sam' : 'tag-ea';
         const supLabel = p.s === 'Sam' ? 'Samurai' : 'eSIM Access';
+        const supColorClass = p.s === 'Sam' ? 'bg-primary/15 border-primary/25 text-primary' : 'bg-blue-500/15 border-blue-400/30 text-blue-300';
+        const supTextColor = p.s === 'Sam' ? 'text-primary' : 'text-blue-300';
         const pickKey = sel.id + '|' + p.n;
         const isPicked = rosterPicked.has(pickKey);
         const recMatch = p.v === recommendedV;
-        const rowBg = isPicked ? 'background:rgba(212,162,76,0.18);' : (recMatch ? 'background:rgba(74,222,128,0.12);' : '');
-        const recBadge = recMatch ? ' <span style="display:inline-block;margin-left:6px;padding:1px 6px;background:#34a853;color:white;font-size:10px;font-weight:600;border-radius:3px;letter-spacing:0.3px;">BEST FIT</span>' : '';
-        html += '<tr style="' + rowBg + '">' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);"><input type="checkbox" data-pk="' + pickKey + '" ' + (isPicked ? 'checked' : '') + ' style="width:16px;height:16px;cursor:pointer;accent-color:#D4A24C;"></td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);"><span class="tag ' + supTag + '">' + supLabel + '</span></td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);">' + dataBadge(p.d, p.gv) + '</td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);">' + speedBadge(p.sp) + '</td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);">' + p.v + recBadge + '</td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);font-family:ui-monospace,monospace;font-weight:600;">$' + p.p.toFixed(2) + '</td>' +
-          '<td style="padding:8px 10px;font-size:12px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.06);">' + p.n + '</td>' +
-        '</tr>';
+        const rowClasses = isPicked
+          ? 'ring-2 ring-primary bg-primary/10'
+          : (recMatch ? 'border-l-4 border-l-[#86EFAC] bg-[#86EFAC]/[0.04]' : 'border-l border-l-white/5');
+        const recBadge = recMatch ? '<span class="px-2 py-0.5 rounded text-[9px] font-bold bg-[#86EFAC]/20 text-[#86EFAC] uppercase tracking-wider">Best fit</span>' : '';
+        html += '<label class="block group cursor-pointer">';
+        html += '  <div class="glass-card rounded-2xl p-4 flex items-center justify-between gap-3 transition-all hover:bg-white/[0.07] active:scale-[0.98] ' + rowClasses + '">';
+        html += '    <div class="flex items-center gap-4 flex-1 min-w-0">';
+        html += '      <div class="w-11 h-11 rounded-xl ' + supColorClass + ' border flex items-center justify-center flex-shrink-0">';
+        html += '        <span class="material-symbols-outlined mso-fill text-[22px]">sim_card</span>';
+        html += '      </div>';
+        html += '      <div class="min-w-0 flex-1">';
+        html += '        <div class="flex items-center gap-2 flex-wrap">';
+        html += '          <h4 class="text-[15px] font-semibold text-white">' + p.d + ' · ' + p.v + 'd</h4>';
+        html += '          ' + recBadge;
+        html += '        </div>';
+        html += '        <div class="flex items-center gap-2 mt-1 flex-wrap text-[12px]">';
+        html += '          <span class="' + supTextColor + ' font-semibold">' + supLabel + '</span>';
+        html += '          <span class="text-on-surface-variant">·</span>';
+        html += '          ' + speedBadge(p.sp);
+        html += '          <span class="text-on-surface-variant">·</span>';
+        html += '          ' + dataBadge(p.d, p.gv);
+        html += '        </div>';
+        html += '      </div>';
+        html += '    </div>';
+        html += '    <div class="flex items-center gap-3 flex-shrink-0">';
+        html += '      <div class="text-right">';
+        html += '        <p class="text-[20px] font-mono font-bold text-primary tabular-nums leading-none">$' + p.p.toFixed(2) + '</p>';
+        html += '        <p class="text-[10px] uppercase tracking-wider text-on-surface-variant mt-1">' + p.n.substring(0, 18) + (p.n.length > 18 ? '…' : '') + '</p>';
+        html += '      </div>';
+        html += '      <input type="checkbox" data-pk="' + pickKey + '"' + (isPicked ? ' checked' : '') + ' class="w-5 h-5 cursor-pointer accent-primary flex-shrink-0">';
+        html += '    </div>';
+        html += '  </div>';
+        html += '</label>';
       });
-      html += '</tbody></table>';
     }
+    html += '  </div>';
     html += '</div>';
   });
   rosterPlans.innerHTML = html;
@@ -1290,17 +1402,22 @@ function renderRosterPicked() {
   const rows = Array.from(rosterPicked.values()).map(function(p) {
     total += p.sku.p;
     const supLabel = p.sku.s === 'Sam' ? 'Samurai' : 'eSIM Access';
-    const supColor = p.sku.s === 'Sam' ? '#D4A24C' : '#60A5FA';
+    const supColorClass = p.sku.s === 'Sam' ? 'bg-primary/15 border-primary/25 text-primary' : 'bg-blue-500/15 border-blue-400/30 text-blue-300';
     const sel = rosterSelections.find(function(s){ return s.id === p.selectionId; });
     const sameCount = sel ? rosterSelections.filter(function(s){ return s.country === sel.country; }).length : 0;
-    const tripLbl = sameCount > 1 && sel ? ' <span style="color:rgba(255,255,255,0.4);font-size:11px;">· T' + sel.tripNum + '</span>' : '';
-    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:14px;">' +
-      '<div>' +
-        '<span style="display:inline-block;padding:1px 8px;background:' + supColor + ';color:#000;font-size:10px;font-weight:600;border-radius:3px;margin-right:8px;">' + supLabel + '</span>' +
-        (FLAGS[p.country] || '') + ' ' + p.country + tripLbl +
-        ' <span style="color:rgba(255,255,255,0.5);margin-left:8px;font-size:12px;">' + p.sku.d + ' &middot; ' + p.sku.v + 'd</span>' +
+    const tripLbl = sameCount > 1 && sel ? '<span class="text-on-surface-variant text-[11px] ml-1">· T' + sel.tripNum + '</span>' : '';
+    return '<div class="flex items-center gap-3 py-3 border-b border-white/8 last:border-b-0">' +
+      '<div class="w-9 h-9 rounded-lg ' + supColorClass + ' border flex items-center justify-center flex-shrink-0">' +
+        '<span class="material-symbols-outlined mso-fill text-[18px]">sim_card</span>' +
       '</div>' +
-      '<span style="font-family:ui-monospace,monospace;font-weight:600;">$' + p.sku.p.toFixed(2) + '</span>' +
+      '<div class="flex-1 min-w-0">' +
+        '<div class="flex items-center gap-2 flex-wrap">' +
+          '<span class="text-white font-semibold text-[14px]">' + (FLAGS[p.country] || '') + ' ' + p.country + '</span>' +
+          tripLbl +
+        '</div>' +
+        '<div class="text-on-surface-variant text-[12px] mt-0.5">' + supLabel + ' · ' + p.sku.d + ' · ' + p.sku.v + 'd</div>' +
+      '</div>' +
+      '<div class="font-mono font-bold text-primary text-[16px] tabular-nums flex-shrink-0">$' + p.sku.p.toFixed(2) + '</div>' +
     '</div>';
   }).join('');
   list.innerHTML = rows;
