@@ -127,9 +127,9 @@ tbody tr:hover { background: #fafaf7; }
 <div class="section">
   <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">📋 Roster Plan</h2>
   <div style="color:#888;font-size:13px;margin-bottom:14px;">
-    Search and add destinations crew will visit this month. Below shows every plan available for each destination.
+    Search and add destinations. We&rsquo;ll recommend SKUs that match the layover. Pick the plans you want — totals appear at the bottom.
   </div>
-  <div style="margin-bottom:12px;">
+  <div style="margin-bottom:14px;">
     <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#888;text-transform:uppercase;margin-bottom:8px;">Add destination</label>
     <div class="search" style="margin-bottom:10px;">
       <input type="text" id="rosterSearchInput" placeholder="Type country, city, or airport code (e.g. NRT, JFK, Tokyo)" autocomplete="off">
@@ -137,7 +137,38 @@ tbody tr:hover { background: #fafaf7; }
     </div>
     <div id="rosterSelectedChips" style="display:flex;flex-wrap:wrap;gap:6px;min-height:30px;"></div>
   </div>
+
+  <div class="row" style="margin-bottom:10px;">
+    <div>
+      <label>Data filter</label>
+      <div class="chips" id="rosterDataChips"></div>
+    </div>
+    <div>
+      <label>Validity filter</label>
+      <div class="chips" id="rosterDaysChips"></div>
+    </div>
+  </div>
+
   <div id="rosterPlans"></div>
+
+  <div id="rosterPickedPanel" style="display:none;margin-top:16px;padding:16px;background:#1a1a1a;color:white;border-radius:10px;">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:10px;">Picked plans</div>
+    <div id="rosterPickedList"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.15);">
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Our cost</div>
+        <div id="rosterTotalCost" style="font-size:22px;font-weight:600;font-family:ui-monospace,monospace;">$0.00</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Suggested sell 4×</div>
+        <div id="rosterSellPrice" style="font-size:22px;font-weight:600;font-family:ui-monospace,monospace;color:#f4c20d;">$0.00</div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Margin</div>
+        <div id="rosterMargin" style="font-size:22px;font-weight:600;font-family:ui-monospace,monospace;color:#34a853;">$0.00</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -483,25 +514,113 @@ function renderRosterSelectedChips() {
 }
 renderRosterSelectedChips();
 
+// Roster filter state + picked plans
+let rosterDataFilter = 'Any';
+let rosterDaysFilter = 'Any';
+const rosterPicked = new Map(); // key: country|sku_name -> plan obj
+
+function getLayoverDays(country) {
+  // Look up first city's layover string and convert to numeric days
+  const cities = FLIGHTS[country];
+  if (!cities || cities.length === 0) return null;
+  // Use the most common layover among destinations in this country
+  const counts = {};
+  cities.forEach(function(c) { if (c.l) counts[c.l] = (counts[c.l]||0)+1; });
+  let mode = '', best = 0;
+  Object.keys(counts).forEach(function(k) { if (counts[k] > best) { best = counts[k]; mode = k; } });
+  // Parse
+  if (!mode) return null;
+  if (/turnaround/i.test(mode) || /home base/i.test(mode)) return 0;
+  const m = mode.match(/(\d+)/);
+  if (m) return Math.ceil(parseInt(m[1])/24);
+  return null;
+}
+
+function rosterMatchesData(d, target) {
+  if (target === 'Any') return true;
+  const gv = d.gv;
+  if (target === '500MB') return gv >= 0.4 && gv <= 0.6;
+  if (target === '1GB') return gv >= 0.9 && gv <= 1.1;
+  if (target === '2GB') return gv >= 1.9 && gv <= 2.1;
+  if (target === '3GB') return gv >= 2.9 && gv <= 3.1;
+  return true;
+}
+
+function rosterMatchesDays(v, target) {
+  if (target === 'Any') return true;
+  return v === parseInt(target);
+}
+
+// Build chips for roster filters
+const rosterDataOpts = ['Any', '500MB', '1GB', '2GB', '3GB'];
+const rosterDaysOpts = ['Any', '1', '2', '3', '7', '15', '30'];
+const rdc = document.getElementById('rosterDataChips');
+const rdyc = document.getElementById('rosterDaysChips');
+rosterDataOpts.forEach(function(d) {
+  const chip = document.createElement('div');
+  chip.className = 'chip' + (d === 'Any' ? ' on' : '');
+  chip.textContent = d;
+  chip.onclick = function() {
+    document.querySelectorAll('#rosterDataChips .chip').forEach(function(c){c.classList.remove('on');});
+    chip.classList.add('on');
+    rosterDataFilter = d;
+    renderRoster();
+  };
+  rdc.appendChild(chip);
+});
+rosterDaysOpts.forEach(function(d) {
+  const chip = document.createElement('div');
+  chip.className = 'chip' + (d === 'Any' ? ' on' : '');
+  chip.textContent = d === 'Any' ? d : d + 'd';
+  chip.onclick = function() {
+    document.querySelectorAll('#rosterDaysChips .chip').forEach(function(c){c.classList.remove('on');});
+    chip.classList.add('on');
+    rosterDaysFilter = d;
+    renderRoster();
+  };
+  rdyc.appendChild(chip);
+});
+
 function renderRoster() {
   if (rosterSelected.size === 0) {
     rosterPlans.innerHTML = '<div class="muted" style="padding:14px 0;">Select one or more destinations above to see plans.</div>';
+    document.getElementById('rosterPickedPanel').style.display = 'none';
     return;
   }
   let html = '';
   Array.from(rosterSelected).forEach(function(country) {
-    const plans = DATA.singles
+    const layoverDays = getLayoverDays(country);
+    const layoverLabel = layoverDays === 0 ? 'Turnaround (no overnight)' :
+      layoverDays === null ? '' :
+      layoverDays + ' day layover (' + (layoverDays * 24) + 'h)';
+    const recommendedV = layoverDays || 1; // for turnaround, suggest 1-day SKU
+
+    let plans = DATA.singles
       .filter(function(d) { return d.c === country; })
-      .filter(function(d) { return d.gv <= 2.5; }) // exclude overkill SKUs (3GB+) for crew use
-      .sort(function(a, b) { return (a.v - b.v) || (a.p - b.p); });
-    const top = plans.slice(0, 12);
+      .filter(function(d) { return d.gv <= 2.5; })
+      .filter(function(d) { return rosterMatchesData(d, rosterDataFilter); })
+      .filter(function(d) { return rosterMatchesDays(d.v, rosterDaysFilter); });
+
+    // Sort: exact validity match (matches recommendedV) first, then by validity ascending, then by price
+    plans.sort(function(a, b) {
+      const aMatch = (a.v === recommendedV) ? 0 : 1;
+      const bMatch = (b.v === recommendedV) ? 0 : 1;
+      if (aMatch !== bMatch) return aMatch - bMatch;
+      return (a.v - b.v) || (a.p - b.p);
+    });
+
+    const top = plans.slice(0, 15);
+    const layoverColor = layoverDays === 0 ? '#888' : '#15633f';
     html += '<div style="margin-top:18px;padding:14px;background:#fafaf7;border:1px solid #eee;border-radius:8px;">' +
-      '<h3 style="font-size:15px;font-weight:600;margin-bottom:10px;">' + (FLAGS[country] || '') + ' ' + country + ' <span style="font-size:11px;color:#888;font-weight:400;">— top ' + top.length + ' cheapest crew-friendly plans</span></h3>';
+      '<h3 style="font-size:15px;font-weight:600;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + '</h3>' +
+      (layoverLabel ? '<div style="font-size:12px;color:' + layoverColor + ';margin-bottom:10px;">🕒 ' + layoverLabel + (layoverDays > 0 ? ' &middot; recommended SKU validity: <strong>' + recommendedV + ' day' + (recommendedV > 1 ? 's' : '') + '</strong>' : '') + '</div>' : '');
+
     if (top.length === 0) {
-      html += '<div class="muted">No single-country plans found for this destination.</div>';
+      html += '<div class="muted">No plans match the current filters for this destination.</div>';
     } else {
       html += '<table style="width:100%;border-collapse:collapse;background:white;border-radius:6px;overflow:hidden;border:1px solid #eee;">' +
         '<thead><tr>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">✓</th>' +
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Supplier</th>' +
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Data</th>' +
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Days</th>' +
@@ -511,10 +630,16 @@ function renderRoster() {
       top.forEach(function(p) {
         const supTag = p.s === 'Sam' ? 'tag-sam' : 'tag-ea';
         const supLabel = p.s === 'Sam' ? 'Samurai' : 'eSIM Access';
-        html += '<tr>' +
+        const pickKey = country + '|' + p.n;
+        const isPicked = rosterPicked.has(pickKey);
+        const recMatch = p.v === recommendedV;
+        const rowBg = isPicked ? 'background:#fff8db;' : (recMatch ? 'background:#f5fbf6;' : '');
+        const recBadge = recMatch ? ' <span style="display:inline-block;margin-left:6px;padding:1px 6px;background:#34a853;color:white;font-size:10px;font-weight:600;border-radius:3px;letter-spacing:0.3px;">BEST FIT</span>' : '';
+        html += '<tr style="' + rowBg + '">' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><input type="checkbox" data-pk="' + pickKey + '" ' + (isPicked ? 'checked' : '') + ' style="width:16px;height:16px;cursor:pointer;accent-color:#1a1a1a;"></td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><span class="tag ' + supTag + '">' + supLabel + '</span></td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.d + '</td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.v + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.v + recBadge + '</td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;font-family:ui-monospace,monospace;font-weight:600;">$' + p.p.toFixed(2) + '</td>' +
           '<td style="padding:8px 10px;font-size:12px;color:#999;border-bottom:1px solid #f5f5f5;">' + p.n + '</td>' +
         '</tr>';
@@ -524,7 +649,55 @@ function renderRoster() {
     html += '</div>';
   });
   rosterPlans.innerHTML = html;
+
+  // Attach checkbox handlers
+  rosterPlans.querySelectorAll('input[type="checkbox"][data-pk]').forEach(function(cb) {
+    cb.onchange = function() {
+      const pk = cb.dataset.pk;
+      if (cb.checked) {
+        const [country, skuName] = pk.split('|');
+        const sku = DATA.singles.find(function(d) { return d.c === country && d.n === skuName; });
+        if (sku) rosterPicked.set(pk, {country: country, sku: sku});
+      } else {
+        rosterPicked.delete(pk);
+      }
+      renderRosterPicked();
+      // Re-render to update row highlighting without losing scroll
+      renderRoster();
+    };
+  });
+
+  renderRosterPicked();
 }
+
+function renderRosterPicked() {
+  const panel = document.getElementById('rosterPickedPanel');
+  const list = document.getElementById('rosterPickedList');
+  if (rosterPicked.size === 0) {
+    panel.style.display = 'none';
+    return;
+  }
+  panel.style.display = 'block';
+  let total = 0;
+  const rows = Array.from(rosterPicked.values()).map(function(p) {
+    total += p.sku.p;
+    const supLabel = p.sku.s === 'Sam' ? 'Samurai' : 'eSIM Access';
+    const supColor = p.sku.s === 'Sam' ? '#f4c20d' : '#58a6ff';
+    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:14px;">' +
+      '<div>' +
+        '<span style="display:inline-block;padding:1px 8px;background:' + supColor + ';color:#000;font-size:10px;font-weight:600;border-radius:3px;margin-right:8px;">' + supLabel + '</span>' +
+        (FLAGS[p.country] || '') + ' ' + p.country +
+        ' <span style="color:rgba(255,255,255,0.5);margin-left:8px;font-size:12px;">' + p.sku.d + ' &middot; ' + p.sku.v + 'd</span>' +
+      '</div>' +
+      '<span style="font-family:ui-monospace,monospace;font-weight:600;">$' + p.sku.p.toFixed(2) + '</span>' +
+    '</div>';
+  }).join('');
+  list.innerHTML = rows;
+  document.getElementById('rosterTotalCost').textContent = '$' + total.toFixed(2);
+  document.getElementById('rosterSellPrice').textContent = '$' + (total * 4).toFixed(2);
+  document.getElementById('rosterMargin').textContent = '$' + (total * 3).toFixed(2);
+}
+
 renderRoster();
 
 render();
