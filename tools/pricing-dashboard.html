@@ -158,6 +158,20 @@ tbody tr:hover { background: #fafaf7; }
     </div>
     <div id="rosterItinerary" style="display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:6px;"></div>
     <div id="rosterTotalLayover" style="display:none;margin-top:14px;padding:12px 16px;background:#e8f5ec;border:1px solid #34a853;border-radius:8px;font-size:14px;color:#15633f;font-weight:600;"></div>
+
+    <div id="rosterStatus" style="display:none;margin-top:10px;padding:12px 16px;border-radius:8px;font-size:14px;font-weight:600;display:none;align-items:center;gap:10px;flex-wrap:wrap;"></div>
+
+    <div id="rosterActions" style="display:none;margin-top:10px;display:none;gap:8px;flex-wrap:wrap;">
+      <button id="btnMakeSmart" style="padding:10px 16px;background:#1a1a1a;color:white;border:0;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
+        ✨ Make it Smart
+      </button>
+      <button id="btnMakeOneSIM" style="padding:10px 16px;background:white;color:#1a1a1a;border:1px solid #1a1a1a;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
+        📱 Make it One-SIM
+      </button>
+      <button id="btnClearPicks" style="padding:10px 16px;background:transparent;color:#999;border:1px solid #ddd;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
+        Clear all picks
+      </button>
+    </div>
   </div>
 
   <div id="rosterFilters" style="display:none;">
@@ -915,6 +929,173 @@ function renderRosterPicked() {
 
 const rosterShowOriginalCb = document.getElementById('rosterShowOriginal');
 if (rosterShowOriginalCb) rosterShowOriginalCb.onchange = renderRoster;
+
+// ---- Smart pick + One-SIM logic ----
+
+const KEEPALIVE_SKU = {
+  s: 'Sam',
+  c: 'Global 45 (45 countries)',
+  d: '3GB',
+  gv: 3,
+  v: 30,
+  sp: '128kbps',
+  p: 2.45,
+  n: '(plus)Global 45-3GB,128kbps-eSIM Carrier of 90 days · 30d keep-alive',
+  isKeepAlive: true,
+};
+
+function makeSmartPicks() {
+  // For each selection, pick the best SKU matching layover validity
+  let replaced = 0;
+  let oldTotal = 0;
+  let newTotal = 0;
+
+  // Clear non-keepalive picks
+  const keepAlives = [];
+  rosterPicked.forEach(function(p, k) {
+    if (p.sku && p.sku.isKeepAlive) keepAlives.push({k: k, p: p});
+    else oldTotal += p.sku.p;
+  });
+  rosterPicked.clear();
+  keepAlives.forEach(function(x) { rosterPicked.set(x.k, x.p); });
+
+  rosterSelections.forEach(function(sel) {
+    const country = sel.country;
+    const cities = FLIGHTS[country] || [];
+    let layoverDays = 1;
+    if (cities.length > 0 && cities[0].l) {
+      if (/turnaround/i.test(cities[0].l)) layoverDays = 1;
+      else {
+        const m = cities[0].l.match(/(\d+)/);
+        if (m) layoverDays = Math.ceil(parseInt(m[1])/24);
+      }
+    }
+
+    // Find best SKU for this country
+    // Balanced strategy: full speed > daily refill > others, validity match preferred, cheapest of matches
+    const candidates = DATA.singles
+      .filter(function(d) { return d.c === country; })
+      .filter(function(d) { return d.gv >= 0.4 && d.gv <= 2.5; }) // crew sweet spot
+      .filter(function(d) { return d.v >= layoverDays && d.v <= layoverDays + 1; }); // validity match within 1 day
+
+    if (candidates.length === 0) {
+      // Fallback: any SKU matching layover (looser)
+      const fallback = DATA.singles
+        .filter(function(d) { return d.c === country; })
+        .filter(function(d) { return d.gv >= 0.4 && d.gv <= 3; })
+        .filter(function(d) { return d.v >= layoverDays; });
+      candidates.push.apply(candidates, fallback);
+    }
+    if (candidates.length === 0) return;
+
+    // Rank: prefer full/daily speed, then validity match, then price
+    candidates.sort(function(a, b) {
+      const aFull = (a.sp === 'full' || a.sp === 'Daily refill') ? 0 : 1;
+      const bFull = (b.sp === 'full' || b.sp === 'Daily refill') ? 0 : 1;
+      if (aFull !== bFull) return aFull - bFull;
+      const aMatch = a.v === layoverDays ? 0 : 1;
+      const bMatch = b.v === layoverDays ? 0 : 1;
+      if (aMatch !== bMatch) return aMatch - bMatch;
+      return a.p - b.p;
+    });
+
+    const best = candidates[0];
+    const pk = sel.id + '|' + best.n;
+    rosterPicked.set(pk, {selectionId: sel.id, country: country, sku: best});
+    newTotal += best.p;
+    replaced++;
+  });
+
+  renderRosterPicked();
+  renderRosterItinerary();
+  renderRoster();
+
+  const saved = oldTotal - newTotal;
+  if (oldTotal > 0) {
+    const msg = '✨ Smart picks applied to ' + replaced + ' destination' + (replaced === 1 ? '' : 's') + '.\n\nBefore: $' + oldTotal.toFixed(2) + '\nAfter: $' + newTotal.toFixed(2) + (saved > 0 ? '\nSaved: $' + saved.toFixed(2) : (saved < 0 ? '\nIncreased: $' + Math.abs(saved).toFixed(2) + ' (better UX/validity match)' : ''));
+    alert(msg);
+  } else {
+    alert('✨ Smart picks applied to ' + replaced + ' destination' + (replaced === 1 ? '' : 's') + '. Total: $' + newTotal.toFixed(2));
+  }
+}
+
+function makeOneSIM() {
+  // Check if a keep-alive is already picked
+  let hasKeepAlive = false;
+  rosterPicked.forEach(function(p) {
+    if (p.sku && p.sku.isKeepAlive) hasKeepAlive = true;
+  });
+  if (hasKeepAlive) {
+    alert('📱 One-SIM already enabled — Global 45 keep-alive bundle is in your picks.');
+    return;
+  }
+  // Add keep-alive as a synthetic pick attached to a virtual selection
+  const pk = 'KEEPALIVE|globaler45';
+  rosterPicked.set(pk, {selectionId: 'KEEPALIVE', country: KEEPALIVE_SKU.c, sku: KEEPALIVE_SKU});
+
+  renderRosterPicked();
+  renderRosterItinerary();
+  renderRoster();
+  alert('📱 One-SIM enabled. Added Global 45 keep-alive bundle ($2.45 / 30 days). Profile stays active throughout the roster — no re-install needed between trips.');
+}
+
+function clearPicks() {
+  if (rosterPicked.size === 0) return;
+  if (!confirm('Clear all ' + rosterPicked.size + ' picked plan' + (rosterPicked.size === 1 ? '' : 's') + '?')) return;
+  rosterPicked.clear();
+  renderRosterPicked();
+  renderRosterItinerary();
+  renderRoster();
+}
+
+function updateRosterStatus() {
+  const statusEl = document.getElementById('rosterStatus');
+  const actionsEl = document.getElementById('rosterActions');
+  if (rosterSelections.length === 0) {
+    statusEl.style.display = 'none';
+    actionsEl.style.display = 'none';
+    return;
+  }
+  actionsEl.style.display = 'flex';
+
+  // Check if SIM stays alive throughout
+  let hasKeepAlive = false;
+  let has30day = false;
+  rosterPicked.forEach(function(p) {
+    if (p.sku) {
+      if (p.sku.isKeepAlive) hasKeepAlive = true;
+      if (p.sku.v >= 30) has30day = true;
+    }
+  });
+
+  if (hasKeepAlive || has30day) {
+    statusEl.style.display = 'flex';
+    statusEl.style.background = '#e8f5ec';
+    statusEl.style.border = '1px solid #34a853';
+    statusEl.style.color = '#15633f';
+    statusEl.innerHTML = '🟢 <strong>One-SIM viable</strong> &mdash; keep-alive bundle active 30 days. No re-install needed.';
+  } else if (rosterPicked.size > 0) {
+    statusEl.style.display = 'flex';
+    statusEl.style.background = '#fff8db';
+    statusEl.style.border = '1px solid #f4c20d';
+    statusEl.style.color = '#997d00';
+    statusEl.innerHTML = '🟡 <strong>Multiple installs likely needed</strong> &mdash; no 30-day bundle keeps the SIM alive between trips. Click <em>Make it One-SIM</em> to add a keep-alive.';
+  } else {
+    statusEl.style.display = 'none';
+  }
+}
+
+// Hook buttons
+document.getElementById('btnMakeSmart').onclick = makeSmartPicks;
+document.getElementById('btnMakeOneSIM').onclick = makeOneSIM;
+document.getElementById('btnClearPicks').onclick = clearPicks;
+
+// Patch existing render functions to call updateRosterStatus
+const _origRenderRoster = renderRoster;
+renderRoster = function() { _origRenderRoster.apply(this, arguments); updateRosterStatus(); };
+const _origRenderRosterItinerary = renderRosterItinerary;
+renderRosterItinerary = function() { _origRenderRosterItinerary.apply(this, arguments); updateRosterStatus(); };
+
 renderRoster();
 
 render();
