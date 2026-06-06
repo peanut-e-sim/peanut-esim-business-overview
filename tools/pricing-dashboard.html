@@ -65,6 +65,17 @@ tbody tr:hover { background: #fafaf7; }
   body { padding: 16px 12px; }
   .row > div { min-width: 100%; }
 }
+
+.data-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:600; font-family:ui-monospace,"SF Mono",monospace; }
+.ds-micro { background:#e0f2fe; color:#0369a1; }      /* 100-300MB - light blue */
+.ds-small { background:#dbeafe; color:#1d4ed8; }      /* 500MB - blue */
+.ds-crew  { background:#dcfce7; color:#15803d; }      /* 1-2GB - green (sweet spot) */
+.ds-med   { background:#fef9c3; color:#854d0e; }      /* 3-5GB - yellow */
+.ds-heavy { background:#fed7aa; color:#9a3412; }      /* 8-15GB - orange */
+.ds-bulk  { background:#fecaca; color:#991b1b; }      /* 20-50GB - red */
+.ds-huge  { background:#7c2d12; color:#fff; }         /* 75-100GB - dark red */
+.ds-daily { background:#ede9fe; color:#6b21a8; }      /* Unlimited daily - purple */
+
 </style>
 </head>
 <body>
@@ -142,6 +153,15 @@ tbody tr:hover { background: #fafaf7; }
     <div>
       <label>Data filter</label>
       <div class="chips" id="rosterDataChips"></div>
+      <div style="margin-top:8px;font-size:11px;color:#888;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+        <span class="data-badge ds-micro">100MB</span>
+        <span class="data-badge ds-small">500MB</span>
+        <span class="data-badge ds-crew">1-2GB crew</span>
+        <span class="data-badge ds-med">3-5GB</span>
+        <span class="data-badge ds-heavy">8-15GB</span>
+        <span class="data-badge ds-bulk">20-50GB</span>
+        <span class="data-badge ds-daily">∞/day</span>
+      </div>
     </div>
     <div>
       <label>Validity filter</label>
@@ -215,6 +235,21 @@ const FLAGS = {
   'Chile':'🇨🇱','Canada':'🇨🇦','United Arab Emirates':'🇦🇪','Maldives':'🇲🇻','Sri Lanka':'🇱🇰',
   'Pakistan':'🇵🇰','Morocco':'🇲🇦','Kenya':'🇰🇪'
 };
+
+
+function dataBadge(label, gv) {
+  if (!label) return '<span class="muted">—</span>';
+  let cls = 'ds-crew';
+  if (gv === 0) cls = 'ds-daily';
+  else if (gv < 0.4) cls = 'ds-micro';
+  else if (gv < 0.9) cls = 'ds-small';
+  else if (gv < 2.5) cls = 'ds-crew';
+  else if (gv < 6) cls = 'ds-med';
+  else if (gv < 16) cls = 'ds-heavy';
+  else if (gv < 60) cls = 'ds-bulk';
+  else cls = 'ds-huge';
+  return '<span class="data-badge ' + cls + '">' + label + '</span>';
+}
 
 const allCountries = [...new Set(DATA.singles.map(d => d.c))].sort();
 const countryInput = document.getElementById('countryInput');
@@ -441,7 +476,7 @@ function render() {
         '<td><span class="tag ' + supTag + '">' + supLabel + '</span></td>' +
         '<td>' + typeTag + '</td>' +
         '<td>' + flag + ' ' + r.c + coverList + '</td>' +
-        '<td>' + r.d + '</td>' +
+        '<td>' + dataBadge(r.d, r.gv) + '</td>' +
         '<td>' + r.v + '</td>' +
         '<td class="price">$' + r.p.toFixed(2) + '</td>' +
         '<td class="muted">' + r.n + '</td>' +
@@ -562,10 +597,16 @@ const rosterDataOpts = ['Any', '500MB', '1GB', '2GB', '3GB'];
 const rosterDaysOpts = ['Any', '1', '2', '3', '7', '15', '30'];
 const rdc = document.getElementById('rosterDataChips');
 const rdyc = document.getElementById('rosterDaysChips');
+const chipColorMap = { '500MB':'ds-small', '1GB':'ds-crew', '2GB':'ds-crew', '3GB':'ds-med' };
 rosterDataOpts.forEach(function(d) {
   const chip = document.createElement('div');
   chip.className = 'chip' + (d === 'Any' ? ' on' : '');
-  chip.textContent = d;
+  if (chipColorMap[d]) {
+    chip.style.background = ''; // keep base chip look, but show colored dot
+    chip.innerHTML = '<span class="data-badge ' + chipColorMap[d] + '" style="padding:0;background:transparent;color:inherit;">●</span> ' + d;
+  } else {
+    chip.textContent = d;
+  }
   chip.onclick = function() {
     document.querySelectorAll('#rosterDataChips .chip').forEach(function(c){c.classList.remove('on');});
     chip.classList.add('on');
@@ -645,7 +686,7 @@ function renderRoster() {
         html += '<tr style="' + rowBg + '">' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><input type="checkbox" data-pk="' + pickKey + '" ' + (isPicked ? 'checked' : '') + ' style="width:16px;height:16px;cursor:pointer;accent-color:#1a1a1a;"></td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><span class="tag ' + supTag + '">' + supLabel + '</span></td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.d + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + dataBadge(p.d, p.gv) + '</td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.v + recBadge + '</td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;font-family:ui-monospace,monospace;font-weight:600;">$' + p.p.toFixed(2) + '</td>' +
           '<td style="padding:8px 10px;font-size:12px;color:#999;border-bottom:1px solid #f5f5f5;">' + p.n + '</td>' +
