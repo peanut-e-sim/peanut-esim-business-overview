@@ -123,6 +123,20 @@ tbody tr:hover { background: #fafaf7; }
   <div id="flightsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;font-size:13px;"></div>
 </div>
 
+
+<div class="section">
+  <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">📋 Roster Plan</h2>
+  <div style="color:#888;font-size:13px;margin-bottom:14px;">
+    Pick destinations crew will visit this month. Below shows every plan available for each destination — pick the ones you want.
+  </div>
+  <div style="margin-bottom:12px;">
+    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#888;text-transform:uppercase;margin-bottom:8px;">Destinations</label>
+    <div class="chips" id="rosterChips"></div>
+  </div>
+  <div id="rosterPlans"></div>
+</div>
+
+
 <div class="count-bar">
   <span><strong id="resultCount">0</strong> SKUs match</span>
   <span class="muted">click headers to sort</span>
@@ -376,6 +390,74 @@ function render() {
     tb.innerHTML += '<tr><td colspan="7" class="empty">+' + (rows.length - 300) + ' more — narrow filters to see all</td></tr>';
   }
 }
+
+
+// ---- Roster Plan ----
+const rosterChips = document.getElementById('rosterChips');
+const rosterPlans = document.getElementById('rosterPlans');
+const rosterSelected = new Set();
+
+const PRIORITY_ROSTER = ['United States','United Kingdom','France','Italy','Germany','Spain',
+  'Australia','New Zealand','Brazil','Japan','South Africa','Singapore','Thailand','South Korea','Hong Kong'];
+
+const rosterCountries = [...new Set(DATA.singles.map(d => d.c))].sort();
+const orderedRoster = [...PRIORITY_ROSTER, ...rosterCountries.filter(c => !PRIORITY_ROSTER.includes(c))];
+
+orderedRoster.forEach(function(c) {
+  const chip = document.createElement('div');
+  chip.className = 'chip';
+  chip.textContent = (FLAGS[c] || '') + ' ' + c;
+  chip.onclick = function() {
+    if (rosterSelected.has(c)) { rosterSelected.delete(c); chip.classList.remove('on'); }
+    else { rosterSelected.add(c); chip.classList.add('on'); }
+    renderRoster();
+  };
+  rosterChips.appendChild(chip);
+});
+
+function renderRoster() {
+  if (rosterSelected.size === 0) {
+    rosterPlans.innerHTML = '<div class="muted" style="padding:14px 0;">Select one or more destinations above to see plans.</div>';
+    return;
+  }
+  let html = '';
+  Array.from(rosterSelected).forEach(function(country) {
+    const plans = DATA.singles
+      .filter(function(d) { return d.c === country; })
+      .filter(function(d) { return d.gv <= 2.5; }) // exclude overkill SKUs (3GB+) for crew use
+      .sort(function(a, b) { return (a.v - b.v) || (a.p - b.p); });
+    const top = plans.slice(0, 12);
+    html += '<div style="margin-top:18px;padding:14px;background:#fafaf7;border:1px solid #eee;border-radius:8px;">' +
+      '<h3 style="font-size:15px;font-weight:600;margin-bottom:10px;">' + (FLAGS[country] || '') + ' ' + country + ' <span style="font-size:11px;color:#888;font-weight:400;">— top ' + top.length + ' cheapest crew-friendly plans</span></h3>';
+    if (top.length === 0) {
+      html += '<div class="muted">No single-country plans found for this destination.</div>';
+    } else {
+      html += '<table style="width:100%;border-collapse:collapse;background:white;border-radius:6px;overflow:hidden;border:1px solid #eee;">' +
+        '<thead><tr>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Supplier</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Data</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Days</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Price</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">SKU</th>' +
+        '</tr></thead><tbody>';
+      top.forEach(function(p) {
+        const supTag = p.s === 'Sam' ? 'tag-sam' : 'tag-ea';
+        const supLabel = p.s === 'Sam' ? 'Samurai' : 'eSIM Access';
+        html += '<tr>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><span class="tag ' + supTag + '">' + supLabel + '</span></td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.d + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.v + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;font-family:ui-monospace,monospace;font-weight:600;">$' + p.p.toFixed(2) + '</td>' +
+          '<td style="padding:8px 10px;font-size:12px;color:#999;border-bottom:1px solid #f5f5f5;">' + p.n + '</td>' +
+        '</tr>';
+      });
+      html += '</tbody></table>';
+    }
+    html += '</div>';
+  });
+  rosterPlans.innerHTML = html;
+}
+renderRoster();
 
 render();
 </script>
