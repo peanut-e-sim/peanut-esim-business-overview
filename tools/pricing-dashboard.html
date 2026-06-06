@@ -148,6 +148,12 @@ tbody tr:hover { background: #fafaf7; }
       <div class="chips" id="rosterDaysChips"></div>
     </div>
   </div>
+  <div style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+    <input type="checkbox" id="rosterShowOriginal" style="width:18px;height:18px;cursor:pointer;accent-color:#1a1a1a;">
+    <label for="rosterShowOriginal" style="text-transform:none;letter-spacing:0;color:#1a1a1a;margin-bottom:0;font-size:13px;cursor:pointer;">
+      Show original supplier plans (no GB filter — includes 3GB+ large bundles)
+    </label>
+  </div>
 
   <div id="rosterPlans"></div>
 
@@ -595,9 +601,10 @@ function renderRoster() {
       layoverDays + ' day layover (' + (layoverDays * 24) + 'h)';
     const recommendedV = layoverDays || 1; // for turnaround, suggest 1-day SKU
 
+    const showOriginal = document.getElementById('rosterShowOriginal') && document.getElementById('rosterShowOriginal').checked;
     let plans = DATA.singles
       .filter(function(d) { return d.c === country; })
-      .filter(function(d) { return d.gv <= 2.5; })
+      .filter(function(d) { return showOriginal || d.gv <= 2.5; })
       .filter(function(d) { return rosterMatchesData(d, rosterDataFilter); })
       .filter(function(d) { return rosterMatchesDays(d.v, rosterDaysFilter); });
 
@@ -698,6 +705,8 @@ function renderRosterPicked() {
   document.getElementById('rosterMargin').textContent = '$' + (total * 3).toFixed(2);
 }
 
+const rosterShowOriginalCb = document.getElementById('rosterShowOriginal');
+if (rosterShowOriginalCb) rosterShowOriginalCb.onchange = renderRoster;
 renderRoster();
 
 render();
