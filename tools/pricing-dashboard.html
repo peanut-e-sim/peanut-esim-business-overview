@@ -521,6 +521,7 @@ function render() {
 const rosterPlans = document.getElementById('rosterPlans');
 let rosterSelections = []; // [{id, country}]
 let rosterSelIdCounter = 1;
+const rosterExpanded = new Set(); // selection IDs currently showing plan picker
 const rosterSearchInput = document.getElementById('rosterSearchInput');
 const rosterSearchDropdown = document.getElementById('rosterSearchDropdown');
 
@@ -636,13 +637,16 @@ function renderRosterItinerary() {
     // Count how many selections of this country exist — show "Trip N" if >1
     const sameCountryCount = rosterSelections.filter(function(s){ return s.country === country; }).length;
     const tripLabel = sameCountryCount > 1 ? ' <span style="color:#888;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
-    html += '<div style="position:relative;background:white;border:1px solid #f4c20d;border-left:4px solid #f4c20d;border-radius:8px;padding:12px 14px;min-width:200px;flex:1 1 220px;max-width:280px;">';
+    const isExpanded = rosterExpanded.has(sel.id);
+    const expandedStyle = isExpanded ? 'background:#fff8db;' : 'background:white;';
+    html += '<div data-card-sid="' + sel.id + '" style="cursor:pointer;position:relative;' + expandedStyle + 'border:1px solid #f4c20d;border-left:4px solid #f4c20d;border-radius:8px;padding:12px 14px;min-width:200px;flex:1 1 220px;max-width:280px;">';
     html += '<button data-sid="' + sel.id + '" title="Remove" style="position:absolute;top:6px;right:8px;background:transparent;border:0;color:#aaa;cursor:pointer;font-size:14px;font-weight:600;padding:2px 4px;">✕</button>';
     html += '<div style="font-weight:600;font-size:14px;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + tripLabel + '</div>';
     html += '<div style="font-size:12px;color:#1a1a1a;margin-bottom:2px;">' + routeStr + '</div>';
     if (fno) html += '<div style="font-size:11px;font-family:ui-monospace,monospace;color:#997d00;font-weight:600;margin-bottom:4px;">✈ ' + fno + '</div>';
     html += '<div style="font-size:12px;color:#15633f;font-weight:600;">🕒 ' + layoverStr + (layoverNote ? ' <span style="color:#888;font-weight:400;font-size:11px;">— ' + layoverNote + '</span>' : '') + '</div>';
     html += pickedSection;
+    html += '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e6d97a;font-size:11px;color:' + (isExpanded ? '#997d00' : '#888') + ';font-weight:600;text-align:center;">' + (isExpanded ? '▾ Hide plans' : '▸ Click to pick plans') + '</div>';
     html += '</div>';
 
     // Add + separator between cards
@@ -654,16 +658,28 @@ function renderRosterItinerary() {
 
   // Attach remove handlers
   container.querySelectorAll('button[data-sid]').forEach(function(btn) {
-    btn.onclick = function() {
+    btn.onclick = function(e) {
+      e.stopPropagation();
       const sid = btn.dataset.sid;
       rosterSelections = rosterSelections.filter(function(s){ return s.id !== sid; });
-      // Also remove any picks tied to this selection
+      rosterExpanded.delete(sid);
       const toRemove = [];
       rosterPicked.forEach(function(v, k){ if (v.selectionId === sid) toRemove.push(k); });
       toRemove.forEach(function(k){ rosterPicked.delete(k); });
       renderRosterItinerary();
       renderRoster();
       renderRosterPicked();
+    };
+  });
+
+  // Card click toggles plan picker
+  container.querySelectorAll('div[data-card-sid]').forEach(function(card) {
+    card.onclick = function() {
+      const sid = card.dataset.cardSid;
+      if (rosterExpanded.has(sid)) rosterExpanded.delete(sid);
+      else rosterExpanded.add(sid);
+      renderRosterItinerary();
+      renderRoster();
     };
   });
 
@@ -763,7 +779,11 @@ function renderRoster() {
     return;
   }
   let html = '';
+  if (rosterExpanded.size === 0) {
+    html = '<div class="muted" style="padding:14px 0;text-align:center;">Click any destination card above to pick plans.</div>';
+  }
   rosterSelections.forEach(function(sel) {
+    if (!rosterExpanded.has(sel.id)) return;  // only expanded selections show
     const country = sel.country;
     const layoverDays = getLayoverDays(country);
     const layoverLabel = layoverDays === 0 ? 'Turnaround (no overnight)' :
