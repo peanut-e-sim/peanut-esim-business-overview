@@ -855,19 +855,20 @@ function renderRoster() {
   rosterPlans.querySelectorAll('input[type="checkbox"][data-pk]').forEach(function(cb) {
     cb.onchange = function() {
       const pk = cb.dataset.pk;
+      const [selId, skuName] = pk.split('|');
       if (cb.checked) {
-        const [selId, skuName] = pk.split('|');
         const sel = rosterSelections.find(function(s){ return s.id === selId; });
         if (!sel) return;
         const country = sel.country;
         const sku = DATA.singles.find(function(d) { return d.c === country && d.n === skuName; });
         if (sku) rosterPicked.set(pk, {selectionId: selId, country: country, sku: sku});
+        // Auto-collapse the card after picking
+        rosterExpanded.delete(selId);
       } else {
         rosterPicked.delete(pk);
       }
       renderRosterPicked();
-      renderRosterItinerary();  // Update itinerary cards with picked plans
-      // Re-render to update row highlighting without losing scroll
+      renderRosterItinerary();
       renderRoster();
     };
   });
