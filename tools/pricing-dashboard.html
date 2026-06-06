@@ -160,30 +160,32 @@ tbody tr:hover { background: #fafaf7; }
     <div id="rosterTotalLayover" style="display:none;margin-top:14px;padding:12px 16px;background:#e8f5ec;border:1px solid #34a853;border-radius:8px;font-size:14px;color:#15633f;font-weight:600;"></div>
   </div>
 
-  <div class="row" style="margin-bottom:10px;">
-    <div>
-      <label>Data filter</label>
-      <div class="chips" id="rosterDataChips"></div>
-      <div style="margin-top:8px;font-size:11px;color:#888;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
-        <span class="data-badge ds-micro">100MB</span>
-        <span class="data-badge ds-small">500MB</span>
-        <span class="data-badge ds-crew">1-2GB crew</span>
-        <span class="data-badge ds-med">3-5GB</span>
-        <span class="data-badge ds-heavy">8-15GB</span>
-        <span class="data-badge ds-bulk">20-50GB</span>
-        <span class="data-badge ds-daily">∞/day</span>
+  <div id="rosterFilters" style="display:none;">
+    <div class="row" style="margin-bottom:10px;">
+      <div>
+        <label>Data filter</label>
+        <div class="chips" id="rosterDataChips"></div>
+        <div style="margin-top:8px;font-size:11px;color:#888;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+          <span class="data-badge ds-micro">100MB</span>
+          <span class="data-badge ds-small">500MB</span>
+          <span class="data-badge ds-crew">1-2GB crew</span>
+          <span class="data-badge ds-med">3-5GB</span>
+          <span class="data-badge ds-heavy">8-15GB</span>
+          <span class="data-badge ds-bulk">20-50GB</span>
+          <span class="data-badge ds-daily">∞/day</span>
+        </div>
+      </div>
+      <div>
+        <label>Validity filter</label>
+        <div class="chips" id="rosterDaysChips"></div>
       </div>
     </div>
-    <div>
-      <label>Validity filter</label>
-      <div class="chips" id="rosterDaysChips"></div>
+    <div style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
+      <input type="checkbox" id="rosterShowOriginal" style="width:18px;height:18px;cursor:pointer;accent-color:#1a1a1a;">
+      <label for="rosterShowOriginal" style="text-transform:none;letter-spacing:0;color:#1a1a1a;margin-bottom:0;font-size:13px;cursor:pointer;">
+        Show original supplier plans (no GB filter — includes 3GB+ large bundles)
+      </label>
     </div>
-  </div>
-  <div style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
-    <input type="checkbox" id="rosterShowOriginal" style="width:18px;height:18px;cursor:pointer;accent-color:#1a1a1a;">
-    <label for="rosterShowOriginal" style="text-transform:none;letter-spacing:0;color:#1a1a1a;margin-bottom:0;font-size:13px;cursor:pointer;">
-      Show original supplier plans (no GB filter — includes 3GB+ large bundles)
-    </label>
   </div>
 
   <div id="rosterPlans"></div>
@@ -773,11 +775,15 @@ rosterDaysOpts.forEach(function(d) {
 });
 
 function renderRoster() {
+  const filtersBox = document.getElementById('rosterFilters');
   if (rosterSelections.length === 0) {
     rosterPlans.innerHTML = '<div class="muted" style="padding:14px 0;">Select one or more destinations above to see plans.</div>';
     document.getElementById('rosterPickedPanel').style.display = 'none';
+    if (filtersBox) filtersBox.style.display = 'none';
     return;
   }
+  // Show filters only when at least one card is expanded
+  if (filtersBox) filtersBox.style.display = rosterExpanded.size > 0 ? 'block' : 'none';
   let html = '';
   if (rosterExpanded.size === 0) {
     html = '<div class="muted" style="padding:14px 0;text-align:center;">Click any destination card above to pick plans.</div>';
