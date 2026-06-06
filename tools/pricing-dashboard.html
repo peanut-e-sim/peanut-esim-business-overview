@@ -155,7 +155,8 @@ tbody tr:hover { background: #fafaf7; }
       <input type="text" id="rosterSearchInput" placeholder="Type country, city, or airport code (e.g. NRT, JFK, Tokyo)" autocomplete="off">
       <div class="dropdown" id="rosterSearchDropdown"></div>
     </div>
-    <div id="rosterSelectedChips" style="display:flex;flex-wrap:wrap;gap:6px;min-height:30px;"></div>
+    <div id="rosterItinerary" style="display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:6px;"></div>
+    <div id="rosterTotalLayover" style="display:none;margin-top:14px;padding:12px 16px;background:#e8f5ec;border:1px solid #34a853;border-radius:8px;font-size:14px;color:#15633f;font-weight:600;"></div>
   </div>
 
   <div class="row" style="margin-bottom:10px;">
@@ -562,25 +563,88 @@ rosterSearchDropdown.addEventListener('click', function(e) {
   rosterSelected.add(c);
   rosterSearchInput.value = '';
   rosterSearchDropdown.classList.remove('open');
-  renderRosterSelectedChips();
+  renderRosterItinerary();
   renderRoster();
 });
 
-function renderRosterSelectedChips() {
-  rosterSelectedChips.innerHTML = Array.from(rosterSelected).map(c =>
-    '<div class="chip on" data-rc="' + c + '" style="cursor:pointer;">' +
-      (FLAGS[c] || '') + ' ' + c + ' <span style="margin-left:6px;opacity:0.7;">✕</span>' +
-    '</div>'
-  ).join('');
-  rosterSelectedChips.querySelectorAll('.chip').forEach(function(chip) {
-    chip.onclick = function() {
-      rosterSelected.delete(chip.dataset.rc);
-      renderRosterSelectedChips();
+function layoverHours(country) {
+  const cities = FLIGHTS[country];
+  if (!cities || cities.length === 0) return 0;
+  // Use most common layover for country
+  const counts = {};
+  cities.forEach(function(c) { if (c.l) counts[c.l] = (counts[c.l]||0)+1; });
+  let mode = '', best = 0;
+  Object.keys(counts).forEach(function(k) { if (counts[k] > best) { best = counts[k]; mode = k; } });
+  if (!mode) return 0;
+  if (/turnaround/i.test(mode) || /home base/i.test(mode)) return 0;
+  const m = mode.match(/(\d+)/);
+  return m ? parseInt(m[1]) : 0;
+}
+
+function renderRosterItinerary() {
+  const container = document.getElementById('rosterItinerary');
+  const totalBox = document.getElementById('rosterTotalLayover');
+  const list = Array.from(rosterSelected);
+  if (list.length === 0) {
+    container.innerHTML = '';
+    totalBox.style.display = 'none';
+    return;
+  }
+  let html = '';
+  let totalH = 0;
+  list.forEach(function(country, idx) {
+    const cities = FLIGHTS[country] || [];
+    // Build flight details — show first city + count of others
+    let routeStr = '';
+    if (cities.length > 0) {
+      const main = cities[0];
+      routeStr = 'DXB → ' + main.c + (cities.length > 1 ? ' <span style="color:#999;font-size:11px;">(+' + (cities.length - 1) + ' more)</span>' : '');
+    }
+    const layoverStr = cities.length > 0 ? (cities[0].l || '?') : '?';
+    const layoverNote = cities.length > 0 && cities[0].n ? cities[0].n : '';
+    const hours = layoverHours(country);
+    totalH += hours;
+    const fno = cities.length > 0 && cities[0].f ? cities[0].f : '';
+
+    html += '<div style="position:relative;background:white;border:1px solid #f4c20d;border-left:4px solid #f4c20d;border-radius:8px;padding:12px 14px;min-width:200px;flex:1 1 220px;max-width:280px;">';
+    html += '<button data-rc="' + country + '" title="Remove" style="position:absolute;top:6px;right:8px;background:transparent;border:0;color:#aaa;cursor:pointer;font-size:14px;font-weight:600;padding:2px 4px;">✕</button>';
+    html += '<div style="font-weight:600;font-size:14px;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + '</div>';
+    html += '<div style="font-size:12px;color:#1a1a1a;margin-bottom:2px;">' + routeStr + '</div>';
+    if (fno) html += '<div style="font-size:11px;font-family:ui-monospace,monospace;color:#997d00;font-weight:600;margin-bottom:4px;">✈ ' + fno + '</div>';
+    html += '<div style="font-size:12px;color:#15633f;font-weight:600;">🕒 ' + layoverStr + (layoverNote ? ' <span style="color:#888;font-weight:400;font-size:11px;">— ' + layoverNote + '</span>' : '') + '</div>';
+    html += '</div>';
+
+    // Add + separator between cards
+    if (idx < list.length - 1) {
+      html += '<div style="display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;color:#888;min-width:24px;">+</div>';
+    }
+  });
+  container.innerHTML = html;
+
+  // Attach remove handlers
+  container.querySelectorAll('button[data-rc]').forEach(function(btn) {
+    btn.onclick = function() {
+      rosterSelected.delete(btn.dataset.rc);
+      renderRosterItinerary();
       renderRoster();
     };
   });
+
+  // Total layover summary
+  if (totalH > 0) {
+    const days = Math.floor(totalH/24);
+    const remH = totalH % 24;
+    let dayStr = '';
+    if (days > 0) dayStr = days + ' day' + (days > 1 ? 's' : '');
+    if (remH > 0) dayStr += (dayStr ? ' ' : '') + remH + 'h';
+    if (!dayStr) dayStr = totalH + 'h';
+    totalBox.innerHTML = '✈ Total layover across ' + list.length + ' destination' + (list.length > 1 ? 's' : '') + ': <span style="font-family:ui-monospace,monospace;">' + totalH + 'h</span> (' + dayStr + ')';
+    totalBox.style.display = 'block';
+  } else {
+    totalBox.style.display = 'none';
+  }
 }
-renderRosterSelectedChips();
+renderRosterItinerary();
 
 // Roster filter state + picked plans
 let rosterDataFilter = 'Any';
