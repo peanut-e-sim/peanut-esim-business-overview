@@ -519,18 +519,17 @@ function render() {
 
 // ---- Roster Plan ----
 const rosterPlans = document.getElementById('rosterPlans');
-const rosterSelected = new Set();
+let rosterSelections = []; // [{id, country}]
+let rosterSelIdCounter = 1;
 const rosterSearchInput = document.getElementById('rosterSearchInput');
 const rosterSearchDropdown = document.getElementById('rosterSearchDropdown');
-const rosterSelectedChips = document.getElementById('rosterSelectedChips');
 
 const rosterCountries = [...new Set(DATA.singles.map(d => d.c))].sort();
 
 function renderRosterDropdown(q) {
   const lower = q.toLowerCase().trim();
-  // Match against country names + city names + IATA codes
+  // Match against country names + city names + IATA codes (allow re-adding same country)
   const matches = SEARCH_INDEX
-    .filter(e => !rosterSelected.has(e.country))
     .filter(e => !lower || e.key.includes(lower) || e.label.toLowerCase().includes(lower))
     // Prefer exact IATA matches first, then prefix country matches, then substring
     .sort((a, b) => {
@@ -561,7 +560,9 @@ rosterSearchDropdown.addEventListener('click', function(e) {
   const el = e.target.closest('div[data-c]');
   if (!el) return;
   const c = el.dataset.c;
-  rosterSelected.add(c);
+  // Count existing selections of this country to label as "Trip 1", "Trip 2", etc
+  const existingCount = rosterSelections.filter(function(s){ return s.country === c; }).length;
+  rosterSelections.push({ id: 'sel' + (rosterSelIdCounter++), country: c, tripNum: existingCount + 1 });
   rosterSearchInput.value = '';
   rosterSearchDropdown.classList.remove('open');
   renderRosterItinerary();
@@ -585,15 +586,15 @@ function layoverHours(country) {
 function renderRosterItinerary() {
   const container = document.getElementById('rosterItinerary');
   const totalBox = document.getElementById('rosterTotalLayover');
-  const list = Array.from(rosterSelected);
-  if (list.length === 0) {
+  if (rosterSelections.length === 0) {
     container.innerHTML = '';
     totalBox.style.display = 'none';
     return;
   }
   let html = '';
   let totalH = 0;
-  list.forEach(function(country, idx) {
+  rosterSelections.forEach(function(sel, idx) {
+    const country = sel.country;
     const cities = FLIGHTS[country] || [];
     // Build flight details — show first city + count of others
     let routeStr = '';
@@ -607,15 +608,15 @@ function renderRosterItinerary() {
     totalH += hours;
     const fno = cities.length > 0 && cities[0].f ? cities[0].f : '';
 
-    // Look up picked plans for this country
-    const pickedForCountry = [];
+    // Look up picked plans for this selection
+    const pickedForSel = [];
     rosterPicked.forEach(function(p) {
-      if (p.country === country) pickedForCountry.push(p);
+      if (p.selectionId === sel.id) pickedForSel.push(p);
     });
     let pickedSection = '';
-    if (pickedForCountry.length > 0) {
+    if (pickedForSel.length > 0) {
       let inner = '';
-      pickedForCountry.forEach(function(p) {
+      pickedForSel.forEach(function(p) {
         const supColor = p.sku.s === 'Sam' ? '#f4c20d' : '#58a6ff';
         const supLabel = p.sku.s === 'Sam' ? 'Samurai' : 'eSIM Access';
         inner += '<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:11px;border-bottom:1px dashed #eee;">' +
@@ -627,14 +628,17 @@ function renderRosterItinerary() {
         '</div>';
       });
       pickedSection = '<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #f4c20d;">' +
-        '<div style="font-size:10px;font-weight:700;color:#15633f;letter-spacing:0.5px;margin-bottom:4px;">✓ PICKED ' + pickedForCountry.length + '</div>' +
+        '<div style="font-size:10px;font-weight:700;color:#15633f;letter-spacing:0.5px;margin-bottom:4px;">✓ PICKED ' + pickedForSel.length + '</div>' +
         inner +
         '</div>';
     }
 
+    // Count how many selections of this country exist — show "Trip N" if >1
+    const sameCountryCount = rosterSelections.filter(function(s){ return s.country === country; }).length;
+    const tripLabel = sameCountryCount > 1 ? ' <span style="color:#888;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
     html += '<div style="position:relative;background:white;border:1px solid #f4c20d;border-left:4px solid #f4c20d;border-radius:8px;padding:12px 14px;min-width:200px;flex:1 1 220px;max-width:280px;">';
-    html += '<button data-rc="' + country + '" title="Remove" style="position:absolute;top:6px;right:8px;background:transparent;border:0;color:#aaa;cursor:pointer;font-size:14px;font-weight:600;padding:2px 4px;">✕</button>';
-    html += '<div style="font-weight:600;font-size:14px;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + '</div>';
+    html += '<button data-sid="' + sel.id + '" title="Remove" style="position:absolute;top:6px;right:8px;background:transparent;border:0;color:#aaa;cursor:pointer;font-size:14px;font-weight:600;padding:2px 4px;">✕</button>';
+    html += '<div style="font-weight:600;font-size:14px;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + tripLabel + '</div>';
     html += '<div style="font-size:12px;color:#1a1a1a;margin-bottom:2px;">' + routeStr + '</div>';
     if (fno) html += '<div style="font-size:11px;font-family:ui-monospace,monospace;color:#997d00;font-weight:600;margin-bottom:4px;">✈ ' + fno + '</div>';
     html += '<div style="font-size:12px;color:#15633f;font-weight:600;">🕒 ' + layoverStr + (layoverNote ? ' <span style="color:#888;font-weight:400;font-size:11px;">— ' + layoverNote + '</span>' : '') + '</div>';
@@ -642,18 +646,24 @@ function renderRosterItinerary() {
     html += '</div>';
 
     // Add + separator between cards
-    if (idx < list.length - 1) {
+    if (idx < rosterSelections.length - 1) {
       html += '<div style="display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;color:#888;min-width:24px;">+</div>';
     }
   });
   container.innerHTML = html;
 
   // Attach remove handlers
-  container.querySelectorAll('button[data-rc]').forEach(function(btn) {
+  container.querySelectorAll('button[data-sid]').forEach(function(btn) {
     btn.onclick = function() {
-      rosterSelected.delete(btn.dataset.rc);
+      const sid = btn.dataset.sid;
+      rosterSelections = rosterSelections.filter(function(s){ return s.id !== sid; });
+      // Also remove any picks tied to this selection
+      const toRemove = [];
+      rosterPicked.forEach(function(v, k){ if (v.selectionId === sid) toRemove.push(k); });
+      toRemove.forEach(function(k){ rosterPicked.delete(k); });
       renderRosterItinerary();
       renderRoster();
+      renderRosterPicked();
     };
   });
 
@@ -665,7 +675,7 @@ function renderRosterItinerary() {
     if (days > 0) dayStr = days + ' day' + (days > 1 ? 's' : '');
     if (remH > 0) dayStr += (dayStr ? ' ' : '') + remH + 'h';
     if (!dayStr) dayStr = totalH + 'h';
-    totalBox.innerHTML = '✈ Total layover across ' + list.length + ' destination' + (list.length > 1 ? 's' : '') + ': <span style="font-family:ui-monospace,monospace;">' + totalH + 'h</span> (' + dayStr + ')';
+    totalBox.innerHTML = '✈ Total layover across ' + rosterSelections.length + ' destination' + (rosterSelections.length > 1 ? 's' : '') + ': <span style="font-family:ui-monospace,monospace;">' + totalH + 'h</span> (' + dayStr + ')';
     totalBox.style.display = 'block';
   } else {
     totalBox.style.display = 'none';
@@ -747,13 +757,14 @@ rosterDaysOpts.forEach(function(d) {
 });
 
 function renderRoster() {
-  if (rosterSelected.size === 0) {
+  if (rosterSelections.length === 0) {
     rosterPlans.innerHTML = '<div class="muted" style="padding:14px 0;">Select one or more destinations above to see plans.</div>';
     document.getElementById('rosterPickedPanel').style.display = 'none';
     return;
   }
   let html = '';
-  Array.from(rosterSelected).forEach(function(country) {
+  rosterSelections.forEach(function(sel) {
+    const country = sel.country;
     const layoverDays = getLayoverDays(country);
     const layoverLabel = layoverDays === 0 ? 'Turnaround (no overnight)' :
       layoverDays === null ? '' :
@@ -777,8 +788,10 @@ function renderRoster() {
 
     const top = plans.slice(0, 15);
     const layoverColor = layoverDays === 0 ? '#888' : '#15633f';
+    const sameCount = rosterSelections.filter(function(s){ return s.country === country; }).length;
+    const tripLbl = sameCount > 1 ? ' <span style="color:#888;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
     html += '<div style="margin-top:18px;padding:14px;background:#fafaf7;border:1px solid #eee;border-radius:8px;">' +
-      '<h3 style="font-size:15px;font-weight:600;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + '</h3>' +
+      '<h3 style="font-size:15px;font-weight:600;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + tripLbl + '</h3>' +
       (layoverLabel ? '<div style="font-size:12px;color:' + layoverColor + ';margin-bottom:10px;">🕒 ' + layoverLabel + (layoverDays > 0 ? ' &middot; recommended SKU validity: <strong>' + recommendedV + ' day' + (recommendedV > 1 ? 's' : '') + '</strong>' : '') + '</div>' : '');
 
     if (top.length === 0) {
@@ -797,7 +810,7 @@ function renderRoster() {
       top.forEach(function(p) {
         const supTag = p.s === 'Sam' ? 'tag-sam' : 'tag-ea';
         const supLabel = p.s === 'Sam' ? 'Samurai' : 'eSIM Access';
-        const pickKey = country + '|' + p.n;
+        const pickKey = sel.id + '|' + p.n;
         const isPicked = rosterPicked.has(pickKey);
         const recMatch = p.v === recommendedV;
         const rowBg = isPicked ? 'background:#fff8db;' : (recMatch ? 'background:#f5fbf6;' : '');
@@ -823,9 +836,12 @@ function renderRoster() {
     cb.onchange = function() {
       const pk = cb.dataset.pk;
       if (cb.checked) {
-        const [country, skuName] = pk.split('|');
+        const [selId, skuName] = pk.split('|');
+        const sel = rosterSelections.find(function(s){ return s.id === selId; });
+        if (!sel) return;
+        const country = sel.country;
         const sku = DATA.singles.find(function(d) { return d.c === country && d.n === skuName; });
-        if (sku) rosterPicked.set(pk, {country: country, sku: sku});
+        if (sku) rosterPicked.set(pk, {selectionId: selId, country: country, sku: sku});
       } else {
         rosterPicked.delete(pk);
       }
@@ -852,10 +868,13 @@ function renderRosterPicked() {
     total += p.sku.p;
     const supLabel = p.sku.s === 'Sam' ? 'Samurai' : 'eSIM Access';
     const supColor = p.sku.s === 'Sam' ? '#f4c20d' : '#58a6ff';
+    const sel = rosterSelections.find(function(s){ return s.id === p.selectionId; });
+    const sameCount = sel ? rosterSelections.filter(function(s){ return s.country === sel.country; }).length : 0;
+    const tripLbl = sameCount > 1 && sel ? ' <span style="color:rgba(255,255,255,0.4);font-size:11px;">· T' + sel.tripNum + '</span>' : '';
     return '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:14px;">' +
       '<div>' +
         '<span style="display:inline-block;padding:1px 8px;background:' + supColor + ';color:#000;font-size:10px;font-weight:600;border-radius:3px;margin-right:8px;">' + supLabel + '</span>' +
-        (FLAGS[p.country] || '') + ' ' + p.country +
+        (FLAGS[p.country] || '') + ' ' + p.country + tripLbl +
         ' <span style="color:rgba(255,255,255,0.5);margin-left:8px;font-size:12px;">' + p.sku.d + ' &middot; ' + p.sku.v + 'd</span>' +
       '</div>' +
       '<span style="font-family:ui-monospace,monospace;font-weight:600;">$' + p.sku.p.toFixed(2) + '</span>' +
