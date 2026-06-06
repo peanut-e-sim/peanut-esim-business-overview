@@ -127,11 +127,15 @@ tbody tr:hover { background: #fafaf7; }
 <div class="section">
   <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">📋 Roster Plan</h2>
   <div style="color:#888;font-size:13px;margin-bottom:14px;">
-    Pick destinations crew will visit this month. Below shows every plan available for each destination — pick the ones you want.
+    Search and add destinations crew will visit this month. Below shows every plan available for each destination.
   </div>
   <div style="margin-bottom:12px;">
-    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#888;text-transform:uppercase;margin-bottom:8px;">Destinations</label>
-    <div class="chips" id="rosterChips"></div>
+    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#888;text-transform:uppercase;margin-bottom:8px;">Add destination</label>
+    <div class="search" style="margin-bottom:10px;">
+      <input type="text" id="rosterSearchInput" placeholder="Type a country… (e.g. United States)" autocomplete="off">
+      <div class="dropdown" id="rosterSearchDropdown"></div>
+    </div>
+    <div id="rosterSelectedChips" style="display:flex;flex-wrap:wrap;gap:6px;min-height:30px;"></div>
   </div>
   <div id="rosterPlans"></div>
 </div>
@@ -394,27 +398,62 @@ function render() {
 
 
 // ---- Roster Plan ----
-const rosterChips = document.getElementById('rosterChips');
 const rosterPlans = document.getElementById('rosterPlans');
 const rosterSelected = new Set();
-
-const PRIORITY_ROSTER = ['United States','United Kingdom','France','Italy','Germany','Spain',
-  'Australia','New Zealand','Brazil','Japan','South Africa','Singapore','Thailand','South Korea','Hong Kong'];
+const rosterSearchInput = document.getElementById('rosterSearchInput');
+const rosterSearchDropdown = document.getElementById('rosterSearchDropdown');
+const rosterSelectedChips = document.getElementById('rosterSelectedChips');
 
 const rosterCountries = [...new Set(DATA.singles.map(d => d.c))].sort();
-const orderedRoster = [...PRIORITY_ROSTER, ...rosterCountries.filter(c => !PRIORITY_ROSTER.includes(c))];
 
-orderedRoster.forEach(function(c) {
-  const chip = document.createElement('div');
-  chip.className = 'chip';
-  chip.textContent = (FLAGS[c] || '') + ' ' + c;
-  chip.onclick = function() {
-    if (rosterSelected.has(c)) { rosterSelected.delete(c); chip.classList.remove('on'); }
-    else { rosterSelected.add(c); chip.classList.add('on'); }
-    renderRoster();
-  };
-  rosterChips.appendChild(chip);
+function renderRosterDropdown(q) {
+  const lower = q.toLowerCase().trim();
+  const matches = rosterCountries
+    .filter(c => !rosterSelected.has(c))
+    .filter(c => !lower || c.toLowerCase().includes(lower))
+    .slice(0, 12);
+  rosterSearchDropdown.innerHTML = matches.map(c =>
+    '<div data-c="' + c + '">' + (FLAGS[c] || '') + ' ' + c + '</div>'
+  ).join('');
+  rosterSearchDropdown.classList.toggle('open', matches.length > 0);
+}
+
+rosterSearchInput.addEventListener('input', function() {
+  renderRosterDropdown(rosterSearchInput.value);
 });
+rosterSearchInput.addEventListener('focus', function() {
+  renderRosterDropdown(rosterSearchInput.value || '');
+});
+rosterSearchInput.addEventListener('blur', function() {
+  setTimeout(function() { rosterSearchDropdown.classList.remove('open'); }, 200);
+});
+
+rosterSearchDropdown.addEventListener('click', function(e) {
+  const el = e.target.closest('div[data-c]');
+  if (!el) return;
+  const c = el.dataset.c;
+  rosterSelected.add(c);
+  rosterSearchInput.value = '';
+  rosterSearchDropdown.classList.remove('open');
+  renderRosterSelectedChips();
+  renderRoster();
+});
+
+function renderRosterSelectedChips() {
+  rosterSelectedChips.innerHTML = Array.from(rosterSelected).map(c =>
+    '<div class="chip on" data-rc="' + c + '" style="cursor:pointer;">' +
+      (FLAGS[c] || '') + ' ' + c + ' <span style="margin-left:6px;opacity:0.7;">✕</span>' +
+    '</div>'
+  ).join('');
+  rosterSelectedChips.querySelectorAll('.chip').forEach(function(chip) {
+    chip.onclick = function() {
+      rosterSelected.delete(chip.dataset.rc);
+      renderRosterSelectedChips();
+      renderRoster();
+    };
+  });
+}
+renderRosterSelectedChips();
 
 function renderRoster() {
   if (rosterSelected.size === 0) {
