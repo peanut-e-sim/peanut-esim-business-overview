@@ -4,103 +4,230 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Peanut eSIM — Pricing Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root {
+  --ink-900: #0B0F1A;
+  --ink-800: #11172A;
+  --ink-700: #1A1F2E;
+  --ink-600: #232938;
+  --ink-500: #313441;
+  --gold-500: #D4A24C;
+  --gold-400: #E2B458;
+  --gold-300: #F3BE65;
+  --gold-200: #F2D9A3;
+  --text: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.15);
+  --glass: rgba(255,255,255,0.04);
+  --glass-2: rgba(255,255,255,0.08);
+  --green: #4ADE80;
+  --green-glow: rgba(74,222,128,0.12);
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-  background: #f7f6f3; color: #1a1a1a; line-height: 1.5; padding: 32px 24px; max-width: 1100px; margin: 0 auto; }
-h1 { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
-.sub { color: #888; font-size: 13px; margin-bottom: 24px; }
-.section { background: white; border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
-  color: #888; text-transform: uppercase; margin-bottom: 8px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(1200px 800px at 20% -10%, #1A2240 0%, var(--ink-900) 60%) fixed;
+  color: var(--text); line-height: 1.5; padding: 32px 24px;
+  max-width: 1100px; margin: 0 auto; min-height: 100vh;
+  font-feature-settings: 'cv11', 'tnum';
+}
+h1 { font-size: 26px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.01em; color: var(--text); }
+h2, h3 { color: var(--text); }
+.sub { color: var(--text-muted); font-size: 13px; margin-bottom: 24px; }
+.section {
+  background: var(--glass); border: 1px solid var(--line); border-radius: 22px;
+  padding: 24px; margin-bottom: 20px;
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }
 .row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; align-items: flex-start; }
 .row > div { flex: 1; min-width: 200px; }
 .search { position: relative; }
-.search input { width: 100%; padding: 12px 14px; font-size: 15px; border: 1px solid #ddd;
-  border-radius: 8px; background: white; font-family: inherit; }
-.search input:focus { outline: none; border-color: #f4c20d; }
-.dropdown { position: absolute; top: 100%; left: 0; right: 0; background: white;
-  border: 1px solid #ddd; border-radius: 8px; max-height: 240px; overflow-y: auto;
-  margin-top: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); z-index: 10; display: none; }
+.search input {
+  width: 100%; padding: 12px 14px; font-size: 15px;
+  background: var(--ink-700); border: 1px solid var(--line);
+  border-radius: 12px; color: var(--text); font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.search input::placeholder { color: var(--text-dim); }
+.search input:focus {
+  outline: none; border-color: var(--gold-500);
+  box-shadow: 0 0 0 3px rgba(212,162,76,0.18);
+}
+.dropdown {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: var(--ink-700); border: 1px solid var(--line);
+  border-radius: 12px; max-height: 240px; overflow-y: auto;
+  margin-top: 6px; box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+  z-index: 10; display: none;
+}
 .dropdown.open { display: block; }
-.dropdown div { padding: 10px 14px; cursor: pointer; font-size: 14px; }
-.dropdown div:hover { background: #fafaf7; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { padding: 6px 12px; border-radius: 100px; background: #fafaf7; border: 1px solid #ddd;
-  cursor: pointer; font-size: 13px; user-select: none; transition: all 0.1s; }
-.chip:hover { border-color: #f4c20d; }
-.chip.on { background: #1a1a1a; color: white; border-color: #1a1a1a; }
-.checkboxes { display: flex; gap: 16px; align-items: center; }
-.checkboxes label { font-size: 14px; color: #1a1a1a; text-transform: none; letter-spacing: 0;
+.dropdown div { padding: 10px 14px; cursor: pointer; font-size: 14px; color: var(--text); }
+.dropdown div:hover { background: var(--glass-2); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  padding: 7px 14px; border-radius: 999px;
+  background: var(--ink-700); border: 1px solid var(--line);
+  color: var(--text-muted); cursor: pointer; font-size: 13px;
+  user-select: none; transition: all 0.12s;
+}
+.chip:hover { border-color: var(--gold-500); color: var(--text); }
+.chip.on {
+  background: linear-gradient(180deg, var(--gold-300), var(--gold-500));
+  color: var(--ink-900); border-color: var(--gold-500); font-weight: 600;
+}
+.checkboxes { display: flex; gap: 18px; align-items: center; }
+.checkboxes label { font-size: 14px; color: var(--text); text-transform: none; letter-spacing: 0;
   margin-bottom: 0; cursor: pointer; display: flex; gap: 8px; align-items: center; }
-.checkboxes input { width: 18px; height: 18px; cursor: pointer; accent-color: #1a1a1a; }
-.bundle-toggle { background: #fff8db; border: 1px solid #f4c20d; border-radius: 8px;
-  padding: 12px 16px; display: flex; gap: 12px; align-items: flex-start; }
-.bundle-toggle label { text-transform: none; letter-spacing: 0; color: #1a1a1a;
+.checkboxes input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--gold-500); }
+.bundle-toggle {
+  background: rgba(212,162,76,0.10); border: 1px solid rgba(212,162,76,0.40);
+  border-radius: 14px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start;
+}
+.bundle-toggle label { text-transform: none; letter-spacing: 0; color: var(--text);
   margin-bottom: 0; font-size: 14px; cursor: pointer; flex: 1; }
-.bundle-toggle .help { font-size: 12px; color: #888; margin-top: 4px; }
+.bundle-toggle .help { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 .count-bar { display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 12px; font-size: 13px; color: #888; }
-.count-bar strong { color: #1a1a1a; font-size: 15px; }
+  margin-bottom: 12px; font-size: 13px; color: var(--text-muted); }
+.count-bar strong { color: var(--text); font-size: 15px; }
 details.sku-collapse { margin-top: 12px; }
 details.sku-collapse > summary {
   list-style: none; cursor: pointer; user-select: none;
   display: flex; justify-content: space-between; align-items: center; gap: 12px;
-  padding: 14px 16px; background: white; border: 1px solid #ddd; border-radius: 8px;
-  font-size: 13px; color: #888; transition: background .15s, border-radius .15s;
+  padding: 16px 18px; background: var(--glass); border: 1px solid var(--line); border-radius: 16px;
+  font-size: 13px; color: var(--text-muted); transition: background .15s;
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
 }
 details.sku-collapse > summary::-webkit-details-marker { display: none; }
 details.sku-collapse > summary::after {
-  content: '▾'; color: #888; font-size: 12px; margin-left: 4px; transition: transform .15s;
+  content: '▾'; color: var(--gold-500); font-size: 12px; margin-left: 4px; transition: transform .15s;
 }
-details.sku-collapse[open] > summary { border-radius: 8px 8px 0 0; border-bottom: none; }
+details.sku-collapse[open] > summary { border-radius: 16px 16px 0 0; border-bottom: none; }
 details.sku-collapse[open] > summary::after { transform: rotate(180deg); }
-details.sku-collapse > summary:hover { background: #fafafa; }
-details.sku-collapse .sku-count { font-weight: 600; font-size: 15px; color: #1a1a1a; }
-details.sku-collapse[open] table { border-radius: 0 0 8px 8px; border-top: none; }
-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px;
-  border: 1px solid #ddd; overflow: hidden; }
-thead th { padding: 12px 14px; text-align: left; font-size: 12px; font-weight: 600;
-  color: #888; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #eee;
-  cursor: pointer; user-select: none; }
-thead th:hover { color: #1a1a1a; }
-thead th.up::after { content: " ↑"; color: #f4c20d; }
-thead th.dn::after { content: " ↓"; color: #f4c20d; }
-tbody td { padding: 12px 14px; font-size: 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+details.sku-collapse > summary:hover { background: var(--glass-2); }
+details.sku-collapse .sku-count {
+  font-weight: 600; font-size: 15px; color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+details.sku-collapse[open] table { border-radius: 0 0 16px 16px; border-top: none; }
+table { width: 100%; border-collapse: collapse; background: var(--ink-700);
+  border: 1px solid var(--line); overflow: hidden; }
+thead th { padding: 12px 14px; text-align: left; font-size: 11px; font-weight: 600;
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--line); cursor: pointer; user-select: none;
+  background: var(--ink-800);
+}
+thead th:hover { color: var(--text); }
+thead th.up::after { content: " ↑"; color: var(--gold-500); }
+thead th.dn::after { content: " ↓"; color: var(--gold-500); }
+tbody td { padding: 12px 14px; font-size: 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--text); }
 tbody tr:last-child td { border-bottom: 0; }
-tbody tr:hover { background: #fafaf7; }
-.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-.tag-sam { background: #fff5d4; color: #997d00; }
-.tag-ea { background: #e3f0ff; color: #1a5cb0; }
-.tag-bundle { background: #f0e6ff; color: #6b3fa0; }
-.price { font-family: ui-monospace, monospace; font-weight: 600; }
-.muted { color: #999; font-size: 12px; }
-.empty { text-align: center; padding: 40px; color: #aaa; }
-.cover-list { font-size: 11px; color: #999; margin-top: 4px; }
+tbody tr:hover { background: var(--glass-2); }
+.tag { display: inline-block; padding: 3px 9px; border-radius: 6px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
+.tag-sam { background: rgba(212,162,76,0.18); color: var(--gold-300); }
+.tag-ea { background: rgba(96,165,250,0.18); color: #60A5FA; }
+.tag-bundle { background: rgba(196,181,253,0.18); color: #C4B5FD; }
+.price { font-family: ui-monospace, 'SF Mono', monospace; font-weight: 600;
+  font-variant-numeric: tabular-nums; color: var(--gold-300); }
+.muted { color: var(--text-dim); font-size: 12px; }
+.empty { text-align: center; padding: 40px; color: var(--text-dim); }
+.cover-list { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
 @media (max-width: 700px) {
   body { padding: 16px 12px; }
   .row > div { min-width: 100%; }
 }
+.data-badge, .speed-badge {
+  display: inline-block; padding: 3px 9px; border-radius: 6px;
+  font-size: 12px; font-weight: 600;
+  font-family: ui-monospace, 'SF Mono', monospace;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.ds-micro { background: rgba(56,189,248,0.20); color: #7DD3FC; }
+.ds-small { background: rgba(96,165,250,0.22); color: #93C5FD; }
+.ds-crew  { background: rgba(74,222,128,0.22); color: #86EFAC; }
+.ds-med   { background: rgba(250,204,21,0.20); color: #FDE047; }
+.ds-heavy { background: rgba(251,146,60,0.22); color: #FDBA74; }
+.ds-bulk  { background: rgba(248,113,113,0.20); color: #FCA5A5; }
+.ds-huge  { background: rgba(244,63,94,0.30); color: #FDA4AF; }
+.ds-daily { background: rgba(196,181,253,0.20); color: #C4B5FD; }
+.sp-full  { background: rgba(74,222,128,0.22); color: #86EFAC; }
+.sp-daily { background: rgba(96,165,250,0.22); color: #93C5FD; }
+.sp-fast  { background: rgba(163,230,53,0.22); color: #BEF264; }
+.sp-mid   { background: rgba(250,204,21,0.20); color: #FDE047; }
+.sp-low   { background: rgba(251,146,60,0.22); color: #FDBA74; }
+.sp-slow  { background: rgba(248,113,113,0.22); color: #FCA5A5; }
+.sp-bad   { background: rgba(127,29,29,0.6); color: #FECACA; }
 
-.data-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:600; font-family:ui-monospace,"SF Mono",monospace; }
-.ds-micro { background:#e0f2fe; color:#0369a1; }      /* 100-300MB - light blue */
-.ds-small { background:#dbeafe; color:#1d4ed8; }      /* 500MB - blue */
-.ds-crew  { background:#dcfce7; color:#15803d; }      /* 1-2GB - green (sweet spot) */
-.ds-med   { background:#fef9c3; color:#854d0e; }      /* 3-5GB - yellow */
-.ds-heavy { background:#fed7aa; color:#9a3412; }      /* 8-15GB - orange */
-.ds-bulk  { background:#fecaca; color:#991b1b; }      /* 20-50GB - red */
-.ds-huge  { background:#7c2d12; color:#fff; }         /* 75-100GB - dark red */
-.ds-daily { background:#ede9fe; color:#6b21a8; }      /* Unlimited daily - purple */
-.speed-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:600; font-family:ui-monospace,"SF Mono",monospace; white-space:nowrap; }
-.sp-full   { background:#dcfce7; color:#15803d; }      /* full speed - green */
-.sp-daily  { background:#dbeafe; color:#1d4ed8; }      /* daily refill - blue */
-.sp-fast   { background:#ecfccb; color:#3f6212; }      /* 10mbps - lime */
-.sp-mid    { background:#fef9c3; color:#854d0e; }      /* 5mbps - yellow */
-.sp-low    { background:#fed7aa; color:#9a3412; }      /* 1mbps - orange */
-.sp-slow   { background:#fecaca; color:#991b1b; }      /* 384kbps - light red */
-.sp-bad    { background:#7f1d1d; color:#fff; }         /* 128kbps - dark red */
+/* Boarding-pass flight strip — used by flight panel + roster card flight info */
+.flight-strip {
+  background: var(--ink-700); border: 1px solid var(--line);
+  border-radius: 8px; padding: 12px 14px; position: relative;
+  border-left: 3px solid var(--gold-500);
+}
 
+/* Button system */
+#btnMakeSmart {
+  background: linear-gradient(180deg, var(--gold-300), var(--gold-500)) !important;
+  color: var(--ink-900) !important; border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 22px rgba(212,162,76,0.25), inset 0 1px 0 rgba(255,255,255,0.35);
+}
+#btnMakeOneSIM {
+  background: transparent !important;
+  color: var(--gold-300) !important;
+  border: 1px solid var(--gold-500) !important;
+  border-radius: 12px !important;
+}
+#btnClearPicks {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px !important;
+}
 
+/* Override inline-styled panels */
+#flightsPanel {
+  background: var(--glass) !important;
+  border-color: rgba(212,162,76,0.30) !important;
+  border-radius: 22px !important;
+}
+#flightsPanel h3 { color: var(--text); }
+#flightCount {
+  background: linear-gradient(180deg, var(--gold-300), var(--gold-500)) !important;
+  color: var(--ink-900) !important;
+}
+#rosterPickedPanel {
+  background: linear-gradient(180deg, var(--ink-700), var(--ink-800)) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(212,162,76,0.35);
+  border-radius: 18px !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+#rosterTotalLayover {
+  background: rgba(74,222,128,0.12) !important;
+  border: 1px solid rgba(74,222,128,0.35) !important;
+  color: #86EFAC !important;
+  border-radius: 12px !important;
+}
+.usage-help { color: var(--text-muted) !important; }
+
+/* Number tabular figures everywhere */
+.price, .data-badge, .speed-badge, .sku-count, [class*="price"], code,
+input[type="text"] { font-variant-numeric: tabular-nums; }
+
+/* Custom scrollbar for the dark theme */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--ink-900); }
+::-webkit-scrollbar-thumb { background: var(--ink-600); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-500); }
 </style>
 </head>
 <body>
@@ -143,7 +270,7 @@ tbody tr:hover { background: #fafaf7; }
 
   <div id="bundleToggleWrap" style="display:none;">
     <div class="bundle-toggle">
-      <input type="checkbox" id="includeBundles" style="width:18px;height:18px;margin-top:2px;accent-color:#1a1a1a;cursor:pointer;">
+      <input type="checkbox" id="includeBundles" style="width:18px;height:18px;margin-top:2px;accent-color:#D4A24C;cursor:pointer;">
       <label for="includeBundles">
         Include regional bundles that cover this country
         <div class="help" id="bundleHint"></div>
@@ -152,10 +279,10 @@ tbody tr:hover { background: #fafaf7; }
   </div>
 </div>
 
-<div id="flightsPanel" class="section" style="display:none;background:#fdf6e3;border-color:#f4c20d;">
-  <h3 style="font-size:15px;font-weight:600;margin-bottom:12px;color:#1a1a1a;">
+<div id="flightsPanel" class="section" style="display:none;">
+  <h3 style="font-size:15px;font-weight:600;margin-bottom:12px;color:#F8FAFC;">
     ✈️ Emirates destinations in <span id="flightCountryName"></span>
-    <span id="flightCount" style="font-size:11px;font-weight:600;background:#f4c20d;color:#000;padding:2px 8px;border-radius:100px;margin-left:6px;"></span>
+    <span id="flightCount" style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:100px;margin-left:6px;"></span>
   </h3>
   <div id="flightsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;font-size:13px;"></div>
 </div>
@@ -163,22 +290,22 @@ tbody tr:hover { background: #fafaf7; }
 
 <div class="section">
   <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">📋 Roster Plan</h2>
-  <div style="color:#888;font-size:13px;margin-bottom:14px;">
+  <div style="color:#94A3B8;font-size:13px;margin-bottom:14px;">
     Pick a usage tier, then add destinations. We&rsquo;ll auto-pick the best SKU per destination — you can edit any pick by clicking the card.
   </div>
-  <div style="margin-bottom:16px;padding:12px;background:#fafaf7;border:1px solid #eee;border-radius:8px;">
-    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#888;text-transform:uppercase;margin-bottom:8px;">Usage tier</label>
+  <div style="margin-bottom:16px;padding:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;">
+    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#94A3B8;text-transform:uppercase;margin-bottom:8px;">Usage tier</label>
     <div class="chips" id="rosterUsageChips" style="margin-bottom:6px;"></div>
-    <div style="font-size:11px;color:#888;" id="rosterUsageHelp">Low &mdash; 1 GB / day · full speed</div>
+    <div style="font-size:11px;color:#94A3B8;" id="rosterUsageHelp">Low &mdash; 1 GB / day · full speed</div>
   </div>
   <div style="margin-bottom:14px;">
-    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#888;text-transform:uppercase;margin-bottom:8px;">Add destination</label>
+    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#94A3B8;text-transform:uppercase;margin-bottom:8px;">Add destination</label>
     <div class="search" style="margin-bottom:10px;">
       <input type="text" id="rosterSearchInput" placeholder="Type country, city, or airport code (e.g. NRT, JFK, Tokyo)" autocomplete="off">
       <div class="dropdown" id="rosterSearchDropdown"></div>
     </div>
     <div id="rosterItinerary" style="display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:6px;"></div>
-    <div id="rosterTotalLayover" style="display:none;margin-top:14px;padding:12px 16px;background:#e8f5ec;border:1px solid #34a853;border-radius:8px;font-size:14px;color:#15633f;font-weight:600;"></div>
+    <div id="rosterTotalLayover" style="display:none;margin-top:14px;padding:12px 16px;background:#e8f5ec;border:1px solid #34a853;border-radius:8px;font-size:14px;color:#86EFAC;font-weight:600;"></div>
 
     <div id="rosterStatus" style="display:none;margin-top:10px;padding:12px 16px;border-radius:8px;font-size:14px;font-weight:600;display:none;align-items:center;gap:10px;flex-wrap:wrap;"></div>
 
@@ -186,10 +313,10 @@ tbody tr:hover { background: #fafaf7; }
       <button id="btnMakeSmart" style="padding:10px 16px;background:#1a1a1a;color:white;border:0;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
         ✨ Make it Smart
       </button>
-      <button id="btnMakeOneSIM" style="padding:10px 16px;background:white;color:#1a1a1a;border:1px solid #1a1a1a;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
+      <button id="btnMakeOneSIM" style="padding:10px 16px;background:rgba(255,255,255,0.04);color:#F8FAFC;border:1px solid #1a1a1a;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
         📱 Make it One-SIM
       </button>
-      <button id="btnClearPicks" style="padding:10px 16px;background:transparent;color:#999;border:1px solid #ddd;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
+      <button id="btnClearPicks" style="padding:10px 16px;background:transparent;color:#94A3B8;border:1px solid #ddd;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
         Clear all picks
       </button>
     </div>
@@ -200,7 +327,7 @@ tbody tr:hover { background: #fafaf7; }
       <div>
         <label>Data filter</label>
         <div class="chips" id="rosterDataChips"></div>
-        <div style="margin-top:8px;font-size:11px;color:#888;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+        <div style="margin-top:8px;font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
           <span class="data-badge ds-micro">100MB</span>
           <span class="data-badge ds-small">500MB</span>
           <span class="data-badge ds-crew">1-2GB crew</span>
@@ -216,8 +343,8 @@ tbody tr:hover { background: #fafaf7; }
       </div>
     </div>
     <div style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
-      <input type="checkbox" id="rosterShowOriginal" style="width:18px;height:18px;cursor:pointer;accent-color:#1a1a1a;">
-      <label for="rosterShowOriginal" style="text-transform:none;letter-spacing:0;color:#1a1a1a;margin-bottom:0;font-size:13px;cursor:pointer;">
+      <input type="checkbox" id="rosterShowOriginal" style="width:18px;height:18px;cursor:pointer;accent-color:#D4A24C;">
+      <label for="rosterShowOriginal" style="text-transform:none;letter-spacing:0;color:#F8FAFC;margin-bottom:0;font-size:13px;cursor:pointer;">
         Show original supplier plans (no GB filter — includes 3GB+ large bundles)
       </label>
     </div>
@@ -235,7 +362,7 @@ tbody tr:hover { background: #fafaf7; }
       </div>
       <div>
         <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Suggested sell 4×</div>
-        <div id="rosterSellPrice" style="font-size:22px;font-weight:600;font-family:ui-monospace,monospace;color:#f4c20d;">$0.00</div>
+        <div id="rosterSellPrice" style="font-size:22px;font-weight:600;font-family:ui-monospace,monospace;color:#D4A24C;">$0.00</div>
       </div>
       <div>
         <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Margin</div>
@@ -423,11 +550,11 @@ function updateFlightPanel() {
   nameEl.textContent = (FLAGS[selectedCountry] || '') + ' ' + selectedCountry;
   countEl.textContent = flights.length + ' route' + (flights.length === 1 ? '' : 's');
   listEl.innerHTML = flights.map(function(f) {
-    const fno = f.f ? '<div style="color:#997d00;font-size:11px;margin-top:4px;font-family:ui-monospace,monospace;font-weight:600;">✈ ' + f.f + '</div>' : '';
-    const lo = f.l ? '<div style="color:#15633f;font-size:11px;margin-top:3px;font-weight:600;">🕒 Layover: ' + f.l + (f.n ? ' <span style="color:#888;font-weight:400;">— ' + f.n + '</span>' : '') + '</div>' : '';
-    return '<div style="padding:8px 12px;background:white;border-radius:6px;border:1px solid #f0e6c4;">' +
-      '<div style="font-weight:600;color:#1a1a1a;">DXB → ' + f.c + '</div>' +
-      '<div style="color:#888;font-size:12px;margin-top:2px;">' + f.a + '</div>' +
+    const fno = f.f ? '<div style="color:#F3BE65;font-size:11px;margin-top:4px;font-family:ui-monospace,monospace;font-weight:600;">✈ ' + f.f + '</div>' : '';
+    const lo = f.l ? '<div style="color:#86EFAC;font-size:11px;margin-top:3px;font-weight:600;">🕒 Layover: ' + f.l + (f.n ? ' <span style="color:#94A3B8;font-weight:400;">— ' + f.n + '</span>' : '') + '</div>' : '';
+    return '<div class="flight-strip">' +
+      '<div style="font-weight:600;color:#F8FAFC;">DXB → ' + f.c + '</div>' +
+      '<div style="color:#94A3B8;font-size:12px;margin-top:2px;">' + f.a + '</div>' +
       fno + lo +
     '</div>';
   }).join('');
@@ -654,7 +781,7 @@ function renderRosterItinerary() {
     let routeStr = '';
     if (cities.length > 0) {
       const main = cities[0];
-      routeStr = 'DXB → ' + main.c + (cities.length > 1 ? ' <span style="color:#999;font-size:11px;">(+' + (cities.length - 1) + ' more)</span>' : '');
+      routeStr = 'DXB → ' + main.c + (cities.length > 1 ? ' <span style="color:#94A3B8;font-size:11px;">(+' + (cities.length - 1) + ' more)</span>' : '');
     }
     const layoverStr = cities.length > 0 ? (cities[0].l || '?') : '?';
     const layoverNote = cities.length > 0 && cities[0].n ? cities[0].n : '';
@@ -671,40 +798,40 @@ function renderRosterItinerary() {
     if (pickedForSel.length > 0) {
       let inner = '';
       pickedForSel.forEach(function(p) {
-        const supColor = p.sku.s === 'Sam' ? '#f4c20d' : '#58a6ff';
+        const supColor = p.sku.s === 'Sam' ? '#D4A24C' : '#60A5FA';
         const supLabel = p.sku.s === 'Sam' ? 'Samurai' : 'eSIM Access';
-        inner += '<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:11px;border-bottom:1px dashed #eee;">' +
+        inner += '<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:11px;border-bottom:1px dashed rgba(255,255,255,0.10);">' +
           '<div style="display:flex;align-items:center;gap:5px;min-width:0;flex:1;">' +
             '<span style="display:inline-block;padding:1px 5px;background:' + supColor + ';color:#000;font-size:9px;font-weight:700;border-radius:3px;flex-shrink:0;">' + supLabel + '</span>' +
-            '<span style="color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + p.sku.d + ' · ' + p.sku.v + 'd</span>' +
+            '<span style="color:#94A3B8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + p.sku.d + ' · ' + p.sku.v + 'd</span>' +
           '</div>' +
-          '<span style="font-family:ui-monospace,monospace;font-weight:700;color:#15633f;flex-shrink:0;margin-left:6px;">$' + p.sku.p.toFixed(2) + '</span>' +
+          '<span style="font-family:ui-monospace,monospace;font-weight:700;color:#86EFAC;flex-shrink:0;margin-left:6px;">$' + p.sku.p.toFixed(2) + '</span>' +
         '</div>';
       });
-      pickedSection = '<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #f4c20d;">' +
-        '<div style="font-size:10px;font-weight:700;color:#15633f;letter-spacing:0.5px;margin-bottom:4px;">✓ PICKED ' + pickedForSel.length + '</div>' +
+      pickedSection = '<div style="margin-top:10px;padding-top:8px;border-top:1px dashed #D4A24C;">' +
+        '<div style="font-size:10px;font-weight:700;color:#86EFAC;letter-spacing:0.5px;margin-bottom:4px;">✓ PICKED ' + pickedForSel.length + '</div>' +
         inner +
         '</div>';
     }
 
     // Count how many selections of this country exist — show "Trip N" if >1
     const sameCountryCount = rosterSelections.filter(function(s){ return s.country === country; }).length;
-    const tripLabel = sameCountryCount > 1 ? ' <span style="color:#888;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
+    const tripLabel = sameCountryCount > 1 ? ' <span style="color:#94A3B8;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
     const isExpanded = rosterExpanded.has(sel.id);
-    const expandedStyle = isExpanded ? 'background:#fff8db;' : 'background:white;';
-    html += '<div data-card-sid="' + sel.id + '" style="cursor:pointer;position:relative;' + expandedStyle + 'border:1px solid #f4c20d;border-left:4px solid #f4c20d;border-radius:8px;padding:12px 14px;min-width:200px;flex:1 1 220px;max-width:280px;">';
-    html += '<button data-sid="' + sel.id + '" title="Remove" style="position:absolute;top:6px;right:8px;background:transparent;border:0;color:#aaa;cursor:pointer;font-size:14px;font-weight:600;padding:2px 4px;">✕</button>';
+    const expandedStyle = isExpanded ? 'background:rgba(212,162,76,0.18);' : 'background:rgba(255,255,255,0.04);';
+    html += '<div data-card-sid="' + sel.id + '" style="cursor:pointer;position:relative;' + expandedStyle + 'border:1px solid #D4A24C;border-left:4px solid #D4A24C;border-radius:8px;padding:12px 14px;min-width:200px;flex:1 1 220px;max-width:280px;">';
+    html += '<button data-sid="' + sel.id + '" title="Remove" style="position:absolute;top:6px;right:8px;background:transparent;border:0;color:#94A3B8;cursor:pointer;font-size:14px;font-weight:600;padding:2px 4px;">✕</button>';
     html += '<div style="font-weight:600;font-size:14px;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + tripLabel + '</div>';
-    html += '<div style="font-size:12px;color:#1a1a1a;margin-bottom:2px;">' + routeStr + '</div>';
-    if (fno) html += '<div style="font-size:11px;font-family:ui-monospace,monospace;color:#997d00;font-weight:600;margin-bottom:4px;">✈ ' + fno + '</div>';
-    html += '<div style="font-size:12px;color:#15633f;font-weight:600;">🕒 ' + layoverStr + (layoverNote ? ' <span style="color:#888;font-weight:400;font-size:11px;">— ' + layoverNote + '</span>' : '') + '</div>';
+    html += '<div style="font-size:12px;color:#F8FAFC;margin-bottom:2px;">' + routeStr + '</div>';
+    if (fno) html += '<div style="font-size:11px;font-family:ui-monospace,monospace;color:#F3BE65;font-weight:600;margin-bottom:4px;">✈ ' + fno + '</div>';
+    html += '<div style="font-size:12px;color:#86EFAC;font-weight:600;">🕒 ' + layoverStr + (layoverNote ? ' <span style="color:#94A3B8;font-weight:400;font-size:11px;">— ' + layoverNote + '</span>' : '') + '</div>';
     html += pickedSection;
-    html += '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #e6d97a;font-size:11px;color:' + (isExpanded ? '#997d00' : '#888') + ';font-weight:600;text-align:center;">' + (isExpanded ? '▾ Hide plans' : '▸ Click to pick plans') + '</div>';
+    html += '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed rgba(212,162,76,0.35);font-size:11px;color:' + (isExpanded ? '#F3BE65' : '#94A3B8') + ';font-weight:600;text-align:center;">' + (isExpanded ? '▾ Hide plans' : '▸ Click to pick plans') + '</div>';
     html += '</div>';
 
     // Add + separator between cards
     if (idx < rosterSelections.length - 1) {
-      html += '<div style="display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;color:#888;min-width:24px;">+</div>';
+      html += '<div style="display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;color:#94A3B8;min-width:24px;">+</div>';
     }
   });
   container.innerHTML = html;
@@ -864,25 +991,25 @@ function renderRoster() {
     });
 
     const top = plans.slice(0, 15);
-    const layoverColor = layoverDays === 0 ? '#888' : '#15633f';
+    const layoverColor = layoverDays === 0 ? '#94A3B8' : '#86EFAC';
     const sameCount = rosterSelections.filter(function(s){ return s.country === country; }).length;
-    const tripLbl = sameCount > 1 ? ' <span style="color:#888;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
-    html += '<div style="margin-top:18px;padding:14px;background:#fafaf7;border:1px solid #eee;border-radius:8px;">' +
+    const tripLbl = sameCount > 1 ? ' <span style="color:#94A3B8;font-weight:400;font-size:12px;">· Trip ' + sel.tripNum + '</span>' : '';
+    html += '<div style="margin-top:18px;padding:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;">' +
       '<h3 style="font-size:15px;font-weight:600;margin-bottom:6px;">' + (FLAGS[country] || '') + ' ' + country + tripLbl + '</h3>' +
       (layoverLabel ? '<div style="font-size:12px;color:' + layoverColor + ';margin-bottom:10px;">🕒 ' + layoverLabel + (layoverDays > 0 ? ' &middot; recommended SKU validity: <strong>' + recommendedV + ' day' + (recommendedV > 1 ? 's' : '') + '</strong>' : '') + '</div>' : '');
 
     if (top.length === 0) {
       html += '<div class="muted">No plans match the current filters for this destination.</div>';
     } else {
-      html += '<table style="width:100%;border-collapse:collapse;background:white;border-radius:6px;overflow:hidden;border:1px solid #eee;">' +
+      html += '<table style="width:100%;border-collapse:collapse;background:rgba(255,255,255,0.04);border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);">' +
         '<thead><tr>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">✓</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Supplier</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Data</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Speed</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Days</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Price</th>' +
-          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">SKU</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">✓</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Supplier</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Data</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Speed</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Days</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">Price</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#94A3B8;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid rgba(255,255,255,0.08);">SKU</th>' +
         '</tr></thead><tbody>';
       top.forEach(function(p) {
         const supTag = p.s === 'Sam' ? 'tag-sam' : 'tag-ea';
@@ -890,16 +1017,16 @@ function renderRoster() {
         const pickKey = sel.id + '|' + p.n;
         const isPicked = rosterPicked.has(pickKey);
         const recMatch = p.v === recommendedV;
-        const rowBg = isPicked ? 'background:#fff8db;' : (recMatch ? 'background:#f5fbf6;' : '');
+        const rowBg = isPicked ? 'background:rgba(212,162,76,0.18);' : (recMatch ? 'background:rgba(74,222,128,0.12);' : '');
         const recBadge = recMatch ? ' <span style="display:inline-block;margin-left:6px;padding:1px 6px;background:#34a853;color:white;font-size:10px;font-weight:600;border-radius:3px;letter-spacing:0.3px;">BEST FIT</span>' : '';
         html += '<tr style="' + rowBg + '">' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><input type="checkbox" data-pk="' + pickKey + '" ' + (isPicked ? 'checked' : '') + ' style="width:16px;height:16px;cursor:pointer;accent-color:#1a1a1a;"></td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><span class="tag ' + supTag + '">' + supLabel + '</span></td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + dataBadge(p.d, p.gv) + '</td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + speedBadge(p.sp) + '</td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.v + recBadge + '</td>' +
-          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;font-family:ui-monospace,monospace;font-weight:600;">$' + p.p.toFixed(2) + '</td>' +
-          '<td style="padding:8px 10px;font-size:12px;color:#999;border-bottom:1px solid #f5f5f5;">' + p.n + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);"><input type="checkbox" data-pk="' + pickKey + '" ' + (isPicked ? 'checked' : '') + ' style="width:16px;height:16px;cursor:pointer;accent-color:#D4A24C;"></td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);"><span class="tag ' + supTag + '">' + supLabel + '</span></td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);">' + dataBadge(p.d, p.gv) + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);">' + speedBadge(p.sp) + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);">' + p.v + recBadge + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.06);font-family:ui-monospace,monospace;font-weight:600;">$' + p.p.toFixed(2) + '</td>' +
+          '<td style="padding:8px 10px;font-size:12px;color:#94A3B8;border-bottom:1px solid rgba(255,255,255,0.06);">' + p.n + '</td>' +
         '</tr>';
       });
       html += '</tbody></table>';
@@ -945,7 +1072,7 @@ function renderRosterPicked() {
   const rows = Array.from(rosterPicked.values()).map(function(p) {
     total += p.sku.p;
     const supLabel = p.sku.s === 'Sam' ? 'Samurai' : 'eSIM Access';
-    const supColor = p.sku.s === 'Sam' ? '#f4c20d' : '#58a6ff';
+    const supColor = p.sku.s === 'Sam' ? '#D4A24C' : '#60A5FA';
     const sel = rosterSelections.find(function(s){ return s.id === p.selectionId; });
     const sameCount = sel ? rosterSelections.filter(function(s){ return s.country === sel.country; }).length : 0;
     const tripLbl = sameCount > 1 && sel ? ' <span style="color:rgba(255,255,255,0.4);font-size:11px;">· T' + sel.tripNum + '</span>' : '';
@@ -1191,15 +1318,17 @@ function updateRosterStatus() {
 
   if (hasKeepAlive || has30day) {
     statusEl.style.display = 'flex';
-    statusEl.style.background = '#e8f5ec';
-    statusEl.style.border = '1px solid #34a853';
-    statusEl.style.color = '#15633f';
+    statusEl.style.background = 'rgba(74,222,128,0.12)';
+    statusEl.style.border = '1px solid rgba(74,222,128,0.35)';
+    statusEl.style.color = '#86EFAC';
+    statusEl.style.borderRadius = '12px';
     statusEl.innerHTML = '🟢 <strong>One-SIM viable</strong> &mdash; keep-alive bundle active 30 days. No re-install needed.';
   } else if (rosterPicked.size > 0) {
     statusEl.style.display = 'flex';
-    statusEl.style.background = '#fff8db';
-    statusEl.style.border = '1px solid #f4c20d';
-    statusEl.style.color = '#997d00';
+    statusEl.style.background = 'rgba(212,162,76,0.18)';
+    statusEl.style.border = '1px solid rgba(212,162,76,0.40)';
+    statusEl.style.color = '#F3BE65';
+    statusEl.style.borderRadius = '12px';
     statusEl.innerHTML = '🟡 <strong>Multiple installs likely needed</strong> &mdash; no 30-day bundle keeps the SIM alive between trips. Click <em>Make it One-SIM</em> to add a keep-alive.';
   } else {
     statusEl.style.display = 'none';
