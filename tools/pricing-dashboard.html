@@ -75,6 +75,15 @@ tbody tr:hover { background: #fafaf7; }
 .ds-bulk  { background:#fecaca; color:#991b1b; }      /* 20-50GB - red */
 .ds-huge  { background:#7c2d12; color:#fff; }         /* 75-100GB - dark red */
 .ds-daily { background:#ede9fe; color:#6b21a8; }      /* Unlimited daily - purple */
+.speed-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:600; font-family:ui-monospace,"SF Mono",monospace; white-space:nowrap; }
+.sp-full   { background:#dcfce7; color:#15803d; }      /* full speed - green */
+.sp-daily  { background:#dbeafe; color:#1d4ed8; }      /* daily refill - blue */
+.sp-fast   { background:#ecfccb; color:#3f6212; }      /* 10mbps - lime */
+.sp-mid    { background:#fef9c3; color:#854d0e; }      /* 5mbps - yellow */
+.sp-low    { background:#fed7aa; color:#9a3412; }      /* 1mbps - orange */
+.sp-slow   { background:#fecaca; color:#991b1b; }      /* 384kbps - light red */
+.sp-bad    { background:#7f1d1d; color:#fff; }         /* 128kbps - dark red */
+
 
 </style>
 </head>
@@ -210,6 +219,7 @@ tbody tr:hover { background: #fafaf7; }
       <th data-c="type">Type</th>
       <th data-c="c">Coverage</th>
       <th data-c="d">Data</th>
+      <th data-c="sp">Speed</th>
       <th data-c="v">Days</th>
       <th data-c="p" class="up">Price (USD)</th>
       <th data-c="n">SKU</th>
@@ -236,6 +246,22 @@ const FLAGS = {
   'Pakistan':'🇵🇰','Morocco':'🇲🇦','Kenya':'🇰🇪'
 };
 
+
+
+function speedBadge(s) {
+  if (!s) return '';
+  const norm = String(s).toLowerCase().trim();
+  let cls = 'sp-full', label = s;
+  if (norm === 'full') { cls = 'sp-full'; label = '⚡ Full'; }
+  else if (norm === 'daily refill') { cls = 'sp-daily'; label = '↻ Daily'; }
+  else if (norm === '10mbps') { cls = 'sp-fast'; label = '10 Mbps'; }
+  else if (norm === '5mbps') { cls = 'sp-mid'; label = '5 Mbps'; }
+  else if (norm === '1mbps') { cls = 'sp-low'; label = '1 Mbps'; }
+  else if (norm === '384kbps') { cls = 'sp-slow'; label = '384 kbps'; }
+  else if (norm === '256kbps') { cls = 'sp-bad'; label = '256 kbps'; }
+  else if (norm === '128kbps') { cls = 'sp-bad'; label = '🐢 128 kbps'; }
+  return '<span class="speed-badge ' + cls + '">' + label + '</span>';
+}
 
 function dataBadge(label, gv) {
   if (!label) return '<span class="muted">—</span>';
@@ -465,7 +491,7 @@ function render() {
   resultCount.textContent = rows.length.toLocaleString();
   const capped = rows.slice(0, 300);
   tb.innerHTML = capped.length === 0
-    ? '<tr><td colspan="7" class="empty">No SKUs match your filters</td></tr>'
+    ? '<tr><td colspan="8" class="empty">No SKUs match your filters</td></tr>'
     : capped.map(function(r) {
       const supTag = r.s === 'Sam' ? 'tag-sam' : 'tag-ea';
       const supLabel = r.s === 'Sam' ? 'Samurai' : 'eSIM Access';
@@ -477,13 +503,14 @@ function render() {
         '<td>' + typeTag + '</td>' +
         '<td>' + flag + ' ' + r.c + coverList + '</td>' +
         '<td>' + dataBadge(r.d, r.gv) + '</td>' +
+        '<td>' + speedBadge(r.sp) + '</td>' +
         '<td>' + r.v + '</td>' +
         '<td class="price">$' + r.p.toFixed(2) + '</td>' +
         '<td class="muted">' + r.n + '</td>' +
       '</tr>';
     }).join('');
   if (rows.length > 300) {
-    tb.innerHTML += '<tr><td colspan="7" class="empty">+' + (rows.length - 300) + ' more — narrow filters to see all</td></tr>';
+    tb.innerHTML += '<tr><td colspan="8" class="empty">+' + (rows.length - 300) + ' more — narrow filters to see all</td></tr>';
   }
 }
 
@@ -671,6 +698,7 @@ function renderRoster() {
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">✓</th>' +
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Supplier</th>' +
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Data</th>' +
+          '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Speed</th>' +
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Days</th>' +
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">Price</th>' +
           '<th style="padding:8px 10px;text-align:left;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #eee;">SKU</th>' +
@@ -687,6 +715,7 @@ function renderRoster() {
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><input type="checkbox" data-pk="' + pickKey + '" ' + (isPicked ? 'checked' : '') + ' style="width:16px;height:16px;cursor:pointer;accent-color:#1a1a1a;"></td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;"><span class="tag ' + supTag + '">' + supLabel + '</span></td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + dataBadge(p.d, p.gv) + '</td>' +
+          '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + speedBadge(p.sp) + '</td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;">' + p.v + recBadge + '</td>' +
           '<td style="padding:8px 10px;font-size:13px;border-bottom:1px solid #f5f5f5;font-family:ui-monospace,monospace;font-weight:600;">$' + p.p.toFixed(2) + '</td>' +
           '<td style="padding:8px 10px;font-size:12px;color:#999;border-bottom:1px solid #f5f5f5;">' + p.n + '</td>' +
