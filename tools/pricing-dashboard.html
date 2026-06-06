@@ -1,149 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Peanut eSIM — Pricing Explorer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface": "#0a0e19",
+        "surface-dim": "#0f131e",
+        "surface-bright": "#353945",
+        "surface-container-lowest": "#0a0e19",
+        "surface-container-low": "#171b27",
+        "surface-container": "#1b1f2b",
+        "surface-container-high": "#262a36",
+        "surface-container-highest": "#313441",
+        "surface-variant": "#313441",
+        "on-surface": "#dfe2f2",
+        "on-surface-variant": "#d3c4b2",
+        "inverse-surface": "#dfe2f2",
+        "inverse-on-surface": "#2c303c",
+        "outline": "#9c8f7e",
+        "outline-variant": "#4f4537",
+        "primary": "#f3be65",
+        "primary-container": "#d4a24c",
+        "primary-fixed": "#ffdeac",
+        "primary-fixed-dim": "#f3be65",
+        "on-primary": "#432c00",
+        "on-primary-container": "#563a00",
+        "on-primary-fixed": "#281900",
+        "on-primary-fixed-variant": "#604100",
+        "inverse-primary": "#7e5700",
+        "secondary": "#c1c6da",
+        "secondary-container": "#414657",
+        "secondary-fixed": "#dee2f7",
+        "secondary-fixed-dim": "#c1c6da",
+        "on-secondary": "#2b3040",
+        "on-secondary-container": "#b0b4c8",
+        "on-secondary-fixed": "#161b2a",
+        "on-secondary-fixed-variant": "#414657",
+        "tertiary": "#dcc490",
+        "tertiary-container": "#bfa876",
+        "tertiary-fixed": "#f9e0a9",
+        "tertiary-fixed-dim": "#dcc490",
+        "on-tertiary": "#3d2e07",
+        "on-tertiary-container": "#4d3d15",
+        "on-tertiary-fixed": "#251a00",
+        "on-tertiary-fixed-variant": "#55451c",
+        "error": "#ffb4ab",
+        "error-container": "#93000a",
+        "on-error": "#690005",
+        "on-error-container": "#ffdad6",
+        "background": "#0a0e19",
+        "on-background": "#dfe2f2",
+        "data-1gb": "#86EFAC",
+        "data-3gb": "#93C5FD",
+        "data-5gb": "#C4B5FD",
+        "data-10gb": "#F3BE65",
+        "throttle-warn": "#FCA5A5"
+      },
+      spacing: {
+        "container-margin": "20px",
+        "section-gap": "32px",
+        "card-padding": "24px",
+        "stack-gap": "12px",
+        "unit": "4px"
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
+        "full": "9999px"
+      },
+      fontFamily: {
+        "body-sm": ["Inter"],
+        "display-price": ["Inter"],
+        "label-caps": ["Inter"],
+        "headline-md": ["Inter"],
+        "headline-lg": ["Inter"],
+        "body-lg": ["Inter"],
+        "data-mono": ["Inter"]
+      },
+      fontSize: {
+        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+        "display-price": ["42px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+        "headline-md": ["20px", {"lineHeight": "26px", "fontWeight": "600"}],
+        "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+        "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+        "data-mono": ["15px", {"lineHeight": "20px", "fontWeight": "500"}]
+      }
+    }
+  }
+};
+</script>
 <style>
 :root {
-  --ink-900: #0B0F1A;
-  --ink-800: #11172A;
-  --ink-700: #1A1F2E;
-  --ink-600: #232938;
-  --ink-500: #313441;
-  --gold-500: #D4A24C;
-  --gold-400: #E2B458;
-  --gold-300: #F3BE65;
-  --gold-200: #F2D9A3;
-  --text: #F8FAFC;
-  --text-muted: #94A3B8;
-  --text-dim: #64748B;
-  --line: rgba(255,255,255,0.08);
-  --line-strong: rgba(255,255,255,0.15);
-  --glass: rgba(255,255,255,0.04);
-  --glass-2: rgba(255,255,255,0.08);
-  --green: #4ADE80;
-  --green-glow: rgba(74,222,128,0.12);
+  --ink-900:#0a0e19; --ink-800:#0f131e; --ink-700:#171b27;
+  --ink-600:#1b1f2b; --ink-500:#262a36; --ink-400:#313441;
+  --gold-500:#d4a24c; --gold-400:#e2b458; --gold-300:#f3be65; --gold-200:#f2d9a3;
+  --text:#dfe2f2; --text-muted:#d3c4b2; --text-dim:#9c8f7e;
+  --line:rgba(255,255,255,0.08); --line-strong:rgba(255,255,255,0.15);
+  --glass:rgba(255,255,255,0.04); --glass-2:rgba(255,255,255,0.08); --glass-3:rgba(255,255,255,0.12);
+  --green:#86EFAC;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: radial-gradient(1200px 800px at 20% -10%, #1A2240 0%, var(--ink-900) 60%) fixed;
-  color: var(--text); line-height: 1.5; padding: 32px 24px;
-  max-width: 1100px; margin: 0 auto; min-height: 100vh;
+  background:
+    radial-gradient(1400px 900px at 15% -10%, rgba(212,162,76,0.10), transparent 50%),
+    radial-gradient(900px 700px at 100% 10%, rgba(96,165,250,0.06), transparent 60%),
+    #0a0e19;
+  background-attachment: fixed;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
   font-feature-settings: 'cv11', 'tnum';
 }
-h1 { font-size: 26px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.01em; color: var(--text); }
-h2, h3 { color: var(--text); }
-.sub { color: var(--text-muted); font-size: 13px; margin-bottom: 24px; }
-.section {
-  background: var(--glass); border: 1px solid var(--line); border-radius: 22px;
-  padding: 24px; margin-bottom: 20px;
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+.glass-card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-left: 1px solid rgba(255,255,255,0.10);
+  border-right: 1px solid rgba(255,255,255,0.10);
+  border-radius: 24px;
 }
-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-  color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }
-.row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; align-items: flex-start; }
-.row > div { flex: 1; min-width: 200px; }
-.search { position: relative; }
-.search input {
-  width: 100%; padding: 12px 14px; font-size: 15px;
-  background: var(--ink-700); border: 1px solid var(--line);
-  border-radius: 12px; color: var(--text); font-family: inherit;
-  transition: border-color 0.15s, box-shadow 0.15s;
+.glass-card-2 {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255,255,255,0.20);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-left: 1px solid rgba(255,255,255,0.10);
+  border-right: 1px solid rgba(255,255,255,0.10);
 }
-.search input::placeholder { color: var(--text-dim); }
-.search input:focus {
-  outline: none; border-color: var(--gold-500);
+.gold-gradient {
+  background: linear-gradient(135deg, #f3be65 0%, #d4a24c 100%);
+}
+.gold-glow {
+  box-shadow: 0 8px 28px rgba(212,162,76,0.30), inset 0 1px 0 rgba(255,255,255,0.35);
+}
+.ticket-notch {
+  mask-image:
+    radial-gradient(circle at 0 50%, transparent 8px, black 8.5px),
+    radial-gradient(circle at 100% 50%, transparent 8px, black 8.5px);
+  -webkit-mask-image:
+    radial-gradient(circle at 0 50%, transparent 8px, black 8.5px),
+    radial-gradient(circle at 100% 50%, transparent 8px, black 8.5px);
+}
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+.mso-fill { font-variation-settings: 'FILL' 1, 'wght' 500; }
+
+/* Inputs */
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  font-size: 15px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  color: var(--text);
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+input[type="text"]::placeholder { color: var(--text-dim); }
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--gold-500);
+  background: rgba(255,255,255,0.06);
   box-shadow: 0 0 0 3px rgba(212,162,76,0.18);
+}
+.search { position: relative; }
+.search::before {
+  content: 'search';
+  font-family: 'Material Symbols Outlined';
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--gold-300); font-size: 20px; pointer-events: none; z-index: 1;
+  font-variation-settings: 'FILL' 0, 'wght' 500;
 }
 .dropdown {
   position: absolute; top: 100%; left: 0; right: 0;
-  background: var(--ink-700); border: 1px solid var(--line);
-  border-radius: 12px; max-height: 240px; overflow-y: auto;
-  margin-top: 6px; box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-  z-index: 10; display: none;
+  background: #11172A; border: 1px solid var(--line);
+  border-radius: 14px; max-height: 260px; overflow-y: auto;
+  margin-top: 6px; box-shadow: 0 16px 40px rgba(0,0,0,0.50);
+  z-index: 30; display: none;
 }
 .dropdown.open { display: block; }
-.dropdown div { padding: 10px 14px; cursor: pointer; font-size: 14px; color: var(--text); }
-.dropdown div:hover { background: var(--glass-2); }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.dropdown div {
+  padding: 12px 16px; cursor: pointer; font-size: 14px;
+  color: var(--text); border-bottom: 1px solid var(--line);
+}
+.dropdown div:last-child { border-bottom: 0; }
+.dropdown div:hover { background: rgba(212,162,76,0.10); color: var(--gold-200); }
+
+/* Chips */
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {
-  padding: 7px 14px; border-radius: 999px;
-  background: var(--ink-700); border: 1px solid var(--line);
-  color: var(--text-muted); cursor: pointer; font-size: 13px;
-  user-select: none; transition: all 0.12s;
+  padding: 8px 16px; border-radius: 999px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+  color: var(--text-muted); cursor: pointer; font-size: 13px; font-weight: 500;
+  user-select: none; transition: all 0.15s; line-height: 1;
 }
-.chip:hover { border-color: var(--gold-500); color: var(--text); }
+.chip:hover { border-color: rgba(212,162,76,0.50); color: var(--text); }
 .chip.on {
-  background: linear-gradient(180deg, var(--gold-300), var(--gold-500));
-  color: var(--ink-900); border-color: var(--gold-500); font-weight: 600;
+  background: linear-gradient(135deg, #f3be65, #d4a24c);
+  color: #281900; border-color: var(--gold-500); font-weight: 600;
+  box-shadow: 0 0 18px rgba(212,162,76,0.30);
 }
-.checkboxes { display: flex; gap: 18px; align-items: center; }
-.checkboxes label { font-size: 14px; color: var(--text); text-transform: none; letter-spacing: 0;
-  margin-bottom: 0; cursor: pointer; display: flex; gap: 8px; align-items: center; }
-.checkboxes input { width: 18px; height: 18px; cursor: pointer; accent-color: var(--gold-500); }
-.bundle-toggle {
-  background: rgba(212,162,76,0.10); border: 1px solid rgba(212,162,76,0.40);
-  border-radius: 14px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start;
+
+/* Checkboxes */
+.checkboxes { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.checkboxes > label {
+  display: flex; gap: 10px; align-items: center;
+  font-size: 14px; color: var(--text); cursor: pointer;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+  padding: 9px 14px; border-radius: 999px;
+  text-transform: none; letter-spacing: 0;
 }
-.bundle-toggle label { text-transform: none; letter-spacing: 0; color: var(--text);
-  margin-bottom: 0; font-size: 14px; cursor: pointer; flex: 1; }
-.bundle-toggle .help { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-.count-bar { display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 12px; font-size: 13px; color: var(--text-muted); }
-.count-bar strong { color: var(--text); font-size: 15px; }
-details.sku-collapse { margin-top: 12px; }
-details.sku-collapse > summary {
-  list-style: none; cursor: pointer; user-select: none;
-  display: flex; justify-content: space-between; align-items: center; gap: 12px;
-  padding: 16px 18px; background: var(--glass); border: 1px solid var(--line); border-radius: 16px;
-  font-size: 13px; color: var(--text-muted); transition: background .15s;
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+.checkboxes input[type="checkbox"] {
+  width: 17px; height: 17px; cursor: pointer; accent-color: var(--gold-500);
 }
-details.sku-collapse > summary::-webkit-details-marker { display: none; }
-details.sku-collapse > summary::after {
-  content: '▾'; color: var(--gold-500); font-size: 12px; margin-left: 4px; transition: transform .15s;
+
+/* Labels (small caps) */
+label {
+  display: block; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; color: var(--gold-300);
+  text-transform: uppercase; margin-bottom: 10px;
 }
-details.sku-collapse[open] > summary { border-radius: 16px 16px 0 0; border-bottom: none; }
-details.sku-collapse[open] > summary::after { transform: rotate(180deg); }
-details.sku-collapse > summary:hover { background: var(--glass-2); }
-details.sku-collapse .sku-count {
-  font-weight: 600; font-size: 15px; color: var(--text);
-  font-variant-numeric: tabular-nums;
+
+/* Buttons (legacy IDs) */
+#btnMakeSmart {
+  background: linear-gradient(135deg, #f3be65, #d4a24c) !important;
+  color: #281900 !important; border: 0 !important;
+  padding: 13px 22px !important; border-radius: 14px !important;
+  font-size: 14px !important; font-weight: 700 !important; cursor: pointer;
+  font-family: inherit; letter-spacing: 0.01em;
+  box-shadow: 0 8px 24px rgba(212,162,76,0.30), inset 0 1px 0 rgba(255,255,255,0.35);
+  display: inline-flex; align-items: center; gap: 8px;
 }
-details.sku-collapse[open] table { border-radius: 0 0 16px 16px; border-top: none; }
-table { width: 100%; border-collapse: collapse; background: var(--ink-700);
-  border: 1px solid var(--line); overflow: hidden; }
-thead th { padding: 12px 14px; text-align: left; font-size: 11px; font-weight: 600;
-  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
-  border-bottom: 1px solid var(--line); cursor: pointer; user-select: none;
-  background: var(--ink-800);
+#btnMakeOneSIM {
+  background: transparent !important;
+  color: var(--gold-300) !important;
+  border: 1px solid var(--gold-500) !important;
+  padding: 13px 22px !important; border-radius: 14px !important;
+  font-size: 14px !important; font-weight: 600 !important; cursor: pointer;
+  font-family: inherit;
+  display: inline-flex; align-items: center; gap: 8px;
 }
-thead th:hover { color: var(--text); }
+#btnClearPicks {
+  background: transparent !important;
+  color: var(--text-dim) !important;
+  border: 1px solid var(--line) !important;
+  padding: 13px 22px !important; border-radius: 14px !important;
+  font-size: 14px !important; font-weight: 600 !important; cursor: pointer;
+  font-family: inherit;
+}
+
+/* Tables (SKU + per-destination plan picker) */
+table { width: 100%; border-collapse: collapse;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line); overflow: hidden;
+  border-radius: 0 0 16px 16px;
+}
+thead th {
+  padding: 13px 14px; text-align: left;
+  font-size: 11px; font-weight: 600;
+  color: var(--gold-300); text-transform: uppercase; letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer; user-select: none;
+  background: rgba(15,19,30,0.6);
+}
+thead th:hover { color: var(--gold-200); }
 thead th.up::after { content: " ↑"; color: var(--gold-500); }
 thead th.dn::after { content: " ↓"; color: var(--gold-500); }
-tbody td { padding: 12px 14px; font-size: 14px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--text); }
+tbody td {
+  padding: 12px 14px; font-size: 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top; color: var(--text);
+}
 tbody tr:last-child td { border-bottom: 0; }
-tbody tr:hover { background: var(--glass-2); }
+tbody tr:hover { background: rgba(212,162,76,0.06); }
+
+/* Supplier tags */
 .tag { display: inline-block; padding: 3px 9px; border-radius: 6px;
-  font-size: 11px; font-weight: 600; letter-spacing: 0.04em; }
-.tag-sam { background: rgba(212,162,76,0.18); color: var(--gold-300); }
-.tag-ea { background: rgba(96,165,250,0.18); color: #60A5FA; }
-.tag-bundle { background: rgba(196,181,253,0.18); color: #C4B5FD; }
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+}
+.tag-sam { background: rgba(212,162,76,0.20); color: var(--gold-300); }
+.tag-ea  { background: rgba(96,165,250,0.20); color: #93C5FD; }
+.tag-bundle { background: rgba(196,181,253,0.20); color: #C4B5FD; }
+
 .price { font-family: ui-monospace, 'SF Mono', monospace; font-weight: 600;
   font-variant-numeric: tabular-nums; color: var(--gold-300); }
 .muted { color: var(--text-dim); font-size: 12px; }
 .empty { text-align: center; padding: 40px; color: var(--text-dim); }
 .cover-list { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
-@media (max-width: 700px) {
-  body { padding: 16px 12px; }
-  .row > div { min-width: 100%; }
-}
+
+/* Data + speed badges */
 .data-badge, .speed-badge {
   display: inline-block; padding: 3px 9px; border-radius: 6px;
   font-size: 12px; font-weight: 600;
@@ -166,234 +334,284 @@ tbody tr:hover { background: var(--glass-2); }
 .sp-slow  { background: rgba(248,113,113,0.22); color: #FCA5A5; }
 .sp-bad   { background: rgba(127,29,29,0.6); color: #FECACA; }
 
-/* Boarding-pass flight strip — used by flight panel + roster card flight info */
+/* Bundle gold ribbon */
+.bundle-toggle {
+  background: linear-gradient(135deg, rgba(212,162,76,0.16), rgba(212,162,76,0.06));
+  border: 1px solid rgba(212,162,76,0.40);
+  border-radius: 16px; padding: 14px 16px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.bundle-toggle > label {
+  text-transform: none; letter-spacing: 0; color: var(--text);
+  margin-bottom: 0; font-size: 14px; cursor: pointer; flex: 1;
+  background: transparent; border: 0; padding: 0;
+}
+.bundle-toggle .help { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.bundle-toggle input[type="checkbox"] {
+  width: 18px; height: 18px; accent-color: var(--gold-500); cursor: pointer; margin-top: 2px;
+}
+
+/* Boarding pass flight strip */
 .flight-strip {
-  background: var(--ink-700); border: 1px solid var(--line);
-  border-radius: 8px; padding: 12px 14px; position: relative;
-  border-left: 3px solid var(--gold-500);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-left: 4px solid var(--gold-500);
+  border-radius: 10px;
+  padding: 14px 16px;
 }
 
-/* Button system */
-#btnMakeSmart {
-  background: linear-gradient(180deg, var(--gold-300), var(--gold-500)) !important;
-  color: var(--ink-900) !important; border: 0 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 8px 22px rgba(212,162,76,0.25), inset 0 1px 0 rgba(255,255,255,0.35);
+/* SKU collapsible */
+details.sku-collapse > summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 18px 22px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  font-size: 14px; color: var(--text-muted);
+  transition: background .15s;
 }
-#btnMakeOneSIM {
-  background: transparent !important;
-  color: var(--gold-300) !important;
-  border: 1px solid var(--gold-500) !important;
-  border-radius: 12px !important;
+details.sku-collapse > summary::-webkit-details-marker { display: none; }
+details.sku-collapse > summary::after {
+  content: '▾'; color: var(--gold-300); font-size: 14px; transition: transform .15s;
 }
-#btnClearPicks {
-  background: transparent !important;
-  color: var(--text-muted) !important;
-  border: 1px solid var(--line) !important;
-  border-radius: 12px !important;
-}
+details.sku-collapse[open] > summary { border-radius: 16px 16px 0 0; border-bottom: none; }
+details.sku-collapse[open] > summary::after { transform: rotate(180deg); }
+details.sku-collapse > summary:hover { background: rgba(212,162,76,0.08); }
+.sku-count { font-weight: 700; font-size: 17px; color: var(--gold-300);
+  font-variant-numeric: tabular-nums; }
 
-/* Override inline-styled panels */
-#flightsPanel {
-  background: var(--glass) !important;
-  border-color: rgba(212,162,76,0.30) !important;
-  border-radius: 22px !important;
-}
-#flightsPanel h3 { color: var(--text); }
-#flightCount {
-  background: linear-gradient(180deg, var(--gold-300), var(--gold-500)) !important;
-  color: var(--ink-900) !important;
-}
-#rosterPickedPanel {
-  background: linear-gradient(180deg, var(--ink-700), var(--ink-800)) !important;
-  color: var(--text) !important;
-  border: 1px solid rgba(212,162,76,0.35);
-  border-radius: 18px !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-}
-#rosterTotalLayover {
-  background: rgba(74,222,128,0.12) !important;
-  border: 1px solid rgba(74,222,128,0.35) !important;
-  color: #86EFAC !important;
-  border-radius: 12px !important;
-}
-.usage-help { color: var(--text-muted) !important; }
-
-/* Number tabular figures everywhere */
-.price, .data-badge, .speed-badge, .sku-count, [class*="price"], code,
-input[type="text"] { font-variant-numeric: tabular-nums; }
-
-/* Custom scrollbar for the dark theme */
+/* Scrollbar dark */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--ink-900); }
-::-webkit-scrollbar-thumb { background: var(--ink-600); border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: var(--ink-500); }
+::-webkit-scrollbar-thumb { background: var(--ink-500); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-400); }
+
+/* Layout */
+.page { max-width: 1100px; margin: 0 auto; padding: 96px 20px 96px; }
+.section-gap > * + * { margin-top: 32px; }
+
+@media (max-width: 700px) {
+  .page { padding: 88px 16px 100px; }
+}
 </style>
 </head>
-<body>
+<body class="bg-surface text-on-surface min-h-screen">
 
-<h1>eSIM pricing explorer</h1>
-<div class="sub">6,187 SKUs (4,955 Samurai + 1,232 eSIM Access) · 72 Emirates-flown countries</div>
-
-<div class="section">
-  <h2 style="font-size:18px;font-weight:600;margin-bottom:14px;">🔎 Plan Finder</h2>
-  <div class="row">
-    <div>
-      <label>Country</label>
-      <div class="search">
-        <input type="text" id="countryInput" placeholder="Country, city, or airport code (e.g. NRT, JFK, Sydney)" autocomplete="off">
-        <div class="dropdown" id="countryDropdown"></div>
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-[#0a0e19]/80 border-b border-white/10">
+  <div class="max-w-[1100px] mx-auto px-5 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full gold-gradient flex items-center justify-center gold-glow">
+        <span class="material-symbols-outlined mso-fill text-[20px] text-[#281900]">sim_card</span>
+      </div>
+      <div>
+        <h1 class="font-bold tracking-tight text-primary text-[22px] leading-none">PEANUT</h1>
+        <p class="text-[10px] uppercase tracking-[0.18em] text-on-surface-variant mt-0.5">eSIM Pricing Explorer</p>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div>
-      <label>Data</label>
-      <div class="chips" id="dataChips"></div>
-    </div>
-    <div>
-      <label>Days of validity</label>
-      <div class="chips" id="daysChips"></div>
+    <div class="flex items-center gap-3 text-xs text-on-surface-variant font-data-mono">
+      <span class="hidden md:inline">6,187 SKUs · 72 countries</span>
     </div>
   </div>
+</header>
 
-  <div class="row">
-    <div>
-      <label>Suppliers</label>
-      <div class="checkboxes">
-        <label><input type="checkbox" id="supSam" checked> Samurai</label>
-        <label><input type="checkbox" id="supEA" checked> eSIM Access</label>
+<main class="page">
+
+  <!-- Plan Finder -->
+  <section class="glass-card p-card-padding">
+    <div class="flex items-center justify-between mb-5">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">explore</span>
+        <h2 class="font-headline-md text-headline-md text-on-surface">Plan Finder</h2>
+      </div>
+      <span class="text-[11px] uppercase tracking-[0.08em] text-on-surface-variant">Filter the catalog</span>
+    </div>
+
+    <label>Country</label>
+    <div class="search mb-6">
+      <input type="text" id="countryInput" placeholder="Country, city, or airport code (NRT, JFK, Sydney…)" autocomplete="off">
+      <div class="dropdown" id="countryDropdown"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div>
+        <label>Data</label>
+        <div class="chips" id="dataChips"></div>
+      </div>
+      <div>
+        <label>Days of validity</label>
+        <div class="chips" id="daysChips"></div>
       </div>
     </div>
-  </div>
 
-  <div id="bundleToggleWrap" style="display:none;">
-    <div class="bundle-toggle">
-      <input type="checkbox" id="includeBundles" style="width:18px;height:18px;margin-top:2px;accent-color:#D4A24C;cursor:pointer;">
-      <label for="includeBundles">
-        Include regional bundles that cover this country
-        <div class="help" id="bundleHint"></div>
-      </label>
+    <label>Suppliers</label>
+    <div class="checkboxes mb-2">
+      <label><input type="checkbox" id="supSam" checked> Samurai</label>
+      <label><input type="checkbox" id="supEA" checked> eSIM Access</label>
     </div>
-  </div>
-</div>
 
-<div id="flightsPanel" class="section" style="display:none;">
-  <h3 style="font-size:15px;font-weight:600;margin-bottom:12px;color:#F8FAFC;">
-    ✈️ Emirates destinations in <span id="flightCountryName"></span>
-    <span id="flightCount" style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:100px;margin-left:6px;"></span>
-  </h3>
-  <div id="flightsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;font-size:13px;"></div>
-</div>
+    <div id="bundleToggleWrap" style="display:none;" class="mt-5">
+      <div class="bundle-toggle">
+        <input type="checkbox" id="includeBundles">
+        <label for="includeBundles">
+          Include regional bundles that cover this country
+          <div class="help" id="bundleHint"></div>
+        </label>
+      </div>
+    </div>
+  </section>
 
+  <!-- Flights Panel (rendered when country picked) -->
+  <section id="flightsPanel" class="glass-card p-card-padding" style="display:none; border:1px solid rgba(212,162,76,0.35); margin-top:32px;">
+    <h3 class="flex items-center gap-2 font-headline-md text-headline-md text-on-surface mb-4">
+      <span class="material-symbols-outlined text-primary mso-fill">flight_takeoff</span>
+      Emirates routes in <span id="flightCountryName" class="text-primary"></span>
+      <span id="flightCount" class="ml-auto px-3 py-1 rounded-full text-[11px] font-bold gold-gradient text-[#281900]"></span>
+    </h3>
+    <div id="flightsList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+  </section>
 
-<div class="section">
-  <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">📋 Roster Plan</h2>
-  <div style="color:#94A3B8;font-size:13px;margin-bottom:14px;">
-    Pick a usage tier, then add destinations. We&rsquo;ll auto-pick the best SKU per destination — you can edit any pick by clicking the card.
-  </div>
-  <div style="margin-bottom:16px;padding:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;">
-    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#94A3B8;text-transform:uppercase;margin-bottom:8px;">Usage tier</label>
-    <div class="chips" id="rosterUsageChips" style="margin-bottom:6px;"></div>
-    <div style="font-size:11px;color:#94A3B8;" id="rosterUsageHelp">Low &mdash; 1 GB / day · full speed</div>
-  </div>
-  <div style="margin-bottom:14px;">
-    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#94A3B8;text-transform:uppercase;margin-bottom:8px;">Add destination</label>
-    <div class="search" style="margin-bottom:10px;">
-      <input type="text" id="rosterSearchInput" placeholder="Type country, city, or airport code (e.g. NRT, JFK, Tokyo)" autocomplete="off">
+  <!-- Roster Plan -->
+  <section class="glass-card p-card-padding" style="margin-top:32px;">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">airplane_ticket</span>
+        <h2 class="font-headline-md text-headline-md text-on-surface">Roster Plan</h2>
+      </div>
+    </div>
+    <p class="text-on-surface-variant text-body-sm mb-5">
+      Pick a usage tier, then add destinations. We'll auto-pick the best SKU per destination — click any card to edit picks.
+    </p>
+
+    <div class="rounded-2xl border border-white/8 bg-white/[0.03] p-5 mb-5">
+      <label class="!text-on-surface-variant">Usage tier</label>
+      <div class="chips" id="rosterUsageChips" style="margin-bottom:8px;"></div>
+      <div class="text-[12px] text-on-surface-variant" id="rosterUsageHelp">Low — 1 GB / day · full speed</div>
+    </div>
+
+    <label>Add destination</label>
+    <div class="search mb-3">
+      <input type="text" id="rosterSearchInput" placeholder="Type country, city, or airport code (NRT, JFK, Tokyo…)" autocomplete="off">
       <div class="dropdown" id="rosterSearchDropdown"></div>
     </div>
-    <div id="rosterItinerary" style="display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:6px;"></div>
-    <div id="rosterTotalLayover" style="display:none;margin-top:14px;padding:12px 16px;background:#e8f5ec;border:1px solid #34a853;border-radius:8px;font-size:14px;color:#86EFAC;font-weight:600;"></div>
 
-    <div id="rosterStatus" style="display:none;margin-top:10px;padding:12px 16px;border-radius:8px;font-size:14px;font-weight:600;display:none;align-items:center;gap:10px;flex-wrap:wrap;"></div>
+    <div id="rosterItinerary" class="flex flex-wrap gap-3 items-stretch mt-2"></div>
 
-    <div id="rosterActions" style="display:none;margin-top:10px;display:none;gap:8px;flex-wrap:wrap;">
-      <button id="btnMakeSmart" style="padding:10px 16px;background:#1a1a1a;color:white;border:0;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
-        ✨ Make it Smart
+    <div id="rosterTotalLayover" style="display:none;" class="mt-4 px-4 py-3 rounded-xl text-[14px] font-semibold"
+         data-style="green"></div>
+
+    <div id="rosterStatus" style="display:none;" class="mt-3 px-4 py-3 rounded-xl text-[14px] font-semibold items-center gap-2 flex-wrap"></div>
+
+    <div id="rosterActions" style="display:none;" class="mt-4 flex gap-3 flex-wrap">
+      <button id="btnMakeSmart">
+        <span class="material-symbols-outlined text-[18px] mso-fill">auto_awesome</span>
+        Make it Smart
       </button>
-      <button id="btnMakeOneSIM" style="padding:10px 16px;background:rgba(255,255,255,0.04);color:#F8FAFC;border:1px solid #1a1a1a;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
-        📱 Make it One-SIM
+      <button id="btnMakeOneSIM">
+        <span class="material-symbols-outlined text-[18px]">sim_card</span>
+        Make it One-SIM
       </button>
-      <button id="btnClearPicks" style="padding:10px 16px;background:transparent;color:#94A3B8;border:1px solid #ddd;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;">
-        Clear all picks
-      </button>
+      <button id="btnClearPicks">Clear all picks</button>
     </div>
-  </div>
 
-  <div id="rosterFilters" style="display:none;">
-    <div class="row" style="margin-bottom:10px;">
-      <div>
-        <label>Data filter</label>
-        <div class="chips" id="rosterDataChips"></div>
-        <div style="margin-top:8px;font-size:11px;color:#94A3B8;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
-          <span class="data-badge ds-micro">100MB</span>
-          <span class="data-badge ds-small">500MB</span>
-          <span class="data-badge ds-crew">1-2GB crew</span>
-          <span class="data-badge ds-med">3-5GB</span>
-          <span class="data-badge ds-heavy">8-15GB</span>
-          <span class="data-badge ds-bulk">20-50GB</span>
-          <span class="data-badge ds-daily">∞/day</span>
+    <div id="rosterFilters" style="display:none;" class="mt-6 rounded-2xl border border-white/8 bg-white/[0.03] p-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+        <div>
+          <label class="!text-on-surface-variant">Data filter</label>
+          <div class="chips" id="rosterDataChips"></div>
+          <div class="mt-3 flex flex-wrap gap-1.5 items-center text-[11px] text-on-surface-variant">
+            <span class="data-badge ds-micro">100MB</span>
+            <span class="data-badge ds-small">500MB</span>
+            <span class="data-badge ds-crew">1–2GB crew</span>
+            <span class="data-badge ds-med">3–5GB</span>
+            <span class="data-badge ds-heavy">8–15GB</span>
+            <span class="data-badge ds-bulk">20–50GB</span>
+            <span class="data-badge ds-daily">∞/day</span>
+          </div>
+        </div>
+        <div>
+          <label class="!text-on-surface-variant">Validity filter</label>
+          <div class="chips" id="rosterDaysChips"></div>
         </div>
       </div>
-      <div>
-        <label>Validity filter</label>
-        <div class="chips" id="rosterDaysChips"></div>
+      <div class="flex items-center gap-2.5">
+        <input type="checkbox" id="rosterShowOriginal" style="width:18px;height:18px;cursor:pointer;accent-color:#D4A24C;">
+        <label for="rosterShowOriginal" class="!text-on-surface !normal-case !tracking-normal !mb-0 text-[13px] cursor-pointer">
+          Show original supplier plans (no GB filter — includes 3GB+ bundles)
+        </label>
       </div>
     </div>
-    <div style="margin-bottom:14px;display:flex;align-items:center;gap:8px;">
-      <input type="checkbox" id="rosterShowOriginal" style="width:18px;height:18px;cursor:pointer;accent-color:#D4A24C;">
-      <label for="rosterShowOriginal" style="text-transform:none;letter-spacing:0;color:#F8FAFC;margin-bottom:0;font-size:13px;cursor:pointer;">
-        Show original supplier plans (no GB filter — includes 3GB+ large bundles)
-      </label>
-    </div>
-  </div>
 
-  <div id="rosterPlans"></div>
+    <div id="rosterPlans" class="mt-5"></div>
 
-  <div id="rosterPickedPanel" style="display:none;margin-top:16px;padding:16px;background:#1a1a1a;color:white;border-radius:10px;">
-    <div style="font-size:11px;font-weight:600;letter-spacing:0.5px;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:10px;">Picked plans</div>
-    <div id="rosterPickedList"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.15);">
-      <div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Our cost</div>
-        <div id="rosterTotalCost" style="font-size:22px;font-weight:600;font-family:ui-monospace,monospace;">$0.00</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Suggested sell 4×</div>
-        <div id="rosterSellPrice" style="font-size:22px;font-weight:600;font-family:ui-monospace,monospace;color:#D4A24C;">$0.00</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px;">Margin</div>
-        <div id="rosterMargin" style="font-size:22px;font-weight:600;font-family:ui-monospace,monospace;color:#34a853;">$0.00</div>
+    <div id="rosterPickedPanel" style="display:none;" class="mt-6 rounded-3xl p-6 relative overflow-hidden"
+         data-style="picked-panel">
+      <div class="text-[11px] uppercase tracking-[0.08em] text-primary font-bold mb-3">Picked plans</div>
+      <div id="rosterPickedList"></div>
+      <div class="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-white/15">
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.08em] text-on-surface-variant mb-1">Our cost</div>
+          <div id="rosterTotalCost" class="text-[26px] font-bold font-mono tabular-nums text-on-surface">$0.00</div>
+        </div>
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.08em] text-on-surface-variant mb-1">Suggested sell 4×</div>
+          <div id="rosterSellPrice" class="text-[26px] font-bold font-mono tabular-nums text-primary">$0.00</div>
+        </div>
+        <div>
+          <div class="text-[10px] uppercase tracking-[0.08em] text-on-surface-variant mb-1">Margin</div>
+          <div id="rosterMargin" class="text-[26px] font-bold font-mono tabular-nums" style="color:#86EFAC;">$0.00</div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
+  <!-- SKU Collapsible -->
+  <section style="margin-top:32px;">
+    <details class="sku-collapse" id="skuCollapse">
+      <summary>
+        <span><span class="sku-count" id="resultCount">0</span> <span class="ml-1">SKUs match</span></span>
+        <span class="text-[12px]">click to view · headers sort</span>
+      </summary>
+      <table>
+        <thead>
+          <tr>
+            <th data-c="s">Supplier</th>
+            <th data-c="type">Type</th>
+            <th data-c="c">Coverage</th>
+            <th data-c="d">Data</th>
+            <th data-c="sp">Speed</th>
+            <th data-c="v">Days</th>
+            <th data-c="p" class="up">Price (USD)</th>
+            <th data-c="n">SKU</th>
+          </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </details>
+  </section>
 
-<details class="sku-collapse" id="skuCollapse">
-  <summary>
-    <span><span class="sku-count" id="resultCount">0</span> SKUs match</span>
-    <span>click to view · headers sort</span>
-  </summary>
-  <table>
-    <thead>
-      <tr>
-        <th data-c="s">Supplier</th>
-        <th data-c="type">Type</th>
-        <th data-c="c">Coverage</th>
-        <th data-c="d">Data</th>
-        <th data-c="sp">Speed</th>
-        <th data-c="v">Days</th>
-        <th data-c="p" class="up">Price (USD)</th>
-        <th data-c="n">SKU</th>
-      </tr>
-    </thead>
-    <tbody id="tb"></tbody>
-  </table>
-</details>
+</main>
+
+<script>
+// Apply data-style attributes for the panels (cleaner than long inline classes)
+(function applyDataStyles(){
+  const layover = document.getElementById('rosterTotalLayover');
+  if (layover) {
+    layover.style.background = 'rgba(74,222,128,0.10)';
+    layover.style.border = '1px solid rgba(74,222,128,0.35)';
+    layover.style.color = '#86EFAC';
+  }
+  const picked = document.getElementById('rosterPickedPanel');
+  if (picked) {
+    picked.style.background = 'linear-gradient(160deg, rgba(212,162,76,0.10), rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.0))';
+    picked.style.border = '1px solid rgba(212,162,76,0.30)';
+    picked.style.boxShadow = '0 20px 60px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.10)';
+    picked.style.backdropFilter = 'blur(24px)';
+  }
+})();
+</script>
 
 <script>
 const SEARCH_INDEX = [{"key":"algiers","label":"Algiers \u00b7 Algeria","country":"Algeria"},{"key":"luanda","label":"Luanda \u00b7 Angola","country":"Angola"},{"key":"eze","label":"EZE \u2014 Buenos Aires \u00b7 Argentina","country":"Argentina"},{"key":"buenos aires","label":"Buenos Aires \u00b7 Argentina","country":"Argentina"},{"key":"adl","label":"ADL \u2014 Adelaide \u00b7 Australia","country":"Australia"},{"key":"adelaide","label":"Adelaide \u00b7 Australia","country":"Australia"},{"key":"bne","label":"BNE \u2014 Brisbane \u00b7 Australia","country":"Australia"},{"key":"brisbane","label":"Brisbane \u00b7 Australia","country":"Australia"},{"key":"mel","label":"MEL \u2014 Melbourne \u00b7 Australia","country":"Australia"},{"key":"melbourne","label":"Melbourne \u00b7 Australia","country":"Australia"},{"key":"per","label":"PER \u2014 Perth \u00b7 Australia","country":"Australia"},{"key":"perth","label":"Perth \u00b7 Australia","country":"Australia"},{"key":"syd","label":"SYD \u2014 Sydney \u00b7 Australia","country":"Australia"},{"key":"sydney","label":"Sydney \u00b7 Australia","country":"Australia"},{"key":"vie","label":"VIE \u2014 Vienna \u00b7 Austria","country":"Austria"},{"key":"vienna","label":"Vienna \u00b7 Austria","country":"Austria"},{"key":"bah","label":"BAH \u2014 Manama \u00b7 Bahrain","country":"Bahrain"},{"key":"manama","label":"Manama \u00b7 Bahrain","country":"Bahrain"},{"key":"dac","label":"DAC \u2014 Dhaka \u00b7 Bangladesh","country":"Bangladesh"},{"key":"dhaka","label":"Dhaka \u00b7 Bangladesh","country":"Bangladesh"},{"key":"bru","label":"BRU \u2014 Brussels \u00b7 Belgium","country":"Belgium"},{"key":"brussels","label":"Brussels \u00b7 Belgium","country":"Belgium"},{"key":"gig","label":"GIG \u2014 Rio de Janeiro \u00b7 Brazil","country":"Brazil"},{"key":"rio de janeiro","label":"Rio de Janeiro \u00b7 Brazil","country":"Brazil"},{"key":"gru","label":"GRU \u2014 S\u00e3o Paulo \u00b7 Brazil","country":"Brazil"},{"key":"s\u00e3o paulo","label":"S\u00e3o Paulo \u00b7 Brazil","country":"Brazil"},{"key":"pnh","label":"PNH \u2014 Phnom Penh \u00b7 Cambodia","country":"Cambodia"},{"key":"phnom penh","label":"Phnom Penh \u00b7 Cambodia","country":"Cambodia"},{"key":"sai","label":"SAI \u2014 Siem Reap \u00b7 Cambodia","country":"Cambodia"},{"key":"siem reap","label":"Siem Reap \u00b7 Cambodia","country":"Cambodia"},{"key":"yul","label":"YUL \u2014 Montreal \u00b7 Canada","country":"Canada"},{"key":"montreal","label":"Montreal \u00b7 Canada","country":"Canada"},{"key":"yyz","label":"YYZ \u2014 Toronto \u00b7 Canada","country":"Canada"},{"key":"toronto","label":"Toronto \u00b7 Canada","country":"Canada"},{"key":"pek","label":"PEK \u2014 Beijing \u00b7 China mainland","country":"China mainland"},{"key":"beijing","label":"Beijing \u00b7 China mainland","country":"China mainland"},{"key":"can","label":"CAN \u2014 Guangzhou \u00b7 China mainland","country":"China mainland"},{"key":"guangzhou","label":"Guangzhou \u00b7 China mainland","country":"China mainland"},{"key":"hgh","label":"HGH \u2014 Hangzhou \u00b7 China mainland","country":"China mainland"},{"key":"hangzhou","label":"Hangzhou \u00b7 China mainland","country":"China mainland"},{"key":"pvg","label":"PVG \u2014 Shanghai \u00b7 China mainland","country":"China mainland"},{"key":"shanghai","label":"Shanghai \u00b7 China mainland","country":"China mainland"},{"key":"szx","label":"SZX \u2014 Shenzhen \u00b7 China mainland","country":"China mainland"},{"key":"shenzhen","label":"Shenzhen \u00b7 China mainland","country":"China mainland"},{"key":"bog","label":"BOG \u2014 Bogot\u00e1 \u00b7 Colombia","country":"Colombia"},{"key":"bogot\u00e1","label":"Bogot\u00e1 \u00b7 Colombia","country":"Colombia"},{"key":"lca","label":"LCA \u2014 Larnaca \u00b7 Cyprus","country":"Cyprus"},{"key":"larnaca","label":"Larnaca \u00b7 Cyprus","country":"Cyprus"},{"key":"prg","label":"PRG \u2014 Prague \u00b7 Czech Republic","country":"Czech Republic"},{"key":"prague","label":"Prague \u00b7 Czech Republic","country":"Czech Republic"},{"key":"cph","label":"CPH \u2014 Copenhagen \u00b7 Denmark","country":"Denmark"},{"key":"copenhagen","label":"Copenhagen \u00b7 Denmark","country":"Denmark"},{"key":"cai","label":"CAI \u2014 Cairo \u00b7 Egypt","country":"Egypt"},{"key":"cairo","label":"Cairo \u00b7 Egypt","country":"Egypt"},{"key":"add","label":"ADD \u2014 Addis Ababa \u00b7 Ethiopia","country":"Ethiopia"},{"key":"addis ababa","label":"Addis Ababa \u00b7 Ethiopia","country":"Ethiopia"},{"key":"hel","label":"HEL \u2014 Helsinki \u00b7 Finland","country":"Finland"},{"key":"helsinki","label":"Helsinki \u00b7 Finland","country":"Finland"},{"key":"lys","label":"LYS \u2014 Lyon \u00b7 France","country":"France"},{"key":"lyon","label":"Lyon \u00b7 France","country":"France"},{"key":"nce","label":"NCE \u2014 Nice \u00b7 France","country":"France"},{"key":"nice","label":"Nice \u00b7 France","country":"France"},{"key":"cdg","label":"CDG \u2014 Paris \u00b7 France","country":"France"},{"key":"paris","label":"Paris \u00b7 France","country":"France"},{"key":"dus","label":"DUS \u2014 D\u00fcsseldorf \u00b7 Germany","country":"Germany"},{"key":"d\u00fcsseldorf","label":"D\u00fcsseldorf \u00b7 Germany","country":"Germany"},{"key":"fra","label":"FRA \u2014 Frankfurt \u00b7 Germany","country":"Germany"},{"key":"frankfurt","label":"Frankfurt \u00b7 Germany","country":"Germany"},{"key":"ham","label":"HAM \u2014 Hamburg \u00b7 Germany","country":"Germany"},{"key":"hamburg","label":"Hamburg \u00b7 Germany","country":"Germany"},{"key":"muc","label":"MUC \u2014 Munich \u00b7 Germany","country":"Germany"},{"key":"munich","label":"Munich \u00b7 Germany","country":"Germany"},{"key":"acc","label":"ACC \u2014 Accra \u00b7 Ghana","country":"Ghana"},{"key":"accra","label":"Accra \u00b7 Ghana","country":"Ghana"},{"key":"ath","label":"ATH \u2014 Athens \u00b7 Greece","country":"Greece"},{"key":"athens","label":"Athens \u00b7 Greece","country":"Greece"},{"key":"cky","label":"CKY \u2014 Conakry \u00b7 Guinea","country":"Guinea"},{"key":"conakry","label":"Conakry \u00b7 Guinea","country":"Guinea"},{"key":"hkg","label":"HKG \u2014 Hong Kong \u00b7 Hong Kong","country":"Hong Kong"},{"key":"hong kong","label":"Hong Kong \u00b7 Hong Kong","country":"Hong Kong"},{"key":"bud","label":"BUD \u2014 Budapest \u00b7 Hungary","country":"Hungary"},{"key":"budapest","label":"Budapest \u00b7 Hungary","country":"Hungary"},{"key":"amd","label":"AMD \u2014 Ahmedabad \u00b7 India","country":"India"},{"key":"ahmedabad","label":"Ahmedabad \u00b7 India","country":"India"},{"key":"blr","label":"BLR \u2014 Bengaluru \u00b7 India","country":"India"},{"key":"bengaluru","label":"Bengaluru \u00b7 India","country":"India"},{"key":"maa","label":"MAA \u2014 Chennai \u00b7 India","country":"India"},{"key":"chennai","label":"Chennai \u00b7 India","country":"India"},{"key":"del","label":"DEL \u2014 Delhi \u00b7 India","country":"India"},{"key":"delhi","label":"Delhi \u00b7 India","country":"India"},{"key":"hyd","label":"HYD \u2014 Hyderabad \u00b7 India","country":"India"},{"key":"hyderabad","label":"Hyderabad \u00b7 India","country":"India"},{"key":"cok","label":"COK \u2014 Kochi \u00b7 India","country":"India"},{"key":"kochi","label":"Kochi \u00b7 India","country":"India"},{"key":"ccu","label":"CCU \u2014 Kolkata \u00b7 India","country":"India"},{"key":"kolkata","label":"Kolkata \u00b7 India","country":"India"},{"key":"bom","label":"BOM \u2014 Mumbai \u00b7 India","country":"India"},{"key":"mumbai","label":"Mumbai \u00b7 India","country":"India"},{"key":"trv","label":"TRV \u2014 Thiruvananthapuram \u00b7 India","country":"India"},{"key":"thiruvananthapuram","label":"Thiruvananthapuram \u00b7 India","country":"India"},{"key":"dps","label":"DPS \u2014 Denpasar \u00b7 Indonesia","country":"Indonesia"},{"key":"denpasar","label":"Denpasar \u00b7 Indonesia","country":"Indonesia"},{"key":"cgk","label":"CGK \u2014 Jakarta \u00b7 Indonesia","country":"Indonesia"},{"key":"jakarta","label":"Jakarta \u00b7 Indonesia","country":"Indonesia"},{"key":"ika","label":"IKA \u2014 Tehran \u00b7 Iran","country":"Iran"},{"key":"tehran","label":"Tehran \u00b7 Iran","country":"Iran"},{"key":"bgw","label":"BGW \u2014 Baghdad \u00b7 Iraq","country":"Iraq"},{"key":"baghdad","label":"Baghdad \u00b7 Iraq","country":"Iraq"},{"key":"bsr","label":"BSR \u2014 Basra \u00b7 Iraq","country":"Iraq"},{"key":"basra","label":"Basra \u00b7 Iraq","country":"Iraq"},{"key":"dub","label":"DUB \u2014 Dublin \u00b7 Ireland","country":"Ireland"},{"key":"dublin","label":"Dublin \u00b7 Ireland","country":"Ireland"},{"key":"blq","label":"BLQ \u2014 Bologna \u00b7 Italy","country":"Italy"},{"key":"bologna","label":"Bologna \u00b7 Italy","country":"Italy"},{"key":"mxp","label":"MXP \u2014 Milan \u00b7 Italy","country":"Italy"},{"key":"milan","label":"Milan \u00b7 Italy","country":"Italy"},{"key":"fco","label":"FCO \u2014 Rome \u00b7 Italy","country":"Italy"},{"key":"rome","label":"Rome \u00b7 Italy","country":"Italy"},{"key":"vce","label":"VCE \u2014 Venice \u00b7 Italy","country":"Italy"},{"key":"venice","label":"Venice \u00b7 Italy","country":"Italy"},{"key":"abj","label":"ABJ \u2014 Abidjan \u00b7 Ivory Coast","country":"Ivory Coast"},{"key":"abidjan","label":"Abidjan \u00b7 Ivory Coast","country":"Ivory Coast"},{"key":"kix","label":"KIX \u2014 Osaka \u00b7 Japan","country":"Japan"},{"key":"osaka","label":"Osaka \u00b7 Japan","country":"Japan"},{"key":"hnd","label":"HND \u2014 Tokyo \u00b7 Japan","country":"Japan"},{"key":"nrt","label":"NRT \u2014 Tokyo \u00b7 Japan","country":"Japan"},{"key":"tokyo","label":"Tokyo \u00b7 Japan","country":"Japan"},{"key":"amm","label":"AMM \u2014 Amman \u00b7 Jordan","country":"Jordan"},{"key":"amman","label":"Amman \u00b7 Jordan","country":"Jordan"},{"key":"nbo","label":"NBO \u2014 Nairobi \u00b7 Kenya","country":"Kenya"},{"key":"nairobi","label":"Nairobi \u00b7 Kenya","country":"Kenya"},{"key":"kwi","label":"KWI \u2014 Kuwait City \u00b7 Kuwait","country":"Kuwait"},{"key":"kuwait city","label":"Kuwait City \u00b7 Kuwait","country":"Kuwait"},{"key":"bey","label":"BEY \u2014 Beirut \u00b7 Lebanon","country":"Lebanon"},{"key":"beirut","label":"Beirut \u00b7 Lebanon","country":"Lebanon"},{"key":"tnr","label":"TNR \u2014 Antananarivo \u00b7 Madagascar","country":"Madagascar"},{"key":"antananarivo","label":"Antananarivo \u00b7 Madagascar","country":"Madagascar"},{"key":"kul","label":"KUL \u2014 Kuala Lumpur \u00b7 Malaysia","country":"Malaysia"},{"key":"kuala lumpur","label":"Kuala Lumpur \u00b7 Malaysia","country":"Malaysia"},{"key":"mle","label":"MLE \u2014 Mal\u00e9 \u00b7 Maldives","country":"Maldives"},{"key":"mal\u00e9","label":"Mal\u00e9 \u00b7 Maldives","country":"Maldives"},{"key":"mla","label":"MLA \u2014 Valletta \u00b7 Malta","country":"Malta"},{"key":"valletta","label":"Valletta \u00b7 Malta","country":"Malta"},{"key":"mru","label":"MRU \u2014 Port Louis \u00b7 Mauritius","country":"Mauritius"},{"key":"port louis","label":"Port Louis \u00b7 Mauritius","country":"Mauritius"},{"key":"mex","label":"MEX \u2014 Mexico City \u00b7 Mexico","country":"Mexico"},{"key":"mexico city","label":"Mexico City \u00b7 Mexico","country":"Mexico"},{"key":"cmn","label":"CMN \u2014 Casablanca \u00b7 Morocco","country":"Morocco"},{"key":"casablanca","label":"Casablanca \u00b7 Morocco","country":"Morocco"},{"key":"ams","label":"AMS \u2014 Amsterdam \u00b7 Netherlands","country":"Netherlands"},{"key":"amsterdam","label":"Amsterdam \u00b7 Netherlands","country":"Netherlands"},{"key":"akl","label":"AKL \u2014 Auckland \u00b7 New Zealand","country":"New Zealand"},{"key":"auckland","label":"Auckland \u00b7 New Zealand","country":"New Zealand"},{"key":"chc","label":"CHC \u2014 Christchurch \u00b7 New Zealand","country":"New Zealand"},{"key":"christchurch","label":"Christchurch \u00b7 New Zealand","country":"New Zealand"},{"key":"los","label":"LOS \u2014 Lagos \u00b7 Nigeria","country":"Nigeria"},{"key":"lagos","label":"Lagos \u00b7 Nigeria","country":"Nigeria"},{"key":"osl","label":"OSL \u2014 Oslo \u00b7 Norway","country":"Norway"},{"key":"oslo","label":"Oslo \u00b7 Norway","country":"Norway"},{"key":"mct","label":"MCT \u2014 Muscat \u00b7 Oman","country":"Oman"},{"key":"muscat","label":"Muscat \u00b7 Oman","country":"Oman"},{"key":"isb","label":"ISB \u2014 Islamabad \u00b7 Pakistan","country":"Pakistan"},{"key":"islamabad","label":"Islamabad \u00b7 Pakistan","country":"Pakistan"},{"key":"khi","label":"KHI \u2014 Karachi \u00b7 Pakistan","country":"Pakistan"},{"key":"karachi","label":"Karachi \u00b7 Pakistan","country":"Pakistan"},{"key":"lhe","label":"LHE \u2014 Lahore \u00b7 Pakistan","country":"Pakistan"},{"key":"lahore","label":"Lahore \u00b7 Pakistan","country":"Pakistan"},{"key":"pew","label":"PEW \u2014 Peshawar \u00b7 Pakistan","country":"Pakistan"},{"key":"peshawar","label":"Peshawar \u00b7 Pakistan","country":"Pakistan"},{"key":"skt","label":"SKT \u2014 Sialkot \u00b7 Pakistan","country":"Pakistan"},{"key":"sialkot","label":"Sialkot \u00b7 Pakistan","country":"Pakistan"},{"key":"ceb","label":"CEB \u2014 Cebu \u00b7 Philippines","country":"Philippines"},{"key":"cebu","label":"Cebu \u00b7 Philippines","country":"Philippines"},{"key":"crk","label":"CRK \u2014 Clark \u00b7 Philippines","country":"Philippines"},{"key":"clark","label":"Clark \u00b7 Philippines","country":"Philippines"},{"key":"mnl","label":"MNL \u2014 Manila \u00b7 Philippines","country":"Philippines"},{"key":"manila","label":"Manila \u00b7 Philippines","country":"Philippines"},{"key":"waw","label":"WAW \u2014 Warsaw \u00b7 Poland","country":"Poland"},{"key":"warsaw","label":"Warsaw \u00b7 Poland","country":"Poland"},{"key":"lis","label":"LIS \u2014 Lisbon \u00b7 Portugal","country":"Portugal"},{"key":"lisbon","label":"Lisbon \u00b7 Portugal","country":"Portugal"},{"key":"dme","label":"DME \u2014 Moscow \u00b7 Russia","country":"Russia"},{"key":"moscow","label":"Moscow \u00b7 Russia","country":"Russia"},{"key":"led","label":"LED \u2014 Saint Petersburg \u00b7 Russia","country":"Russia"},{"key":"saint petersburg","label":"Saint Petersburg \u00b7 Russia","country":"Russia"},{"key":"dmm","label":"DMM \u2014 Dammam \u00b7 Saudi Arabia","country":"Saudi Arabia"},{"key":"dammam","label":"Dammam \u00b7 Saudi Arabia","country":"Saudi Arabia"},{"key":"jed","label":"JED \u2014 Jeddah \u00b7 Saudi Arabia","country":"Saudi Arabia"},{"key":"jeddah","label":"Jeddah \u00b7 Saudi Arabia","country":"Saudi Arabia"},{"key":"med","label":"MED \u2014 Medina \u00b7 Saudi Arabia","country":"Saudi Arabia"},{"key":"medina","label":"Medina \u00b7 Saudi Arabia","country":"Saudi Arabia"},{"key":"ruh","label":"RUH \u2014 Riyadh \u00b7 Saudi Arabia","country":"Saudi Arabia"},{"key":"riyadh","label":"Riyadh \u00b7 Saudi Arabia","country":"Saudi Arabia"},{"key":"dss","label":"DSS \u2014 Dakar \u00b7 Senegal","country":"Senegal"},{"key":"dakar","label":"Dakar \u00b7 Senegal","country":"Senegal"},{"key":"sez","label":"SEZ \u2014 Mah\u00e9 \u00b7 Seychelles","country":"Seychelles"},{"key":"mah\u00e9","label":"Mah\u00e9 \u00b7 Seychelles","country":"Seychelles"},{"key":"sin","label":"SIN \u2014 Singapore \u00b7 Singapore","country":"Singapore"},{"key":"singapore","label":"Singapore \u00b7 Singapore","country":"Singapore"},{"key":"cpt","label":"CPT \u2014 Cape Town \u00b7 South Africa","country":"South Africa"},{"key":"cape town","label":"Cape Town \u00b7 South Africa","country":"South Africa"},{"key":"dur","label":"DUR \u2014 Durban \u00b7 South Africa","country":"South Africa"},{"key":"durban","label":"Durban \u00b7 South Africa","country":"South Africa"},{"key":"jnb","label":"JNB \u2014 Johannesburg \u00b7 South Africa","country":"South Africa"},{"key":"johannesburg","label":"Johannesburg \u00b7 South Africa","country":"South Africa"},{"key":"icn","label":"ICN \u2014 Seoul \u00b7 South Korea","country":"South Korea"},{"key":"seoul","label":"Seoul \u00b7 South Korea","country":"South Korea"},{"key":"bcn","label":"BCN \u2014 Barcelona \u00b7 Spain","country":"Spain"},{"key":"barcelona","label":"Barcelona \u00b7 Spain","country":"Spain"},{"key":"mad","label":"MAD \u2014 Madrid \u00b7 Spain","country":"Spain"},{"key":"madrid","label":"Madrid \u00b7 Spain","country":"Spain"},{"key":"cmb","label":"CMB \u2014 Colombo \u00b7 Sri Lanka","country":"Sri Lanka"},{"key":"colombo","label":"Colombo \u00b7 Sri Lanka","country":"Sri Lanka"},{"key":"arn","label":"ARN \u2014 Stockholm \u00b7 Sweden","country":"Sweden"},{"key":"stockholm","label":"Stockholm \u00b7 Sweden","country":"Sweden"},{"key":"gva","label":"GVA \u2014 Geneva \u00b7 Switzerland","country":"Switzerland"},{"key":"geneva","label":"Geneva \u00b7 Switzerland","country":"Switzerland"},{"key":"zrh","label":"ZRH \u2014 Zurich \u00b7 Switzerland","country":"Switzerland"},{"key":"zurich","label":"Zurich \u00b7 Switzerland","country":"Switzerland"},{"key":"dam","label":"DAM \u2014 Damascus \u00b7 Syria","country":"Syria"},{"key":"damascus","label":"Damascus \u00b7 Syria","country":"Syria"},{"key":"tpe","label":"TPE \u2014 Taipei \u00b7 Taiwan","country":"Taiwan"},{"key":"taipei","label":"Taipei \u00b7 Taiwan","country":"Taiwan"},{"key":"dar","label":"DAR \u2014 Dar es Salaam \u00b7 Tanzania","country":"Tanzania"},{"key":"dar es salaam","label":"Dar es Salaam \u00b7 Tanzania","country":"Tanzania"},{"key":"bkk","label":"BKK \u2014 Bangkok \u00b7 Thailand","country":"Thailand"},{"key":"bangkok","label":"Bangkok \u00b7 Thailand","country":"Thailand"},{"key":"hkt","label":"HKT \u2014 Phuket \u00b7 Thailand","country":"Thailand"},{"key":"phuket","label":"Phuket \u00b7 Thailand","country":"Thailand"},{"key":"tun","label":"TUN \u2014 Tunis \u00b7 Tunisia","country":"Tunisia"},{"key":"tunis","label":"Tunis \u00b7 Tunisia","country":"Tunisia"},{"key":"ist","label":"IST \u2014 Istanbul \u00b7 Turkey","country":"Turkey"},{"key":"istanbul","label":"Istanbul \u00b7 Turkey","country":"Turkey"},{"key":"ebb","label":"EBB \u2014 Entebbe \u00b7 Uganda","country":"Uganda"},{"key":"entebbe","label":"Entebbe \u00b7 Uganda","country":"Uganda"},{"key":"dxb","label":"DXB \u2014 Dubai \u00b7 United Arab Emirates","country":"United Arab Emirates"},{"key":"dubai","label":"Dubai \u00b7 United Arab Emirates","country":"United Arab Emirates"},{"key":"bhx","label":"BHX \u2014 Birmingham \u00b7 United Kingdom","country":"United Kingdom"},{"key":"birmingham","label":"Birmingham \u00b7 United Kingdom","country":"United Kingdom"},{"key":"edi","label":"EDI \u2014 Edinburgh \u00b7 United Kingdom","country":"United Kingdom"},{"key":"edinburgh","label":"Edinburgh \u00b7 United Kingdom","country":"United Kingdom"},{"key":"gla","label":"GLA \u2014 Glasgow \u00b7 United Kingdom","country":"United Kingdom"},{"key":"glasgow","label":"Glasgow \u00b7 United Kingdom","country":"United Kingdom"},{"key":"lhr","label":"LHR \u2014 London \u00b7 United Kingdom","country":"United Kingdom"},{"key":"lgw","label":"LGW \u2014 London \u00b7 United Kingdom","country":"United Kingdom"},{"key":"stn","label":"STN \u2014 London \u00b7 United Kingdom","country":"United Kingdom"},{"key":"london","label":"London \u00b7 United Kingdom","country":"United Kingdom"},{"key":"man","label":"MAN \u2014 Manchester \u00b7 United Kingdom","country":"United Kingdom"},{"key":"manchester","label":"Manchester \u00b7 United Kingdom","country":"United Kingdom"},{"key":"ncl","label":"NCL \u2014 Newcastle \u00b7 United Kingdom","country":"United Kingdom"},{"key":"newcastle","label":"Newcastle \u00b7 United Kingdom","country":"United Kingdom"},{"key":"bos","label":"BOS \u2014 Boston \u00b7 United States","country":"United States"},{"key":"boston","label":"Boston \u00b7 United States","country":"United States"},{"key":"ord","label":"ORD \u2014 Chicago \u00b7 United States","country":"United States"},{"key":"chicago","label":"Chicago \u00b7 United States","country":"United States"},{"key":"dfw","label":"DFW \u2014 Dallas/Fort Worth \u00b7 United States","country":"United States"},{"key":"dallas/fort worth","label":"Dallas/Fort Worth \u00b7 United States","country":"United States"},{"key":"iah","label":"IAH \u2014 Houston \u00b7 United States","country":"United States"},{"key":"houston","label":"Houston \u00b7 United States","country":"United States"},{"key":"lax","label":"LAX \u2014 Los Angeles \u00b7 United States","country":"United States"},{"key":"los angeles","label":"Los Angeles \u00b7 United States","country":"United States"},{"key":"mia","label":"MIA \u2014 Miami \u00b7 United States","country":"United States"},{"key":"miami","label":"Miami \u00b7 United States","country":"United States"},{"key":"jfk","label":"JFK \u2014 New York City \u00b7 United States","country":"United States"},{"key":"new york city","label":"New York City \u00b7 United States","country":"United States"},{"key":"ewr","label":"EWR \u2014 Newark \u00b7 United States","country":"United States"},{"key":"newark","label":"Newark \u00b7 United States","country":"United States"},{"key":"mco","label":"MCO \u2014 Orlando \u00b7 United States","country":"United States"},{"key":"orlando","label":"Orlando \u00b7 United States","country":"United States"},{"key":"sfo","label":"SFO \u2014 San Francisco \u00b7 United States","country":"United States"},{"key":"san francisco","label":"San Francisco \u00b7 United States","country":"United States"},{"key":"sea","label":"SEA \u2014 Seattle \u00b7 United States","country":"United States"},{"key":"seattle","label":"Seattle \u00b7 United States","country":"United States"},{"key":"iad","label":"IAD \u2014 Washington, D.C. \u00b7 United States","country":"United States"},{"key":"washington, d.c.","label":"Washington, D.C. \u00b7 United States","country":"United States"},{"key":"dad","label":"DAD \u2014 Da Nang \u00b7 Vietnam","country":"Vietnam"},{"key":"da nang","label":"Da Nang \u00b7 Vietnam","country":"Vietnam"},{"key":"han","label":"HAN \u2014 Hanoi \u00b7 Vietnam","country":"Vietnam"},{"key":"hanoi","label":"Hanoi \u00b7 Vietnam","country":"Vietnam"},{"key":"sgn","label":"SGN \u2014 Ho Chi Minh City \u00b7 Vietnam","country":"Vietnam"},{"key":"ho chi minh city","label":"Ho Chi Minh City \u00b7 Vietnam","country":"Vietnam"},{"key":"lun","label":"LUN \u2014 Lusaka \u00b7 Zambia","country":"Zambia"},{"key":"lusaka","label":"Lusaka \u00b7 Zambia","country":"Zambia"},{"key":"hre","label":"HRE \u2014 Harare \u00b7 Zimbabwe","country":"Zimbabwe"},{"key":"harare","label":"Harare \u00b7 Zimbabwe","country":"Zimbabwe"},{"key":"argentina","label":"Argentina","country":"Argentina"},{"key":"australia","label":"Australia","country":"Australia"},{"key":"austria","label":"Austria","country":"Austria"},{"key":"belgium","label":"Belgium","country":"Belgium"},{"key":"brazil","label":"Brazil","country":"Brazil"},{"key":"canada","label":"Canada","country":"Canada"},{"key":"chile","label":"Chile","country":"Chile"},{"key":"china mainland","label":"China mainland","country":"China mainland"},{"key":"czech republic","label":"Czech Republic","country":"Czech Republic"},{"key":"denmark","label":"Denmark","country":"Denmark"},{"key":"egypt","label":"Egypt","country":"Egypt"},{"key":"finland","label":"Finland","country":"Finland"},{"key":"france","label":"France","country":"France"},{"key":"germany","label":"Germany","country":"Germany"},{"key":"greece","label":"Greece","country":"Greece"},{"key":"hungary","label":"Hungary","country":"Hungary"},{"key":"indonesia","label":"Indonesia","country":"Indonesia"},{"key":"ireland","label":"Ireland","country":"Ireland"},{"key":"italy","label":"Italy","country":"Italy"},{"key":"japan","label":"Japan","country":"Japan"},{"key":"kenya","label":"Kenya","country":"Kenya"},{"key":"malaysia","label":"Malaysia","country":"Malaysia"},{"key":"maldives","label":"Maldives","country":"Maldives"},{"key":"mexico","label":"Mexico","country":"Mexico"},{"key":"morocco","label":"Morocco","country":"Morocco"},{"key":"netherlands","label":"Netherlands","country":"Netherlands"},{"key":"new zealand","label":"New Zealand","country":"New Zealand"},{"key":"norway","label":"Norway","country":"Norway"},{"key":"pakistan","label":"Pakistan","country":"Pakistan"},{"key":"philippines","label":"Philippines","country":"Philippines"},{"key":"poland","label":"Poland","country":"Poland"},{"key":"portugal","label":"Portugal","country":"Portugal"},{"key":"saudi arabia","label":"Saudi Arabia","country":"Saudi Arabia"},{"key":"south africa","label":"South Africa","country":"South Africa"},{"key":"south korea","label":"South Korea","country":"South Korea"},{"key":"spain","label":"Spain","country":"Spain"},{"key":"sri lanka","label":"Sri Lanka","country":"Sri Lanka"},{"key":"sweden","label":"Sweden","country":"Sweden"},{"key":"switzerland","label":"Switzerland","country":"Switzerland"},{"key":"taiwan","label":"Taiwan","country":"Taiwan"},{"key":"thailand","label":"Thailand","country":"Thailand"},{"key":"turkey","label":"Turkey","country":"Turkey"},{"key":"united arab emirates","label":"United Arab Emirates","country":"United Arab Emirates"},{"key":"united kingdom","label":"United Kingdom","country":"United Kingdom"},{"key":"united states","label":"United States","country":"United States"},{"key":"vietnam","label":"Vietnam","country":"Vietnam"}];
