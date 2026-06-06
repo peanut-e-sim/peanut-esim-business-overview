@@ -148,7 +148,12 @@ tbody tr:hover { background: #fafaf7; }
 <div class="section">
   <h2 style="font-size:18px;font-weight:600;margin-bottom:8px;">📋 Roster Plan</h2>
   <div style="color:#888;font-size:13px;margin-bottom:14px;">
-    Search and add destinations. We&rsquo;ll recommend SKUs that match the layover. Pick the plans you want — totals appear at the bottom.
+    Pick a usage tier, then add destinations. We&rsquo;ll auto-pick the best SKU per destination — you can edit any pick by clicking the card.
+  </div>
+  <div style="margin-bottom:16px;padding:12px;background:#fafaf7;border:1px solid #eee;border-radius:8px;">
+    <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#888;text-transform:uppercase;margin-bottom:8px;">Usage tier</label>
+    <div class="chips" id="rosterUsageChips" style="margin-bottom:6px;"></div>
+    <div style="font-size:11px;color:#888;" id="rosterUsageHelp">Low &mdash; 1 GB / day · full speed</div>
   </div>
   <div style="margin-bottom:14px;">
     <label style="display:block;font-size:11px;font-weight:600;letter-spacing:0.5px;color:#888;text-transform:uppercase;margin-bottom:8px;">Add destination</label>
@@ -577,13 +582,22 @@ rosterSearchDropdown.addEventListener('click', function(e) {
   const el = e.target.closest('div[data-c]');
   if (!el) return;
   const c = el.dataset.c;
-  // Count existing selections of this country to label as "Trip 1", "Trip 2", etc
   const existingCount = rosterSelections.filter(function(s){ return s.country === c; }).length;
-  rosterSelections.push({ id: 'sel' + (rosterSelIdCounter++), country: c, tripNum: existingCount + 1 });
+  const newSel = { id: 'sel' + (rosterSelIdCounter++), country: c, tripNum: existingCount + 1 };
+  rosterSelections.push(newSel);
+
+  // Auto-pick best SKU based on usage tier + layover
+  const sku = autoPickForSelection(newSel);
+  if (sku) {
+    const pk = newSel.id + '|' + sku.n;
+    rosterPicked.set(pk, {selectionId: newSel.id, country: newSel.country, sku: sku});
+  }
+
   rosterSearchInput.value = '';
   rosterSearchDropdown.classList.remove('open');
   renderRosterItinerary();
   renderRoster();
+  renderRosterPicked();
 });
 
 function layoverHours(country) {
@@ -944,6 +958,116 @@ const KEEPALIVE_SKU = {
   isKeepAlive: true,
 };
 
+// Usage tier — GB per day
+let usageTier = 'Low'; // default
+const USAGE_TIERS = {
+  'Low':    { gbPerDay: 1, label: 'Low — 1 GB / day · full speed' },
+  'Medium': { gbPerDay: 2, label: 'Medium — 2 GB / day · full speed' },
+  'Heavy':  { gbPerDay: 3, label: 'Heavy — 3 GB / day · full speed' },
+};
+
+function getLayoverDaysForCountry(country) {
+  const cities = FLIGHTS[country];
+  if (!cities || cities.length === 0) return 1;
+  const counts = {};
+  cities.forEach(function(c) { if (c.l) counts[c.l] = (counts[c.l]||0)+1; });
+  let mode = '', best = 0;
+  Object.keys(counts).forEach(function(k) { if (counts[k] > best) { best = counts[k]; mode = k; } });
+  if (!mode) return 1;
+  if (/turnaround/i.test(mode) || /home base/i.test(mode)) return 0; // 0 = turnaround
+  const m = mode.match(/(\d+)/);
+  return m ? Math.ceil(parseInt(m[1])/24) : 1;
+}
+
+// Auto-pick best SKU for one selection
+function autoPickForSelection(sel) {
+  const country = sel.country;
+  const layoverDays = getLayoverDaysForCountry(country);
+  const tier = USAGE_TIERS[usageTier];
+  const isTurnaround = layoverDays === 0;
+  const effectiveDays = Math.max(layoverDays, 1);
+  const targetGB = isTurnaround ? 1 : tier.gbPerDay * effectiveDays;
+
+  let candidates = DATA.singles
+    .filter(function(d) { return d.c === country; });
+
+  if (isTurnaround) {
+    // Crew never leaves airport — small SKU, any speed, cheapest
+    candidates = candidates
+      .filter(function(d) { return d.gv >= 0.4 && d.gv <= 1.1; })
+      .filter(function(d) { return d.v <= 2; });
+  } else {
+    // Full speed (or daily refill), validity covers layover, GB meets target
+    candidates = candidates
+      .filter(function(d) { return d.sp === 'full' || d.sp === 'Daily refill'; })
+      .filter(function(d) { return d.v >= effectiveDays && d.v <= effectiveDays + 2; }) // tight validity match
+      .filter(function(d) { return d.gv >= targetGB * 0.9; }); // some tolerance below target
+
+    // Fallback if no exact match: relax validity
+    if (candidates.length === 0) {
+      candidates = DATA.singles
+        .filter(function(d) { return d.c === country; })
+        .filter(function(d) { return d.sp === 'full' || d.sp === 'Daily refill'; })
+        .filter(function(d) { return d.v >= effectiveDays; })
+        .filter(function(d) { return d.gv >= targetGB * 0.9; });
+    }
+    // Final fallback: any matching country
+    if (candidates.length === 0) {
+      candidates = DATA.singles
+        .filter(function(d) { return d.c === country; })
+        .filter(function(d) { return d.v >= effectiveDays; });
+    }
+  }
+
+  if (candidates.length === 0) return null;
+
+  // Rank: cheapest first, prefer GB closest to target (not over-buying)
+  candidates.sort(function(a, b) {
+    return a.p - b.p;
+  });
+
+  return candidates[0];
+}
+
+function autoPickAll() {
+  // Re-pick for every selection (replaces non-keepalive picks)
+  const keepAlives = [];
+  rosterPicked.forEach(function(p, k) {
+    if (p.sku && p.sku.isKeepAlive) keepAlives.push({k: k, p: p});
+  });
+  rosterPicked.clear();
+  keepAlives.forEach(function(x) { rosterPicked.set(x.k, x.p); });
+
+  rosterSelections.forEach(function(sel) {
+    const sku = autoPickForSelection(sel);
+    if (sku) {
+      const pk = sel.id + '|' + sku.n;
+      rosterPicked.set(pk, {selectionId: sel.id, country: sel.country, sku: sku});
+    }
+  });
+}
+
+// Render usage tier chips
+const usageChipsEl = document.getElementById('rosterUsageChips');
+const usageHelpEl = document.getElementById('rosterUsageHelp');
+Object.keys(USAGE_TIERS).forEach(function(tier) {
+  const chip = document.createElement('div');
+  chip.className = 'chip' + (tier === usageTier ? ' on' : '');
+  const icon = tier === 'Low' ? '🟢' : tier === 'Medium' ? '🟡' : '🔴';
+  chip.textContent = icon + ' ' + tier;
+  chip.onclick = function() {
+    usageTier = tier;
+    document.querySelectorAll('#rosterUsageChips .chip').forEach(function(c){c.classList.remove('on');});
+    chip.classList.add('on');
+    usageHelpEl.textContent = USAGE_TIERS[tier].label;
+    autoPickAll();
+    renderRosterItinerary();
+    renderRoster();
+    renderRosterPicked();
+  };
+  usageChipsEl.appendChild(chip);
+});
+
 function makeSmartPicks() {
   // For each selection, pick the best SKU matching layover validity
   let replaced = 0;
@@ -971,35 +1095,9 @@ function makeSmartPicks() {
       }
     }
 
-    // Find best SKU for this country
-    // Balanced strategy: full speed > daily refill > others, validity match preferred, cheapest of matches
-    const candidates = DATA.singles
-      .filter(function(d) { return d.c === country; })
-      .filter(function(d) { return d.gv >= 0.4 && d.gv <= 2.5; }) // crew sweet spot
-      .filter(function(d) { return d.v >= layoverDays && d.v <= layoverDays + 1; }); // validity match within 1 day
-
-    if (candidates.length === 0) {
-      // Fallback: any SKU matching layover (looser)
-      const fallback = DATA.singles
-        .filter(function(d) { return d.c === country; })
-        .filter(function(d) { return d.gv >= 0.4 && d.gv <= 3; })
-        .filter(function(d) { return d.v >= layoverDays; });
-      candidates.push.apply(candidates, fallback);
-    }
-    if (candidates.length === 0) return;
-
-    // Rank: prefer full/daily speed, then validity match, then price
-    candidates.sort(function(a, b) {
-      const aFull = (a.sp === 'full' || a.sp === 'Daily refill') ? 0 : 1;
-      const bFull = (b.sp === 'full' || b.sp === 'Daily refill') ? 0 : 1;
-      if (aFull !== bFull) return aFull - bFull;
-      const aMatch = a.v === layoverDays ? 0 : 1;
-      const bMatch = b.v === layoverDays ? 0 : 1;
-      if (aMatch !== bMatch) return aMatch - bMatch;
-      return a.p - b.p;
-    });
-
-    const best = candidates[0];
+    // Use the autoPickForSelection logic (respects current usage tier)
+    const best = autoPickForSelection(sel);
+    if (!best) return;
     const pk = sel.id + '|' + best.n;
     rosterPicked.set(pk, {selectionId: sel.id, country: country, sku: best});
     newTotal += best.p;
