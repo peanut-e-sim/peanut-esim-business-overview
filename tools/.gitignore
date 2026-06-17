@@ -1,0 +1,5 @@
+# Local-only — contain confidential plaintext supplier pricing. NEVER commit.
+pricing-data.json
+pricing-dashboard.source.html
+*.bak
+encrypted/
