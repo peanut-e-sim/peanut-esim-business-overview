@@ -33,6 +33,7 @@ EA_CSV   = SRC / "eSIM-Access-Price.csv"
 SAM_XLSX = SRC / "Samurai-Wifi-Wholesale-CNY.xlsx"
 TELNA_CSV   = SRC / "Telna-Connect-Flex-Products.csv"   # Telna, USD direct, ISO3 lists
 ESIMGO_XLSX = SRC / "eSIM-Go-Rate-Sheet-Standard-CONFIDENTIAL.xlsx"  # eSIM Go, USD
+ZETEXA_XLSX = SRC / "Zetexa-Pricing-CONFIDENTIAL.xlsx"  # Zetexa, USD direct, NDA'd
 
 REPO = Path.home() / "code/peanut-esim-business-overview"
 HTML = REPO / "tools/pricing-dashboard.source.html"   # unencrypted working master (gitignored).
@@ -379,6 +380,116 @@ def build_esimgo():
     return singles, bundles
 
 # ----------------------------------------------------------------------------
+# 5) Zetexa  (single "Pricing" sheet, region-grouped: 6 fixed tiers
+#    (1GB/1d … 50GB/30d) + 6 unlimited tiers (3d … 20d) per country across the
+#    columns; USD direct; "—" = tier not offered; "N Countries (...)" rows are
+#    regional bundles. CONFIDENTIAL (NDA) — never commit the raw sheet/JSON.
+# ----------------------------------------------------------------------------
+ZETEXA_NAME_OVERRIDE = {
+    "south korea":"KR", "russian federation":"RU", "hong kong":"HK",
+    "congo dem. rep":"CD", "congo republic":"CG", "czech republic":"CZ",
+    "vietnam":"VN", "vitenam":"VN", "turkey":"TR", "cape verde":"CV",
+    "french guiana":"GF", "french polynesia":"PF", "faroe islands":"FO",
+    "curacao":"CW", "moldova":"MD", "taiwan":"TW", "macao":"MO", "macau":"MO",
+    "laos":"LA", "ivory coast":"CI", "brunei":"BN", "syria":"SY", "iran":"IR",
+    "united states":"US", "united kingdom":"GB", "bolivia":"BO",
+    "bosnia and herzegovina":"BA", "macao china":"MO", "macedonia":"MK",
+    "palestinian territory":"PS", "reunion":"RE",
+    "saint vincent and grenadines":"VC",
+    # "Netherlands Antilles" intentionally NOT mapped — defunct ISO grouping
+    # (dissolved 2010); resolves to nothing → dropped (1 obscure SKU set).
+}
+
+def ztx_name_iso2(name):
+    n = re.sub(r"\s+", " ", (name or "").strip())
+    key = n.lower()
+    if key in ZETEXA_NAME_OVERRIDE:
+        return ZETEXA_NAME_OVERRIDE[key]
+    try:
+        return pycountry.countries.lookup(n).alpha_2
+    except LookupError:
+        return None
+
+def parse_ztx_tier(h):
+    """'10GB/10 Days' -> (10.0, 10, False); 'Unlim 7 Days' -> (0.0, 7, True)."""
+    h = str(h or "").strip()
+    dm = re.search(r"(\d+)\s*Days?", h, re.I)
+    if not dm:
+        return None
+    unlim = bool(re.search(r"unlim", h, re.I))
+    gbm = re.search(r"(\d+)\s*GB", h, re.I)
+    gb = 0.0 if unlim else (float(gbm.group(1)) if gbm else 0.0)
+    return (gb, int(dm.group(1)), unlim)
+
+def build_zetexa():
+    if not ZETEXA_XLSX.exists():
+        return [], [], collections.Counter()
+    wb = openpyxl.load_workbook(ZETEXA_XLSX, read_only=True, data_only=True)
+    ws = wb["Pricing"]
+    rows = list(ws.iter_rows(values_only=True))
+    header = [str(h).strip() if h is not None else "" for h in rows[0]]
+    tiers = []                                   # (col_index, gb, days, unlim)
+    for i in range(2, len(header)):
+        t = parse_ztx_tier(header[i])
+        if t:
+            tiers.append((i, *t))
+    singles, bundles = [], []
+    unresolved = collections.Counter()
+    bundle_rx = re.compile(r"^\s*\d+\s+countr(?:y|ies)\s*\(", re.I)
+
+    def price_of(r, ci):
+        if ci >= len(r):
+            return None
+        v = r[ci]
+        if v in (None, "", "—", "-", "–"):
+            return None
+        try:
+            return round(float(v), 4)
+        except (TypeError, ValueError):
+            return None
+
+    for r in rows[1:]:
+        if not r:
+            continue
+        region  = str(r[0] or "").strip()
+        country = str(r[1] or "").strip() if len(r) > 1 else ""
+        if not country or country.startswith("▸"):
+            continue                              # region-header / spacer rows
+        if bundle_rx.match(country):              # regional bundle
+            inside = re.search(r"\(([^)]*)\)", country)
+            members = [m.strip() for m in (inside.group(1).split(",") if inside else []) if m.strip()]
+            covers, seen = [], set()
+            for m in members:
+                iso = ztx_name_iso2(m)
+                if not iso:
+                    unresolved[m] += 1; continue
+                nm = canon_name(iso)
+                if nm not in seen:
+                    seen.add(nm); covers.append(nm)
+            bname = f"Zetexa {region} ({len(covers)} countries)"
+            skus = []
+            for ci, gb, days, unlim in tiers:
+                p = price_of(r, ci)
+                if p is not None:
+                    skus.append({"s":"Ztx","b":bname,"d":data_label(gb),"v":days,"p":p,
+                                 "n":f"{bname} {data_label(gb)}/{days}d"})
+            if skus and covers:
+                bundles.append({"name":bname,"supplier":"Ztx","covers":covers,"skus":skus})
+            continue
+        iso = ztx_name_iso2(country)              # single country
+        if not iso:
+            unresolved[country] += 1; continue
+        for ci, gb, days, unlim in tiers:
+            p = price_of(r, ci)
+            if p is not None:
+                singles.append({
+                    "s":"Ztx", "c":canon_name(iso), "d":data_label(gb), "gv":gb,
+                    "sp":"Unlimited" if unlim else "Fixed data", "pd":0, "v":days,
+                    "p":p, "n":f"{country} {data_label(gb)}/{days}d", "t":"S",
+                })
+    return singles, bundles, unresolved
+
+# ----------------------------------------------------------------------------
 # main
 # ----------------------------------------------------------------------------
 def main():
@@ -386,16 +497,19 @@ def main():
     sam_s, sam_b, unresolved = build_sam()
     tel_s, tel_b = build_telna()
     ego_s, ego_b = build_esimgo()
-    singles = sam_s + ea_s + ego_s + tel_s   # Samurai-first ordering preserved
-    bundles = sam_b + ea_b + ego_b + tel_b
+    ztx_s, ztx_b, ztx_unresolved = build_zetexa()
+    singles = sam_s + ea_s + ego_s + tel_s + ztx_s   # Samurai-first ordering preserved
+    bundles = sam_b + ea_b + ego_b + tel_b + ztx_b
 
     data = {"singles": singles, "bundles": bundles}
 
     # FLAGS for every canonical single country
     countries = sorted({d["c"] for d in singles})
     iso_by_name = {}
+    for c in pycountry.countries:                       # full reverse map (covers Zetexa long-tail)
+        iso_by_name.setdefault(canon_name(c.alpha_2), c.alpha_2)
     for iso in set(NAME_BY_ISO) | set(ISO_NAME_OVERRIDE) | {"TW","MP","GU"}:
-        iso_by_name[canon_name(iso)] = iso
+        iso_by_name[canon_name(iso)] = iso             # overrides win
     flags = {c: flag_emoji(iso_by_name.get(c, "")) for c in countries if flag_emoji(iso_by_name.get(c, ""))}
 
     # SEARCH_INDEX entry per country
@@ -411,7 +525,12 @@ def main():
     print(f"  Sam  singles: {len(sam_s):>6}   countries: {sam_cty}")
     print(f"  EGo  singles: {len(ego_s):>6}   countries: {len({d['c'] for d in ego_s})}")
     print(f"  Telna singles:{len(tel_s):>6}   countries: {len({d['c'] for d in tel_s})}")
-    print(f"  bundles -> EA:{len(ea_b)}  Sam:{len(sam_b)}  EGo:{len(ego_b)}  Telna:{len(tel_b)}")
+    print(f"  Ztx  singles: {len(ztx_s):>6}   countries: {len({d['c'] for d in ztx_s})}")
+    print(f"  bundles -> EA:{len(ea_b)}  Sam:{len(sam_b)}  EGo:{len(ego_b)}  Telna:{len(tel_b)}  Ztx:{len(ztx_b)}")
+    if ztx_unresolved:
+        print("  !! UNRESOLVED Zetexa country names (add to ZETEXA_NAME_OVERRIDE):")
+        for nm, n in ztx_unresolved.most_common():
+            print(f"       {n:>4}  {nm!r}")
     print(f"  countries with BOTH EA+Sam (singles): {len(both)}")
     print(f"  total single records: {len(singles)}   total bundles: {len(bundles)}")
     print(f"  FX: settlement CNY / {FX_CNY_PER_USD} = USD")
@@ -427,7 +546,8 @@ def main():
         "meta":{"fx_cny_per_usd":FX_CNY_PER_USD,
                 "source":["eSIM-Access-Price.csv","Samurai-Wifi-Wholesale-CNY.xlsx",
                           "eSIM-Go-Rate-Sheet-Standard-CONFIDENTIAL.xlsx",
-                          "Telna-Connect-Flex-Products.csv"]}},
+                          "Telna-Connect-Flex-Products.csv",
+                          "Zetexa-Pricing-CONFIDENTIAL.xlsx"]}},
         ensure_ascii=False))
     print(f"wrote {JSON_OUT}  ({JSON_OUT.stat().st_size/1e6:.2f} MB)")
 
